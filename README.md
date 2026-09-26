@@ -37,7 +37,7 @@ Collection time, source observation, dataset generation and Pages publication ar
 
 ## Handoff for the next prompt
 
-**The pinned 119-group NSE review, the nine historical excluded-event IPO repairs, Fabino, the read-only BSE historical coverage audit, and its five high-priority reconciliation actions are all complete and verified live. The next P1 task is the four unmatched BSE 2020 issuers.**
+**The pinned 119-group NSE review, the nine historical excluded-event IPO repairs, Fabino, the BSE historical high-priority reconciliation, and the four unmatched BSE 2020 IPO repairs are complete and verified live. The next P1 task is the 16 unmatched official BSE 2021 rows.**
 
 **The interrupted identity/DRHP release is complete: PR #248 and PR #249 are merged and verified. Do not replay batches 1–9.**
 
@@ -103,58 +103,6 @@ PR **#263** materialized **4 official BSE/SEBI documents / 12,642,908 response b
 
 ### Exact next backend task
 
-Repair and characterize the **official BSE issue-summary historical coverage path** as a **read-only universe-discovery audit**. Determine which historical IPOs/years it can reliably enumerate; retain raw response bytes/hashes plus observation/fetch timestamps and pagination/exhaustion evidence; reconcile results against current recovery and the completed BSE SME listing/index work. **Do not import an issuer from issue-summary evidence alone.**
+Review the **16 unmatched official BSE 2021 rows** retained by `data/discovery/bse-issue-summary-coverage-audit-2026-09-26.json`. The official 2021 surface contains 91 rows: 75 exact recovery matches and 16 unmatched. Treat issue-summary rows as discovery evidence only; verify each candidate from issuer-specific official BSE/SEBI/issuer evidence, retain original source bytes/hashes, preserve missing/conflicting values, and import only independently supported IPOs through a reviewed collision/idempotency-safe path.
 
-BSE parser v1.5 remains **236/236 parsed**; do not replay its completed cursor. SEBI historical pagination and NSE-series gaps remain after the BSE issue-summary audit. UI/research-depth work remains in its own handoff. No minimum-investment, billing/accounts/ads, spending or access-policy expansion.
-
-## Local checks
-
-```bash
-node scripts/test-sync-sebi-drhp.mjs
-node scripts/test-drhp-integrity.mjs
-node scripts/test-drhp-ui.mjs
-node scripts/test-reviewed-nse-ipos.mjs
-node scripts/test-reviewed-nse-publication.mjs
-node scripts/apply-reviewed-nse-ipos.mjs --check
-node scripts/test-materialize-fabino-listing-evidence.mjs
-node scripts/apply-reviewed-fabino.mjs --check
-node scripts/test-reviewed-fabino.mjs
-node scripts/test-reviewed-fabino-publication.mjs
-node scripts/test-audit-bse-issue-summary-coverage.mjs
-node scripts/test-materialize-bse-audit-conflict-evidence.mjs
-node scripts/apply-reviewed-bse-reconciliation.mjs --check
-node scripts/test-reviewed-bse-reconciliation.mjs
-node scripts/test-reviewed-bse-reconciliation-publication.mjs
-node scripts/test-audit-ipo-universe.mjs
-node scripts/test-audit-bse-sme-addition-notices.mjs
-node scripts/test-backfill-bse-sme-addition-notices.mjs
-node scripts/test-apply-bse-sme-addition-notice-state.mjs
-node scripts/apply-bse-sme-addition-notice-state.mjs --check
-node scripts/test-verify-bse-publication.mjs
-node scripts/test-bse-public-projection.mjs
-node scripts/test-bse-publication-rehearsal.mjs
-node scripts/apply-verified-bse-listings.mjs --check
-node scripts/build-published-data.mjs --check
-node scripts/validate-data.mjs
-node scripts/audit-historical-coverage.mjs
-```
-
-Read-only official-universe collection and reconciliation, writing outside the checkout:
-
-```bash
-node scripts/collect-ipo-universe-sources.mjs --output-dir=/tmp/ipo-universe
-node scripts/audit-ipo-universe.mjs --input=/tmp/ipo-universe --output=/tmp/ipo-universe/audit.json
-```
-
-A successful audit can still have partial source coverage; inspect source gaps and `full_universe_complete`. For BSE receipts, use `scripts/verify-bse-publication.mjs` with `--manifests=<reviewed paths>` and `--output-dir=<artifact directory>`.
-
-For the selected NSE release and DRHP directory, verify actual Pages without importing:
-
-```bash
-node scripts/verify-reviewed-nse-publication.mjs --manifest=data/verified-nse-ipos/2026-09-25-batch9.json --output-dir=/tmp/nse-publication
-node scripts/verify-drhp-publication.mjs --output-dir=/tmp/drhp-publication
-```
-
-## Historical handoffs
-
-The immediately preceding README and status are archived byte-for-byte in [docs/archive/README-before-bse-audit-reconciliation-2026-09-26.md](docs/archive/README-before-bse-audit-reconciliation-2026-09-26.md) and [docs/archive/PROJECT_STATUS-before-bse-audit-reconciliation-2026-09-26.md](docs/archive/PROJECT_STATUS-before-bse-audit-reconciliation-2026-09-26.md). Earlier archives and receipts remain intact. Archived next-task instructions are not current instructions.
+The four BSE 2020 unmatched issuers are already published and live-verified; do not replay that batch. The served dataset verification after PR #279 matched **1,338 records** at SHA-256 `300e2c100046116349b64034646d66f64b3618282755bf96c00a534166252fed`. SEBI historical pagination and NSE-series gaps remain separate. UI/research-depth work remains in its own handoff. No minimum-investment, billing/accounts/ads, spending or access-policy expansion.
