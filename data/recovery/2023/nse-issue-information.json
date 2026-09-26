@@ -1,7 +1,7 @@
 {
   "source_family": "Official NSE / SEBI / BSE offer-document and exchange evidence",
   "collection_started_at": "2026-09-23T19:29:29.146Z",
-  "generated_at": "2026-09-26T17:36:26.836Z",
+  "generated_at": "2026-09-26T18:32:08.691Z",
   "records": [
     {
       "id": "a-g-universal-limited",
@@ -7163,7 +7163,7 @@
     },
     {
       "id": "happy-forging-limited",
-      "issuer_name": "Happy Forging Limited",
+      "issuer_name": "Happy Forgings Limited",
       "board": "Mainboard",
       "sector": null,
       "status": "listed",
@@ -7197,10 +7197,18 @@
           "url": "https://www.nseindia.com/api/ipo-detail?symbol=HAPPYFORGE&series=EQ",
           "publication_date": null,
           "collected_at": "2026-09-23T20:29:27.308Z"
+        },
+        {
+          "type": "Issuer Filing",
+          "identity": "Happy Forgings Limited — Issuer Filing [happy_identity]",
+          "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/5c314f8e-566e-45ee-8df9-8477a873ec27.pdf",
+          "publication_date": null,
+          "collected_at": "2026-09-26T18:32:07.570Z",
+          "document_sha256": "263a465ac988c491e552e38bd8f48bfb9a59009a5d77d1e92ddc45e148ab7b85"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T20:29:27.308Z",
+      "last_collected_at": "2026-09-26T18:32:08.691Z",
       "board_evidence": [
         {
           "url": "https://www.nseindia.com/api/public-past-issues",
@@ -7260,6 +7268,37 @@
           "document_identity": "NSE Issue Information — HAPPYFORGE",
           "publication_date": null,
           "collected_at": "2026-09-23T20:29:27.308Z"
+        }
+      },
+      "bse_scrip_code": "544057",
+      "bse_source": {
+        "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/5c314f8e-566e-45ee-8df9-8477a873ec27.pdf",
+        "document_type": "Issuer Filing",
+        "document_identity": "Happy Forgings Limited — Issuer Filing [happy_identity]",
+        "publication_date": null,
+        "page": null,
+        "collected_at": "2026-09-26T18:32:07.570Z",
+        "document_sha256": "263a465ac988c491e552e38bd8f48bfb9a59009a5d77d1e92ddc45e148ab7b85",
+        "evidence_locator": null
+      },
+      "bse_issue_summary_reconciliation": {
+        "manifest": "data/verified-bse-listings/2026-09-26-bse-reconciliation-five.json",
+        "review": "data/discovery/bse-issue-summary-high-priority-reconciliation-2026-09-26.json",
+        "receipt": "data/evidence/bse-high-priority-reconciliation-source-receipt-2026-09-26.json",
+        "audit": "data/discovery/bse-issue-summary-coverage-audit-2026-09-26.json",
+        "importer_version": "1.0.0",
+        "action_key": "happy",
+        "decision": "correct_legal_name_preserve_stable_id",
+        "workflow_run_id": "36262801644",
+        "artifact_id": 10912597972,
+        "artifact_digest": "sha256:5728fd05047d366a11585224b49fe2bc9472ac50ad0ba43aca6102d6124d547a",
+        "applied_at": "2026-09-26T18:32:08.691Z",
+        "source_hashes": {
+          "happy_identity": "263a465ac988c491e552e38bd8f48bfb9a59009a5d77d1e92ddc45e148ab7b85"
+        },
+        "previous": {
+          "issuer_name": "Happy Forging Limited",
+          "bse_scrip_code": null
         }
       }
     },
@@ -14491,6 +14530,336 @@
         "source_artifact_id": 10838128680,
         "source_artifact_sha256": "9dd743faf350732c00a9ec8d30776bf7c61416d5cf6b00bb69c48bc2ea04b172",
         "listing_notice_no": "20230317-22"
+      }
+    },
+    {
+      "id": "protean-egov-technologies-limited",
+      "issuer_name": "Protean eGov Technologies Limited",
+      "board": "Mainboard",
+      "sector": null,
+      "status": "listed",
+      "nse_symbol": "PROTEAN",
+      "nse_series": "EQ",
+      "nse_source": {
+        "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/0063fce8-dde0-4f1b-82f9-2ba813b6b417.pdf",
+        "document_type": "NSE Listing Press Release retained via BSE filing",
+        "document_identity": "Protean eGov Technologies Limited — NSE Listing Press Release retained via BSE filing [protean_secondary_nse]",
+        "publication_date": null,
+        "page": null,
+        "collected_at": "2026-09-26T18:31:40.236Z",
+        "document_sha256": "00fc59eb8dd906ca3e4c8cb46e4d51665fa9c4807b53ac3597ea7292b2b0f1a4",
+        "evidence_locator": null
+      },
+      "terms": {
+        "price_band": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null,
+        "open_date": null,
+        "close_date": null
+      },
+      "documents": [
+        {
+          "type": "NSE Public Past Issues",
+          "identity": "NSE Public Past Issues — PROTEAN",
+          "url": "https://www.nseindia.com/api/public-past-issues",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — PROTEAN",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=PROTEAN&series=EQ",
+          "publication_date": null,
+          "collected_at": "2026-09-24T15:13:38.257Z"
+        },
+        {
+          "type": "Prospectus",
+          "identity": "Protean eGov Technologies Limited — Prospectus [protean_prospectus]",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2023/1700736778280.pdf",
+          "publication_date": null,
+          "collected_at": "2026-09-26T18:31:39.635Z",
+          "document_sha256": "fc9cb856e65a5d2ad35c9687d125f8fb1d7b9fc95336ccdefc62a8e29a461e60"
+        },
+        {
+          "type": "Issuer Financial Results / IPO Listing Disclosure",
+          "identity": "Protean eGov Technologies Limited — Issuer Financial Results / IPO Listing Disclosure [protean_original_bse_listing]",
+          "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/26a2a114-289b-48f5-8ffc-d6c8bd317fa0.pdf",
+          "publication_date": null,
+          "collected_at": "2026-09-26T18:31:40.670Z",
+          "document_sha256": "437a4c443d91426d6eaf8c4ae09ea6ece5369c49c36902de9565934797f64a9a"
+        },
+        {
+          "type": "NSE Listing Press Release retained via BSE filing",
+          "identity": "Protean eGov Technologies Limited — NSE Listing Press Release retained via BSE filing [protean_secondary_nse]",
+          "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/0063fce8-dde0-4f1b-82f9-2ba813b6b417.pdf",
+          "publication_date": null,
+          "collected_at": "2026-09-26T18:31:40.236Z",
+          "document_sha256": "00fc59eb8dd906ca3e4c8cb46e4d51665fa9c4807b53ac3597ea7292b2b0f1a4"
+        }
+      ],
+      "first_observed_at": "2026-09-23T19:29:29.146Z",
+      "last_collected_at": "2026-09-26T18:32:08.691Z",
+      "board_evidence": [
+        {
+          "url": "https://www.nseindia.com/api/public-past-issues",
+          "document_type": "NSE Public Past Issues",
+          "document_identity": "NSE Public Past Issues — PROTEAN",
+          "publication_date": null,
+          "page": null,
+          "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/26a2a114-289b-48f5-8ffc-d6c8bd317fa0.pdf",
+          "document_type": "Issuer Financial Results / IPO Listing Disclosure",
+          "document_identity": "Protean eGov Technologies Limited — Issuer Financial Results / IPO Listing Disclosure [protean_original_bse_listing]",
+          "publication_date": null,
+          "page": null,
+          "collected_at": "2026-09-26T18:31:40.670Z",
+          "document_sha256": "437a4c443d91426d6eaf8c4ae09ea6ece5369c49c36902de9565934797f64a9a",
+          "evidence_locator": null
+        }
+      ],
+      "status_evidence": [
+        {
+          "url": "https://www.nseindia.com/api/public-past-issues",
+          "document_type": "NSE Public Past Issues",
+          "document_identity": "NSE Public Past Issues — PROTEAN",
+          "publication_date": null,
+          "page": null,
+          "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/26a2a114-289b-48f5-8ffc-d6c8bd317fa0.pdf",
+          "document_type": "Issuer Financial Results / IPO Listing Disclosure",
+          "document_identity": "Protean eGov Technologies Limited — Issuer Financial Results / IPO Listing Disclosure [protean_original_bse_listing]",
+          "publication_date": null,
+          "page": null,
+          "collected_at": "2026-09-26T18:31:40.670Z",
+          "document_sha256": "437a4c443d91426d6eaf8c4ae09ea6ece5369c49c36902de9565934797f64a9a",
+          "evidence_locator": null
+        }
+      ],
+      "listing_date": {
+        "value": "2023-11-13",
+        "source_value": "2023-11-13",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/26a2a114-289b-48f5-8ffc-d6c8bd317fa0.pdf",
+          "document_type": "Issuer Financial Results / IPO Listing Disclosure",
+          "document_identity": "Protean eGov Technologies Limited — Issuer Financial Results / IPO Listing Disclosure [protean_original_bse_listing]",
+          "publication_date": null,
+          "page": null,
+          "collected_at": "2026-09-26T18:31:40.670Z",
+          "document_sha256": "437a4c443d91426d6eaf8c4ae09ea6ece5369c49c36902de9565934797f64a9a",
+          "evidence_locator": null
+        },
+        "corrections": [
+          {
+            "corrected_at": "2026-09-26T18:32:08.691Z",
+            "previous_value": "2025-02-06",
+            "previous_source_value": "06-FEB-2025",
+            "replacement_value": "2023-11-13",
+            "evidence": [
+              {
+                "url": "https://www.nseindia.com/api/public-past-issues",
+                "document_type": "NSE Public Past Issues",
+                "document_identity": "NSE Public Past Issues — PROTEAN",
+                "publication_date": null,
+                "page": null,
+                "collected_at": "2026-09-23T19:29:29.146Z"
+              },
+              {
+                "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/26a2a114-289b-48f5-8ffc-d6c8bd317fa0.pdf",
+                "document_type": "Issuer Financial Results / IPO Listing Disclosure",
+                "document_identity": "Protean eGov Technologies Limited — Issuer Financial Results / IPO Listing Disclosure [protean_original_bse_listing]",
+                "publication_date": null,
+                "page": null,
+                "collected_at": "2026-09-26T18:31:40.670Z"
+              }
+            ]
+          }
+        ]
+      },
+      "issue_price": {
+        "value": 792,
+        "source_value": 792,
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2023/1700736778280.pdf",
+          "document_type": "Prospectus",
+          "document_identity": "Protean eGov Technologies Limited — Prospectus [protean_prospectus]",
+          "publication_date": null,
+          "page": null,
+          "collected_at": "2026-09-26T18:31:39.635Z",
+          "document_sha256": "fc9cb856e65a5d2ad35c9687d125f8fb1d7b9fc95336ccdefc62a8e29a461e60",
+          "evidence_locator": null
+        },
+        "corrections": [
+          {
+            "corrected_at": "2026-09-26T18:32:08.691Z",
+            "previous_value": 1381,
+            "previous_source_value": "1381",
+            "replacement_value": 792,
+            "evidence": [
+              {
+                "url": "https://www.nseindia.com/api/public-past-issues",
+                "document_type": "NSE Public Past Issues",
+                "document_identity": "NSE Public Past Issues — PROTEAN",
+                "publication_date": null,
+                "page": null,
+                "collected_at": "2026-09-23T19:29:29.146Z"
+              },
+              {
+                "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2023/1700736778280.pdf",
+                "document_type": "Prospectus",
+                "document_identity": "Protean eGov Technologies Limited — Prospectus [protean_prospectus]",
+                "publication_date": null,
+                "page": null,
+                "collected_at": "2026-09-26T18:31:39.635Z"
+              }
+            ]
+          }
+        ]
+      },
+      "minimum_bid_quantity": {
+        "value": 18,
+        "source_value": "18 Equity Shares",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2023/1700736778280.pdf",
+          "document_type": "Prospectus",
+          "document_identity": "Protean eGov Technologies Limited — Prospectus [protean_prospectus]",
+          "publication_date": null,
+          "page": null,
+          "collected_at": "2026-09-26T18:31:39.635Z",
+          "document_sha256": "fc9cb856e65a5d2ad35c9687d125f8fb1d7b9fc95336ccdefc62a8e29a461e60",
+          "evidence_locator": null
+        },
+        "corrections": []
+      },
+      "bse_source": {
+        "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/26a2a114-289b-48f5-8ffc-d6c8bd317fa0.pdf",
+        "document_type": "Issuer Financial Results / IPO Listing Disclosure",
+        "document_identity": "Protean eGov Technologies Limited — Issuer Financial Results / IPO Listing Disclosure [protean_original_bse_listing]",
+        "publication_date": null,
+        "page": null,
+        "collected_at": "2026-09-26T18:31:40.670Z",
+        "document_sha256": "437a4c443d91426d6eaf8c4ae09ea6ece5369c49c36902de9565934797f64a9a",
+        "evidence_locator": null
+      },
+      "bse_scrip_code": "544021",
+      "isin": "INE004A01022",
+      "open_date": {
+        "value": "2023-11-06",
+        "source_value": "2023-11-06",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2023/1700736778280.pdf",
+          "document_type": "Prospectus",
+          "document_identity": "Protean eGov Technologies Limited — Prospectus [protean_prospectus]",
+          "publication_date": null,
+          "page": null,
+          "collected_at": "2026-09-26T18:31:39.635Z",
+          "document_sha256": "fc9cb856e65a5d2ad35c9687d125f8fb1d7b9fc95336ccdefc62a8e29a461e60",
+          "evidence_locator": null
+        },
+        "corrections": []
+      },
+      "close_date": {
+        "value": "2023-11-08",
+        "source_value": "2023-11-08",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2023/1700736778280.pdf",
+          "document_type": "Prospectus",
+          "document_identity": "Protean eGov Technologies Limited — Prospectus [protean_prospectus]",
+          "publication_date": null,
+          "page": null,
+          "collected_at": "2026-09-26T18:31:39.635Z",
+          "document_sha256": "fc9cb856e65a5d2ad35c9687d125f8fb1d7b9fc95336ccdefc62a8e29a461e60",
+          "evidence_locator": null
+        },
+        "corrections": []
+      },
+      "secondary_listings": [
+        {
+          "exchange": "NSE",
+          "listing_date": "2025-02-06",
+          "symbol": "PROTEAN",
+          "isin": "INE004A01022",
+          "event": "later secondary listing",
+          "source": {
+            "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/0063fce8-dde0-4f1b-82f9-2ba813b6b417.pdf",
+            "document_type": "NSE Listing Press Release retained via BSE filing",
+            "document_identity": "Protean eGov Technologies Limited — NSE Listing Press Release retained via BSE filing [protean_secondary_nse]",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-26T18:31:40.236Z",
+            "document_sha256": "00fc59eb8dd906ca3e4c8cb46e4d51665fa9c4807b53ac3597ea7292b2b0f1a4",
+            "evidence_locator": null
+          }
+        }
+      ],
+      "bse_issue_summary_reconciliation": {
+        "manifest": "data/verified-bse-listings/2026-09-26-bse-reconciliation-five.json",
+        "review": "data/discovery/bse-issue-summary-high-priority-reconciliation-2026-09-26.json",
+        "receipt": "data/evidence/bse-high-priority-reconciliation-source-receipt-2026-09-26.json",
+        "audit": "data/discovery/bse-issue-summary-coverage-audit-2026-09-26.json",
+        "importer_version": "1.0.0",
+        "action_key": "protean",
+        "decision": "move_and_correct_historical_ipo_preserve_secondary_listing",
+        "workflow_run_id": "36262801644",
+        "artifact_id": 10912597972,
+        "artifact_digest": "sha256:5728fd05047d366a11585224b49fe2bc9472ac50ad0ba43aca6102d6124d547a",
+        "applied_at": "2026-09-26T18:32:08.691Z",
+        "source_hashes": {
+          "protean_prospectus": "fc9cb856e65a5d2ad35c9687d125f8fb1d7b9fc95336ccdefc62a8e29a461e60",
+          "protean_original_bse_listing": "437a4c443d91426d6eaf8c4ae09ea6ece5369c49c36902de9565934797f64a9a",
+          "protean_secondary_nse": "00fc59eb8dd906ca3e4c8cb46e4d51665fa9c4807b53ac3597ea7292b2b0f1a4"
+        },
+        "previous": {
+          "year": 2025,
+          "listing_date": {
+            "value": "2025-02-06",
+            "source_value": "06-FEB-2025",
+            "status": "verified",
+            "page": null,
+            "source": {
+              "url": "https://www.nseindia.com/api/public-past-issues",
+              "document_type": "NSE Public Past Issues",
+              "document_identity": "NSE Public Past Issues — PROTEAN",
+              "publication_date": null,
+              "page": null,
+              "collected_at": "2026-09-23T19:29:29.146Z"
+            }
+          },
+          "issue_price": {
+            "value": 1381,
+            "source_value": "1381",
+            "status": "verified",
+            "page": null,
+            "source": {
+              "url": "https://www.nseindia.com/api/public-past-issues",
+              "document_type": "NSE Public Past Issues",
+              "document_identity": "NSE Public Past Issues — PROTEAN",
+              "publication_date": null,
+              "page": null,
+              "collected_at": "2026-09-23T19:29:29.146Z"
+            }
+          },
+          "nse_source": {
+            "url": "https://www.nseindia.com/api/public-past-issues",
+            "document_type": "NSE Public Past Issues",
+            "document_identity": "NSE Public Past Issues — PROTEAN",
+            "publication_date": null,
+            "collected_at": "2026-09-23T19:29:29.146Z"
+          }
+        }
       }
     },
     {
