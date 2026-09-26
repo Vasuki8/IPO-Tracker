@@ -1,4 +1,4 @@
-/* Pre-IPO company list backed by retained SEBI draft-offer evidence. */
+/* Dynamic pre-IPO company list backed by retained SEBI draft-offer evidence and current published IPO state. */
 let DRHP_DATA = null;
 const $ = (selector) => document.querySelector(selector);
 
@@ -55,7 +55,7 @@ function render() {
   </article>`).join("");
   $("#drhpEmpty").hidden = companies.length !== 0;
 }
-function validateDataset(data) {
+function validateDrhpDataset(data) {
   if(data?.schema_version !== "1.0.0" || data?.coverage?.year !== 2026 ||
     data?.coverage?.stop_reason !== "first_page_strictly_older_than_year" ||
     !Array.isArray(data.companies) || !data.companies.length || data.coverage.companies !== data.companies.length) return false;
@@ -70,40 +70,66 @@ function validateDataset(data) {
   }
   return data.coverage.filing_records === filings;
 }
+function validateIpoDataset(data) {
+  const statuses = new Set(["upcoming", "open", "closed", "listed"]);
+  return Array.isArray(data?.records) && data.records.every(record =>
+    record && typeof record.issuer_name === "string" && record.issuer_name.trim() &&
+    statuses.has(String(record.status || "").toLowerCase()));
+}
 async function load() {
   $("#drhpLoading").hidden = false;
   $("#drhpError").hidden = true;
   $("#drhpResults").hidden = true;
   try {
-    const response = await fetch("data/drhp-filings.json", {cache:"no-store"});
-    if (!response.ok) throw new Error("Pre-IPO source dataset request failed");
-    const data = await response.json();
-    if (!validateDataset(data)) throw new Error("Invalid pre-IPO source dataset");
-    DRHP_DATA = data;
-    $("#drhpCompanyCount").textContent = data.companies.length;
-    $("#drhpLatestDate").textContent = formatDate(data.companies.reduce((latest, company) => !latest || company.latest_filing_date > latest ? company.latest_filing_date : latest, null));
-    $("#drhpYear").textContent = data.coverage.year;
-    $("#drhpPages").textContent = data.coverage.pages_fetched;
-    $("#drhpGenerated").textContent = "Last successful collection: " + formatTimestamp(data.collection_completed_at || data.source_pages?.at(-1)?.collected_at || data.generated_at);
+    const [drhpResponse, ipoResponse] = await Promise.all([
+      fetch("data/drhp-filings.json", {cache:"no-store"}),
+      fetch("data/ipos.json", {cache:"no-store"}),
+    ]);
+    if (!drhpResponse.ok || !ipoResponse.ok) throw new Error("Pre-IPO lifecycle datasets request failed");
+    const [sourceData, ipoData] = await Promise.all([drhpResponse.json(), ipoResponse.json()]);
+    if (!validateDrhpDataset(sourceData) || !validateIpoDataset(ipoData) || !globalThis.PreIpoFilter) {
+      throw new Error("Invalid pre-IPO lifecycle datasets");
+    }
+
+    const activeCompanies = PreIpoFilter.activeCompanies(sourceData.companies, ipoData.records);
+    const progressedCount = sourceData.companies.length - activeCompanies.length;
+    DRHP_DATA = {...sourceData, companies: activeCompanies};
+
+    $("#drhpCompanyCount").textContent = activeCompanies.length;
+    $("#drhpLatestDate").textContent = formatDate(activeCompanies.reduce((latest, company) =>
+      !latest || company.latest_filing_date > latest ? company.latest_filing_date : latest, null));
+    $("#drhpYear").textContent = sourceData.coverage.year;
+    $("#drhpPages").textContent = sourceData.coverage.pages_fetched;
+    $("#drhpGenerated").textContent = "Lifecycle state checked: " + formatTimestamp(
+      [sourceData.collection_completed_at || sourceData.generated_at, ipoData.generated_at].filter(Boolean).sort().at(-1)
+    );
     $("#drhpCoverageNote").textContent =
-      `${data.companies.length} companies with retained ${data.coverage.year} DRHP/UDRHP evidence · ${data.coverage.pages_fetched} SEBI pages checked`;
-    const totals = new Set((data.source_pages || []).map(p => p.observed_records));
-    const retained = data.companies.flatMap(c => c.filings).filter(f => f.not_seen_in_latest_scan).length;
-    $("#drhpIntegrityNote").textContent = (totals.size > 1 ? "SEBI page totals differed during collection. " : "") + "This company list is backed by retained 2026 draft-offer evidence and is not a complete register of every company considering an IPO. " + (retained ? `${retained} earlier draft observation(s) not seen in the latest scan remain retained; absence is not withdrawal evidence. ` : "") + "A company may later progress to RHP, upcoming, open, closed or listed status; this page records the draft submission signal.";
-    const sourceUrl = safeUrl(data.source?.listing_url, "/sebiweb/home/");
+      `${activeCompanies.length} active pre-IPO companies · ${progressedCount} progressed issuer(s) hidden · ${sourceData.companies.length} draft-backed companies tracked`;
+
+    const totals = new Set((sourceData.source_pages || []).map(p => p.observed_records));
+    const retained = sourceData.companies.flatMap(c => c.filings).filter(f => f.not_seen_in_latest_scan).length;
+    $("#drhpIntegrityNote").textContent =
+      (totals.size > 1 ? "SEBI page totals differed during collection. " : "") +
+      "The visible list is the intersection of retained draft-offer evidence and the current IPO lifecycle: exact canonical legal-name matches are removed once they are Upcoming, Open, Closed, Listed, or have an IPO open/close/listing date. " +
+      (retained ? `${retained} earlier draft observation(s) not seen in the latest scan remain retained as source history. ` : "") +
+      "No fuzzy issuer matching is used.";
+
+    const sourceUrl = safeUrl(sourceData.source?.listing_url, "/sebiweb/home/");
     if (sourceUrl) $("#sebiSourceLink").href = sourceUrl;
     $("#drhpLoading").hidden = true;
     $("#drhpResults").hidden = false;
     render();
+
     try {
       const healthResponse = await fetch("ops/drhp-collection.json", {cache:"no-store"});
       if(!healthResponse.ok) throw new Error("health unavailable");
       const health = await healthResponse.json();
-      if(health.status === "failed") $("#drhpIntegrityNote").textContent += " Latest refresh failed; the last successful company list is retained.";
-      else if(health.status !== "success") $("#drhpIntegrityNote").textContent += " Latest refresh status is unavailable.";
-    } catch { $("#drhpIntegrityNote").textContent += " Latest refresh status is unavailable."; }
+      if(health.status === "failed") $("#drhpIntegrityNote").textContent += " Latest draft-source refresh failed; the last successful evidence set is retained.";
+      else if(health.status !== "success") $("#drhpIntegrityNote").textContent += " Latest draft-source refresh status is unavailable.";
+    } catch { $("#drhpIntegrityNote").textContent += " Latest draft-source refresh status is unavailable."; }
   } catch (error) {
     console.error(error);
+    DRHP_DATA = null;
     $("#drhpLoading").hidden = true;
     $("#drhpError").hidden = false;
   }
