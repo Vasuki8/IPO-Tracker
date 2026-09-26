@@ -114,10 +114,12 @@
         "listing_date": "fabtech_nse_listing"
       },
       "identity_sources": [
-        "fabtech_nse_listing",
-        "fabtech_cleanrooms_identity"
+        "fabtech_nse_listing"
       ],
-      "preserve_fields": []
+      "preserve_fields": [],
+      "contrast_sources": [
+        "fabtech_cleanrooms_identity"
+      ]
     },
     {
       "key": "happy",
