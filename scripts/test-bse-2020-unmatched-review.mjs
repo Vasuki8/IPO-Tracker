@@ -17,8 +17,12 @@ assert.deepEqual(review.actions.map(a=>[a.issuer_name,a.bse_scrip_code]),[
 const recovery=JSON.parse(fs.readFileSync(path.join(root,"data/recovery/2020/nse-issue-information.json"),"utf8")).records||[];
 const norm=v=>String(v??"").toLowerCase().replace(/&/g," and ").replace(/\bltd\.?\b/g," limited ").replace(/[^a-z0-9]+/g," ").replace(/\blimited\s*$/g,"").replace(/\s+/g," ").trim();
 for(const action of review.actions){
-  assert.equal(recovery.some(r=>norm(r.issuer_name)===norm(action.issuer_name)),false,"issuer already present: "+action.issuer_name);
-  assert.equal(recovery.some(r=>String(r.bse_scrip_code||"")===action.bse_scrip_code),false,"scrip already present: "+action.bse_scrip_code);
+  const hits=recovery.filter(r=>r.id===action.stable_id||norm(r.issuer_name)===norm(action.issuer_name)||String(r.bse_scrip_code||"")===action.bse_scrip_code);
+  assert.ok(hits.length<=1,"duplicate reviewed issuer: "+action.issuer_name);
+  if(hits.length){
+    assert.equal(hits[0].id,action.stable_id);
+    assert.equal(hits[0].bse_2020_unmatched_import?.action_key,action.key,"unexpected pre-existing issuer");
+  }
 }
 for(const bad of ["http://www.sebi.gov.in/a","https://evil.test/a","https://www.bseindia.com.evil.test/a"])assert.equal(trustedSourceUrl(bad),null);
 const dir=fs.mkdtempSync(path.join(os.tmpdir(),"bse-2020-unmatched-"));
