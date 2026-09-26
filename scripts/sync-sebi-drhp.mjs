@@ -270,7 +270,7 @@ export async function collectDrhpYear({ year=DEFAULT_YEAR, maxPages=DEFAULT_MAX_
   const companies=buildCompanies([...unique.values()]);
   if(!companies.length)throw new Error("no_drhp_companies_for_year");
   const supplementalAdded=supplemental_source_pages.reduce((n,p)=>n+(p.companies_added_as_fallback||0),0);
-  return {schema_version:"1.0.0",collector_version:"2.1.0",collection_started_at,generated_at:clock(),
+  return {schema_version:"1.0.0",collector_version:"2.2.0",collection_started_at,generated_at:clock(),
     source:{authority:"Securities and Exchange Board of India",section:"Draft Offer Documents filed with SEBI",listing_url:DRHP_LIST_URL,ajax_url:DRHP_AJAX_URL},
     supplemental_sources:[{authority:"Axis Capital Limited",role:"Book Running Lead Manager",listing_url:AXIS_OFFER_DOCS_URL,
       purpose:"Official lead-manager fallback for DRHPs not yet visible in the SEBI draft-offer index."}],
