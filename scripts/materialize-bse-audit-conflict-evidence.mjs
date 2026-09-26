@@ -33,7 +33,7 @@ async function body(response,max){
 }
 export function validateReview(review){
   if(review?.schema_version!=="1.0.0"||review?.status!=="reviewed_bse_issue_summary_high_priority_reconciliation"||
-     !Array.isArray(review.actions)||review.actions.length!==5||!Array.isArray(review.sources)||review.sources.length!==9||
+     !Array.isArray(review.actions)||review.actions.length!==5||!Array.isArray(review.sources)||review.sources.length!==10||
      review.auto_import_allowed!==false)throw new Error("invalid_reconciliation_review");
   const keys=new Set(),urls=new Set();
   for(const s of review.sources){
@@ -59,15 +59,15 @@ export async function collect({review,reviewBytes,outDir,fetchImpl=fetch,clock=(
       requested_at,collected_at:clock(),evidence_file:file,projection_sha256:source.projection_sha256});
   }
   const receipt={schema_version:"1.0.0",collector_version:"1.0.0",status:"complete",review_path:REVIEW_PATH,review_sha256:sha256(reviewBytes),
-    collection_started_at:docs[0].requested_at,collection_completed_at:docs.at(-1).collected_at,source_documents_expected:9,source_documents_collected:docs.length,
+    collection_started_at:docs[0].requested_at,collection_completed_at:docs.at(-1).collected_at,source_documents_expected:10,source_documents_collected:docs.length,
     total_response_bytes:total,documents:docs,workflow_artifact:null,import_allowed:false};
   validateReceipt(receipt,review,reviewBytes);return receipt;
 }
 export function validateReceipt(receipt,review,reviewBytes){
   const {keys}=validateReview(review);if(!Buffer.isBuffer(reviewBytes))reviewBytes=Buffer.from(reviewBytes);
   if(receipt?.schema_version!=="1.0.0"||receipt?.collector_version!=="1.0.0"||receipt?.status!=="complete"||
-    receipt.review_path!==REVIEW_PATH||receipt.review_sha256!==sha256(reviewBytes)||receipt.source_documents_expected!==9||
-    receipt.source_documents_collected!==9||!Array.isArray(receipt.documents)||receipt.documents.length!==9||
+    receipt.review_path!==REVIEW_PATH||receipt.review_sha256!==sha256(reviewBytes)||receipt.source_documents_expected!==10||
+    receipt.source_documents_collected!==10||!Array.isArray(receipt.documents)||receipt.documents.length!==10||
     !stamp(receipt.collection_started_at)||!stamp(receipt.collection_completed_at))throw new Error("invalid_reconciliation_receipt");
   let total=0;const seen=new Set();
   for(const d of receipt.documents){
@@ -76,7 +76,7 @@ export function validateReceipt(receipt,review,reviewBytes){
       !stamp(d.requested_at)||!stamp(d.collected_at)||!hash(d.projection_sha256))throw new Error("invalid_reconciliation_document:"+d?.key);
     seen.add(d.key);total+=d.response_bytes;
   }
-  if(total!==receipt.total_response_bytes)throw new Error("receipt_byte_mismatch");return{documents:9,bytes:total};
+  if(total!==receipt.total_response_bytes)throw new Error("receipt_byte_mismatch");return{documents:10,bytes:total};
 }
 async function run(){
   const args=Object.fromEntries(process.argv.slice(2).map(x=>{const i=x.indexOf("=");if(i<1)throw new Error("args_use_equals");return[x.slice(0,i),x.slice(i+1)];}));
