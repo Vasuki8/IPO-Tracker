@@ -32,12 +32,12 @@
         "likhitha_issuer_investors"
       ],
       "field_sources": {
-        "listing_date": "likhitha_track_record",
-        "issue_price": "likhitha_track_record",
+        "listing_date": "sebi_nov_2020_bulletin",
+        "issue_price": "sebi_nov_2020_bulletin",
         "bse_scrip_code": "likhitha_issuer_investors",
         "nse_symbol": "likhitha_issuer_investors"
       },
-      "note": "SEBI final-offer evidence establishes the IPO; the issuer's investor page establishes current exchange identifiers; the official SEBI-hosted lead-manager track record independently records the issue price and original listing date."
+      "note": "SEBI final-offer evidence establishes the IPO; the issuer's investor page establishes current exchange identifiers; the SEBI November 2020 bulletin records the ₹120 issue price and 15-Oct-2020 listing."
     },
     {
       "key": "secmark",
@@ -58,12 +58,12 @@
       ],
       "field_sources": {
         "board": "secmark_annual_report",
-        "listing_date": "secmark_annual_report",
-        "issue_price": "secmark_annual_report",
+        "listing_date": "sebi_nov_2020_bulletin",
+        "issue_price": "sebi_nov_2020_bulletin",
         "bse_scrip_code": "secmark_annual_report",
         "isin": "secmark_annual_report"
       },
-      "note": "The BSE-filed FY2020-21 annual report explicitly records the IPO, SME listing date, BSE scrip code, ISIN and offer price."
+      "note": "The BSE-filed FY2020-21 annual report records the SME listing identity, BSE scrip code and ISIN; the SEBI November 2020 bulletin independently records the BSE SME IPO, ₹135 issue price and 01-Oct-2020 listing."
     },
     {
       "key": "smauto",
@@ -86,7 +86,7 @@
         "listing_date": "smauto_track_record",
         "issue_price": "smauto_track_record"
       },
-      "note": "The BSE-hosted draft prospectus establishes the 3,840,000-share first public issue and intended BSE SME listing; a later BSE-hosted lead-manager disclosure records the ₹18 issue price and 16-Mar-2020 listing. The BSE audit supplies scrip 543065 only as a discovery identity, not publication authority."
+      "note": "The BSE-hosted draft prospectus establishes the 3,840,000-share first public issue and intended BSE SME listing; a later BSE-hosted prospectus retains the lead-manager past-issue disclosure showing the ₹18 issue price and 16-Mar-2020 listing. The BSE audit supplies scrip 543065 only as discovery identity."
     },
     {
       "key": "shine",
@@ -115,18 +115,18 @@
         "close_date": "shine_sebi_final_prospectus",
         "market_lot": "shine_sebi_final_prospectus"
       },
-      "note": "The SEBI-hosted final prospectus records the offer dates, ₹40 issue price and 3,000-share lot; a BSE-hosted lead-manager disclosure records the 02-Nov-2020 listing. The BSE audit supplies scrip 543244 only as a discovery identity, not publication authority."
+      "note": "The SEBI-hosted final prospectus records the offer dates, ₹40 issue price and 3,000-share lot; a later BSE-hosted prospectus retains the lead-manager disclosure showing a 02-Nov-2020 listing. The BSE audit supplies scrip 543244 only as discovery identity."
     }
   ],
   "sources": [
     {
       "key": "likhitha_sebi_final_offer",
       "authority": "SEBI",
-      "document_type": "Final Offer Document",
-      "url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2020/1602650365044.pdf",
+      "document_type": "SEBI Final Offer Filing Page",
+      "url": "https://www.sebi.gov.in/filings/public-issues/oct-2020/likhitha-infrastructure-limited_47858.html",
       "publication_date": "2020-10-10",
       "page": null,
-      "evidence_locator": "SEBI final-offer filing for Likhitha Infrastructure Limited",
+      "evidence_locator": "SEBI final-offer filing page for Likhitha Infrastructure Limited",
       "projection": {
         "issuer": "Likhitha Infrastructure Limited",
         "filing_stage": "final_offer_document",
@@ -135,19 +135,33 @@
       "projection_sha256": "8918f347dd57f83847536944605ab50a836019c4f694dc07b3b92027af0ca93a"
     },
     {
-      "key": "likhitha_track_record",
+      "key": "sebi_nov_2020_bulletin",
       "authority": "SEBI",
-      "document_type": "Lead Manager Track Record",
-      "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2021/1640076626700.pdf",
+      "document_type": "SEBI Bulletin — November 2020",
+      "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2022/1663924086916.pdf",
       "publication_date": null,
-      "page": null,
-      "evidence_locator": "Past-issue table: Likhitha Infrastructure Limited",
+      "page": "Table 2",
+      "evidence_locator": "Company-wise Capital Raised through Public and Rights Issues (Equity): Likhitha Infrastructure Limited and Secmark Consultancy Limited",
       "projection": {
-        "issuer": "Likhitha Infrastructure Limited",
-        "issue_price_inr": 120,
-        "listing_date": "2020-10-15"
+        "period": "November 2020",
+        "observations": [
+          {
+            "issuer": "Likhitha Infrastructure Limited",
+            "listing_date": "2020-10-15",
+            "issue_type": "IPO",
+            "issue_price_inr": 120,
+            "shares_issued": 5100000
+          },
+          {
+            "issuer": "Secmark Consultancy Limited",
+            "listing_date": "2020-10-01",
+            "issue_type": "BSE SME IPO",
+            "issue_price_inr": 135,
+            "shares_issued": 1114000
+          }
+        ]
       },
-      "projection_sha256": "92978caab293285cd3fbc6375164473be3715f9837500cf2971bcb27c125a8f1"
+      "projection_sha256": "b03be49e60f9a7f0a43203a900b5a6ba0dd8d042c4fd17f2c6bb102891712f9d"
     },
     {
       "key": "likhitha_issuer_investors",
@@ -202,17 +216,18 @@
       "key": "smauto_track_record",
       "authority": "BSE",
       "document_type": "Lead Manager Track Record in BSE-hosted Prospectus",
-      "url": "https://www.bseindia.com/corporates/download/383789/Draft%20Prospectus%20Eighty%20Jewellers%20Ltd_20220209104629.pdf",
+      "url": "https://www.bseindia.com/corporates/download/373676/SME_IPO%20Open/1Prospectus%20-%20SVRL%2023.09.2021_20210924170138.pdf",
       "publication_date": null,
-      "page": "173",
-      "evidence_locator": "Past-issue table: SM Auto Stamping Limited",
+      "page": "182",
+      "evidence_locator": "Past-issue table: source text 'SM Auto Stampling Limited' matched to SM Auto Stamping Limited",
       "projection": {
-        "issuer": "SM Auto Stamping Limited",
+        "issuer_source_value": "SM Auto Stampling Limited",
+        "matched_issuer": "SM Auto Stamping Limited",
         "issue_size_crore": 6.912,
         "issue_price_inr": 18,
         "listing_date": "2020-03-16"
       },
-      "projection_sha256": "70f5fed8b3e6d4e87b003cf10e30ef4a07f954565c1ed1a506f50b8991798de2"
+      "projection_sha256": "841387f2f12a658d7224d5ce449e80fbfbb36cf984bf553ff159a1537c384ace"
     },
     {
       "key": "shine_sebi_final_prospectus",
@@ -235,15 +250,17 @@
       "key": "shine_track_record",
       "authority": "BSE",
       "document_type": "Lead Manager Track Record in BSE-hosted Prospectus",
-      "url": "https://www.bseindia.com/corporates/download/369324/Draft%20Prospectus_Gargi_20221128152036.pdf",
+      "url": "https://www.bseindia.com/corporates/download/332940/SME_IPO%20Open/1.%20Prospectus_20220112191555.pdf",
       "publication_date": "2022-11-28",
-      "page": null,
-      "evidence_locator": "Lead-manager IPO disclosure: Shine Fashions (India) Limited listing",
+      "page": "150",
+      "evidence_locator": "Past-issue table: Shine Fashions (India) Limited",
       "projection": {
         "issuer": "Shine Fashions (India) Limited",
+        "issue_size_crore": 1.6,
+        "issue_price_inr": 40,
         "listing_date": "2020-11-02"
       },
-      "projection_sha256": "c5c326babb853cf78c273e912387bb714df839a9595edc4898745637791422d8"
+      "projection_sha256": "76dda09889c90e43c908d9ce95b226361d5f364646a4fc00f6960b3f93b90ab2"
     }
   ],
   "review_result": "All four 2020 BSE-unmatched rows are supported as historical IPOs missing from recovery. This file is review evidence only and cannot publish records without original-source materialization plus a separate reviewed importer.",
