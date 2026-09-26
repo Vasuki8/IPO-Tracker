@@ -69,9 +69,25 @@ The Silgo sources disagree on the allotment date: NSE records 13-Feb-2026, while
 
 The pinned 119-group review now has **zero unresolved NSE groups**: **105 approved IPOs + five debt-event exclusions + seven migration exclusions + two rights-issue security exclusions = 119**. This closes the pinned review set but still does **not** establish full Indian IPO-universe completeness.
 
+### Nine excluded-event issuers — historical IPO coverage verified
+
+All **nine** issuers behind the earlier positively excluded 2026 debt/migration events have independently verified historical equity IPOs. The verified historical equity identities are:
+
+- **MWL** — Mangalam Worldwide Limited — listed 11-Jul-2022.
+- **QMSMEDI** — QMS Medical Allied Services Limited — listed 11-Oct-2022.
+- **VIVIANA** — Viviana Power Tech Limited — listed 16-Sep-2022.
+- **ANNAPURNA** — Annapurna Swadisht Limited — listed 27-Sep-2022.
+- **SWARAJ** — Swaraj Suiting Limited — listed 28-Mar-2022.
+- **VIESL** — Vision Infra Equipment Solutions Limited — listed 13-Sep-2024.
+- **AVPINFRA** — AVP Infracon Limited — listed 20-Mar-2024.
+- **DOLLEX** — Dollex Agrotech Limited — listed 28-Dec-2022.
+- **DCCL** — Dar Credit & Capital Limited — listed 28-May-2025.
+
+The retained evidence review is [data/discovery/excluded-event-issuer-historical-ipo-review-2026-09-26.json](data/discovery/excluded-event-issuer-historical-ipo-review-2026-09-26.json). **No recovery/public IPO record was changed in this review.** The excluded 2026 debt/migration events remain excluded.
+
 ### Exact next backend task
 
-Review original historical equity IPO coverage for the **nine earlier debt/migration-event issuers**: 10MWL29, QMSMEDI, 12VPT28A, ANNAPURNA, SWARAJ, 1150VIES30, 12AIL28, DOLLEX and 13DCCL28. Their 2026 non-IPO events remain excluded; independently verify any original IPO/listing history without recycling those events.
+Materialize the decisive official documents for those nine verified historical IPOs, retain original source bytes/SHA-256 hashes and page/locator evidence, then add or reuse a reviewed historical-offer recovery importer with identity-collision, preservation and idempotency tests. **Do not hand-edit `data/ipos.json` and do not weaken the existing reviewed-NSE importer.**
 
 Fabino's BSE listing-year hold, BSE issue-summary, SEBI historical pagination and NSE-series gaps remain. BSE parser v1.5 is **236/236 parsed**; do not replay its cursor. UI/research-depth work remains in its own handoff. No minimum-investment, billing/accounts/ads, spending or access-policy expansion.
 
@@ -116,4 +132,4 @@ node scripts/verify-drhp-publication.mjs --output-dir=/tmp/drhp-publication
 
 ## Historical handoffs
 
-The immediately preceding README and status are archived byte-for-byte in [docs/archive/README-before-pre-ipo-company-list-correction-2026-09-26.md](docs/archive/README-before-pre-ipo-company-list-correction-2026-09-26.md) and [docs/archive/PROJECT_STATUS-before-pre-ipo-company-list-correction-2026-09-26.md](docs/archive/PROJECT_STATUS-before-pre-ipo-company-list-correction-2026-09-26.md). Earlier archives and receipts remain intact. Archived next-task instructions are not current instructions.
+The immediately preceding README and status are archived byte-for-byte in [docs/archive/README-before-historical-ipo-coverage-nine-2026-09-26.md](docs/archive/README-before-historical-ipo-coverage-nine-2026-09-26.md) and [docs/archive/PROJECT_STATUS-before-historical-ipo-coverage-nine-2026-09-26.md](docs/archive/PROJECT_STATUS-before-historical-ipo-coverage-nine-2026-09-26.md). Earlier archives and receipts remain intact. Archived next-task instructions are not current instructions.
