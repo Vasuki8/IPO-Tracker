@@ -1,0 +1,70 @@
+name: Publish reviewed historical IPOs
+
+on:
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+    paths:
+      - "data/verified-historical-ipos/2026-09-26-nine.json"
+      - "scripts/apply-reviewed-historical-ipos.mjs"
+      - "scripts/test-reviewed-historical-ipos.mjs"
+      - ".github/workflows/publish-reviewed-historical-ipos.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: reviewed-historical-ipo-publication
+  cancel-in-progress: true
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Validate reviewed historical IPO import contract
+        run: |
+          node scripts/apply-reviewed-historical-ipos.mjs --check
+          node scripts/test-reviewed-historical-ipos.mjs
+
+      - name: Publish reviewed historical IPO recovery records
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          for attempt in 1 2 3; do
+            echo "Reviewed historical IPO publication attempt $attempt/3"
+            git fetch origin main
+            git reset --hard origin/main
+
+            node scripts/apply-reviewed-historical-ipos.mjs
+            node scripts/build-published-data.mjs
+            node scripts/build-published-data.mjs --check
+            node scripts/validate-data.mjs
+            node scripts/test-reviewed-historical-ipos.mjs
+
+            if [ -z "$(git status --porcelain -- data/recovery data/ipos.json)" ]; then
+              echo "Latest main already contains the reviewed historical IPO records."
+              exit 0
+            fi
+
+            git add data/recovery data/ipos.json
+            git commit -m "data(ipo): publish nine reviewed historical IPOs"
+
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            echo "Main advanced during reviewed historical IPO publication; retrying."
+          done
+
+          echo "Failed to publish reviewed historical IPOs after 3 attempts." >&2
+          exit 1
