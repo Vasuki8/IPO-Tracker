@@ -144,7 +144,7 @@ async function readBounded(response,max=MAX_PAGE_BYTES){
   return Buffer.concat(chunks);
 }
 async function fetchBsePage(fetchImpl,url,options={}){
-  const response=await fetchImpl(url,{redirect:"error",signal:AbortSignal.timeout(30000),...options});
+  const response=await fetchImpl(url,{redirect:"follow",signal:AbortSignal.timeout(30000),...options});
   const final=officialSummaryUrl(response.url||url);
   if(!response.ok||!final||new URL(final).pathname.toLowerCase()!==new URL(BSE_ISSUE_SUMMARY_URL).pathname.toLowerCase()){
     await response.body?.cancel();
