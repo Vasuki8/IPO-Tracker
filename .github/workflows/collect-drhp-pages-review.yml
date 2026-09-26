@@ -1,0 +1,59 @@
+name: Collect paginated SEBI DRHP review
+on:
+  push:
+    branches: ['feature/drhp-filings-identity-20260925']
+    paths: ['.github/workflows/collect-drhp-pages-review.yml']
+permissions:
+  contents: read
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: '20'}
+      - name: Retain bounded official draft-index pages
+        shell: bash
+        run: |
+          mkdir -p "$RUNNER_TEMP/drhp-pages"
+          node --input-type=module <<'JS'
+          import fs from 'node:fs';
+          import path from 'node:path';
+          import {createHash} from 'node:crypto';
+          const out=path.join(process.env.RUNNER_TEMP,'drhp-pages'),sources=[];
+          const list='https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=10&ssid=15';
+          const endpoint='https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp';
+          let cookie='';
+          try {
+            for(let index=0;index<20;index++) {
+              const body=index===0?null:new URLSearchParams({nextValue:String(index),next:'n',search:'',fromDate:'',toDate:'',fromYear:'',toYear:'',deptId:'',sid:'3',ssid:'15',smid:'10',ssidhidden:'15',intmid:'-1',sText:'Filings',ssText:'Public Issues',smText:'Draft Offer Documents filed with SEBI',doDirect:String(index)}).toString();
+              const request={url:index===0?list:endpoint,method:index===0?'GET':'POST',body};
+              const headers={'user-agent':'Mozilla/5.0','accept':'text/html,*/*','referer':list};
+              if(cookie)headers.cookie=cookie;
+              if(body)headers['content-type']='application/x-www-form-urlencoded';
+              const r=await fetch(request.url,{method:request.method,body:body||undefined,headers,signal:AbortSignal.timeout(25000)});
+              if(index===0)cookie=(r.headers.getSetCookie?.()||[]).map(v=>v.split(';')[0]).join('; ');
+              const b=Buffer.from(await r.arrayBuffer()),file='sebi-draft-'+index+'.html';
+              fs.writeFileSync(path.join(out,file),b);
+              const source={request,final_url:r.url,http_status:r.status,collected_at:new Date().toISOString(),response_sha256:createHash('sha256').update(b).digest('hex'),response_bytes:b.length,artifact_file:file};
+              sources.push(source);
+              const text=b.toString('utf8').replace(/<[^>]*>/g,' ').replace(/\s+/g,' ');
+              const page=text.match(/(\d+)\s+to\s+(\d+)\s+of\s+(\d+)\s+records/i);
+              console.log(JSON.stringify({index,...source,pagination:page?.slice(1),sample:text.slice(0,200)}));
+              if(!r.ok||!page||Number(page[1])!==index*25+1)throw new Error('pagination_or_source_failure:'+index);
+              const dates=[...b.toString('utf8').matchAll(/<td\b[^>]*>\s*((?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s+\d{1,2},\s+\d{4})\s*<\/td>/gi)].map(m=>m[1]);
+              if(Number(page[2])===Number(page[3])||dates.some(d=>new Date(d+' UTC').getUTCFullYear()<2026))break;
+              await new Promise(r=>setTimeout(r,200));
+            }
+          } finally {
+            fs.writeFileSync(path.join(out,'sources.json'),JSON.stringify({schema_version:'1.0.0',collected_at:new Date().toISOString(),run_id:process.env.GITHUB_RUN_ID,source_revision:process.env.GITHUB_SHA,sources},null,2)+'\n');
+          }
+          JS
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: drhp-pages-${{ github.run_id }}
+          path: ${{ runner.temp }}/drhp-pages
+          retention-days: 14
+          if-no-files-found: error
