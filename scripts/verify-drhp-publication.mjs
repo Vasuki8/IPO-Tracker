@@ -1,7 +1,8 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import {createHash} from 'node:crypto';
-import {validateDrhpData} from './drhp-integrity.mjs';\nimport {buildPreIpoView} from '../assets/drhp-lifecycle.js';
+import {validateDrhpData} from './drhp-integrity.mjs';
+import {buildPreIpoView} from '../assets/drhp-lifecycle.js';
 const args=process.argv.slice(2);
 if(args.length!==1||!args[0].startsWith('--output-dir='))throw new Error('use --output-dir=PATH');
 const out=path.resolve(args[0].slice(13));fs.mkdirSync(out,{recursive:true});
