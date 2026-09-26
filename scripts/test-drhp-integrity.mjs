@@ -9,6 +9,28 @@ const filing=(name='Example Limited',id=100)=>({issuer_name:name,filing_type:'DR
 const snapshot=(entries,time)=>({schema_version:'1.0.0',generated_at:time,source:{listing_url:DRHP_LIST_URL},coverage:{year:2026,stop_reason:'first_page_strictly_older_than_year',pages_fetched:2,companies:buildCompanies(entries).length,filing_records:entries.length},source_pages:[{page:1,collected_at:time,observed_records:50},{page:2,collected_at:time,observed_records:48}],companies:buildCompanies(entries)});
 const old=snapshot([filing(),filing('Retained Limited',101)],'2026-09-25T01:00:00.000Z');
 const fresh=snapshot([filing()],'2026-09-26T01:00:00.000Z');
+
+const milkyBad={issuer_name:'Milky Mist Dairy Foods Limited',filing_type:'DRHP',filing_date:'2026-08-14',
+  filing_url:'https://www.axiscapital.co.in/contents/Milky%20Mist%20Dairy%20Foods%20Limited%20-%20DRHP-1753171511-1786688069.pdf',
+  draft_abridged_url:null,source_kind:'official_lead_manager',source_authority:'Axis Capital Limited',date_basis:'lead_manager_document_upload_timestamp'};
+const eaaaBad={issuer_name:'EAAA India Alternatives Ltd-DRHP (2026)',filing_type:'DRHP',filing_date:'2026-08-14',
+  filing_url:'https://www.axiscapital.co.in/contents/EAAA%20India%20Alternatives%20Ltd-DRHP-1786445574-1786687038.pdf',
+  draft_abridged_url:null,source_kind:'official_lead_manager',source_authority:'Axis Capital Limited',date_basis:'lead_manager_document_upload_timestamp'};
+const eaaaCorrected={issuer_name:'EAAA India Alternatives Ltd',filing_type:'DRHP',filing_date:'2026-08-11',
+  filing_url:eaaaBad.filing_url,draft_abridged_url:null,source_kind:'official_lead_manager',source_authority:'Axis Capital Limited',
+  date_basis:'lead_manager_document_earliest_url_timestamp',explicit_label_year:2026};
+const legacyAxis=snapshot([filing(),milkyBad,eaaaBad],'2026-09-25T02:00:00.000Z');
+const correctedAxis=snapshot([filing(),eaaaCorrected],'2026-09-26T02:00:00.000Z');
+correctedAxis.collector_version='2.2.0';
+const correctedMerge=mergeDrhpSnapshots(legacyAxis,correctedAxis);
+assert.equal(correctedMerge.companies.some(c=>c.issuer_name==='Milky Mist Dairy Foods Limited'),false,'old 2025 Axis DRHP mirror is removed from the 2026 union');
+const correctedEaaa=correctedMerge.companies.find(c=>c.issuer_name==='EAAA India Alternatives Ltd');
+assert.ok(correctedEaaa);
+assert.equal(correctedEaaa.latest_filing_date,'2026-08-11');
+assert.equal(correctedEaaa.filings[0].date_basis,'lead_manager_document_earliest_url_timestamp');
+assert.ok(correctedMerge.corrections.some(c=>c.action==='removed_out_of_scope_axis_fallback'&&c.filing_url===milkyBad.filing_url));
+assert.ok(correctedMerge.corrections.some(c=>c.action==='corrected_axis_fallback_projection'&&c.filing_url===eaaaBad.filing_url));
+assert.equal(correctedMerge.coverage.corrected_invalid_supplemental_rows,2);
 const original=JSON.stringify([old,fresh]);
 const merged=mergeDrhpSnapshots(old,fresh);
 assert.deepEqual(validateDrhpData(merged),{companies:2,filings:2});
@@ -40,4 +62,4 @@ let repeat=0;await assert.rejects(()=>collectDrhpYear({fetchImpl:async url=>resp
 let malformed=0;await assert.rejects(()=>collectDrhpYear({fetchImpl:async url=>response(url,++malformed===1?page(1):'<h1>Access denied</h1>'),clock:()=>fresh.generated_at,supplementalSources:false}),/pagination/);
 await assert.rejects(()=>collectDrhpYear({fetchImpl:async()=>response('https://evil.test',page(1)),clock:()=>fresh.generated_at,supplementalSources:false}),/response/);
 fs.rmSync(out,{recursive:true});
-console.log(JSON.stringify({drhp_integrity_tests:{non_destructive_merge:true,unique_counts:true,source_drift_label:true,stale_and_conflicting_data_rejected:true,pagination_and_raw_retention:true,official_host_guards:true,lead_manager_url_guards:true}}));
+console.log(JSON.stringify({drhp_integrity_tests:{non_destructive_merge:true,unique_counts:true,source_drift_label:true,stale_and_conflicting_data_rejected:true,pagination_and_raw_retention:true,official_host_guards:true,lead_manager_url_guards:true,legacy_axis_mirror_corrections:true}}));
