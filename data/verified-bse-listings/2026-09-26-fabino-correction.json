@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0.0",
+  "importer_version": "1.0.0",
+  "status": "approved_fabino_listing_year_correction_and_historical_ipo_import",
+  "review_path": "data/discovery/bse-fabino-listing-year-review-2026-09-26.json",
+  "receipt_path": "data/evidence/fabino-listing-year-source-receipt-2026-09-26.json",
+  "issuer_name": "Fabino Life Sciences Limited",
+  "bse_scrip_code": "543444",
+  "bse_symbol": "FABINO",
+  "isin": "INE0DRT01018",
+  "board": "SME",
+  "target_year": 2022,
+  "listing_date": "2022-01-13",
+  "fields": {
+    "open_date": {
+      "value": "2021-12-31",
+      "source": "bse_prospectus"
+    },
+    "close_date": {
+      "value": "2022-01-05",
+      "source": "bse_prospectus"
+    },
+    "issue_price": {
+      "value": 36,
+      "source": "bse_listing_notice"
+    },
+    "market_lot": {
+      "value": 3000,
+      "source": "bse_listing_notice"
+    },
+    "listing_date": {
+      "value": "2022-01-13",
+      "source": "bse_sme_index_press_release"
+    }
+  },
+  "identity_sources": [
+    "bse_listing_notice",
+    "bse_sme_index_press_release",
+    "bse_prospectus"
+  ],
+  "documents": [
+    "bse_listing_notice",
+    "bse_sme_index_press_release",
+    "bse_prospectus",
+    "sebi_final_offer_page"
+  ],
+  "listing_date_correction": {
+    "conflicting_source": "bse_listing_notice",
+    "conflicting_source_value": "effective from Thursday January 13, 2021",
+    "resolved_source": "bse_sme_index_press_release",
+    "resolved_value": "2022-01-13",
+    "reason": "BSE Notice 20220112-10 contains an internal year conflict; independent BSE SME IPO Index evidence explicitly confirms listing on 13-Jan-2022."
+  },
+  "prohibitions": [
+    "Do not alter the retained BSE notice text.",
+    "Do not relax the strict generic BSE listing parser.",
+    "Do not create a 2021 listing record.",
+    "Do not hand-edit data/ipos.json."
+  ]
+}

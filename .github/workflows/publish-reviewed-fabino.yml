@@ -1,0 +1,70 @@
+name: Publish reviewed Fabino correction
+
+on:
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+    paths:
+      - "data/verified-bse-listings/2026-09-26-fabino-correction.json"
+      - "scripts/apply-reviewed-fabino.mjs"
+      - "scripts/test-reviewed-fabino.mjs"
+      - ".github/workflows/publish-reviewed-fabino.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: reviewed-fabino-publication
+  cancel-in-progress: true
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Validate reviewed Fabino correction
+        run: |
+          node scripts/apply-reviewed-fabino.mjs --check
+          node scripts/test-reviewed-fabino.mjs
+
+      - name: Publish reviewed Fabino recovery record
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          for attempt in 1 2 3; do
+            echo "Reviewed Fabino publication attempt $attempt/3"
+            git fetch origin main
+            git reset --hard origin/main
+
+            node scripts/apply-reviewed-fabino.mjs
+            node scripts/build-published-data.mjs
+            node scripts/build-published-data.mjs --check
+            node scripts/validate-data.mjs
+            node scripts/test-reviewed-fabino.mjs
+
+            if [ -z "$(git status --porcelain -- data/recovery data/ipos.json)" ]; then
+              echo "Latest main already contains the reviewed Fabino record."
+              exit 0
+            fi
+
+            git add data/recovery data/ipos.json
+            git commit -m "data(ipo): publish reviewed Fabino 2022 IPO"
+
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            echo "Main advanced during Fabino publication; retrying."
+          done
+
+          echo "Failed to publish reviewed Fabino correction after 3 attempts." >&2
+          exit 1
