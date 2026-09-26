@@ -268,7 +268,7 @@ export function applyReviewedBseReconciliation(recoveryByYear,published,manifest
 
   const expectedIds=new Set(manifest.actions.map(a=>a.stable_id));
   const publicHits=(published.records||[]).filter(r=>expectedIds.has(r.id));
-  requireThat(publicHits.length<=4,"unexpected_public_reconciliation_duplicates");
+  requireThat(publicHits.length<=5&&new Set(publicHits.map(r=>r.id)).size===publicHits.length,"unexpected_public_reconciliation_duplicates");
   return{recovery,stats,changed_years:[...changed].sort()};
 }
 export function loadRecovery(root=ROOT){
