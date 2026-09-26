@@ -19,7 +19,7 @@ The active application-term requirement is **Lot Size only**. Display verified m
 
 Never invent missing values or use price-times-quantity arithmetic to fill them. Preserve official sources, document identity, dates, hashes when retained, nulls, conflicts and correction history. A final Prospectus is not required for inclusion. Repair retained recovery evidence rather than hand-editing `data/ipos.json`.
 
-The **Pre-IPO companies** view is a company-level IPO pipeline backed by retained DRHP/UDRHP evidence from SEBI. It shows one company per row; draft-document versions remain source evidence rather than the product itself. A draft filing does not automatically create an IPO record or establish approval, opening, completion or listing. Current coverage is explicit 2026 DRHP/UDRHP markers from SEBI's draft-offer section, not a complete register of every company considering an IPO.
+The **Pre-IPO companies** view is a company-level IPO pipeline backed by retained DRHP/UDRHP evidence from SEBI **and the current published IPO lifecycle dataset**. It shows one company per row and dynamically removes an exact canonical issuer match as soon as that issuer is `upcoming`, `open`, `closed`, or `listed`, or has a published IPO open/close/listing date. Draft-document versions remain retained evidence rather than the product itself. Matching uses the same conservative canonical legal-name normalization as the universe audit; no fuzzy matching is allowed. If lifecycle data cannot be validated, the page fails closed instead of showing a potentially stale pre-IPO list.
 
 ## Automation
 
@@ -51,7 +51,7 @@ Final-head CI, merged-main data-contract tests and local retained-source regress
 
 The user-facing DRHP feature is now explicitly a **company list for proposed IPOs**, not a filing-record directory. PR **#251** merged as `8fdc9bdfa8c1b03acb98ae9546ab0a9efabe0c66`. The page shows one company per row with a `DRHP filed` stage, latest retained draft date and official SEBI document. Multiple DRHP/UDRHP versions remain behind the company record as evidence. The underlying collector/data file stays source-first and history-preserving. The post-merge GitHub Pages deployment workflow completed successfully.
 
-This correction does **not** promote a DRHP to an approved/upcoming/open IPO. A company may later progress to RHP, upcoming, open, closed or listed status; the page records only the verified draft-submission signal.
+This correction does **not** promote a DRHP to an approved/upcoming/open IPO. The page now cross-checks `data/ipos.json` on every load: once the same canonical legal issuer progresses to Upcoming/Open/Closed/Listed—or an IPO open/close/listing date is published—it disappears from the visible Pre-IPO list automatically. The retained DRHP history is not deleted.
 
 ### Rights-security review complete
 
