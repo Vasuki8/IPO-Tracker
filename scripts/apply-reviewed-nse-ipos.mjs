@@ -248,7 +248,7 @@ export function reviewedRecord(entry, checked, manifest, manifestPath) {
   return r;
 }
 function strings(v) { return typeof v === 'string' ? [v] : v && typeof v === 'object' ? Object.values(v).flatMap(strings) : []; }
-function matches(r, record, aliases, cache) {
+function matches(r, record, aliases, cache, lookupSymbols = new Set()) {
   let identity = cache.get(r);
   if (!identity) {
     const values = strings(r), symbols = new Set([norm(r.nse_symbol).toUpperCase()]);
@@ -261,7 +261,8 @@ function matches(r, record, aliases, cache) {
     identity = { symbols, isin: new Set(values.filter(v => /^IN[A-Z0-9]{10}$/i.test(v)).map(v => v.toUpperCase())) };
     cache.set(r, identity);
   }
-  return r.id === record.id || aliases.has(issuerKey(r.issuer_name)) || identity.symbols.has(record.nse_symbol) || identity.isin.has(record.isin);
+  return r.id === record.id || aliases.has(issuerKey(r.issuer_name)) || identity.symbols.has(record.nse_symbol) ||
+    [...lookupSymbols].some(symbol => identity.symbols.has(symbol)) || identity.isin.has(record.isin);
 }
 // Pure, whole-batch plan: callers write nothing until all manifests have passed.
 export function applyReviewedBatch(recoveryByYear, published, manifest, queue, manifestPath) {
@@ -271,8 +272,9 @@ export function applyReviewedBatch(recoveryByYear, published, manifest, queue, m
     const c = checked[i], record = reviewedRecord(manifest.entries[i], c, manifest, manifestPath), year = record.listing_date.value.slice(0, 4);
     requireThat(Number(year) >= 2020 && Number(year) <= 2026, 'out_of_scope_year');
     const aliases = new Set([issuerKey(record.issuer_name), issuerKey(c.candidate.issuer_name)]);
-    const rawHits = Object.entries(recovery).flatMap(([y, m]) => m.records.filter(r => matches(r, record, aliases, cache)).map(r => ({ y, r })));
-    const publicHits = (published.records || []).filter(r => matches(r, record, aliases, cache));
+    const lookupSymbols = new Set([record.nse_symbol, c.candidate.nse_symbol]);
+    const rawHits = Object.entries(recovery).flatMap(([y, m]) => m.records.filter(r => matches(r, record, aliases, cache, lookupSymbols)).map(r => ({ y, r })));
+    const publicHits = (published.records || []).filter(r => matches(r, record, aliases, cache, lookupSymbols));
     if (rawHits.length) {
       requireThat(rawHits.length === 1 && rawHits[0].y === year && rawHits[0].r.id === record.id &&
         rawHits[0].r.isin === record.isin && rawHits[0].r.nse_symbol === record.nse_symbol &&
