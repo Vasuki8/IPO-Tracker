@@ -83,6 +83,10 @@ jobs:
           grep -q 'git reset --hard origin/main' .github/workflows/publish-reviewed-fabino.yml
           grep -q 'node scripts/build-published-data.mjs --check' .github/workflows/publish-reviewed-fabino.yml
           grep -q 'group: verify-reviewed-fabino-publication' .github/workflows/verify-reviewed-fabino-publication.yml
+          grep -q 'group: reviewed-bse-reconciliation-publication' .github/workflows/publish-reviewed-bse-reconciliation.yml
+          grep -q 'git reset --hard origin/main' .github/workflows/publish-reviewed-bse-reconciliation.yml
+          grep -q 'node scripts/build-published-data.mjs --check' .github/workflows/publish-reviewed-bse-reconciliation.yml
+          grep -q 'group: verify-reviewed-bse-reconciliation-publication' .github/workflows/verify-reviewed-bse-reconciliation-publication.yml
           grep -q 'git ls-files --error-unmatch ops/operator-snapshot.json' .github/workflows/update-ipos.yml
           grep -q 'Pages publication-state attempt' .github/workflows/deploy-pages.yml
           grep -q 'git reset --hard origin/main' .github/workflows/deploy-pages.yml
@@ -155,6 +159,12 @@ jobs:
           node scripts/apply-reviewed-fabino.mjs --check
           node scripts/test-reviewed-fabino.mjs
           node scripts/test-reviewed-fabino-publication.mjs
+
+      - name: Test reviewed BSE reconciliation and publication
+        run: |
+          node scripts/apply-reviewed-bse-reconciliation.mjs --check
+          node scripts/test-reviewed-bse-reconciliation.mjs
+          node scripts/test-reviewed-bse-reconciliation-publication.mjs
 
       - name: Test official IPO universe audit
         run: node scripts/test-audit-ipo-universe.mjs

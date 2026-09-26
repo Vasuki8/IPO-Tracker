@@ -1,0 +1,176 @@
+{
+  "schema_version": "1.0.0",
+  "importer_version": "1.0.0",
+  "status": "approved_bse_high_priority_reconciliation_import",
+  "review_path": "data/discovery/bse-issue-summary-high-priority-reconciliation-2026-09-26.json",
+  "receipt_path": "data/evidence/bse-high-priority-reconciliation-source-receipt-2026-09-26.json",
+  "audit_path": "data/discovery/bse-issue-summary-coverage-audit-2026-09-26.json",
+  "actions": [
+    {
+      "key": "cams",
+      "decision": "move_and_correct_historical_ipo",
+      "source_year": 2021,
+      "target_year": 2020,
+      "stable_id": "computer-age-management-services-limited",
+      "expected_current": {
+        "issuer_name": "Computer Age Management Services Limited",
+        "nse_symbol": "CAMS",
+        "listing_date": "2021-05-07",
+        "issue_price": 1240
+      },
+      "target": {
+        "issuer_name": "Computer Age Management Services Limited",
+        "board": "Mainboard",
+        "nse_symbol": "CAMS",
+        "bse_scrip_code": "543232",
+        "isin": "INE596I01012",
+        "open_date": "2020-09-21",
+        "close_date": "2020-09-23",
+        "issue_price": 1230,
+        "listing_date": "2020-10-01"
+      },
+      "field_sources": {
+        "open_date": "cams_prospectus",
+        "close_date": "cams_prospectus",
+        "issue_price": "cams_prospectus",
+        "listing_date": "cams_nse_listing"
+      },
+      "identity_sources": [
+        "cams_nse_listing"
+      ],
+      "preserve_fields": [
+        "minimum_bid_quantity",
+        "issue_size_inr",
+        "sector"
+      ]
+    },
+    {
+      "key": "protean",
+      "decision": "move_and_correct_historical_ipo_preserve_secondary_listing",
+      "source_year": 2025,
+      "target_year": 2023,
+      "stable_id": "protean-egov-technologies-limited",
+      "expected_current": {
+        "issuer_name": "Protean eGov Technologies Limited",
+        "nse_symbol": "PROTEAN",
+        "listing_date": "2025-02-06",
+        "issue_price": 1381,
+        "minimum_bid_quantity": 18
+      },
+      "target": {
+        "issuer_name": "Protean eGov Technologies Limited",
+        "board": "Mainboard",
+        "nse_symbol": "PROTEAN",
+        "bse_scrip_code": "544021",
+        "isin": "INE004A01022",
+        "open_date": "2023-11-06",
+        "close_date": "2023-11-08",
+        "issue_price": 792,
+        "minimum_bid_quantity": 18,
+        "listing_date": "2023-11-13"
+      },
+      "field_sources": {
+        "open_date": "protean_prospectus",
+        "close_date": "protean_prospectus",
+        "issue_price": "protean_prospectus",
+        "minimum_bid_quantity": "protean_prospectus",
+        "listing_date": "protean_original_bse_listing"
+      },
+      "identity_sources": [
+        "protean_secondary_nse",
+        "protean_original_bse_listing"
+      ],
+      "preserve_fields": [
+        "sector"
+      ],
+      "secondary_listing_source": "protean_secondary_nse"
+    },
+    {
+      "key": "fabtech",
+      "decision": "add_distinct_historical_ipo",
+      "target_year": 2025,
+      "stable_id": "fabtech-technologies-limited",
+      "forbidden_confusion": {
+        "issuer_name": "FABTECH TECHNOLOGIES CLEANROOMS LIMITED",
+        "bse_scrip_code": "544332"
+      },
+      "target": {
+        "issuer_name": "Fabtech Technologies Limited",
+        "board": "Mainboard",
+        "nse_symbol": "FABTECH",
+        "bse_scrip_code": "544558",
+        "isin": "INE0HF201011",
+        "open_date": "2025-09-29",
+        "close_date": "2025-10-01",
+        "issue_price": 191,
+        "minimum_bid_quantity": 75,
+        "listing_date": "2025-10-07"
+      },
+      "field_sources": {
+        "open_date": "fabtech_prospectus",
+        "close_date": "fabtech_prospectus",
+        "issue_price": "fabtech_prospectus",
+        "minimum_bid_quantity": "fabtech_prospectus",
+        "listing_date": "fabtech_nse_listing"
+      },
+      "identity_sources": [
+        "fabtech_nse_listing"
+      ],
+      "preserve_fields": [],
+      "contrast_sources": [
+        "fabtech_cleanrooms_identity"
+      ]
+    },
+    {
+      "key": "happy",
+      "decision": "correct_legal_name_preserve_stable_id",
+      "source_year": 2023,
+      "target_year": 2023,
+      "stable_id": "happy-forging-limited",
+      "expected_current": {
+        "issuer_name": "Happy Forging Limited",
+        "nse_symbol": "HAPPYFORGE",
+        "listing_date": "2023-12-27"
+      },
+      "target": {
+        "issuer_name": "Happy Forgings Limited",
+        "bse_scrip_code": "544057",
+        "nse_symbol": "HAPPYFORGE",
+        "listing_date": "2023-12-27"
+      },
+      "identity_sources": [
+        "happy_identity"
+      ],
+      "preserve_all_other_fields": true
+    },
+    {
+      "key": "kronox",
+      "decision": "correct_legal_name_spacing_preserve_stable_id",
+      "source_year": 2024,
+      "target_year": 2024,
+      "stable_id": "kronox-lab-scienceslimited",
+      "expected_current": {
+        "issuer_name": "Kronox Lab SciencesLimited",
+        "nse_symbol": "KRONOX",
+        "listing_date": "2024-06-10"
+      },
+      "target": {
+        "issuer_name": "Kronox Lab Sciences Limited",
+        "bse_scrip_code": "544187",
+        "nse_symbol": "KRONOX",
+        "listing_date": "2024-06-10"
+      },
+      "identity_sources": [
+        "kronox_identity"
+      ],
+      "preserve_all_other_fields": true
+    }
+  ],
+  "prohibitions": [
+    "Do not import any of the 251 unmatched BSE audit rows.",
+    "Do not modify the Fabtech Technologies Cleanrooms Limited record.",
+    "Do not delete Protean's 06-Feb-2025 NSE secondary-listing evidence; retain it as a secondary event.",
+    "Do not change Happy Forgings or Kronox listing facts while correcting legal names.",
+    "Do not hand-edit data/ipos.json."
+  ]
+}
