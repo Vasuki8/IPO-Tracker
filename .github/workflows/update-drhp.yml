@@ -33,6 +33,7 @@ jobs:
         run: |
           node scripts/test-sync-sebi-drhp.mjs
           node scripts/test-drhp-integrity.mjs
+          node scripts/test-drhp-lifecycle.mjs
           node scripts/test-drhp-ui.mjs
       - name: Collect explicit 2026 DRHP filings and retain original pages
         id: collect
