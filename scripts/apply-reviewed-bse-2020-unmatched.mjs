@@ -9,6 +9,7 @@ const MANIFEST="data/verified-bse-listings/2026-09-26-bse-2020-unmatched-four.js
 const TARGET="data/recovery/2020/nse-issue-information.json";
 const CHECK=process.argv.includes("--check");
 const PRINT=process.argv.includes("--print");
+const SELFTEST=process.argv.includes("--self-test");
 const read=p=>JSON.parse(fs.readFileSync(path.join(ROOT,p),"utf8"));
 const reviewBytes=fs.readFileSync(path.join(ROOT,REVIEW)),review=JSON.parse(reviewBytes),receipt=read(RECEIPT),manifest=read(MANIFEST);
 validateReview(review);validateReceipt(receipt,review,reviewBytes);
@@ -40,6 +41,7 @@ const target=read(TARGET), existing=new Map((target.records||[]).map(r=>[r.id,r]
 for(const m of manifest.actions){const next=record(m),old=existing.get(next.id);if(old&&JSON.stringify(old)!==JSON.stringify(next))throw new Error("collision:"+next.id);existing.set(next.id,next);}
 target.records=[...existing.values()];
 const out=JSON.stringify(target,null,2)+"\n",current=fs.readFileSync(path.join(ROOT,TARGET),"utf8");
-if(PRINT){process.stdout.write(out);}
+if(SELFTEST){const parsed=JSON.parse(out);for(const m of manifest.actions){const r=parsed.records.find(x=>x.id===m.stable_id);if(!r)throw new Error("missing:"+m.stable_id);}console.log(JSON.stringify({bse_2020_unmatched_self_test:{records:4,changed:out!==current}}));}
+else if(PRINT){process.stdout.write(out);}
 else if(CHECK){const parsed=JSON.parse(out);for(const m of manifest.actions){const r=parsed.records.find(x=>x.id===m.stable_id);if(!r)throw new Error("missing:"+m.stable_id);}console.log(JSON.stringify({bse_2020_unmatched_import:{records:4,changed:out!==current}}));}
 else if(out!==current)fs.writeFileSync(path.join(ROOT,TARGET),out);
