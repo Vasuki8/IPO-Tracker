@@ -25,22 +25,24 @@ Original PDF bytes were not materialized in this connector run. The review there
 
 ## Pre-IPO companies — product interpretation corrected
 
-Entry point: [Pre-IPO companies](../drhp.html), linked from the homepage on desktop and mobile. PR **#251** established the company-centric surface. The visible list is now **dynamic**: the browser validates both `data/drhp-filings.json` and `data/ipos.json`, then removes any exact canonical legal-name match whose IPO is `upcoming`, `open`, `closed`, or `listed`, or that already carries a published IPO open/close/listing date. DRHP source history remains retained. The identity comparison mirrors the universe audit's conservative normalization (`&`/`and`, `Ltd`/`Limited`, punctuation/case); fuzzy matching is prohibited. If either lifecycle dataset is unavailable or invalid, the page fails closed.
+Entry point: [Pre-IPO companies](../drhp.html), linked from the homepage on desktop and mobile. PR **#251** established the company-centric surface; PR **#252** (`a5b797b047abffe6406559461bc79e0ace88664c`) made it lifecycle-aware. The browser validates both `data/drhp-filings.json` and `data/ipos.json`, then removes any exact canonical legal-name match whose IPO is `upcoming`, `open`, `closed`, or `listed`, or that already carries a published IPO open/close/listing date. DRHP source history remains retained. The identity comparison mirrors the universe audit's conservative normalization (`&`/`and`, `Ltd`/`Limited`, punctuation/case); fuzzy matching is prohibited. If either lifecycle dataset is unavailable or invalid, the page fails closed.
 
 The previous document-centric wording (`DRHP filings`, filing-record metric, filing-version emphasis) was the wrong product interpretation and has been removed from the user-facing page. Draft filings remain separate from the IPO dataset; there is no automatic IPO creation or claim of IPO approval. A company leaves the visible Pre-IPO page when the independently published IPO lifecycle proves it has progressed; the source DRHP record is never deleted by that transition.
 
 | Verified DRHP result | Value |
 | --- | ---: |
-| Companies | **90** |
+| Draft-backed companies retained | **90** |
+| Visible true pre-IPO companies | **82** |
+| Progressed issuers hidden dynamically | **8** |
 | Unique DRHP/UDRHP filing URLs | **91** |
 | Coverage year | **2026** |
 | SEBI pages checked | **8** |
-| Unique filings observed in latest scan | **89** |
-| Earlier filings retained despite absence from latest scan | **2** |
+| Unique filings observed in latest scan | **90** |
+| Earlier filing retained despite absence from latest scan | **1** |
 | Source pagination consistent | **No** |
 | Complete DRHP register | **No** |
 
-History retention remains non-destructive: a missing row in a later SEBI index scan is not withdrawal evidence. The latest scan returned **91 observations**, including **two duplicates**, for **89 unique filings observed in that scan**. Two earlier retained filings remain in the union, producing **91 retained source documents across 90 companies**.
+History retention remains non-destructive: a missing row in a later SEBI index scan is not withdrawal evidence. The latest scan returned **92 observations**, including **two duplicates**, for **90 unique filings observed in that scan**. One earlier retained filing remains in the union, producing **91 retained source documents across 90 companies**. Current lifecycle reconciliation hides **8** progressed issuers and leaves **82** visible as true pre-IPO companies.
 
 Source page totals varied between **2,212 and 2,214**. The UI exposes that inconsistency and incomplete coverage. Only explicit 2026 DRHP/UDRHP markers are included; addenda, corrigenda, unlabelled rows, other years and exchange-only filings are outside this release's coverage.
 
@@ -50,11 +52,7 @@ PR #249 merged as **253b2d1b11341e240c4e1ea11742a76c1ffd8cef**. The repair prese
 
 The existing DRHP workflow remains scheduled daily at **06:43 UTC**; execution timing is controlled by GitHub Actions. It is bounded to 16 pages and stops at the first page strictly older than the selected year. It publishes only its DRHP dataset/collection-status files and verifies actual served data and page assets afterward.
 
-Normal DRHP refresh **36213264969 — success**. Published commit **43fbd1f519701fe8b149cf7038f76e3709a1a5dd**. Retained artifact **10895679053**, SHA-256 **bf2b71bdd21218237d8d03c90521a3b1aba023e538446fee300a1b6711ac880f**.
-
-Collection completed **2026-09-26T02:56:59.438Z**. Actual dataset fetched **02:57:47.820Z**; verification completed **02:57:48.027Z**. Served dataset SHA-256 **a74943eca9e7bc66d0e791b25f9c59b2347ae37609d4448bfd0f3e373bf51b38**, **138,745 bytes**. All five checked files matched published bytes: `data/drhp-filings.json`, `drhp.html`, `assets/drhp.js`, `assets/styles.css`, and `index.html`. All eight original source-page hashes and byte counts were revalidated.
-
-Collection status was checked in the repository and retained artifact. The five-file live verifier does not separately fetch `ops/drhp-collection.json`; do not describe that health file as independently byte-verified on Pages.
+Post-PR #252 DRHP refresh **36218461502 — success**. Collection completed **2026-09-26T04:39:23.635Z**. The verifier initially observed the prior served dataset while Pages was propagating, retried, and finished **verified** at **2026-09-26T04:40:12.294Z**. Final served bytes matched all six checked files: `data/drhp-filings.json`, `drhp.html`, `assets/pre-ipo-filter.js`, `assets/drhp.js`, `assets/styles.css`, and `index.html`. Served DRHP dataset SHA-256 **fbc56ba56a7db53686c725843e4b8e121cbb3017fb979020b2045ba9228d941c**. The lifecycle helper itself matched SHA-256 **10b2656b301f3505df45e1dc7b3f3b6a86a9c89a5e4e8ce9943ed7183069c4e3**.
 
 ## AMIRCHAND and LEAP — previous identity release finalized
 
