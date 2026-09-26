@@ -67,15 +67,31 @@ function shellFingerprint(html){
   };
 }
 function bundleHints(source){
+  const textSource=String(source??"");
   const hints=[],seen=new Set();
-  for(const match of String(source??"").matchAll(/["'`](.{1,260}?)["'`]/g)){
+  for(const match of textSource.matchAll(/["'`](.{1,260}?)["'`]/g)){
     const value=match[1].replace(/\\\//g,"/").trim();
     if(!/(ipo|issue|publicissue|api|summary)/i.test(value))continue;
     if(!/[A-Za-z]/.test(value)||seen.has(value))continue;
     seen.add(value);hints.push(value);
-    if(hints.length>=80)break;
+    if(hints.length>=40)break;
   }
-  return hints;
+  const endpoint_assignments={};
+  for(const key of ["GetPublicIssue_par","IPO_HomePageDetail"]){
+    const m=textSource.match(new RegExp(key+"\\s*:\\s*[\"']([^\"']+)[\"']"));
+    endpoint_assignments[key]=m?.[1]??null;
+  }
+  const contexts={};
+  for(const key of ["GetPublicIssue_par","IPO_HomePageDetail","issueDropdownData","ddlyear","rowsPerPage"]){
+    const list=[];let from=0;
+    while(list.length<4){
+      const i=textSource.indexOf(key,from);if(i<0)break;
+      list.push(textSource.slice(Math.max(0,i-240),Math.min(textSource.length,i+520)));
+      from=i+key.length;
+    }
+    contexts[key]=list;
+  }
+  return{hints,endpoint_assignments,contexts};
 }
 async function diagnoseShell(fetchImpl,html,headers,outputDir){
   const fingerprint=shellFingerprint(html),bundles=[];
