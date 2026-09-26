@@ -31,13 +31,13 @@ The existing hourly `update-ipos.yml` collects NSE/SEBI data and imports reviewe
 
 `audit-ipo-universe.yml` is a read-only bounded official-universe audit with no schedule. It collects eight NSE/BSE/SEBI source surfaces, verifies source hashes and reconciles identities while retaining incomplete-coverage labels. Candidates are not automatically imported. Raw Actions artifacts expire after 14 days; durable review projections and evidence references remain in the repository.
 
-Historical corrections use dedicated one-shot reviewed workflows. The nine-IPO repair uses `materialize-historical-ipo-evidence.yml`, `publish-reviewed-historical-ipos.yml` and `verify-reviewed-historical-ipo-publication.yml`. Fabino uses `materialize-fabino-listing-evidence.yml`, `publish-reviewed-fabino.yml` and `verify-reviewed-fabino-publication.yml`. BSE historical coverage uses the read-only `audit-bse-issue-summary.yml`; the five reviewed reconciliation actions use `materialize-bse-audit-conflict-evidence.yml`, `publish-reviewed-bse-reconciliation.yml` and `verify-reviewed-bse-reconciliation-publication.yml`. These are evidence-bound release paths, not general auto-import mechanisms.
+Historical corrections use dedicated one-shot reviewed workflows. The nine-IPO repair uses `materialize-historical-ipo-evidence.yml`, `publish-reviewed-historical-ipos.yml` and `verify-reviewed-historical-ipo-publication.yml`. Fabino uses `materialize-fabino-listing-evidence.yml`, `publish-reviewed-fabino.yml` and `verify-reviewed-fabino-publication.yml`. These are evidence-bound release paths, not general auto-import mechanisms.
 
 Collection time, source observation, dataset generation and Pages publication are distinct. `node scripts/operator-report.mjs` reports IPO operational health without rewriting values. DRHP collection health is separate.
 
 ## Handoff for the next prompt
 
-**The pinned 119-group NSE review, the nine historical excluded-event IPO repairs, Fabino, the read-only BSE historical coverage audit, and its five high-priority reconciliation actions are all complete and verified live. The next P1 task is the four unmatched BSE 2020 issuers.**
+**The pinned 119-group NSE review, the nine historical excluded-event IPO repairs, and the Fabino Life Sciences BSE listing-year hold are all resolved and verified live. The next P1 task is the read-only BSE issue-summary historical coverage audit.**
 
 **The interrupted identity/DRHP release is complete: PR #248 and PR #249 are merged and verified. Do not replay batches 1–9.**
 
@@ -120,11 +120,6 @@ node scripts/test-materialize-fabino-listing-evidence.mjs
 node scripts/apply-reviewed-fabino.mjs --check
 node scripts/test-reviewed-fabino.mjs
 node scripts/test-reviewed-fabino-publication.mjs
-node scripts/test-audit-bse-issue-summary-coverage.mjs
-node scripts/test-materialize-bse-audit-conflict-evidence.mjs
-node scripts/apply-reviewed-bse-reconciliation.mjs --check
-node scripts/test-reviewed-bse-reconciliation.mjs
-node scripts/test-reviewed-bse-reconciliation-publication.mjs
 node scripts/test-audit-ipo-universe.mjs
 node scripts/test-audit-bse-sme-addition-notices.mjs
 node scripts/test-backfill-bse-sme-addition-notices.mjs
@@ -157,4 +152,4 @@ node scripts/verify-drhp-publication.mjs --output-dir=/tmp/drhp-publication
 
 ## Historical handoffs
 
-The immediately preceding README and status are archived byte-for-byte in [docs/archive/README-before-bse-audit-reconciliation-2026-09-26.md](docs/archive/README-before-bse-audit-reconciliation-2026-09-26.md) and [docs/archive/PROJECT_STATUS-before-bse-audit-reconciliation-2026-09-26.md](docs/archive/PROJECT_STATUS-before-bse-audit-reconciliation-2026-09-26.md). Earlier archives and receipts remain intact. Archived next-task instructions are not current instructions.
+The immediately preceding README and status are archived byte-for-byte in [docs/archive/README-before-fabino-release-2026-09-26.md](docs/archive/README-before-fabino-release-2026-09-26.md) and [docs/archive/PROJECT_STATUS-before-fabino-release-2026-09-26.md](docs/archive/PROJECT_STATUS-before-fabino-release-2026-09-26.md). Earlier archives and receipts remain intact. Archived next-task instructions are not current instructions.

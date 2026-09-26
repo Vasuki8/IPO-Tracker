@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0.0",
-  "status": "current_review_state_pinned_119_resolved_historical_and_fabino_repairs_published_verified",
+  "status": "current_review_state_bse_historical_audited_high_priority_reconciliation_published_verified",
   "as_of": "2026-09-26",
-  "scope": "Current disposition of the 119 pinned NSE candidate groups plus the completed historical-equity-IPO coverage repair for nine excluded-event issuers and the completed Fabino Life Sciences BSE listing-year correction. All pinned groups are resolved; the nine historical IPOs and Fabino are published through reviewed recovery paths and verified on actual GitHub Pages.",
+  "scope": "Current disposition after resolving the pinned 119 NSE groups, publishing the nine historical excluded-event IPOs, correcting Fabino, completing the read-only official BSE 2020-2026 historical coverage audit, and publishing the five high-priority BSE reconciliation actions. The BSE audit remains a discovery snapshot, not an auto-import source.",
   "prior_canonical_snapshot": "data/discovery/nse-universe-canonical-review-2026-09-25.json",
   "prior_hold_snapshot": "data/discovery/ipo-universe-held-review-2026-09-25.json",
   "live_receipt": "docs/verification/drhp-identity-release-live-2026-09-26.json",
@@ -105,16 +105,25 @@
   "auto_import_allowed": false,
   "next_bounded_task": {
     "symbols": [
-      "BSE issue-summary coverage"
+      "543240",
+      "543234",
+      "543065",
+      "543244"
     ],
-    "objective": "Repair and characterize the official BSE issue-summary historical coverage path as a read-only universe-discovery audit. Determine which historical IPOs/years the source can reliably enumerate, retain raw response bytes/hashes and pagination/date semantics, and reconcile results against current recovery plus completed BSE SME listing/index evidence. Do not import any issuer from issue-summary evidence alone.",
-    "acceptance": "Produce a machine-readable audit with source URLs, response hashes, observation/fetch timestamps, pagination or exhaustion evidence, year coverage, matched/unmatched counts and explicit gaps; add parser/regression tests; preserve BSE parser v1.5's completed 236/236 cursor without replaying it; keep publication data unchanged unless a later issuer-specific reviewed import is independently approved."
+    "issuers": [
+      "Likhitha Infrastructure Limited",
+      "Secmark Consultancy Limited",
+      "SM Auto Stamping Limited",
+      "Shine Fashions (India) Limited"
+    ],
+    "objective": "Review the four unmatched 2020 rows from the official BSE historical audit as one bounded issuer-specific batch. Confirm legal identity, IPO versus other issue type, board, prospectus/offer dates, issue price and original listing date using official BSE/SEBI/issuer evidence. Do not import from the BSE audit row alone.",
+    "acceptance": "For each issuer, retain official source identity/URLs, original response or document bytes and SHA-256 hashes, page/locator evidence and source dates; positively classify the issue; use a reviewed recovery importer with collision/idempotency and preservation tests for any approved records; verify actual Pages after publication; keep any insufficient case held rather than inferred."
   },
   "remaining_followups": [
-    "Fabino Life Sciences is resolved and published as a 13-Jan-2022 BSE SME listing; retain the original BSE notice's 2021 typo in correction history.",
+    "The BSE historical audit is complete for the 2020–2026 project window and its five high-priority reconciliation items are published/verified. Next review the four unmatched 2020 BSE rows issuer-by-issuer; do not bulk-import the remaining unmatched audit rows.",
     "The nine earlier debt/migration-event issuers now have their original historical equity IPOs imported and verified live; keep the excluded 2026 events out of the IPO universe.",
     "DRHP directory coverage is a separate 2026 explicit-marker collection, not a complete draft-offer register. Improve source pagination and unlabelled-row classification without treating draft filings as automatic IPO approvals.",
-    "BSE issue-summary, SEBI historical pagination and unresolved NSE-series coverage remain incomplete. Start with the BSE issue-summary path as a read-only coverage audit; do not replay the completed BSE parser v1.5 cursor."
+    "After the four-row 2020 batch, continue BSE unmatched coverage in bounded year/source-family batches. SEBI historical pagination, NSE-series coverage and broader DRHP source completeness remain separate gaps."
   ],
   "drhp_state": {
     "companies": 95,
@@ -228,6 +237,120 @@
       "checked_fields": 5,
       "listing_date": "2022-01-13",
       "errors": []
+    }
+  },
+  "bse_issue_summary_audit": {
+    "status": "complete_read_only_audit_snapshot_before_high_priority_reconciliation",
+    "path": "data/discovery/bse-issue-summary-coverage-audit-2026-09-26.json",
+    "workflow_run_id": 36256389220,
+    "artifact_id": 10910408234,
+    "artifact_digest": "sha256:fc0895955dfd0bb18e3d5d2177e6c9e684a72459a51d13f51f273942169bcc98",
+    "available_years": [
+      2026,
+      2025,
+      2024,
+      2023,
+      2022,
+      2021,
+      2020,
+      2019,
+      2018,
+      2017
+    ],
+    "project_years": [
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025,
+      2026
+    ],
+    "historical_rows": 920,
+    "current_issue_rows": 32,
+    "exact_matches_before_reconciliation": 666,
+    "prefix_matches_before_reconciliation": 3,
+    "unmatched_before_reconciliation": 251,
+    "listing_date_conflicts_before_reconciliation": 3,
+    "auto_imported": 0,
+    "project_window_exhausted": true,
+    "official_year_index_exhausted": true,
+    "per_year_totals_reconciled": true,
+    "full_indian_ipo_universe_complete": false,
+    "note": "Counts are the retained audit snapshot before the subsequent five-item reviewed reconciliation. The audit is discovery evidence only."
+  },
+  "bse_high_priority_reconciliation_release": {
+    "status": "published_verified",
+    "review": "data/discovery/bse-issue-summary-high-priority-reconciliation-2026-09-26.json",
+    "evidence_receipt": "data/evidence/bse-high-priority-reconciliation-source-receipt-2026-09-26.json",
+    "import_manifest": "data/verified-bse-listings/2026-09-26-bse-reconciliation-five.json",
+    "evidence_materialization": {
+      "workflow_run_id": 36262801644,
+      "artifact_id": 10912597972,
+      "artifact_digest": "sha256:5728fd05047d366a11585224b49fe2bc9472ac50ad0ba43aca6102d6124d547a",
+      "retained_documents": 10,
+      "retained_response_bytes": 43318707,
+      "retention_days": 14
+    },
+    "release": {
+      "release_pr": 269,
+      "release_merge_commit": "c24dbe0311426649f65b41a8ddb03c7df76a1fc7",
+      "post_apply_test_fix_pr": 270,
+      "post_apply_test_fix_merge_commit": "68d27b53293ed1bb1a2126d8f1763758c110d154",
+      "publication_commit": "b8ee98c5a8c74b56d0ea580ab9ceac793ea5e341"
+    },
+    "actions": [
+      {
+        "issuer_name": "Computer Age Management Services Limited",
+        "action": "moved_corrected",
+        "old_recovery_year": 2021,
+        "new_recovery_year": 2020,
+        "listing_date": "2020-10-01",
+        "issue_price_inr": 1230
+      },
+      {
+        "issuer_name": "Protean eGov Technologies Limited",
+        "action": "moved_corrected_secondary_listing_preserved",
+        "old_recovery_year": 2025,
+        "new_recovery_year": 2023,
+        "listing_date": "2023-11-13",
+        "issue_price_inr": 792,
+        "secondary_nse_listing_date": "2025-02-06"
+      },
+      {
+        "issuer_name": "Fabtech Technologies Limited",
+        "action": "added_distinct_issuer",
+        "recovery_year": 2025,
+        "listing_date": "2025-10-07",
+        "issue_price_inr": 191
+      },
+      {
+        "issuer_name": "Happy Forgings Limited",
+        "action": "legal_name_corrected_stable_id_preserved",
+        "listing_date": "2023-12-27"
+      },
+      {
+        "issuer_name": "Kronox Lab Sciences Limited",
+        "action": "legal_name_spacing_corrected_stable_id_preserved",
+        "listing_date": "2024-06-10"
+      }
+    ],
+    "protected_record": {
+      "issuer_name": "FABTECH TECHNOLOGIES CLEANROOMS LIMITED",
+      "bse_scrip_code": "544332",
+      "listing_date": "2025-01-10",
+      "unchanged": true
+    },
+    "publication_verification": {
+      "workflow_run_id": 36266960117,
+      "artifact_id": 10914368318,
+      "artifact_digest": "sha256:c4aec5ecc2524f23f75825c33827349b0f3a71fa84fecdb1c6331263e734b9dd",
+      "snapshot_fetched_at": "2026-09-26T19:42:51.919Z",
+      "snapshot_sha256": "9752d227d037e1ffd8994d10cc52f9f8a373da751266934970a07a0cd10ab764",
+      "snapshot_bytes": 7345374,
+      "published_records": 1334,
+      "checked_actions": 5,
+      "failed_results": 0
     }
   }
 }
