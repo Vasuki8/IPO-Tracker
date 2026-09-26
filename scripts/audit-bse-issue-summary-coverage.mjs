@@ -108,7 +108,32 @@ async function diagnoseShell(fetchImpl,html,headers,outputDir){
     }catch(error){bundles.push({url:u.href,error:String(error?.message||error)});}
     if(bundles.length>=8)break;
   }
-  return{...fingerprint,bundles};
+  const apiBase="https://api.bseindia.com/BseIndiaAPI/api";
+  const apiSpecs=[
+    {key:"ipo_year",url:apiBase+"/IPOYear/w"},
+    {key:"ipo_tracker_2026",url:apiBase+"/IPOTrackerN/w?Fromdt=2026"},
+    {key:"ipo_year_2026_rows",url:apiBase+"/MoreCompanyN/w?Fromdt=2026&company=&flag=7&type=2"},
+    {key:"public_issue_table",url:apiBase+"/GetPublicIssue_par_updated/w?flag=1"}
+  ];
+  const api_probes=[];
+  for(const [index,spec] of apiSpecs.entries()){
+    try{
+      const response=await fetchImpl(spec.url,{headers:{"user-agent":USER_AGENT,accept:"application/json,text/plain,*/*","accept-language":"en-US,en;q=0.9",referer:BSE_ISSUE_SUMMARY_URL},redirect:"follow",signal:AbortSignal.timeout(30000)});
+      const bytes=await readBounded(response,12*1024*1024);
+      const file="raw/api-probe-"+String(index+1).padStart(2,"0")+"-"+spec.key+".txt";
+      fs.writeFileSync(path.join(outputDir,file),bytes);
+      let parsed=null;try{parsed=JSON.parse(bytes.toString("utf8"));}catch{}
+      const table=Array.isArray(parsed?.Table)?parsed.Table:null;
+      api_probes.push({
+        key:spec.key,url:spec.url,final_url:response.url||spec.url,http_status:response.status,
+        content_type:response.headers.get("content-type"),bytes:bytes.length,sha256:sha256(bytes),file,
+        json_keys:parsed&&typeof parsed==="object"?Object.keys(parsed).slice(0,20):null,
+        table_rows:table?.length??null,first_row:table?.[0]??null,
+        text_head:parsed?null:bytes.toString("utf8").slice(0,600)
+      });
+    }catch(error){api_probes.push({key:spec.key,url:spec.url,error:String(error?.message||error)});}
+  }
+  return{...fingerprint,bundles,api_probes};
 }
 function parseDetailLink(href){
   const url=officialSummaryUrl(decode(href));
