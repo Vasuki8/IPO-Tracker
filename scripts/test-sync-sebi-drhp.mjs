@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import {
-  DRHP_LIST_URL, DRHP_AJAX_URL, parseSebiDate, canonicalIssuer, parseDrhpRows,
-  listingStats, parseAjaxFragment, paginationBody, buildCompanies
+  DRHP_LIST_URL, DRHP_AJAX_URL, AXIS_OFFER_DOCS_URL, parseSebiDate, canonicalIssuer, parseDrhpRows,
+  parseAxisDrhpRows, axisDocumentDate, listingStats, parseAjaxFragment, paginationBody, buildCompanies
 } from "./sync-sebi-drhp.mjs";
 
 assert.equal(parseSebiDate("Sep 25, 2026"), "2026-09-25");
@@ -51,6 +51,20 @@ assert.equal(body.get("doDirect"), "1");
 assert.equal(DRHP_LIST_URL.includes("smid=10"), true);
 assert.equal(DRHP_AJAX_URL.endsWith("/getnewslistinfo.jsp"), true);
 
+const axisHtml = `
+<section>
+  <a href="/contents/Abakkus%20Asset%20Manager%20Limited%20-%20Draft%20Red%20Herring%20Prospectus-1790067639.pdf">Abakkus Asset Manager Limited - Draft Red Herring Prospectus</a>
+  <a href="/contents/Anjali%20Labtech%20Limited-Updated%20Draft%20Red%20Herring%20Prospectus-I-1790264460.pdf">Anjali Labtech Limited-Updated Draft Red Herring Prospectus-I</a>
+  <a href="/contents/Abakkus%20Asset%20Manager%20Limited%20-%20Draft%20Abridged%20Prospectus-1790067640.pdf">Abakkus Asset Manager Limited - Draft Abridged Prospectus</a>
+</section>`;
+const axisRows = parseAxisDrhpRows(axisHtml);
+assert.equal(AXIS_OFFER_DOCS_URL, "https://www.axiscapital.co.in/offer-documents");
+assert.equal(axisDocumentDate("https://www.axiscapital.co.in/contents/Abakkus%20Asset%20Manager%20Limited%20-%20Draft%20Red%20Herring%20Prospectus-1790067639.pdf"), "2026-09-22");
+assert.deepEqual(axisRows.map(r => [r.issuer_name,r.filing_type,r.filing_date,r.source_authority]), [
+  ["Abakkus Asset Manager Limited","DRHP","2026-09-22","Axis Capital Limited"],
+  ["Anjali Labtech Limited","UDRHP-I","2026-09-24","Axis Capital Limited"]
+]);
+
 const companies = buildCompanies([
   ...rows,
   {...rows[1], filing_type:"UDRHP-1", filing_date:"2026-09-24", filing_url:"https://www.sebi.gov.in/filings/public-issues/sep-2026/vardaan-biotech-limited-udrhp-1_104700.html"},
@@ -62,4 +76,4 @@ assert.equal(vardaan.filing_count, 3);
 assert.equal(vardaan.latest_filing_type, "UDRHP-2");
 assert.equal(vardaan.latest_filing_date, "2026-09-26");
 
-console.log(JSON.stringify({drhp_parser_tests:{rows:rows.length,companies:companies.length,addenda_and_corrigenda_excluded:true,pagination_contract:true}}));
+console.log(JSON.stringify({drhp_parser_tests:{rows:rows.length,axis_rows:axisRows.length,abakkus_fallback_parsed:true,companies:companies.length,addenda_and_corrigenda_excluded:true,pagination_contract:true}}));
