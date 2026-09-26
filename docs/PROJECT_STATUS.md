@@ -1,5 +1,15 @@
 # Project status and handoff
 
+Updated **2026-09-26 (UTC)** after publishing and live-verifying the four previously unmatched BSE 2020 IPOs.
+
+**BSE 2020 unmatched batch is complete — do not replay it.** Likhitha Infrastructure Limited, SecMark Consultancy Limited, SM Auto Stamping Limited and Shine Fashions (India) Limited are now in recovery and the public dataset through the reviewed, evidence-bound importer. PR **#277** fixed the only importer blocker by preserving SM Auto's unmapped board as missing; PR **#278** used the proven Pages gate for the one-shot release after the dedicated workflow failed to schedule; publication commit **0bc686821d16998f99b735178f94b1fb700c30a5** added the four records. PR **#279** removed the temporary release bridge and added a generic post-deploy served-byte check.
+
+The retained source receipt remains **11 original documents / 26,074,464 bytes**, artifact **10915705396**, digest `sha256:f7cc05cb9d0e94f2cda022f214b61b201da793f12068146ef114a883b6ef2d51`. Unsupported values were not inferred: SM Auto's board remains null; Likhitha/SecMark offer dates and lot remain null; missing issue sizes remain null. Shine retains the supported 22–26 Oct 2020 offer dates and 3,000-share market lot.
+
+**Actual Pages verification:** deploy run **36276000018** succeeded. Its post-deploy HTTP check fetched the served `data/ipos.json` and matched the committed bytes on the first attempt: **1,338 records**, dataset generation timestamp **2026-09-26T20:26:36.590Z**, SHA-256 **300e2c100046116349b64034646d66f64b3618282755bf96c00a534166252fed**. This generation timestamp is a dataset-build clock, not a claim that every source was observed then.
+
+**Exact next bounded P1 task:** review the **16 unmatched official BSE 2021 rows** from `bse-issue-summary-coverage-audit-2026-09-26.json`. The 2021 source has 91 official rows: 75 exact recovery matches and 16 unmatched. Treat every issue-summary row as discovery evidence only; verify issuer identity, issue type, board and publishable offer/listing facts from issuer-specific official BSE/SEBI/issuer sources, materialize original bytes/hashes, and import only independently supported records through a reviewed collision/idempotency-safe path.
+
 Updated **2026-09-26 (UTC)** after completing the reviewed import implementation and attempting the controlled publication trigger for the four unmatched BSE 2020 IPOs.
 
 **Implementation complete:** PR **#275** merged as `2c93d273a5bad2ce6a92c329b5675d8a11e35090`. The retained review confirms Likhitha Infrastructure Limited, SecMark Consultancy Limited, SM Auto Stamping Limited and Shine Fashions (India) Limited as historical IPOs missing from recovery. The durable receipt binds **11 original official/issuer documents / 26,074,464 bytes**, artifact **10915705396**, digest `sha256:f7cc05cb9d0e94f2cda022f214b61b201da793f12068146ef114a883b6ef2d51`. The importer is collision-safe, idempotent and null-preserving; pre-merge data-contract and reviewed-BSE checks passed.
