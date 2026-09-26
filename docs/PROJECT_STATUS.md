@@ -8,7 +8,27 @@ Updated **2026-09-26 (UTC)** after completing the Abakkus/Pre-IPO source-coverag
 
 The current disposition is [nse-universe-current-review-2026-09-26.json](../data/discovery/nse-universe-current-review-2026-09-26.json): **105 approved IPOs + five debt-event exclusions + seven migration exclusions + two rights-issue security exclusions = 119 pinned groups**. **Zero unresolved and zero unreviewed groups remain in that pinned audit.** This is still **not full Indian IPO-universe completeness**.
 
-**Exact next bounded backend task: original historical IPO coverage for the nine earlier debt/migration-event issuers** — 10MWL29, QMSMEDI, 12VPT28A, ANNAPURNA, SWARAJ, 1150VIES30, 12AIL28, DOLLEX and 13DCCL28. Keep their 2026 non-IPO events excluded and independently verify any original IPO/listing history.
+**Exact next bounded backend task: materialize and safely import the nine now-verified historical equity IPOs** — MWL, QMSMEDI, VIVIANA, ANNAPURNA, SWARAJ, VIESL, AVPINFRA, DOLLEX and DCCL. Retain original official source bytes/SHA-256 hashes and page/locator evidence, then use a reviewed recovery importer with collision/idempotency tests. Keep all excluded 2026 debt/migration events excluded.
+
+## Historical IPO coverage for nine excluded-event issuers — verified, import pending
+
+The historical-equity coverage gap behind the nine earlier 2026 debt/migration exclusions is now resolved at the evidence-review layer. [The retained review](../data/discovery/excluded-event-issuer-historical-ipo-review-2026-09-26.json) verifies **9/9 historical equity IPOs** from official NSE/issuer prospectuses, listing releases, iXBRL identity filings and other official issuer/exchange disclosures.
+
+| Excluded 2026 event | Historical equity symbol | Historical listing |
+| --- | --- | --- |
+| 10MWL29 | MWL | 11-Jul-2022 |
+| QMSMEDI migration | QMSMEDI | 11-Oct-2022 |
+| 12VPT28A | VIVIANA | 16-Sep-2022 |
+| ANNAPURNA migration | ANNAPURNA | 27-Sep-2022 |
+| SWARAJ migration | SWARAJ | 28-Mar-2022 |
+| 1150VIES30 | VIESL | 13-Sep-2024 |
+| 12AIL28 | AVPINFRA | 20-Mar-2024 |
+| DOLLEX migration | DOLLEX | 28-Dec-2022 |
+| 13DCCL28 | DCCL | 28-May-2025 |
+
+**Import remains intentionally pending.** The existing reviewed-NSE importer requires retained NSE API response bytes/hashes and exact API projections. This review used official prospectuses/issuer filings/listing releases, but the original document bytes were not materialized in this connector run. Do not weaken `scripts/apply-reviewed-nse-ipos.mjs` and do not hand-edit `data/ipos.json`.
+
+No public or recovery IPO record changed, and **zero excluded 2026 events were reintroduced**. The next task is to materialize decisive official source bytes/hashes and implement or reuse a reviewed historical-offer recovery path with identity-collision, preservation and idempotency tests.
 
 ## GICL, VITAL and KOTYARK migration review — complete
 
@@ -93,12 +113,12 @@ Durable combined receipt: [drhp-identity-release-live-2026-09-26.json](verificat
 
 ## Remaining work and preserved history
 
-Active NSE holds: **none in the pinned 119-group NSE review**. **Fabino Life Sciences** remains a separate BSE listing-year hold. Next, review original historical IPO coverage for the nine earlier debt/migration-event issuers while keeping all positively classified 2026 debt/migration/rights events out of the new-IPO queue.
+Active NSE holds: **none in the pinned 119-group NSE review**. Historical IPO existence is now verified for all nine earlier debt/migration-event issuers, but import is pending durable source-byte/hash retention and a reviewed recovery path. **Fabino Life Sciences** remains a separate BSE listing-year hold. Keep all positively classified 2026 debt/migration/rights events out of the new-IPO queue.
 
 Broader BSE issue-summary, SEBI historical pagination and NSE-series gaps remain. **BSE parser v1.5 is 236/236 parsed; do not replay its completed cursor.** DRHP coverage expansion must address inconsistent pagination/unlabelled disclosures without treating an observed draft filing as a new approved IPO.
 
 The old canonical review and seven-case hold files dated September 25 are preserved as historical snapshots. Use the linked **September 26 current-review state**, not their stale next-task fields, for new work.
 
-The immediately preceding README and project-status versions are archived byte-for-byte as `docs/archive/README-before-pre-ipo-company-list-correction-2026-09-26.md` and `docs/archive/PROJECT_STATUS-before-pre-ipo-company-list-correction-2026-09-26.md`. Earlier manifests, archives, evidence and receipts remain intact. Actions artifacts expire after 14 days; the repository retains literal projections, URLs, dates, document identities, hashes and locators.
+The immediately preceding README and project-status versions are archived byte-for-byte as `docs/archive/README-before-historical-ipo-coverage-nine-2026-09-26.md` and `docs/archive/PROJECT_STATUS-before-historical-ipo-coverage-nine-2026-09-26.md`. Earlier manifests, archives, evidence and receipts remain intact. Actions artifacts expire after 14 days; the repository retains literal projections, URLs, dates, document identities, hashes and locators.
 
 No minimum-investment expansion, billing/accounts/ads, spending or access-policy changes were introduced.
