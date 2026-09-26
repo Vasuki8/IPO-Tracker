@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0.0",
-  "status": "current_review_state_all_119_pinned_groups_resolved",
+  "status": "current_review_state_pinned_119_resolved_historical_coverage_9_of_9_verified_import_pending",
   "as_of": "2026-09-26",
-  "scope": "Current disposition of the 119 candidate groups in the pinned NSE audit after resolving AMIRCHAND/LEAP, two rights-security events, and the final three GICL/VITAL/KOTYARK migration holds. The original audit and hold queue remain immutable historical snapshots.",
+  "scope": "Current disposition of the 119 pinned NSE candidate groups plus the independent historical-equity-IPO coverage review for the nine issuers whose 2026 debt/migration events remain excluded. All 119 pinned groups are resolved; all nine historical IPOs are verified but not yet imported into recovery/public data.",
   "prior_canonical_snapshot": "data/discovery/nse-universe-canonical-review-2026-09-25.json",
   "prior_hold_snapshot": "data/discovery/ipo-universe-held-review-2026-09-25.json",
   "live_receipt": "docs/verification/drhp-identity-release-live-2026-09-26.json",
@@ -105,21 +105,21 @@
   "auto_import_allowed": false,
   "next_bounded_task": {
     "symbols": [
-      "10MWL29",
+      "MWL",
       "QMSMEDI",
-      "12VPT28A",
+      "VIVIANA",
       "ANNAPURNA",
       "SWARAJ",
-      "1150VIES30",
-      "12AIL28",
+      "VIESL",
+      "AVPINFRA",
       "DOLLEX",
-      "13DCCL28"
+      "DCCL"
     ],
-    "objective": "Review original historical equity IPO coverage for the nine earlier debt/migration-event issuers. The 2026 non-IPO events remain excluded; independently locate and verify any original IPO/listing history without recycling the excluded events.",
-    "acceptance": "Use issuer-specific official evidence, preserve event/IPO separation and conflicts, update retained historical coverage only when independently supported, and do not treat absence from current retained data as proof that an IPO never occurred."
+    "objective": "Materialize decisive official historical-IPO source documents/bytes for the nine verified historical equity IPOs, retain original SHA-256 hashes and page/locator evidence, then add or reuse a reviewed historical-offer recovery importer. Do not hand-edit data/ipos.json and do not weaken the existing reviewed-NSE importer.",
+    "acceptance": "Each historical IPO must have retained original source bytes/hash or equivalent durable official response evidence, explicit legal-name/symbol/ISIN/board/listing identity, source-backed offer/listing facts, collision and idempotency tests, rehearsal proving existing records unchanged, and publication verification after any import."
   },
   "remaining_followups": [
-    "Review the original historical equity IPOs of the nine earlier positively excluded debt/migration-event issuers. GICL, VITAL and KOTYARK historical IPOs are anchored in the final migration review; their 2026 migration events remain excluded.",
+    "Historical IPO existence for all nine earlier debt/migration-event issuers is verified. Next materialize decisive official source bytes/hashes and import the historical equity IPOs through a reviewed recovery path; keep the excluded 2026 events out of the IPO universe.",
     "Fabino Life Sciences remains a separate BSE listing-year hold.",
     "BSE issue-summary, SEBI historical pagination and unresolved NSE-series coverage are incomplete. BSE parser v1.5 remains 236/236 parsed; do not replay its completed cursor.",
     "DRHP directory coverage is a separate 2026 explicit-marker collection, not a complete draft-offer register. Improve source pagination and unlabelled-row classification without treating draft filings as automatic IPO approvals."
@@ -150,5 +150,26 @@
       "KOTYARK"
     ],
     "public_ipo_dataset_changed": false
+  },
+  "excluded_issuer_original_ipo_coverage": {
+    "status": "9_of_9_historical_ipos_verified_import_pending",
+    "review": "data/discovery/excluded-event-issuer-historical-ipo-review-2026-09-26.json",
+    "issuers_reviewed": 9,
+    "historical_ipos_verified": 9,
+    "imported_into_recovery": 0,
+    "published_records_changed": 0,
+    "excluded_2026_events_reintroduced": 0,
+    "verified_historical_symbols": [
+      "MWL",
+      "QMSMEDI",
+      "VIVIANA",
+      "ANNAPURNA",
+      "SWARAJ",
+      "VIESL",
+      "AVPINFRA",
+      "DOLLEX",
+      "DCCL"
+    ],
+    "blocker": "Original decisive source bytes/hashes were not materialized in this connector review; use a reusable evidence-backed historical import path before publication."
   }
 }
