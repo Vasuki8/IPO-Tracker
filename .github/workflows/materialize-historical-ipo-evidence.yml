@@ -1,0 +1,126 @@
+name: Materialize historical IPO evidence
+
+on:
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+    paths:
+      - "data/discovery/excluded-event-issuer-historical-ipo-review-2026-09-26.json"
+      - "scripts/materialize-historical-ipo-evidence.mjs"
+      - "scripts/test-materialize-historical-ipo-evidence.mjs"
+      - ".github/workflows/materialize-historical-ipo-evidence.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: historical-ipo-evidence-materialization
+  cancel-in-progress: true
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Test historical IPO evidence collector
+        run: node scripts/test-materialize-historical-ipo-evidence.mjs
+
+      - name: Fetch official historical IPO source bytes
+        shell: bash
+        run: |
+          set -euo pipefail
+          EVIDENCE_DIR="$RUNNER_TEMP/historical-ipo-nine-evidence"
+          RECEIPT="$RUNNER_TEMP/historical-ipo-nine-source-receipt.json"
+          mkdir -p "$EVIDENCE_DIR"
+          node scripts/materialize-historical-ipo-evidence.mjs \
+            --review=data/discovery/excluded-event-issuer-historical-ipo-review-2026-09-26.json \
+            --evidence-dir="$EVIDENCE_DIR" \
+            --receipt="$RECEIPT"
+          cp "$RECEIPT" "$EVIDENCE_DIR/source-receipt-before-artifact.json"
+
+      - name: Retain original official source bytes
+        id: evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: historical-ipo-nine-evidence-${{ github.run_id }}
+          path: ${{ runner.temp }}/historical-ipo-nine-evidence
+          if-no-files-found: error
+          retention-days: 14
+          compression-level: 0
+
+      - name: Attach workflow artifact identity to durable receipt
+        env:
+          ARTIFACT_ID: ${{ steps.evidence.outputs.artifact-id }}
+          ARTIFACT_DIGEST: ${{ steps.evidence.outputs.artifact-digest }}
+          ARTIFACT_URL: ${{ steps.evidence.outputs.artifact-url }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --input-type=module <<'NODE'
+          import fs from "node:fs";
+          const file = process.env.RUNNER_TEMP + "/historical-ipo-nine-source-receipt.json";
+          const receipt = JSON.parse(fs.readFileSync(file, "utf8"));
+          receipt.workflow_run_id = process.env.GITHUB_RUN_ID;
+          receipt.workflow_artifact = {
+            artifact_id: Number(process.env.ARTIFACT_ID),
+            artifact_digest: process.env.ARTIFACT_DIGEST,
+            artifact_url: process.env.ARTIFACT_URL,
+            retention_days: 14
+          };
+          fs.writeFileSync(file, JSON.stringify(receipt, null, 2) + "\n");
+          NODE
+
+      - name: Publish durable historical IPO source receipt
+        shell: bash
+        run: |
+          set -euo pipefail
+          RECEIPT="$RUNNER_TEMP/historical-ipo-nine-source-receipt.json"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          for attempt in 1 2 3; do
+            echo "Historical IPO evidence receipt publication attempt $attempt/3"
+            git fetch origin main
+            git reset --hard origin/main
+
+            mkdir -p data/evidence
+            cp "$RECEIPT" data/evidence/historical-ipo-nine-source-receipt-2026-09-26.json
+
+            node --input-type=module <<'NODE'
+            import fs from "node:fs";
+            import { validateHistoricalEvidenceReceipt } from "./scripts/materialize-historical-ipo-evidence.mjs";
+            const reviewPath = "data/discovery/excluded-event-issuer-historical-ipo-review-2026-09-26.json";
+            const receiptPath = "data/evidence/historical-ipo-nine-source-receipt-2026-09-26.json";
+            const reviewBytes = fs.readFileSync(reviewPath);
+            const review = JSON.parse(reviewBytes);
+            const receipt = JSON.parse(fs.readFileSync(receiptPath));
+            const result = validateHistoricalEvidenceReceipt(receipt, review, reviewBytes);
+            if (!receipt.workflow_artifact?.artifact_id || !/^sha256:[a-f0-9]{64}$/.test(receipt.workflow_artifact?.artifact_digest || "")) {
+              throw new Error("missing_historical_ipo_artifact_identity");
+            }
+            console.log(JSON.stringify({historical_ipo_evidence_receipt:result,artifact_id:receipt.workflow_artifact.artifact_id}));
+            NODE
+
+            if [ -z "$(git status --porcelain -- data/evidence/historical-ipo-nine-source-receipt-2026-09-26.json)" ]; then
+              echo "Latest main already contains this historical IPO evidence receipt."
+              exit 0
+            fi
+
+            git add data/evidence/historical-ipo-nine-source-receipt-2026-09-26.json
+            git commit -m "data(evidence): retain historical IPO source receipt"
+
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            echo "Main advanced during evidence-receipt publication; retrying."
+          done
+
+          echo "Failed to publish historical IPO evidence receipt after 3 attempts." >&2
+          exit 1

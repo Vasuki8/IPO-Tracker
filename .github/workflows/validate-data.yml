@@ -62,6 +62,9 @@ jobs:
           grep -q 'group: live-ipo-sync' .github/workflows/update-ipos.yml
           grep -q 'group: historical-offer-date-backfill' .github/workflows/backfill-historical-offer-dates.yml
           grep -q 'group: historical-pdf-field-backfill' .github/workflows/backfill-historical-pdf-fields.yml
+          grep -q 'group: historical-ipo-evidence-materialization' .github/workflows/materialize-historical-ipo-evidence.yml
+          grep -q 'git reset --hard origin/main' .github/workflows/materialize-historical-ipo-evidence.yml
+          grep -q 'actions/upload-artifact@v4' .github/workflows/materialize-historical-ipo-evidence.yml
           grep -q 'git ls-files --error-unmatch ops/operator-snapshot.json' .github/workflows/update-ipos.yml
           grep -q 'Pages publication-state attempt' .github/workflows/deploy-pages.yml
           grep -q 'git reset --hard origin/main' .github/workflows/deploy-pages.yml
@@ -102,6 +105,9 @@ jobs:
 
       - name: Test historical IPO coverage audit
         run: node scripts/test-audit-historical-coverage.mjs
+
+      - name: Test historical IPO source materializer
+        run: node scripts/test-materialize-historical-ipo-evidence.mjs
 
       - name: Test reviewed NSE IPO import and real publication
         run: |
