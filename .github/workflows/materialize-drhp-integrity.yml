@@ -1,0 +1,78 @@
+name: Materialize DRHP integrity repair
+on:
+  push:
+    branches: [fix/drhp-release-finalization-20260926]
+    paths: [.github/workflows/materialize-drhp-integrity.yml]
+permissions:
+  contents: write
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Restore exact locally tested patch bytes
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs=require('fs'),crypto=require('crypto');
+            const r=await github.rest.git.getBlob({owner:context.repo.owner,repo:context.repo.repo,file_sha:'90c7b14cb1802b4ae089d040916b132609b4de43'});
+            // Repair two known transfer transcription errors, then require the
+            // original local ZIP hash before any checkout file is modified.
+            let encoded=r.data.content.replace(/\s/g,'');
+            encoded=encoded.replace('PcgfGZuEZuEC','PcgfGZuEwOZuEC').replace('Ab21VST','Ab21RST').replace(/=+$/,'');
+            encoded+='='.repeat((4-encoded.length%4)%4);
+            const b=Buffer.from(encoded,'base64');
+            if(crypto.createHash('sha256').update(b).digest('hex')!=='460830685d53fc996344c9fcc0461a2bf155e2c4836a5f2eb14d970937e24737')throw new Error('patch_transport_hash_mismatch');
+            fs.mkdirSync(process.env.RUNNER_TEMP+'/drhp-repair',{recursive:true});
+            fs.writeFileSync(process.env.RUNNER_TEMP+'/drhp-repair/patch.zip',b);
+      - name: Apply bounded patch and restore previously sourced filing
+        run: |
+          set -euo pipefail
+          unzip -p "$RUNNER_TEMP/drhp-repair/patch.zip" change.patch > "$RUNNER_TEMP/drhp-repair/change.patch"
+          git apply --check "$RUNNER_TEMP/drhp-repair/change.patch"
+          git apply "$RUNNER_TEMP/drhp-repair/change.patch"
+          git show a6577265048c5d7e4855feac34a3b6c06800e969:data/drhp-filings.json > "$RUNNER_TEMP/drhp-repair/initial-drhp.json"
+          cp data/drhp-filings.json "$RUNNER_TEMP/drhp-repair/before-drhp.json"
+          node scripts/drhp-integrity.mjs --current="$RUNNER_TEMP/drhp-repair/initial-drhp.json" --incoming=data/drhp-filings.json --output=data/drhp-filings.json
+          node --input-type=module <<'JS'
+          import fs from 'node:fs';import {createHash} from 'node:crypto';
+          const expected={'.github/workflows/update-drhp.yml':'1f6fe8413edb2e52a1c12b459f78ea310d1fb8d5a168188316be4870d2436e4b','.github/workflows/validate-data.yml':'8b4aee4825dc6a8acbd58ac872bcaaa50e43ab26d837806651ad1b9e3708974a','scripts/sync-sebi-drhp.mjs':'70db6cd69c4cd9241cb0b6ee8126f1bafc22dfcf614bedc9d61a6d2920fe9fc6','scripts/drhp-integrity.mjs':'997447bd1a511524b793f76c8d121883a09d5ca4deeabcb0553fda08c0356806','scripts/test-drhp-integrity.mjs':'9242556672ab11e2c646ceb608ad8042f6b508a9b2f985de4a697e67584352ed','scripts/test-drhp-ui.mjs':'e6bd9207c39b7cbadb78e0955a6ee66a4aa1b93fbcfead33a214cfa9f7ad65c2','scripts/verify-drhp-publication.mjs':'9d989007e9112c5a52ef2a4b9db176390eb364d44b5e6a927b7f9910282c287b','assets/drhp.js':'258392df87eb9c9d4837dd0da3e117c55979384a251d60515bdcf5fb73ef1f0e','assets/styles.css':'86cae2c7d9998f211effb2d77130ddd6c5a2df96384a380a0516151747f4bf4d','drhp.html':'55764e8691567b4ebdae1e4e37de2debf691fbcd956da5d20537c863b7582bdb','index.html':'dbc6cda49498b17f8083dc1712e5390a28aa5d55e5e08b469f3f25df4985cffb'};
+          for(const [file,sha]of Object.entries(expected))if(createHash('sha256').update(fs.readFileSync(file)).digest('hex')!==sha)throw new Error('changed_patch_bytes:'+file);
+          fs.writeFileSync(process.env.RUNNER_TEMP+'/drhp-repair/code-hashes.json',JSON.stringify(expected,null,2));
+          JS
+      - name: Verify filing history, parsers and all prior IPO records
+        run: |
+          set -euo pipefail
+          node --check assets/drhp.js
+          node scripts/test-sync-sebi-drhp.mjs | tee "$RUNNER_TEMP/drhp-repair/parser-tests.txt"
+          node scripts/test-drhp-integrity.mjs | tee "$RUNNER_TEMP/drhp-repair/integrity-tests.txt"
+          node scripts/test-drhp-ui.mjs | tee "$RUNNER_TEMP/drhp-repair/ui-tests.txt"
+          node scripts/test-reviewed-nse-ipos.mjs > "$RUNNER_TEMP/drhp-repair/ipo-tests.txt"
+          node scripts/test-reviewed-nse-publication.mjs > "$RUNNER_TEMP/drhp-repair/ipo-publication-tests.json"
+          node scripts/build-published-data.mjs --check
+          node scripts/validate-data.mjs
+          git diff --exit-code -- data/ipos.json data/recovery
+          git diff --check
+      - name: Commit only the verified repair to the review branch
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add .github/workflows/update-drhp.yml .github/workflows/validate-data.yml scripts/sync-sebi-drhp.mjs scripts/drhp-integrity.mjs scripts/test-drhp-integrity.mjs scripts/test-drhp-ui.mjs scripts/verify-drhp-publication.mjs assets/drhp.js assets/styles.css drhp.html index.html data/drhp-filings.json
+          git commit -m 'fix(data): preserve DRHP filing history and verify unique source-backed counts'
+          git push origin HEAD:refs/heads/fix/drhp-release-finalization-20260926
+          git rev-parse HEAD > "$RUNNER_TEMP/drhp-repair/reviewed-commit.txt"
+          git archive --format=zip HEAD > "$RUNNER_TEMP/drhp-repair/reviewed-source.zip"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: drhp-integrity-repair-${{ github.run_id }}
+          path: ${{ runner.temp }}/drhp-repair
+          retention-days: 14
+          if-no-files-found: error
