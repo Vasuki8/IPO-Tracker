@@ -3,12 +3,12 @@
   "collector_version": "1.0.0",
   "status": "complete",
   "review_path": "data/discovery/bse-issue-summary-high-priority-reconciliation-2026-09-26.json",
-  "review_sha256": "c6311bd58b47df7a7ba592b1b10a8ba6009e399483c0c3116d11d0d17c984877",
-  "collection_started_at": "2026-09-26T17:13:06.265Z",
-  "collection_completed_at": "2026-09-26T17:14:17.272Z",
-  "source_documents_expected": 9,
-  "source_documents_collected": 9,
-  "total_response_bytes": 40813058,
+  "review_sha256": "3f31d18058dc789e5665c294379943392ee93bee65da50470f54544d7fcc854c",
+  "collection_started_at": "2026-09-26T18:30:54.220Z",
+  "collection_completed_at": "2026-09-26T18:32:08.691Z",
+  "source_documents_expected": 10,
+  "source_documents_collected": 10,
+  "total_response_bytes": 43318707,
   "documents": [
     {
       "key": "cams_prospectus",
@@ -21,8 +21,8 @@
       "detected_type": "pdf",
       "response_bytes": 7213816,
       "response_sha256": "686311cb289543f84b1ae8aa336448814866a1548e9ab25e7e81306fb1bd0dcc",
-      "requested_at": "2026-09-26T17:13:06.265Z",
-      "collected_at": "2026-09-26T17:13:29.456Z",
+      "requested_at": "2026-09-26T18:30:54.220Z",
+      "collected_at": "2026-09-26T18:31:18.784Z",
       "evidence_file": "cams_prospectus.pdf",
       "projection_sha256": "e0a3bbef4b9c6261a8a09d70d4273c692355477bd36a57740c532000cb20d361"
     },
@@ -37,8 +37,8 @@
       "detected_type": "pdf",
       "response_bytes": 193258,
       "response_sha256": "1bf9fbfbfa5012e6305be975e37d11ca1510683488372b6d165240fc701594f0",
-      "requested_at": "2026-09-26T17:13:29.456Z",
-      "collected_at": "2026-09-26T17:13:32.039Z",
+      "requested_at": "2026-09-26T18:31:18.784Z",
+      "collected_at": "2026-09-26T18:31:19.611Z",
       "evidence_file": "cams_nse_listing.pdf",
       "projection_sha256": "a7aac4a312ba24acdf28c60fb056053cf0303f39794bb72bb13881bdd7a1ba61"
     },
@@ -53,8 +53,8 @@
       "detected_type": "pdf",
       "response_bytes": 6021294,
       "response_sha256": "fc9cb856e65a5d2ad35c9687d125f8fb1d7b9fc95336ccdefc62a8e29a461e60",
-      "requested_at": "2026-09-26T17:13:32.039Z",
-      "collected_at": "2026-09-26T17:13:51.794Z",
+      "requested_at": "2026-09-26T18:31:19.611Z",
+      "collected_at": "2026-09-26T18:31:39.635Z",
       "evidence_file": "protean_prospectus.pdf",
       "projection_sha256": "f8753c387d81fd77fe80ac44777bce0dee30934f867c9dfbeffe5612b2d6e46f"
     },
@@ -69,10 +69,26 @@
       "detected_type": "pdf",
       "response_bytes": 1587113,
       "response_sha256": "00fc59eb8dd906ca3e4c8cb46e4d51665fa9c4807b53ac3597ea7292b2b0f1a4",
-      "requested_at": "2026-09-26T17:13:51.794Z",
-      "collected_at": "2026-09-26T17:13:52.306Z",
+      "requested_at": "2026-09-26T18:31:39.635Z",
+      "collected_at": "2026-09-26T18:31:40.236Z",
       "evidence_file": "protean_secondary_nse.pdf",
       "projection_sha256": "609414dedc4df5ad60833654008de1107e7e2647ff90ae3014cd89419d5c5b1b"
+    },
+    {
+      "key": "protean_original_bse_listing",
+      "authority": "Protean eGov Technologies Limited filing to BSE",
+      "document_type": "Issuer Financial Results / IPO Listing Disclosure",
+      "source_url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/26a2a114-289b-48f5-8ffc-d6c8bd317fa0.pdf",
+      "final_url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/26a2a114-289b-48f5-8ffc-d6c8bd317fa0.pdf",
+      "http_status": 200,
+      "content_type": "application/pdf",
+      "detected_type": "pdf",
+      "response_bytes": 2505649,
+      "response_sha256": "437a4c443d91426d6eaf8c4ae09ea6ece5369c49c36902de9565934797f64a9a",
+      "requested_at": "2026-09-26T18:31:40.236Z",
+      "collected_at": "2026-09-26T18:31:40.670Z",
+      "evidence_file": "protean_original_bse_listing.pdf",
+      "projection_sha256": "dde6b02ffae05d40db532c0f7c26b5804e40be0e7f3f0f39c417f6461b70e796"
     },
     {
       "key": "fabtech_prospectus",
@@ -85,8 +101,8 @@
       "detected_type": "pdf",
       "response_bytes": 6289890,
       "response_sha256": "8b3d2efcbc612751e9709b976ad7f6cdf2fde4696fb8632d13bf767e3b0f8b61",
-      "requested_at": "2026-09-26T17:13:52.306Z",
-      "collected_at": "2026-09-26T17:14:12.094Z",
+      "requested_at": "2026-09-26T18:31:40.670Z",
+      "collected_at": "2026-09-26T18:32:01.612Z",
       "evidence_file": "fabtech_prospectus.pdf",
       "projection_sha256": "fe6b571669bf18dfb21857bfea7ae64e5add13aa93519e3b966af5be6f0e8d00"
     },
@@ -101,8 +117,8 @@
       "detected_type": "pdf",
       "response_bytes": 167345,
       "response_sha256": "de552c2090439b0eff1bd886f3770bbd3c318ac6f76e9042bce7bb0fb9988901",
-      "requested_at": "2026-09-26T17:14:12.094Z",
-      "collected_at": "2026-09-26T17:14:13.364Z",
+      "requested_at": "2026-09-26T18:32:01.612Z",
+      "collected_at": "2026-09-26T18:32:04.162Z",
       "evidence_file": "fabtech_nse_listing.pdf",
       "projection_sha256": "54e5710770351195c33cfdde2db5db2333da1c7d5ff16d764f0ce6deed91e215"
     },
@@ -117,8 +133,8 @@
       "detected_type": "pdf",
       "response_bytes": 1607351,
       "response_sha256": "efda89593aca540decd4fcba5f425d9bf31d64d3f83baae5c27883a1dc237774",
-      "requested_at": "2026-09-26T17:14:13.364Z",
-      "collected_at": "2026-09-26T17:14:13.778Z",
+      "requested_at": "2026-09-26T18:32:04.162Z",
+      "collected_at": "2026-09-26T18:32:05.951Z",
       "evidence_file": "fabtech_cleanrooms_identity.pdf",
       "projection_sha256": "e10c4f444428b388915872edf92f6f35dd44f7f6b1da243b71a0ae57a1061838"
     },
@@ -133,8 +149,8 @@
       "detected_type": "pdf",
       "response_bytes": 17724811,
       "response_sha256": "263a465ac988c491e552e38bd8f48bfb9a59009a5d77d1e92ddc45e148ab7b85",
-      "requested_at": "2026-09-26T17:14:13.778Z",
-      "collected_at": "2026-09-26T17:14:16.419Z",
+      "requested_at": "2026-09-26T18:32:05.951Z",
+      "collected_at": "2026-09-26T18:32:07.570Z",
       "evidence_file": "happy_identity.pdf",
       "projection_sha256": "63260fafcb267469c42a79ad8fcc66fb1c7a9638b23a207b1da2b58c49060b96"
     },
@@ -149,18 +165,18 @@
       "detected_type": "html",
       "response_bytes": 8180,
       "response_sha256": "13dd2c0431b22afc5d73ed1d5916f85a4f0d1df12217cdde75302cf9e2f617e3",
-      "requested_at": "2026-09-26T17:14:16.419Z",
-      "collected_at": "2026-09-26T17:14:17.272Z",
+      "requested_at": "2026-09-26T18:32:07.570Z",
+      "collected_at": "2026-09-26T18:32:08.691Z",
       "evidence_file": "kronox_identity.html",
       "projection_sha256": "41423296f43e5ccadcd4562e23d3fb807f56678d239c0a5709be325a4109dcaf"
     }
   ],
   "workflow_artifact": {
-    "artifact_id": 10911342967,
-    "artifact_digest": "sha256:10e454dc25d07dee56cab439b34b5b54e7e5ff17aa02ee25cef9648b0c87c7d9",
-    "artifact_url": "https://github.com/Vasuki8/IPO-Tracker/actions/runs/36258224356/artifacts/10911342967",
+    "artifact_id": 10912597972,
+    "artifact_digest": "sha256:5728fd05047d366a11585224b49fe2bc9472ac50ad0ba43aca6102d6124d547a",
+    "artifact_url": "https://github.com/Vasuki8/IPO-Tracker/actions/runs/36262801644/artifacts/10912597972",
     "retention_days": 14
   },
   "import_allowed": false,
-  "workflow_run_id": "36258224356"
+  "workflow_run_id": "36262801644"
 }
