@@ -142,7 +142,8 @@ function applyFabtech(recovery,action,m,receipt,audit,manifest){
     board_evidence:[{...listing}],status_evidence:[{...listing}],bse_high_priority_reconciliation:marker(manifest,receipt,audit,action)};
   for(const [name,spec] of Object.entries(action.fields))record[name]=field(spec.value,spec.value,spec.source,action.target.issuer_name,m);
   for(const key of [...new Set(Object.values(action.fields).map(x=>x.source))])addDocument(record,descriptor(key,action.target.issuer_name,m));
-  addDocument(record,descriptor("fabtech_cleanrooms_identity","Fabtech Technologies Cleanrooms Limited",m));
+  const cleanroomsEvidence=descriptor("fabtech_cleanrooms_identity","Fabtech Technologies Cleanrooms Limited",m);
+  record.distinct_issuer_evidence={issuer_name:"Fabtech Technologies Cleanrooms Limited",bse_scrip_code:"544332",source:cleanroomsEvidence,note:"Retained only to prove the audit prefix match was a different legal issuer; not published as a Fabtech Technologies document."};
   recovery["2025"].records.push(record);return{changed:["2025"],already:false};
 }
 function applyRename(recovery,action,m,receipt,audit,manifest){
