@@ -1142,10 +1142,10 @@
     "2025|capillary-technologies-india-limited": {
       "issuer_name": "Capillary Technologies India Limited",
       "listing_date": "2025-11-21",
-      "last_attempted_at": "2026-09-25T10:35:09.178Z",
+      "last_attempted_at": "2026-09-26T13:23:23.381Z",
       "parser_version": "2.0.0",
       "status": "error",
-      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 45 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-offer-dates-i2ZY7N/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/feb-2026/1771411971970.pdf\ncurl: (28) Operation timed out after 45000 milliseconds with 14149599 out of 20016471 bytes received\ncurl: (28) Operation timed out after 45000 milliseconds with 12179823 out of 20016471 bytes received\n",
+      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 45 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-offer-dates-vP8xbN/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/feb-2026/1771411971970.pdf\ncurl: (28) Operation timed out after 45001 milliseconds with 12343791 out of 20016471 bytes received\ncurl: (28) Operation timed out after 45000 milliseconds with 12201823 out of 20016471 bytes received\n",
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/feb-2026/1771411971970.pdf"
     },
     "2024|suraksha-diagnostic-limited": {
@@ -1915,10 +1915,10 @@
     "2023|inspire-films-limited": {
       "issuer_name": "Inspire Films Limited",
       "listing_date": "2023-10-05",
-      "last_attempted_at": "2026-09-25T10:35:09.178Z",
+      "last_attempted_at": "2026-09-26T13:23:23.381Z",
       "parser_version": "2.0.0",
       "status": "error",
-      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 45 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-offer-dates-1JVZfH/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/sep-2023/1695619770913.pdf\ncurl: (18) transfer closed with 3967391 bytes remaining to read\ncurl: (18) transfer closed with 5477415 bytes remaining to read\n",
+      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 45 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-offer-dates-QVxW4A/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/sep-2023/1695619770913.pdf\ncurl: (28) Operation timed out after 45000 milliseconds with 3857455 out of 10660782 bytes received\ncurl: (28) Operation timed out after 45000 milliseconds with 6330887 out of 10660782 bytes received\n",
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2023/1695619770913.pdf"
     },
     "2022|silicon-rental-solutions-limited": {
@@ -2541,6 +2541,33 @@
         "publication_date": "2025-09-09"
       },
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2025/1757407514513.pdf"
+    },
+    "2022|emudhra-limited": {
+      "issuer_name": "eMudhra Limited",
+      "listing_date": "2022-06-01",
+      "last_attempted_at": "2026-09-26T13:23:23.381Z",
+      "parser_version": "2.0.0",
+      "status": "error",
+      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 45 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-offer-dates-30OLVP/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/may-2022/1653629179099.pdf\ncurl: (18) transfer closed with 6985768 bytes remaining to read\ncurl: (28) Operation timed out after 45000 milliseconds with 5741760 out of 8610664 bytes received\n",
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/may-2022/1653629179099.pdf"
+    },
+    "2023|jupiter-life-line-hospitals-limited": {
+      "issuer_name": "Jupiter Life Line Hospitals Limited",
+      "listing_date": "2023-09-18",
+      "last_attempted_at": "2026-09-26T13:23:23.381Z",
+      "parser_version": "2.0.0",
+      "status": "official_date_conflict",
+      "open_date": null,
+      "close_date": null,
+      "open_extraction": null,
+      "close_extraction": null,
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Jupiter Life Line Hospitals Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2023/1694502977062.pdf",
+        "publication_date": "2023-09-12"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2023/1694502977062.pdf"
     }
   }
 }
