@@ -2572,10 +2572,32 @@
     "2025|solarworld-energy-solutions-limited": {
       "issuer_name": "Solarworld Energy Solutions Limited",
       "listing_date": "2025-09-30",
-      "last_attempted_at": "2026-09-25T12:23:22.555Z",
+      "last_attempted_at": "2026-09-26T17:27:24.336Z",
       "parser_version": "1.2.0",
-      "status": "error",
-      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 75 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-historical-pdf-AiE2L1/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/oct-2025/1759827896999.pdf\ncurl: (18) transfer closed with 5639191 bytes remaining to read\ncurl: (18) transfer closed with 2640335 bytes remaining to read\n",
+      "status": "extracted",
+      "extracted_fields": [
+        "issue_size_inr"
+      ],
+      "remaining_fields": [
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": {
+          "value": 4900000000,
+          "source_value": "₹4,900.00 MILLION",
+          "page": 3
+        },
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Solarworld Energy Solutions Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2025/1759827896999.pdf",
+        "publication_date": "2025-10-07"
+      },
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2025/1759827896999.pdf"
     },
     "2025|ganesh-consumer-products-limited": {
@@ -3477,6 +3499,92 @@
         "publication_date": "2022-05-31"
       },
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/may-2022/1653979110197.pdf"
+    },
+    "2022|emudhra-limited": {
+      "issuer_name": "eMudhra Limited",
+      "listing_date": "2022-06-01",
+      "last_attempted_at": "2026-09-26T17:27:24.336Z",
+      "parser_version": "1.2.0",
+      "status": "extracted",
+      "extracted_fields": [
+        "issue_size_inr"
+      ],
+      "remaining_fields": [
+        "price_band",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": {
+          "value": 4127860000,
+          "source_value": "₹4,127.86 MILLION",
+          "page": 2
+        },
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "eMudhra Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/may-2022/1653629179099.pdf",
+        "publication_date": "2022-05-26"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/may-2022/1653629179099.pdf"
+    },
+    "2022|ethos-limited": {
+      "issuer_name": "ETHOS Limited",
+      "listing_date": "2022-05-30",
+      "last_attempted_at": "2026-09-26T17:27:24.336Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "price_band",
+        "issue_size_inr",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Ethos Limited-Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/may-2022/1652357227102.pdf",
+        "publication_date": "2022-05-12"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/may-2022/1652357227102.pdf"
+    },
+    "2022|paradeep-phosphates-limited": {
+      "issuer_name": "Paradeep Phosphates Limited",
+      "listing_date": "2022-05-27",
+      "last_attempted_at": "2026-09-26T17:27:24.336Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "price_band",
+        "issue_size_inr",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Paradeep Phosphates Limited - Red Herring Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/may-2022/1652258502546.PDF",
+        "publication_date": "2022-05-11"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/may-2022/1652258502546.PDF"
     }
   }
 }
