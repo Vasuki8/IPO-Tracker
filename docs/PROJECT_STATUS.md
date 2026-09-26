@@ -25,9 +25,9 @@ Original PDF bytes were not materialized in this connector run. The review there
 
 ## Pre-IPO companies — product interpretation corrected
 
-Entry point: [Pre-IPO companies](../drhp.html), linked from the homepage on desktop and mobile. PR **#251** merged as `8fdc9bdfa8c1b03acb98ae9546ab0a9efabe0c66`. The product surface is **one company per row** for companies with retained DRHP/UDRHP evidence from SEBI. Each row shows the `DRHP filed` signal, latest retained draft date and official SEBI document. Draft-version counts remain internal/source evidence rather than the main feature. The post-merge GitHub Pages deployment workflow completed successfully.
+Entry point: [Pre-IPO companies](../drhp.html), linked from the homepage on desktop and mobile. PR **#251** established the company-centric surface. The visible list is now **dynamic**: the browser validates both `data/drhp-filings.json` and `data/ipos.json`, then removes any exact canonical legal-name match whose IPO is `upcoming`, `open`, `closed`, or `listed`, or that already carries a published IPO open/close/listing date. DRHP source history remains retained. The identity comparison mirrors the universe audit's conservative normalization (`&`/`and`, `Ltd`/`Limited`, punctuation/case); fuzzy matching is prohibited. If either lifecycle dataset is unavailable or invalid, the page fails closed.
 
-The previous document-centric wording (`DRHP filings`, filing-record metric, filing-version emphasis) was the wrong product interpretation and has been removed from the user-facing page. Draft filings remain separate from the IPO dataset; there is no automatic IPO creation or claim of IPO approval, opening, completion or listing.
+The previous document-centric wording (`DRHP filings`, filing-record metric, filing-version emphasis) was the wrong product interpretation and has been removed from the user-facing page. Draft filings remain separate from the IPO dataset; there is no automatic IPO creation or claim of IPO approval. A company leaves the visible Pre-IPO page when the independently published IPO lifecycle proves it has progressed; the source DRHP record is never deleted by that transition.
 
 | Verified DRHP result | Value |
 | --- | ---: |
