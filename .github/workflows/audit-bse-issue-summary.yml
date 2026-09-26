@@ -1,0 +1,86 @@
+name: Audit BSE issue-summary historical coverage
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: ["main"]
+    paths:
+      - "scripts/audit-bse-issue-summary-coverage.mjs"
+      - "scripts/test-audit-bse-issue-summary-coverage.mjs"
+      - "scripts/audit-ipo-universe.mjs"
+      - "scripts/test-audit-ipo-universe.mjs"
+      - ".github/workflows/audit-bse-issue-summary.yml"
+  push:
+    branches: ["main"]
+    paths:
+      - "scripts/audit-bse-issue-summary-coverage.mjs"
+      - "scripts/test-audit-bse-issue-summary-coverage.mjs"
+      - "scripts/audit-ipo-universe.mjs"
+      - "scripts/test-audit-ipo-universe.mjs"
+      - ".github/workflows/audit-bse-issue-summary.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: bse-issue-summary-audit-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Retain exact audit revision
+        run: |
+          mkdir -p "$RUNNER_TEMP/bse-issue-summary"
+          git archive --format=zip HEAD > "$RUNNER_TEMP/bse-issue-summary/source-snapshot.zip"
+          git rev-parse HEAD > "$RUNNER_TEMP/bse-issue-summary/source-commit.txt"
+
+      - name: Test BSE issue-summary parser, pagination and reconciliation
+        run: |
+          node scripts/test-audit-bse-issue-summary-coverage.mjs
+          node scripts/test-audit-ipo-universe.mjs
+
+      - name: Collect bounded BSE issue-summary pages
+        run: |
+          node scripts/audit-bse-issue-summary-coverage.mjs             --output-dir="$RUNNER_TEMP/bse-issue-summary"             --max-pages=120
+
+      - name: Reconcile BSE issue-summary coverage read-only
+        run: |
+          node scripts/audit-bse-issue-summary-coverage.mjs             --input="$RUNNER_TEMP/bse-issue-summary"             --output="$RUNNER_TEMP/bse-issue-summary/audit.json"
+
+      - name: Print compact BSE coverage result
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from "node:fs";
+          const report=JSON.parse(fs.readFileSync(process.env.RUNNER_TEMP+"/bse-issue-summary/audit.json","utf8"));
+          const compact={
+            status:report.status,
+            coverage:report.coverage,
+            reconciliation:report.reconciliation,
+            unmatched:report.review_candidates.filter(x=>x.match_type==="none").slice(0,50),
+            ambiguous:report.review_candidates.filter(x=>x.match_type.startsWith("ambiguous")||x.match_type==="issue_identity_conflict").slice(0,50)
+          };
+          console.log(JSON.stringify({bse_issue_summary_coverage:compact}));
+          NODE
+
+      - name: Ensure audit is read-only
+        run: test -z "$(git status --porcelain --untracked-files=all)"
+
+      - name: Retain BSE issue-summary pages and audit
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bse-issue-summary-audit-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/bse-issue-summary
+          retention-days: 14
+          if-no-files-found: error
