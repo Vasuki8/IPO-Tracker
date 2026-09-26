@@ -203,12 +203,31 @@ async function run() {
     return [arg.slice(0, i), arg.slice(i + 1)];
   }));
   const reviewPath = args["--review"] || DEFAULT_REVIEW;
+  const reviewFile = path.isAbsolute(reviewPath) ? reviewPath : path.join(ROOT, reviewPath);
+  const reviewBytes = fs.readFileSync(reviewFile);
+  const review = JSON.parse(reviewBytes);
+
+  if (args["--validate-receipt"]) {
+    const receiptFile = path.isAbsolute(args["--validate-receipt"])
+      ? args["--validate-receipt"]
+      : path.join(ROOT, args["--validate-receipt"]);
+    const receipt = JSON.parse(fs.readFileSync(receiptFile, "utf8"));
+    const result = validateHistoricalEvidenceReceipt(receipt, review, reviewBytes);
+    if (!receipt.workflow_artifact?.artifact_id ||
+        !/^sha256:[a-f0-9]{64}$/.test(receipt.workflow_artifact?.artifact_digest || "") ||
+        receipt.workflow_artifact?.retention_days !== 14) {
+      throw new Error("missing_historical_ipo_artifact_identity");
+    }
+    console.log(JSON.stringify({ historical_ipo_evidence_receipt: result,
+      artifact_id: receipt.workflow_artifact.artifact_id,
+      artifact_digest: receipt.workflow_artifact.artifact_digest }, null, 2));
+    return;
+  }
+
   const evidenceDir = args["--evidence-dir"];
   const receiptPath = args["--receipt"];
   if (!evidenceDir || !receiptPath) throw new Error("--evidence-dir and --receipt are required");
 
-  const reviewBytes = fs.readFileSync(path.join(ROOT, reviewPath));
-  const review = JSON.parse(reviewBytes);
   const receipt = await collectHistoricalIpoEvidence({ review, reviewBytes, evidenceDir });
   fs.mkdirSync(path.dirname(receiptPath), { recursive: true });
   fs.writeFileSync(receiptPath, JSON.stringify(receipt, null, 2) + "\n");
