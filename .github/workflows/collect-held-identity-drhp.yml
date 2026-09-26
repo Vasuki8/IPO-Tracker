@@ -62,6 +62,24 @@ jobs:
               rows.push({...s,requested_at,collected_at:new Date().toISOString(),error:String(e)});
             }
           }
+          const ajax='https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp';
+          for (const page of [2,10]) {
+            const body=new URLSearchParams({
+              nextValue:'1',next:'n',search:'',fromDate:'',toDate:'',fromYear:'',toYear:'',deptId:'',
+              sid:'3',ssid:'15',smid:'10',ssidhidden:'15',intmid:'-1',sText:'Filings',
+              ssText:'Public Issues',smText:'Draft Offer Documents filed with SEBI',doDirect:String(page-1)
+            });
+            const requested_at=new Date().toISOString();
+            try {
+              const r=await fetch(ajax,{method:'POST',headers:{'user-agent':ua,'content-type':'application/x-www-form-urlencoded; charset=UTF-8','x-requested-with':'XMLHttpRequest','referer':sources[0].url},body,signal:AbortSignal.timeout(35000)});
+              const b=Buffer.from(await r.arrayBuffer()), file='sebi-drhp-page-'+page+'.txt';
+              fs.writeFileSync(path.join(out,file),b);
+              rows.push({key:'sebi_drhp_page_'+page,url:ajax,file,status:r.status,final_url:r.url,content_type:r.headers.get('content-type'),requested_at,collected_at:new Date().toISOString(),bytes:b.length,sha256:hash(b),request:{doDirect:String(page-1)}});
+            } catch(e) {
+              rows.push({key:'sebi_drhp_page_'+page,url:ajax,requested_at,collected_at:new Date().toISOString(),error:String(e),request:{doDirect:String(page-1)}});
+            }
+          }
+
           fs.writeFileSync(path.join(out,'sources.json'),JSON.stringify({schema_version:'1.0.0',run_id:process.env.GITHUB_RUN_ID,head_sha:process.env.GITHUB_SHA,rows},null,2)+'\n');
           console.log(JSON.stringify(rows.map(({key,status,bytes,sha256,error})=>({key,status,bytes,sha256,error})),null,2));
           if(rows.some(r=>r.status!==200)) process.exitCode=1;
