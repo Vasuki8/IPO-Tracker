@@ -68,9 +68,10 @@ jobs:
           const file = process.env.RUNNER_TEMP + "/historical-ipo-nine-source-receipt.json";
           const receipt = JSON.parse(fs.readFileSync(file, "utf8"));
           receipt.workflow_run_id = process.env.GITHUB_RUN_ID;
+          const rawDigest = String(process.env.ARTIFACT_DIGEST || "");
           receipt.workflow_artifact = {
             artifact_id: Number(process.env.ARTIFACT_ID),
-            artifact_digest: process.env.ARTIFACT_DIGEST,
+            artifact_digest: rawDigest.startsWith("sha256:") ? rawDigest : "sha256:" + rawDigest,
             artifact_url: process.env.ARTIFACT_URL,
             retention_days: 14
           };
@@ -93,20 +94,9 @@ jobs:
             mkdir -p data/evidence
             cp "$RECEIPT" data/evidence/historical-ipo-nine-source-receipt-2026-09-26.json
 
-            node --input-type=module <<'NODE'
-            import fs from "node:fs";
-            import { validateHistoricalEvidenceReceipt } from "./scripts/materialize-historical-ipo-evidence.mjs";
-            const reviewPath = "data/discovery/excluded-event-issuer-historical-ipo-review-2026-09-26.json";
-            const receiptPath = "data/evidence/historical-ipo-nine-source-receipt-2026-09-26.json";
-            const reviewBytes = fs.readFileSync(reviewPath);
-            const review = JSON.parse(reviewBytes);
-            const receipt = JSON.parse(fs.readFileSync(receiptPath));
-            const result = validateHistoricalEvidenceReceipt(receipt, review, reviewBytes);
-            if (!receipt.workflow_artifact?.artifact_id || !/^sha256:[a-f0-9]{64}$/.test(receipt.workflow_artifact?.artifact_digest || "")) {
-              throw new Error("missing_historical_ipo_artifact_identity");
-            }
-            console.log(JSON.stringify({historical_ipo_evidence_receipt:result,artifact_id:receipt.workflow_artifact.artifact_id}));
-            NODE
+            node scripts/materialize-historical-ipo-evidence.mjs \
+              --review=data/discovery/excluded-event-issuer-historical-ipo-review-2026-09-26.json \
+              --validate-receipt=data/evidence/historical-ipo-nine-source-receipt-2026-09-26.json
 
             if [ -z "$(git status --porcelain -- data/evidence/historical-ipo-nine-source-receipt-2026-09-26.json)" ]; then
               echo "Latest main already contains this historical IPO evidence receipt."
