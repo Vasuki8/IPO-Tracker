@@ -35,6 +35,8 @@ Collection time, source observation, dataset generation and Pages publication ar
 
 ## Handoff for the next prompt
 
+**The pinned 119-group NSE review is resolved, and historical IPO existence for all nine earlier excluded-event issuers is now verified. The next task is source-byte materialization plus safe historical recovery import—not another classification pass.**
+
 **The interrupted identity/DRHP release is complete: PR #248 and PR #249 are merged and verified. Do not replay batches 1–9.**
 
 The retained draft source currently contains **95 companies / 97 DRHP/UDRHP source documents**. The lifecycle-aware reconciliation currently leaves **84 visible Pre-IPO companies** and hides **11 issuers that have already progressed** in the published IPO dataset. Abakkus Asset Manager Limited is retained and visible with its **22-Sep-2026 DRHP** from Axis Capital's official offer-document source.
