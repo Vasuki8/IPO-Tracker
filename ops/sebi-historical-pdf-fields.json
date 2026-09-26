@@ -2328,10 +2328,27 @@
     "2024|waaree-energies-limited": {
       "issuer_name": "Waaree Energies Limited",
       "listing_date": "2024-10-28",
-      "last_attempted_at": "2026-09-25T06:46:49.375Z",
+      "last_attempted_at": "2026-09-26T08:03:31.105Z",
       "parser_version": "1.2.0",
-      "status": "error",
-      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 75 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-historical-pdf-SKKPlu/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/oct-2024/1728986428790.pdf\ncurl: (18) transfer closed with 2681153 bytes remaining to read\ncurl: (18) transfer closed with 3687209 bytes remaining to read\n",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "issue_size_inr",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Waaree Energies Limited- RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2024/1728986428790.pdf",
+        "publication_date": "2024-10-14"
+      },
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2024/1728986428790.pdf"
     },
     "2022|archean-chemical-industries-limited": {
@@ -3093,6 +3110,185 @@
         "publication_date": "2025-09-09"
       },
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2025/1757482211827.pdf"
+    },
+    "2025|taurian-mps-limited": {
+      "issuer_name": "Taurian MPS Limited",
+      "listing_date": "2025-09-16",
+      "last_attempted_at": "2026-09-26T08:03:31.105Z",
+      "parser_version": "1.2.0",
+      "status": "error",
+      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 75 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-historical-pdf-QZBuef/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/sep-2025/1758607889393.pdf\ncurl: (18) transfer closed with 11931776 bytes remaining to read\ncurl: (18) transfer closed with 11612784 bytes remaining to read\n",
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2025/1758607889393.pdf"
+    },
+    "2023|zaggle-prepaid-ocean-services-limited": {
+      "issuer_name": "Zaggle Prepaid Ocean Services Limited",
+      "listing_date": "2023-09-22",
+      "last_attempted_at": "2026-09-26T08:03:31.105Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "price_band",
+        "issue_size_inr",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Zaggle Prepaid Ocean Services Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2023/1694433176755.pdf",
+        "publication_date": "2023-09-11"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2023/1694433176755.pdf"
+    },
+    "2022|steelman-telecom-limited": {
+      "issuer_name": "Steelman Telecom Limited",
+      "listing_date": "2022-10-10",
+      "last_attempted_at": "2026-09-26T08:03:31.105Z",
+      "parser_version": "1.2.0",
+      "status": "extracted",
+      "extracted_fields": [
+        "issue_size_inr"
+      ],
+      "remaining_fields": [
+        "price_band",
+        "minimum_bid_quantity"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": {
+          "value": 260236000,
+          "source_value": "₹2,602.36 LAKH",
+          "page": 2
+        },
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Steelman Telecom Limited -Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2022/1669897485354.pdf",
+        "publication_date": "2022-09-20"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2022/1669897485354.pdf"
+    },
+    "2025|vigor-plast-india-limited": {
+      "issuer_name": "Vigor Plast India Limited",
+      "listing_date": "2025-09-12",
+      "last_attempted_at": "2026-09-26T08:03:31.105Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "issue_size_inr",
+        "minimum_bid_quantity"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Vigor Plast India Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2025/1757407514513.pdf",
+        "publication_date": "2025-09-09"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2025/1757407514513.pdf"
+    },
+    "2023|r-r-kabel-limited": {
+      "issuer_name": "R R Kabel Limited",
+      "listing_date": "2023-09-20",
+      "last_attempted_at": "2026-09-26T08:03:31.105Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "price_band",
+        "issue_size_inr",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "R R Kabel Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2023/1694153047019.PDF",
+        "publication_date": "2023-09-08"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2023/1694153047019.PDF"
+    },
+    "2022|trident-lifeline-limited": {
+      "issuer_name": "Trident Lifeline Limited",
+      "listing_date": "2022-10-10",
+      "last_attempted_at": "2026-09-26T08:03:31.105Z",
+      "parser_version": "1.2.0",
+      "status": "extracted",
+      "extracted_fields": [
+        "issue_size_inr"
+      ],
+      "remaining_fields": [
+        "price_band",
+        "minimum_bid_quantity"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": {
+          "value": 353419000,
+          "source_value": "₹3534.19 LAKHS",
+          "page": 2
+        },
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Trident Lifeline Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2022/1669897437925.pdf",
+        "publication_date": "2022-09-19"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2022/1669897437925.pdf"
+    },
+    "2022|ameya-precision-engineers-limited": {
+      "issuer_name": "Ameya Precision Engineers Limited",
+      "listing_date": "2022-09-08",
+      "last_attempted_at": "2026-09-26T08:03:31.105Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "price_band",
+        "issue_size_inr"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Ameya Precision Engineers Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2022/1671770641618.pdf",
+        "publication_date": "2022-08-19"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2022/1671770641618.pdf"
     }
   }
 }
