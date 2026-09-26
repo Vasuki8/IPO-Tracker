@@ -1,0 +1,40 @@
+name: Publish reviewed BSE 2020 unmatched IPOs
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: publish-reviewed-bse-2020-unmatched
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: "20"}
+      - name: Validate reviewed import
+        run: |
+          node scripts/test-bse-2020-unmatched-review.mjs
+          node scripts/test-reviewed-bse-2020-unmatched-import.mjs
+          node scripts/apply-reviewed-bse-2020-unmatched.mjs --check
+      - name: Apply and validate publication
+        run: |
+          node scripts/apply-reviewed-bse-2020-unmatched.mjs
+          node scripts/build-published-data.mjs
+          node scripts/validate-data.mjs
+      - name: Publish race-safely
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/recovery/2020/nse-issue-information.json data/ipos.json
+          git diff --cached --quiet && exit 0
+          git commit -m "data: publish four reviewed BSE 2020 IPOs"
+          git pull --rebase origin main
+          node scripts/apply-reviewed-bse-2020-unmatched.mjs
+          node scripts/build-published-data.mjs
+          node scripts/validate-data.mjs
+          git add data/recovery/2020/nse-issue-information.json data/ipos.json
+          git commit --amend --no-edit
+          git push origin HEAD:main
