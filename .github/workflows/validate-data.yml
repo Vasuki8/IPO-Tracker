@@ -65,6 +65,9 @@ jobs:
           grep -q 'group: historical-ipo-evidence-materialization' .github/workflows/materialize-historical-ipo-evidence.yml
           grep -q 'git reset --hard origin/main' .github/workflows/materialize-historical-ipo-evidence.yml
           grep -q 'actions/upload-artifact@v4' .github/workflows/materialize-historical-ipo-evidence.yml
+          grep -q 'group: fabino-listing-evidence-materialization' .github/workflows/materialize-fabino-listing-evidence.yml
+          grep -q 'git reset --hard origin/main' .github/workflows/materialize-fabino-listing-evidence.yml
+          grep -q 'actions/upload-artifact@v4' .github/workflows/materialize-fabino-listing-evidence.yml
           grep -q 'group: reviewed-historical-ipo-publication' .github/workflows/publish-reviewed-historical-ipos.yml
           grep -q 'git reset --hard origin/main' .github/workflows/publish-reviewed-historical-ipos.yml
           grep -q 'node scripts/build-published-data.mjs --check' .github/workflows/publish-reviewed-historical-ipos.yml
@@ -112,6 +115,9 @@ jobs:
 
       - name: Test historical IPO source materializer
         run: node scripts/test-materialize-historical-ipo-evidence.mjs
+
+      - name: Test Fabino listing-year evidence materializer
+        run: node scripts/test-materialize-fabino-listing-evidence.mjs
 
       - name: Test reviewed NSE IPO import and real publication
         run: |

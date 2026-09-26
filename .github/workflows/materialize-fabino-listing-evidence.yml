@@ -1,0 +1,116 @@
+name: Materialize Fabino listing evidence
+
+on:
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+    paths:
+      - "data/discovery/bse-fabino-listing-year-review-2026-09-26.json"
+      - "scripts/materialize-fabino-listing-evidence.mjs"
+      - "scripts/test-materialize-fabino-listing-evidence.mjs"
+      - ".github/workflows/materialize-fabino-listing-evidence.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: fabino-listing-evidence-materialization
+  cancel-in-progress: true
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Test Fabino evidence collector
+        run: node scripts/test-materialize-fabino-listing-evidence.mjs
+
+      - name: Fetch official Fabino source bytes
+        shell: bash
+        run: |
+          set -euo pipefail
+          EVIDENCE_DIR="$RUNNER_TEMP/fabino-listing-evidence"
+          RECEIPT="$RUNNER_TEMP/fabino-listing-year-source-receipt.json"
+          mkdir -p "$EVIDENCE_DIR"
+          node scripts/materialize-fabino-listing-evidence.mjs \
+            --review=data/discovery/bse-fabino-listing-year-review-2026-09-26.json \
+            --evidence-dir="$EVIDENCE_DIR" \
+            --receipt="$RECEIPT"
+          cp "$RECEIPT" "$EVIDENCE_DIR/source-receipt-before-artifact.json"
+
+      - name: Retain original official source bytes
+        id: evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: fabino-listing-evidence-${{ github.run_id }}
+          path: ${{ runner.temp }}/fabino-listing-evidence
+          if-no-files-found: error
+          retention-days: 14
+          compression-level: 0
+
+      - name: Attach artifact identity to durable receipt
+        env:
+          ARTIFACT_ID: ${{ steps.evidence.outputs.artifact-id }}
+          ARTIFACT_DIGEST: ${{ steps.evidence.outputs.artifact-digest }}
+          ARTIFACT_URL: ${{ steps.evidence.outputs.artifact-url }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --input-type=module <<'NODE'
+          import fs from "node:fs";
+          const file = process.env.RUNNER_TEMP + "/fabino-listing-year-source-receipt.json";
+          const receipt = JSON.parse(fs.readFileSync(file, "utf8"));
+          const rawDigest = String(process.env.ARTIFACT_DIGEST || "");
+          receipt.workflow_run_id = process.env.GITHUB_RUN_ID;
+          receipt.workflow_artifact = {
+            artifact_id: Number(process.env.ARTIFACT_ID),
+            artifact_digest: rawDigest.startsWith("sha256:") ? rawDigest : "sha256:" + rawDigest,
+            artifact_url: process.env.ARTIFACT_URL,
+            retention_days: 14
+          };
+          fs.writeFileSync(file, JSON.stringify(receipt, null, 2) + "\n");
+          NODE
+
+      - name: Publish durable Fabino source receipt
+        shell: bash
+        run: |
+          set -euo pipefail
+          RECEIPT="$RUNNER_TEMP/fabino-listing-year-source-receipt.json"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          for attempt in 1 2 3; do
+            echo "Fabino evidence receipt publication attempt $attempt/3"
+            git fetch origin main
+            git reset --hard origin/main
+
+            mkdir -p data/evidence
+            cp "$RECEIPT" data/evidence/fabino-listing-year-source-receipt-2026-09-26.json
+
+            node scripts/materialize-fabino-listing-evidence.mjs \
+              --review=data/discovery/bse-fabino-listing-year-review-2026-09-26.json \
+              --validate-receipt=data/evidence/fabino-listing-year-source-receipt-2026-09-26.json
+
+            if [ -z "$(git status --porcelain -- data/evidence/fabino-listing-year-source-receipt-2026-09-26.json)" ]; then
+              echo "Latest main already contains this Fabino evidence receipt."
+              exit 0
+            fi
+
+            git add data/evidence/fabino-listing-year-source-receipt-2026-09-26.json
+            git commit -m "data(evidence): retain Fabino listing-year source receipt"
+
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            echo "Main advanced during Fabino evidence-receipt publication; retrying."
+          done
+
+          echo "Failed to publish Fabino evidence receipt after 3 attempts." >&2
+          exit 1
