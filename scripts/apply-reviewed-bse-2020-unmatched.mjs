@@ -23,12 +23,14 @@ function record(entry){
  const a=actions.get(entry.key); if(!a||a.stable_id!==entry.stable_id)throw new Error("manifest_review_mismatch:"+entry.key);
  const t=a.target, keys=[...(a.identity_sources||[]),...Object.values(a.field_sources||{})], unique=[...new Set(keys)].filter(key=>key!=="likhitha_issuer_investors");
  const get=n=>a.field_sources?.[n];
- return {id:a.stable_id,issuer_name:a.issuer_name,board:t.board,sector:null,status:"listed",
+ const boardSource=get("board");
+ const board=boardSource?t.board:null;
+ return {id:a.stable_id,issuer_name:a.issuer_name,board,sector:null,status:"listed",
   nse_symbol:t.nse_symbol??null,nse_series:t.nse_symbol?"EQ":null,nse_source:t.nse_symbol?descriptor(get("nse_symbol")):null,
   bse_symbol:t.bse_symbol??null,bse_scrip_code:a.bse_scrip_code,isin:t.isin??null,bse_source:descriptor(get("bse_scrip_code")),
   terms:{price_band:null,market_lot:null,minimum_bid_quantity:null,open_date:null,close_date:null},
   documents:unique.map(document),first_observed_at:receipt.collection_completed_at,last_collected_at:receipt.collection_completed_at,
-  board_evidence:[descriptor(get("board"))],status_evidence:[descriptor(get("listing_date"))],
+  board_evidence:boardSource?[descriptor(boardSource)]:[],status_evidence:[descriptor(get("listing_date"))],
   price_band:{value:null,status:"missing",source:null,corrections:[]},issue_price:field(t.issue_price,get("issue_price")),
   issue_size_inr:{value:null,status:"missing",source:null,corrections:[]},
   market_lot:field(t.market_lot??null,get("market_lot")),minimum_bid_quantity:{value:null,status:"missing",source:null,corrections:[]},
