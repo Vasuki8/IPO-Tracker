@@ -1,0 +1,384 @@
+{
+  "schema_version": "1.0.0",
+  "status": "complete_read_only_bse_issue_summary_coverage_audit",
+  "generated_at": "2026-09-26T16:40:37.404Z",
+  "source_page": "https://www.bseindia.com/markets/PublicIssues/Issuesummary",
+  "api_base": "https://api.bseindia.com/BseIndiaAPI/api",
+  "source_commit_sha": "460df3b91a509b82b30c7e5630cfcf83de784842",
+  "workflow_run_id": 36256283771,
+  "workflow_artifact": {
+    "artifact_id": 10910707544,
+    "artifact_digest": "sha256:5105397fdae479e05e46528ecb2cf7665f3f329c6cbae74169ac9dc64b35cac5",
+    "retention_days": 14
+  },
+  "coverage": {
+    "available_years": [
+      2026,
+      2025,
+      2024,
+      2023,
+      2022,
+      2021,
+      2020,
+      2019,
+      2018,
+      2017
+    ],
+    "project_years": [
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025,
+      2026
+    ],
+    "collected_years": [
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025,
+      2026
+    ],
+    "earliest_available_year": 2017,
+    "latest_available_year": 2026,
+    "project_window_exhausted": true,
+    "official_year_index_exhausted": true,
+    "per_year_totals_reconciled": true,
+    "total_response_bytes": 296942,
+    "historical_rows": 920,
+    "current_issue_rows": 32,
+    "full_indian_ipo_universe_complete": false,
+    "completeness_note": "The official BSE source is exhausted for its returned year index and reconciled per-year totals, but it is a BSE historical listing/performance source, not a complete Indian IPO universe or issuer-specific offer authority."
+  },
+  "year_summary": [
+    {
+      "year": 2020,
+      "official_total": 31,
+      "mainboard_total": 14,
+      "sme_total": 17,
+      "exact_matches": 27,
+      "prefix_matches": 0,
+      "ambiguous_matches": 0,
+      "unmatched": 4,
+      "listing_date_conflicts": 1
+    },
+    {
+      "year": 2021,
+      "official_total": 91,
+      "mainboard_total": 64,
+      "sme_total": 27,
+      "exact_matches": 75,
+      "prefix_matches": 0,
+      "ambiguous_matches": 0,
+      "unmatched": 16,
+      "listing_date_conflicts": 0
+    },
+    {
+      "year": 2022,
+      "official_total": 90,
+      "mainboard_total": 38,
+      "sme_total": 52,
+      "exact_matches": 74,
+      "prefix_matches": 0,
+      "ambiguous_matches": 0,
+      "unmatched": 16,
+      "listing_date_conflicts": 0
+    },
+    {
+      "year": 2023,
+      "official_total": 120,
+      "mainboard_total": 59,
+      "sme_total": 61,
+      "exact_matches": 89,
+      "prefix_matches": 1,
+      "ambiguous_matches": 0,
+      "unmatched": 30,
+      "listing_date_conflicts": 1
+    },
+    {
+      "year": 2024,
+      "official_total": 158,
+      "mainboard_total": 90,
+      "sme_total": 68,
+      "exact_matches": 119,
+      "prefix_matches": 1,
+      "ambiguous_matches": 0,
+      "unmatched": 38,
+      "listing_date_conflicts": 0
+    },
+    {
+      "year": 2025,
+      "official_total": 255,
+      "mainboard_total": 104,
+      "sme_total": 151,
+      "exact_matches": 163,
+      "prefix_matches": 1,
+      "ambiguous_matches": 0,
+      "unmatched": 91,
+      "listing_date_conflicts": 1
+    },
+    {
+      "year": 2026,
+      "official_total": 175,
+      "mainboard_total": 81,
+      "sme_total": 94,
+      "exact_matches": 119,
+      "prefix_matches": 0,
+      "ambiguous_matches": 0,
+      "unmatched": 56,
+      "listing_date_conflicts": 0
+    }
+  ],
+  "reconciliation": {
+    "recovery_records": 1333,
+    "exact_matches": 666,
+    "prefix_matches": 3,
+    "ambiguous_matches": 0,
+    "unmatched": 251,
+    "listing_date_conflicts": 3,
+    "auto_imported": 0
+  },
+  "current_issue_surface": {
+    "rows": 32,
+    "issue_type_counts": {
+      "IPO": 16,
+      "RI": 5,
+      "FPO": 1,
+      "OTB": 3,
+      "DPI": 1,
+      "BuyBack": 6
+    },
+    "platform_counts": {
+      "MainBoard": 15,
+      "SME": 10,
+      "Debt": 1
+    },
+    "note": "Six current rows have no retained non-empty exchange-platform label in this compact count."
+  },
+  "source_receipts": [
+    {
+      "url": "https://api.bseindia.com/BseIndiaAPI/api/IPOYear/w",
+      "requested_at": "2026-09-26T16:40:29.040Z",
+      "collected_at": "2026-09-26T16:40:29.530Z",
+      "http_date": "Sat, 26 Sep 2026 16:40:29 GMT",
+      "bytes": 222,
+      "sha256": "ebc2b846b55dfd59b35a0396996b66ac3069e49af7deff7b3c53ebea16b6ec51",
+      "file": "raw/ipo-years.json"
+    },
+    {
+      "url": "https://api.bseindia.com/BseIndiaAPI/api/IPOTrackerN/w?Fromdt=2020",
+      "requested_at": "2026-09-26T16:40:29.531Z",
+      "collected_at": "2026-09-26T16:40:29.835Z",
+      "http_date": "Sat, 26 Sep 2026 16:40:29 GMT",
+      "bytes": 206,
+      "sha256": "7ce14f0c8e5fbc1884bf85727b463801a9841015efa1731227b8acb70691663e",
+      "file": "raw/ipo-tracker-2020.json"
+    },
+    {
+      "url": "https://api.bseindia.com/BseIndiaAPI/api/MoreCompanyN/w?Fromdt=2020&company=&flag=7&type=2",
+      "requested_at": "2026-09-26T16:40:29.835Z",
+      "collected_at": "2026-09-26T16:40:30.136Z",
+      "http_date": "Sat, 26 Sep 2026 16:40:30 GMT",
+      "bytes": 9625,
+      "sha256": "c46e41e15198666ac5fdeab3a6d7497bb8e2f55f904e22d9ba3d138ac8e67d39",
+      "file": "raw/ipo-year-2020.json"
+    },
+    {
+      "url": "https://api.bseindia.com/BseIndiaAPI/api/IPOTrackerN/w?Fromdt=2021",
+      "requested_at": "2026-09-26T16:40:30.137Z",
+      "collected_at": "2026-09-26T16:40:30.431Z",
+      "http_date": "Sat, 26 Sep 2026 16:40:30 GMT",
+      "bytes": 208,
+      "sha256": "9ecc4d542721d70f3561c89571e6d03047dcd7edc96b34fc6d44d497df3625ee",
+      "file": "raw/ipo-tracker-2021.json"
+    },
+    {
+      "url": "https://api.bseindia.com/BseIndiaAPI/api/MoreCompanyN/w?Fromdt=2021&company=&flag=7&type=2",
+      "requested_at": "2026-09-26T16:40:30.431Z",
+      "collected_at": "2026-09-26T16:40:30.776Z",
+      "http_date": "Sat, 26 Sep 2026 16:40:30 GMT",
+      "bytes": 28379,
+      "sha256": "be280c765eb5a6ecd59bab274ce561dfcd143ebd164fde18198a0105dd71f673",
+      "file": "raw/ipo-year-2021.json"
+    },
+    {
+      "url": "https://api.bseindia.com/BseIndiaAPI/api/IPOTrackerN/w?Fromdt=2022",
+      "requested_at": "2026-09-26T16:40:30.777Z",
+      "collected_at": "2026-09-26T16:40:31.081Z",
+      "http_date": "Sat, 26 Sep 2026 16:40:31 GMT",
+      "bytes": 208,
+      "sha256": "7986d331730cb8fe03c6b2ccdd7b114ad79749c67bedd1b9bf06129c54ec105e",
+      "file": "raw/ipo-tracker-2022.json"
+    },
+    {
+      "url": "https://api.bseindia.com/BseIndiaAPI/api/MoreCompanyN/w?Fromdt=2022&company=&flag=7&type=2",
+      "requested_at": "2026-09-26T16:40:31.081Z",
+      "collected_at": "2026-09-26T16:40:31.437Z",
+      "http_date": "Sat, 26 Sep 2026 16:40:31 GMT",
+      "bytes": 27807,
+      "sha256": "fe7871393ca5483d3319f33d1ff089f2d7c97c893aac9f26646878a63e609a04",
+      "file": "raw/ipo-year-2022.json"
+    },
+    {
+      "url": "https://api.bseindia.com/BseIndiaAPI/api/IPOTrackerN/w?Fromdt=2023",
+      "requested_at": "2026-09-26T16:40:31.437Z",
+      "collected_at": "2026-09-26T16:40:31.727Z",
+      "http_date": "Sat, 26 Sep 2026 16:40:31 GMT",
+      "bytes": 210,
+      "sha256": "b9cbd32012b05ea5c090943464c2b4c0edab682d33193d7e18da5184d63758f8",
+      "file": "raw/ipo-tracker-2023.json"
+    },
+    {
+      "url": "https://api.bseindia.com/BseIndiaAPI/api/MoreCompanyN/w?Fromdt=2023&company=&flag=7&type=2",
+      "requested_at": "2026-09-26T16:40:31.727Z",
+      "collected_at": "2026-09-26T16:40:32.053Z",
+      "http_date": "Sat, 26 Sep 2026 16:40:32 GMT",
+      "bytes": 36926,
+      "sha256": "b2ac66400a95c94da999b3a5de562a21ec31c7ac8aa586f99f1b30d32b53cef2",
+      "file": "raw/ipo-year-2023.json"
+    },
+    {
+      "url": "https://api.bseindia.com/BseIndiaAPI/api/IPOTrackerN/w?Fromdt=2024",
+      "requested_at": "2026-09-26T16:40:32.054Z",
+      "collected_at": "2026-09-26T16:40:32.367Z",
+      "http_date": "Sat, 26 Sep 2026 16:40:32 GMT",
+      "bytes": 211,
+      "sha256": "ff0466e262936d7be1b703da8762f1cc547d01398194e0a280d77eb61854dfc4",
+      "file": "raw/ipo-tracker-2024.json"
+    },
+    {
+      "url": "https://api.bseindia.com/BseIndiaAPI/api/MoreCompanyN/w?Fromdt=2024&company=&flag=7&type=2",
+      "requested_at": "2026-09-26T16:40:32.367Z",
+      "collected_at": "2026-09-26T16:40:32.703Z",
+      "http_date": "Sat, 26 Sep 2026 16:40:32 GMT",
+      "bytes": 48898,
+      "sha256": "a9c7a0db64b66d892962f1f8c1822b30a20244496e5ac16e6628a7c864d5060f",
+      "file": "raw/ipo-year-2024.json"
+    },
+    {
+      "url": "https://api.bseindia.com/BseIndiaAPI/api/IPOTrackerN/w?Fromdt=2025",
+      "requested_at": "2026-09-26T16:40:32.705Z",
+      "collected_at": "2026-09-26T16:40:32.986Z",
+      "http_date": "Sat, 26 Sep 2026 16:40:32 GMT",
+      "bytes": 213,
+      "sha256": "03c7ac7d6ea9b37f2d2dc2feddfcc8b78eb5994c65f6d421fa00a1e4b3795081",
+      "file": "raw/ipo-tracker-2025.json"
+    },
+    {
+      "url": "https://api.bseindia.com/BseIndiaAPI/api/MoreCompanyN/w?Fromdt=2025&company=&flag=7&type=2",
+      "requested_at": "2026-09-26T16:40:32.986Z",
+      "collected_at": "2026-09-26T16:40:33.318Z",
+      "http_date": "Sat, 26 Sep 2026 16:40:33 GMT",
+      "bytes": 78332,
+      "sha256": "9ede44947e09f9d672daed36d2fc88753009e1f9bc4161658c2956e8983f9a87",
+      "file": "raw/ipo-year-2025.json"
+    },
+    {
+      "url": "https://api.bseindia.com/BseIndiaAPI/api/IPOTrackerN/w?Fromdt=2026",
+      "requested_at": "2026-09-26T16:40:33.319Z",
+      "collected_at": "2026-09-26T16:40:33.684Z",
+      "http_date": "Sat, 26 Sep 2026 16:40:33 GMT",
+      "bytes": 211,
+      "sha256": "f41d08771aeaaa8feacade828be397ccb0dec8467b35dc08a9af28b8771582e1",
+      "file": "raw/ipo-tracker-2026.json"
+    },
+    {
+      "url": "https://api.bseindia.com/BseIndiaAPI/api/MoreCompanyN/w?Fromdt=2026&company=&flag=7&type=2",
+      "requested_at": "2026-09-26T16:40:33.684Z",
+      "collected_at": "2026-09-26T16:40:34.036Z",
+      "http_date": "Sat, 26 Sep 2026 16:40:34 GMT",
+      "bytes": 53762,
+      "sha256": "1a7c376b59592b0191079a4f2e5e6edc888c2ab374a7459a56572ce1b4ebd3d3",
+      "file": "raw/ipo-year-2026.json"
+    },
+    {
+      "url": "https://api.bseindia.com/BseIndiaAPI/api/GetPublicIssue_par_updated/w?flag=1",
+      "requested_at": "2026-09-26T16:40:34.037Z",
+      "collected_at": "2026-09-26T16:40:34.440Z",
+      "http_date": "Sat, 26 Sep 2026 16:40:34 GMT",
+      "bytes": 11524,
+      "sha256": "1b110ca45f17563848d4035321ee259d3ae9edde2e2c2cc774f42d5edf30c690",
+      "file": "raw/current-public-issues.json"
+    }
+  ],
+  "high_priority_reconciliation": [
+    {
+      "kind": "listing_date_conflict",
+      "source_year": 2020,
+      "issuer_name": "Computer Age Management Services Limited",
+      "bse_scrip_code": "543232",
+      "bse_listing_date": "2020-10-01",
+      "recovery": {
+        "year": 2021,
+        "id": "computer-age-management-services-limited",
+        "listing_date": "2021-05-07",
+        "board": "Mainboard",
+        "nse_symbol": "CAMS"
+      }
+    },
+    {
+      "kind": "listing_date_conflict",
+      "source_year": 2023,
+      "issuer_name": "Protean eGov Technologies Limited",
+      "bse_scrip_code": "544021",
+      "bse_listing_date": "2023-11-13",
+      "recovery": {
+        "year": 2025,
+        "id": "protean-egov-technologies-limited",
+        "listing_date": "2025-02-06",
+        "board": "Mainboard",
+        "nse_symbol": "PROTEAN"
+      }
+    },
+    {
+      "kind": "prefix_and_listing_conflict",
+      "source_year": 2025,
+      "issuer_name": "Fabtech Technologies Limited",
+      "bse_scrip_code": "544558",
+      "bse_listing_date": "2025-10-07",
+      "recovery": {
+        "year": 2025,
+        "id": "fabtech-technologies-cleanrooms-limited",
+        "issuer_name": "FABTECH TECHNOLOGIES CLEANROOMS LIMITED",
+        "bse_scrip_code": "544332",
+        "listing_date": "2025-01-10",
+        "board": "SME"
+      }
+    },
+    {
+      "kind": "prefix_identity_review",
+      "source_year": 2023,
+      "issuer_name": "Happy Forgings Limited",
+      "bse_scrip_code": "544057",
+      "bse_listing_date": "2023-12-27",
+      "recovery": {
+        "year": 2023,
+        "id": "happy-forging-limited",
+        "issuer_name": "Happy Forging Limited",
+        "listing_date": "2023-12-27",
+        "board": "Mainboard",
+        "nse_symbol": "HAPPYFORGE"
+      }
+    },
+    {
+      "kind": "prefix_identity_review",
+      "source_year": 2024,
+      "issuer_name": "KRONOX LAB SCIENCES LIMITED",
+      "bse_scrip_code": "544187",
+      "bse_listing_date": "2024-06-10",
+      "recovery": {
+        "year": 2024,
+        "id": "kronox-lab-scienceslimited",
+        "issuer_name": "Kronox Lab SciencesLimited",
+        "listing_date": "2024-06-10",
+        "board": "Mainboard",
+        "nse_symbol": "KRONOX"
+      }
+    }
+  ],
+  "next_review_rule": "Resolve the five high-priority identity/date anomalies before bulk-reviewing the 251 unmatched BSE rows. Issue-summary rows remain discovery evidence only and cannot be imported without issuer-specific official review.",
+  "publication_change": false
+}

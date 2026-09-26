@@ -4,6 +4,7 @@ import { pathToFileURL } from 'node:url';
 import { canonicalIssuer, parseSebiDate } from './sync-sebi-documents.mjs';
 import { parseNseDate, mapBoard, mapNseStatus } from './sync-nse-live.mjs';
 import { UNIVERSE_SOURCES, sha256 } from './collect-ipo-universe-sources.mjs';
+import { parseBseIssueSummaryRows } from './audit-bse-issue-summary-coverage.mjs';
 
 export const AUDIT_POLICY = {
   version:'1.0.0', from:'2020-01-01', through:'2026-12-31', as_of:'2026-09-25',
@@ -52,7 +53,7 @@ function candidate(source,index,fields) {
   return {source_id:source.id,row_index:index,source_url:source.url,response_sha256:source.sha256,collected_at:source.collected_at,issuer_name:null,nse_symbol:null,bse_scrip_code:null,board:null,filing_stage:null,outcome:null,observation_date:null,publication_date:null,listing_date:null,source_observed_at:null,issuer_source_url:null,issue_kind_confirmed:false,...fields};
 }
 export function parseUniverseSource(source, body, policy=AUDIT_POLICY) {
-  const rows=[], exclusions=[]; let total=0, pagination=null, gaps=[];
+  const rows=[], exclusions=[]; let total=0, pagination=null, gaps=[], parserStatus='parsed';
   const skip=(i,reason,detail)=>exclusions.push({row_index:i,reason,detail:clean(detail).slice(0,180)});
   const add=(i,fields)=>{
     const c=candidate(source,i,fields);const date=c.observation_date;
@@ -114,11 +115,22 @@ export function parseUniverseSource(source, body, policy=AUDIT_POLICY) {
     if(!pagination||pagination.first!==1||pagination.last<pagination.total)gaps.push('pagination_not_exhausted');
     if(exclusions.some(x=>['ambiguous_filing_title','filing_stage_mismatch','missing_official_filing_anchor'].includes(x.reason)))gaps.push('filing_rows_require_manual_review');
   } else if(source.id==='bse_summary') {
-    // Do not use broad title/token matching from the diagnostic as issuer authority.
-    const links=[...body.matchAll(/DisplayIPO\.aspx\?/gi)];total=links.length;
-    gaps.push(links.length?'bse_summary_identity_adapter_pending':'no_issue_rows_html_shell');
+    const issueRows=parseBseIssueSummaryRows(body);total=issueRows.length;
+    if(!total){parserStatus='unavailable';gaps.push('no_issue_rows_html_shell');}
+    issueRows.forEach((r,i)=>{
+      if(r.issue_no_conflict.length){skip(i,'ambiguous_issue_number',r.issue_no_conflict.join(','));return;}
+      if(r.issue_start_dates.length>1){skip(i,'conflicting_issue_start_dates',r.issue_start_dates.join(','));return;}
+      const issuerUrl=r.stage_links.find(link=>link.issue_no===r.issue_no)?.url??r.stage_links[0]?.url??null;
+      add(i,{
+        issuer_name:r.issuer_name,
+        observation_date:r.issue_start_dates[0]??null,
+        issuer_source_url:issuerUrl,
+        review_note:'BSE Issue Summary first-page directory observation. startdt is issue-start context, not listing-date authority; type/status codes require issuer-specific review.'
+      });
+    });
+    if(total)gaps.push('bse_summary_first_page_only_dedicated_audit_required');
   } else throw new Error('unsupported source adapter');
-  return {rows,exclusions,raw_rows:total,pagination,gaps,parser_status:source.id==='bse_summary'?'unusable':'parsed'};
+  return {rows,exclusions,raw_rows:total,pagination,gaps,parser_status:parserStatus};
 }
 function hits(c, records, sourceKeys) {
   const key=canonicalIssuer(c.issuer_name);const specific=specificSourceKey(c.issuer_source_url);

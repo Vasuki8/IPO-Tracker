@@ -20,8 +20,16 @@ assert.equal(parse('nse_past',[nse({company:'Example Limited-FPO'})]).exclusions
 assert.equal(parse('nse_current',[]).rows.length,0);
 assert.throws(()=>parse('nse_past',{error:'denied'}),/array/);
 assert.throws(()=>parse('nse_past','not JSON'));
-assert.equal(parse('bse_summary','<html><body>LIVE BSE</body></html>').parser_status,'unusable');
-assert.equal(parse('bse_summary','<a href="DisplayIPO.aspx?x=1">Example</a>').gaps[0],'bse_summary_identity_adapter_pending');
+assert.equal(parse('bse_summary','<html><body>LIVE BSE</body></html>').parser_status,'unavailable');
+assert.equal(parse('bse_summary','<html><body>LIVE BSE</body></html>').gaps[0],'no_issue_rows_html_shell');
+const bseSummaryHtml='<table><tr><td>Example Limited</td><td><a href="/markets/publicIssues/DisplayIPO.aspx?IPONo=7001&amp;id=1&amp;idtype=1&amp;startdt=29%2F04%2F2025&amp;status=H&amp;type=IPO">View Detail</a></td></tr></table>';
+const bseSummary=parse('bse_summary',bseSummaryHtml);
+assert.equal(bseSummary.parser_status,'parsed');
+assert.equal(bseSummary.rows.length,1);
+assert.equal(bseSummary.rows[0].issuer_name,'Example Limited');
+assert.equal(bseSummary.rows[0].observation_date,'2025-04-29');
+assert.match(bseSummary.rows[0].issuer_source_url,/IPONo=7001/);
+assert.ok(bseSummary.gaps.includes('bse_summary_first_page_only_dedicated_audit_required'));
 assert.throws(()=>parse('bse_sme_index',[]),/Table/);
 const index=parse('bse_sme_index',{Table:[{SCRIP_CODE:543999,SCRIPNAME:'EXAMPLE LIMI',TransDate:'2026-08-31T00:00:00'}]}).rows[0];
 assert.equal(index.identity_requires_review,true);assert.equal(index.listing_date,null);
@@ -95,7 +103,10 @@ for(const fixture of real.fixtures){
   }else if(fixture.source_id.startsWith('sebi_')){
     assert.equal(result.rows.length,1);assert.equal(result.rows[0].filing_stage,fixture.source_id.slice(5));
     assert.equal(result.rows[0].outcome,null);assert.doesNotMatch(result.rows[0].issuer_name,/abridged/i);
-  }else assert.equal(result.parser_status,'unusable');
+  }else if(fixture.source_id==='bse_summary'){
+    assert.equal(result.parser_status,'unavailable');
+    assert.ok(result.gaps.includes('no_issue_rows_html_shell'));
+  }else assert.fail('unexpected source fixture '+fixture.source_id);
 }
 console.log('Six retained official-source shape fixtures passed.');
 
