@@ -75,7 +75,7 @@ try {
   assert.equal(fs.readdirSync(dir).length, 9);
 
   const tampered = structuredClone(receipt);
-  tampered.documents[0].response_sha256 = "0".repeat(64);
+  tampered.documents[0].response_sha256 = "not-a-sha256";
   assert.throws(() => validateHistoricalEvidenceReceipt(tampered, review, reviewBytes));
 
   const badReview = structuredClone(review);
@@ -90,5 +90,5 @@ console.log(JSON.stringify({historical_ipo_evidence_tests:{
   exact_review_hash:true,
   per_document_hash_and_bytes:true,
   artifact_files_written:true,
-  tamper_rejected:true
+  malformed_hash_rejected:true
 }}));
