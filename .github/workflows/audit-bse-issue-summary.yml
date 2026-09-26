@@ -67,6 +67,7 @@ jobs:
             status:report.status,
             coverage:report.coverage,
             reconciliation:report.reconciliation,
+            source_receipts:report.source_receipts,
             year_summary:report.year_reports.map(row=>({
               year:row.year,official_total:row.official_total,mainboard_total:row.mainboard_total,sme_total:row.sme_total,
               exact_matches:row.exact_matches,prefix_matches:row.prefix_matches,ambiguous_matches:row.ambiguous_matches,
