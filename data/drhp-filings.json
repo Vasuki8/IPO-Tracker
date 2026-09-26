@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0.0",
   "collector_version": "2.0.0",
-  "collection_started_at": "2026-09-26T04:23:41.116Z",
-  "generated_at": "2026-09-26T04:23:45.996Z",
+  "collection_started_at": "2026-09-26T04:39:19.490Z",
+  "generated_at": "2026-09-26T04:39:23.635Z",
   "source": {
     "authority": "Securities and Exchange Board of India",
     "section": "Draft Offer Documents filed with SEBI",
@@ -15,8 +15,8 @@
     "pages_fetched": 8,
     "stopped_after_page": 8,
     "stop_reason": "first_page_strictly_older_than_year",
-    "official_listing_records_observed": 2212,
-    "raw_filing_observations": 91,
+    "official_listing_records_observed": 2214,
+    "raw_filing_observations": 92,
     "duplicate_observations": 2,
     "filing_records": 91,
     "companies": 90,
@@ -25,40 +25,16 @@
       {
         "code": "source_total_changed",
         "page": 2,
-        "first_total": 2212,
-        "observed_total": 2214
-      },
-      {
-        "code": "source_total_changed",
-        "page": 3,
-        "first_total": 2212,
-        "observed_total": 2214
-      },
-      {
-        "code": "source_total_changed",
-        "page": 5,
-        "first_total": 2212,
-        "observed_total": 2214
-      },
-      {
-        "code": "source_total_changed",
-        "page": 6,
-        "first_total": 2212,
-        "observed_total": 2214
-      },
-      {
-        "code": "source_total_changed",
-        "page": 8,
-        "first_total": 2212,
-        "observed_total": 2214
+        "first_total": 2214,
+        "observed_total": 2212
       }
     ],
     "full_universe_complete": false,
-    "latest_scan_unique_filings": 89,
-    "retained_not_seen_latest": 2,
+    "latest_scan_unique_filings": 90,
+    "retained_not_seen_latest": 1,
     "observed_source_totals": [
-      2212,
-      2214
+      2214,
+      2212
     ],
     "limitations": "2026 explicit DRHP/UDRHP observations only. Changing pagination may omit rows; past filings are retained, not presumed withdrawn. Unlabelled filings, other years and exchange-only sources are outside coverage."
   },
@@ -68,15 +44,15 @@
       "url": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=10&ssid=15",
       "final_url": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=10&ssid=15",
       "http_status": 200,
-      "requested_at": "2026-09-26T04:23:41.117Z",
-      "collected_at": "2026-09-26T04:23:42.395Z",
-      "bytes": 44886,
-      "sha256": "28718558fdec58cfb3c531ff3cecff2873155baf2ee69c4e618978414b07b4ae",
-      "observed_records": 2212,
+      "requested_at": "2026-09-26T04:39:19.490Z",
+      "collected_at": "2026-09-26T04:39:20.628Z",
+      "bytes": 44896,
+      "sha256": "b2aadef8405384306c2fe3548a03d1a93132de4d454540b713f0521f834b6a92",
+      "observed_records": 2214,
       "range": {
         "start": 1,
         "end": 25,
-        "total": 2212
+        "total": 2214
       },
       "request_do_direct": 0,
       "artifact_file": "page-01.html"
@@ -86,15 +62,15 @@
       "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
       "final_url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
       "http_status": 200,
-      "requested_at": "2026-09-26T04:23:42.402Z",
-      "collected_at": "2026-09-26T04:23:43.999Z",
-      "bytes": 17351,
-      "sha256": "aefb06ff00f1ba5c69af5c092d691862da1badba294e36fe9e781d67097b0bdb",
-      "observed_records": 2214,
+      "requested_at": "2026-09-26T04:39:20.636Z",
+      "collected_at": "2026-09-26T04:39:21.641Z",
+      "bytes": 17711,
+      "sha256": "00ffd1cd310283f8372e3617e0f4df688bc1f6c49eb07bc06566fc08574f9434",
+      "observed_records": 2212,
       "range": {
         "start": 26,
         "end": 50,
-        "total": 2214
+        "total": 2212
       },
       "request_do_direct": 1,
       "artifact_file": "page-02.html"
@@ -104,8 +80,8 @@
       "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
       "final_url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
       "http_status": 200,
-      "requested_at": "2026-09-26T04:23:44.002Z",
-      "collected_at": "2026-09-26T04:23:44.344Z",
+      "requested_at": "2026-09-26T04:39:21.644Z",
+      "collected_at": "2026-09-26T04:39:22.136Z",
       "bytes": 19173,
       "sha256": "d04d0d4228206cd22a957275dc40ab211e1b3d1f467a8ef19332a58a0724f813",
       "observed_records": 2214,
@@ -122,15 +98,15 @@
       "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
       "final_url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
       "http_status": 200,
-      "requested_at": "2026-09-26T04:23:44.347Z",
-      "collected_at": "2026-09-26T04:23:44.699Z",
-      "bytes": 18648,
-      "sha256": "2685abf4cc6f611930eadc31f29b640315425b0334406f7e318c516136cf8889",
-      "observed_records": 2212,
+      "requested_at": "2026-09-26T04:39:22.139Z",
+      "collected_at": "2026-09-26T04:39:22.442Z",
+      "bytes": 18126,
+      "sha256": "6142c932ae0110852026b22d50458a1d3f64b462e0753274e0a19d39391daf39",
+      "observed_records": 2214,
       "range": {
         "start": 76,
         "end": 100,
-        "total": 2212
+        "total": 2214
       },
       "request_do_direct": 3,
       "artifact_file": "page-04.html"
@@ -140,8 +116,8 @@
       "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
       "final_url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
       "http_status": 200,
-      "requested_at": "2026-09-26T04:23:44.701Z",
-      "collected_at": "2026-09-26T04:23:45.044Z",
+      "requested_at": "2026-09-26T04:39:22.445Z",
+      "collected_at": "2026-09-26T04:39:22.777Z",
       "bytes": 16705,
       "sha256": "1a9dba38e3ac3c3f64361103fd3e3628da6a777033210cebef82c748937702c6",
       "observed_records": 2214,
@@ -158,8 +134,8 @@
       "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
       "final_url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
       "http_status": 200,
-      "requested_at": "2026-09-26T04:23:45.046Z",
-      "collected_at": "2026-09-26T04:23:45.356Z",
+      "requested_at": "2026-09-26T04:39:22.778Z",
+      "collected_at": "2026-09-26T04:39:23.057Z",
       "bytes": 11064,
       "sha256": "36c15cceff6cc9a4f7a02f13f91fda235b93a4a3102804421293042ac0557a04",
       "observed_records": 2214,
@@ -176,15 +152,15 @@
       "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
       "final_url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
       "http_status": 200,
-      "requested_at": "2026-09-26T04:23:45.358Z",
-      "collected_at": "2026-09-26T04:23:45.680Z",
-      "bytes": 10623,
-      "sha256": "ec44334f22533a69a257e2defdbc296297ecd3cfe5e7a820e90486641c5d1d61",
-      "observed_records": 2212,
+      "requested_at": "2026-09-26T04:39:23.058Z",
+      "collected_at": "2026-09-26T04:39:23.339Z",
+      "bytes": 10559,
+      "sha256": "8aa26ed2773c69a84468758c8781ee30a528ffdb5c77040c5e06ece8ce5c77a4",
+      "observed_records": 2214,
       "range": {
         "start": 151,
         "end": 175,
-        "total": 2212
+        "total": 2214
       },
       "request_do_direct": 6,
       "artifact_file": "page-07.html"
@@ -194,8 +170,8 @@
       "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
       "final_url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
       "http_status": 200,
-      "requested_at": "2026-09-26T04:23:45.681Z",
-      "collected_at": "2026-09-26T04:23:45.988Z",
+      "requested_at": "2026-09-26T04:39:23.340Z",
+      "collected_at": "2026-09-26T04:39:23.626Z",
       "bytes": 10349,
       "sha256": "c258f5d2d16eab76e2d033b614665dbfa137d230236689d299b7751cee8b67e9",
       "observed_records": 2214,
@@ -226,8 +202,8 @@
           "source_evidence": {
             "url": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=10&ssid=15",
             "final_url": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=10&ssid=15",
-            "response_sha256": "28718558fdec58cfb3c531ff3cecff2873155baf2ee69c4e618978414b07b4ae",
-            "collected_at": "2026-09-26T04:23:42.395Z",
+            "response_sha256": "b2aadef8405384306c2fe3548a03d1a93132de4d454540b713f0521f834b6a92",
+            "collected_at": "2026-09-26T04:39:20.628Z",
             "page": 1,
             "filing_url": "https://www.sebi.gov.in/filings/public-issues/sep-2026/anjali-labtech-limited-udrhp-i_104737.html"
           },
@@ -252,8 +228,8 @@
           "source_evidence": {
             "url": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=10&ssid=15",
             "final_url": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=10&ssid=15",
-            "response_sha256": "28718558fdec58cfb3c531ff3cecff2873155baf2ee69c4e618978414b07b4ae",
-            "collected_at": "2026-09-26T04:23:42.395Z",
+            "response_sha256": "b2aadef8405384306c2fe3548a03d1a93132de4d454540b713f0521f834b6a92",
+            "collected_at": "2026-09-26T04:39:20.628Z",
             "page": 1,
             "filing_url": "https://www.sebi.gov.in/filings/public-issues/sep-2026/hi-tech-flow-solutions-limited-drhp_104635.html"
           },
@@ -278,8 +254,8 @@
           "source_evidence": {
             "url": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=10&ssid=15",
             "final_url": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=10&ssid=15",
-            "response_sha256": "28718558fdec58cfb3c531ff3cecff2873155baf2ee69c4e618978414b07b4ae",
-            "collected_at": "2026-09-26T04:23:42.395Z",
+            "response_sha256": "b2aadef8405384306c2fe3548a03d1a93132de4d454540b713f0521f834b6a92",
+            "collected_at": "2026-09-26T04:39:20.628Z",
             "page": 1,
             "filing_url": "https://www.sebi.gov.in/filings/public-issues/sep-2026/vardaan-biotech-limited-drhp_104652.html"
           },
@@ -304,8 +280,8 @@
           "source_evidence": {
             "url": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=10&ssid=15",
             "final_url": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=10&ssid=15",
-            "response_sha256": "28718558fdec58cfb3c531ff3cecff2873155baf2ee69c4e618978414b07b4ae",
-            "collected_at": "2026-09-26T04:23:42.395Z",
+            "response_sha256": "b2aadef8405384306c2fe3548a03d1a93132de4d454540b713f0521f834b6a92",
+            "collected_at": "2026-09-26T04:39:20.628Z",
             "page": 1,
             "filing_url": "https://www.sebi.gov.in/filings/public-issues/sep-2026/anchor-offshore-services-limited-drhp_104580.html"
           },
@@ -330,8 +306,8 @@
           "source_evidence": {
             "url": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=10&ssid=15",
             "final_url": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=10&ssid=15",
-            "response_sha256": "28718558fdec58cfb3c531ff3cecff2873155baf2ee69c4e618978414b07b4ae",
-            "collected_at": "2026-09-26T04:23:42.395Z",
+            "response_sha256": "b2aadef8405384306c2fe3548a03d1a93132de4d454540b713f0521f834b6a92",
+            "collected_at": "2026-09-26T04:39:20.628Z",
             "page": 1,
             "filing_url": "https://www.sebi.gov.in/filings/public-issues/sep-2026/madhur-iron-and-steel-india-limited-drhp_104575.html"
           },
@@ -347,7 +323,7 @@
             "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "final_url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "response_sha256": "36c15cceff6cc9a4f7a02f13f91fda235b93a4a3102804421293042ac0557a04",
-            "collected_at": "2026-09-26T04:23:45.356Z",
+            "collected_at": "2026-09-26T04:39:23.057Z",
             "page": 6,
             "filing_url": "https://www.sebi.gov.in/filings/public-issues/feb-2026/madhur-iron-and-steel-india-limited-drhp_99564.html"
           },
@@ -372,8 +348,8 @@
           "source_evidence": {
             "url": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=10&ssid=15",
             "final_url": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=10&ssid=15",
-            "response_sha256": "28718558fdec58cfb3c531ff3cecff2873155baf2ee69c4e618978414b07b4ae",
-            "collected_at": "2026-09-26T04:23:42.395Z",
+            "response_sha256": "b2aadef8405384306c2fe3548a03d1a93132de4d454540b713f0521f834b6a92",
+            "collected_at": "2026-09-26T04:39:20.628Z",
             "page": 1,
             "filing_url": "https://www.sebi.gov.in/filings/public-issues/sep-2026/iberia-pharmaceuticals-india-limited-drhp_104542.html"
           },
@@ -398,8 +374,8 @@
           "source_evidence": {
             "url": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=10&ssid=15",
             "final_url": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=10&ssid=15",
-            "response_sha256": "28718558fdec58cfb3c531ff3cecff2873155baf2ee69c4e618978414b07b4ae",
-            "collected_at": "2026-09-26T04:23:42.395Z",
+            "response_sha256": "b2aadef8405384306c2fe3548a03d1a93132de4d454540b713f0521f834b6a92",
+            "collected_at": "2026-09-26T04:39:20.628Z",
             "page": 1,
             "filing_url": "https://www.sebi.gov.in/filings/public-issues/sep-2026/maharashtra-oil-extractions-limited-drhp_104503.html"
           },
@@ -424,8 +400,8 @@
           "source_evidence": {
             "url": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=10&ssid=15",
             "final_url": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=10&ssid=15",
-            "response_sha256": "28718558fdec58cfb3c531ff3cecff2873155baf2ee69c4e618978414b07b4ae",
-            "collected_at": "2026-09-26T04:23:42.395Z",
+            "response_sha256": "b2aadef8405384306c2fe3548a03d1a93132de4d454540b713f0521f834b6a92",
+            "collected_at": "2026-09-26T04:39:20.628Z",
             "page": 1,
             "filing_url": "https://www.sebi.gov.in/filings/public-issues/sep-2026/m-k-c-agro-fresh-limited-drhp_104430.html"
           },
@@ -450,8 +426,8 @@
           "source_evidence": {
             "url": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=10&ssid=15",
             "final_url": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=10&ssid=15",
-            "response_sha256": "28718558fdec58cfb3c531ff3cecff2873155baf2ee69c4e618978414b07b4ae",
-            "collected_at": "2026-09-26T04:23:42.395Z",
+            "response_sha256": "b2aadef8405384306c2fe3548a03d1a93132de4d454540b713f0521f834b6a92",
+            "collected_at": "2026-09-26T04:39:20.628Z",
             "page": 1,
             "filing_url": "https://www.sebi.gov.in/filings/public-issues/sep-2026/nopaperforms-solutions-limited-udrhp-1_104427.html"
           },
@@ -476,8 +452,8 @@
           "source_evidence": {
             "url": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=10&ssid=15",
             "final_url": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=10&ssid=15",
-            "response_sha256": "28718558fdec58cfb3c531ff3cecff2873155baf2ee69c4e618978414b07b4ae",
-            "collected_at": "2026-09-26T04:23:42.395Z",
+            "response_sha256": "b2aadef8405384306c2fe3548a03d1a93132de4d454540b713f0521f834b6a92",
+            "collected_at": "2026-09-26T04:39:20.628Z",
             "page": 1,
             "filing_url": "https://www.sebi.gov.in/filings/public-issues/sep-2026/torrent-gas-limited-udrhp-i_104350.html"
           },
@@ -502,8 +478,8 @@
           "source_evidence": {
             "url": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=10&ssid=15",
             "final_url": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=10&ssid=15",
-            "response_sha256": "28718558fdec58cfb3c531ff3cecff2873155baf2ee69c4e618978414b07b4ae",
-            "collected_at": "2026-09-26T04:23:42.395Z",
+            "response_sha256": "b2aadef8405384306c2fe3548a03d1a93132de4d454540b713f0521f834b6a92",
+            "collected_at": "2026-09-26T04:39:20.628Z",
             "page": 1,
             "filing_url": "https://www.sebi.gov.in/filings/public-issues/sep-2026/mahanadi-coalfields-ltd-drhp_104290.html"
           },
@@ -528,8 +504,8 @@
           "source_evidence": {
             "url": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=10&ssid=15",
             "final_url": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=10&ssid=15",
-            "response_sha256": "28718558fdec58cfb3c531ff3cecff2873155baf2ee69c4e618978414b07b4ae",
-            "collected_at": "2026-09-26T04:23:42.395Z",
+            "response_sha256": "b2aadef8405384306c2fe3548a03d1a93132de4d454540b713f0521f834b6a92",
+            "collected_at": "2026-09-26T04:39:20.628Z",
             "page": 1,
             "filing_url": "https://www.sebi.gov.in/filings/public-issues/sep-2026/aragen-life-sciences-limited-drhp_104157.html"
           },
@@ -554,8 +530,8 @@
           "source_evidence": {
             "url": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=10&ssid=15",
             "final_url": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=10&ssid=15",
-            "response_sha256": "28718558fdec58cfb3c531ff3cecff2873155baf2ee69c4e618978414b07b4ae",
-            "collected_at": "2026-09-26T04:23:42.395Z",
+            "response_sha256": "b2aadef8405384306c2fe3548a03d1a93132de4d454540b713f0521f834b6a92",
+            "collected_at": "2026-09-26T04:39:20.628Z",
             "page": 1,
             "filing_url": "https://www.sebi.gov.in/filings/public-issues/sep-2026/kataria-dhulchand-pannalal-jewellers-limited-drhp_104178.html"
           },
@@ -580,8 +556,8 @@
           "source_evidence": {
             "url": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=10&ssid=15",
             "final_url": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=10&ssid=15",
-            "response_sha256": "28718558fdec58cfb3c531ff3cecff2873155baf2ee69c4e618978414b07b4ae",
-            "collected_at": "2026-09-26T04:23:42.395Z",
+            "response_sha256": "b2aadef8405384306c2fe3548a03d1a93132de4d454540b713f0521f834b6a92",
+            "collected_at": "2026-09-26T04:39:20.628Z",
             "page": 1,
             "filing_url": "https://www.sebi.gov.in/filings/public-issues/sep-2026/sembcorp-green-infra-limited-drhp_104162.html"
           },
@@ -606,8 +582,8 @@
           "source_evidence": {
             "url": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=10&ssid=15",
             "final_url": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=10&ssid=15",
-            "response_sha256": "28718558fdec58cfb3c531ff3cecff2873155baf2ee69c4e618978414b07b4ae",
-            "collected_at": "2026-09-26T04:23:42.395Z",
+            "response_sha256": "b2aadef8405384306c2fe3548a03d1a93132de4d454540b713f0521f834b6a92",
+            "collected_at": "2026-09-26T04:39:20.628Z",
             "page": 1,
             "filing_url": "https://www.sebi.gov.in/filings/public-issues/aug-2026/atomberg-technologies-limited-drhp_104037.html"
           },
@@ -632,8 +608,8 @@
           "source_evidence": {
             "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "final_url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
-            "response_sha256": "aefb06ff00f1ba5c69af5c092d691862da1badba294e36fe9e781d67097b0bdb",
-            "collected_at": "2026-09-26T04:23:43.999Z",
+            "response_sha256": "00ffd1cd310283f8372e3617e0f4df688bc1f6c49eb07bc06566fc08574f9434",
+            "collected_at": "2026-09-26T04:39:21.641Z",
             "page": 2,
             "filing_url": "https://www.sebi.gov.in/filings/public-issues/aug-2026/avaada-electro-limited-udrhp_104034.html"
           },
@@ -658,8 +634,8 @@
           "source_evidence": {
             "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "final_url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
-            "response_sha256": "aefb06ff00f1ba5c69af5c092d691862da1badba294e36fe9e781d67097b0bdb",
-            "collected_at": "2026-09-26T04:23:43.999Z",
+            "response_sha256": "00ffd1cd310283f8372e3617e0f4df688bc1f6c49eb07bc06566fc08574f9434",
+            "collected_at": "2026-09-26T04:39:21.641Z",
             "page": 2,
             "filing_url": "https://www.sebi.gov.in/filings/public-issues/aug-2026/jay-jagdamba-limited-udrhp_103937.html"
           },
@@ -684,8 +660,8 @@
           "source_evidence": {
             "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "final_url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
-            "response_sha256": "aefb06ff00f1ba5c69af5c092d691862da1badba294e36fe9e781d67097b0bdb",
-            "collected_at": "2026-09-26T04:23:43.999Z",
+            "response_sha256": "00ffd1cd310283f8372e3617e0f4df688bc1f6c49eb07bc06566fc08574f9434",
+            "collected_at": "2026-09-26T04:39:21.641Z",
             "page": 2,
             "filing_url": "https://www.sebi.gov.in/filings/public-issues/aug-2026/m-p-steel-india-limited-drhp_103990.html"
           },
@@ -710,8 +686,8 @@
           "source_evidence": {
             "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "final_url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
-            "response_sha256": "aefb06ff00f1ba5c69af5c092d691862da1badba294e36fe9e781d67097b0bdb",
-            "collected_at": "2026-09-26T04:23:43.999Z",
+            "response_sha256": "00ffd1cd310283f8372e3617e0f4df688bc1f6c49eb07bc06566fc08574f9434",
+            "collected_at": "2026-09-26T04:39:21.641Z",
             "page": 2,
             "filing_url": "https://www.sebi.gov.in/filings/public-issues/aug-2026/nobel-hygiene-limited-drhp_103938.html"
           },
@@ -736,8 +712,8 @@
           "source_evidence": {
             "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "final_url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
-            "response_sha256": "aefb06ff00f1ba5c69af5c092d691862da1badba294e36fe9e781d67097b0bdb",
-            "collected_at": "2026-09-26T04:23:43.999Z",
+            "response_sha256": "00ffd1cd310283f8372e3617e0f4df688bc1f6c49eb07bc06566fc08574f9434",
+            "collected_at": "2026-09-26T04:39:21.641Z",
             "page": 2,
             "filing_url": "https://www.sebi.gov.in/filings/public-issues/aug-2026/gemini-edibles-and-fats-india-limited-drhp_104032.html"
           },
@@ -762,8 +738,8 @@
           "source_evidence": {
             "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "final_url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
-            "response_sha256": "aefb06ff00f1ba5c69af5c092d691862da1badba294e36fe9e781d67097b0bdb",
-            "collected_at": "2026-09-26T04:23:43.999Z",
+            "response_sha256": "00ffd1cd310283f8372e3617e0f4df688bc1f6c49eb07bc06566fc08574f9434",
+            "collected_at": "2026-09-26T04:39:21.641Z",
             "page": 2,
             "filing_url": "https://www.sebi.gov.in/filings/public-issues/aug-2026/avtar-steel-limited-drhp_103867.html"
           },
@@ -788,8 +764,8 @@
           "source_evidence": {
             "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "final_url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
-            "response_sha256": "aefb06ff00f1ba5c69af5c092d691862da1badba294e36fe9e781d67097b0bdb",
-            "collected_at": "2026-09-26T04:23:43.999Z",
+            "response_sha256": "00ffd1cd310283f8372e3617e0f4df688bc1f6c49eb07bc06566fc08574f9434",
+            "collected_at": "2026-09-26T04:39:21.641Z",
             "page": 2,
             "filing_url": "https://www.sebi.gov.in/filings/public-issues/aug-2026/tablespace-technologies-limited-drhp_103710.html"
           },
@@ -819,7 +795,158 @@
             "page": 2,
             "filing_url": "https://www.sebi.gov.in/filings/public-issues/aug-2026/muthoot-fincorp-limited-drhp_103697.html"
           },
-          "not_seen_in_latest_scan": false
+          "not_seen_in_latest_scan": true,
+          "retained_snapshot_evidence": {
+            "snapshot_generated_at": "2026-09-26T04:23:45.996Z",
+            "snapshot_projection_sha256": "9ccc643297d8d70402c5b45790717f60dba5f706357660c467b7c0df5d99355c",
+            "source_pages": [
+              {
+                "page": 1,
+                "url": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=10&ssid=15",
+                "final_url": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=10&ssid=15",
+                "http_status": 200,
+                "requested_at": "2026-09-26T04:23:41.117Z",
+                "collected_at": "2026-09-26T04:23:42.395Z",
+                "bytes": 44886,
+                "sha256": "28718558fdec58cfb3c531ff3cecff2873155baf2ee69c4e618978414b07b4ae",
+                "observed_records": 2212,
+                "range": {
+                  "start": 1,
+                  "end": 25,
+                  "total": 2212
+                },
+                "request_do_direct": 0,
+                "artifact_file": "page-01.html"
+              },
+              {
+                "page": 2,
+                "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
+                "final_url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
+                "http_status": 200,
+                "requested_at": "2026-09-26T04:23:42.402Z",
+                "collected_at": "2026-09-26T04:23:43.999Z",
+                "bytes": 17351,
+                "sha256": "aefb06ff00f1ba5c69af5c092d691862da1badba294e36fe9e781d67097b0bdb",
+                "observed_records": 2214,
+                "range": {
+                  "start": 26,
+                  "end": 50,
+                  "total": 2214
+                },
+                "request_do_direct": 1,
+                "artifact_file": "page-02.html"
+              },
+              {
+                "page": 3,
+                "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
+                "final_url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
+                "http_status": 200,
+                "requested_at": "2026-09-26T04:23:44.002Z",
+                "collected_at": "2026-09-26T04:23:44.344Z",
+                "bytes": 19173,
+                "sha256": "d04d0d4228206cd22a957275dc40ab211e1b3d1f467a8ef19332a58a0724f813",
+                "observed_records": 2214,
+                "range": {
+                  "start": 51,
+                  "end": 75,
+                  "total": 2214
+                },
+                "request_do_direct": 2,
+                "artifact_file": "page-03.html"
+              },
+              {
+                "page": 4,
+                "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
+                "final_url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
+                "http_status": 200,
+                "requested_at": "2026-09-26T04:23:44.347Z",
+                "collected_at": "2026-09-26T04:23:44.699Z",
+                "bytes": 18648,
+                "sha256": "2685abf4cc6f611930eadc31f29b640315425b0334406f7e318c516136cf8889",
+                "observed_records": 2212,
+                "range": {
+                  "start": 76,
+                  "end": 100,
+                  "total": 2212
+                },
+                "request_do_direct": 3,
+                "artifact_file": "page-04.html"
+              },
+              {
+                "page": 5,
+                "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
+                "final_url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
+                "http_status": 200,
+                "requested_at": "2026-09-26T04:23:44.701Z",
+                "collected_at": "2026-09-26T04:23:45.044Z",
+                "bytes": 16705,
+                "sha256": "1a9dba38e3ac3c3f64361103fd3e3628da6a777033210cebef82c748937702c6",
+                "observed_records": 2214,
+                "range": {
+                  "start": 101,
+                  "end": 125,
+                  "total": 2214
+                },
+                "request_do_direct": 4,
+                "artifact_file": "page-05.html"
+              },
+              {
+                "page": 6,
+                "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
+                "final_url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
+                "http_status": 200,
+                "requested_at": "2026-09-26T04:23:45.046Z",
+                "collected_at": "2026-09-26T04:23:45.356Z",
+                "bytes": 11064,
+                "sha256": "36c15cceff6cc9a4f7a02f13f91fda235b93a4a3102804421293042ac0557a04",
+                "observed_records": 2214,
+                "range": {
+                  "start": 126,
+                  "end": 150,
+                  "total": 2214
+                },
+                "request_do_direct": 5,
+                "artifact_file": "page-06.html"
+              },
+              {
+                "page": 7,
+                "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
+                "final_url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
+                "http_status": 200,
+                "requested_at": "2026-09-26T04:23:45.358Z",
+                "collected_at": "2026-09-26T04:23:45.680Z",
+                "bytes": 10623,
+                "sha256": "ec44334f22533a69a257e2defdbc296297ecd3cfe5e7a820e90486641c5d1d61",
+                "observed_records": 2212,
+                "range": {
+                  "start": 151,
+                  "end": 175,
+                  "total": 2212
+                },
+                "request_do_direct": 6,
+                "artifact_file": "page-07.html"
+              },
+              {
+                "page": 8,
+                "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
+                "final_url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
+                "http_status": 200,
+                "requested_at": "2026-09-26T04:23:45.681Z",
+                "collected_at": "2026-09-26T04:23:45.988Z",
+                "bytes": 10349,
+                "sha256": "c258f5d2d16eab76e2d033b614665dbfa137d230236689d299b7751cee8b67e9",
+                "observed_records": 2214,
+                "range": {
+                  "start": 176,
+                  "end": 200,
+                  "total": 2214
+                },
+                "request_do_direct": 7,
+                "artifact_file": "page-08.html"
+              }
+            ],
+            "note": "Retained filing from earlier source-backed dataset; no specific source row is inferred for legacy entries."
+          }
         }
       ]
     },
@@ -840,8 +967,8 @@
           "source_evidence": {
             "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "final_url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
-            "response_sha256": "aefb06ff00f1ba5c69af5c092d691862da1badba294e36fe9e781d67097b0bdb",
-            "collected_at": "2026-09-26T04:23:43.999Z",
+            "response_sha256": "00ffd1cd310283f8372e3617e0f4df688bc1f6c49eb07bc06566fc08574f9434",
+            "collected_at": "2026-09-26T04:39:21.641Z",
             "page": 2,
             "filing_url": "https://www.sebi.gov.in/filings/public-issues/aug-2026/svatantra-microfin-limited-drhp_103765.html"
           },
@@ -866,8 +993,8 @@
           "source_evidence": {
             "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "final_url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
-            "response_sha256": "aefb06ff00f1ba5c69af5c092d691862da1badba294e36fe9e781d67097b0bdb",
-            "collected_at": "2026-09-26T04:23:43.999Z",
+            "response_sha256": "00ffd1cd310283f8372e3617e0f4df688bc1f6c49eb07bc06566fc08574f9434",
+            "collected_at": "2026-09-26T04:39:21.641Z",
             "page": 2,
             "filing_url": "https://www.sebi.gov.in/filings/public-issues/aug-2026/ags-health-limited-udrhp_103617.html"
           },
@@ -892,8 +1019,8 @@
           "source_evidence": {
             "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "final_url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
-            "response_sha256": "aefb06ff00f1ba5c69af5c092d691862da1badba294e36fe9e781d67097b0bdb",
-            "collected_at": "2026-09-26T04:23:43.999Z",
+            "response_sha256": "00ffd1cd310283f8372e3617e0f4df688bc1f6c49eb07bc06566fc08574f9434",
+            "collected_at": "2026-09-26T04:39:21.641Z",
             "page": 2,
             "filing_url": "https://www.sebi.gov.in/filings/public-issues/aug-2026/tonbo-imaging-india-limited-drhp_103625.html"
           },
@@ -918,8 +1045,8 @@
           "source_evidence": {
             "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "final_url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
-            "response_sha256": "aefb06ff00f1ba5c69af5c092d691862da1badba294e36fe9e781d67097b0bdb",
-            "collected_at": "2026-09-26T04:23:43.999Z",
+            "response_sha256": "00ffd1cd310283f8372e3617e0f4df688bc1f6c49eb07bc06566fc08574f9434",
+            "collected_at": "2026-09-26T04:39:21.641Z",
             "page": 2,
             "filing_url": "https://www.sebi.gov.in/filings/public-issues/aug-2026/zetwerk-manufacturing-businesses-limited-udrhp_103643.html"
           },
@@ -944,8 +1071,8 @@
           "source_evidence": {
             "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "final_url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
-            "response_sha256": "aefb06ff00f1ba5c69af5c092d691862da1badba294e36fe9e781d67097b0bdb",
-            "collected_at": "2026-09-26T04:23:43.999Z",
+            "response_sha256": "00ffd1cd310283f8372e3617e0f4df688bc1f6c49eb07bc06566fc08574f9434",
+            "collected_at": "2026-09-26T04:39:21.641Z",
             "page": 2,
             "filing_url": "https://www.sebi.gov.in/filings/public-issues/aug-2026/j-pan-tubular-components-limited-drhp_103499.html"
           },
@@ -970,8 +1097,8 @@
           "source_evidence": {
             "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "final_url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
-            "response_sha256": "aefb06ff00f1ba5c69af5c092d691862da1badba294e36fe9e781d67097b0bdb",
-            "collected_at": "2026-09-26T04:23:43.999Z",
+            "response_sha256": "00ffd1cd310283f8372e3617e0f4df688bc1f6c49eb07bc06566fc08574f9434",
+            "collected_at": "2026-09-26T04:39:21.641Z",
             "page": 2,
             "filing_url": "https://www.sebi.gov.in/filings/public-issues/aug-2026/beauty-garage-limited-drhp_103479.html"
           },
@@ -996,8 +1123,8 @@
           "source_evidence": {
             "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "final_url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
-            "response_sha256": "aefb06ff00f1ba5c69af5c092d691862da1badba294e36fe9e781d67097b0bdb",
-            "collected_at": "2026-09-26T04:23:43.999Z",
+            "response_sha256": "00ffd1cd310283f8372e3617e0f4df688bc1f6c49eb07bc06566fc08574f9434",
+            "collected_at": "2026-09-26T04:39:21.641Z",
             "page": 2,
             "filing_url": "https://www.sebi.gov.in/filings/public-issues/aug-2026/arjun-jewellers-limited-drhp_103462.html"
           },
@@ -1022,8 +1149,8 @@
           "source_evidence": {
             "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "final_url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
-            "response_sha256": "aefb06ff00f1ba5c69af5c092d691862da1badba294e36fe9e781d67097b0bdb",
-            "collected_at": "2026-09-26T04:23:43.999Z",
+            "response_sha256": "00ffd1cd310283f8372e3617e0f4df688bc1f6c49eb07bc06566fc08574f9434",
+            "collected_at": "2026-09-26T04:39:21.641Z",
             "page": 2,
             "filing_url": "https://www.sebi.gov.in/filings/public-issues/aug-2026/encube-ethicals-limited-drhp_103383.html"
           },
@@ -1048,8 +1175,8 @@
           "source_evidence": {
             "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "final_url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
-            "response_sha256": "aefb06ff00f1ba5c69af5c092d691862da1badba294e36fe9e781d67097b0bdb",
-            "collected_at": "2026-09-26T04:23:43.999Z",
+            "response_sha256": "00ffd1cd310283f8372e3617e0f4df688bc1f6c49eb07bc06566fc08574f9434",
+            "collected_at": "2026-09-26T04:39:21.641Z",
             "page": 2,
             "filing_url": "https://www.sebi.gov.in/filings/public-issues/aug-2026/advanced-sys-tek-limited-drhp_103353.html"
           },
@@ -1075,162 +1202,11 @@
             "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "final_url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "response_sha256": "00ffd1cd310283f8372e3617e0f4df688bc1f6c49eb07bc06566fc08574f9434",
-            "collected_at": "2026-09-26T02:56:57.418Z",
+            "collected_at": "2026-09-26T04:39:21.641Z",
             "page": 2,
             "filing_url": "https://www.sebi.gov.in/filings/public-issues/aug-2026/veritas-finance-limited-drhp_103304.html"
           },
-          "not_seen_in_latest_scan": true,
-          "retained_snapshot_evidence": {
-            "snapshot_generated_at": "2026-09-26T02:56:59.438Z",
-            "snapshot_projection_sha256": "3f5a5a91c31010113897b239721326e9057c4ed676c84822824710abe0f42b72",
-            "source_pages": [
-              {
-                "page": 1,
-                "url": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=10&ssid=15",
-                "final_url": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=10&ssid=15",
-                "http_status": 200,
-                "requested_at": "2026-09-26T02:56:54.089Z",
-                "collected_at": "2026-09-26T02:56:55.218Z",
-                "bytes": 44896,
-                "sha256": "810e12957dbc0ef7f40e545c583eaa15a1c55dd8b0c9fedbdf145e40a9f1d4a7",
-                "observed_records": 2214,
-                "range": {
-                  "start": 1,
-                  "end": 25,
-                  "total": 2214
-                },
-                "request_do_direct": 0,
-                "artifact_file": "page-01.html"
-              },
-              {
-                "page": 2,
-                "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
-                "final_url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
-                "http_status": 200,
-                "requested_at": "2026-09-26T02:56:55.226Z",
-                "collected_at": "2026-09-26T02:56:57.418Z",
-                "bytes": 17711,
-                "sha256": "00ffd1cd310283f8372e3617e0f4df688bc1f6c49eb07bc06566fc08574f9434",
-                "observed_records": 2212,
-                "range": {
-                  "start": 26,
-                  "end": 50,
-                  "total": 2212
-                },
-                "request_do_direct": 1,
-                "artifact_file": "page-02.html"
-              },
-              {
-                "page": 3,
-                "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
-                "final_url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
-                "http_status": 200,
-                "requested_at": "2026-09-26T02:56:57.422Z",
-                "collected_at": "2026-09-26T02:56:57.928Z",
-                "bytes": 19173,
-                "sha256": "d04d0d4228206cd22a957275dc40ab211e1b3d1f467a8ef19332a58a0724f813",
-                "observed_records": 2214,
-                "range": {
-                  "start": 51,
-                  "end": 75,
-                  "total": 2214
-                },
-                "request_do_direct": 2,
-                "artifact_file": "page-03.html"
-              },
-              {
-                "page": 4,
-                "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
-                "final_url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
-                "http_status": 200,
-                "requested_at": "2026-09-26T02:56:57.932Z",
-                "collected_at": "2026-09-26T02:56:58.268Z",
-                "bytes": 18648,
-                "sha256": "2685abf4cc6f611930eadc31f29b640315425b0334406f7e318c516136cf8889",
-                "observed_records": 2212,
-                "range": {
-                  "start": 76,
-                  "end": 100,
-                  "total": 2212
-                },
-                "request_do_direct": 3,
-                "artifact_file": "page-04.html"
-              },
-              {
-                "page": 5,
-                "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
-                "final_url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
-                "http_status": 200,
-                "requested_at": "2026-09-26T02:56:58.270Z",
-                "collected_at": "2026-09-26T02:56:58.568Z",
-                "bytes": 16705,
-                "sha256": "1a9dba38e3ac3c3f64361103fd3e3628da6a777033210cebef82c748937702c6",
-                "observed_records": 2214,
-                "range": {
-                  "start": 101,
-                  "end": 125,
-                  "total": 2214
-                },
-                "request_do_direct": 4,
-                "artifact_file": "page-05.html"
-              },
-              {
-                "page": 6,
-                "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
-                "final_url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
-                "http_status": 200,
-                "requested_at": "2026-09-26T02:56:58.570Z",
-                "collected_at": "2026-09-26T02:56:58.859Z",
-                "bytes": 10949,
-                "sha256": "0a2c78841ca98ed196b13f76c5f9c347d4402a6c846bf5d0ac667c7398d9541a",
-                "observed_records": 2212,
-                "range": {
-                  "start": 126,
-                  "end": 150,
-                  "total": 2212
-                },
-                "request_do_direct": 5,
-                "artifact_file": "page-06.html"
-              },
-              {
-                "page": 7,
-                "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
-                "final_url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
-                "http_status": 200,
-                "requested_at": "2026-09-26T02:56:58.860Z",
-                "collected_at": "2026-09-26T02:56:59.151Z",
-                "bytes": 10559,
-                "sha256": "8aa26ed2773c69a84468758c8781ee30a528ffdb5c77040c5e06ece8ce5c77a4",
-                "observed_records": 2214,
-                "range": {
-                  "start": 151,
-                  "end": 175,
-                  "total": 2214
-                },
-                "request_do_direct": 6,
-                "artifact_file": "page-07.html"
-              },
-              {
-                "page": 8,
-                "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
-                "final_url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
-                "http_status": 200,
-                "requested_at": "2026-09-26T02:56:59.152Z",
-                "collected_at": "2026-09-26T02:56:59.429Z",
-                "bytes": 10349,
-                "sha256": "c258f5d2d16eab76e2d033b614665dbfa137d230236689d299b7751cee8b67e9",
-                "observed_records": 2214,
-                "range": {
-                  "start": 176,
-                  "end": 200,
-                  "total": 2214
-                },
-                "request_do_direct": 7,
-                "artifact_file": "page-08.html"
-              }
-            ],
-            "note": "Retained filing from earlier source-backed dataset; no specific source row is inferred for legacy entries."
-          }
+          "not_seen_in_latest_scan": false
         }
       ]
     },
@@ -1252,7 +1228,7 @@
             "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "final_url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "response_sha256": "d04d0d4228206cd22a957275dc40ab211e1b3d1f467a8ef19332a58a0724f813",
-            "collected_at": "2026-09-26T04:23:44.344Z",
+            "collected_at": "2026-09-26T04:39:22.136Z",
             "page": 3,
             "filing_url": "https://www.sebi.gov.in/filings/public-issues/jul-2026/master-chains-n-jewels-limited-drhp_103287.html"
           },
@@ -1278,7 +1254,7 @@
             "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "final_url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "response_sha256": "d04d0d4228206cd22a957275dc40ab211e1b3d1f467a8ef19332a58a0724f813",
-            "collected_at": "2026-09-26T04:23:44.344Z",
+            "collected_at": "2026-09-26T04:39:22.136Z",
             "page": 3,
             "filing_url": "https://www.sebi.gov.in/filings/public-issues/jul-2026/ifl-finance-ltd-drhp_103313.html"
           },
@@ -1304,7 +1280,7 @@
             "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "final_url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "response_sha256": "d04d0d4228206cd22a957275dc40ab211e1b3d1f467a8ef19332a58a0724f813",
-            "collected_at": "2026-09-26T04:23:44.344Z",
+            "collected_at": "2026-09-26T04:39:22.136Z",
             "page": 3,
             "filing_url": "https://www.sebi.gov.in/filings/public-issues/jul-2026/indian-gas-exchange-limited-drhp_102988.html"
           },
@@ -1330,7 +1306,7 @@
             "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "final_url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "response_sha256": "d04d0d4228206cd22a957275dc40ab211e1b3d1f467a8ef19332a58a0724f813",
-            "collected_at": "2026-09-26T04:23:44.344Z",
+            "collected_at": "2026-09-26T04:39:22.136Z",
             "page": 3,
             "filing_url": "https://www.sebi.gov.in/filings/public-issues/jul-2026/yogiji-digi-limited-drhp_103106.html"
           },
@@ -1356,7 +1332,7 @@
             "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "final_url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "response_sha256": "d04d0d4228206cd22a957275dc40ab211e1b3d1f467a8ef19332a58a0724f813",
-            "collected_at": "2026-09-26T04:23:44.344Z",
+            "collected_at": "2026-09-26T04:39:22.136Z",
             "page": 3,
             "filing_url": "https://www.sebi.gov.in/filings/public-issues/jul-2026/gni-infrastructure-limited-drhp_102874.html"
           },
@@ -1382,7 +1358,7 @@
             "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "final_url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "response_sha256": "d04d0d4228206cd22a957275dc40ab211e1b3d1f467a8ef19332a58a0724f813",
-            "collected_at": "2026-09-26T04:23:44.344Z",
+            "collected_at": "2026-09-26T04:39:22.136Z",
             "page": 3,
             "filing_url": "https://www.sebi.gov.in/filings/public-issues/jul-2026/cult-fit-limited-drhp_102714.html"
           },
@@ -1408,7 +1384,7 @@
             "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "final_url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "response_sha256": "d04d0d4228206cd22a957275dc40ab211e1b3d1f467a8ef19332a58a0724f813",
-            "collected_at": "2026-09-26T04:23:44.344Z",
+            "collected_at": "2026-09-26T04:39:22.136Z",
             "page": 3,
             "filing_url": "https://www.sebi.gov.in/filings/public-issues/jul-2026/ratnadeep-retail-limited-drhp_102720.html"
           },
@@ -1434,7 +1410,7 @@
             "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "final_url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "response_sha256": "d04d0d4228206cd22a957275dc40ab211e1b3d1f467a8ef19332a58a0724f813",
-            "collected_at": "2026-09-26T04:23:44.344Z",
+            "collected_at": "2026-09-26T04:39:22.136Z",
             "page": 3,
             "filing_url": "https://www.sebi.gov.in/filings/public-issues/jul-2026/innoterra-limited-drhp_102678.html"
           },
@@ -1460,7 +1436,7 @@
             "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "final_url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "response_sha256": "d04d0d4228206cd22a957275dc40ab211e1b3d1f467a8ef19332a58a0724f813",
-            "collected_at": "2026-09-26T04:23:44.344Z",
+            "collected_at": "2026-09-26T04:39:22.136Z",
             "page": 3,
             "filing_url": "https://www.sebi.gov.in/filings/public-issues/jul-2026/tmc-transformers-india-limited-drhp_102680.html"
           },
@@ -1486,7 +1462,7 @@
             "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "final_url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "response_sha256": "d04d0d4228206cd22a957275dc40ab211e1b3d1f467a8ef19332a58a0724f813",
-            "collected_at": "2026-09-26T04:23:44.344Z",
+            "collected_at": "2026-09-26T04:39:22.136Z",
             "page": 3,
             "filing_url": "https://www.sebi.gov.in/filings/public-issues/jul-2026/functional-and-innovative-foods-limited-drhp_102603.html"
           },
@@ -1512,7 +1488,7 @@
             "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "final_url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "response_sha256": "d04d0d4228206cd22a957275dc40ab211e1b3d1f467a8ef19332a58a0724f813",
-            "collected_at": "2026-09-26T04:23:44.344Z",
+            "collected_at": "2026-09-26T04:39:22.136Z",
             "page": 3,
             "filing_url": "https://www.sebi.gov.in/filings/public-issues/jul-2026/pragyawan-technologies-limited-drhp_102611.html"
           },
@@ -1538,7 +1514,7 @@
             "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "final_url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "response_sha256": "d04d0d4228206cd22a957275dc40ab211e1b3d1f467a8ef19332a58a0724f813",
-            "collected_at": "2026-09-26T04:23:44.344Z",
+            "collected_at": "2026-09-26T04:39:22.136Z",
             "page": 3,
             "filing_url": "https://www.sebi.gov.in/filings/public-issues/jul-2026/stalwart-people-services-india-limited-drhp_102607.html"
           },
@@ -1564,7 +1540,7 @@
             "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "final_url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "response_sha256": "d04d0d4228206cd22a957275dc40ab211e1b3d1f467a8ef19332a58a0724f813",
-            "collected_at": "2026-09-26T04:23:44.344Z",
+            "collected_at": "2026-09-26T04:39:22.136Z",
             "page": 3,
             "filing_url": "https://www.sebi.gov.in/filings/public-issues/jul-2026/swara-baby-products-limited-drhp_102609.html"
           },
@@ -1590,7 +1566,7 @@
             "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "final_url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "response_sha256": "d04d0d4228206cd22a957275dc40ab211e1b3d1f467a8ef19332a58a0724f813",
-            "collected_at": "2026-09-26T04:23:44.344Z",
+            "collected_at": "2026-09-26T04:39:22.136Z",
             "page": 3,
             "filing_url": "https://www.sebi.gov.in/filings/public-issues/jul-2026/eswari-global-metal-industries-limited-drhp_102541.html"
           },
@@ -1616,7 +1592,7 @@
             "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "final_url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "response_sha256": "d04d0d4228206cd22a957275dc40ab211e1b3d1f467a8ef19332a58a0724f813",
-            "collected_at": "2026-09-26T04:23:44.344Z",
+            "collected_at": "2026-09-26T04:39:22.136Z",
             "page": 3,
             "filing_url": "https://www.sebi.gov.in/filings/public-issues/jul-2026/mann-fleet-partners-limited-drhp_102474.html"
           },
@@ -1642,7 +1618,7 @@
             "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "final_url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "response_sha256": "d04d0d4228206cd22a957275dc40ab211e1b3d1f467a8ef19332a58a0724f813",
-            "collected_at": "2026-09-26T04:23:44.344Z",
+            "collected_at": "2026-09-26T04:39:22.136Z",
             "page": 3,
             "filing_url": "https://www.sebi.gov.in/filings/public-issues/jul-2026/renfra-energy-india-ltd-drhp_102601.html"
           },
@@ -1668,7 +1644,7 @@
             "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "final_url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "response_sha256": "d04d0d4228206cd22a957275dc40ab211e1b3d1f467a8ef19332a58a0724f813",
-            "collected_at": "2026-09-26T04:23:44.344Z",
+            "collected_at": "2026-09-26T04:39:22.136Z",
             "page": 3,
             "filing_url": "https://www.sebi.gov.in/filings/public-issues/jul-2026/social-worth-technologies-limited-drhp_102477.html"
           },
@@ -1694,7 +1670,7 @@
             "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "final_url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "response_sha256": "d04d0d4228206cd22a957275dc40ab211e1b3d1f467a8ef19332a58a0724f813",
-            "collected_at": "2026-09-26T04:23:44.344Z",
+            "collected_at": "2026-09-26T04:39:22.136Z",
             "page": 3,
             "filing_url": "https://www.sebi.gov.in/filings/public-issues/jun-2026/oravel-stays-limited-udrhp-i_102455.html"
           },
@@ -1720,7 +1696,7 @@
             "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "final_url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "response_sha256": "d04d0d4228206cd22a957275dc40ab211e1b3d1f467a8ef19332a58a0724f813",
-            "collected_at": "2026-09-26T04:23:44.344Z",
+            "collected_at": "2026-09-26T04:39:22.136Z",
             "page": 3,
             "filing_url": "https://www.sebi.gov.in/filings/public-issues/jun-2026/ujin-pharma-ltd-drhp_102424.html"
           },
@@ -1746,7 +1722,7 @@
             "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "final_url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "response_sha256": "d04d0d4228206cd22a957275dc40ab211e1b3d1f467a8ef19332a58a0724f813",
-            "collected_at": "2026-09-26T04:23:44.344Z",
+            "collected_at": "2026-09-26T04:39:22.136Z",
             "page": 3,
             "filing_url": "https://www.sebi.gov.in/filings/public-issues/jun-2026/sky-alloys-and-power-limited-drhp_102415.html"
           },
@@ -1772,7 +1748,7 @@
             "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "final_url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "response_sha256": "d04d0d4228206cd22a957275dc40ab211e1b3d1f467a8ef19332a58a0724f813",
-            "collected_at": "2026-09-26T04:23:44.344Z",
+            "collected_at": "2026-09-26T04:39:22.136Z",
             "page": 3,
             "filing_url": "https://www.sebi.gov.in/filings/public-issues/jun-2026/jio-platforms-ltd-drhp_102248.html"
           },
@@ -1794,85 +1770,15 @@
           "filing_date": "2026-06-18",
           "filing_url": "https://www.sebi.gov.in/filings/public-issues/jun-2026/paras-healthcare-limited-drhp_102187.html",
           "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/jun-2026/Paras%20Healthcare%20Limited%20-%20Abridged_p.pdf",
-          "not_seen_in_latest_scan": true,
-          "retained_snapshot_evidence": {
-            "snapshot_generated_at": "2026-09-26T01:35:41.135Z",
-            "snapshot_projection_sha256": "72528702ea2c4f4a9a22f8e95b9e3896788ca0d1c4e31de1ab7c1e01a529a72c",
-            "source_pages": [
-              {
-                "page": 1,
-                "url": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=10&ssid=15",
-                "collected_at": "2026-09-26T01:35:41.135Z",
-                "bytes": 44896,
-                "sha256": "63b0611ffb0e61071703d0f61b69c07a909babc0cc04f6fdfc2de24cd77c922d",
-                "observed_records": 2214
-              },
-              {
-                "page": 2,
-                "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
-                "collected_at": "2026-09-26T01:35:43.802Z",
-                "bytes": 17711,
-                "sha256": "00ffd1cd310283f8372e3617e0f4df688bc1f6c49eb07bc06566fc08574f9434",
-                "observed_records": 2212,
-                "request_do_direct": 1
-              },
-              {
-                "page": 3,
-                "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
-                "collected_at": "2026-09-26T01:35:44.099Z",
-                "bytes": 19173,
-                "sha256": "d04d0d4228206cd22a957275dc40ab211e1b3d1f467a8ef19332a58a0724f813",
-                "observed_records": 2214,
-                "request_do_direct": 2
-              },
-              {
-                "page": 4,
-                "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
-                "collected_at": "2026-09-26T01:35:44.401Z",
-                "bytes": 18126,
-                "sha256": "6142c932ae0110852026b22d50458a1d3f64b462e0753274e0a19d39391daf39",
-                "observed_records": 2214,
-                "request_do_direct": 3
-              },
-              {
-                "page": 5,
-                "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
-                "collected_at": "2026-09-26T01:35:44.700Z",
-                "bytes": 16705,
-                "sha256": "1a9dba38e3ac3c3f64361103fd3e3628da6a777033210cebef82c748937702c6",
-                "observed_records": 2214,
-                "request_do_direct": 4
-              },
-              {
-                "page": 6,
-                "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
-                "collected_at": "2026-09-26T01:35:44.993Z",
-                "bytes": 11064,
-                "sha256": "36c15cceff6cc9a4f7a02f13f91fda235b93a4a3102804421293042ac0557a04",
-                "observed_records": 2214,
-                "request_do_direct": 5
-              },
-              {
-                "page": 7,
-                "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
-                "collected_at": "2026-09-26T01:35:45.312Z",
-                "bytes": 10623,
-                "sha256": "ec44334f22533a69a257e2defdbc296297ecd3cfe5e7a820e90486641c5d1d61",
-                "observed_records": 2212,
-                "request_do_direct": 6
-              },
-              {
-                "page": 8,
-                "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
-                "collected_at": "2026-09-26T01:35:45.613Z",
-                "bytes": 10330,
-                "sha256": "ed533e373adf1266a2373c33188c88abbf8caff611d2d8896c96614c48bea830",
-                "observed_records": 2212,
-                "request_do_direct": 7
-              }
-            ],
-            "note": "Retained filing from earlier source-backed dataset; no specific source row is inferred for legacy entries."
-          }
+          "source_evidence": {
+            "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
+            "final_url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
+            "response_sha256": "6142c932ae0110852026b22d50458a1d3f64b462e0753274e0a19d39391daf39",
+            "collected_at": "2026-09-26T04:39:22.442Z",
+            "page": 4,
+            "filing_url": "https://www.sebi.gov.in/filings/public-issues/jun-2026/paras-healthcare-limited-drhp_102187.html"
+          },
+          "not_seen_in_latest_scan": false
         }
       ]
     },
@@ -1893,8 +1799,8 @@
           "source_evidence": {
             "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "final_url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
-            "response_sha256": "2685abf4cc6f611930eadc31f29b640315425b0334406f7e318c516136cf8889",
-            "collected_at": "2026-09-26T04:23:44.699Z",
+            "response_sha256": "6142c932ae0110852026b22d50458a1d3f64b462e0753274e0a19d39391daf39",
+            "collected_at": "2026-09-26T04:39:22.442Z",
             "page": 4,
             "filing_url": "https://www.sebi.gov.in/filings/public-issues/jun-2026/zepto-limited-udrhp1_101929.html"
           },
@@ -1919,8 +1825,8 @@
           "source_evidence": {
             "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "final_url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
-            "response_sha256": "2685abf4cc6f611930eadc31f29b640315425b0334406f7e318c516136cf8889",
-            "collected_at": "2026-09-26T04:23:44.699Z",
+            "response_sha256": "6142c932ae0110852026b22d50458a1d3f64b462e0753274e0a19d39391daf39",
+            "collected_at": "2026-09-26T04:39:22.442Z",
             "page": 4,
             "filing_url": "https://www.sebi.gov.in/filings/public-issues/jun-2026/arohan-financial-services-limited-drhp_101753.html"
           },
@@ -1945,8 +1851,8 @@
           "source_evidence": {
             "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "final_url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
-            "response_sha256": "2685abf4cc6f611930eadc31f29b640315425b0334406f7e318c516136cf8889",
-            "collected_at": "2026-09-26T04:23:44.699Z",
+            "response_sha256": "6142c932ae0110852026b22d50458a1d3f64b462e0753274e0a19d39391daf39",
+            "collected_at": "2026-09-26T04:39:22.442Z",
             "page": 4,
             "filing_url": "https://www.sebi.gov.in/filings/public-issues/jun-2026/matangi-rubber-limited-drhp_101764.html"
           },
@@ -1971,8 +1877,8 @@
           "source_evidence": {
             "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "final_url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
-            "response_sha256": "2685abf4cc6f611930eadc31f29b640315425b0334406f7e318c516136cf8889",
-            "collected_at": "2026-09-26T04:23:44.699Z",
+            "response_sha256": "6142c932ae0110852026b22d50458a1d3f64b462e0753274e0a19d39391daf39",
+            "collected_at": "2026-09-26T04:39:22.442Z",
             "page": 4,
             "filing_url": "https://www.sebi.gov.in/filings/public-issues/may-2026/dhoot-transmission-limited-udrhp-1_101683.html"
           },
@@ -1997,8 +1903,8 @@
           "source_evidence": {
             "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "final_url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
-            "response_sha256": "2685abf4cc6f611930eadc31f29b640315425b0334406f7e318c516136cf8889",
-            "collected_at": "2026-09-26T04:23:44.699Z",
+            "response_sha256": "6142c932ae0110852026b22d50458a1d3f64b462e0753274e0a19d39391daf39",
+            "collected_at": "2026-09-26T04:39:22.442Z",
             "page": 4,
             "filing_url": "https://www.sebi.gov.in/filings/public-issues/may-2026/gaurik-fashions-limited-drhp_101469.html"
           },
@@ -2023,8 +1929,8 @@
           "source_evidence": {
             "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "final_url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
-            "response_sha256": "2685abf4cc6f611930eadc31f29b640315425b0334406f7e318c516136cf8889",
-            "collected_at": "2026-09-26T04:23:44.699Z",
+            "response_sha256": "6142c932ae0110852026b22d50458a1d3f64b462e0753274e0a19d39391daf39",
+            "collected_at": "2026-09-26T04:39:22.442Z",
             "page": 4,
             "filing_url": "https://www.sebi.gov.in/filings/public-issues/may-2026/incred-holdings-limited-udrhp-1_101433.html"
           },
@@ -2049,8 +1955,8 @@
           "source_evidence": {
             "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "final_url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
-            "response_sha256": "2685abf4cc6f611930eadc31f29b640315425b0334406f7e318c516136cf8889",
-            "collected_at": "2026-09-26T04:23:44.699Z",
+            "response_sha256": "6142c932ae0110852026b22d50458a1d3f64b462e0753274e0a19d39391daf39",
+            "collected_at": "2026-09-26T04:39:22.442Z",
             "page": 4,
             "filing_url": "https://www.sebi.gov.in/filings/public-issues/may-2026/online-instruments-india-limited-drhp_101429.html"
           },
@@ -2075,8 +1981,8 @@
           "source_evidence": {
             "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "final_url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
-            "response_sha256": "2685abf4cc6f611930eadc31f29b640315425b0334406f7e318c516136cf8889",
-            "collected_at": "2026-09-26T04:23:44.699Z",
+            "response_sha256": "6142c932ae0110852026b22d50458a1d3f64b462e0753274e0a19d39391daf39",
+            "collected_at": "2026-09-26T04:39:22.442Z",
             "page": 4,
             "filing_url": "https://www.sebi.gov.in/filings/public-issues/may-2026/jindal-supreme-india-limited-drhp_101256.html"
           },
@@ -2101,8 +2007,8 @@
           "source_evidence": {
             "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "final_url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
-            "response_sha256": "2685abf4cc6f611930eadc31f29b640315425b0334406f7e318c516136cf8889",
-            "collected_at": "2026-09-26T04:23:44.699Z",
+            "response_sha256": "6142c932ae0110852026b22d50458a1d3f64b462e0753274e0a19d39391daf39",
+            "collected_at": "2026-09-26T04:39:22.442Z",
             "page": 4,
             "filing_url": "https://www.sebi.gov.in/filings/public-issues/apr-2026/playsimple-games-limited-drhp_101159.html"
           },
@@ -2127,8 +2033,8 @@
           "source_evidence": {
             "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "final_url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
-            "response_sha256": "2685abf4cc6f611930eadc31f29b640315425b0334406f7e318c516136cf8889",
-            "collected_at": "2026-09-26T04:23:44.699Z",
+            "response_sha256": "6142c932ae0110852026b22d50458a1d3f64b462e0753274e0a19d39391daf39",
+            "collected_at": "2026-09-26T04:39:22.442Z",
             "page": 4,
             "filing_url": "https://www.sebi.gov.in/filings/public-issues/apr-2026/punjab-carbonic-limited-drhp_101039.html"
           },
@@ -2153,8 +2059,8 @@
           "source_evidence": {
             "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "final_url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
-            "response_sha256": "2685abf4cc6f611930eadc31f29b640315425b0334406f7e318c516136cf8889",
-            "collected_at": "2026-09-26T04:23:44.699Z",
+            "response_sha256": "6142c932ae0110852026b22d50458a1d3f64b462e0753274e0a19d39391daf39",
+            "collected_at": "2026-09-26T04:39:22.442Z",
             "page": 4,
             "filing_url": "https://www.sebi.gov.in/filings/public-issues/apr-2026/absolute-projects-india-limited-drhp_100947.html"
           },
@@ -2179,8 +2085,8 @@
           "source_evidence": {
             "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "final_url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
-            "response_sha256": "2685abf4cc6f611930eadc31f29b640315425b0334406f7e318c516136cf8889",
-            "collected_at": "2026-09-26T04:23:44.699Z",
+            "response_sha256": "6142c932ae0110852026b22d50458a1d3f64b462e0753274e0a19d39391daf39",
+            "collected_at": "2026-09-26T04:39:22.442Z",
             "page": 4,
             "filing_url": "https://www.sebi.gov.in/filings/public-issues/apr-2026/expression-360-services-india-limited-drhp_100861.html"
           },
@@ -2205,8 +2111,8 @@
           "source_evidence": {
             "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "final_url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
-            "response_sha256": "2685abf4cc6f611930eadc31f29b640315425b0334406f7e318c516136cf8889",
-            "collected_at": "2026-09-26T04:23:44.699Z",
+            "response_sha256": "6142c932ae0110852026b22d50458a1d3f64b462e0753274e0a19d39391daf39",
+            "collected_at": "2026-09-26T04:39:22.442Z",
             "page": 4,
             "filing_url": "https://www.sebi.gov.in/filings/public-issues/apr-2026/t-c-terrytex-limited-drhp_100856.html"
           },
@@ -2232,7 +2138,7 @@
             "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "final_url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "response_sha256": "1a9dba38e3ac3c3f64361103fd3e3628da6a777033210cebef82c748937702c6",
-            "collected_at": "2026-09-26T04:23:45.044Z",
+            "collected_at": "2026-09-26T04:39:22.777Z",
             "page": 5,
             "filing_url": "https://www.sebi.gov.in/filings/public-issues/apr-2026/bvishal-oil-and-energy-limited-drhp_100798.html"
           },
@@ -2257,8 +2163,8 @@
           "source_evidence": {
             "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "final_url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
-            "response_sha256": "2685abf4cc6f611930eadc31f29b640315425b0334406f7e318c516136cf8889",
-            "collected_at": "2026-09-26T04:23:44.699Z",
+            "response_sha256": "6142c932ae0110852026b22d50458a1d3f64b462e0753274e0a19d39391daf39",
+            "collected_at": "2026-09-26T04:39:22.442Z",
             "page": 4,
             "filing_url": "https://www.sebi.gov.in/filings/public-issues/apr-2026/gujarat-victory-forgings-limited-drhp_100804.html"
           },
@@ -2284,7 +2190,7 @@
             "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "final_url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "response_sha256": "1a9dba38e3ac3c3f64361103fd3e3628da6a777033210cebef82c748937702c6",
-            "collected_at": "2026-09-26T04:23:45.044Z",
+            "collected_at": "2026-09-26T04:39:22.777Z",
             "page": 5,
             "filing_url": "https://www.sebi.gov.in/filings/public-issues/apr-2026/nityas-gems-and-jewellery-limited-drhp_100802.html"
           },
@@ -2310,7 +2216,7 @@
             "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "final_url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "response_sha256": "1a9dba38e3ac3c3f64361103fd3e3628da6a777033210cebef82c748937702c6",
-            "collected_at": "2026-09-26T04:23:45.044Z",
+            "collected_at": "2026-09-26T04:39:22.777Z",
             "page": 5,
             "filing_url": "https://www.sebi.gov.in/filings/public-issues/apr-2026/sathya-agencies-limited-drhp_100796.html"
           },
@@ -2336,7 +2242,7 @@
             "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "final_url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "response_sha256": "1a9dba38e3ac3c3f64361103fd3e3628da6a777033210cebef82c748937702c6",
-            "collected_at": "2026-09-26T04:23:45.044Z",
+            "collected_at": "2026-09-26T04:39:22.777Z",
             "page": 5,
             "filing_url": "https://www.sebi.gov.in/filings/public-issues/apr-2026/adroit-industries-india-limited-drhp_100909.html"
           },
@@ -2362,7 +2268,7 @@
             "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "final_url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "response_sha256": "1a9dba38e3ac3c3f64361103fd3e3628da6a777033210cebef82c748937702c6",
-            "collected_at": "2026-09-26T04:23:45.044Z",
+            "collected_at": "2026-09-26T04:39:22.777Z",
             "page": 5,
             "filing_url": "https://www.sebi.gov.in/filings/public-issues/apr-2026/intellius-recode-limited-drhp_100765.html"
           },
@@ -2388,7 +2294,7 @@
             "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "final_url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "response_sha256": "1a9dba38e3ac3c3f64361103fd3e3628da6a777033210cebef82c748937702c6",
-            "collected_at": "2026-09-26T04:23:45.044Z",
+            "collected_at": "2026-09-26T04:39:22.777Z",
             "page": 5,
             "filing_url": "https://www.sebi.gov.in/filings/public-issues/apr-2026/kay-jay-forgings-limited-drhp_100975.html"
           },
@@ -2414,7 +2320,7 @@
             "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "final_url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "response_sha256": "1a9dba38e3ac3c3f64361103fd3e3628da6a777033210cebef82c748937702c6",
-            "collected_at": "2026-09-26T04:23:45.044Z",
+            "collected_at": "2026-09-26T04:39:22.777Z",
             "page": 5,
             "filing_url": "https://www.sebi.gov.in/filings/public-issues/apr-2026/manipal-health-enterprises-limited-drhp_100763.html"
           },
@@ -2440,7 +2346,7 @@
             "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "final_url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "response_sha256": "1a9dba38e3ac3c3f64361103fd3e3628da6a777033210cebef82c748937702c6",
-            "collected_at": "2026-09-26T04:23:45.044Z",
+            "collected_at": "2026-09-26T04:39:22.777Z",
             "page": 5,
             "filing_url": "https://www.sebi.gov.in/filings/public-issues/apr-2026/rentomojo-limited-drhp_100746.html"
           },
@@ -2466,7 +2372,7 @@
             "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "final_url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "response_sha256": "1a9dba38e3ac3c3f64361103fd3e3628da6a777033210cebef82c748937702c6",
-            "collected_at": "2026-09-26T04:23:45.044Z",
+            "collected_at": "2026-09-26T04:39:22.777Z",
             "page": 5,
             "filing_url": "https://www.sebi.gov.in/filings/public-issues/apr-2026/cosmic-pv-power-limited-drhp_100718.html"
           },
@@ -2492,7 +2398,7 @@
             "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "final_url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "response_sha256": "1a9dba38e3ac3c3f64361103fd3e3628da6a777033210cebef82c748937702c6",
-            "collected_at": "2026-09-26T04:23:45.044Z",
+            "collected_at": "2026-09-26T04:39:22.777Z",
             "page": 5,
             "filing_url": "https://www.sebi.gov.in/filings/public-issues/apr-2026/pioneer-fil-med-limited-drhp_100715.html"
           },
@@ -2518,7 +2424,7 @@
             "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "final_url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "response_sha256": "1a9dba38e3ac3c3f64361103fd3e3628da6a777033210cebef82c748937702c6",
-            "collected_at": "2026-09-26T04:23:45.044Z",
+            "collected_at": "2026-09-26T04:39:22.777Z",
             "page": 5,
             "filing_url": "https://www.sebi.gov.in/filings/public-issues/apr-2026/rkb-global-limited-drhp_100702.html"
           },
@@ -2544,7 +2450,7 @@
             "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "final_url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "response_sha256": "1a9dba38e3ac3c3f64361103fd3e3628da6a777033210cebef82c748937702c6",
-            "collected_at": "2026-09-26T04:23:45.044Z",
+            "collected_at": "2026-09-26T04:39:22.777Z",
             "page": 5,
             "filing_url": "https://www.sebi.gov.in/filings/public-issues/mar-2026/bharat-pet-limited-drhp_100673.html"
           },
@@ -2570,7 +2476,7 @@
             "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "final_url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "response_sha256": "1a9dba38e3ac3c3f64361103fd3e3628da6a777033210cebef82c748937702c6",
-            "collected_at": "2026-09-26T04:23:45.044Z",
+            "collected_at": "2026-09-26T04:39:22.777Z",
             "page": 5,
             "filing_url": "https://www.sebi.gov.in/filings/public-issues/mar-2026/laxyo-limited-drhp_100686.html"
           },
@@ -2596,7 +2502,7 @@
             "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "final_url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "response_sha256": "1a9dba38e3ac3c3f64361103fd3e3628da6a777033210cebef82c748937702c6",
-            "collected_at": "2026-09-26T04:23:45.044Z",
+            "collected_at": "2026-09-26T04:39:22.777Z",
             "page": 5,
             "filing_url": "https://www.sebi.gov.in/filings/public-issues/mar-2026/trenzet-infra-limited-drhp_100553.html"
           },
@@ -2622,7 +2528,7 @@
             "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "final_url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "response_sha256": "1a9dba38e3ac3c3f64361103fd3e3628da6a777033210cebef82c748937702c6",
-            "collected_at": "2026-09-26T04:23:45.044Z",
+            "collected_at": "2026-09-26T04:39:22.777Z",
             "page": 5,
             "filing_url": "https://www.sebi.gov.in/filings/public-issues/mar-2026/sbi-funds-management-limited-drhp_100517.html"
           },
@@ -2648,7 +2554,7 @@
             "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "final_url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "response_sha256": "36c15cceff6cc9a4f7a02f13f91fda235b93a4a3102804421293042ac0557a04",
-            "collected_at": "2026-09-26T04:23:45.356Z",
+            "collected_at": "2026-09-26T04:39:23.057Z",
             "page": 6,
             "filing_url": "https://www.sebi.gov.in/filings/public-issues/feb-2026/srit-india-limited-drhp_99558.html"
           },
@@ -2674,7 +2580,7 @@
             "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "final_url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "response_sha256": "36c15cceff6cc9a4f7a02f13f91fda235b93a4a3102804421293042ac0557a04",
-            "collected_at": "2026-09-26T04:23:45.356Z",
+            "collected_at": "2026-09-26T04:39:23.057Z",
             "page": 6,
             "filing_url": "https://www.sebi.gov.in/filings/public-issues/feb-2026/marri-retail-limited-drhp_99483.html"
           },
@@ -2700,7 +2606,7 @@
             "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "final_url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "response_sha256": "36c15cceff6cc9a4f7a02f13f91fda235b93a4a3102804421293042ac0557a04",
-            "collected_at": "2026-09-26T04:23:45.356Z",
+            "collected_at": "2026-09-26T04:39:23.057Z",
             "page": 6,
             "filing_url": "https://www.sebi.gov.in/filings/public-issues/feb-2026/turtlemint-fintech-solutions-limited-udrhp-1_99493.html"
           },
@@ -2726,7 +2632,7 @@
             "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "final_url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "response_sha256": "36c15cceff6cc9a4f7a02f13f91fda235b93a4a3102804421293042ac0557a04",
-            "collected_at": "2026-09-26T04:23:45.356Z",
+            "collected_at": "2026-09-26T04:39:23.057Z",
             "page": 6,
             "filing_url": "https://www.sebi.gov.in/filings/public-issues/jan-2026/phonepe-limited-udrhp-i_99285.html"
           },
@@ -2752,7 +2658,7 @@
             "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "final_url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "response_sha256": "36c15cceff6cc9a4f7a02f13f91fda235b93a4a3102804421293042ac0557a04",
-            "collected_at": "2026-09-26T04:23:45.356Z",
+            "collected_at": "2026-09-26T04:39:23.057Z",
             "page": 6,
             "filing_url": "https://www.sebi.gov.in/filings/public-issues/jan-2026/advanta-enterprises-limited-drhp_99228.html"
           },
@@ -2778,7 +2684,7 @@
             "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "final_url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
             "response_sha256": "36c15cceff6cc9a4f7a02f13f91fda235b93a4a3102804421293042ac0557a04",
-            "collected_at": "2026-09-26T04:23:45.356Z",
+            "collected_at": "2026-09-26T04:39:23.057Z",
             "page": 6,
             "filing_url": "https://www.sebi.gov.in/filings/public-issues/jan-2026/eaaa-india-alternatives-limited-drhp_99257.html"
           },
@@ -2787,5 +2693,5 @@
       ]
     }
   ],
-  "collection_completed_at": "2026-09-26T04:23:45.996Z"
+  "collection_completed_at": "2026-09-26T04:39:23.635Z"
 }
