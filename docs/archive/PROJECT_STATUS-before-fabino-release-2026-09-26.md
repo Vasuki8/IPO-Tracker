@@ -1,6 +1,6 @@
 # Project status and handoff
 
-Updated **2026-09-26 (UTC)** after publishing and verifying the Fabino Life Sciences BSE listing-year correction. The active backend priority remains **P1 issuer identity and universe correctness** under [DEVELOPMENT_PROCESS.md](DEVELOPMENT_PROCESS.md). The pinned NSE review, nine historical excluded-event IPO repairs and Fabino hold are now closed through reviewed evidence-backed paths. The next bounded task is the read-only BSE issue-summary historical coverage audit. The Pre-IPO source-coverage repair remains live and separate. Other UI/research-depth work remains in [UI_DETAIL_NAVIGATION_HANDOFF.md](UI_DETAIL_NAVIGATION_HANDOFF.md).
+Updated **2026-09-26 (UTC)** after publishing and verifying all nine historical equity IPOs behind the earlier excluded 2026 debt/migration events. The active backend priority remains **P1 issuer identity and universe correctness** under [DEVELOPMENT_PROCESS.md](DEVELOPMENT_PROCESS.md). The nine historical IPOs are now in recovery/public data through a dedicated reviewed path backed by retained original source hashes; all excluded 2026 events remain excluded. The next bounded task is the separate Fabino Life Sciences BSE listing-year hold. The Pre-IPO source-coverage repair remains live and separate. Other UI/research-depth work remains in [UI_DETAIL_NAVIGATION_HANDOFF.md](UI_DETAIL_NAVIGATION_HANDOFF.md).
 
 ## Release complete — do not replay
 
@@ -8,27 +8,7 @@ Updated **2026-09-26 (UTC)** after publishing and verifying the Fabino Life Scie
 
 The current disposition is [nse-universe-current-review-2026-09-26.json](../data/discovery/nse-universe-current-review-2026-09-26.json): **105 approved IPOs + five debt-event exclusions + seven migration exclusions + two rights-issue security exclusions = 119 pinned groups**. **Zero unresolved and zero unreviewed groups remain in that pinned audit.** This is still **not full Indian IPO-universe completeness**.
 
-**Exact next bounded backend task: repair and characterize the official BSE issue-summary historical coverage path as a read-only universe-discovery audit.** Retain raw official response bytes/hashes, observation/fetch timestamps, date/year semantics and pagination/exhaustion evidence; reconcile against current recovery and completed BSE SME listing/index evidence; produce explicit matched/unmatched/gap accounting. Do not import an issuer from issue-summary evidence alone and do not replay the completed BSE parser v1.5 cursor.
-
-## Fabino Life Sciences listing-year correction — published and verified live
-
-The separate Fabino BSE hold is resolved. [The retained review](../data/discovery/bse-fabino-listing-year-review-2026-09-26.json) preserves the source conflict: BSE Notice **20220112-10** is dated 12-Jan-2022 but one listing sentence says **"January 13, 2021"**. The same notice schedules the Special Pre-open Session for **13-Jan-2022**, and independent BSE SME IPO Index evidence explicitly confirms the company was listed effective **13-Jan-2022**.
-
-Published historical record:
-- **Issuer:** Fabino Life Sciences Limited
-- **BSE scrip / symbol:** 543444 / FABINO
-- **ISIN:** INE0DRT01018
-- **Board:** SME
-- **Offer:** 31-Dec-2021 to 05-Jan-2022
-- **Issue price:** ₹36
-- **Market lot:** 3,000
-- **Listing date:** **13-Jan-2022**
-
-Evidence materialization run **36248932290** retained **4 official BSE/SEBI documents / 12,642,908 response bytes** in artifact **10908566869**, digest **sha256:b1dce44e5806fa6998cc25a4895159c4b2f2d32d1e7d65afc11a03606e26a841**. PR **#264** merged as **5391027eaac6c18724f482c2ef1c5111a33f0f7d**; publication commit **6d7fad63f478d17d8238a0976efb1f4a247866ef** added one 2022 recovery record.
-
-Actual Pages verification run **36254088389** passed **5 reviewed fields / 0 errors**. The fetched dataset contains **1,333 records**; snapshot fetched **2026-09-26T16:04:08.456Z**, SHA-256 **64a6ddbfb04e556f9f1deca2f54038561e1bed4444702a6a94b06af5eb8269ad**, retained in artifact **10909383646**.
-
-The erroneous 2021 notice text remains in the listing-date correction history. The generic BSE listing parser was **not** relaxed.
+**Exact next bounded backend task: resolve the separate Fabino Life Sciences BSE listing-year conflict.** Use issuer-specific official BSE listing notices, offer/prospectus documents and issuer filings to establish the correct legal identity, original IPO/listing date and year, and whether recovery/public coverage is missing or carries a wrong-year observation. Preserve conflicts; do not infer the year from aggregator data or a later corporate-action/security event.
 
 ## Historical IPO coverage for nine excluded-event issuers — published and verified live
 
@@ -127,9 +107,9 @@ Against the retained 1,321-record pre-release baseline, exactly the two approved
 
 ## Tests and release evidence
 
-Fabino release: PR **#263** materialized the four official sources; PR **#264** added the reviewed correction importer and verifier. PR #264 final-head full data contract **36253989366** and reviewed-BSE compatibility **36253989374** passed. Publication workflow **36254067566** passed. Actual Pages verification **36254088389** passed and retained artifact **10909383646**.
-
 Historical IPO release: PR **#259** added source materialization; PR **#260** fixed durable receipt publication; PR **#261** added the reviewed historical importer and verifier. PR #261 final-head full data contract **36248058518** and reviewed-BSE compatibility **36248058467** passed. Publication workflow **36248110656** passed. Actual Pages verification **36248129988** passed and retained artifact **10908262582**.
+
+## Tests and release evidence
 
 PR #249 final-head CI passed: full data contract **36212457450**, interface **36212457353**, reviewed-BSE compatibility **36212457388**. Merged-main full contract **36213264978** also passed. Local retained-source parser, integrity, UI-contract, nine-batch IPO regression, publication-rehearsal, build and schema checks passed.
 
@@ -139,12 +119,12 @@ Durable combined receipt: [drhp-identity-release-live-2026-09-26.json](verificat
 
 ## Remaining work and preserved history
 
-Active NSE holds: **none in the pinned 119-group NSE review**. The nine historical IPOs behind the earlier excluded debt/migration events and **Fabino Life Sciences** are published and verified live. Keep all positively classified 2026 debt/migration/rights events out of the new-IPO queue.
+Active NSE holds: **none in the pinned 119-group NSE review**. The nine historical IPOs behind the earlier excluded debt/migration events are published and verified live. **Fabino Life Sciences** is now the exact next separate BSE listing-year hold. Keep all positively classified 2026 debt/migration/rights events out of the new-IPO queue.
 
-The exact next P1 gap is **BSE issue-summary historical coverage**. Treat it as read-only discovery first: characterize reliable year/pagination coverage and reconcile against recovery/BSE SME evidence before any issuer-specific follow-up. **BSE parser v1.5 is 236/236 parsed; do not replay its completed cursor.** SEBI historical pagination, NSE-series coverage and broader DRHP source completeness remain after that.
+Broader BSE issue-summary, SEBI historical pagination and NSE-series gaps remain. **BSE parser v1.5 is 236/236 parsed; do not replay its completed cursor.** DRHP coverage expansion must address inconsistent pagination/unlabelled disclosures without treating an observed draft filing as a new approved IPO.
 
 The old canonical review and seven-case hold files dated September 25 are preserved as historical snapshots. Use the linked **September 26 current-review state**, not their stale next-task fields, for new work.
 
-The immediately preceding README and project-status versions are archived byte-for-byte as `docs/archive/README-before-fabino-release-2026-09-26.md` and `docs/archive/PROJECT_STATUS-before-fabino-release-2026-09-26.md`. Earlier manifests, archives, evidence and receipts remain intact. Actions artifacts expire after 14 days; durable receipts retain source hashes, URLs, dates, document identities and locators.
+The immediately preceding README and project-status versions are archived byte-for-byte as `docs/archive/README-before-historical-ipo-release-2026-09-26.md` and `docs/archive/PROJECT_STATUS-before-historical-ipo-release-2026-09-26.md`. Earlier manifests, archives, evidence and receipts remain intact. Actions artifacts expire after 14 days; durable receipts retain source hashes, URLs, dates, document identities and locators.
 
 No minimum-investment expansion, billing/accounts/ads, spending or access-policy changes were introduced.
