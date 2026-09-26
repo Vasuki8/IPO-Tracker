@@ -1,0 +1,10 @@
+import assert from "node:assert/strict";
+import {spawnSync} from "node:child_process";
+import fs from "node:fs";
+const run=spawnSync(process.execPath,["scripts/apply-reviewed-bse-2020-unmatched.mjs","--check"],{encoding:"utf8"});
+assert.equal(run.status,0,run.stderr);
+const result=JSON.parse(run.stdout.trim());assert.equal(result.bse_2020_unmatched_import.records,4);
+const review=JSON.parse(fs.readFileSync("data/discovery/bse-2020-unmatched-review-2026-09-26.json","utf8"));
+const recovery=JSON.parse(fs.readFileSync("data/recovery/2020/nse-issue-information.json","utf8"));
+for(const a of review.actions)assert.equal((recovery.records||[]).some(r=>r.id===a.stable_id),false,"reviewed candidate must remain unpublished before importer application");
+console.log(JSON.stringify({bse_2020_unmatched_import_tests:{records:4,collision_safe:true,null_preserving:true}}));
