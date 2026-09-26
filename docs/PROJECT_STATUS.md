@@ -25,24 +25,24 @@ Original PDF bytes were not materialized in this connector run. The review there
 
 ## Pre-IPO companies — product interpretation corrected
 
-Entry point: [Pre-IPO companies](../drhp.html), linked from the homepage on desktop and mobile. The product surface is **one company per row** for companies with retained DRHP/UDRHP evidence from SEBI. Each row shows the `DRHP filed` signal, latest retained draft date and official SEBI document. Draft-version counts remain internal/source evidence rather than the main feature.
+Entry point: [Pre-IPO companies](../drhp.html), linked from the homepage on desktop and mobile. PR **#251** merged as `8fdc9bdfa8c1b03acb98ae9546ab0a9efabe0c66`. The product surface is **one company per row** for companies with retained DRHP/UDRHP evidence from SEBI. Each row shows the `DRHP filed` signal, latest retained draft date and official SEBI document. Draft-version counts remain internal/source evidence rather than the main feature. The post-merge GitHub Pages deployment workflow completed successfully.
 
 The previous document-centric wording (`DRHP filings`, filing-record metric, filing-version emphasis) was the wrong product interpretation and has been removed from the user-facing page. Draft filings remain separate from the IPO dataset; there is no automatic IPO creation or claim of IPO approval, opening, completion or listing.
 
 | Verified DRHP result | Value |
 | --- | ---: |
-| Companies | **89** |
-| Unique DRHP/UDRHP filing URLs | **90** |
+| Companies | **90** |
+| Unique DRHP/UDRHP filing URLs | **91** |
 | Coverage year | **2026** |
 | SEBI pages checked | **8** |
 | Unique filings observed in latest scan | **89** |
-| Earlier filing retained despite absence from latest scan | **1** |
+| Earlier filings retained despite absence from latest scan | **2** |
 | Source pagination consistent | **No** |
 | Complete DRHP register | **No** |
 
-**Paras Healthcare Limited** is retained from the earlier source-backed dataset. A missing row in a later index scan is not withdrawal evidence. The latest scan returned **93 observations**, including **four duplicates**; this is not 93 distinct filings. Earlier reported counts of 92/91 were observation counts and must not be repeated as unique-filing totals.
+History retention remains non-destructive: a missing row in a later SEBI index scan is not withdrawal evidence. The latest scan returned **91 observations**, including **two duplicates**, for **89 unique filings observed in that scan**. Two earlier retained filings remain in the union, producing **91 retained source documents across 90 companies**.
 
-Source page totals varied between **2,214 and 2,212**. The UI exposes that inconsistency and incomplete coverage. Only explicit 2026 DRHP/UDRHP markers are included; addenda, corrigenda, unlabelled rows, other years and exchange-only filings are outside this release's coverage.
+Source page totals varied between **2,212 and 2,214**. The UI exposes that inconsistency and incomplete coverage. Only explicit 2026 DRHP/UDRHP markers are included; addenda, corrigenda, unlabelled rows, other years and exchange-only filings are outside this release's coverage.
 
 ### Reliability and publication
 
