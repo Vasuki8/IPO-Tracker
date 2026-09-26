@@ -52,7 +52,8 @@
         "close_date": "2023-11-08",
         "issue_price_inr": 792,
         "minimum_bid_quantity": 18,
-        "listing_date": "2023-11-13"
+        "listing_date": "2023-11-13",
+        "original_listing_source": "protean_original_bse_listing"
       },
       "correction_reason": "The retained 06-Feb-2025 NSE date is a later NSE admission, not the IPO listing. The 2023 SEBI prospectus establishes the initial public offer and ₹792 price; official BSE history lists 13-Nov-2023; the later NSE listing evidence is retained separately."
     },
@@ -177,6 +178,19 @@
         "event": "later NSE listing, not original IPO listing"
       },
       "projection_sha256": "609414dedc4df5ad60833654008de1107e7e2647ff90ae3014cd89419d5c5b1b"
+    },
+    {
+      "key": "protean_original_bse_listing",
+      "authority": "Protean eGov Technologies Limited filing to BSE",
+      "document_type": "Issuer Financial Results / IPO Listing Disclosure",
+      "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/26a2a114-289b-48f5-8ffc-d6c8bd317fa0.pdf",
+      "projection": {
+        "issuer": "Protean eGov Technologies Limited",
+        "bse_scrip_code": "544021",
+        "listing_date": "2023-11-13",
+        "event": "original IPO listing on BSE"
+      },
+      "projection_sha256": "dde6b02ffae05d40db532c0f7c26b5804e40be0e7f3f0f39c417f6461b70e796"
     },
     {
       "key": "fabtech_prospectus",
