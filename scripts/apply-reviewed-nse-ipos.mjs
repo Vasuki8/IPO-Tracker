@@ -55,6 +55,68 @@ function sourceCheck(s, expectedUrl, projection) {
     validStamp(s.collected_at) && validHash(s.response_sha256) && validHash(s.projection_sha256) &&
     hash(JSON.stringify(projection)) === s.projection_sha256 && s.publication_date === null, 'invalid_source_or_projection');
 }
+function identityEvidence(source, pointer) {
+  return { url: source.url, document_type: source.document_type, document_identity: source.document_identity,
+    document_sha256: source.response_sha256, publication_date: source.publication_date ?? null,
+    collected_at: source.collected_at, page: source.page ?? null, evidence_locator: pointer };
+}
+function identitySourceCheck(source) {
+  requireThat(source && source.http_status === 200 && source.final_url === source.url &&
+    /^https:\/\/(?:www\.)?(?:sebi\.gov\.in|nseindia\.com|nsearchives\.nseindia\.com)\//i.test(source.url) &&
+    validStamp(source.collected_at) && validHash(source.response_sha256) && validHash(source.projection_sha256) &&
+    source.projection && typeof source.projection === 'object' && hash(JSON.stringify(source.projection)) === source.projection_sha256 &&
+    typeof source.document_type === 'string' && source.document_type.length > 3 &&
+    typeof source.document_identity === 'string' && source.document_identity.length > 3 &&
+    typeof source.artifact_file === 'string' && source.artifact_file.length > 3 &&
+    (source.publication_date === null || validDate(source.publication_date)) &&
+    (source.page == null || (Number.isInteger(source.page) && source.page >= 1)), 'invalid_identity_source');
+}
+function validateIdentity(entry, candidate, projection, pastRow) {
+  const meta = projection.metaInfo || {}, fallback = entry.identity_fallback;
+  if (!fallback) {
+    requireThat(meta.symbol === candidate.nse_symbol &&
+      [projection.companyName, meta.companyName, pastRow.company, pastRow.companyName].filter(v => v != null)
+        .every(n => issuerKey(n) === issuerKey(candidate.issuer_name)) &&
+      typeof projection.companyName === 'string' && projection.companyName.length > 3, 'issuer_identity_mismatch');
+    requireThat(/^INE[A-Z0-9]{8}\d$/.test(meta.isin) && meta.segment === (candidate.board === 'SME' ? 'SME' : 'EQUITY') &&
+      norm(pastRow.securityType) === (candidate.board === 'SME' ? 'SME' : 'EQ') &&
+      ['isDebtSec','isETFSec','isMunicipalBond','isHybridSymbol'].every(k => meta[k] === false), 'non_equity_or_board_mismatch');
+    requireThat(validDate(meta.listingDate) && meta.listingDate === candidate.listing_date &&
+      meta.listingDate === nseDate(pastRow.listingDate), 'listing_date_mismatch');
+    return { issuer_name: projection.companyName, nse_symbol: meta.symbol, isin: meta.isin, listing_date: meta.listingDate,
+      listing_source: evidence(entry.detail_source, candidate.nse_symbol, true, '/metaInfo/listingDate'),
+      board_source: evidence(entry.detail_source, candidate.nse_symbol, true, '/metaInfo/segment'), identity_sources: [] };
+  }
+
+  requireThat(fallback.schema_version === '1.0.0' && fallback.lookup_symbol === candidate.nse_symbol &&
+    norm(projection.companyName).toUpperCase() === candidate.nse_symbol &&
+    ['companyName','symbol','isin','listingDate','segment','isDebtSec','isETFSec','isMunicipalBond','isHybridSymbol'].every(k => meta[k] == null),
+    'identity_fallback_requires_missing_endpoint_metadata');
+  requireThat(issuerKey(fallback.company_name) === issuerKey(candidate.issuer_name) &&
+    /^[A-Z0-9-]+$/.test(fallback.nse_symbol) && /^INE[A-Z0-9]{8}\d$/.test(fallback.isin) &&
+    fallback.board === candidate.board && fallback.listing_date === candidate.listing_date &&
+    fallback.security_class === 'Equity' && fallback.completed_initial_public_offer === true &&
+    norm(pastRow.securityType) === (candidate.board === 'SME' ? 'SME' : 'EQ') &&
+    nseDate(pastRow.listingDate) === fallback.listing_date, 'invalid_identity_fallback');
+  requireThat(Array.isArray(fallback.sources) && fallback.sources.length >= 2 && fallback.sources.length <= 4, 'identity_fallback_source_count');
+  fallback.sources.forEach(identitySourceCheck);
+  const identitySource = fallback.sources.find(source => {
+    const p = source.projection || {};
+    return issuerKey(p.company_name) === issuerKey(fallback.company_name) && p.nse_symbol === fallback.nse_symbol &&
+      p.isin === fallback.isin && p.board === fallback.board;
+  });
+  const listingSource = fallback.sources.find(source => {
+    const p = source.projection || {};
+    return issuerKey(p.company_name) === issuerKey(fallback.company_name) && p.listing_date === fallback.listing_date &&
+      p.completed_initial_public_offer === true;
+  });
+  requireThat(identitySource && listingSource, 'identity_fallback_missing_positive_fields');
+  return { issuer_name: fallback.company_name, nse_symbol: fallback.nse_symbol, isin: fallback.isin,
+    listing_date: fallback.listing_date,
+    listing_source: identityEvidence(listingSource, listingSource.evidence_locator || '/projection/listing_date'),
+    board_source: identityEvidence(identitySource, identitySource.evidence_locator || '/projection/board'),
+    identity_sources: fallback.sources };
+}
 function oneItem(payload, name, required = true) {
   const items = payload.issueInfo.dataList.filter(i => title(i.title) === name);
   requireThat(items.length <= 1 && (!required || items.length === 1), 'missing_or_duplicate_' + name);
@@ -102,21 +164,18 @@ export function validateEntry(entry, queue) {
   requireThat(p && equal(projectDetail(p), p), 'invalid_detail_projection');
   for (const t of TITLES) oneItem(p, t, false);
   sourceCheck(entry.detail_source, detailUrl(c), p); sourceCheck(entry.past_source, PAST_URL, r);
-  requireThat(m?.symbol === c.nse_symbol && p.issueInfo.symbol === c.nse_symbol &&
+  requireThat(p.issueInfo.symbol === c.nse_symbol &&
     norm(oneItem(p, 'symbol').value) === c.nse_symbol && norm(r?.symbol) === c.nse_symbol, 'symbol_mismatch');
-  requireThat([p.companyName, m.companyName, r.company, r.companyName].filter(v => v != null).every(n => issuerKey(n) === issuerKey(c.issuer_name)) &&
-    typeof p.companyName === 'string' && p.companyName.length > 3, 'issuer_identity_mismatch');
-  requireThat(/^INE[A-Z0-9]{8}\d$/.test(m.isin) && m.segment === (c.board === 'SME' ? 'SME' : 'EQUITY') &&
-    norm(r.securityType) === (c.board === 'SME' ? 'SME' : 'EQ') &&
-    ['isDebtSec', 'isETFSec', 'isMunicipalBond', 'isHybridSymbol'].every(k => m[k] === false), 'non_equity_or_board_mismatch');
+  requireThat([r.company, r.companyName].filter(v => v != null).every(n => issuerKey(n) === issuerKey(c.issuer_name)), 'past_issuer_identity_mismatch');
+  const identity = validateIdentity(entry, c, p, r);
   const offer = unquote(oneItem(p, 'issue size').value);
   const initialPublicEquity = /^(?:Initial Public (?:Offer(?:ing)?|Issue)|Intial Public Offer(?:ing)?)\b/i.test(offer);
   requireThat(initialPublicEquity && /\bequity shares\b/i.test(offer) &&
     !/\b(?:follow[ -]?on|further public|rights issue|partly[ -]paid|debenture|non[ -]convertible|FPO)\b/i.test(offer), 'initial_equity_ipo_not_established');
-  requireThat(validDate(m.listingDate) && m.listingDate === c.listing_date && m.listingDate === nseDate(r.listingDate) &&
-    m.listingDate <= entry.detail_source.collected_at.slice(0, 10) && m.listingDate <= entry.past_source.collected_at.slice(0, 10), 'listing_date_mismatch_or_future');
+  requireThat(identity.listing_date <= entry.detail_source.collected_at.slice(0, 10) &&
+    identity.listing_date <= entry.past_source.collected_at.slice(0, 10), 'listing_date_future');
   const period = reviewedPeriod(p), { open, close } = period;
-  requireThat(validDate(open) && validDate(close) && open <= close && close <= m.listingDate &&
+  requireThat(validDate(open) && validDate(close) && open <= close && close <= identity.listing_date &&
     open === nseDate(r.ipoStartDate) && close === nseDate(r.ipoEndDate), 'offer_period_mismatch');
   const price = parsePastIssuePrice(r.issuePrice);
   requireThat(price !== null && price > 0, 'missing_explicit_final_price');
@@ -125,7 +184,9 @@ export function validateEntry(entry, queue) {
     facts[key] = { value, source_value: raw, status: 'verified', page: null,
       source: evidence(source, c.nse_symbol, isDetail, pointer), corrections: [] };
   }
-  fact('listing_date', m.listingDate, m.listingDate, entry.detail_source, '/metaInfo/listingDate');
+  if (entry.identity_fallback) facts.listing_date = { value: identity.listing_date, source_value: identity.listing_date,
+    status: 'verified', page: identity.listing_source.page, source: identity.listing_source, corrections: [] };
+  else fact('listing_date', identity.listing_date, identity.listing_date, entry.detail_source, '/metaInfo/listingDate');
   fact('open_date', open, period.rawOpen, entry.detail_source, '/issueInfo/dataList[' + period.title + ']');
   fact('close_date', close, period.rawClose, entry.detail_source, '/issueInfo/dataList[' + period.title + ']');
   fact('issue_price', price, norm(r.issuePrice), entry.past_source, '/' + c.row_index + '/issuePrice', false);
@@ -147,7 +208,8 @@ export function validateEntry(entry, queue) {
     fact(key, result.value, result.source_value, entry.detail_source, '/issueInfo/dataList[' + result.source_title + ']');
   }
   if (facts.price_band) requireThat(price >= facts.price_band.value.min && price <= facts.price_band.value.max, 'price_outside_band');
-  return { candidate: c, issuer_name: p.companyName, isin: m.isin, facts, offer };
+  return { candidate: c, issuer_name: identity.issuer_name, nse_symbol: identity.nse_symbol, isin: identity.isin,
+    facts, offer, board_source: identity.board_source, identity_sources: identity.identity_sources };
 }
 export function validateReviewedBatch(manifest, queue) {
   requireThat(manifest?.schema_version === '1.0.0' && manifest.verifier_version === REVIEW_VERSION &&
@@ -165,17 +227,24 @@ export function validateReviewedBatch(manifest, queue) {
 }
 export function reviewedRecord(entry, checked, manifest, manifestPath) {
   const now = [entry.detail_source.collected_at, entry.past_source.collected_at].sort().at(-1);
-  const r = buildHistoricalRecord({ ...entry.past_row, company: checked.issuer_name }, now);
+  const r = buildHistoricalRecord({ ...entry.past_row, company: checked.issuer_name, symbol: checked.nse_symbol }, now);
   r.isin = checked.isin;
+  r.nse_symbol = checked.nse_symbol;
   r.nse_source = { ...checked.facts.listing_date.source };
-  r.board_evidence = [{ ...r.nse_source, evidence_locator: '/metaInfo/segment' }]; r.status_evidence = [{ ...r.nse_source }];
-  r.documents = [r.nse_source, checked.facts.issue_price.source].map(e => ({ type: e.document_type,
-    identity: e.document_identity, url: e.url, publication_date: null, collected_at: e.collected_at, document_sha256: e.document_sha256 }));
+  r.board_evidence = [{ ...checked.board_source }]; r.status_evidence = [{ ...r.nse_source }];
+  const identityDocs = checked.identity_sources.map(source => ({ type: source.document_type, identity: source.document_identity,
+    url: source.url, publication_date: source.publication_date ?? null, collected_at: source.collected_at,
+    document_sha256: source.response_sha256, page: source.page ?? null }));
+  r.documents = [...identityDocs, r.nse_source, checked.facts.issue_price.source].map(e => ({ type: e.type || e.document_type,
+    identity: e.identity || e.document_identity, url: e.url, publication_date: e.publication_date ?? null,
+    collected_at: e.collected_at, document_sha256: e.document_sha256, ...(e.page == null ? {} : { page:e.page }) }))
+    .filter((doc, i, all) => all.findIndex(other => other.url === doc.url && other.type === doc.type) === i);
   for (const [f, field] of Object.entries(checked.facts)) r[f] = structuredClone(field);
   r.nse_verified_ipo_batch = { manifest: manifestPath, verifier_version: REVIEW_VERSION,
     source_run_id: manifest.source_run_id, source_artifact_id: manifest.source_artifact_id,
     source_artifact_sha256: manifest.source_artifact_sha256,
-    detail_response_sha256: entry.detail_source.response_sha256, decision: entry.decision };
+    detail_response_sha256: entry.detail_source.response_sha256, decision: entry.decision,
+    ...(entry.identity_fallback ? { identity_fallback_source_hashes: entry.identity_fallback.sources.map(source => source.response_sha256) } : {}) };
   return r;
 }
 function strings(v) { return typeof v === 'string' ? [v] : v && typeof v === 'object' ? Object.values(v).flatMap(strings) : []; }
