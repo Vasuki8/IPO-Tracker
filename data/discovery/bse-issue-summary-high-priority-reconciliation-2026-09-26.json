@@ -1,0 +1,287 @@
+{
+  "schema_version": "1.0.0",
+  "status": "reviewed_bse_issue_summary_high_priority_reconciliation",
+  "reviewed_at": "2026-09-26",
+  "audit_path": "data/discovery/bse-issue-summary-coverage-audit-2026-09-26.json",
+  "scope": "Resolve the five high-priority reconciliation items surfaced by the read-only official BSE historical coverage audit. Listing/performance rows are discovery evidence; all data changes require issuer-specific official evidence.",
+  "actions": [
+    {
+      "issuer_name": "Computer Age Management Services Limited",
+      "current": {
+        "recovery_year": 2021,
+        "id": "computer-age-management-services-limited",
+        "listing_date": "2021-05-07",
+        "issue_price_inr": 1240,
+        "nse_symbol": "CAMS"
+      },
+      "decision": "move_and_correct_historical_ipo",
+      "target": {
+        "recovery_year": 2020,
+        "id": "computer-age-management-services-limited",
+        "issuer_name": "Computer Age Management Services Limited",
+        "board": "Mainboard",
+        "nse_symbol": "CAMS",
+        "bse_scrip_code": "543232",
+        "isin": "INE596I01012",
+        "open_date": "2020-09-21",
+        "close_date": "2020-09-23",
+        "issue_price_inr": 1230,
+        "listing_date": "2020-10-01"
+      },
+      "correction_reason": "The retained NSE public-past observation is a later/wrong event for IPO-history purposes. The 2020 SEBI prospectus establishes the first public offer and ₹1,230 price; the official BSE audit lists 01-Oct-2020, and the NSE listing circular confirms CAMS/ISIN identity."
+    },
+    {
+      "issuer_name": "Protean eGov Technologies Limited",
+      "current": {
+        "recovery_year": 2025,
+        "id": "protean-egov-technologies-limited",
+        "listing_date": "2025-02-06",
+        "issue_price_inr": 1381,
+        "nse_symbol": "PROTEAN"
+      },
+      "decision": "move_and_correct_historical_ipo_preserve_secondary_listing",
+      "target": {
+        "recovery_year": 2023,
+        "id": "protean-egov-technologies-limited",
+        "issuer_name": "Protean eGov Technologies Limited",
+        "board": "Mainboard",
+        "nse_symbol": "PROTEAN",
+        "bse_scrip_code": "544021",
+        "isin": "INE004A01022",
+        "open_date": "2023-11-06",
+        "close_date": "2023-11-08",
+        "issue_price_inr": 792,
+        "minimum_bid_quantity": 18,
+        "listing_date": "2023-11-13"
+      },
+      "correction_reason": "The retained 06-Feb-2025 NSE date is a later NSE admission, not the IPO listing. The 2023 SEBI prospectus establishes the initial public offer and ₹792 price; official BSE history lists 13-Nov-2023; the later NSE listing evidence is retained separately."
+    },
+    {
+      "issuer_name": "Fabtech Technologies Limited",
+      "current": {
+        "recovery_match": null,
+        "false_prefix_match": "FABTECH TECHNOLOGIES CLEANROOMS LIMITED / 544332"
+      },
+      "decision": "add_distinct_historical_ipo",
+      "target": {
+        "recovery_year": 2025,
+        "id": "fabtech-technologies-limited",
+        "issuer_name": "Fabtech Technologies Limited",
+        "board": "Mainboard",
+        "nse_symbol": "FABTECH",
+        "bse_scrip_code": "544558",
+        "isin": "INE0HF201011",
+        "open_date": "2025-09-29",
+        "close_date": "2025-10-01",
+        "issue_price_inr": 191,
+        "minimum_bid_quantity": 75,
+        "listing_date": "2025-10-07"
+      },
+      "correction_reason": "Fabtech Technologies Limited and Fabtech Technologies Cleanrooms Limited are distinct legal issuers with distinct BSE scrip codes. The former is a separate 2025 IPO; the Cleanrooms recovery record must remain unchanged."
+    },
+    {
+      "issuer_name": "Happy Forgings Limited",
+      "current": {
+        "recovery_year": 2023,
+        "id": "happy-forging-limited",
+        "issuer_name": "Happy Forging Limited",
+        "listing_date": "2023-12-27",
+        "nse_symbol": "HAPPYFORGE"
+      },
+      "decision": "correct_legal_name_preserve_stable_id",
+      "target": {
+        "recovery_year": 2023,
+        "id": "happy-forging-limited",
+        "issuer_name": "Happy Forgings Limited",
+        "bse_scrip_code": "544057",
+        "listing_date": "2023-12-27",
+        "nse_symbol": "HAPPYFORGE"
+      },
+      "correction_reason": "Official BSE issuer filings use the legal name Happy Forgings Limited. Listing facts are already correct; keep the existing stable record id."
+    },
+    {
+      "issuer_name": "Kronox Lab Sciences Limited",
+      "current": {
+        "recovery_year": 2024,
+        "id": "kronox-lab-scienceslimited",
+        "issuer_name": "Kronox Lab SciencesLimited",
+        "listing_date": "2024-06-10",
+        "nse_symbol": "KRONOX"
+      },
+      "decision": "correct_legal_name_spacing_preserve_stable_id",
+      "target": {
+        "recovery_year": 2024,
+        "id": "kronox-lab-scienceslimited",
+        "issuer_name": "Kronox Lab Sciences Limited",
+        "bse_scrip_code": "544187",
+        "listing_date": "2024-06-10",
+        "nse_symbol": "KRONOX"
+      },
+      "correction_reason": "Official SEBI filings use Kronox Lab Sciences Limited. Listing facts are already correct; keep the existing stable record id."
+    }
+  ],
+  "sources": [
+    {
+      "key": "cams_prospectus",
+      "authority": "SEBI",
+      "document_type": "Prospectus",
+      "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2020/1601269967066.pdf",
+      "projection": {
+        "issuer": "Computer Age Management Services Limited",
+        "event_type": "initial public offer",
+        "offer_open": "2020-09-21",
+        "offer_close": "2020-09-23",
+        "issue_price_inr": 1230,
+        "listing_venue": "BSE"
+      },
+      "projection_sha256": "e0a3bbef4b9c6261a8a09d70d4273c692355477bd36a57740c532000cb20d361"
+    },
+    {
+      "key": "cams_nse_listing",
+      "authority": "NSE",
+      "document_type": "Listing Circular",
+      "url": "https://nsearchives.nseindia.com/content/circulars/CML45904.pdf",
+      "projection": {
+        "issuer": "Computer Age Management Services Limited",
+        "symbol": "CAMS",
+        "isin": "INE596I01012",
+        "listing_date": "2020-10-01"
+      },
+      "projection_sha256": "a7aac4a312ba24acdf28c60fb056053cf0303f39794bb72bb13881bdd7a1ba61"
+    },
+    {
+      "key": "protean_prospectus",
+      "authority": "SEBI",
+      "document_type": "Prospectus",
+      "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2023/1700736778280.pdf",
+      "projection": {
+        "issuer": "Protean eGov Technologies Limited",
+        "event_type": "initial public offer",
+        "offer_open": "2023-11-06",
+        "offer_close": "2023-11-08",
+        "issue_price_inr": 792,
+        "minimum_bid_quantity": 18
+      },
+      "projection_sha256": "f8753c387d81fd77fe80ac44777bce0dee30934f867c9dfbeffe5612b2d6e46f"
+    },
+    {
+      "key": "protean_secondary_nse",
+      "authority": "NSE/BSE issuer filing",
+      "document_type": "NSE Listing Press Release retained via BSE filing",
+      "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/0063fce8-dde0-4f1b-82f9-2ba813b6b417.pdf",
+      "projection": {
+        "issuer": "Protean eGov Technologies Limited",
+        "symbol": "PROTEAN",
+        "isin": "INE004A01022",
+        "nse_listing_date": "2025-02-06",
+        "event": "later NSE listing, not original IPO listing"
+      },
+      "projection_sha256": "609414dedc4df5ad60833654008de1107e7e2647ff90ae3014cd89419d5c5b1b"
+    },
+    {
+      "key": "fabtech_prospectus",
+      "authority": "SEBI",
+      "document_type": "Prospectus",
+      "url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2025/1760695606716.pdf",
+      "projection": {
+        "issuer": "Fabtech Technologies Limited",
+        "event_type": "initial public offer",
+        "offer_open": "2025-09-29",
+        "offer_close": "2025-10-01",
+        "issue_price_inr": 191,
+        "minimum_bid_quantity": 75
+      },
+      "projection_sha256": "fe6b571669bf18dfb21857bfea7ae64e5add13aa93519e3b966af5be6f0e8d00"
+    },
+    {
+      "key": "fabtech_nse_listing",
+      "authority": "NSE",
+      "document_type": "Listing Circular",
+      "url": "https://nsearchives.nseindia.com/content/circulars/CML70624.pdf",
+      "projection": {
+        "issuer": "Fabtech Technologies Limited",
+        "symbol": "FABTECH",
+        "isin": "INE0HF201011",
+        "listing_date": "2025-10-07",
+        "event": "IPO listing"
+      },
+      "projection_sha256": "54e5710770351195c33cfdde2db5db2333da1c7d5ff16d764f0ce6deed91e215"
+    },
+    {
+      "key": "fabtech_cleanrooms_identity",
+      "authority": "BSE issuer filing",
+      "document_type": "Issuer Filing",
+      "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/9e177f73-8030-433e-a9c7-47de12411a18.pdf",
+      "projection": {
+        "issuer": "Fabtech Technologies Cleanrooms Limited",
+        "bse_scrip_code": "544332",
+        "symbol": "FABCLEAN",
+        "identity_note": "distinct issuer from Fabtech Technologies Limited"
+      },
+      "projection_sha256": "e10c4f444428b388915872edf92f6f35dd44f7f6b1da243b71a0ae57a1061838"
+    },
+    {
+      "key": "happy_identity",
+      "authority": "BSE issuer filing",
+      "document_type": "Issuer Filing",
+      "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/5c314f8e-566e-45ee-8df9-8477a873ec27.pdf",
+      "projection": {
+        "issuer": "Happy Forgings Limited",
+        "bse_scrip_code": "544057",
+        "nse_symbol": "HAPPYFORGE"
+      },
+      "projection_sha256": "63260fafcb267469c42a79ad8fcc66fb1c7a9638b23a207b1da2b58c49060b96"
+    },
+    {
+      "key": "kronox_identity",
+      "authority": "SEBI",
+      "document_type": "Final Offer Filing Page",
+      "url": "https://www.sebi.gov.in/filings/public-issues/jun-2024/kronox-lab-sciences-limited-prospectus_84060.html",
+      "projection": {
+        "issuer": "Kronox Lab Sciences Limited",
+        "filing_type": "Prospectus",
+        "publication_date": "2024-06-06"
+      },
+      "projection_sha256": "41423296f43e5ccadcd4562e23d3fb807f56678d239c0a5709be325a4109dcaf"
+    }
+  ],
+  "bse_audit_evidence": {
+    "audit_path": "data/discovery/bse-issue-summary-coverage-audit-2026-09-26.json",
+    "audit_workflow_run_id": 36256389220,
+    "audit_artifact_id": 10910408234,
+    "facts": [
+      {
+        "issuer_name": "Computer Age Management Services Limited",
+        "source_year": 2020,
+        "bse_scrip_code": "543232",
+        "listing_date": "2020-10-01"
+      },
+      {
+        "issuer_name": "Protean eGov Technologies Limited",
+        "source_year": 2023,
+        "bse_scrip_code": "544021",
+        "listing_date": "2023-11-13"
+      },
+      {
+        "issuer_name": "Fabtech Technologies Limited",
+        "source_year": 2025,
+        "bse_scrip_code": "544558",
+        "listing_date": "2025-10-07"
+      },
+      {
+        "issuer_name": "Happy Forgings Limited",
+        "source_year": 2023,
+        "bse_scrip_code": "544057",
+        "listing_date": "2023-12-27"
+      },
+      {
+        "issuer_name": "Kronox Lab Sciences Limited",
+        "source_year": 2024,
+        "bse_scrip_code": "544187",
+        "listing_date": "2024-06-10"
+      }
+    ]
+  },
+  "import_status": "pending_source_materialization",
+  "auto_import_allowed": false
+}
