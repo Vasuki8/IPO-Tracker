@@ -4,7 +4,7 @@ A source-first Indian IPO research website with automated official-source collec
 
 - Repository: `Vasuki8/IPO-Tracker`; default branch: `main`.
 - Website: https://vasuki8.github.io/IPO-Tracker/
-- [Explore IPOs](index.html) · [Pre-IPO companies](drhp.html).
+- [Explore IPOs](index.html) · [DRHP filings](drhp.html).
 - Public IPO dataset: `data/ipos.json`, generated from retained evidence under `data/recovery/`.
 - Separate DRHP observations: `data/drhp-filings.json`.
 - Development contract: [docs/DEVELOPMENT_PROCESS.md](docs/DEVELOPMENT_PROCESS.md).
@@ -19,7 +19,7 @@ The active application-term requirement is **Lot Size only**. Display verified m
 
 Never invent missing values or use price-times-quantity arithmetic to fill them. Preserve official sources, document identity, dates, hashes when retained, nulls, conflicts and correction history. A final Prospectus is not required for inclusion. Repair retained recovery evidence rather than hand-editing `data/ipos.json`.
 
-The **Pre-IPO companies** view is a company-level IPO pipeline backed by retained DRHP/UDRHP evidence from SEBI. It shows one company per row; draft-document versions remain source evidence rather than the product itself. A draft filing does not automatically create an IPO record or establish approval, opening, completion or listing. Current coverage is explicit 2026 DRHP/UDRHP markers from SEBI's draft-offer section, not a complete register of every company considering an IPO.
+The DRHP directory is a separate filing-discovery list. A draft filing does not automatically create an IPO record or establish approval, opening, completion or listing. Current coverage is explicit 2026 DRHP/UDRHP markers from SEBI's draft-offer section, not a complete register.
 
 ## Automation
 
@@ -37,7 +37,7 @@ Collection time, source observation, dataset generation and Pages publication ar
 
 **The interrupted identity/DRHP release is complete: PR #248 and PR #249 are merged and verified. Do not replay batches 1–9.**
 
-The [Pre-IPO company list](drhp.html) currently contains **89 companies** backed by **90 unique retained 2026 DRHP/UDRHP source documents**. Actual served data and all four page assets matched published bytes at **2026-09-26T02:57:48.027Z**. Source refresh **36213264969** succeeded; publication commit **43fbd1f519701fe8b149cf7038f76e3709a1a5dd**. Dataset SHA-256: `a74943eca9e7bc66d0e791b25f9c59b2347ae37609d4448bfd0f3e373bf51b38`.
+The [DRHP directory](drhp.html) contains **89 companies / 90 unique 2026 DRHP or UDRHP filings**. Actual served data and all four page assets matched published bytes at **2026-09-26T02:57:48.027Z**. Source refresh **36213264969** succeeded; publication commit **43fbd1f519701fe8b149cf7038f76e3709a1a5dd**. Dataset SHA-256: `a74943eca9e7bc66d0e791b25f9c59b2347ae37609d4448bfd0f3e373bf51b38`.
 
 **Paras Healthcare** is preserved from the earlier source-backed list. The latest eight-page scan contained 93 observations but only 89 unique filings; one earlier retained filing brings the union to 90. SEBI page totals varied between 2,214 and 2,212, so the site explicitly labels incomplete coverage. Older years, unlabelled draft rows, exchange-only filings, addenda and corrigenda are outside this release's scope. Do not repeat the superseded 92/91 observation counts as distinct filings.
 
@@ -46,12 +46,6 @@ The [Pre-IPO company list](drhp.html) currently contains **89 companies** backed
 Final-head CI, merged-main data-contract tests and local retained-source regressions passed. Exact fetched DRHP assets were rendered offline at 320/375/1440 pixels, with search, empty/error/retry, failed-refresh preservation and mobile navigation passing without page overflow. Actual remote byte verification was performed by Actions; the browser checks used retained JSON test doubles.
 
 [Combined live receipt](docs/verification/drhp-identity-release-live-2026-09-26.json) · [Current review/hold state](data/discovery/nse-universe-current-review-2026-09-26.json).
-
-### Pre-IPO company-list interpretation corrected
-
-The user-facing DRHP feature is now explicitly a **company list for proposed IPOs**, not a filing-record directory. The page shows one company per row with a `DRHP filed` stage, latest retained draft date and official SEBI document. Multiple DRHP/UDRHP versions remain behind the company record as evidence. The underlying collector/data file stays source-first and history-preserving.
-
-This correction does **not** promote a DRHP to an approved/upcoming/open IPO. A company may later progress to RHP, upcoming, open, closed or listed status; the page records only the verified draft-submission signal.
 
 ### Rights-security review complete
 
@@ -108,4 +102,4 @@ node scripts/verify-drhp-publication.mjs --output-dir=/tmp/drhp-publication
 
 ## Historical handoffs
 
-The immediately preceding README and status are archived byte-for-byte in [docs/archive/README-before-pre-ipo-company-list-correction-2026-09-26.md](docs/archive/README-before-pre-ipo-company-list-correction-2026-09-26.md) and [docs/archive/PROJECT_STATUS-before-pre-ipo-company-list-correction-2026-09-26.md](docs/archive/PROJECT_STATUS-before-pre-ipo-company-list-correction-2026-09-26.md). Earlier archives and receipts remain intact. Archived next-task instructions are not current instructions.
+The immediately preceding README and status are archived byte-for-byte in [docs/archive/README-before-rights-security-review-2026-09-26.md](docs/archive/README-before-rights-security-review-2026-09-26.md) and [docs/archive/PROJECT_STATUS-before-rights-security-review-2026-09-26.md](docs/archive/PROJECT_STATUS-before-rights-security-review-2026-09-26.md). Earlier archives and receipts, including the DRHP/identity-finalization archives, remain intact. Archived next-task instructions are not current instructions.

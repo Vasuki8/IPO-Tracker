@@ -6,12 +6,18 @@ const app=fs.readFileSync("assets/drhp.js","utf8");
 const index=fs.readFileSync("index.html","utf8");
 const data=JSON.parse(fs.readFileSync("data/drhp-filings.json","utf8"));
 
-assert.match(index,/href="drhp\.html"[^>]*>DRHP filings<\/a>/);
+assert.match(index,/href="drhp\.html"[^>]*>Pre-IPO companies<\/a>/);
+assert.match(html,/Companies that have filed for an IPO\./);
+assert.match(html,/One company per row/);
+assert.doesNotMatch(html,/Filing records/);
+assert.doesNotMatch(html,/DRHP filing companies/);
 assert.match(html,/id="drhpSearch"/);
-assert.match(html,/data\/drhp-filings\.json|assets\/drhp\.js/);
-assert.match(html,/A DRHP filing is a draft disclosure/);
+assert.match(html,/assets\/drhp\.js/);
+assert.match(html,/draft filing shows formal IPO intent/i);
 assert.match(html,/Official SEBI source/);
 assert.match(app,/fetch\("data\/drhp-filings\.json"/);
+assert.match(app,/status status--upcoming">DRHP filed/);
+assert.match(app,/company list is backed by retained 2026 draft-offer evidence/);
 assert.match(app,/stop_reason !== "first_page_strictly_older_than_year"/);
 assert.match(app,/drhpIntegrityNote/);
 assert.equal(data.coverage.filing_records,data.companies.reduce((n,c)=>n+c.filings.length,0));
@@ -29,4 +35,4 @@ for(const company of data.companies){
   assert.match(company.latest_filing_date,/^2026-\d\d-\d\d$/);
   assert.ok(company.filing_count>=1);
 }
-console.log(JSON.stringify({drhp_ui_tests:{companies:data.companies.length,filings:data.coverage.filing_records,pages:data.coverage.pages_fetched,source_backed:true}}));
+console.log(JSON.stringify({pre_ipo_company_ui_tests:{companies:data.companies.length,retained_source_filings:data.coverage.filing_records,pages:data.coverage.pages_fetched,one_company_per_row:true,source_backed:true}}));

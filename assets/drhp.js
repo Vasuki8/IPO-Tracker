@@ -1,4 +1,4 @@
-/* Read-only DRHP directory sourced from SEBI's Draft Offer Documents section. */
+/* Pre-IPO company list backed by retained SEBI draft-offer evidence. */
 let DRHP_DATA = null;
 const $ = (selector) => document.querySelector(selector);
 
@@ -36,7 +36,7 @@ function visibleCompanies() {
 function filingLink(company) {
   const url = safeUrl(company.latest_filing_url);
   return url
-    ? `<a class="drhp-filing-link" href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer">View on SEBI ↗</a>`
+    ? `<a class="drhp-filing-link" href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer">View latest draft ↗</a>`
     : "Unavailable";
 }
 function render() {
@@ -44,14 +44,14 @@ function render() {
   const companies = visibleCompanies();
   $("#drhpVisibleCount").textContent = companies.length;
   $("#drhpRows").innerHTML = companies.map(company => `<tr>
-    <td><strong class="drhp-company-name">${escapeHtml(company.issuer_name)}</strong>${company.filings?.some(f => f.not_seen_in_latest_scan) ? '<span class="secondary">Includes an earlier retained observation</span>' : ""}${company.filing_count > 1 ? `<span class="secondary">${escapeHtml(company.filing_count)} retained filings</span>` : ""}</td>
-    <td><span class="source source--verified">${escapeHtml(company.latest_filing_type)}</span></td>
-    <td><span class="number">${escapeHtml(formatDate(company.latest_filing_date))}</span></td>
+    <td><strong class="drhp-company-name">${escapeHtml(company.issuer_name)}</strong>${company.filings?.some(f => f.not_seen_in_latest_scan) ? '<span class="secondary">Includes earlier retained source evidence</span>' : ""}</td>
+    <td><span class="status status--upcoming">DRHP filed</span></td>
+    <td><span class="number">${escapeHtml(formatDate(company.latest_filing_date))}</span><span class="secondary">${escapeHtml(company.latest_filing_type)} · latest retained draft</span></td>
     <td>${filingLink(company)}</td>
   </tr>`).join("");
   $("#drhpCards").innerHTML = companies.map(company => `<article class="mobile-card drhp-card">
-    <div class="mobile-card__head"><div><strong class="drhp-company-name">${escapeHtml(company.issuer_name)}</strong><div class="company-meta">${escapeHtml(company.latest_filing_type)} · ${escapeHtml(formatDate(company.latest_filing_date))}</div></div></div>
-    <div class="mobile-card__foot"><span>${company.filing_count > 1 ? `${escapeHtml(company.filing_count)} filings retained` : "1 filing retained"}</span>${filingLink(company)}</div>
+    <div class="mobile-card__head"><div><strong class="drhp-company-name">${escapeHtml(company.issuer_name)}</strong><div class="company-meta">DRHP filed · latest draft ${escapeHtml(formatDate(company.latest_filing_date))}</div></div><span class="status status--upcoming">DRHP filed</span></div>
+    <div class="mobile-card__foot"><span>Proposed IPO · ${escapeHtml(company.latest_filing_type)} evidence</span>${filingLink(company)}</div>
   </article>`).join("");
   $("#drhpEmpty").hidden = companies.length !== 0;
 }
@@ -76,20 +76,20 @@ async function load() {
   $("#drhpResults").hidden = true;
   try {
     const response = await fetch("data/drhp-filings.json", {cache:"no-store"});
-    if (!response.ok) throw new Error("DRHP dataset request failed");
+    if (!response.ok) throw new Error("Pre-IPO source dataset request failed");
     const data = await response.json();
-    if (!validateDataset(data)) throw new Error("Invalid DRHP dataset");
+    if (!validateDataset(data)) throw new Error("Invalid pre-IPO source dataset");
     DRHP_DATA = data;
     $("#drhpCompanyCount").textContent = data.companies.length;
-    $("#drhpFilingCount").textContent = data.coverage.filing_records;
+    $("#drhpLatestDate").textContent = formatDate(data.companies.reduce((latest, company) => !latest || company.latest_filing_date > latest ? company.latest_filing_date : latest, null));
     $("#drhpYear").textContent = data.coverage.year;
     $("#drhpPages").textContent = data.coverage.pages_fetched;
     $("#drhpGenerated").textContent = "Last successful collection: " + formatTimestamp(data.collection_completed_at || data.source_pages?.at(-1)?.collected_at || data.generated_at);
     $("#drhpCoverageNote").textContent =
-      `${data.coverage.year} coverage · ${data.coverage.pages_fetched} SEBI pages checked · explicit DRHP/UDRHP filings only`;
+      `${data.companies.length} companies with retained ${data.coverage.year} DRHP/UDRHP evidence · ${data.coverage.pages_fetched} SEBI pages checked`;
     const totals = new Set((data.source_pages || []).map(p => p.observed_records));
     const retained = data.companies.flatMap(c => c.filings).filter(f => f.not_seen_in_latest_scan).length;
-    $("#drhpIntegrityNote").textContent = (totals.size > 1 ? "SEBI page totals differed during collection. " : "") + "This is a retained 2026 filing list, not a complete register. " + (retained ? `${retained} earlier filing(s) not seen in the latest scan remain available; absence is not withdrawal evidence. ` : "") + "Other years, unlabelled draft filings and exchange-only filings are not included.";
+    $("#drhpIntegrityNote").textContent = (totals.size > 1 ? "SEBI page totals differed during collection. " : "") + "This company list is backed by retained 2026 draft-offer evidence and is not a complete register of every company considering an IPO. " + (retained ? `${retained} earlier draft observation(s) not seen in the latest scan remain retained; absence is not withdrawal evidence. ` : "") + "A company may later progress to RHP, upcoming, open, closed or listed status; this page records the draft submission signal.";
     const sourceUrl = safeUrl(data.source?.listing_url, "/sebiweb/home/");
     if (sourceUrl) $("#sebiSourceLink").href = sourceUrl;
     $("#drhpLoading").hidden = true;
@@ -99,7 +99,7 @@ async function load() {
       const healthResponse = await fetch("ops/drhp-collection.json", {cache:"no-store"});
       if(!healthResponse.ok) throw new Error("health unavailable");
       const health = await healthResponse.json();
-      if(health.status === "failed") $("#drhpIntegrityNote").textContent += " Latest refresh failed; the last successful list is retained.";
+      if(health.status === "failed") $("#drhpIntegrityNote").textContent += " Latest refresh failed; the last successful company list is retained.";
       else if(health.status !== "success") $("#drhpIntegrityNote").textContent += " Latest refresh status is unavailable.";
     } catch { $("#drhpIntegrityNote").textContent += " Latest refresh status is unavailable."; }
   } catch (error) {
