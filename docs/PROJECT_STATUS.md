@@ -6,9 +6,19 @@ Updated **2026-09-26 (UTC)** after completing the Abakkus/Pre-IPO source-coverag
 
 **PR #248 and PR #249 are merged.** AMIRCHAND and LEAP are resolved and published; the DRHP directory and its history-preserving refresh are verified on actual Pages. Do not replay approved imports from batches 1–9.
 
-The current disposition is [nse-universe-current-review-2026-09-26.json](../data/discovery/nse-universe-current-review-2026-09-26.json): **105 approved IPOs + five debt-event exclusions + four migration exclusions + two rights-issue security exclusions + three unresolved NSE cases = 119 pinned groups**. Zero unreviewed groups remain in that original audit. This is **not full Indian IPO-universe completeness**.
+The current disposition is [nse-universe-current-review-2026-09-26.json](../data/discovery/nse-universe-current-review-2026-09-26.json): **105 approved IPOs + five debt-event exclusions + seven migration exclusions + two rights-issue security exclusions = 119 pinned groups**. **Zero unresolved and zero unreviewed groups remain in that pinned audit.** This is still **not full Indian IPO-universe completeness**.
 
-**Exact next bounded backend task: GICL, VITAL and KOTYARK prior-offer/listing history review.** Use issuer-specific official notices/filings, not symbol spelling or aggregate observations. Reconcile latest main and actual Pages before action. Preserve each issuer's prior IPO history and all source conflicts; remain on hold when proof is insufficient.
+**Exact next bounded backend task: original historical IPO coverage for the nine earlier debt/migration-event issuers** — 10MWL29, QMSMEDI, 12VPT28A, ANNAPURNA, SWARAJ, 1150VIES30, 12AIL28, DOLLEX and 13DCCL28. Keep their 2026 non-IPO events excluded and independently verify any original IPO/listing history.
+
+## GICL, VITAL and KOTYARK migration review — complete
+
+The final three NSE holds are positively classified as **migration events, not new 2026 IPOs**. [The retained review](../data/discovery/nse-universe-final-migration-review-2026-09-26.json) records the issuer-specific official evidence and preserved conflicts.
+
+- **GICL / Globe International Carriers Limited / INE947T01022:** NSE listing approval states that the equity shares were admitted to the Main Board effective **18-Feb-2026 pursuant to migration from SME Emerge**. A 2025 official filing also explains the ISIN change from INE947T01014 to INE947T01022 after a face-value split; that security maintenance is not a new IPO.
+- **VITAL / Vital Chemtech Limited / INE0L4K01016:** an official issuer filing to NSE states that the company was earlier on NSE EMERGE and its equity shares were listed on the Main Board effective **11-Mar-2026 upon migration**. The 2022 IPO history remains separate; NSE Market Pulse identifies the 14-Nov-2022 listing as an SME-IPO.
+- **KOTYARK / Kotyark Industries Limited / INE0J0B01017:** NSE Circular **NSE/CML/73219** explicitly states migration from SME EMERGE to the Main Board effective **12-Mar-2026** and references the original 2021 SME listing circular. Issuer financial statements separately retain the 2021 IPO details (21–25 Oct 2021, Rs.51, listed 2-Nov-2021).
+
+No public IPO record was added, removed or edited. Price/source conflicts are retained rather than used to reinterpret the 2026 migration events. Original PDF bytes were not materialized in this connector review; retained projection hashes are hashes of the literal review projections only.
 
 ## ADANIENPP1 and SILGOPP rights-security review — complete
 
@@ -83,7 +93,7 @@ Durable combined receipt: [drhp-identity-release-live-2026-09-26.json](verificat
 
 ## Remaining work and preserved history
 
-Active NSE holds: **GICL, VITAL, KOTYARK**. These are now the exact next bounded review. **Fabino Life Sciences** remains a separate BSE listing-year hold. Keep positive debt/migration/rights-event exclusions out of the new-IPO queue while independently reviewing their issuers' original historical equity IPOs.
+Active NSE holds: **none in the pinned 119-group NSE review**. **Fabino Life Sciences** remains a separate BSE listing-year hold. Next, review original historical IPO coverage for the nine earlier debt/migration-event issuers while keeping all positively classified 2026 debt/migration/rights events out of the new-IPO queue.
 
 Broader BSE issue-summary, SEBI historical pagination and NSE-series gaps remain. **BSE parser v1.5 is 236/236 parsed; do not replay its completed cursor.** DRHP coverage expansion must address inconsistent pagination/unlabelled disclosures without treating an observed draft filing as a new approved IPO.
 
