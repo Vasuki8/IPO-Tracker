@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="description" content="Companies with explicit DRHP or UDRHP filings in SEBI's 2026 Draft Offer Documents section." />
+    <meta name="theme-color" content="#fafbf8" />
+    <title>DRHP Filings — IPO Tracker</title>
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+    <link rel="stylesheet" href="assets/styles.css?v=20260926-drhp1" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="topbar">
+      <div class="topbar__inner">
+        <a class="brand" href="index.html" aria-label="IPO Tracker home">
+          <span class="brand__mark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 17V12M11 17V8M17 17V4M4 21h16" /></svg></span>
+          <span>IPO<span class="brand__light">Tracker</span></span>
+        </a>
+        <nav class="primary-nav" aria-label="Primary navigation">
+          <a class="nav-link" href="index.html">Explore IPOs</a>
+          <a class="nav-link active" href="drhp.html" aria-current="page">DRHP filings</a>
+        </nav>
+        <span class="market-label"><span class="india-mark" aria-hidden="true"></span>Indian markets</span>
+      </div>
+    </header>
+
+    <main class="page" id="main">
+      <section class="drhp-hero" aria-labelledby="pageTitle">
+        <div>
+          <p class="eyebrow">DRAFT OFFER DOCUMENTS</p>
+          <h1 id="pageTitle">Companies that filed a DRHP.</h1>
+          <p class="page-description">A source-backed list from SEBI's Draft Offer Documents section. A DRHP filing is a draft disclosure—not proof that an IPO has opened, completed, or will list.</p>
+        </div>
+        <a class="source-note drhp-source-note" id="sebiSourceLink" href="https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=10&ssid=15" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10" /><path d="m9 12 2 2 4-4" /></svg>
+          <span>Official SEBI source<small>Draft Offer Documents ↗</small></span>
+        </a>
+      </section>
+
+      <section class="market-overview drhp-overview" aria-label="DRHP filing overview">
+        <div class="metric"><span class="metric-label">Companies</span><strong id="drhpCompanyCount">—</strong><small>Explicit DRHP / UDRHP filings</small></div>
+        <div class="metric"><span class="metric-label">Filing records</span><strong id="drhpFilingCount">—</strong><small>Including updated DRHP filings</small></div>
+        <div class="metric"><span class="metric-label">Coverage year</span><strong id="drhpYear">—</strong><small>SEBI filing date</small></div>
+        <div class="metric"><span class="metric-label">SEBI pages checked</span><strong id="drhpPages">—</strong><small>Until the prior-year boundary</small></div>
+      </section>
+
+      <section class="directory drhp-directory" aria-label="DRHP filing companies">
+        <div class="directory-top">
+          <div>
+            <h2>DRHP filing companies <span id="drhpVisibleCount" class="count-chip">—</span></h2>
+            <p>Latest explicit filing shown first.</p>
+          </div>
+          <span class="coverage-note">Addenda & corrigenda excluded · Missing claims are not inferred</span>
+        </div>
+        <div class="toolbar drhp-toolbar">
+          <label class="search">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" /><path d="m16 16 4 4" /></svg>
+            <span class="sr-only">Search DRHP companies</span>
+            <input id="drhpSearch" type="search" placeholder="Search a company…" autocomplete="off" />
+          </label>
+          <span id="drhpGenerated" class="drhp-generated">Dataset generation time unavailable</span>
+        </div>
+
+        <div id="drhpLoading" class="empty-state" role="status">
+          <span class="loading-dot"></span>
+          <h3>Loading DRHP filings</h3>
+          <p>Reading the retained SEBI filing list.</p>
+        </div>
+        <div id="drhpError" class="empty-state" role="alert" hidden>
+          <h3>The DRHP list couldn’t load.</h3>
+          <p>Please retry the published dataset.</p>
+          <button id="drhpRetry" class="button button--primary">Try again</button>
+        </div>
+
+        <div id="drhpResults" hidden>
+          <div class="desktop-table" tabindex="0" role="region" aria-label="DRHP company filings">
+            <table class="drhp-table">
+              <caption class="sr-only">Companies with explicit DRHP or UDRHP filings in SEBI's 2026 draft-offer section.</caption>
+              <thead><tr><th scope="col">Company</th><th scope="col">Latest filing</th><th scope="col">Date</th><th scope="col">Official filing</th></tr></thead>
+              <tbody id="drhpRows"></tbody>
+            </table>
+          </div>
+          <div id="drhpCards" class="mobile-cards"></div>
+          <div id="drhpEmpty" class="empty-state" hidden>
+            <span class="empty-symbol" aria-hidden="true">⌕</span>
+            <h3>No DRHP companies match that search.</h3>
+            <p>Try another company name.</p>
+          </div>
+        </div>
+      </section>
+
+      <div class="directory-footnote drhp-footnote">
+        <span id="drhpCoverageNote">Coverage details loading…</span>
+        <a class="text-button" href="https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=10&ssid=15" target="_blank" rel="noopener noreferrer">Open SEBI source ↗</a>
+      </div>
+      <footer class="site-footer">
+        <span>IPO Tracker <span class="separator">/</span> Independent research, official sources.</span>
+        <span>DRHP filings are draft documents and not investment recommendations.</span>
+      </footer>
+    </main>
+    <script src="assets/drhp.js?v=20260926-drhp1"></script>
+  </body>
+</html>
