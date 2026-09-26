@@ -1,0 +1,51 @@
+name: Verify DRHP release review
+on:
+  push:
+    branches: [fix/drhp-release-finalization-20260926]
+    paths: [.github/workflows/verify-drhp-release-review.yml]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Retain original DRHP release and current main snapshots
+        run: |
+          mkdir -p "$RUNNER_TEMP/drhp-final/pages" "$RUNNER_TEMP/drhp-final/live"
+          git fetch origin main
+          git archive --format=zip origin/main > "$RUNNER_TEMP/drhp-final/source-snapshot.zip"
+          git rev-parse origin/main > "$RUNNER_TEMP/drhp-final/source-commit.txt"
+          git show a6577265048c5d7e4855feac34a3b6c06800e969:data/drhp-filings.json > "$RUNNER_TEMP/drhp-final/original-drhp.json"
+          git show 3816002d8c62c85638b7fa08dfdf8dcae5fe2a1f:data/ipos.json > "$RUNNER_TEMP/drhp-final/pre-release-ipos.json"
+      - name: Read actual Pages and bounded original SEBI pages
+        run: |
+          node --input-type=module <<'JS'
+          import fs from 'node:fs';import path from 'node:path';import {createHash} from 'node:crypto';
+          import {DRHP_LIST_URL,DRHP_AJAX_URL,paginationBody} from './scripts/sync-sebi-drhp.mjs';
+          const out=path.join(process.env.RUNNER_TEMP,'drhp-final'),rows=[];
+          async function get(url,file,opts={}) {
+            const requested_at=new Date().toISOString();
+            try {const r=await fetch(url,{...opts,headers:{'user-agent':'Mozilla/5.0','accept':'text/html,application/json,*/*','cache-control':'no-cache','referer':DRHP_LIST_URL,...opts.headers},signal:AbortSignal.timeout(30000)});const b=Buffer.from(await r.arrayBuffer());fs.writeFileSync(path.join(out,file),b);rows.push({file,url,final_url:r.url,status:r.status,request_body:opts.body?.toString()||null,requested_at,collected_at:new Date().toISOString(),bytes:b.length,sha256:createHash('sha256').update(b).digest('hex')});if(!r.ok)throw new Error('http_'+r.status);}
+            catch(e){rows.push({file,url,error:String(e),collected_at:new Date().toISOString()});}
+          }
+          for(const file of ['drhp.html','index.html','assets/drhp.js','assets/styles.css','data/drhp-filings.json','data/ipos.json'])await get('https://vasuki8.github.io/IPO-Tracker/'+file+'?verify='+process.env.GITHUB_RUN_ID,'live/'+file.replaceAll('/','-'));
+          await get(DRHP_LIST_URL,'pages/1.html');
+          for(let p=2;p<=8;p++)await get(DRHP_AJAX_URL,'pages/'+p+'.html',{method:'POST',headers:{'content-type':'application/x-www-form-urlencoded; charset=UTF-8','x-requested-with':'XMLHttpRequest'},body:paginationBody(p)});
+          fs.writeFileSync(path.join(out,'sources.json'),JSON.stringify({schema_version:'1.0.0',run_id:process.env.GITHUB_RUN_ID,head_sha:process.env.GITHUB_SHA,rows},null,2)+'\n');
+          console.log(JSON.stringify(rows.map(({file,status,bytes,error})=>({file,status,bytes,error}))));
+          if(rows.some(r=>r.error||r.status!==200))process.exitCode=1;
+          JS
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: drhp-release-review-${{ github.run_id }}
+          path: ${{ runner.temp }}/drhp-final
+          retention-days: 14
+          if-no-files-found: error
