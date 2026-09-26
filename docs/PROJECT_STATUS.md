@@ -1,5 +1,17 @@
 # Project status and handoff
 
+Updated **2026-09-26 (UTC)** after publishing the first bounded BSE 2021 unmatched batch.
+
+**First BSE 2021 batch is published — do not replay it.** The reviewed records are Indian Railway Finance Corporation Limited (IRFC), Anupam Rasayan India Limited and Exxaro Tiles Limited. PR **#282** corrected a source-integrity defect before materialization: the earlier Anupam SEBI attachment resolved to an unrelated Spectrum Talent document, so the review was rebound to the official Anupam Rasayan India Red Herring Prospectus dated 05-Mar-2021. PR **#283** added bounded retries after SEBI terminated a PDF socket mid-download; validation remained strict on official HTTPS hosts and PDF bytes.
+
+Evidence materialization run **36279332548** retained **6/6 original SEBI PDFs / 27,262,104 response bytes** in artifact **10917724737**, digest `sha256:c682b51c1e0fe3a6bcfb16e509f68f8a642dda6ac9396915628f6843e61aedd4`. The corrected Anupam RHP succeeded on attempt 3; the other five documents succeeded on attempt 1. Durable receipt commit: **f4785ebf977f721794a29d50662321ff690848d4**.
+
+PR **#284** added the evidence-bound, rerun-safe importer and publication workflow. Publication commit **0d839a74c44c0c8dbeab754e6667137d240efde2** added the three 2021 recovery records and rebuilt the public dataset. Only directly supported fields were published: listing date, issue price and issue size for all three, plus IRFC offer dates (18–20 Jan 2021). Board, BSE scrip code, lot size and other unsupported values remain null. The BSE scrip codes remain discovery metadata only because this batch did not retain issuer-specific field evidence for those codes.
+
+Pre-merge checks passed: the dedicated reviewed-BSE workflow, the new three-record publication rehearsal, and the full IPO data-contract workflow. The publication workflow also passed its post-apply rebuild, synchronization and schema validation. A concurrent Pages deployment that started before the publication commit failed at the deploy step; the next documentation merge intentionally triggers a fresh Pages deployment against the published dataset and must be live-verified before this batch is marked fully closed.
+
+**Exact next bounded P1 task after live verification:** continue the **remaining 13 unmatched BSE 2021 rows**. Keep the same rule: BSE issue-summary rows are discovery evidence only. Review a small coherent issuer batch from issuer-specific official BSE/SEBI/issuer sources, retain original bytes/hashes, preserve unsupported fields as null, and import only through a reviewed collision-safe path.
+
 Updated **2026-09-26 (UTC)** after publishing and live-verifying the four previously unmatched BSE 2020 IPOs.
 
 **BSE 2020 unmatched batch is complete — do not replay it.** Likhitha Infrastructure Limited, SecMark Consultancy Limited, SM Auto Stamping Limited and Shine Fashions (India) Limited are now in recovery and the public dataset through the reviewed, evidence-bound importer. PR **#277** fixed the only importer blocker by preserving SM Auto's unmapped board as missing; PR **#278** used the proven Pages gate for the one-shot release after the dedicated workflow failed to schedule; publication commit **0bc686821d16998f99b735178f94b1fb700c30a5** added the four records. PR **#279** removed the temporary release bridge and added a generic post-deploy served-byte check.
