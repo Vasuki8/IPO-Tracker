@@ -27,12 +27,11 @@ jobs:
           let cookie='';
           try {
             for(let index=0;index<20;index++) {
-              const body=index===0?null:new URLSearchParams({nextValue:String(index),next:'n',search:'',fromDate:'',toDate:'',fromYear:'',toYear:'',deptId:'',sid:'3',ssid:'15',smid:'10',ssidhidden:'15',intmid:'-1',sText:'Filings',ssText:'Public Issues',smText:'Draft Offer Documents filed with SEBI',doDirect:String(index)}).toString();
-              const request={url:index===0?list:endpoint,method:index===0?'GET':'POST',body};
-              const headers={'user-agent':'Mozilla/5.0','accept':'text/html,*/*','referer':list};
+              const body=new URLSearchParams({nextValue:String(index),next:'n',search:'',fromDate:'',toDate:'',fromYear:'',toYear:'',deptId:'',sid:'3',ssid:'15',smid:'10',ssidhidden:'15',intmid:'-1',sText:'Filings',ssText:'Public Issues',smText:'Draft Offer Documents filed with SEBI',doDirect:String(index)}).toString();
+              const request={url:endpoint,method:'POST',body};
+              const headers={'user-agent':'Mozilla/5.0','accept':'text/html,*/*','referer':list,'content-type':'application/x-www-form-urlencoded'};
               if(cookie)headers.cookie=cookie;
-              if(body)headers['content-type']='application/x-www-form-urlencoded';
-              const r=await fetch(request.url,{method:request.method,body:body||undefined,headers,signal:AbortSignal.timeout(25000)});
+              const r=await fetch(request.url,{method:request.method,body,headers,signal:AbortSignal.timeout(25000)});
               if(index===0)cookie=(r.headers.getSetCookie?.()||[]).map(v=>v.split(';')[0]).join('; ');
               const b=Buffer.from(await r.arrayBuffer()),file='sebi-draft-'+index+'.html';
               fs.writeFileSync(path.join(out,file),b);
