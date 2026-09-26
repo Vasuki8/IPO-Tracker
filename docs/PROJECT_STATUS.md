@@ -1,6 +1,6 @@
 # Project status and handoff
 
-Updated **2026-09-26 (UTC)** after verifying historical equity-IPO coverage for all nine issuers behind the earlier excluded 2026 debt/migration events. The active backend priority remains **P1 issuer identity and universe correctness** under [DEVELOPMENT_PROCESS.md](DEVELOPMENT_PROCESS.md). All nine historical IPOs are verified but import is intentionally pending durable source-byte/hash materialization and a reviewed recovery path. The Pre-IPO source-coverage repair remains live and separate. Other UI/research-depth work remains in [UI_DETAIL_NAVIGATION_HANDOFF.md](UI_DETAIL_NAVIGATION_HANDOFF.md).
+Updated **2026-09-26 (UTC)** after publishing and verifying all nine historical equity IPOs behind the earlier excluded 2026 debt/migration events. The active backend priority remains **P1 issuer identity and universe correctness** under [DEVELOPMENT_PROCESS.md](DEVELOPMENT_PROCESS.md). The nine historical IPOs are now in recovery/public data through a dedicated reviewed path backed by retained original source hashes; all excluded 2026 events remain excluded. The next bounded task is the separate Fabino Life Sciences BSE listing-year hold. The Pre-IPO source-coverage repair remains live and separate. Other UI/research-depth work remains in [UI_DETAIL_NAVIGATION_HANDOFF.md](UI_DETAIL_NAVIGATION_HANDOFF.md).
 
 ## Release complete — do not replay
 
@@ -8,11 +8,11 @@ Updated **2026-09-26 (UTC)** after verifying historical equity-IPO coverage for 
 
 The current disposition is [nse-universe-current-review-2026-09-26.json](../data/discovery/nse-universe-current-review-2026-09-26.json): **105 approved IPOs + five debt-event exclusions + seven migration exclusions + two rights-issue security exclusions = 119 pinned groups**. **Zero unresolved and zero unreviewed groups remain in that pinned audit.** This is still **not full Indian IPO-universe completeness**.
 
-**Exact next bounded backend task: materialize and safely import the nine now-verified historical equity IPOs** — MWL, QMSMEDI, VIVIANA, ANNAPURNA, SWARAJ, VIESL, AVPINFRA, DOLLEX and DCCL. Retain original official source bytes/SHA-256 hashes and page/locator evidence, then use a reviewed recovery importer with collision/idempotency tests. Keep all excluded 2026 debt/migration events excluded.
+**Exact next bounded backend task: resolve the separate Fabino Life Sciences BSE listing-year conflict.** Use issuer-specific official BSE listing notices, offer/prospectus documents and issuer filings to establish the correct legal identity, original IPO/listing date and year, and whether recovery/public coverage is missing or carries a wrong-year observation. Preserve conflicts; do not infer the year from aggregator data or a later corporate-action/security event.
 
-## Historical IPO coverage for nine excluded-event issuers — verified, import pending
+## Historical IPO coverage for nine excluded-event issuers — published and verified live
 
-The historical-equity coverage gap behind the nine earlier 2026 debt/migration exclusions is now resolved at the evidence-review layer. [The retained review](../data/discovery/excluded-event-issuer-historical-ipo-review-2026-09-26.json) verifies **9/9 historical equity IPOs** from official NSE/issuer prospectuses, listing releases, iXBRL identity filings and other official issuer/exchange disclosures.
+The historical-equity coverage gap behind the nine earlier 2026 debt/migration exclusions is now closed through the reviewed recovery/publication path. [The retained review](../data/discovery/excluded-event-issuer-historical-ipo-review-2026-09-26.json) verifies **9/9 historical equity IPOs**, [the durable source receipt](../data/evidence/historical-ipo-nine-source-receipt-2026-09-26.json) binds the review to **25 original official documents / 146,148,394 response bytes**, and [the approved import manifest](../data/verified-historical-ipos/2026-09-26-nine.json) maps only explicit fields to those retained sources.
 
 | Excluded 2026 event | Historical equity symbol | Historical listing |
 | --- | --- | --- |
@@ -26,9 +26,11 @@ The historical-equity coverage gap behind the nine earlier 2026 debt/migration e
 | DOLLEX migration | DOLLEX | 28-Dec-2022 |
 | 13DCCL28 | DCCL | 28-May-2025 |
 
-**Import remains intentionally pending.** The existing reviewed-NSE importer requires retained NSE API response bytes/hashes and exact API projections. This review used official prospectuses/issuer filings/listing releases, but the original document bytes were not materialized in this connector run. Do not weaken `scripts/apply-reviewed-nse-ipos.mjs` and do not hand-edit `data/ipos.json`.
+Evidence materialization run **36244158677** retained source artifact **10906719463** with digest **sha256:6f0a6ad7fbe3ece39e2b010d66bb9a306ffe4d2590b67c02e4980c3b42c90c52**. PR **#261** merged as **85e6e96239089ec7237c34cca17df912af029ce0**; the race-safe publication workflow created commit **e956549413205d2cfe6c7e7aa563f91804929ff1**.
 
-No public or recovery IPO record changed, and **zero excluded 2026 events were reintroduced**. The next task is to materialize decisive official source bytes/hashes and implement or reuse a reviewed historical-offer recovery path with identity-collision, preservation and idempotency tests.
+Actual Pages verification run **36248129988** passed **9/9 issuers / 33 reviewed fields / 0 failures**. The fetched public dataset contains **1,332 records**; snapshot fetched **2026-09-26T14:20:28.176Z**, SHA-256 **d6a7ada5aeb2f20b0445efa2c04d0a2033f3e0df809e4be46756492d0ebb9004**, retained in verification artifact **10908262582**.
+
+**Zero excluded 2026 events were reintroduced.** Source-policy boundaries remain conservative: VIESL offer dates and SWARAJ offer terms remain missing because this release did not expand the accepted publication-host allowlist to their reviewed source hosts. Missing fields stay missing rather than being copied from weaker evidence.
 
 ## GICL, VITAL and KOTYARK migration review — complete
 
@@ -105,6 +107,10 @@ Against the retained 1,321-record pre-release baseline, exactly the two approved
 
 ## Tests and release evidence
 
+Historical IPO release: PR **#259** added source materialization; PR **#260** fixed durable receipt publication; PR **#261** added the reviewed historical importer and verifier. PR #261 final-head full data contract **36248058518** and reviewed-BSE compatibility **36248058467** passed. Publication workflow **36248110656** passed. Actual Pages verification **36248129988** passed and retained artifact **10908262582**.
+
+## Tests and release evidence
+
 PR #249 final-head CI passed: full data contract **36212457450**, interface **36212457353**, reviewed-BSE compatibility **36212457388**. Merged-main full contract **36213264978** also passed. Local retained-source parser, integrity, UI-contract, nine-batch IPO regression, publication-rehearsal, build and schema checks passed.
 
 Exact fetched DRHP HTML/CSS/JavaScript and JSON were rendered offline in Chromium at **320, 375 and 1440 pixels**. Search, no-results, invalid-data rejection, error/retry, failed-refresh/last-good-list messaging and mobile navigation passed; no page overflow or JavaScript page errors. Local browser networking was unavailable; these are offline rendering checks, while actual remote byte verification was performed by the successful Actions workflow.
@@ -113,12 +119,12 @@ Durable combined receipt: [drhp-identity-release-live-2026-09-26.json](verificat
 
 ## Remaining work and preserved history
 
-Active NSE holds: **none in the pinned 119-group NSE review**. Historical IPO existence is now verified for all nine earlier debt/migration-event issuers, but import is pending durable source-byte/hash retention and a reviewed recovery path. **Fabino Life Sciences** remains a separate BSE listing-year hold. Keep all positively classified 2026 debt/migration/rights events out of the new-IPO queue.
+Active NSE holds: **none in the pinned 119-group NSE review**. The nine historical IPOs behind the earlier excluded debt/migration events are published and verified live. **Fabino Life Sciences** is now the exact next separate BSE listing-year hold. Keep all positively classified 2026 debt/migration/rights events out of the new-IPO queue.
 
 Broader BSE issue-summary, SEBI historical pagination and NSE-series gaps remain. **BSE parser v1.5 is 236/236 parsed; do not replay its completed cursor.** DRHP coverage expansion must address inconsistent pagination/unlabelled disclosures without treating an observed draft filing as a new approved IPO.
 
 The old canonical review and seven-case hold files dated September 25 are preserved as historical snapshots. Use the linked **September 26 current-review state**, not their stale next-task fields, for new work.
 
-The immediately preceding README and project-status versions are archived byte-for-byte as `docs/archive/README-before-historical-ipo-coverage-nine-2026-09-26.md` and `docs/archive/PROJECT_STATUS-before-historical-ipo-coverage-nine-2026-09-26.md`. Earlier manifests, archives, evidence and receipts remain intact. Actions artifacts expire after 14 days; the repository retains literal projections, URLs, dates, document identities, hashes and locators.
+The immediately preceding README and project-status versions are archived byte-for-byte as `docs/archive/README-before-historical-ipo-release-2026-09-26.md` and `docs/archive/PROJECT_STATUS-before-historical-ipo-release-2026-09-26.md`. Earlier manifests, archives, evidence and receipts remain intact. Actions artifacts expire after 14 days; durable receipts retain source hashes, URLs, dates, document identities and locators.
 
 No minimum-investment expansion, billing/accounts/ads, spending or access-policy changes were introduced.
