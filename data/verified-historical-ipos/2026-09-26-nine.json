@@ -1,0 +1,139 @@
+{
+  "schema_version": "1.0.0",
+  "importer_version": "1.0.0",
+  "status": "approved_historical_equity_ipos_for_recovery_import",
+  "review_path": "data/discovery/excluded-event-issuer-historical-ipo-review-2026-09-26.json",
+  "receipt_path": "data/evidence/historical-ipo-nine-source-receipt-2026-09-26.json",
+  "scope_note": "Nine historical equity IPOs verified independently from the later 2026 debt/migration events. Only the historical equity identities may be imported; the excluded 2026 events must remain excluded.",
+  "entries": [
+    {
+      "excluded_event_symbol": "10MWL29",
+      "historical_symbol": "MWL",
+      "offer_source": "mwl_prospectus",
+      "listing_source": "mwl_issuer_listing_history",
+      "identity_source": "mwl_identity",
+      "field_sources": {
+        "open_date": "mwl_prospectus",
+        "close_date": "mwl_prospectus",
+        "issue_price": "mwl_issuer_listing_history",
+        "listing_date": "mwl_issuer_listing_history"
+      }
+    },
+    {
+      "excluded_event_symbol": "QMSMEDI",
+      "historical_symbol": "QMSMEDI",
+      "offer_source": "qms_prospectus",
+      "listing_source": "qms_issuer_results",
+      "identity_source": "qms_identity",
+      "field_sources": {
+        "open_date": "qms_prospectus",
+        "close_date": "qms_prospectus",
+        "issue_price": "qms_prospectus",
+        "listing_date": "qms_issuer_results"
+      }
+    },
+    {
+      "excluded_event_symbol": "12VPT28A",
+      "historical_symbol": "VIVIANA",
+      "offer_source": "viviana_prospectus",
+      "listing_source": "viviana_listing_history",
+      "identity_source": "viviana_identity",
+      "field_sources": {
+        "open_date": "viviana_prospectus",
+        "close_date": "viviana_prospectus",
+        "issue_price": "viviana_prospectus",
+        "listing_date": "viviana_listing_history"
+      }
+    },
+    {
+      "excluded_event_symbol": "ANNAPURNA",
+      "historical_symbol": "ANNAPURNA",
+      "offer_source": "annapurna_prospectus",
+      "listing_source": "annapurna_ipo_proceeds",
+      "identity_source": "annapurna_identity",
+      "field_sources": {
+        "open_date": "annapurna_prospectus",
+        "close_date": "annapurna_prospectus",
+        "issue_price": "annapurna_prospectus",
+        "listing_date": "annapurna_ipo_proceeds"
+      }
+    },
+    {
+      "excluded_event_symbol": "SWARAJ",
+      "historical_symbol": "SWARAJ",
+      "offer_source": "swaraj_prospectus",
+      "listing_source": "swaraj_listing",
+      "identity_source": "swaraj_identity",
+      "field_sources": {
+        "open_date": "swaraj_prospectus",
+        "close_date": "swaraj_prospectus",
+        "issue_price": "swaraj_prospectus",
+        "market_lot": "swaraj_prospectus",
+        "listing_date": "swaraj_listing"
+      }
+    },
+    {
+      "excluded_event_symbol": "1150VIES30",
+      "historical_symbol": "VIESL",
+      "offer_source": "vision_issue_listing",
+      "listing_source": "vision_issue_listing",
+      "identity_source": "vision_identity",
+      "field_sources": {
+        "issue_price": "vision_issue_listing",
+        "listing_date": "vision_issue_listing"
+      },
+      "omitted_verified_fields": [
+        "open_date",
+        "close_date"
+      ],
+      "omission_reason": "The reviewed offer dates are sourced from the issuer website RHP. The published-data official-host policy is intentionally not expanded in this import; those dates remain missing until an accepted durable exchange/SEBI source is retained."
+    },
+    {
+      "excluded_event_symbol": "12AIL28",
+      "historical_symbol": "AVPINFRA",
+      "offer_source": "avp_prospectus",
+      "listing_source": "avp_listing",
+      "identity_source": "avp_listing",
+      "field_sources": {
+        "open_date": "avp_prospectus",
+        "close_date": "avp_prospectus",
+        "issue_price": "avp_prospectus",
+        "minimum_bid_quantity": "avp_prospectus",
+        "listing_date": "avp_listing"
+      }
+    },
+    {
+      "excluded_event_symbol": "DOLLEX",
+      "historical_symbol": "DOLLEX",
+      "offer_source": "dollex_prospectus",
+      "listing_source": "dollex_listing",
+      "identity_source": "dollex_identity",
+      "field_sources": {
+        "open_date": "dollex_prospectus",
+        "close_date": "dollex_prospectus",
+        "issue_price": "dollex_prospectus",
+        "market_lot": "dollex_prospectus",
+        "listing_date": "dollex_listing"
+      }
+    },
+    {
+      "excluded_event_symbol": "13DCCL28",
+      "historical_symbol": "DCCL",
+      "offer_source": "dar_prospectus",
+      "listing_source": "dar_listing",
+      "identity_source": "dar_listing",
+      "field_sources": {
+        "open_date": "dar_prospectus",
+        "close_date": "dar_prospectus",
+        "issue_price": "dar_prospectus",
+        "listing_date": "dar_listing"
+      }
+    }
+  ],
+  "prohibitions": [
+    "Do not import any excluded 2026 debt or migration security event.",
+    "Do not infer fields that are not explicitly mapped to retained official evidence.",
+    "Do not expand the published-data official-host allowlist as part of this import.",
+    "Do not hand-edit data/ipos.json."
+  ]
+}
