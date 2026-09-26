@@ -47,7 +47,7 @@ function absoluteUrl(raw, base = DRHP_LIST_URL) {
   try { return new URL(decode(raw), base).href; } catch { return null; }
 }
 function filingType(label) {
-  const text = norm(label);
+  const text = norm(String(label ?? "").split(/<br\s*\/?\s*>/i)[0]);
   if (/\b(?:addendum|corrigendum|abridged)\b/i.test(text)) return null;
   const updatedVersion = text.match(/\bUpdated Draft Red Herring Prospectus[-\s]+(I{1,4}|V|\d+)\b/i);
   if (updatedVersion) return "UDRHP-" + updatedVersion[1].toUpperCase();
