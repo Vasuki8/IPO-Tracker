@@ -42,7 +42,7 @@ export function mergeOfficialDraftSources(sebiData,nseData){
   const groups=new Map();
   function absorb(company,authority){
     const key=canonicalLifecycleIssuer(company?.issuer_name);if(!key)throw new Error("invalid_draft_issuer");
-    const g=groups.get(key)||{issuer_name:company.issuer_name,events:new Map(),board_hints:new Set(),isins:new Set(),symbols:new Set(),processing_statuses:new Set()};
+    const g=groups.get(key)||{issuer_name:company.issuer_name,events:new Map(),board_hints:new Set(),isins:new Set(),symbols:new Set(),processing_statuses:new Set(),authorities:new Set()};\n    g.authorities.add(authority);
     for(const board of company.board_hints||[])if(board)g.board_hints.add(board);
     for(const isin of company.isins||[])if(cleanId(isin))g.isins.add(cleanId(isin));
     for(const symbol of company.symbols||[])if(cleanId(symbol))g.symbols.add(cleanId(symbol));
@@ -71,7 +71,7 @@ export function mergeOfficialDraftSources(sebiData,nseData){
     const filings=[...g.events.values()].sort((a,b)=>b.filing_date.localeCompare(a.filing_date)||a.filing_type.localeCompare(b.filing_type));
     const latest=filings[0];return {issuer_name:g.issuer_name,latest_filing_date:latest.filing_date,latest_filing_type:latest.filing_type,latest_filing_url:latest.filing_url,
       latest_processing_status:[...g.processing_statuses].at(-1)||null,board_hints:[...g.board_hints].sort(),isins:[...g.isins].sort(),symbols:[...g.symbols].sort(),
-      filing_count:filings.length,filings,source_authorities:[...new Set(filings.map(f=>f.source_authority))].sort()};
+      filing_count:filings.length,filings,source_authorities:[...g.authorities].sort()};
   }).sort((a,b)=>b.latest_filing_date.localeCompare(a.latest_filing_date)||a.issuer_name.localeCompare(b.issuer_name))};
 }
 function matchLifecycle(index,company){
