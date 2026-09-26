@@ -29,13 +29,15 @@
       },
       "identity_sources": [
         "likhitha_sebi_final_offer",
-        "likhitha_issuer_investors"
+        "likhitha_issuer_investors",
+        "likhitha_exchange_identity"
       ],
       "field_sources": {
         "listing_date": "sebi_nov_2020_bulletin",
         "issue_price": "sebi_nov_2020_bulletin",
-        "bse_scrip_code": "likhitha_issuer_investors",
-        "nse_symbol": "likhitha_issuer_investors"
+        "bse_scrip_code": "likhitha_exchange_identity",
+        "nse_symbol": "likhitha_exchange_identity",
+        "board": "likhitha_exchange_identity"
       },
       "note": "SEBI final-offer evidence establishes the IPO; the issuer's investor page establishes current exchange identifiers; the SEBI November 2020 bulletin records the ₹120 issue price and 15-Oct-2020 listing."
     },
@@ -77,14 +79,18 @@
         "listing_date": "2020-03-16",
         "issue_price": 18,
         "nse_symbol": null,
-        "isin": null
+        "isin": null,
+        "bse_symbol": "SMAUTO"
       },
       "identity_sources": [
-        "smauto_draft_prospectus"
+        "smauto_draft_prospectus",
+        "smauto_exchange_identity"
       ],
       "field_sources": {
         "listing_date": "smauto_track_record",
-        "issue_price": "smauto_track_record"
+        "issue_price": "smauto_track_record",
+        "bse_scrip_code": "smauto_exchange_identity",
+        "bse_symbol": "smauto_exchange_identity"
       },
       "note": "The BSE-hosted draft prospectus establishes the 3,840,000-share first public issue and intended BSE SME listing; a later BSE-hosted prospectus retains the lead-manager past-issue disclosure showing the ₹18 issue price and 16-Mar-2020 listing. The BSE audit supplies scrip 543065 only as discovery identity."
     },
@@ -103,17 +109,22 @@
         "close_date": "2020-10-26",
         "market_lot": 3000,
         "nse_symbol": null,
-        "isin": null
+        "isin": null,
+        "bse_symbol": "SHINEFASH"
       },
       "identity_sources": [
-        "shine_sebi_final_prospectus"
+        "shine_sebi_final_prospectus",
+        "shine_exchange_identity"
       ],
       "field_sources": {
         "listing_date": "shine_track_record",
         "issue_price": "shine_sebi_final_prospectus",
         "open_date": "shine_sebi_final_prospectus",
         "close_date": "shine_sebi_final_prospectus",
-        "market_lot": "shine_sebi_final_prospectus"
+        "market_lot": "shine_sebi_final_prospectus",
+        "bse_scrip_code": "shine_exchange_identity",
+        "bse_symbol": "shine_exchange_identity",
+        "board": "shine_sebi_final_prospectus"
       },
       "note": "The SEBI-hosted final prospectus records the offer dates, ₹40 issue price and 3,000-share lot; a later BSE-hosted prospectus retains the lead-manager disclosure showing a 02-Nov-2020 listing. The BSE audit supplies scrip 543244 only as discovery identity."
     }
@@ -242,9 +253,10 @@
         "open_date": "2020-10-22",
         "close_date": "2020-10-26",
         "issue_price_inr": 40,
-        "lot_size": 3000
+        "lot_size": 3000,
+        "listing_venue": "BSE SME"
       },
-      "projection_sha256": "b9d47763939c4833d202c60e3cb44ed0fd1f7c48a01b42c06742c9bbe787b48e"
+      "projection_sha256": "7526f986edaa9efc7ae01662c261cebf7caf1d190ef68eb7d37b89a0ffeec8cd"
     },
     {
       "key": "shine_track_record",
@@ -261,8 +273,56 @@
         "listing_date": "2020-11-02"
       },
       "projection_sha256": "76dda09889c90e43c908d9ce95b226361d5f364646a4fc00f6960b3f93b90ab2"
+    },
+    {
+      "key": "likhitha_exchange_identity",
+      "authority": "NSE",
+      "document_type": "NSE Integrated Filing — IndAS",
+      "url": "https://nsearchives.nseindia.com/corporate/ixbrl/INTEGRATED_FILING_INDAS_128010_14112025173444_iXBRL_WEB.html",
+      "publication_date": "2025-11-14",
+      "page": null,
+      "evidence_locator": "General information: scrip code, NSE symbol, company name and Main Board type",
+      "projection": {
+        "issuer": "Likhitha Infrastructure Limited",
+        "bse_scrip_code": "543240",
+        "nse_symbol": "LIKHITHA",
+        "board": "Mainboard",
+        "current_isin": "INE060901027"
+      },
+      "projection_sha256": "657108a3cd783d090da40f1898e781b4b0d92c1d8f0a7b3a9ca456c846c50c9e"
+    },
+    {
+      "key": "smauto_exchange_identity",
+      "authority": "BSE",
+      "document_type": "BSE Corporate Filing",
+      "url": "https://www.bseindia.com/xml-data/corpfiling/AttachLive/bac4b2df-4b9f-4d93-a36e-52af81845fe9.pdf",
+      "publication_date": "2025-08-29",
+      "page": "1",
+      "evidence_locator": "Header: Scrip Code 543065 / Scrip ID SMAUTO",
+      "projection": {
+        "issuer": "SM Auto Stamping Limited",
+        "bse_scrip_code": "543065",
+        "bse_symbol": "SMAUTO"
+      },
+      "projection_sha256": "6046893d63267a17394ae9f216c9c9b2eaebfd0947cde22fa5e0694cf5de5eef"
+    },
+    {
+      "key": "shine_exchange_identity",
+      "authority": "BSE",
+      "document_type": "BSE Corporate Filing",
+      "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/2e5574f4-fa02-44f8-b52d-e1be725e5164.pdf",
+      "publication_date": "2024-04-13",
+      "page": "1",
+      "evidence_locator": "Header: Company Symbol SHINEFASH, ISIN source text, Scrip Code 543244",
+      "projection": {
+        "issuer": "Shine Fashions (India) Limited",
+        "bse_scrip_code": "543244",
+        "bse_symbol": "SHINEFASH",
+        "isin_source_value": "INEOBLY01023"
+      },
+      "projection_sha256": "60a2950e7d2ecc474140df1795ad59b9a961085ed423c9d09020d760db7927f2"
     }
   ],
-  "review_result": "All four 2020 BSE-unmatched rows are supported as historical IPOs missing from recovery. This file is review evidence only and cannot publish records without original-source materialization plus a separate reviewed importer.",
-  "next_step": "Materialize the eight original official/issuer sources, retain their response hashes and artifact identity, then prepare a four-record reviewed importer. Missing fields must remain null unless directly supported."
+  "review_result": "All four 2020 BSE-unmatched rows are supported as historical IPOs missing from recovery. Exchange-hosted identity evidence is retained for Likhitha, SM Auto and Shine; SecMark identity is retained in its BSE-filed annual report. This file remains review evidence only and cannot publish records without a separate reviewed importer.",
+  "next_step": "Materialize all eleven original sources, retain response hashes and artifact identity, then prepare a four-record reviewed importer. Missing fields must remain null unless directly supported."
 }

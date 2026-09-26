@@ -16,7 +16,7 @@ const stamp=v=>typeof v==="string"&&Number.isFinite(Date.parse(v));
 export function trustedSourceUrl(value){
   try{
     const u=new URL(String(value));
-    const hosts=new Set(["www.sebi.gov.in","sebi.gov.in","www.bseindia.com","bseindia.com","www.likhitha.co.in","likhitha.co.in"]);
+    const hosts=new Set(["www.sebi.gov.in","sebi.gov.in","www.bseindia.com","bseindia.com","www.likhitha.co.in","likhitha.co.in","nsearchives.nseindia.com"]);
     return u.protocol==="https:"&&!u.username&&!u.password&&hosts.has(u.hostname.toLowerCase())?u.href:null;
   }catch{return null;}
 }
@@ -35,7 +35,7 @@ async function body(response,max){
 export function validateReview(review){
   if(review?.schema_version!=="1.0.0"||review?.status!=="reviewed_bse_2020_unmatched_issuer_batch"||
      review?.source_year!==2020||review?.import_allowed!==false||review?.publication_change!==false||
-     !Array.isArray(review.actions)||review.actions.length!==4||!Array.isArray(review.sources)||review.sources.length!==8)
+     !Array.isArray(review.actions)||review.actions.length!==4||!Array.isArray(review.sources)||review.sources.length!==11)
     throw new Error("invalid_bse_2020_unmatched_review");
   const expected=new Map([["Likhitha Infrastructure Limited","543240"],["SecMark Consultancy Limited","543234"],["SM Auto Stamping Limited","543065"],["Shine Fashions (India) Limited","543244"]]);
   const actionKeys=new Set();
