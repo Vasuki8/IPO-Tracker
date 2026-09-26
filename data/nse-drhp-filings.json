@@ -1,0 +1,4583 @@
+{
+  "schema_version": "1.0.0",
+  "collector_version": "1.0.0",
+  "generated_at": "2026-09-26T03:40:19.939Z",
+  "source": {
+    "authority": "National Stock Exchange of India",
+    "section": "Issuer Offer documents",
+    "landing_url": "https://www.nseindia.com/companies-listing/corporate-filings-offer-documents?tabIndex=equity",
+    "api_base": "https://www.nseindia.com/api/corporates/offerdocs"
+  },
+  "coverage": {
+    "year": 2026,
+    "scope": "NSE equity and SME issuer-offer-document API rows with an explicit 2026 DRHP date and official NSE archive attachment.",
+    "companies": 121,
+    "filing_records": 123,
+    "source_rows": 2570,
+    "full_universe_complete": false,
+    "limitations": "NSE issuer-offer-document coverage supplements SEBI. Absence is not withdrawal evidence; non-NSE filings and other years may be absent."
+  },
+  "source_responses": [
+    {
+      "index": "equities",
+      "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+      "requested_at": "2026-09-26T03:40:18.860Z",
+      "collected_at": "2026-09-26T03:40:19.321Z",
+      "http_status": 200,
+      "bytes": 1130986,
+      "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+      "total_rows": 1218,
+      "selected_rows": 123
+    },
+    {
+      "index": "sme",
+      "url": "https://www.nseindia.com/api/corporates/offerdocs?index=sme",
+      "requested_at": "2026-09-26T03:40:19.344Z",
+      "collected_at": "2026-09-26T03:40:19.913Z",
+      "http_status": 200,
+      "bytes": 1361465,
+      "response_sha256": "50edf5d0ce8a973c2e16d7339a44cf1b1f5639f0a7653c56ba96309adc67fd61",
+      "total_rows": 1352,
+      "selected_rows": 0
+    }
+  ],
+  "companies": [
+    {
+      "issuer_name": "Baanganga Gold & Diamond (I) Limited",
+      "latest_filing_date": "2026-09-25",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/Registration_25092026211750_DRHPanddraftabridgedprospectus.zip",
+      "latest_processing_status": null,
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Baanganga Gold & Diamond (I) Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-09-25",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/Registration_25092026211750_DRHPanddraftabridgedprospectus.zip",
+          "processing_status": null,
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AAKCB7358R",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Baanganga Gold & Diamond (I) Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "J Infratech Limited",
+      "latest_filing_date": "2026-09-25",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/Registration_25092026215533_ProjectExpressDRHP.pdf",
+      "latest_processing_status": null,
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "J Infratech Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-09-25",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/Registration_25092026215533_ProjectExpressDRHP.pdf",
+          "processing_status": null,
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AAECJ6713E",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=J Infratech Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Ekkaa Electronics (India) Limited",
+      "latest_filing_date": "2026-09-24",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/Registration_25092026001053_DRHP.pdf",
+      "latest_processing_status": "Under Process",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Ekkaa Electronics (India) Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-09-24",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/Registration_25092026001053_DRHP.pdf",
+          "processing_status": "Under Process",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AAGCE3953P",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Ekkaa Electronics (India) Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Integrum Energy Infrastructure Limited",
+      "latest_filing_date": "2026-09-24",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/Integrum.zip",
+      "latest_processing_status": "Under Process",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Integrum Energy Infrastructure Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-09-24",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/Integrum.zip",
+          "processing_status": "Under Process",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AAGCI0388A",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Integrum Energy Infrastructure Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Jsw One Platforms Limited",
+      "latest_filing_date": "2026-09-24",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/Registration_24092026224659_DRHP.pdf",
+      "latest_processing_status": "Under Process",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Jsw One Platforms Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-09-24",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/Registration_24092026224659_DRHP.pdf",
+          "processing_status": "Under Process",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AAECJ3446Q",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Jsw One Platforms Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Kianmexportlimited",
+      "latest_filing_date": "2026-09-24",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/Registration_25092026103641_DRHPKIAN.pdf",
+      "latest_processing_status": null,
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Kianmexportlimited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-09-24",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/Registration_25092026103641_DRHPKIAN.pdf",
+          "processing_status": null,
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AAHCK9767E",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Kianmexportlimited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Mount Everest Breweries Limited",
+      "latest_filing_date": "2026-09-24",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/Registration_25092026051735_MEBL_DRHP.zip",
+      "latest_processing_status": "Under Process",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Mount Everest Breweries Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-09-24",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/Registration_25092026051735_MEBL_DRHP.zip",
+          "processing_status": "Under Process",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AADCM5244J",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Mount Everest Breweries Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Sai Infinium Limited",
+      "latest_filing_date": "2026-09-24",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/SAIINFINIUM.zip",
+      "latest_processing_status": null,
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Sai Infinium Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-09-24",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/SAIINFINIUM.zip",
+          "processing_status": null,
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AAICS3150Q",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Sai Infinium Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Ultravibrant Integrated Energy Limited",
+      "latest_filing_date": "2026-09-24",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/Registration_25092026055338_Project_Namo_Consolidated_DRHP.pdf",
+      "latest_processing_status": null,
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Ultravibrant Integrated Energy Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-09-24",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/Registration_25092026055338_Project_Namo_Consolidated_DRHP.pdf",
+          "processing_status": null,
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AACCU4517F",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Ultravibrant Integrated Energy Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Electromech Infraprojects Limited",
+      "latest_filing_date": "2026-09-23",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/Registration_24092026172848_DRHP.pdf",
+      "latest_processing_status": "Under Process",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Electromech Infraprojects Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-09-23",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/Registration_24092026172848_DRHP.pdf",
+          "processing_status": "Under Process",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AADCE5360R",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Electromech Infraprojects Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Koolking Industries India Limited..",
+      "latest_filing_date": "2026-09-23",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/Registration_24092026033735_DRHPKOOLKING.pdf",
+      "latest_processing_status": "Under Process",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Koolking Industries India Limited..",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-09-23",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/Registration_24092026033735_DRHPKOOLKING.pdf",
+          "processing_status": "Under Process",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AADCK3979J",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Koolking Industries India Limited.."
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Abakkus Asset Manager Limited",
+      "latest_filing_date": "2026-09-22",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/Registration_22092026120212_AbakkusAssetManagerLimited.zip",
+      "latest_processing_status": "Under Process",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Abakkus Asset Manager Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-09-22",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/Registration_22092026120212_AbakkusAssetManagerLimited.zip",
+          "processing_status": "Under Process",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "ABBCA4204H",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Abakkus Asset Manager Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Claroid Pharmaceuticals Limited",
+      "latest_filing_date": "2026-09-22",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/Registration_23092026002116_drhp.pdf",
+      "latest_processing_status": "Under Process",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Claroid Pharmaceuticals Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-09-22",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/Registration_23092026002116_drhp.pdf",
+          "processing_status": "Under Process",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AAHCC7216Q",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Claroid Pharmaceuticals Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Pmconaindustrieslimited",
+      "latest_filing_date": "2026-09-22",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/Registration_22092026234111_PMCONA.zip",
+      "latest_processing_status": "Under Process",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Pmconaindustrieslimited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-09-22",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/Registration_22092026234111_PMCONA.zip",
+          "processing_status": "Under Process",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AAICC3300Q",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Pmconaindustrieslimited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Iris Global Services Limited",
+      "latest_filing_date": "2026-09-21",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/Registration_21092026220957_IrisGlobalServicesLimitedDRHP.pdf",
+      "latest_processing_status": null,
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Iris Global Services Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-09-21",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/Registration_21092026220957_IrisGlobalServicesLimitedDRHP.pdf",
+          "processing_status": null,
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AACCI0718A",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Iris Global Services Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Jai Parvati Forge Limited",
+      "latest_filing_date": "2026-09-21",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/Registration_21092026213609_JAI_PARVATI_DRHP.pdf",
+      "latest_processing_status": "Under Process",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Jai Parvati Forge Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-09-21",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/Registration_21092026213609_JAI_PARVATI_DRHP.pdf",
+          "processing_status": "Under Process",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AABCJ3788Q",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Jai Parvati Forge Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Sdinternationallimited",
+      "latest_filing_date": "2026-09-21",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/Registration_22092026015737_DRHP.zip",
+      "latest_processing_status": "Under Process",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Sdinternationallimited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-09-21",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/Registration_22092026015737_DRHP.zip",
+          "processing_status": "Under Process",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AAMCS5593F",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Sdinternationallimited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Vardaan Biotech Limited",
+      "latest_filing_date": "2026-09-18",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/Registration_18092026215738_DRHP.zip",
+      "latest_processing_status": "Under Process",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Vardaan Biotech Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-09-18",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/Registration_18092026215738_DRHP.zip",
+          "processing_status": "Under Process",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AACCV7434J",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Vardaan Biotech Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Hi Tech Flow Solutions Limited",
+      "latest_filing_date": "2026-09-17",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/Registration_17092026214722_HFLOW_Draft_Red_Herring_Prospectus.pdf",
+      "latest_processing_status": "Under Process",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Hi Tech Flow Solutions Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-09-17",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/Registration_17092026214722_HFLOW_Draft_Red_Herring_Prospectus.pdf",
+          "processing_status": "Under Process",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AABCG5889R",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Hi Tech Flow Solutions Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Rudra Cottex Limited",
+      "latest_filing_date": "2026-09-17",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/Registration_18092026234921_Rudra_DRHP_18092026.pdf",
+      "latest_processing_status": "Under Process",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Rudra Cottex Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-09-17",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/Registration_18092026234921_Rudra_DRHP_18092026.pdf",
+          "processing_status": "Under Process",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AAHCR7035E",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Rudra Cottex Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Anchor Offshore Services Limited",
+      "latest_filing_date": "2026-09-15",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/Registration_15092026210542_AnchorOffshoreDRHP.zip",
+      "latest_processing_status": "Under Process",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Anchor Offshore Services Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-09-15",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/Registration_15092026210542_AnchorOffshoreDRHP.zip",
+          "processing_status": "Under Process",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AAACA3529R",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Anchor Offshore Services Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "MADHUR IRON & STEEL (INDIA) LIMITED",
+      "latest_filing_date": "2026-09-14",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/DRHP_Madhur_Iron.zip",
+      "latest_processing_status": "Under Process",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 2,
+      "filings": [
+        {
+          "issuer_name": "MADHUR IRON & STEEL (INDIA) LIMITED",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-09-14",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/DRHP_Madhur_Iron.zip",
+          "processing_status": "Under Process",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AAHCM7572R",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=MADHUR IRON & STEEL (INDIA) LIMITED"
+          }
+        },
+        {
+          "issuer_name": "Madhur Iron & Steel (India) Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-01-24",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/Registration_24012026155021_DRHP-MISL.pdf",
+          "processing_status": null,
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AAHCM7572R",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Madhur Iron & Steel (India) Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Maharashtra Oil Extractions Limited",
+      "latest_filing_date": "2026-09-13",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/MOEL.zip",
+      "latest_processing_status": "Under Process",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Maharashtra Oil Extractions Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-09-13",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/MOEL.zip",
+          "processing_status": "Under Process",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AABCM5897M",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Maharashtra Oil Extractions Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Torrent Gas Limited",
+      "latest_filing_date": "2026-09-08",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/TGL_UDRHP.zip",
+      "latest_processing_status": null,
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Torrent Gas Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-09-08",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/TGL_UDRHP.zip",
+          "processing_status": null,
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AAGCT7889P",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Torrent Gas Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Iberia Pharmaceuticals India Limited",
+      "latest_filing_date": "2026-09-05",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/IPIL_DRHP.zip",
+      "latest_processing_status": "Under Process",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Iberia Pharmaceuticals India Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-09-05",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/IPIL_DRHP.zip",
+          "processing_status": "Under Process",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AASCS9462M",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Iberia Pharmaceuticals India Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "M K C Agro Fresh Limited",
+      "latest_filing_date": "2026-09-04",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/MKCAgro.zip",
+      "latest_processing_status": "Under Process",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "M K C Agro Fresh Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-09-04",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/MKCAgro.zip",
+          "processing_status": "Under Process",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AAFCM9199J",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=M K C Agro Fresh Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "NoPaperForms Solutions Limited",
+      "latest_filing_date": "2026-09-04",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/Nopaper_UDRHP_1.zip",
+      "latest_processing_status": null,
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "NoPaperForms Solutions Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-09-04",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/Nopaper_UDRHP_1.zip",
+          "processing_status": null,
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AAFCN5462K",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=NoPaperForms Solutions Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Mahanadi Coalfields Limited",
+      "latest_filing_date": "2026-08-31",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/Registration_01092026212900_MCLDRHP.pdf",
+      "latest_processing_status": "Under Process",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Mahanadi Coalfields Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-08-31",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/Registration_01092026212900_MCLDRHP.pdf",
+          "processing_status": "Under Process",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AABCM5188P",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Mahanadi Coalfields Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Aragen Life Sciences Limited",
+      "latest_filing_date": "2026-08-26",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/AragenLifescienceslimited_DRHP.zip",
+      "latest_processing_status": "Under Process",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Aragen Life Sciences Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-08-26",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/AragenLifescienceslimited_DRHP.zip",
+          "processing_status": "Under Process",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AABCG3208J",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Aragen Life Sciences Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Kataria Dhulchand Pannalal Jewellers Limited",
+      "latest_filing_date": "2026-08-26",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/Registration_27082026115234_DRHPandDraftAbridgedProspectus_Kataria.zip",
+      "latest_processing_status": "Under Process",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Kataria Dhulchand Pannalal Jewellers Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-08-26",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/Registration_27082026115234_DRHPandDraftAbridgedProspectus_Kataria.zip",
+          "processing_status": "Under Process",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AAACL8237D",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Kataria Dhulchand Pannalal Jewellers Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Sembcorp Green Infra Limited",
+      "latest_filing_date": "2026-08-26",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/Registration_27082026002425_DRHP.zip",
+      "latest_processing_status": "Under Process",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Sembcorp Green Infra Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-08-26",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/Registration_27082026002425_DRHP.zip",
+          "processing_status": "Under Process",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AACCB6717A",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Sembcorp Green Infra Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Avaada Electro Limited",
+      "latest_filing_date": "2026-08-25",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/Avaada_Electro_Limited_UDRHP_1.zip",
+      "latest_processing_status": null,
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Avaada Electro Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-08-25",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/Avaada_Electro_Limited_UDRHP_1.zip",
+          "processing_status": null,
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AAVCA1596P",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Avaada Electro Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Jay Jagdamba Limited",
+      "latest_filing_date": "2026-08-24",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/JayJagdambaLimited_UDRHPI_DAP.zip",
+      "latest_processing_status": null,
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Jay Jagdamba Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-08-24",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/JayJagdambaLimited_UDRHPI_DAP.zip",
+          "processing_status": null,
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AACCK3066F",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Jay Jagdamba Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Gemini Edibles & Fats India Limited",
+      "latest_filing_date": "2026-08-21",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/Gemini_DRHP_DAP.zip",
+      "latest_processing_status": "Under Process",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Gemini Edibles & Fats India Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-08-21",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/Gemini_DRHP_DAP.zip",
+          "processing_status": "Under Process",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AADCG5150F",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Gemini Edibles & Fats India Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "M P Steel(India) Limited",
+      "latest_filing_date": "2026-08-21",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/DRHP_MP_Steel.zip",
+      "latest_processing_status": "Under Process",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "M P Steel(India) Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-08-21",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/DRHP_MP_Steel.zip",
+          "processing_status": "Under Process",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AAACR9219H",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=M P Steel(India) Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Atomberg Technologies Limited",
+      "latest_filing_date": "2026-08-20",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/Registration_21082026022516_DRHP.zip",
+      "latest_processing_status": "Under Process",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Atomberg Technologies Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-08-20",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/Registration_21082026022516_DRHP.zip",
+          "processing_status": "Under Process",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AAKCA4836H",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Atomberg Technologies Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Nobel Hygiene Limited",
+      "latest_filing_date": "2026-08-20",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/Nobel_Hygiene_Limited.zip",
+      "latest_processing_status": "Under Process",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Nobel Hygiene Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-08-20",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/Nobel_Hygiene_Limited.zip",
+          "processing_status": "Under Process",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AABCN5081A",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Nobel Hygiene Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "India Exposition Mart Limited",
+      "latest_filing_date": "2026-08-17",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/DRHP_of_India_Exposition_Mart_Limited.zip",
+      "latest_processing_status": "Under Process",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "India Exposition Mart Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-08-17",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/DRHP_of_India_Exposition_Mart_Limited.zip",
+          "processing_status": "Under Process",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AAACI8678M",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=India Exposition Mart Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Avtar Steel Limited",
+      "latest_filing_date": "2026-08-14",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/AVTAR.zip",
+      "latest_processing_status": "Under Process",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Avtar Steel Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-08-14",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/AVTAR.zip",
+          "processing_status": "Under Process",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AABCA0205B",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Avtar Steel Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Svatantra Microfin Limited",
+      "latest_filing_date": "2026-08-13",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/SML.zip",
+      "latest_processing_status": "Under Process",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Svatantra Microfin Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-08-13",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/SML.zip",
+          "processing_status": "Under Process",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AARCS0730K",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Svatantra Microfin Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Zetwerk Manufacturing Businesses Limited",
+      "latest_filing_date": "2026-08-13",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/UDRHP_zetwerk.zip",
+      "latest_processing_status": null,
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Zetwerk Manufacturing Businesses Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-08-13",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/UDRHP_zetwerk.zip",
+          "processing_status": null,
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AABCZ1506C",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Zetwerk Manufacturing Businesses Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Muthoot Fincorp Limited",
+      "latest_filing_date": "2026-08-12",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/DRHPMuthoot.zip",
+      "latest_processing_status": "Under Process",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Muthoot Fincorp Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-08-12",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/DRHPMuthoot.zip",
+          "processing_status": "Under Process",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AACCM1453E",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Muthoot Fincorp Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Tablespace Technologies Ltd",
+      "latest_filing_date": "2026-08-10",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/Registration_11082026031923_ProjectNorthstarDRHP.zip",
+      "latest_processing_status": "Under Process",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Tablespace Technologies Ltd",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-08-10",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/Registration_11082026031923_ProjectNorthstarDRHP.zip",
+          "processing_status": "Under Process",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AAGCT1371G",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Tablespace Technologies Ltd"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "AGS Health Limited",
+      "latest_filing_date": "2026-08-07",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/UDRHP_AGSHL.zip",
+      "latest_processing_status": null,
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "AGS Health Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-08-07",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/UDRHP_AGSHL.zip",
+          "processing_status": null,
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AAICA9905D",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=AGS Health Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Tonbo Imaging India Limited",
+      "latest_filing_date": "2026-08-04",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/Tonbo.zip",
+      "latest_processing_status": "Approved",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Tonbo Imaging India Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-08-04",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/Tonbo.zip",
+          "processing_status": "Approved",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AAHCS8134P",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Tonbo Imaging India Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Arjun Jewellers Limited",
+      "latest_filing_date": "2026-08-01",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/AJL_DRHP_DAP.zip",
+      "latest_processing_status": "Under Process",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Arjun Jewellers Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-08-01",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/AJL_DRHP_DAP.zip",
+          "processing_status": "Under Process",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AATCA1253F",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Arjun Jewellers Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Encube Ethicals Limited",
+      "latest_filing_date": "2026-08-01",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/ENCUBE_ETHICALS_LIMITED_DRHP.zip",
+      "latest_processing_status": "Under Process",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Encube Ethicals Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-08-01",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/ENCUBE_ETHICALS_LIMITED_DRHP.zip",
+          "processing_status": "Under Process",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AAACE1408R",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Encube Ethicals Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Veritas Finance Limited",
+      "latest_filing_date": "2026-07-29",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/DRHP_veritas.zip",
+      "latest_processing_status": "Under Process",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Veritas Finance Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-07-29",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/DRHP_veritas.zip",
+          "processing_status": "Under Process",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AAFCV0954Q",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Veritas Finance Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Beauty Garage Limited",
+      "latest_filing_date": "2026-07-28",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/DPAandDRHP.zip",
+      "latest_processing_status": "Under Process",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Beauty Garage Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-07-28",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/DPAandDRHP.zip",
+          "processing_status": "Under Process",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AAJCB6062D",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Beauty Garage Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Master Chains N Jewels Limited",
+      "latest_filing_date": "2026-07-25",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/Registration_25072026221948_MCJDRHP.zip",
+      "latest_processing_status": "Under Process",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Master Chains N Jewels Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-07-25",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/Registration_25072026221948_MCJDRHP.zip",
+          "processing_status": "Under Process",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AACCM3570C",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Master Chains N Jewels Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Advanced Systek Limited",
+      "latest_filing_date": "2026-07-23",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/ADVANCEDSYSTEKLIMITEDDRHP.zip",
+      "latest_processing_status": "Under Process",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Advanced Systek Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-07-23",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/ADVANCEDSYSTEKLIMITEDDRHP.zip",
+          "processing_status": "Under Process",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AABCD3608F",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Advanced Systek Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "IFL Finance Limited",
+      "latest_filing_date": "2026-07-22",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/DP_DRHP.zip",
+      "latest_processing_status": "Under Process",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "IFL Finance Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-07-22",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/DP_DRHP.zip",
+          "processing_status": "Under Process",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AADCI9142H",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=IFL Finance Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Yogiji Digi Limited",
+      "latest_filing_date": "2026-07-20",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/YogijiDigiLtdDraftRedHerringProspectus.zip",
+      "latest_processing_status": "Under Process",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Yogiji Digi Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-07-20",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/YogijiDigiLtdDraftRedHerringProspectus.zip",
+          "processing_status": "Under Process",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AAACD7387A",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Yogiji Digi Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "J Pan Tubular Components Limited",
+      "latest_filing_date": "2026-07-10",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/J_Pan_Tubular_Components_Limited.zip",
+      "latest_processing_status": "Approved",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "J Pan Tubular Components Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-07-10",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/J_Pan_Tubular_Components_Limited.zip",
+          "processing_status": "Approved",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AABCJ8537F",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=J Pan Tubular Components Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Cult.Fit Limited",
+      "latest_filing_date": "2026-07-06",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/Cultfit.zip",
+      "latest_processing_status": "Approved",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Cult.Fit Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-07-06",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/Cultfit.zip",
+          "processing_status": "Approved",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AAGCC4891G",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Cult.Fit Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Functional & Innovative Foods Limited",
+      "latest_filing_date": "2026-06-30",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/FIFL.zip",
+      "latest_processing_status": "Approved",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Functional & Innovative Foods Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-06-30",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/FIFL.zip",
+          "processing_status": "Approved",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AAICC9720G",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Functional & Innovative Foods Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Gni Infrastructure Limited",
+      "latest_filing_date": "2026-06-30",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/Registration_30062026230811_GNIDRHP.zip",
+      "latest_processing_status": "Under Process",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Gni Infrastructure Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-06-30",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/Registration_30062026230811_GNIDRHP.zip",
+          "processing_status": "Under Process",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AACCG9588J",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Gni Infrastructure Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Pragyawan Technologies Limited",
+      "latest_filing_date": "2026-06-30",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/Registration_30062026204809_PragyawanTechnologiesLimited_DRHP.zip",
+      "latest_processing_status": "Under Process",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Pragyawan Technologies Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-06-30",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/Registration_30062026204809_PragyawanTechnologiesLimited_DRHP.zip",
+          "processing_status": "Under Process",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AAGCP1209D",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Pragyawan Technologies Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Renfra Energy India Limited",
+      "latest_filing_date": "2026-06-30",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/Registration_01072026114454_RenfraEnergyIndiaLimited.zip",
+      "latest_processing_status": "Under Process",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Renfra Energy India Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-06-30",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/Registration_01072026114454_RenfraEnergyIndiaLimited.zip",
+          "processing_status": "Under Process",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AAICR5893B",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Renfra Energy India Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Tmc Transformers India Limited",
+      "latest_filing_date": "2026-06-30",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/TMC.zip",
+      "latest_processing_status": "Approved",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Tmc Transformers India Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-06-30",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/TMC.zip",
+          "processing_status": "Approved",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AADCT1190Q",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Tmc Transformers India Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Innoterra Limited",
+      "latest_filing_date": "2026-06-29",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/Innoterra.zip",
+      "latest_processing_status": "Under Process",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Innoterra Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-06-29",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/Innoterra.zip",
+          "processing_status": "Under Process",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AAJCM9815D",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Innoterra Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Mann Fleet Partners Limited",
+      "latest_filing_date": "2026-06-29",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/DRHP.zip",
+      "latest_processing_status": "Approved",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Mann Fleet Partners Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-06-29",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/DRHP.zip",
+          "processing_status": "Approved",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AAACM0500C",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Mann Fleet Partners Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Oravel Stays Limited",
+      "latest_filing_date": "2026-06-29",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/ORAVEL_UDRHP.zip",
+      "latest_processing_status": null,
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Oravel Stays Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-06-29",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/ORAVEL_UDRHP.zip",
+          "processing_status": null,
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AABCO6063D",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Oravel Stays Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Social Worth Technologies Limited",
+      "latest_filing_date": "2026-06-29",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/Registration_30062026022617_SWTLDRHPandAbridgedProspectus.zip",
+      "latest_processing_status": "Approved",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Social Worth Technologies Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-06-29",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/Registration_30062026022617_SWTLDRHPandAbridgedProspectus.zip",
+          "processing_status": "Approved",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AAWCS3554J",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Social Worth Technologies Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Stalwart People Services India Limited",
+      "latest_filing_date": "2026-06-29",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/Registration_29062026204540_DRHP.zip",
+      "latest_processing_status": "Under Process",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Stalwart People Services India Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-06-29",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/Registration_29062026204540_DRHP.zip",
+          "processing_status": "Under Process",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AAHCS7398R",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Stalwart People Services India Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Eswari Global Metal Industries Limited",
+      "latest_filing_date": "2026-06-28",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/Registration_29062026151955_DRHP.zip",
+      "latest_processing_status": "Approved",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Eswari Global Metal Industries Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-06-28",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/Registration_29062026151955_DRHP.zip",
+          "processing_status": "Approved",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AADCE5946P",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Eswari Global Metal Industries Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Sky Alloys and Power Limited",
+      "latest_filing_date": "2026-06-22",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/SKYDRHPFINAL.zip",
+      "latest_processing_status": "Under Process",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Sky Alloys and Power Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-06-22",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/SKYDRHPFINAL.zip",
+          "processing_status": "Under Process",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AANCS4968D",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Sky Alloys and Power Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Ujin Pharma Limited",
+      "latest_filing_date": "2026-06-22",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/Registration_22062026193337_UjinPharmaLtdDRHP.zip",
+      "latest_processing_status": "Approved",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Ujin Pharma Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-06-22",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/Registration_22062026193337_UjinPharmaLtdDRHP.zip",
+          "processing_status": "Approved",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AADCU5838L",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Ujin Pharma Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Jio Platforms Limited",
+      "latest_filing_date": "2026-06-19",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/Jio_Platforms_Limited.zip",
+      "latest_processing_status": "Approved",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Jio Platforms Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-06-19",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/Jio_Platforms_Limited.zip",
+          "processing_status": "Approved",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AAECJ6878N",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Jio Platforms Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Zepto Limited",
+      "latest_filing_date": "2026-06-08",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/UDRHP_ZL.zip",
+      "latest_processing_status": null,
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Zepto Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-06-08",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/UDRHP_ZL.zip",
+          "processing_status": null,
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AAICK4821A",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Zepto Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Paras Healthcare Limited",
+      "latest_filing_date": "2026-06-04",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/Paras_Healthcare_Limited.zip",
+      "latest_processing_status": "Approved",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Paras Healthcare Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-06-04",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/Paras_Healthcare_Limited.zip",
+          "processing_status": "Approved",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AADCP0478K",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Paras Healthcare Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Pushp Brand (India) Limited",
+      "latest_filing_date": "2026-05-26",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/Registration_26052026202923_Pushp_Brand_India_Limited_DRHP.zip",
+      "latest_processing_status": "Approved",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Pushp Brand (India) Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-05-26",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/Registration_26052026202923_Pushp_Brand_India_Limited_DRHP.zip",
+          "processing_status": "Approved",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AALCP1452B",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Pushp Brand (India) Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Matangi Rubber Limited",
+      "latest_filing_date": "2026-05-25",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/Matangi_Draft_Red_Herring_Prospectus.zip",
+      "latest_processing_status": "Approved",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Matangi Rubber Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-05-25",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/Matangi_Draft_Red_Herring_Prospectus.zip",
+          "processing_status": "Approved",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AAECM3222B",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Matangi Rubber Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Dhoot Transmission Limited",
+      "latest_filing_date": "2026-05-22",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/UDRHP_DTL.zip",
+      "latest_processing_status": null,
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [
+        "INE01NH01023"
+      ],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Dhoot Transmission Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-05-22",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/UDRHP_DTL.zip",
+          "processing_status": null,
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": "INE01NH01023",
+          "symbol": null,
+          "pan": null,
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Dhoot Transmission Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Arohan Financial Services Limited",
+      "latest_filing_date": "2026-05-15",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/DRHP_AFSL.zip",
+      "latest_processing_status": "Approved",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Arohan Financial Services Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-05-15",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/DRHP_AFSL.zip",
+          "processing_status": "Approved",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AAECA6121D",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Arohan Financial Services Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "M. K. Sons Fine Jewels Limited",
+      "latest_filing_date": "2026-05-11",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/MKSons_DRHP.zip",
+      "latest_processing_status": "Approved",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "M. K. Sons Fine Jewels Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-05-11",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/MKSons_DRHP.zip",
+          "processing_status": "Approved",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AAHCM6857D",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=M. K. Sons Fine Jewels Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Gaurik Fashions Limited",
+      "latest_filing_date": "2026-05-10",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/Registration_10052026085443_DRHP.zip",
+      "latest_processing_status": "Under Process",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Gaurik Fashions Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-05-10",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/Registration_10052026085443_DRHP.zip",
+          "processing_status": "Under Process",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AAGCG7616P",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Gaurik Fashions Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Online Instruments (India) Limited",
+      "latest_filing_date": "2026-05-08",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/Registration_09052026111543_Offerdocuments.zip",
+      "latest_processing_status": "Approved",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Online Instruments (India) Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-05-08",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/Registration_09052026111543_Offerdocuments.zip",
+          "processing_status": "Approved",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AAACO8088P",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Online Instruments (India) Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Incred Holdings Limited",
+      "latest_filing_date": "2026-05-06",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/InCred_Holdings_Limited_UDRHP_I.zip",
+      "latest_processing_status": null,
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Incred Holdings Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-05-06",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/InCred_Holdings_Limited_UDRHP_I.zip",
+          "processing_status": null,
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AAECK1977B",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Incred Holdings Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Playsimple Games Limited",
+      "latest_filing_date": "2026-04-23",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/PlaySimpleGamesLimitedDRHP.zip",
+      "latest_processing_status": "Approved",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Playsimple Games Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-04-23",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/PlaySimpleGamesLimitedDRHP.zip",
+          "processing_status": "Approved",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AAHCP8965D",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Playsimple Games Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Jindal Supreme (India) Limited",
+      "latest_filing_date": "2026-04-13",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/Jindal_supreme.zip",
+      "latest_processing_status": "Approved",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [
+        "INE1DLO01028"
+      ],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Jindal Supreme (India) Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-04-13",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/Jindal_supreme.zip",
+          "processing_status": "Approved",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": "INE1DLO01028",
+          "symbol": null,
+          "pan": null,
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Jindal Supreme (India) Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Bvishal Oil And Energy Limited",
+      "latest_filing_date": "2026-03-31",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/Bvishal_DRHP.zip",
+      "latest_processing_status": "Under Process",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Bvishal Oil And Energy Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-03-31",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/Bvishal_DRHP.zip",
+          "processing_status": "Under Process",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AAHCB5385R",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Bvishal Oil And Energy Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Punjab Carbonic Limited",
+      "latest_filing_date": "2026-03-31",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/Registration_01042026014655_DRHP_Filing_Version.zip",
+      "latest_processing_status": "Approved",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Punjab Carbonic Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-03-31",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/Registration_01042026014655_DRHP_Filing_Version.zip",
+          "processing_status": "Approved",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AABCP1719M",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Punjab Carbonic Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Sadbhav Futuretech Limited",
+      "latest_filing_date": "2026-03-31",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/Sadbhav_DRHP.zip",
+      "latest_processing_status": "Approved",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Sadbhav Futuretech Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-03-31",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/Sadbhav_DRHP.zip",
+          "processing_status": "Approved",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AAFCI6537G",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Sadbhav Futuretech Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Absolute Projects (India) Limited",
+      "latest_filing_date": "2026-03-30",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/AbsoluteProjectsIndiaLimited.zip",
+      "latest_processing_status": "Approved",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Absolute Projects (India) Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-03-30",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/AbsoluteProjectsIndiaLimited.zip",
+          "processing_status": "Approved",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AABCA0783G",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Absolute Projects (India) Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Adroit Industries (India) Limited",
+      "latest_filing_date": "2026-03-30",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/Adroit_DRHP.zip",
+      "latest_processing_status": "Approved",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Adroit Industries (India) Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-03-30",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/Adroit_DRHP.zip",
+          "processing_status": "Approved",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AAACA6850F",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Adroit Industries (India) Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Cosmic Pv Power Limited",
+      "latest_filing_date": "2026-03-30",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/Cosmic_PV_Power_Limited_DRHP.zip",
+      "latest_processing_status": "Approved",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Cosmic Pv Power Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-03-30",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/Cosmic_PV_Power_Limited_DRHP.zip",
+          "processing_status": "Approved",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AAICC9357P",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Cosmic Pv Power Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Expression 360 Services India Limited",
+      "latest_filing_date": "2026-03-30",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/Expression_DRHP.zip",
+      "latest_processing_status": "Approved",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Expression 360 Services India Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-03-30",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/Expression_DRHP.zip",
+          "processing_status": "Approved",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AACCE3453E",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Expression 360 Services India Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Gujarat Victory Forgings Limited",
+      "latest_filing_date": "2026-03-30",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/Gujarat_DRHP.zip",
+      "latest_processing_status": "Approved",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Gujarat Victory Forgings Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-03-30",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/Gujarat_DRHP.zip",
+          "processing_status": "Approved",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AAACG6936A",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Gujarat Victory Forgings Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Kay Jay Forgings Limited",
+      "latest_filing_date": "2026-03-30",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/Kay_Jay_Forgings_Limited_DRHP.zip",
+      "latest_processing_status": "Approved",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Kay Jay Forgings Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-03-30",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/Kay_Jay_Forgings_Limited_DRHP.zip",
+          "processing_status": "Approved",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AAACK0878P",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Kay Jay Forgings Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Monomark Engineering (India) Limited",
+      "latest_filing_date": "2026-03-30",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/Monomark_DRHP.zip",
+      "latest_processing_status": "Approved",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 2,
+      "filings": [
+        {
+          "issuer_name": "Monomark Engineering (India) Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-03-30",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/Monomark_DRHP.zip",
+          "processing_status": "Approved",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AAECM5637L",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Monomark Engineering (India) Limited"
+          }
+        },
+        {
+          "issuer_name": "Monomark Engineering (India) Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-03-30",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/Registration_30032026144621_DRHPMonomark.pdf",
+          "processing_status": "Approved",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AAECM5637L",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Monomark Engineering (India) Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Nityas Gems And Jewellery Limited",
+      "latest_filing_date": "2026-03-30",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/NGAJL_DRHP.zip",
+      "latest_processing_status": "Approved",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Nityas Gems And Jewellery Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-03-30",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/NGAJL_DRHP.zip",
+          "processing_status": "Approved",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AAICN2111L",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Nityas Gems And Jewellery Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Sathya Agencies Limited",
+      "latest_filing_date": "2026-03-30",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/SathyaAgenciesLimitedDRHP.zip",
+      "latest_processing_status": "Approved",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Sathya Agencies Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-03-30",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/SathyaAgenciesLimitedDRHP.zip",
+          "processing_status": "Approved",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AAICS8948L",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Sathya Agencies Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "T.C. Terrytex Limited",
+      "latest_filing_date": "2026-03-30",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/Registration_31032026191956_DRHP_Final.zip",
+      "latest_processing_status": "Under Process",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "T.C. Terrytex Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-03-30",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/Registration_31032026191956_DRHP_Final.zip",
+          "processing_status": "Under Process",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AACCT3244L",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=T.C. Terrytex Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Pioneer Fil-Med Limited",
+      "latest_filing_date": "2026-03-29",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/PFL_DRHP.zip",
+      "latest_processing_status": "Approved",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Pioneer Fil-Med Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-03-29",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/PFL_DRHP.zip",
+          "processing_status": "Approved",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AAACP9963C",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Pioneer Fil-Med Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Pioneer Filmed Limited",
+      "latest_filing_date": "2026-03-29",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/Registration_30032026014702_DRHP.pdf",
+      "latest_processing_status": "Approved",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Pioneer Filmed Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-03-29",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/Registration_30032026014702_DRHP.pdf",
+          "processing_status": "Approved",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AAACP9963C",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Pioneer Filmed Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Intellius Recode Limited",
+      "latest_filing_date": "2026-03-27",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/Intellius_DRHP.zip",
+      "latest_processing_status": "Approved",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Intellius Recode Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-03-27",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/Intellius_DRHP.zip",
+          "processing_status": "Approved",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AAECI9298K",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Intellius Recode Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Rentomojo Limited",
+      "latest_filing_date": "2026-03-27",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/Rentomojo.zip",
+      "latest_processing_status": "Approved",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [
+        "INE08T701025"
+      ],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Rentomojo Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-03-27",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/Rentomojo.zip",
+          "processing_status": "Approved",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": "INE08T701025",
+          "symbol": null,
+          "pan": null,
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Rentomojo Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Bharat Pet Limited",
+      "latest_filing_date": "2026-03-25",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/Bharat_DRHP.zip",
+      "latest_processing_status": "Approved",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Bharat Pet Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-03-25",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/Bharat_DRHP.zip",
+          "processing_status": "Approved",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AAACB6475B",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Bharat Pet Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Laxyo Limited",
+      "latest_filing_date": "2026-03-23",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/Registration_24032026170140_DRHP_LaxyoLimited.zip",
+      "latest_processing_status": "Approved",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Laxyo Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-03-23",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/Registration_24032026170140_DRHP_LaxyoLimited.zip",
+          "processing_status": "Approved",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AABCL3031E",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Laxyo Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Manipal Health Enterprises Limited",
+      "latest_filing_date": "2026-03-23",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/Manipal.zip",
+      "latest_processing_status": "Approved",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [
+        "INE459N01021"
+      ],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Manipal Health Enterprises Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-03-23",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/Manipal.zip",
+          "processing_status": "Approved",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": "INE459N01021",
+          "symbol": null,
+          "pan": null,
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Manipal Health Enterprises Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Rkb Global Limited",
+      "latest_filing_date": "2026-03-20",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/RKB_Global_Ltd_Corrigendum_DRHP.zip",
+      "latest_processing_status": "Approved",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Rkb Global Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-03-20",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/RKB_Global_Ltd_Corrigendum_DRHP.zip",
+          "processing_status": "Approved",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AAGCR7416J",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Rkb Global Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Trenzet Infra Limited",
+      "latest_filing_date": "2026-03-20",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/Trenzet_Infra_Limited_DRHP.zip",
+      "latest_processing_status": null,
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Trenzet Infra Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-03-20",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/Trenzet_Infra_Limited_DRHP.zip",
+          "processing_status": null,
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AAFCK5592B",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Trenzet Infra Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "SBI Funds Management Limited",
+      "latest_filing_date": "2026-03-19",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/Sbifunds_DRHP.zip",
+      "latest_processing_status": "Approved",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [
+        "INE640G01020"
+      ],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "SBI Funds Management Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-03-19",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/Sbifunds_DRHP.zip",
+          "processing_status": "Approved",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": "INE640G01020",
+          "symbol": null,
+          "pan": null,
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=SBI Funds Management Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Polite Powertech Limited",
+      "latest_filing_date": "2026-03-18",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/Registration_18032026232109_DRHPPOLITE.pdf",
+      "latest_processing_status": "Approved",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Polite Powertech Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-03-18",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/Registration_18032026232109_DRHPPOLITE.pdf",
+          "processing_status": "Approved",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AANCP5675Q",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Polite Powertech Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Truhome Finance Limited",
+      "latest_filing_date": "2026-03-09",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/Registration_09032026182502_TFL_Annexur_I_DRHP.pdf",
+      "latest_processing_status": "Approved",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Truhome Finance Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-03-09",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/Registration_09032026182502_TFL_Annexur_I_DRHP.pdf",
+          "processing_status": "Approved",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AAPCS3213D",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Truhome Finance Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Sunil Gold India Limited",
+      "latest_filing_date": "2026-03-06",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/Registration_07032026023359_SunilGoldIndiaLimited_DRHP.pdf",
+      "latest_processing_status": "Withdrawn",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Sunil Gold India Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-03-06",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/Registration_07032026023359_SunilGoldIndiaLimited_DRHP.pdf",
+          "processing_status": "Withdrawn",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AARCS6560P",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Sunil Gold India Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Shreni Shares Limited",
+      "latest_filing_date": "2026-03-04",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/Registration_04032026143446_Draft_Red_Herring_Prospectus_SSL.pdf",
+      "latest_processing_status": "Approved",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Shreni Shares Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-03-04",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/Registration_04032026143446_Draft_Red_Herring_Prospectus_SSL.pdf",
+          "processing_status": "Approved",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AANCS4073K",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Shreni Shares Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Moneyview Limited",
+      "latest_filing_date": "2026-03-03",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/Registration_03032026232951_DRHP.pdf",
+      "latest_processing_status": "Approved",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Moneyview Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-03-03",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/Registration_03032026232951_DRHP.pdf",
+          "processing_status": "Approved",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AABCW5464E",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Moneyview Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Rays of Belief Limited",
+      "latest_filing_date": "2026-02-11",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/RaysofBeliefLimited_UDRHP_I.pdf",
+      "latest_processing_status": null,
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [
+        "INE1FCO01014"
+      ],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Rays of Belief Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-02-11",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/RaysofBeliefLimited_UDRHP_I.pdf",
+          "processing_status": null,
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": "INE1FCO01014",
+          "symbol": null,
+          "pan": null,
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Rays of Belief Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Bonfiglioli Transmissions Limited",
+      "latest_filing_date": "2026-02-09",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/Registration_09022026234547_BonfiglioliTransmissionsLimitedDRHP.pdf",
+      "latest_processing_status": "Approved",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Bonfiglioli Transmissions Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-02-09",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/Registration_09022026234547_BonfiglioliTransmissionsLimitedDRHP.pdf",
+          "processing_status": "Approved",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AABCB1675N",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Bonfiglioli Transmissions Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Eaaa India Alternatives Limited",
+      "latest_filing_date": "2026-02-02",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/sshetye_02022026153222_EAAADRHP.pdf",
+      "latest_processing_status": null,
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Eaaa India Alternatives Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-02-02",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/sshetye_02022026153222_EAAADRHP.pdf",
+          "processing_status": null,
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AABCE9810G",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Eaaa India Alternatives Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Marri Retail Limited",
+      "latest_filing_date": "2026-02-01",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/Registration_01022026201012_MARRIDRHP.pdf",
+      "latest_processing_status": "Approved",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Marri Retail Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-02-01",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/Registration_01022026201012_MARRIDRHP.pdf",
+          "processing_status": "Approved",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AACCJ0514B",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Marri Retail Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Srit India Limited",
+      "latest_filing_date": "2026-01-30",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/Registration_30012026232953_SRITDRHPFinal.pdf",
+      "latest_processing_status": null,
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Srit India Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-01-30",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/Registration_30012026232953_SRITDRHPFinal.pdf",
+          "processing_status": null,
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AAECS6273N",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Srit India Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Bombay Coated And Special Steels Limited",
+      "latest_filing_date": "2026-01-29",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/aartic_29012026120040_DRHPBombayCoated.pdf",
+      "latest_processing_status": null,
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Bombay Coated And Special Steels Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-01-29",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/aartic_29012026120040_DRHPBombayCoated.pdf",
+          "processing_status": null,
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AAICB8258J",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Bombay Coated And Special Steels Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Turtlemint Fintech Solutions Limited",
+      "latest_filing_date": "2026-01-28",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/Turtlemint_UDRHP_I.pdf",
+      "latest_processing_status": null,
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [
+        "INE0OC301013"
+      ],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Turtlemint Fintech Solutions Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-01-28",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/Turtlemint_UDRHP_I.pdf",
+          "processing_status": null,
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": "INE0OC301013",
+          "symbol": null,
+          "pan": null,
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Turtlemint Fintech Solutions Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Kanohar Electricals Limited",
+      "latest_filing_date": "2026-01-24",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/Registration_24012026145418_KanoharDRHP.pdf",
+      "latest_processing_status": null,
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [
+        "INE877D01025"
+      ],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Kanohar Electricals Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-01-24",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/Registration_24012026145418_KanoharDRHP.pdf",
+          "processing_status": null,
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": "INE877D01025",
+          "symbol": null,
+          "pan": null,
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Kanohar Electricals Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Advanta Enterprises Limited",
+      "latest_filing_date": "2026-01-19",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/Registration_19012026184746_DRHP.pdf",
+      "latest_processing_status": "Approved",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Advanta Enterprises Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-01-19",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/Registration_19012026184746_DRHP.pdf",
+          "processing_status": "Approved",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AAXCA1074E",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Advanta Enterprises Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Abc Limited",
+      "latest_filing_date": "2026-01-13",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/Registration_13012026143649_DraftAttachment.pdf",
+      "latest_processing_status": null,
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Abc Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-01-13",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/Registration_13012026143649_DraftAttachment.pdf",
+          "processing_status": null,
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "XXXXX0000X",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Abc Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Rodec Pharma Limited",
+      "latest_filing_date": "2026-01-11",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/Registration_11012026212821_DraftRedHerringProspectusRPL.pdf",
+      "latest_processing_status": "Approved",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Rodec Pharma Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-01-11",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/Registration_11012026212821_DraftRedHerringProspectusRPL.pdf",
+          "processing_status": "Approved",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AABCR5958E",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Rodec Pharma Limited"
+          }
+        }
+      ]
+    },
+    {
+      "issuer_name": "Hindustan Laboratories Limited",
+      "latest_filing_date": "2026-01-03",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://nsearchives.nseindia.com/corporate/Registration_03012026181005_HLL_DRHP.pdf",
+      "latest_processing_status": "Approved",
+      "board_hints": [
+        "Mainboard"
+      ],
+      "isins": [],
+      "symbols": [],
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Hindustan Laboratories Limited",
+          "board": "Mainboard",
+          "filing_type": "DRHP",
+          "filing_date": "2026-01-03",
+          "filing_url": "https://nsearchives.nseindia.com/corporate/Registration_03012026181005_HLL_DRHP.pdf",
+          "processing_status": "Approved",
+          "issue_open_date": null,
+          "issue_close_date": null,
+          "isin": null,
+          "symbol": null,
+          "pan": "AAECH2208Q",
+          "source_evidence": {
+            "authority": "National Stock Exchange of India",
+            "url": "https://www.nseindia.com/api/corporates/offerdocs?index=equities",
+            "document_type": "NSE Issuer Offer Documents API",
+            "document_identity": "NSE Issuer Offer Documents — equities",
+            "response_sha256": "fd31f721a1bbe5724b23f90961710dee05dd7398e68eaa7083cc76bba926dd42",
+            "collected_at": "2026-09-26T03:40:19.321Z",
+            "evidence_locator": "company=Hindustan Laboratories Limited"
+          }
+        }
+      ]
+    }
+  ]
+}
