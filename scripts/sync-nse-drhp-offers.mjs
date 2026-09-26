@@ -69,16 +69,16 @@ export function projectNseDraftRows(rows,{year=DEFAULT_YEAR,index="equities",res
   return out;
 }
 export function buildNseDraftCompanies(entries){
-  const groups=new Map();
+  const groups=new Map(),urlIdentity=new Map();
   for(const entry of [...entries].sort((a,b)=>b.filing_date.localeCompare(a.filing_date)||a.issuer_name.localeCompare(b.issuer_name))){
     const key=canonicalNseDraftIssuer(entry.issuer_name);if(!key)continue;
+    const prior=urlIdentity.get(entry.filing_url);
+    if(prior&&(prior.issuer_key!==key||prior.filing_date!==entry.filing_date))throw new Error("conflicting_nse_drhp_identity");
+    urlIdentity.set(entry.filing_url,{issuer_key:key,filing_date:entry.filing_date});
     const group=groups.get(key)||{issuer_name:entry.issuer_name,board_hints:new Set(),isins:new Set(),symbols:new Set(),filings:[]};
     group.board_hints.add(entry.board);if(entry.isin)group.isins.add(entry.isin);if(entry.symbol)group.symbols.add(entry.symbol);
     const old=group.filings.find(f=>f.filing_url===entry.filing_url);
-    if(old){
-      if(canonicalNseDraftIssuer(old.issuer_name)!==key||old.filing_date!==entry.filing_date)throw new Error("conflicting_nse_drhp_identity");
-      Object.assign(old,entry);
-    }else group.filings.push(entry);
+    if(old)Object.assign(old,entry);else group.filings.push(entry);
     groups.set(key,group);
   }
   return [...groups.values()].map(g=>{
