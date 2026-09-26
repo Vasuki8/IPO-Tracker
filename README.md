@@ -37,7 +37,7 @@ Collection time, source observation, dataset generation and Pages publication ar
 
 ## Handoff for the next prompt
 
-**The pinned 119-group NSE review, the nine historical excluded-event IPO repairs, Fabino, the BSE historical high-priority reconciliation, and the four unmatched BSE 2020 IPO repairs are complete and verified live. The next P1 task is the 16 unmatched official BSE 2021 rows.**
+**The pinned 119-group NSE review, the nine historical excluded-event IPO repairs, Fabino, the BSE historical high-priority reconciliation, the four BSE 2020 repairs, and the first three BSE 2021 unmatched IPOs are published. The next P1 task is the remaining 13 unmatched official BSE 2021 rows.**
 
 **The interrupted identity/DRHP release is complete: PR #248 and PR #249 are merged and verified. Do not replay batches 1–9.**
 
@@ -103,6 +103,6 @@ PR **#263** materialized **4 official BSE/SEBI documents / 12,642,908 response b
 
 ### Exact next backend task
 
-Review the **16 unmatched official BSE 2021 rows** retained by `data/discovery/bse-issue-summary-coverage-audit-2026-09-26.json`. The official 2021 surface contains 91 rows: 75 exact recovery matches and 16 unmatched. Treat issue-summary rows as discovery evidence only; verify each candidate from issuer-specific official BSE/SEBI/issuer evidence, retain original source bytes/hashes, preserve missing/conflicting values, and import only independently supported IPOs through a reviewed collision/idempotency-safe path.
+Continue the **remaining 13 unmatched official BSE 2021 rows** retained by `data/discovery/bse-issue-summary-coverage-audit-2026-09-26.json`. The first bounded batch has published IRFC, Anupam Rasayan India and Exxaro Tiles through six retained SEBI documents. Treat the remaining issue-summary rows as discovery evidence only; verify each candidate from issuer-specific official BSE/SEBI/issuer evidence, retain original source bytes/hashes, preserve missing/conflicting values, and import only independently supported IPOs through a reviewed collision/idempotency-safe path.
 
 The four BSE 2020 unmatched issuers are already published and live-verified; do not replay that batch. The served dataset verification after PR #279 matched **1,338 records** at SHA-256 `300e2c100046116349b64034646d66f64b3618282755bf96c00a534166252fed`. SEBI historical pagination and NSE-series gaps remain separate. UI/research-depth work remains in its own handoff. No minimum-investment, billing/accounts/ads, spending or access-policy expansion.
