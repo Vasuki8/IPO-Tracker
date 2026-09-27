@@ -46,8 +46,8 @@ export function context(){
     req(/^\d{6}$/.test(a.discovery_bse_scrip_code)&&a.identity_sources?.length>=2,"invalid_identity:"+a.key);
     req(a.identity_sources.some(k=>sources.get(k)?.projection?.issue_type==="IPO"),"ipo_identity_not_supported:"+a.key);
     req(a.target.board==="SME","invalid_board:"+a.key);
-    for(const name of FIELDS){req(validTarget(name,a.target[name]),"invalid_field:"+a.key+":"+name);if(a.target[name]!=null){const key=a.field_sources?.[name],s=sources.get(key);req(key&&s&&issuerKey(s.projection?.issuer)===issuerKey(a.issuer_name)&&same(s.projection?.[name],a.target[name]),"projection_mismatch:"+a.key+":"+name)}}
-    const bs=sources.get(a.field_sources?.board);req(bs&&bs.projection?.board==="SME","board_projection_mismatch:"+a.key);
+    for(const name of FIELDS){req(validTarget(name,a.target[name]),"invalid_field:"+a.key+":"+name);if(a.target[name]!=null){const key=a.field_sources?.[name],s=sources.get(key);req(key&&s&&issuerKey(s.projection?.issuer)===issuerKey(a.issuer_name)&&same(s.projection?.[name],a.target[name]),"projection_mismatch:"+a.key+":"+name);req(Number.isSafeInteger(a.field_pages?.[name])&&a.field_pages[name]>0&&typeof a.field_locators?.[name]==="string"&&a.field_locators[name].length>12,"invalid_field_evidence:"+a.key+":"+name)}}
+    const bs=sources.get(a.field_sources?.board);req(bs&&bs.projection?.board==="SME","board_projection_mismatch:"+a.key);req(Number.isSafeInteger(a.field_pages?.board)&&a.field_pages.board>0&&typeof a.field_locators?.board==="string"&&a.field_locators.board.length>12,"invalid_board_evidence:"+a.key);
   }
   return{review,receipt,manifest,docs,sources,actions};
 }
@@ -61,8 +61,8 @@ export function expected(ctx){
   return ctx.review.actions.map(a=>{
     const m=manifestActions.get(a.key);req(m&&m.stable_id===a.stable_id,"manifest_review_mismatch:"+a.key);
     const src={};
-    for(const name of FIELDS){if(a.target[name]!=null){const k=a.field_sources[name];src[name]=descriptor(ctx,k,a.issuer_name,null,ctx.sources.get(k)?.evidence_locator??null)}}
-    const boardSource=descriptor(ctx,a.field_sources.board,a.issuer_name,null,ctx.sources.get(a.field_sources.board)?.evidence_locator??null);
+    for(const name of FIELDS){if(a.target[name]!=null){const k=a.field_sources[name];src[name]=descriptor(ctx,k,a.issuer_name,a.field_pages[name],a.field_locators[name])}}
+    const boardSource=descriptor(ctx,a.field_sources.board,a.issuer_name,a.field_pages.board,a.field_locators.board);
     const docs=[...new Set(a.identity_sources)].map(k=>descriptor(ctx,k,a.issuer_name));
     const last=docs.map(d=>d.collected_at).sort().at(-1);
     const out={id:a.stable_id,issuer_name:a.issuer_name,board:a.target.board,sector:null,status:"listed",nse_symbol:null,nse_series:null,nse_source:null,bse_symbol:null,bse_scrip_code:null,isin:null,bse_source:null,terms:{price_band:null,market_lot:null,minimum_bid_quantity:null,open_date:null,close_date:null},documents:docs.map(s=>({type:s.document_type,identity:s.document_identity,url:s.url,publication_date:s.publication_date,collected_at:s.collected_at,document_sha256:s.document_sha256})),first_observed_at:last,last_collected_at:last,board_evidence:[boardSource],status_evidence:[src.listing_date],bse_2022_maagh_technopack_import:{manifest:MANIFEST,review:REVIEW,receipt:RECEIPT,action_key:a.key,discovery_bse_scrip_code:a.discovery_bse_scrip_code,artifact_id:ctx.receipt.artifact_id,artifact_sha256:ctx.receipt.artifact_sha256}};
