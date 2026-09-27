@@ -1,7 +1,7 @@
 {
   "source_family": "Official NSE / SEBI / BSE offer-document and exchange evidence",
   "collection_started_at": "2026-09-23T19:29:29.146Z",
-  "generated_at": "2026-09-27T15:52:18.059Z",
+  "generated_at": "2026-09-27T18:12:05.708Z",
   "records": [
     {
       "id": "aaa-technologies-limited",
@@ -17248,6 +17248,416 @@
         "artifact_id": 10934534436,
         "artifact_sha256": "9782e741a776ed8197bd83a7379dc8770833b4aabb197fd761d1399344052cb0",
         "discovery_bse_scrip_code": "543517"
+      }
+    },
+    {
+      "id": "tamilnad-mercantile-bank-limited",
+      "issuer_name": "Tamilnad Mercantile Bank Limited",
+      "board": null,
+      "sector": null,
+      "status": "listed",
+      "nse_symbol": null,
+      "nse_series": null,
+      "nse_source": null,
+      "bse_symbol": null,
+      "bse_scrip_code": null,
+      "isin": null,
+      "bse_source": null,
+      "terms": {
+        "price_band": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null,
+        "open_date": null,
+        "close_date": null
+      },
+      "documents": [
+        {
+          "type": "Final Prospectus",
+          "identity": "Tamilnad Mercantile Bank Limited — Prospectus dated 8 September 2022",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2022/1663570839596.pdf",
+          "publication_date": null,
+          "collected_at": "2026-09-27T17:54:14.888Z",
+          "document_sha256": "e66c2d0fa884a262b6755ad8d9a986ffe8df82fe36cc05f704616d5fb6c76dc9"
+        },
+        {
+          "type": "Red Herring Prospectus — BRLM past-issues table",
+          "identity": "Azad Engineering Limited — Red Herring Prospectus dated 14 December 2023; SBI Capital Markets past-issues table",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2023/1702623912451.PDF",
+          "publication_date": null,
+          "collected_at": "2026-09-27T17:55:18.007Z",
+          "document_sha256": "5509123f25a4403576f24c05b35b439b42435b0d4c6530e7e7018462b78aed22"
+        }
+      ],
+      "first_observed_at": "2026-09-27T17:55:18.007Z",
+      "last_collected_at": "2026-09-27T17:55:18.007Z",
+      "board_evidence": [],
+      "status_evidence": [
+        {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2023/1702623912451.PDF",
+          "document_type": "Red Herring Prospectus — BRLM past-issues table",
+          "document_identity": "Azad Engineering Limited — Red Herring Prospectus dated 14 December 2023; SBI Capital Markets past-issues table",
+          "publication_date": null,
+          "page": 381,
+          "collected_at": "2026-09-27T17:55:18.007Z",
+          "document_sha256": "5509123f25a4403576f24c05b35b439b42435b0d4c6530e7e7018462b78aed22",
+          "evidence_locator": "SBI Capital Markets past public issues table, Tamilnad Mercantile Bank row: listing date September 15, 2022."
+        }
+      ],
+      "bse_2022_tmb_dcx_import": {
+        "manifest": "data/verified-bse-listings/2026-09-27-tmb-dcx.json",
+        "review": "data/discovery/bse-2022-tmb-dcx-review-2026-09-27.json",
+        "receipt": "data/evidence/bse-2022-tmb-dcx-source-receipt-2026-09-27.json",
+        "action_key": "tmb",
+        "discovery_bse_scrip_code": "543596",
+        "artifact_id": 10937724221,
+        "artifact_sha256": "c79617e4a654ddddb0ab9d65a2770a2678ff15ecc8e5c0d1af74992902647181"
+      },
+      "price_band": {
+        "value": {
+          "min": 500,
+          "max": 525
+        },
+        "source_value": {
+          "min": 500,
+          "max": 525
+        },
+        "status": "verified",
+        "page": 9,
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2022/1663570839596.pdf",
+          "document_type": "Final Prospectus",
+          "document_identity": "Tamilnad Mercantile Bank Limited — Prospectus dated 8 September 2022",
+          "publication_date": null,
+          "page": 9,
+          "collected_at": "2026-09-27T17:54:14.888Z",
+          "document_sha256": "e66c2d0fa884a262b6755ad8d9a986ffe8df82fe36cc05f704616d5fb6c76dc9",
+          "evidence_locator": "Definitions table: Price Band — floor ₹500 and cap ₹525 per Equity Share."
+        },
+        "corrections": []
+      },
+      "issue_price": {
+        "value": 510,
+        "source_value": 510,
+        "status": "verified",
+        "page": 2,
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2022/1663570839596.pdf",
+          "document_type": "Final Prospectus",
+          "document_identity": "Tamilnad Mercantile Bank Limited — Prospectus dated 8 September 2022",
+          "publication_date": null,
+          "page": 2,
+          "collected_at": "2026-09-27T17:54:14.888Z",
+          "document_sha256": "e66c2d0fa884a262b6755ad8d9a986ffe8df82fe36cc05f704616d5fb6c76dc9",
+          "evidence_locator": "Prospectus cover: Offer Price ₹510 per Equity Share."
+        },
+        "corrections": []
+      },
+      "issue_size_inr": {
+        "value": 8078400000,
+        "source_value": 8078400000,
+        "status": "verified",
+        "page": 2,
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2022/1663570839596.pdf",
+          "document_type": "Final Prospectus",
+          "document_identity": "Tamilnad Mercantile Bank Limited — Prospectus dated 8 September 2022",
+          "publication_date": null,
+          "page": 2,
+          "collected_at": "2026-09-27T17:54:14.888Z",
+          "document_sha256": "e66c2d0fa884a262b6755ad8d9a986ffe8df82fe36cc05f704616d5fb6c76dc9",
+          "evidence_locator": "Prospectus cover: 15,840,000 shares aggregating to ₹8,078.40 million."
+        },
+        "corrections": []
+      },
+      "market_lot": {
+        "value": 1,
+        "source_value": 1,
+        "status": "verified",
+        "page": 321,
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2022/1663570839596.pdf",
+          "document_type": "Final Prospectus",
+          "document_identity": "Tamilnad Mercantile Bank Limited — Prospectus dated 8 September 2022",
+          "publication_date": null,
+          "page": 321,
+          "collected_at": "2026-09-27T17:54:14.888Z",
+          "document_sha256": "e66c2d0fa884a262b6755ad8d9a986ffe8df82fe36cc05f704616d5fb6c76dc9",
+          "evidence_locator": "Market Lot and Trading Lot: tradable lot is one Equity Share."
+        },
+        "corrections": []
+      },
+      "minimum_bid_quantity": {
+        "value": 28,
+        "source_value": 28,
+        "status": "verified",
+        "page": 327,
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2022/1663570839596.pdf",
+          "document_type": "Final Prospectus",
+          "document_identity": "Tamilnad Mercantile Bank Limited — Prospectus dated 8 September 2022",
+          "publication_date": null,
+          "page": 327,
+          "collected_at": "2026-09-27T17:54:14.888Z",
+          "document_sha256": "e66c2d0fa884a262b6755ad8d9a986ffe8df82fe36cc05f704616d5fb6c76dc9",
+          "evidence_locator": "Offer structure table: Retail Individual Bidders minimum bid 28 Equity Shares; bid lot 28."
+        },
+        "corrections": []
+      },
+      "open_date": {
+        "value": "2022-09-05",
+        "source_value": "2022-09-05",
+        "status": "verified",
+        "page": 2,
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2022/1663570839596.pdf",
+          "document_type": "Final Prospectus",
+          "document_identity": "Tamilnad Mercantile Bank Limited — Prospectus dated 8 September 2022",
+          "publication_date": null,
+          "page": 2,
+          "collected_at": "2026-09-27T17:54:14.888Z",
+          "document_sha256": "e66c2d0fa884a262b6755ad8d9a986ffe8df82fe36cc05f704616d5fb6c76dc9",
+          "evidence_locator": "Prospectus cover: Bid/Offer opened Monday, September 5, 2022."
+        },
+        "corrections": []
+      },
+      "close_date": {
+        "value": "2022-09-07",
+        "source_value": "2022-09-07",
+        "status": "verified",
+        "page": 2,
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2022/1663570839596.pdf",
+          "document_type": "Final Prospectus",
+          "document_identity": "Tamilnad Mercantile Bank Limited — Prospectus dated 8 September 2022",
+          "publication_date": null,
+          "page": 2,
+          "collected_at": "2026-09-27T17:54:14.888Z",
+          "document_sha256": "e66c2d0fa884a262b6755ad8d9a986ffe8df82fe36cc05f704616d5fb6c76dc9",
+          "evidence_locator": "Prospectus cover: Bid/Offer closed Wednesday, September 7, 2022."
+        },
+        "corrections": []
+      },
+      "listing_date": {
+        "value": "2022-09-15",
+        "source_value": "2022-09-15",
+        "status": "verified",
+        "page": 381,
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2023/1702623912451.PDF",
+          "document_type": "Red Herring Prospectus — BRLM past-issues table",
+          "document_identity": "Azad Engineering Limited — Red Herring Prospectus dated 14 December 2023; SBI Capital Markets past-issues table",
+          "publication_date": null,
+          "page": 381,
+          "collected_at": "2026-09-27T17:55:18.007Z",
+          "document_sha256": "5509123f25a4403576f24c05b35b439b42435b0d4c6530e7e7018462b78aed22",
+          "evidence_locator": "SBI Capital Markets past public issues table, Tamilnad Mercantile Bank row: listing date September 15, 2022."
+        },
+        "corrections": []
+      }
+    },
+    {
+      "id": "dcx-systems-limited",
+      "issuer_name": "DCX Systems Limited",
+      "board": null,
+      "sector": null,
+      "status": "listed",
+      "nse_symbol": null,
+      "nse_series": null,
+      "nse_source": null,
+      "bse_symbol": null,
+      "bse_scrip_code": null,
+      "isin": null,
+      "bse_source": null,
+      "terms": {
+        "price_band": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null,
+        "open_date": null,
+        "close_date": null
+      },
+      "documents": [
+        {
+          "type": "Final Prospectus",
+          "identity": "DCX Systems Limited — Prospectus dated 4 November 2022",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2022/1667796864708.pdf",
+          "publication_date": null,
+          "collected_at": "2026-09-27T17:56:45.760Z",
+          "document_sha256": "b7e1ecf1d751f396deb31d8b7cfcc2590115316ca3fe4958530ff95caece685e"
+        },
+        {
+          "type": "Red Herring Prospectus — BRLM past-issues table",
+          "identity": "Flair Writing Industries Limited — Red Herring Prospectus dated 16 November 2023; Nuvama past-issues table",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2023/1700224103192.pdf",
+          "publication_date": null,
+          "collected_at": "2026-09-27T17:57:20.900Z",
+          "document_sha256": "1739111ca1b8c3eccf3047bba833c643e2e2fc0c26045a6a3bd4151694de0a9f"
+        }
+      ],
+      "first_observed_at": "2026-09-27T17:57:20.900Z",
+      "last_collected_at": "2026-09-27T17:57:20.900Z",
+      "board_evidence": [],
+      "status_evidence": [
+        {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2023/1700224103192.pdf",
+          "document_type": "Red Herring Prospectus — BRLM past-issues table",
+          "document_identity": "Flair Writing Industries Limited — Red Herring Prospectus dated 16 November 2023; Nuvama past-issues table",
+          "publication_date": null,
+          "page": 418,
+          "collected_at": "2026-09-27T17:57:20.900Z",
+          "document_sha256": "1739111ca1b8c3eccf3047bba833c643e2e2fc0c26045a6a3bd4151694de0a9f",
+          "evidence_locator": "Nuvama past public issues table, DCX Systems row: listing date November 11, 2022."
+        }
+      ],
+      "bse_2022_tmb_dcx_import": {
+        "manifest": "data/verified-bse-listings/2026-09-27-tmb-dcx.json",
+        "review": "data/discovery/bse-2022-tmb-dcx-review-2026-09-27.json",
+        "receipt": "data/evidence/bse-2022-tmb-dcx-source-receipt-2026-09-27.json",
+        "action_key": "dcx",
+        "discovery_bse_scrip_code": "543650",
+        "artifact_id": 10937724221,
+        "artifact_sha256": "c79617e4a654ddddb0ab9d65a2770a2678ff15ecc8e5c0d1af74992902647181"
+      },
+      "price_band": {
+        "value": {
+          "min": 197,
+          "max": 207
+        },
+        "source_value": {
+          "min": 197,
+          "max": 207
+        },
+        "status": "verified",
+        "page": 355,
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2022/1667796864708.pdf",
+          "document_type": "Final Prospectus",
+          "document_identity": "DCX Systems Limited — Prospectus dated 4 November 2022",
+          "publication_date": null,
+          "page": 355,
+          "collected_at": "2026-09-27T17:56:45.760Z",
+          "document_sha256": "b7e1ecf1d751f396deb31d8b7cfcc2590115316ca3fe4958530ff95caece685e",
+          "evidence_locator": "Terms of the Offer: floor price ₹197 and cap price ₹207 per Equity Share."
+        },
+        "corrections": []
+      },
+      "issue_price": {
+        "value": 207,
+        "source_value": 207,
+        "status": "verified",
+        "page": 2,
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2022/1667796864708.pdf",
+          "document_type": "Final Prospectus",
+          "document_identity": "DCX Systems Limited — Prospectus dated 4 November 2022",
+          "publication_date": null,
+          "page": 2,
+          "collected_at": "2026-09-27T17:56:45.760Z",
+          "document_sha256": "b7e1ecf1d751f396deb31d8b7cfcc2590115316ca3fe4958530ff95caece685e",
+          "evidence_locator": "Prospectus cover: Offer Price ₹207 per Equity Share."
+        },
+        "corrections": []
+      },
+      "issue_size_inr": {
+        "value": 5000000000,
+        "source_value": 5000000000,
+        "status": "verified",
+        "page": 2,
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2022/1667796864708.pdf",
+          "document_type": "Final Prospectus",
+          "document_identity": "DCX Systems Limited — Prospectus dated 4 November 2022",
+          "publication_date": null,
+          "page": 2,
+          "collected_at": "2026-09-27T17:56:45.760Z",
+          "document_sha256": "b7e1ecf1d751f396deb31d8b7cfcc2590115316ca3fe4958530ff95caece685e",
+          "evidence_locator": "Prospectus cover: total Offer aggregating to ₹5,000.00 million."
+        },
+        "corrections": []
+      },
+      "market_lot": {
+        "value": 1,
+        "source_value": 1,
+        "status": "verified",
+        "page": 356,
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2022/1667796864708.pdf",
+          "document_type": "Final Prospectus",
+          "document_identity": "DCX Systems Limited — Prospectus dated 4 November 2022",
+          "publication_date": null,
+          "page": 356,
+          "collected_at": "2026-09-27T17:56:45.760Z",
+          "document_sha256": "b7e1ecf1d751f396deb31d8b7cfcc2590115316ca3fe4958530ff95caece685e",
+          "evidence_locator": "Market lot and trading lot: tradable lot is one Equity Share."
+        },
+        "corrections": []
+      },
+      "minimum_bid_quantity": {
+        "value": 72,
+        "source_value": 72,
+        "status": "verified",
+        "page": 362,
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2022/1667796864708.pdf",
+          "document_type": "Final Prospectus",
+          "document_identity": "DCX Systems Limited — Prospectus dated 4 November 2022",
+          "publication_date": null,
+          "page": 362,
+          "collected_at": "2026-09-27T17:56:45.760Z",
+          "document_sha256": "b7e1ecf1d751f396deb31d8b7cfcc2590115316ca3fe4958530ff95caece685e",
+          "evidence_locator": "Offer structure table: Retail Individual Investors minimum bid 72 Equity Shares; bid lot 72."
+        },
+        "corrections": []
+      },
+      "open_date": {
+        "value": "2022-10-31",
+        "source_value": "2022-10-31",
+        "status": "verified",
+        "page": 1,
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2022/1667796864708.pdf",
+          "document_type": "Final Prospectus",
+          "document_identity": "DCX Systems Limited — Prospectus dated 4 November 2022",
+          "publication_date": null,
+          "page": 1,
+          "collected_at": "2026-09-27T17:56:45.760Z",
+          "document_sha256": "b7e1ecf1d751f396deb31d8b7cfcc2590115316ca3fe4958530ff95caece685e",
+          "evidence_locator": "Prospectus cover: Bid/Offer opened Monday, October 31, 2022."
+        },
+        "corrections": []
+      },
+      "close_date": {
+        "value": "2022-11-02",
+        "source_value": "2022-11-02",
+        "status": "verified",
+        "page": 1,
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2022/1667796864708.pdf",
+          "document_type": "Final Prospectus",
+          "document_identity": "DCX Systems Limited — Prospectus dated 4 November 2022",
+          "publication_date": null,
+          "page": 1,
+          "collected_at": "2026-09-27T17:56:45.760Z",
+          "document_sha256": "b7e1ecf1d751f396deb31d8b7cfcc2590115316ca3fe4958530ff95caece685e",
+          "evidence_locator": "Prospectus cover: Bid/Offer closed Wednesday, November 2, 2022."
+        },
+        "corrections": []
+      },
+      "listing_date": {
+        "value": "2022-11-11",
+        "source_value": "2022-11-11",
+        "status": "verified",
+        "page": 418,
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2023/1700224103192.pdf",
+          "document_type": "Red Herring Prospectus — BRLM past-issues table",
+          "document_identity": "Flair Writing Industries Limited — Red Herring Prospectus dated 16 November 2023; Nuvama past-issues table",
+          "publication_date": null,
+          "page": 418,
+          "collected_at": "2026-09-27T17:57:20.900Z",
+          "document_sha256": "1739111ca1b8c3eccf3047bba833c643e2e2fc0c26045a6a3bd4151694de0a9f",
+          "evidence_locator": "Nuvama past public issues table, DCX Systems row: listing date November 11, 2022."
+        },
+        "corrections": []
       }
     }
   ]
