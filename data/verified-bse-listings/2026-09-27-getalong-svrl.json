@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0.0",
+  "status": "approved_bse_2021_getalong_svrl_import",
+  "review_path": "data/discovery/bse-2021-getalong-svrl-review-2026-09-27.json",
+  "receipt_path": "data/evidence/bse-2021-getalong-svrl-source-receipt-2026-09-27.json",
+  "source_artifact_id": 10920948015,
+  "source_artifact_sha256": "59b253317b595943d71100faf3dd61873e17053f42ee1c0412ba83c7dc3ee2ff",
+  "target_year": 2021,
+  "actions": [
+    {
+      "key": "getalong",
+      "stable_id": "getalong-enterprise-limited"
+    },
+    {
+      "key": "svrl",
+      "stable_id": "shri-venkatesh-refineries-limited"
+    }
+  ],
+  "rules": {
+    "no_inference": true,
+    "market_lot_distinct_from_minimum_bid_quantity": true,
+    "getalong_offer_dates": "missing",
+    "unsupported_fields": "missing"
+  }
+}

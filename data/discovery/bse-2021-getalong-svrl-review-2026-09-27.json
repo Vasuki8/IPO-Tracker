@@ -1,0 +1,116 @@
+{
+  "schema_version": "1.0.0",
+  "status": "reviewed_bse_2021_getalong_svrl",
+  "source_year": 2021,
+  "auto_import_allowed": false,
+  "actions": [
+    {
+      "key": "getalong",
+      "stable_id": "getalong-enterprise-limited",
+      "issuer_name": "Getalong Enterprise Limited",
+      "target": {
+        "board": "SME",
+        "bse_scrip_code": "543372",
+        "listing_date": "2021-10-08",
+        "issue_price": 69,
+        "issue_size_inr": 51750000,
+        "market_lot": 2000,
+        "minimum_bid_quantity": null,
+        "open_date": null,
+        "close_date": null
+      },
+      "field_sources": {
+        "board": "getalong_draft",
+        "bse_scrip_code": "getalong_annual_report",
+        "listing_date": "getalong_annual_report",
+        "issue_price": "getalong_draft",
+        "issue_size_inr": "getalong_draft",
+        "market_lot": "getalong_draft"
+      }
+    },
+    {
+      "key": "svrl",
+      "stable_id": "shri-venkatesh-refineries-limited",
+      "issuer_name": "Shri Venkatesh Refineries Limited",
+      "target": {
+        "board": "SME",
+        "bse_scrip_code": "543373",
+        "listing_date": "2021-10-11",
+        "issue_price": 40,
+        "issue_size_inr": 117120000,
+        "market_lot": 3000,
+        "minimum_bid_quantity": 3000,
+        "open_date": "2021-09-29",
+        "close_date": "2021-10-01"
+      },
+      "field_sources": {
+        "board": "svrl_prospectus",
+        "bse_scrip_code": "svrl_index_release",
+        "listing_date": "svrl_index_release",
+        "issue_price": "svrl_prospectus",
+        "issue_size_inr": "svrl_prospectus",
+        "market_lot": "svrl_prospectus",
+        "minimum_bid_quantity": "svrl_prospectus",
+        "open_date": "svrl_prospectus",
+        "close_date": "svrl_prospectus"
+      }
+    }
+  ],
+  "sources": [
+    {
+      "key": "getalong_draft",
+      "url": "https://www.bseindia.com/corporates/download/347690/Getalong%20Enterprise%20Limited%20-%20Draft%20Prospectus_20210830225325.pdf",
+      "document_type": "Draft Prospectus",
+      "page": "cover / definitions / market-making section",
+      "projection": {
+        "issuer": "Getalong Enterprise Limited",
+        "issue_type": "IPO",
+        "board": "SME",
+        "issue_price": 69,
+        "issue_size_inr": 51750000,
+        "market_lot": 2000
+      }
+    },
+    {
+      "key": "getalong_annual_report",
+      "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/e1557e45-6da8-4e2d-9bbe-52a0774640da.pdf",
+      "document_type": "Annual Report filing",
+      "page": "notice / AGM notes",
+      "projection": {
+        "issuer": "Getalong Enterprise Limited",
+        "bse_scrip_code": "543372",
+        "listing_date": "2021-10-08",
+        "board": "SME"
+      }
+    },
+    {
+      "key": "svrl_prospectus",
+      "url": "https://www.bseindia.com/corporates/download/373676/SME_IPO%20Open/1Prospectus%20-%20SVRL%2023.09.2021_20210924170138.pdf",
+      "document_type": "Prospectus",
+      "page": "cover / issue definitions / issue procedure",
+      "projection": {
+        "issuer": "Shri Venkatesh Refineries Limited",
+        "issue_type": "IPO",
+        "board": "SME",
+        "issue_price": 40,
+        "issue_size_inr": 117120000,
+        "market_lot": 3000,
+        "minimum_bid_quantity": 3000,
+        "open_date": "2021-09-29",
+        "close_date": "2021-10-01"
+      }
+    },
+    {
+      "key": "svrl_index_release",
+      "url": "https://www.bseindia.com/downloads/SPDJ_ANN/MediaReleasePDF/1444159_mediareleaseadditionstothes%26pbseindices20211011.pdf",
+      "document_type": "BSE Index Press Release",
+      "page": "1",
+      "projection": {
+        "issuer": "Shri Venkatesh Refineries Limited",
+        "bse_scrip_code": "543373",
+        "listing_date": "2021-10-11",
+        "board": "SME"
+      }
+    }
+  ]
+}
