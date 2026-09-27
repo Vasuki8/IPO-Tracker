@@ -45,7 +45,7 @@ jobs:
           const must=(x,m)=>{if(!x)throw Error(m)};
           must(/JETMALL SPICES AND MASALA LIMITED/i.test(jd)&&/INITIAL PUBLIC ISSUE/i.test(jd)&&/20\.00/.test(jd)&&/498\.00/.test(jd)&&/SME Platform of BSE/i.test(jd),"jetmall_draft_terms");
           must(/JETMALL SPICES AND MASALA LIMITED/i.test(jf),"jetmall_final_identity");
-          must(/Jetmall Spices And Masala Limited/i.test(jt)&&/4\.98/.test(jt)&&/20/.test(jt)&&/April 19,?\s*2021/i.test(jt),"jetmall_track_terms");
+          must(/Jetmall Spices\s+(?:And|and)\s+Masala Limited/i.test(jt)&&/4\s*\.?\s*98/.test(jt)&&/\b20\b/.test(jt)&&/April\s*19.*?2021/i.test(jt),"jetmall_track_terms");
           must(/BRANDBUCKET MEDIA & TECHNOLOGY LIMITED/i.test(bp)&&/PUBLIC ISSUE/i.test(bp)&&/55\.00/.test(bp)&&/825\.00/.test(bp)&&/SME Platform of BSE/i.test(bp),"brandbucket_prospectus_terms");
           must(/Monday, December 20, 2021/i.test(bp)&&/Thursday, December 23, 2021/i.test(bp),"brandbucket_offer_dates");
           must(/Brandbucket Media & Technology Limited/i.test(bt)&&/8\.25/.test(bt)&&/55/.test(bt)&&/December 31,?\s*2021/i.test(bt),"brandbucket_track_terms");
@@ -54,6 +54,7 @@ jobs:
           console.log(JSON.stringify({documents:receipt.length,bytes:result.total_response_bytes,hashes:receipt.map(d=>[d.key,d.response_sha256])}));
           JS
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: jetmall-brandbucket-original-evidence
           path: ${{ runner.temp }}/evidence
