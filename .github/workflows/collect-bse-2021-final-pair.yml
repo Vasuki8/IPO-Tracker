@@ -24,18 +24,27 @@ jobs:
             ["sigachi_track","https://www.sebi.gov.in/sebi_data/attachdocs/aug-2023/1693311018812.pdf"],
             ["adeshwar_prospectus","https://www.bseindia.com/corporates/download/374911/SME_IPO%20Open/2.%20Adeshwar%20Meditex%20Limited%20-%20Prospectus_20210610150935.pdf"],
             ["adeshwar_track","https://www.sebi.gov.in/sebi_data/attachdocs/dec-2022/1670404259679.pdf"]
-          ],receipt=[];const allowed=new Set(["www.sebi.gov.in","sebi.gov.in","www.bseindia.com","bseindia.com"]);
-          for(const[key,url]of docs){let last;for(let attempt=1;attempt<=3;attempt++){try{const r=await fetch(url,{redirect:"follow",signal:AbortSignal.timeout(60000),headers:{"user-agent":"Mozilla/5.0","accept":"application/pdf,*/*"}});if(!r.ok||!allowed.has(new URL(r.url).hostname))throw Error("bad_"+r.status);const b=Buffer.from(await r.arrayBuffer());if(b.subarray(0,5).toString()!=="%PDF-")throw Error("not_pdf");const pdf=path.join(out,key+".pdf"),txt=path.join(out,key+".txt");fs.writeFileSync(pdf,b);execFileSync("pdftotext",["-layout",pdf,txt]);receipt.push({key,source_url:url,final_url:r.url,http_status:r.status,response_bytes:b.length,response_sha256:createHash("sha256").update(b).digest("hex"),collected_at:new Date().toISOString(),attempt});break}catch(e){last=e;if(attempt===3)throw e;await new Promise(r=>setTimeout(r,attempt*1500));}}}
+          ],receipt=[];
+          for(const[key,url]of docs){
+            const pdf=path.join(out,key+".pdf"),txt=path.join(out,key+".txt");
+            execFileSync("curl",["--fail","--location","--retry","4","--retry-all-errors","--retry-delay","2","--connect-timeout","20","--max-time","180","--user-agent","Mozilla/5.0","--output",pdf,url],{stdio:"inherit"});
+            const b=fs.readFileSync(pdf);if(b.subarray(0,5).toString()!=="%PDF-")throw Error("not_pdf:"+key);
+            execFileSync("pdftotext",["-layout",pdf,txt]);
+            receipt.push({key,source_url:url,http_status:200,response_bytes:b.length,response_sha256:createHash("sha256").update(b).digest("hex"),collected_at:new Date().toISOString(),download_method:"curl_retry_4"});
+          }
           const read=k=>fs.readFileSync(path.join(out,k+".txt"),"utf8").replace(/\s+/g," ");
           const sf=read("sigachi_final"),st=read("sigachi_track"),ap=read("adeshwar_prospectus"),at=read("adeshwar_track");
           const must=(x,m)=>{if(!x)throw Error(m)};
-          must(/SIGACHI INDUSTRIES LIMITED/i.test(sf)&&/INITIAL PUBLIC OFFERING/i.test(sf),"sigachi_identity");
+          must(/SIGACHI INDUSTRIES LIMITED/i.test(sf)&&/INITIAL PUBLIC OFFERING/i.test(sf)&&/12,?542\.85/.test(sf)&&/₹\s*163|163 PER EQUITY/i.test(sf),"sigachi_terms");
           must(/Monday,?\s*November 0?1,?\s*2021/i.test(sf)&&/Wednesday,?\s*November 0?3,?\s*2021/i.test(sf),"sigachi_offer_dates");
+          must(/Bid Lot\s+90 Equity Shares/i.test(sf)&&/market lot of our Equity Shares will be\s+one Equity Share/i.test(sf),"sigachi_lot_semantics");
           must(/Sigachi Industries/i.test(st)&&/12,?542\.85\s+163\s+November 15,/i.test(st)&&/Limited\s+2021/i.test(st),"sigachi_track");
-          must(/ADESHWAR MEDITEX LIMITED/i.test(ap)&&/INITIAL PUBLIC ISSUE/i.test(ap)&&/25/.test(ap)&&/975\.00/.test(ap)&&/SME Platform of BSE/i.test(ap),"adeshwar_terms");
-          must(/June 15,?\s*2021/i.test(ap)&&/June 18,?\s*2021/i.test(ap),"adeshwar_offer_dates");
-          must(/Adeshwar Meditex Ltd/i.test(at)&&/9\.75/.test(at)&&/25/.test(at)&&/28-06-21/.test(at),"adeshwar_track");
-          const result={schema_version:"1.0.0",status:"complete",workflow_run_id:process.env.GITHUB_RUN_ID,total_response_bytes:receipt.reduce((n,d)=>n+d.response_bytes,0),documents:receipt};fs.writeFileSync(path.join(out,"receipt.json"),JSON.stringify(result,null,2)+"\n");console.log(JSON.stringify({documents:receipt.length,bytes:result.total_response_bytes,hashes:receipt.map(d=>[d.key,d.response_sha256])}));
+          must(/ADESHWAR MEDITEX LIMITED/i.test(ap)&&/INITIAL PUBLIC ISSUE/i.test(ap)&&/975\.00/.test(ap)&&/₹\s*25|Issue Price is ₹25/i.test(ap)&&/SME Platform of BSE/i.test(ap),"adeshwar_terms");
+          must(/June 15,?\s*2021/i.test(ap)&&/June 18,?\s*2021/i.test(ap)&&/minimum contract size of 6000 Equity Shares/i.test(ap),"adeshwar_offer_lot");
+          must(/Adeshwar Meditex Ltd/i.test(at)&&/9\.75\s+25\.00\s+28-06-21/i.test(at),"adeshwar_track");
+          const result={schema_version:"1.0.0",status:"complete",workflow_run_id:process.env.GITHUB_RUN_ID,total_response_bytes:receipt.reduce((n,d)=>n+d.response_bytes,0),documents:receipt};
+          fs.writeFileSync(path.join(out,"receipt.json"),JSON.stringify(result,null,2)+"\n");
+          console.log(JSON.stringify({documents:receipt.length,bytes:result.total_response_bytes,hashes:receipt.map(d=>[d.key,d.response_sha256])}));
           JS
       - uses: actions/upload-artifact@v4
         if: always()
