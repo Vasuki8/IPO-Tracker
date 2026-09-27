@@ -1,0 +1,54 @@
+{
+  "schema_version": "1.0.0",
+  "status": "reviewed_original_official_documents",
+  "workflow_run_id": "36338583977",
+  "artifact_id": 10937724221,
+  "artifact_sha256": "c79617e4a654ddddb0ab9d65a2770a2678ff15ecc8e5c0d1af74992902647181",
+  "retention_days": 14,
+  "total_response_bytes": 47009680,
+  "documents": [
+    {
+      "key": "tmb_prospectus",
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2022/1663570839596.pdf",
+      "final_url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2022/1663570839596.pdf",
+      "http_status": 200,
+      "response_bytes": 9823954,
+      "response_sha256": "e66c2d0fa884a262b6755ad8d9a986ffe8df82fe36cc05f704616d5fb6c76dc9",
+      "collected_at": "2026-09-27T17:54:14.888Z",
+      "attempt": 2
+    },
+    {
+      "key": "tmb_track",
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2023/1702623912451.PDF",
+      "final_url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2023/1702623912451.PDF",
+      "http_status": 200,
+      "response_bytes": 8035844,
+      "response_sha256": "5509123f25a4403576f24c05b35b439b42435b0d4c6530e7e7018462b78aed22",
+      "collected_at": "2026-09-27T17:55:18.007Z",
+      "attempt": 2
+    },
+    {
+      "key": "dcx_prospectus",
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2022/1667796864708.pdf",
+      "final_url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2022/1667796864708.pdf",
+      "http_status": 200,
+      "response_bytes": 21041035,
+      "response_sha256": "b7e1ecf1d751f396deb31d8b7cfcc2590115316ca3fe4958530ff95caece685e",
+      "collected_at": "2026-09-27T17:56:45.760Z",
+      "attempt": 1
+    },
+    {
+      "key": "dcx_track",
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2023/1700224103192.pdf",
+      "final_url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2023/1700224103192.pdf",
+      "http_status": 200,
+      "response_bytes": 8108847,
+      "response_sha256": "1739111ca1b8c3eccf3047bba833c643e2e2fc0c26045a6a3bd4151694de0a9f",
+      "collected_at": "2026-09-27T17:57:20.900Z",
+      "attempt": 1
+    }
+  ],
+  "review_path": "data/discovery/bse-2022-tmb-dcx-review-2026-09-27.json",
+  "review_sha256": "d3c593dc5912751905a953e97c3b5283d86deccb1ef61c3e8536b48de8c3b544",
+  "review_note": "Original SEBI PDF bytes were retained in artifact 10937724221 and hash/length checked. Relevant prospectus covers, price-band definitions, market-lot/minimum-bid tables, and BRLM past-issues rows were visually inspected before approval."
+}

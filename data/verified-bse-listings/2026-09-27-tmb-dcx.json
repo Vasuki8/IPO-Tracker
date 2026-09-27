@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.0.0",
+  "status": "approved_bse_2022_tmb_dcx_import",
+  "review_path": "data/discovery/bse-2022-tmb-dcx-review-2026-09-27.json",
+  "receipt_path": "data/evidence/bse-2022-tmb-dcx-source-receipt-2026-09-27.json",
+  "review_sha256": "d3c593dc5912751905a953e97c3b5283d86deccb1ef61c3e8536b48de8c3b544",
+  "receipt_sha256": "45246cd67aa512eed268bafefef02e14f21e0af0636b5d03d2a371e0f8243883",
+  "source_artifact_id": 10937724221,
+  "source_artifact_sha256": "c79617e4a654ddddb0ab9d65a2770a2678ff15ecc8e5c0d1af74992902647181",
+  "target_year": 2022,
+  "actions": [
+    {
+      "key": "tmb",
+      "stable_id": "tamilnad-mercantile-bank-limited"
+    },
+    {
+      "key": "dcx",
+      "stable_id": "dcx-systems-limited"
+    }
+  ],
+  "rules": {
+    "no_inference": true,
+    "bse_scrip_codes": "discovery-only",
+    "market_lot_distinct_from_minimum_bid_quantity": true,
+    "minimum_application_amount": "out_of_scope",
+    "unsupported_fields": "missing"
+  }
+}
