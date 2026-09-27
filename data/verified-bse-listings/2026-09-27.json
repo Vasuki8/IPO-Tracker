@@ -1,0 +1,67 @@
+{
+  "schema_version": "1.0.0",
+  "verifier_version": "1.1.0",
+  "discovery_batch": "data/discovery/bse-listing-candidates-2026-09-27.json",
+  "source_run_id": "36287056000",
+  "source_artifact_id": 10919754960,
+  "source_artifact_sha256": "fbfdc3d3cffca645dadf3717488e81277036ef7c9a89a378b2ea12a4d3e9689a",
+  "reviewed_scope": "Original BSE 2021 SME IPOs only; do not treat later migrations, splits, bonus issues or current trading lots as original IPO facts. Symbols and ISINs visible in the retained notices are not newly published because this established importer contract publishes listing date, market lot, issue price, board and scrip identity. No guessed application terms.",
+  "entries": [
+    {
+      "listing_notice_no": "20210406-21",
+      "issuer_name": "EKI Energy Services Limited",
+      "bse_scrip_code": "543284",
+      "board": "SME",
+      "evidence_kind": "official_notice_html",
+      "source_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20210406-21",
+      "document_sha256": "2953689d4626624fdcd8c7bcc8cd647b3d680d822107f45d44f03bd863ea22e9",
+      "collected_at": "2026-09-27T01:57:01.913Z",
+      "publication_date": "2021-04-06",
+      "document_identity": "BSE Listing Notice 20210406-21",
+      "evidence_text": "Notice Number NOTICES Notice No. 20210406-21 Notice Date 06 Apr 2021 Category Company related Segment SME Subject Listing of Equity Shares of EKI Energy Services Limited Attachments Annexure I.pdf ; Annexure II.pdf ; Content Trading Members of the Exchange are hereby informed that effective from Wednesday, April 7, 2021, the Equity Shares of EKI Energy Services Limited shall be listed and admitted to dealings on the Exchange in the list of 'MT' Group of Securities. Further in terms of SEBI circular No. CIR/MRD/DP/02/2012 dated January 20, 2012; the scrip will be in Trade-for-Trade segment for 10 trading days. Name of the company EKI Energy Services Limited Registered Office 201, Plot No. 48., Scheme No. 78, Part-II, Vijay Nagar (Near Brilliant Convention Centre) Indore-452010, Madhya Pradesh, India Tel: 0731-4289086 E-mail: cs@enkingint.org Website: www.enkingint.org No. of Securities 68,74,000 Equity Shares of Rs.10/- each fully paid up Distinctive Number range 1 To 6874000 Scrip ID on BOLT System EKI Abbreviated Name on BOLT System EKI Scrip Code 543284 ISIN No. INE0CPR01018 Market Lot 1,200 Issue Price for the current Public issue Rs. 102/- per share (Face Value of Rs. 10/- and premium of Rs. 92/-) Date of Allotment in the public issue April 2, 2021",
+      "normalized_text_sha256": "cf1201e2dd997ca76b2eae32406fab9ed85d7d9ce423fa2da8d43e580b064d01",
+      "facts": {
+        "listing_date": {
+          "value": "2021-04-07",
+          "source_value": "effective from Wednesday, April 7, 2021"
+        },
+        "market_lot": {
+          "value": 1200,
+          "source_value": "Market Lot 1,200"
+        },
+        "issue_price": {
+          "value": 102,
+          "source_value": "Issue Price for the current Public issue Rs. 102"
+        }
+      }
+    },
+    {
+      "listing_notice_no": "20210806-21",
+      "issuer_name": "Gretex Corporate Services Limited",
+      "bse_scrip_code": "543324",
+      "board": "SME",
+      "evidence_kind": "official_notice_html",
+      "source_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20210806-21",
+      "document_sha256": "24fa44930e5d2b9585ac50fe79ea208d54e085056fa94ba14bb50268fd334a21",
+      "collected_at": "2026-09-27T01:57:02.271Z",
+      "publication_date": "2021-08-06",
+      "document_identity": "BSE Listing Notice 20210806-21",
+      "evidence_text": "Notice Number NOTICES Notice No. 20210806-21 Notice Date 06 Aug 2021 Category Company related Segment SME Subject Listing of Equity Shares of Gretex Corporate Services Limited Attachments Annexure II.pdf ; Annexure I.pdf ; Content Trading Members of the Exchange are hereby informed that effective from Monday, August 09, 2021, the Equity Shares of Gretex Corporate Services Limited shall be listed and admitted to dealings on the Exchange in the list of 'MT' Group of Securities. Further in terms of SEBI circular No. CIR/MRD/DP/02/2012 dated January 20, 2012; the scrip will be in Trade-for-Trade segment for 10 trading days. Name of the company Gretex Corporate Services Limited Registered Office Office No. 13, 1st Floor, Bansilal Mansion, 9-15, Homi Modi Street, Fort, Mumbai &ndash; 400 001, Maharashtra, India Tel: +91 &ndash; 22 - 4002 5273 Email: info@gretexgroup.com Website: www.gretexcorporate.com No. of Securities 11,37,345 Equity Shares of Rs.10/- each fully paid up Distinctive Number range 1 To 11,37,345 Scrip ID on BOLT System GCSL Abbreviated Name on BOLT System GCSL Scrip Code 543324 ISIN No. INE199P01028 Market Lot 800 Issue Price for the current Public issue Rs. 170/- per share (Face Value of Rs. 10/- and premium of Rs. 160/-) Date of Allotment in the public issue August 04, 2021",
+      "normalized_text_sha256": "74dda239b21849df31d237d0e4cd7e6cf1684380c418fe0e6cafde3dfe485e8b",
+      "facts": {
+        "listing_date": {
+          "value": "2021-08-09",
+          "source_value": "effective from Monday, August 09, 2021"
+        },
+        "market_lot": {
+          "value": 800,
+          "source_value": "Market Lot 800"
+        },
+        "issue_price": {
+          "value": 170,
+          "source_value": "Issue Price for the current Public issue Rs. 170"
+        }
+      }
+    }
+  ]
+}

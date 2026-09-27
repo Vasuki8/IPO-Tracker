@@ -1,0 +1,117 @@
+name: Publish reviewed BSE 2021 SME pair
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: [main]
+    paths:
+      - data/discovery/bse-listing-candidates-2026-09-27.json
+      - data/evidence/bse-2021-sme-pair-source-receipt-2026-09-27.json
+      - data/verified-bse-listings/2026-09-27.json
+      - scripts/release-bse-2021-sme-pair.mjs
+      - scripts/test-bse-2021-sme-pair.mjs
+      - .github/workflows/publish-bse-2021-sme-pair.yml
+  push:
+    branches: [main]
+    paths:
+      - data/verified-bse-listings/2026-09-27.json
+      - scripts/release-bse-2021-sme-pair.mjs
+      - scripts/test-bse-2021-sme-pair.mjs
+      - .github/workflows/publish-bse-2021-sme-pair.yml
+permissions:
+  contents: read
+concurrency:
+  group: bse-2021-sme-pair-${{ github.event.pull_request.number || 'main' }}
+  cancel-in-progress: false
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Test sources, safe import, and both sides of publication
+        run: |
+          node scripts/test-verify-bse-listing-candidates.mjs
+          node scripts/test-apply-verified-bse-listings.mjs
+          node scripts/test-verify-bse-publication.mjs
+          node scripts/test-bse-2021-sme-pair.mjs
+          node scripts/release-bse-2021-sme-pair.mjs --apply
+          node scripts/build-published-data.mjs
+          node scripts/build-published-data.mjs --check
+          node scripts/validate-data.mjs
+          node scripts/test-bse-2021-sme-pair.mjs
+  publish:
+    needs: validate
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Recompute against latest main without rebasing generated data
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          for attempt in 1 2 3; do
+            git fetch origin main
+            git diff --exit-code "$GITHUB_SHA" origin/main -- scripts/ \
+              data/discovery/bse-listing-candidates-2026-09-27.json \
+              data/evidence/bse-2021-sme-pair-source-receipt-2026-09-27.json \
+              data/verified-bse-listings/2026-09-27.json \
+              .github/workflows/publish-bse-2021-sme-pair.yml
+            git reset --hard origin/main
+            node scripts/test-bse-2021-sme-pair.mjs
+            node scripts/release-bse-2021-sme-pair.mjs --apply
+            node scripts/build-published-data.mjs
+            node scripts/build-published-data.mjs --check
+            node scripts/validate-data.mjs
+            node scripts/test-bse-2021-sme-pair.mjs
+            git add data/recovery/2021/nse-issue-information.json data/ipos.json
+            if git diff --cached --quiet; then echo 'Reviewed pair already present.'; exit 0; fi
+            git commit -m 'data: publish reviewed EKI and Gretex 2021 IPOs'
+            if git push origin HEAD:main; then exit 0; fi
+          done
+          exit 1
+  verify:
+    needs: publish
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Compare actual served data with retained issuer evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/release-bse-2021-sme-pair.mjs --check
+          for attempt in 1 2 3 4 5 6 7 8; do
+            dir="$RUNNER_TEMP/bse-pair-live/attempt-$attempt"
+            if node scripts/verify-bse-publication.mjs --manifests=data/verified-bse-listings/2026-09-27.json --output-dir="$dir"; then
+              cp "$dir/publication-report.json" "$RUNNER_TEMP/bse-pair-live/publication-report.json"
+              exit 0
+            fi
+            if [ "$attempt" -lt 8 ]; then sleep 15; fi
+          done
+          exit 1
+      - name: Retain actual Pages bytes and reports, including failed attempts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bse-2021-sme-pair-live-${{ github.run_id }}
+          path: ${{ runner.temp }}/bse-pair-live
+          retention-days: 14
+          if-no-files-found: error
