@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0.0",
+  "status": "approved_bse_2021_hp_nuvoco_import",
+  "review_path": "data/discovery/bse-2021-hp-nuvoco-review-2026-09-27.json",
+  "receipt_path": "data/evidence/bse-2021-hp-nuvoco-source-receipt-2026-09-27.json",
+  "source_artifact_id": 10922282542,
+  "source_artifact_sha256": "7c6dbe124e583c0a95753c8641186b84b17e4e6ee135503a51c9d817679de318",
+  "target_year": 2021,
+  "actions": [
+    {
+      "key": "hp",
+      "stable_id": "hp-adhesives-limited"
+    },
+    {
+      "key": "nuvoco",
+      "stable_id": "nuvoco-vistas-corporation-limited"
+    }
+  ],
+  "rules": {
+    "no_inference": true,
+    "bse_scrip_codes": "discovery-only in this batch",
+    "board": "missing unless retained source explicitly classifies it",
+    "unsupported_fields": "missing"
+  }
+}
