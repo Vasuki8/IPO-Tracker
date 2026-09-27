@@ -1,0 +1,35 @@
+{
+  "schema_version": "1.0.0",
+  "status": "reviewed_original_notices",
+  "reviewed_manifest": "data/verified-bse-listings/2026-09-27.json",
+  "collector_source_commit": "4e92a10dfa706bd6bbe96d3c27eba4d244d3810e",
+  "workflow_run_id": "36287056000",
+  "artifact_id": 10919754960,
+  "artifact_sha256": "fbfdc3d3cffca645dadf3717488e81277036ef7c9a89a378b2ea12a4d3e9689a",
+  "retention_days": 14,
+  "original_documents": 2,
+  "documents": [
+    {
+      "notice": "20210406-21",
+      "source_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20210406-21",
+      "collected_at": "2026-09-27T01:57:01.913Z",
+      "http_status": 200,
+      "response_bytes": 88211,
+      "response_sha256": "2953689d4626624fdcd8c7bcc8cd647b3d680d822107f45d44f03bd863ea22e9",
+      "artifact_path": "attempt-1/20210406-21.html",
+      "normalized_excerpt_sha256": "cf1201e2dd997ca76b2eae32406fab9ed85d7d9ce423fa2da8d43e580b064d01"
+    },
+    {
+      "notice": "20210806-21",
+      "source_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20210806-21",
+      "collected_at": "2026-09-27T01:57:02.271Z",
+      "http_status": 200,
+      "response_bytes": 104221,
+      "response_sha256": "24fa44930e5d2b9585ac50fe79ea208d54e085056fa94ba14bb50268fd334a21",
+      "artifact_path": "attempt-1/20210806-21.html",
+      "normalized_excerpt_sha256": "74dda239b21849df31d237d0e4cd7e6cf1684380c418fe0e6cafde3dfe485e8b"
+    }
+  ],
+  "total_response_bytes": 192432,
+  "manifest_sha256": "9bbb4dff746296c26f58e7f62ed195af9dba1859ac77f2a7d5d1508e8d8a2bc8"
+}
