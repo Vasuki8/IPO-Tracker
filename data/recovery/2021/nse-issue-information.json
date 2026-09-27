@@ -1,7 +1,7 @@
 {
   "source_family": "Official NSE / SEBI / BSE offer-document and exchange evidence",
   "collection_started_at": "2026-09-23T19:29:29.146Z",
-  "generated_at": "2026-09-27T01:48:39.603Z",
+  "generated_at": "2026-09-27T01:57:02.271Z",
   "records": [
     {
       "id": "aa-plus-tradelink-limited",
@@ -1161,6 +1161,150 @@
           "publication_date": null,
           "collected_at": "2026-09-24T06:06:51.876Z"
         }
+      }
+    },
+    {
+      "id": "anupam-rasayan-india-limited",
+      "issuer_name": "Anupam Rasayan India Limited",
+      "board": null,
+      "sector": null,
+      "status": "listed",
+      "nse_symbol": null,
+      "nse_series": null,
+      "bse_symbol": null,
+      "bse_scrip_code": null,
+      "isin": null,
+      "nse_source": null,
+      "bse_source": null,
+      "terms": {
+        "price_band": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null,
+        "open_date": null,
+        "close_date": null
+      },
+      "documents": [
+        {
+          "type": "Red Herring Prospectus",
+          "identity": "Anupam Rasayan India Limited — Red Herring Prospectus [anupam_prospectus]",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/apr-2023/1681360758117.pdf",
+          "publication_date": "2021-03-09",
+          "collected_at": "2026-09-26T23:27:26.231Z",
+          "document_sha256": "02642600485f42835d6f7175ffd98930adb08c5715ed151b57c499148e0055aa"
+        },
+        {
+          "type": "SEBI Bulletin — April 2021",
+          "identity": "Anupam Rasayan India Limited — SEBI Bulletin — April 2021 [anupam_bulletin]",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2022/1663923628962.pdf",
+          "publication_date": null,
+          "collected_at": "2026-09-26T23:27:47.707Z",
+          "document_sha256": "5b92e2ba62b6ae10dde99bb8160e94edf2fb4d93a0886001e3e65bdd349abe3d"
+        }
+      ],
+      "first_observed_at": "2026-09-26T23:28:34.959Z",
+      "last_collected_at": "2026-09-26T23:28:34.959Z",
+      "board_evidence": [],
+      "status_evidence": [
+        {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2022/1663923628962.pdf",
+          "document_type": "SEBI Bulletin — April 2021",
+          "document_identity": "Anupam Rasayan India Limited — SEBI Bulletin — April 2021 [anupam_bulletin]",
+          "publication_date": null,
+          "page": "Table 2",
+          "collected_at": "2026-09-26T23:27:47.707Z",
+          "document_sha256": "5b92e2ba62b6ae10dde99bb8160e94edf2fb4d93a0886001e3e65bdd349abe3d",
+          "evidence_locator": "March 2021 equity capital table: Anupam Rasayan India Limited"
+        }
+      ],
+      "bse_2021_batch1_import": {
+        "manifest": "data/verified-bse-listings/2026-09-26-bse-2021-mainboard-batch1.json",
+        "review": "data/discovery/bse-2021-mainboard-batch1-review-2026-09-26.json",
+        "receipt": "data/evidence/bse-2021-mainboard-batch1-source-receipt-2026-09-26.json",
+        "action_key": "anupam",
+        "discovery_bse_scrip_code": "543275",
+        "artifact_id": 10917724737,
+        "artifact_digest": "sha256:c682b51c1e0fe3a6bcfb16e509f68f8a642dda6ac9396915628f6843e61aedd4"
+      },
+      "price_band": {
+        "value": null,
+        "status": "missing",
+        "source": null,
+        "corrections": []
+      },
+      "issue_price": {
+        "value": 555,
+        "source_value": 555,
+        "status": "verified",
+        "page": "Table 2",
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2022/1663923628962.pdf",
+          "document_type": "SEBI Bulletin — April 2021",
+          "document_identity": "Anupam Rasayan India Limited — SEBI Bulletin — April 2021 [anupam_bulletin]",
+          "publication_date": null,
+          "page": "Table 2",
+          "collected_at": "2026-09-26T23:27:47.707Z",
+          "document_sha256": "5b92e2ba62b6ae10dde99bb8160e94edf2fb4d93a0886001e3e65bdd349abe3d",
+          "evidence_locator": "March 2021 equity capital table: Anupam Rasayan India Limited"
+        },
+        "corrections": []
+      },
+      "issue_size_inr": {
+        "value": 7600000000,
+        "source_value": 7600000000,
+        "status": "verified",
+        "page": "Table 2",
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2022/1663923628962.pdf",
+          "document_type": "SEBI Bulletin — April 2021",
+          "document_identity": "Anupam Rasayan India Limited — SEBI Bulletin — April 2021 [anupam_bulletin]",
+          "publication_date": null,
+          "page": "Table 2",
+          "collected_at": "2026-09-26T23:27:47.707Z",
+          "document_sha256": "5b92e2ba62b6ae10dde99bb8160e94edf2fb4d93a0886001e3e65bdd349abe3d",
+          "evidence_locator": "March 2021 equity capital table: Anupam Rasayan India Limited"
+        },
+        "corrections": []
+      },
+      "market_lot": {
+        "value": null,
+        "status": "missing",
+        "source": null,
+        "corrections": []
+      },
+      "minimum_bid_quantity": {
+        "value": null,
+        "status": "missing",
+        "source": null,
+        "corrections": []
+      },
+      "open_date": {
+        "value": null,
+        "status": "missing",
+        "source": null,
+        "corrections": []
+      },
+      "close_date": {
+        "value": null,
+        "status": "missing",
+        "source": null,
+        "corrections": []
+      },
+      "listing_date": {
+        "value": "2021-03-24",
+        "source_value": "2021-03-24",
+        "status": "verified",
+        "page": "Table 2",
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2022/1663923628962.pdf",
+          "document_type": "SEBI Bulletin — April 2021",
+          "document_identity": "Anupam Rasayan India Limited — SEBI Bulletin — April 2021 [anupam_bulletin]",
+          "publication_date": null,
+          "page": "Table 2",
+          "collected_at": "2026-09-26T23:27:47.707Z",
+          "document_sha256": "5b92e2ba62b6ae10dde99bb8160e94edf2fb4d93a0886001e3e65bdd349abe3d",
+          "evidence_locator": "March 2021 equity capital table: Anupam Rasayan India Limited"
+        },
+        "corrections": []
       }
     },
     {
@@ -3045,6 +3189,120 @@
       }
     },
     {
+      "id": "eki-energy-services-limited",
+      "issuer_name": "EKI Energy Services Limited",
+      "board": "SME",
+      "sector": null,
+      "status": "listed",
+      "nse_symbol": null,
+      "nse_series": null,
+      "nse_source": null,
+      "bse_symbol": null,
+      "bse_source": {
+        "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20210406-21",
+        "document_type": "BSE Listing Notice",
+        "document_identity": "BSE Listing Notice 20210406-21",
+        "document_sha256": "2953689d4626624fdcd8c7bcc8cd647b3d680d822107f45d44f03bd863ea22e9",
+        "publication_date": "2021-04-06",
+        "collected_at": "2026-09-27T01:57:01.913Z"
+      },
+      "terms": {
+        "price_band": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null,
+        "open_date": null,
+        "close_date": null
+      },
+      "documents": [
+        {
+          "type": "BSE Listing Notice",
+          "identity": "BSE Listing Notice 20210406-21",
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20210406-21",
+          "publication_date": "2021-04-06",
+          "collected_at": "2026-09-27T01:57:01.913Z",
+          "document_sha256": "2953689d4626624fdcd8c7bcc8cd647b3d680d822107f45d44f03bd863ea22e9"
+        }
+      ],
+      "first_observed_at": "2026-09-27T01:57:01.913Z",
+      "last_collected_at": "2026-09-27T01:57:01.913Z",
+      "board_evidence": [
+        {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20210406-21",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20210406-21",
+          "document_sha256": "2953689d4626624fdcd8c7bcc8cd647b3d680d822107f45d44f03bd863ea22e9",
+          "publication_date": "2021-04-06",
+          "collected_at": "2026-09-27T01:57:01.913Z",
+          "page": null
+        }
+      ],
+      "status_evidence": [
+        {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20210406-21",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20210406-21",
+          "document_sha256": "2953689d4626624fdcd8c7bcc8cd647b3d680d822107f45d44f03bd863ea22e9",
+          "publication_date": "2021-04-06",
+          "collected_at": "2026-09-27T01:57:01.913Z",
+          "page": null
+        }
+      ],
+      "listing_date": {
+        "value": "2021-04-07",
+        "source_value": "effective from Wednesday, April 7, 2021",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20210406-21",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20210406-21",
+          "document_sha256": "2953689d4626624fdcd8c7bcc8cd647b3d680d822107f45d44f03bd863ea22e9",
+          "publication_date": "2021-04-06",
+          "collected_at": "2026-09-27T01:57:01.913Z"
+        },
+        "corrections": []
+      },
+      "issue_price": {
+        "value": 102,
+        "source_value": "Issue Price for the current Public issue Rs. 102",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20210406-21",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20210406-21",
+          "document_sha256": "2953689d4626624fdcd8c7bcc8cd647b3d680d822107f45d44f03bd863ea22e9",
+          "publication_date": "2021-04-06",
+          "collected_at": "2026-09-27T01:57:01.913Z"
+        },
+        "corrections": []
+      },
+      "market_lot": {
+        "value": 1200,
+        "source_value": "Market Lot 1,200",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20210406-21",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20210406-21",
+          "document_sha256": "2953689d4626624fdcd8c7bcc8cd647b3d680d822107f45d44f03bd863ea22e9",
+          "publication_date": "2021-04-06",
+          "collected_at": "2026-09-27T01:57:01.913Z"
+        },
+        "corrections": []
+      },
+      "bse_scrip_code": "543284",
+      "bse_verified_listing_batch": {
+        "manifest": "data/verified-bse-listings/2026-09-27.json",
+        "verifier_version": "1.1.0",
+        "source_run_id": "36287056000",
+        "source_artifact_id": 10919754960,
+        "source_artifact_sha256": "fbfdc3d3cffca645dadf3717488e81277036ef7c9a89a378b2ea12a4d3e9689a",
+        "listing_notice_no": "20210406-21"
+      }
+    },
+    {
       "id": "euro-india-fresh-foods-limited",
       "issuer_name": "Euro India Fresh Foods Limited",
       "board": "SME",
@@ -3124,6 +3382,150 @@
           "page": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
         }
+      }
+    },
+    {
+      "id": "exxaro-tiles-limited",
+      "issuer_name": "Exxaro Tiles Limited",
+      "board": null,
+      "sector": null,
+      "status": "listed",
+      "nse_symbol": null,
+      "nse_series": null,
+      "bse_symbol": null,
+      "bse_scrip_code": null,
+      "isin": null,
+      "nse_source": null,
+      "bse_source": null,
+      "terms": {
+        "price_band": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null,
+        "open_date": null,
+        "close_date": null
+      },
+      "documents": [
+        {
+          "type": "Final Prospectus",
+          "identity": "Exxaro Tiles Limited — Final Prospectus [exxaro_prospectus]",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2021/1628667283989.pdf",
+          "publication_date": "2021-08-10",
+          "collected_at": "2026-09-26T23:28:27.865Z",
+          "document_sha256": "075b340242ff9f33b4ab1685081d892dcc25a872e27599eceb83a21fef688fbe"
+        },
+        {
+          "type": "SEBI Bulletin — September 2021",
+          "identity": "Exxaro Tiles Limited — SEBI Bulletin — September 2021 [exxaro_bulletin]",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2021/1633688089802.pdf",
+          "publication_date": null,
+          "collected_at": "2026-09-26T23:28:34.959Z",
+          "document_sha256": "d232068ec2d77cc53ff79ad1ef9f8cc6121adf1c2d43ff04380a2394f611d88b"
+        }
+      ],
+      "first_observed_at": "2026-09-26T23:28:34.959Z",
+      "last_collected_at": "2026-09-26T23:28:34.959Z",
+      "board_evidence": [],
+      "status_evidence": [
+        {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2021/1633688089802.pdf",
+          "document_type": "SEBI Bulletin — September 2021",
+          "document_identity": "Exxaro Tiles Limited — SEBI Bulletin — September 2021 [exxaro_bulletin]",
+          "publication_date": null,
+          "page": "Table 2",
+          "collected_at": "2026-09-26T23:28:34.959Z",
+          "document_sha256": "d232068ec2d77cc53ff79ad1ef9f8cc6121adf1c2d43ff04380a2394f611d88b",
+          "evidence_locator": "August 2021 equity capital table: Exxaro Tiles Limited"
+        }
+      ],
+      "bse_2021_batch1_import": {
+        "manifest": "data/verified-bse-listings/2026-09-26-bse-2021-mainboard-batch1.json",
+        "review": "data/discovery/bse-2021-mainboard-batch1-review-2026-09-26.json",
+        "receipt": "data/evidence/bse-2021-mainboard-batch1-source-receipt-2026-09-26.json",
+        "action_key": "exxaro",
+        "discovery_bse_scrip_code": "543327",
+        "artifact_id": 10917724737,
+        "artifact_digest": "sha256:c682b51c1e0fe3a6bcfb16e509f68f8a642dda6ac9396915628f6843e61aedd4"
+      },
+      "price_band": {
+        "value": null,
+        "status": "missing",
+        "source": null,
+        "corrections": []
+      },
+      "issue_price": {
+        "value": 120,
+        "source_value": 120,
+        "status": "verified",
+        "page": "Table 2",
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2021/1633688089802.pdf",
+          "document_type": "SEBI Bulletin — September 2021",
+          "document_identity": "Exxaro Tiles Limited — SEBI Bulletin — September 2021 [exxaro_bulletin]",
+          "publication_date": null,
+          "page": "Table 2",
+          "collected_at": "2026-09-26T23:28:34.959Z",
+          "document_sha256": "d232068ec2d77cc53ff79ad1ef9f8cc6121adf1c2d43ff04380a2394f611d88b",
+          "evidence_locator": "August 2021 equity capital table: Exxaro Tiles Limited"
+        },
+        "corrections": []
+      },
+      "issue_size_inr": {
+        "value": 1611000000,
+        "source_value": 1611000000,
+        "status": "verified",
+        "page": "Table 2",
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2021/1633688089802.pdf",
+          "document_type": "SEBI Bulletin — September 2021",
+          "document_identity": "Exxaro Tiles Limited — SEBI Bulletin — September 2021 [exxaro_bulletin]",
+          "publication_date": null,
+          "page": "Table 2",
+          "collected_at": "2026-09-26T23:28:34.959Z",
+          "document_sha256": "d232068ec2d77cc53ff79ad1ef9f8cc6121adf1c2d43ff04380a2394f611d88b",
+          "evidence_locator": "August 2021 equity capital table: Exxaro Tiles Limited"
+        },
+        "corrections": []
+      },
+      "market_lot": {
+        "value": null,
+        "status": "missing",
+        "source": null,
+        "corrections": []
+      },
+      "minimum_bid_quantity": {
+        "value": null,
+        "status": "missing",
+        "source": null,
+        "corrections": []
+      },
+      "open_date": {
+        "value": null,
+        "status": "missing",
+        "source": null,
+        "corrections": []
+      },
+      "close_date": {
+        "value": null,
+        "status": "missing",
+        "source": null,
+        "corrections": []
+      },
+      "listing_date": {
+        "value": "2021-08-16",
+        "source_value": "2021-08-16",
+        "status": "verified",
+        "page": "Table 2",
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2021/1633688089802.pdf",
+          "document_type": "SEBI Bulletin — September 2021",
+          "document_identity": "Exxaro Tiles Limited — SEBI Bulletin — September 2021 [exxaro_bulletin]",
+          "publication_date": null,
+          "page": "Table 2",
+          "collected_at": "2026-09-26T23:28:34.959Z",
+          "document_sha256": "d232068ec2d77cc53ff79ad1ef9f8cc6121adf1c2d43ff04380a2394f611d88b",
+          "evidence_locator": "August 2021 equity capital table: Exxaro Tiles Limited"
+        },
+        "corrections": []
       }
     },
     {
@@ -3990,6 +4392,120 @@
       }
     },
     {
+      "id": "gretex-corporate-services-limited",
+      "issuer_name": "Gretex Corporate Services Limited",
+      "board": "SME",
+      "sector": null,
+      "status": "listed",
+      "nse_symbol": null,
+      "nse_series": null,
+      "nse_source": null,
+      "bse_symbol": null,
+      "bse_source": {
+        "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20210806-21",
+        "document_type": "BSE Listing Notice",
+        "document_identity": "BSE Listing Notice 20210806-21",
+        "document_sha256": "24fa44930e5d2b9585ac50fe79ea208d54e085056fa94ba14bb50268fd334a21",
+        "publication_date": "2021-08-06",
+        "collected_at": "2026-09-27T01:57:02.271Z"
+      },
+      "terms": {
+        "price_band": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null,
+        "open_date": null,
+        "close_date": null
+      },
+      "documents": [
+        {
+          "type": "BSE Listing Notice",
+          "identity": "BSE Listing Notice 20210806-21",
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20210806-21",
+          "publication_date": "2021-08-06",
+          "collected_at": "2026-09-27T01:57:02.271Z",
+          "document_sha256": "24fa44930e5d2b9585ac50fe79ea208d54e085056fa94ba14bb50268fd334a21"
+        }
+      ],
+      "first_observed_at": "2026-09-27T01:57:02.271Z",
+      "last_collected_at": "2026-09-27T01:57:02.271Z",
+      "board_evidence": [
+        {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20210806-21",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20210806-21",
+          "document_sha256": "24fa44930e5d2b9585ac50fe79ea208d54e085056fa94ba14bb50268fd334a21",
+          "publication_date": "2021-08-06",
+          "collected_at": "2026-09-27T01:57:02.271Z",
+          "page": null
+        }
+      ],
+      "status_evidence": [
+        {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20210806-21",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20210806-21",
+          "document_sha256": "24fa44930e5d2b9585ac50fe79ea208d54e085056fa94ba14bb50268fd334a21",
+          "publication_date": "2021-08-06",
+          "collected_at": "2026-09-27T01:57:02.271Z",
+          "page": null
+        }
+      ],
+      "listing_date": {
+        "value": "2021-08-09",
+        "source_value": "effective from Monday, August 09, 2021",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20210806-21",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20210806-21",
+          "document_sha256": "24fa44930e5d2b9585ac50fe79ea208d54e085056fa94ba14bb50268fd334a21",
+          "publication_date": "2021-08-06",
+          "collected_at": "2026-09-27T01:57:02.271Z"
+        },
+        "corrections": []
+      },
+      "issue_price": {
+        "value": 170,
+        "source_value": "Issue Price for the current Public issue Rs. 170",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20210806-21",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20210806-21",
+          "document_sha256": "24fa44930e5d2b9585ac50fe79ea208d54e085056fa94ba14bb50268fd334a21",
+          "publication_date": "2021-08-06",
+          "collected_at": "2026-09-27T01:57:02.271Z"
+        },
+        "corrections": []
+      },
+      "market_lot": {
+        "value": 800,
+        "source_value": "Market Lot 800",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20210806-21",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20210806-21",
+          "document_sha256": "24fa44930e5d2b9585ac50fe79ea208d54e085056fa94ba14bb50268fd334a21",
+          "publication_date": "2021-08-06",
+          "collected_at": "2026-09-27T01:57:02.271Z"
+        },
+        "corrections": []
+      },
+      "bse_scrip_code": "543324",
+      "bse_verified_listing_batch": {
+        "manifest": "data/verified-bse-listings/2026-09-27.json",
+        "verifier_version": "1.1.0",
+        "source_run_id": "36287056000",
+        "source_artifact_id": 10919754960,
+        "source_artifact_sha256": "fbfdc3d3cffca645dadf3717488e81277036ef7c9a89a378b2ea12a4d3e9689a",
+        "listing_notice_no": "20210806-21"
+      }
+    },
+    {
       "id": "hec-infra-projects-limited",
       "issuer_name": "HEC Infra Projects Limited",
       "board": "SME",
@@ -4457,6 +4973,172 @@
           "publication_date": null,
           "collected_at": "2026-09-24T04:40:01.697Z"
         }
+      }
+    },
+    {
+      "id": "indian-railway-finance-corporation-limited",
+      "issuer_name": "Indian Railway Finance Corporation Limited",
+      "board": null,
+      "sector": null,
+      "status": "listed",
+      "nse_symbol": null,
+      "nse_series": null,
+      "bse_symbol": null,
+      "bse_scrip_code": null,
+      "isin": null,
+      "nse_source": null,
+      "bse_source": null,
+      "terms": {
+        "price_band": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null,
+        "open_date": null,
+        "close_date": null
+      },
+      "documents": [
+        {
+          "type": "Final Prospectus",
+          "identity": "Indian Railway Finance Corporation Limited — Final Prospectus [irfc_prospectus]",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/jan-2021/1611552161700.pdf",
+          "publication_date": "2021-01-22",
+          "collected_at": "2026-09-26T23:24:55.916Z",
+          "document_sha256": "5fc8fb2afcd521c8909f16f38b40a7fb098cb092a2a3db901f85204b3d8cb90f"
+        },
+        {
+          "type": "SEBI Bulletin — February 2021",
+          "identity": "Indian Railway Finance Corporation Limited — SEBI Bulletin — February 2021 [irfc_bulletin]",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/mar-2021/1615197736239.pdf",
+          "publication_date": null,
+          "collected_at": "2026-09-26T23:25:10.263Z",
+          "document_sha256": "727052dc3a8dc3e1de0f4d42d2b2fa1a6c13f8e38d5b6dc23ecdc9b8f9783018"
+        }
+      ],
+      "first_observed_at": "2026-09-26T23:28:34.959Z",
+      "last_collected_at": "2026-09-26T23:28:34.959Z",
+      "board_evidence": [],
+      "status_evidence": [
+        {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/mar-2021/1615197736239.pdf",
+          "document_type": "SEBI Bulletin — February 2021",
+          "document_identity": "Indian Railway Finance Corporation Limited — SEBI Bulletin — February 2021 [irfc_bulletin]",
+          "publication_date": null,
+          "page": "Table 2",
+          "collected_at": "2026-09-26T23:25:10.263Z",
+          "document_sha256": "727052dc3a8dc3e1de0f4d42d2b2fa1a6c13f8e38d5b6dc23ecdc9b8f9783018",
+          "evidence_locator": "January 2021 equity capital table: IRFC"
+        }
+      ],
+      "bse_2021_batch1_import": {
+        "manifest": "data/verified-bse-listings/2026-09-26-bse-2021-mainboard-batch1.json",
+        "review": "data/discovery/bse-2021-mainboard-batch1-review-2026-09-26.json",
+        "receipt": "data/evidence/bse-2021-mainboard-batch1-source-receipt-2026-09-26.json",
+        "action_key": "irfc",
+        "discovery_bse_scrip_code": "543257",
+        "artifact_id": 10917724737,
+        "artifact_digest": "sha256:c682b51c1e0fe3a6bcfb16e509f68f8a642dda6ac9396915628f6843e61aedd4"
+      },
+      "price_band": {
+        "value": null,
+        "status": "missing",
+        "source": null,
+        "corrections": []
+      },
+      "issue_price": {
+        "value": 26,
+        "source_value": 26,
+        "status": "verified",
+        "page": "Table 2",
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/mar-2021/1615197736239.pdf",
+          "document_type": "SEBI Bulletin — February 2021",
+          "document_identity": "Indian Railway Finance Corporation Limited — SEBI Bulletin — February 2021 [irfc_bulletin]",
+          "publication_date": null,
+          "page": "Table 2",
+          "collected_at": "2026-09-26T23:25:10.263Z",
+          "document_sha256": "727052dc3a8dc3e1de0f4d42d2b2fa1a6c13f8e38d5b6dc23ecdc9b8f9783018",
+          "evidence_locator": "January 2021 equity capital table: IRFC"
+        },
+        "corrections": []
+      },
+      "issue_size_inr": {
+        "value": 46334000000,
+        "source_value": 46334000000,
+        "status": "verified",
+        "page": "Table 2",
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/mar-2021/1615197736239.pdf",
+          "document_type": "SEBI Bulletin — February 2021",
+          "document_identity": "Indian Railway Finance Corporation Limited — SEBI Bulletin — February 2021 [irfc_bulletin]",
+          "publication_date": null,
+          "page": "Table 2",
+          "collected_at": "2026-09-26T23:25:10.263Z",
+          "document_sha256": "727052dc3a8dc3e1de0f4d42d2b2fa1a6c13f8e38d5b6dc23ecdc9b8f9783018",
+          "evidence_locator": "January 2021 equity capital table: IRFC"
+        },
+        "corrections": []
+      },
+      "market_lot": {
+        "value": null,
+        "status": "missing",
+        "source": null,
+        "corrections": []
+      },
+      "minimum_bid_quantity": {
+        "value": null,
+        "status": "missing",
+        "source": null,
+        "corrections": []
+      },
+      "open_date": {
+        "value": "2021-01-18",
+        "source_value": "2021-01-18",
+        "status": "verified",
+        "page": "cover",
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/jan-2021/1611552161700.pdf",
+          "document_type": "Final Prospectus",
+          "document_identity": "Indian Railway Finance Corporation Limited — Final Prospectus [irfc_prospectus]",
+          "publication_date": "2021-01-22",
+          "page": "cover",
+          "collected_at": "2026-09-26T23:24:55.916Z",
+          "document_sha256": "5fc8fb2afcd521c8909f16f38b40a7fb098cb092a2a3db901f85204b3d8cb90f",
+          "evidence_locator": "Cover: IPO identity, ₹26 issue price and 18–20 Jan 2021 issue period"
+        },
+        "corrections": []
+      },
+      "close_date": {
+        "value": "2021-01-20",
+        "source_value": "2021-01-20",
+        "status": "verified",
+        "page": "cover",
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/jan-2021/1611552161700.pdf",
+          "document_type": "Final Prospectus",
+          "document_identity": "Indian Railway Finance Corporation Limited — Final Prospectus [irfc_prospectus]",
+          "publication_date": "2021-01-22",
+          "page": "cover",
+          "collected_at": "2026-09-26T23:24:55.916Z",
+          "document_sha256": "5fc8fb2afcd521c8909f16f38b40a7fb098cb092a2a3db901f85204b3d8cb90f",
+          "evidence_locator": "Cover: IPO identity, ₹26 issue price and 18–20 Jan 2021 issue period"
+        },
+        "corrections": []
+      },
+      "listing_date": {
+        "value": "2021-01-29",
+        "source_value": "2021-01-29",
+        "status": "verified",
+        "page": "Table 2",
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/mar-2021/1615197736239.pdf",
+          "document_type": "SEBI Bulletin — February 2021",
+          "document_identity": "Indian Railway Finance Corporation Limited — SEBI Bulletin — February 2021 [irfc_bulletin]",
+          "publication_date": null,
+          "page": "Table 2",
+          "collected_at": "2026-09-26T23:25:10.263Z",
+          "document_sha256": "727052dc3a8dc3e1de0f4d42d2b2fa1a6c13f8e38d5b6dc23ecdc9b8f9783018",
+          "evidence_locator": "January 2021 equity capital table: IRFC"
+        },
+        "corrections": []
       }
     },
     {
@@ -7097,6 +7779,159 @@
       }
     },
     {
+      "id": "nureca-limited",
+      "issuer_name": "Nureca Limited",
+      "board": null,
+      "sector": null,
+      "status": "listed",
+      "nse_symbol": "NURECA",
+      "nse_series": null,
+      "nse_source": {
+        "url": "https://www.bseindia.com/bseplus/AnnualReport/543264/72007543264.pdf",
+        "document_type": "Annual Report 2020-21",
+        "document_identity": "Nureca Limited — Annual Report 2020-21 [nureca_bse_annual_report]",
+        "publication_date": null,
+        "page": "141",
+        "collected_at": "2026-09-27T00:46:55.871Z",
+        "document_sha256": "c6d82f4ea9447d4fdcbc2d340435ea2d0f2462a0e2fe8937d325f5fb7fbdf919",
+        "evidence_locator": "Note 39: IPO of 2,500,175 shares; public price ₹400; aggregate ₹1,000 million; listed on NSE as NURECA and BSE as 543264 on 25-Feb-2021."
+      },
+      "bse_symbol": null,
+      "bse_scrip_code": "543264",
+      "isin": null,
+      "bse_source": {
+        "url": "https://www.bseindia.com/bseplus/AnnualReport/543264/72007543264.pdf",
+        "document_type": "Annual Report 2020-21",
+        "document_identity": "Nureca Limited — Annual Report 2020-21 [nureca_bse_annual_report]",
+        "publication_date": null,
+        "page": "141",
+        "collected_at": "2026-09-27T00:46:55.871Z",
+        "document_sha256": "c6d82f4ea9447d4fdcbc2d340435ea2d0f2462a0e2fe8937d325f5fb7fbdf919",
+        "evidence_locator": "Note 39: IPO of 2,500,175 shares; public price ₹400; aggregate ₹1,000 million; listed on NSE as NURECA and BSE as 543264 on 25-Feb-2021."
+      },
+      "terms": {
+        "price_band": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null,
+        "open_date": null,
+        "close_date": null
+      },
+      "documents": [
+        {
+          "type": "Annual Report 2020-21",
+          "identity": "Nureca Limited — Annual Report 2020-21 [nureca_bse_annual_report]",
+          "url": "https://www.bseindia.com/bseplus/AnnualReport/543264/72007543264.pdf",
+          "publication_date": null,
+          "collected_at": "2026-09-27T00:46:55.871Z",
+          "document_sha256": "c6d82f4ea9447d4fdcbc2d340435ea2d0f2462a0e2fe8937d325f5fb7fbdf919"
+        }
+      ],
+      "first_observed_at": "2026-09-27T00:46:55.866Z",
+      "last_collected_at": "2026-09-27T00:46:55.866Z",
+      "board_evidence": [],
+      "status_evidence": [
+        {
+          "url": "https://www.bseindia.com/bseplus/AnnualReport/543264/72007543264.pdf",
+          "document_type": "Annual Report 2020-21",
+          "document_identity": "Nureca Limited — Annual Report 2020-21 [nureca_bse_annual_report]",
+          "publication_date": null,
+          "page": "141",
+          "collected_at": "2026-09-27T00:46:55.871Z",
+          "document_sha256": "c6d82f4ea9447d4fdcbc2d340435ea2d0f2462a0e2fe8937d325f5fb7fbdf919",
+          "evidence_locator": "Note 39: IPO of 2,500,175 shares; public price ₹400; aggregate ₹1,000 million; listed on NSE as NURECA and BSE as 543264 on 25-Feb-2021."
+        }
+      ],
+      "price_band": {
+        "value": null,
+        "status": "missing",
+        "source": null,
+        "corrections": []
+      },
+      "issue_price": {
+        "value": 400,
+        "source_value": 400,
+        "status": "verified",
+        "page": "141",
+        "source": {
+          "url": "https://www.bseindia.com/bseplus/AnnualReport/543264/72007543264.pdf",
+          "document_type": "Annual Report 2020-21",
+          "document_identity": "Nureca Limited — Annual Report 2020-21 [nureca_bse_annual_report]",
+          "publication_date": null,
+          "page": "141",
+          "collected_at": "2026-09-27T00:46:55.871Z",
+          "document_sha256": "c6d82f4ea9447d4fdcbc2d340435ea2d0f2462a0e2fe8937d325f5fb7fbdf919",
+          "evidence_locator": "Note 39: IPO of 2,500,175 shares; public price ₹400; aggregate ₹1,000 million; listed on NSE as NURECA and BSE as 543264 on 25-Feb-2021."
+        },
+        "corrections": []
+      },
+      "issue_size_inr": {
+        "value": 1000000000,
+        "source_value": 1000000000,
+        "status": "verified",
+        "page": "141",
+        "source": {
+          "url": "https://www.bseindia.com/bseplus/AnnualReport/543264/72007543264.pdf",
+          "document_type": "Annual Report 2020-21",
+          "document_identity": "Nureca Limited — Annual Report 2020-21 [nureca_bse_annual_report]",
+          "publication_date": null,
+          "page": "141",
+          "collected_at": "2026-09-27T00:46:55.871Z",
+          "document_sha256": "c6d82f4ea9447d4fdcbc2d340435ea2d0f2462a0e2fe8937d325f5fb7fbdf919",
+          "evidence_locator": "Note 39: IPO of 2,500,175 shares; public price ₹400; aggregate ₹1,000 million; listed on NSE as NURECA and BSE as 543264 on 25-Feb-2021."
+        },
+        "corrections": []
+      },
+      "market_lot": {
+        "value": null,
+        "status": "missing",
+        "source": null,
+        "corrections": []
+      },
+      "minimum_bid_quantity": {
+        "value": null,
+        "status": "missing",
+        "source": null,
+        "corrections": []
+      },
+      "open_date": {
+        "value": null,
+        "status": "missing",
+        "source": null,
+        "corrections": []
+      },
+      "close_date": {
+        "value": null,
+        "status": "missing",
+        "source": null,
+        "corrections": []
+      },
+      "listing_date": {
+        "value": "2021-02-25",
+        "source_value": "2021-02-25",
+        "status": "verified",
+        "page": "141",
+        "source": {
+          "url": "https://www.bseindia.com/bseplus/AnnualReport/543264/72007543264.pdf",
+          "document_type": "Annual Report 2020-21",
+          "document_identity": "Nureca Limited — Annual Report 2020-21 [nureca_bse_annual_report]",
+          "publication_date": null,
+          "page": "141",
+          "collected_at": "2026-09-27T00:46:55.871Z",
+          "document_sha256": "c6d82f4ea9447d4fdcbc2d340435ea2d0f2462a0e2fe8937d325f5fb7fbdf919",
+          "evidence_locator": "Note 39: IPO of 2,500,175 shares; public price ₹400; aggregate ₹1,000 million; listed on NSE as NURECA and BSE as 543264 on 25-Feb-2021."
+        },
+        "corrections": []
+      },
+      "bse_2021_batch2_import": {
+        "manifest": "data/verified-bse-listings/2026-09-27-bse-2021-batch2-nureca.json",
+        "review": "data/discovery/bse-2021-batch2-nureca-review-2026-09-27.json",
+        "receipt": "data/evidence/bse-2021-batch2-nureca-source-receipt-2026-09-27.json",
+        "action_key": "nureca",
+        "artifact_id": 10919129192,
+        "artifact_digest": "sha256:b91ec68e1cc40e9a24f596812df8f24b2a3f2cfee581aea206e2193a1733e345"
+      }
+    },
+    {
       "id": "omnipotent-industries-limited",
       "issuer_name": "Omnipotent Industries Limited",
       "board": "SME",
@@ -7474,6 +8309,158 @@
           "page": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
         }
+      }
+    },
+    {
+      "id": "paras-defence-and-space-technologies-limited",
+      "issuer_name": "Paras Defence and Space Technologies Limited",
+      "board": null,
+      "sector": null,
+      "status": "listed",
+      "nse_symbol": null,
+      "nse_series": null,
+      "nse_source": null,
+      "bse_symbol": null,
+      "bse_scrip_code": "543367",
+      "isin": "INE045601015",
+      "bse_source": {
+        "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20210930-7",
+        "document_type": "Listing Notice 20210930-7",
+        "document_identity": "Paras Defence and Space Technologies Limited — Listing Notice 20210930-7 [paras_bse_listing_notice]",
+        "publication_date": "2021-09-30",
+        "page": null,
+        "collected_at": "2026-09-27T01:46:22.499Z",
+        "document_sha256": "e616d5c4fac82cd773e22ed874c4b6fc999f840ab4a86a101abf247af5959fa4",
+        "evidence_locator": "Notice: effective 01-Oct-2021 listing; BSE scrip 543367; ISIN INE045601015; market lot 1; current public issue price ₹175."
+      },
+      "terms": {
+        "price_band": null,
+        "market_lot": 1,
+        "minimum_bid_quantity": null,
+        "open_date": null,
+        "close_date": null
+      },
+      "documents": [
+        {
+          "type": "Listing Notice 20210930-7",
+          "identity": "Paras Defence and Space Technologies Limited — Listing Notice 20210930-7 [paras_bse_listing_notice]",
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20210930-7",
+          "publication_date": "2021-09-30",
+          "collected_at": "2026-09-27T01:46:22.499Z",
+          "document_sha256": "e616d5c4fac82cd773e22ed874c4b6fc999f840ab4a86a101abf247af5959fa4"
+        },
+        {
+          "type": "Final Offer Document filed with ROC",
+          "identity": "Paras Defence and Space Technologies Limited — Final Offer Document filed with ROC [paras_sebi_final_offer]",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2023/1687843975673.pdf",
+          "publication_date": "2021-09-25",
+          "collected_at": "2026-09-27T01:46:58.637Z",
+          "document_sha256": "6efc50fa6e5503e1bd17c88466b717c342f512526d622cc4746eb61aafab8933"
+        }
+      ],
+      "first_observed_at": "2026-09-27T01:46:58.637Z",
+      "last_collected_at": "2026-09-27T01:46:58.637Z",
+      "board_evidence": [],
+      "status_evidence": [
+        {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20210930-7",
+          "document_type": "Listing Notice 20210930-7",
+          "document_identity": "Paras Defence and Space Technologies Limited — Listing Notice 20210930-7 [paras_bse_listing_notice]",
+          "publication_date": "2021-09-30",
+          "page": null,
+          "collected_at": "2026-09-27T01:46:22.499Z",
+          "document_sha256": "e616d5c4fac82cd773e22ed874c4b6fc999f840ab4a86a101abf247af5959fa4",
+          "evidence_locator": "Notice: effective 01-Oct-2021 listing; BSE scrip 543367; ISIN INE045601015; market lot 1; current public issue price ₹175."
+        }
+      ],
+      "price_band": {
+        "value": null,
+        "status": "missing",
+        "source": null,
+        "corrections": []
+      },
+      "issue_price": {
+        "value": 175,
+        "source_value": 175,
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20210930-7",
+          "document_type": "Listing Notice 20210930-7",
+          "document_identity": "Paras Defence and Space Technologies Limited — Listing Notice 20210930-7 [paras_bse_listing_notice]",
+          "publication_date": "2021-09-30",
+          "page": null,
+          "collected_at": "2026-09-27T01:46:22.499Z",
+          "document_sha256": "e616d5c4fac82cd773e22ed874c4b6fc999f840ab4a86a101abf247af5959fa4",
+          "evidence_locator": "Notice: effective 01-Oct-2021 listing; BSE scrip 543367; ISIN INE045601015; market lot 1; current public issue price ₹175."
+        },
+        "corrections": []
+      },
+      "issue_size_inr": {
+        "value": null,
+        "status": "missing",
+        "source": null,
+        "corrections": []
+      },
+      "market_lot": {
+        "value": 1,
+        "source_value": 1,
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20210930-7",
+          "document_type": "Listing Notice 20210930-7",
+          "document_identity": "Paras Defence and Space Technologies Limited — Listing Notice 20210930-7 [paras_bse_listing_notice]",
+          "publication_date": "2021-09-30",
+          "page": null,
+          "collected_at": "2026-09-27T01:46:22.499Z",
+          "document_sha256": "e616d5c4fac82cd773e22ed874c4b6fc999f840ab4a86a101abf247af5959fa4",
+          "evidence_locator": "Notice: effective 01-Oct-2021 listing; BSE scrip 543367; ISIN INE045601015; market lot 1; current public issue price ₹175."
+        },
+        "corrections": []
+      },
+      "minimum_bid_quantity": {
+        "value": null,
+        "status": "missing",
+        "source": null,
+        "corrections": []
+      },
+      "open_date": {
+        "value": null,
+        "status": "missing",
+        "source": null,
+        "corrections": []
+      },
+      "close_date": {
+        "value": null,
+        "status": "missing",
+        "source": null,
+        "corrections": []
+      },
+      "listing_date": {
+        "value": "2021-10-01",
+        "source_value": "2021-10-01",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20210930-7",
+          "document_type": "Listing Notice 20210930-7",
+          "document_identity": "Paras Defence and Space Technologies Limited — Listing Notice 20210930-7 [paras_bse_listing_notice]",
+          "publication_date": "2021-09-30",
+          "page": null,
+          "collected_at": "2026-09-27T01:46:22.499Z",
+          "document_sha256": "e616d5c4fac82cd773e22ed874c4b6fc999f840ab4a86a101abf247af5959fa4",
+          "evidence_locator": "Notice: effective 01-Oct-2021 listing; BSE scrip 543367; ISIN INE045601015; market lot 1; current public issue price ₹175."
+        },
+        "corrections": []
+      },
+      "bse_2021_batch3_import": {
+        "manifest": "data/verified-bse-listings/2026-09-27-bse-2021-batch3-paras.json",
+        "review": "data/discovery/bse-2021-batch3-paras-review-2026-09-27.json",
+        "receipt": "data/evidence/bse-2021-batch3-paras-source-receipt-2026-09-27.json",
+        "action_key": "paras",
+        "artifact_id": 10920747805,
+        "artifact_digest": "sha256:f0020d1ee6f2711f7ee1c02073f07329c4bc4e4dfbc8e7980d3198470b35bf16"
       }
     },
     {
@@ -11994,765 +12981,6 @@
           "publication_date": null,
           "collected_at": "2026-09-24T04:19:08.245Z"
         }
-      }
-    },
-    {
-      "id": "indian-railway-finance-corporation-limited",
-      "issuer_name": "Indian Railway Finance Corporation Limited",
-      "board": null,
-      "sector": null,
-      "status": "listed",
-      "nse_symbol": null,
-      "nse_series": null,
-      "bse_symbol": null,
-      "bse_scrip_code": null,
-      "isin": null,
-      "nse_source": null,
-      "bse_source": null,
-      "terms": {
-        "price_band": null,
-        "market_lot": null,
-        "minimum_bid_quantity": null,
-        "open_date": null,
-        "close_date": null
-      },
-      "documents": [
-        {
-          "type": "Final Prospectus",
-          "identity": "Indian Railway Finance Corporation Limited — Final Prospectus [irfc_prospectus]",
-          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/jan-2021/1611552161700.pdf",
-          "publication_date": "2021-01-22",
-          "collected_at": "2026-09-26T23:24:55.916Z",
-          "document_sha256": "5fc8fb2afcd521c8909f16f38b40a7fb098cb092a2a3db901f85204b3d8cb90f"
-        },
-        {
-          "type": "SEBI Bulletin — February 2021",
-          "identity": "Indian Railway Finance Corporation Limited — SEBI Bulletin — February 2021 [irfc_bulletin]",
-          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/mar-2021/1615197736239.pdf",
-          "publication_date": null,
-          "collected_at": "2026-09-26T23:25:10.263Z",
-          "document_sha256": "727052dc3a8dc3e1de0f4d42d2b2fa1a6c13f8e38d5b6dc23ecdc9b8f9783018"
-        }
-      ],
-      "first_observed_at": "2026-09-26T23:28:34.959Z",
-      "last_collected_at": "2026-09-26T23:28:34.959Z",
-      "board_evidence": [],
-      "status_evidence": [
-        {
-          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/mar-2021/1615197736239.pdf",
-          "document_type": "SEBI Bulletin — February 2021",
-          "document_identity": "Indian Railway Finance Corporation Limited — SEBI Bulletin — February 2021 [irfc_bulletin]",
-          "publication_date": null,
-          "page": "Table 2",
-          "collected_at": "2026-09-26T23:25:10.263Z",
-          "document_sha256": "727052dc3a8dc3e1de0f4d42d2b2fa1a6c13f8e38d5b6dc23ecdc9b8f9783018",
-          "evidence_locator": "January 2021 equity capital table: IRFC"
-        }
-      ],
-      "bse_2021_batch1_import": {
-        "manifest": "data/verified-bse-listings/2026-09-26-bse-2021-mainboard-batch1.json",
-        "review": "data/discovery/bse-2021-mainboard-batch1-review-2026-09-26.json",
-        "receipt": "data/evidence/bse-2021-mainboard-batch1-source-receipt-2026-09-26.json",
-        "action_key": "irfc",
-        "discovery_bse_scrip_code": "543257",
-        "artifact_id": 10917724737,
-        "artifact_digest": "sha256:c682b51c1e0fe3a6bcfb16e509f68f8a642dda6ac9396915628f6843e61aedd4"
-      },
-      "price_band": {
-        "value": null,
-        "status": "missing",
-        "source": null,
-        "corrections": []
-      },
-      "issue_price": {
-        "value": 26,
-        "source_value": 26,
-        "status": "verified",
-        "page": "Table 2",
-        "source": {
-          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/mar-2021/1615197736239.pdf",
-          "document_type": "SEBI Bulletin — February 2021",
-          "document_identity": "Indian Railway Finance Corporation Limited — SEBI Bulletin — February 2021 [irfc_bulletin]",
-          "publication_date": null,
-          "page": "Table 2",
-          "collected_at": "2026-09-26T23:25:10.263Z",
-          "document_sha256": "727052dc3a8dc3e1de0f4d42d2b2fa1a6c13f8e38d5b6dc23ecdc9b8f9783018",
-          "evidence_locator": "January 2021 equity capital table: IRFC"
-        },
-        "corrections": []
-      },
-      "issue_size_inr": {
-        "value": 46334000000,
-        "source_value": 46334000000,
-        "status": "verified",
-        "page": "Table 2",
-        "source": {
-          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/mar-2021/1615197736239.pdf",
-          "document_type": "SEBI Bulletin — February 2021",
-          "document_identity": "Indian Railway Finance Corporation Limited — SEBI Bulletin — February 2021 [irfc_bulletin]",
-          "publication_date": null,
-          "page": "Table 2",
-          "collected_at": "2026-09-26T23:25:10.263Z",
-          "document_sha256": "727052dc3a8dc3e1de0f4d42d2b2fa1a6c13f8e38d5b6dc23ecdc9b8f9783018",
-          "evidence_locator": "January 2021 equity capital table: IRFC"
-        },
-        "corrections": []
-      },
-      "market_lot": {
-        "value": null,
-        "status": "missing",
-        "source": null,
-        "corrections": []
-      },
-      "minimum_bid_quantity": {
-        "value": null,
-        "status": "missing",
-        "source": null,
-        "corrections": []
-      },
-      "open_date": {
-        "value": "2021-01-18",
-        "source_value": "2021-01-18",
-        "status": "verified",
-        "page": "cover",
-        "source": {
-          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/jan-2021/1611552161700.pdf",
-          "document_type": "Final Prospectus",
-          "document_identity": "Indian Railway Finance Corporation Limited — Final Prospectus [irfc_prospectus]",
-          "publication_date": "2021-01-22",
-          "page": "cover",
-          "collected_at": "2026-09-26T23:24:55.916Z",
-          "document_sha256": "5fc8fb2afcd521c8909f16f38b40a7fb098cb092a2a3db901f85204b3d8cb90f",
-          "evidence_locator": "Cover: IPO identity, ₹26 issue price and 18–20 Jan 2021 issue period"
-        },
-        "corrections": []
-      },
-      "close_date": {
-        "value": "2021-01-20",
-        "source_value": "2021-01-20",
-        "status": "verified",
-        "page": "cover",
-        "source": {
-          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/jan-2021/1611552161700.pdf",
-          "document_type": "Final Prospectus",
-          "document_identity": "Indian Railway Finance Corporation Limited — Final Prospectus [irfc_prospectus]",
-          "publication_date": "2021-01-22",
-          "page": "cover",
-          "collected_at": "2026-09-26T23:24:55.916Z",
-          "document_sha256": "5fc8fb2afcd521c8909f16f38b40a7fb098cb092a2a3db901f85204b3d8cb90f",
-          "evidence_locator": "Cover: IPO identity, ₹26 issue price and 18–20 Jan 2021 issue period"
-        },
-        "corrections": []
-      },
-      "listing_date": {
-        "value": "2021-01-29",
-        "source_value": "2021-01-29",
-        "status": "verified",
-        "page": "Table 2",
-        "source": {
-          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/mar-2021/1615197736239.pdf",
-          "document_type": "SEBI Bulletin — February 2021",
-          "document_identity": "Indian Railway Finance Corporation Limited — SEBI Bulletin — February 2021 [irfc_bulletin]",
-          "publication_date": null,
-          "page": "Table 2",
-          "collected_at": "2026-09-26T23:25:10.263Z",
-          "document_sha256": "727052dc3a8dc3e1de0f4d42d2b2fa1a6c13f8e38d5b6dc23ecdc9b8f9783018",
-          "evidence_locator": "January 2021 equity capital table: IRFC"
-        },
-        "corrections": []
-      }
-    },
-    {
-      "id": "anupam-rasayan-india-limited",
-      "issuer_name": "Anupam Rasayan India Limited",
-      "board": null,
-      "sector": null,
-      "status": "listed",
-      "nse_symbol": null,
-      "nse_series": null,
-      "bse_symbol": null,
-      "bse_scrip_code": null,
-      "isin": null,
-      "nse_source": null,
-      "bse_source": null,
-      "terms": {
-        "price_band": null,
-        "market_lot": null,
-        "minimum_bid_quantity": null,
-        "open_date": null,
-        "close_date": null
-      },
-      "documents": [
-        {
-          "type": "Red Herring Prospectus",
-          "identity": "Anupam Rasayan India Limited — Red Herring Prospectus [anupam_prospectus]",
-          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/apr-2023/1681360758117.pdf",
-          "publication_date": "2021-03-09",
-          "collected_at": "2026-09-26T23:27:26.231Z",
-          "document_sha256": "02642600485f42835d6f7175ffd98930adb08c5715ed151b57c499148e0055aa"
-        },
-        {
-          "type": "SEBI Bulletin — April 2021",
-          "identity": "Anupam Rasayan India Limited — SEBI Bulletin — April 2021 [anupam_bulletin]",
-          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2022/1663923628962.pdf",
-          "publication_date": null,
-          "collected_at": "2026-09-26T23:27:47.707Z",
-          "document_sha256": "5b92e2ba62b6ae10dde99bb8160e94edf2fb4d93a0886001e3e65bdd349abe3d"
-        }
-      ],
-      "first_observed_at": "2026-09-26T23:28:34.959Z",
-      "last_collected_at": "2026-09-26T23:28:34.959Z",
-      "board_evidence": [],
-      "status_evidence": [
-        {
-          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2022/1663923628962.pdf",
-          "document_type": "SEBI Bulletin — April 2021",
-          "document_identity": "Anupam Rasayan India Limited — SEBI Bulletin — April 2021 [anupam_bulletin]",
-          "publication_date": null,
-          "page": "Table 2",
-          "collected_at": "2026-09-26T23:27:47.707Z",
-          "document_sha256": "5b92e2ba62b6ae10dde99bb8160e94edf2fb4d93a0886001e3e65bdd349abe3d",
-          "evidence_locator": "March 2021 equity capital table: Anupam Rasayan India Limited"
-        }
-      ],
-      "bse_2021_batch1_import": {
-        "manifest": "data/verified-bse-listings/2026-09-26-bse-2021-mainboard-batch1.json",
-        "review": "data/discovery/bse-2021-mainboard-batch1-review-2026-09-26.json",
-        "receipt": "data/evidence/bse-2021-mainboard-batch1-source-receipt-2026-09-26.json",
-        "action_key": "anupam",
-        "discovery_bse_scrip_code": "543275",
-        "artifact_id": 10917724737,
-        "artifact_digest": "sha256:c682b51c1e0fe3a6bcfb16e509f68f8a642dda6ac9396915628f6843e61aedd4"
-      },
-      "price_band": {
-        "value": null,
-        "status": "missing",
-        "source": null,
-        "corrections": []
-      },
-      "issue_price": {
-        "value": 555,
-        "source_value": 555,
-        "status": "verified",
-        "page": "Table 2",
-        "source": {
-          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2022/1663923628962.pdf",
-          "document_type": "SEBI Bulletin — April 2021",
-          "document_identity": "Anupam Rasayan India Limited — SEBI Bulletin — April 2021 [anupam_bulletin]",
-          "publication_date": null,
-          "page": "Table 2",
-          "collected_at": "2026-09-26T23:27:47.707Z",
-          "document_sha256": "5b92e2ba62b6ae10dde99bb8160e94edf2fb4d93a0886001e3e65bdd349abe3d",
-          "evidence_locator": "March 2021 equity capital table: Anupam Rasayan India Limited"
-        },
-        "corrections": []
-      },
-      "issue_size_inr": {
-        "value": 7600000000,
-        "source_value": 7600000000,
-        "status": "verified",
-        "page": "Table 2",
-        "source": {
-          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2022/1663923628962.pdf",
-          "document_type": "SEBI Bulletin — April 2021",
-          "document_identity": "Anupam Rasayan India Limited — SEBI Bulletin — April 2021 [anupam_bulletin]",
-          "publication_date": null,
-          "page": "Table 2",
-          "collected_at": "2026-09-26T23:27:47.707Z",
-          "document_sha256": "5b92e2ba62b6ae10dde99bb8160e94edf2fb4d93a0886001e3e65bdd349abe3d",
-          "evidence_locator": "March 2021 equity capital table: Anupam Rasayan India Limited"
-        },
-        "corrections": []
-      },
-      "market_lot": {
-        "value": null,
-        "status": "missing",
-        "source": null,
-        "corrections": []
-      },
-      "minimum_bid_quantity": {
-        "value": null,
-        "status": "missing",
-        "source": null,
-        "corrections": []
-      },
-      "open_date": {
-        "value": null,
-        "status": "missing",
-        "source": null,
-        "corrections": []
-      },
-      "close_date": {
-        "value": null,
-        "status": "missing",
-        "source": null,
-        "corrections": []
-      },
-      "listing_date": {
-        "value": "2021-03-24",
-        "source_value": "2021-03-24",
-        "status": "verified",
-        "page": "Table 2",
-        "source": {
-          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2022/1663923628962.pdf",
-          "document_type": "SEBI Bulletin — April 2021",
-          "document_identity": "Anupam Rasayan India Limited — SEBI Bulletin — April 2021 [anupam_bulletin]",
-          "publication_date": null,
-          "page": "Table 2",
-          "collected_at": "2026-09-26T23:27:47.707Z",
-          "document_sha256": "5b92e2ba62b6ae10dde99bb8160e94edf2fb4d93a0886001e3e65bdd349abe3d",
-          "evidence_locator": "March 2021 equity capital table: Anupam Rasayan India Limited"
-        },
-        "corrections": []
-      }
-    },
-    {
-      "id": "exxaro-tiles-limited",
-      "issuer_name": "Exxaro Tiles Limited",
-      "board": null,
-      "sector": null,
-      "status": "listed",
-      "nse_symbol": null,
-      "nse_series": null,
-      "bse_symbol": null,
-      "bse_scrip_code": null,
-      "isin": null,
-      "nse_source": null,
-      "bse_source": null,
-      "terms": {
-        "price_band": null,
-        "market_lot": null,
-        "minimum_bid_quantity": null,
-        "open_date": null,
-        "close_date": null
-      },
-      "documents": [
-        {
-          "type": "Final Prospectus",
-          "identity": "Exxaro Tiles Limited — Final Prospectus [exxaro_prospectus]",
-          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2021/1628667283989.pdf",
-          "publication_date": "2021-08-10",
-          "collected_at": "2026-09-26T23:28:27.865Z",
-          "document_sha256": "075b340242ff9f33b4ab1685081d892dcc25a872e27599eceb83a21fef688fbe"
-        },
-        {
-          "type": "SEBI Bulletin — September 2021",
-          "identity": "Exxaro Tiles Limited — SEBI Bulletin — September 2021 [exxaro_bulletin]",
-          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2021/1633688089802.pdf",
-          "publication_date": null,
-          "collected_at": "2026-09-26T23:28:34.959Z",
-          "document_sha256": "d232068ec2d77cc53ff79ad1ef9f8cc6121adf1c2d43ff04380a2394f611d88b"
-        }
-      ],
-      "first_observed_at": "2026-09-26T23:28:34.959Z",
-      "last_collected_at": "2026-09-26T23:28:34.959Z",
-      "board_evidence": [],
-      "status_evidence": [
-        {
-          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2021/1633688089802.pdf",
-          "document_type": "SEBI Bulletin — September 2021",
-          "document_identity": "Exxaro Tiles Limited — SEBI Bulletin — September 2021 [exxaro_bulletin]",
-          "publication_date": null,
-          "page": "Table 2",
-          "collected_at": "2026-09-26T23:28:34.959Z",
-          "document_sha256": "d232068ec2d77cc53ff79ad1ef9f8cc6121adf1c2d43ff04380a2394f611d88b",
-          "evidence_locator": "August 2021 equity capital table: Exxaro Tiles Limited"
-        }
-      ],
-      "bse_2021_batch1_import": {
-        "manifest": "data/verified-bse-listings/2026-09-26-bse-2021-mainboard-batch1.json",
-        "review": "data/discovery/bse-2021-mainboard-batch1-review-2026-09-26.json",
-        "receipt": "data/evidence/bse-2021-mainboard-batch1-source-receipt-2026-09-26.json",
-        "action_key": "exxaro",
-        "discovery_bse_scrip_code": "543327",
-        "artifact_id": 10917724737,
-        "artifact_digest": "sha256:c682b51c1e0fe3a6bcfb16e509f68f8a642dda6ac9396915628f6843e61aedd4"
-      },
-      "price_band": {
-        "value": null,
-        "status": "missing",
-        "source": null,
-        "corrections": []
-      },
-      "issue_price": {
-        "value": 120,
-        "source_value": 120,
-        "status": "verified",
-        "page": "Table 2",
-        "source": {
-          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2021/1633688089802.pdf",
-          "document_type": "SEBI Bulletin — September 2021",
-          "document_identity": "Exxaro Tiles Limited — SEBI Bulletin — September 2021 [exxaro_bulletin]",
-          "publication_date": null,
-          "page": "Table 2",
-          "collected_at": "2026-09-26T23:28:34.959Z",
-          "document_sha256": "d232068ec2d77cc53ff79ad1ef9f8cc6121adf1c2d43ff04380a2394f611d88b",
-          "evidence_locator": "August 2021 equity capital table: Exxaro Tiles Limited"
-        },
-        "corrections": []
-      },
-      "issue_size_inr": {
-        "value": 1611000000,
-        "source_value": 1611000000,
-        "status": "verified",
-        "page": "Table 2",
-        "source": {
-          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2021/1633688089802.pdf",
-          "document_type": "SEBI Bulletin — September 2021",
-          "document_identity": "Exxaro Tiles Limited — SEBI Bulletin — September 2021 [exxaro_bulletin]",
-          "publication_date": null,
-          "page": "Table 2",
-          "collected_at": "2026-09-26T23:28:34.959Z",
-          "document_sha256": "d232068ec2d77cc53ff79ad1ef9f8cc6121adf1c2d43ff04380a2394f611d88b",
-          "evidence_locator": "August 2021 equity capital table: Exxaro Tiles Limited"
-        },
-        "corrections": []
-      },
-      "market_lot": {
-        "value": null,
-        "status": "missing",
-        "source": null,
-        "corrections": []
-      },
-      "minimum_bid_quantity": {
-        "value": null,
-        "status": "missing",
-        "source": null,
-        "corrections": []
-      },
-      "open_date": {
-        "value": null,
-        "status": "missing",
-        "source": null,
-        "corrections": []
-      },
-      "close_date": {
-        "value": null,
-        "status": "missing",
-        "source": null,
-        "corrections": []
-      },
-      "listing_date": {
-        "value": "2021-08-16",
-        "source_value": "2021-08-16",
-        "status": "verified",
-        "page": "Table 2",
-        "source": {
-          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2021/1633688089802.pdf",
-          "document_type": "SEBI Bulletin — September 2021",
-          "document_identity": "Exxaro Tiles Limited — SEBI Bulletin — September 2021 [exxaro_bulletin]",
-          "publication_date": null,
-          "page": "Table 2",
-          "collected_at": "2026-09-26T23:28:34.959Z",
-          "document_sha256": "d232068ec2d77cc53ff79ad1ef9f8cc6121adf1c2d43ff04380a2394f611d88b",
-          "evidence_locator": "August 2021 equity capital table: Exxaro Tiles Limited"
-        },
-        "corrections": []
-      }
-    },
-    {
-      "id": "nureca-limited",
-      "issuer_name": "Nureca Limited",
-      "board": null,
-      "sector": null,
-      "status": "listed",
-      "nse_symbol": "NURECA",
-      "nse_series": null,
-      "nse_source": {
-        "url": "https://www.bseindia.com/bseplus/AnnualReport/543264/72007543264.pdf",
-        "document_type": "Annual Report 2020-21",
-        "document_identity": "Nureca Limited — Annual Report 2020-21 [nureca_bse_annual_report]",
-        "publication_date": null,
-        "page": "141",
-        "collected_at": "2026-09-27T00:46:55.871Z",
-        "document_sha256": "c6d82f4ea9447d4fdcbc2d340435ea2d0f2462a0e2fe8937d325f5fb7fbdf919",
-        "evidence_locator": "Note 39: IPO of 2,500,175 shares; public price ₹400; aggregate ₹1,000 million; listed on NSE as NURECA and BSE as 543264 on 25-Feb-2021."
-      },
-      "bse_symbol": null,
-      "bse_scrip_code": "543264",
-      "isin": null,
-      "bse_source": {
-        "url": "https://www.bseindia.com/bseplus/AnnualReport/543264/72007543264.pdf",
-        "document_type": "Annual Report 2020-21",
-        "document_identity": "Nureca Limited — Annual Report 2020-21 [nureca_bse_annual_report]",
-        "publication_date": null,
-        "page": "141",
-        "collected_at": "2026-09-27T00:46:55.871Z",
-        "document_sha256": "c6d82f4ea9447d4fdcbc2d340435ea2d0f2462a0e2fe8937d325f5fb7fbdf919",
-        "evidence_locator": "Note 39: IPO of 2,500,175 shares; public price ₹400; aggregate ₹1,000 million; listed on NSE as NURECA and BSE as 543264 on 25-Feb-2021."
-      },
-      "terms": {
-        "price_band": null,
-        "market_lot": null,
-        "minimum_bid_quantity": null,
-        "open_date": null,
-        "close_date": null
-      },
-      "documents": [
-        {
-          "type": "Annual Report 2020-21",
-          "identity": "Nureca Limited — Annual Report 2020-21 [nureca_bse_annual_report]",
-          "url": "https://www.bseindia.com/bseplus/AnnualReport/543264/72007543264.pdf",
-          "publication_date": null,
-          "collected_at": "2026-09-27T00:46:55.871Z",
-          "document_sha256": "c6d82f4ea9447d4fdcbc2d340435ea2d0f2462a0e2fe8937d325f5fb7fbdf919"
-        }
-      ],
-      "first_observed_at": "2026-09-27T00:46:55.866Z",
-      "last_collected_at": "2026-09-27T00:46:55.866Z",
-      "board_evidence": [],
-      "status_evidence": [
-        {
-          "url": "https://www.bseindia.com/bseplus/AnnualReport/543264/72007543264.pdf",
-          "document_type": "Annual Report 2020-21",
-          "document_identity": "Nureca Limited — Annual Report 2020-21 [nureca_bse_annual_report]",
-          "publication_date": null,
-          "page": "141",
-          "collected_at": "2026-09-27T00:46:55.871Z",
-          "document_sha256": "c6d82f4ea9447d4fdcbc2d340435ea2d0f2462a0e2fe8937d325f5fb7fbdf919",
-          "evidence_locator": "Note 39: IPO of 2,500,175 shares; public price ₹400; aggregate ₹1,000 million; listed on NSE as NURECA and BSE as 543264 on 25-Feb-2021."
-        }
-      ],
-      "price_band": {
-        "value": null,
-        "status": "missing",
-        "source": null,
-        "corrections": []
-      },
-      "issue_price": {
-        "value": 400,
-        "source_value": 400,
-        "status": "verified",
-        "page": "141",
-        "source": {
-          "url": "https://www.bseindia.com/bseplus/AnnualReport/543264/72007543264.pdf",
-          "document_type": "Annual Report 2020-21",
-          "document_identity": "Nureca Limited — Annual Report 2020-21 [nureca_bse_annual_report]",
-          "publication_date": null,
-          "page": "141",
-          "collected_at": "2026-09-27T00:46:55.871Z",
-          "document_sha256": "c6d82f4ea9447d4fdcbc2d340435ea2d0f2462a0e2fe8937d325f5fb7fbdf919",
-          "evidence_locator": "Note 39: IPO of 2,500,175 shares; public price ₹400; aggregate ₹1,000 million; listed on NSE as NURECA and BSE as 543264 on 25-Feb-2021."
-        },
-        "corrections": []
-      },
-      "issue_size_inr": {
-        "value": 1000000000,
-        "source_value": 1000000000,
-        "status": "verified",
-        "page": "141",
-        "source": {
-          "url": "https://www.bseindia.com/bseplus/AnnualReport/543264/72007543264.pdf",
-          "document_type": "Annual Report 2020-21",
-          "document_identity": "Nureca Limited — Annual Report 2020-21 [nureca_bse_annual_report]",
-          "publication_date": null,
-          "page": "141",
-          "collected_at": "2026-09-27T00:46:55.871Z",
-          "document_sha256": "c6d82f4ea9447d4fdcbc2d340435ea2d0f2462a0e2fe8937d325f5fb7fbdf919",
-          "evidence_locator": "Note 39: IPO of 2,500,175 shares; public price ₹400; aggregate ₹1,000 million; listed on NSE as NURECA and BSE as 543264 on 25-Feb-2021."
-        },
-        "corrections": []
-      },
-      "market_lot": {
-        "value": null,
-        "status": "missing",
-        "source": null,
-        "corrections": []
-      },
-      "minimum_bid_quantity": {
-        "value": null,
-        "status": "missing",
-        "source": null,
-        "corrections": []
-      },
-      "open_date": {
-        "value": null,
-        "status": "missing",
-        "source": null,
-        "corrections": []
-      },
-      "close_date": {
-        "value": null,
-        "status": "missing",
-        "source": null,
-        "corrections": []
-      },
-      "listing_date": {
-        "value": "2021-02-25",
-        "source_value": "2021-02-25",
-        "status": "verified",
-        "page": "141",
-        "source": {
-          "url": "https://www.bseindia.com/bseplus/AnnualReport/543264/72007543264.pdf",
-          "document_type": "Annual Report 2020-21",
-          "document_identity": "Nureca Limited — Annual Report 2020-21 [nureca_bse_annual_report]",
-          "publication_date": null,
-          "page": "141",
-          "collected_at": "2026-09-27T00:46:55.871Z",
-          "document_sha256": "c6d82f4ea9447d4fdcbc2d340435ea2d0f2462a0e2fe8937d325f5fb7fbdf919",
-          "evidence_locator": "Note 39: IPO of 2,500,175 shares; public price ₹400; aggregate ₹1,000 million; listed on NSE as NURECA and BSE as 543264 on 25-Feb-2021."
-        },
-        "corrections": []
-      },
-      "bse_2021_batch2_import": {
-        "manifest": "data/verified-bse-listings/2026-09-27-bse-2021-batch2-nureca.json",
-        "review": "data/discovery/bse-2021-batch2-nureca-review-2026-09-27.json",
-        "receipt": "data/evidence/bse-2021-batch2-nureca-source-receipt-2026-09-27.json",
-        "action_key": "nureca",
-        "artifact_id": 10919129192,
-        "artifact_digest": "sha256:b91ec68e1cc40e9a24f596812df8f24b2a3f2cfee581aea206e2193a1733e345"
-      }
-    },
-    {
-      "id": "paras-defence-and-space-technologies-limited",
-      "issuer_name": "Paras Defence and Space Technologies Limited",
-      "board": null,
-      "sector": null,
-      "status": "listed",
-      "nse_symbol": null,
-      "nse_series": null,
-      "nse_source": null,
-      "bse_symbol": null,
-      "bse_scrip_code": "543367",
-      "isin": "INE045601015",
-      "bse_source": {
-        "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20210930-7",
-        "document_type": "Listing Notice 20210930-7",
-        "document_identity": "Paras Defence and Space Technologies Limited — Listing Notice 20210930-7 [paras_bse_listing_notice]",
-        "publication_date": "2021-09-30",
-        "page": null,
-        "collected_at": "2026-09-27T01:46:22.499Z",
-        "document_sha256": "e616d5c4fac82cd773e22ed874c4b6fc999f840ab4a86a101abf247af5959fa4",
-        "evidence_locator": "Notice: effective 01-Oct-2021 listing; BSE scrip 543367; ISIN INE045601015; market lot 1; current public issue price ₹175."
-      },
-      "terms": {
-        "price_band": null,
-        "market_lot": 1,
-        "minimum_bid_quantity": null,
-        "open_date": null,
-        "close_date": null
-      },
-      "documents": [
-        {
-          "type": "Listing Notice 20210930-7",
-          "identity": "Paras Defence and Space Technologies Limited — Listing Notice 20210930-7 [paras_bse_listing_notice]",
-          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20210930-7",
-          "publication_date": "2021-09-30",
-          "collected_at": "2026-09-27T01:46:22.499Z",
-          "document_sha256": "e616d5c4fac82cd773e22ed874c4b6fc999f840ab4a86a101abf247af5959fa4"
-        },
-        {
-          "type": "Final Offer Document filed with ROC",
-          "identity": "Paras Defence and Space Technologies Limited — Final Offer Document filed with ROC [paras_sebi_final_offer]",
-          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2023/1687843975673.pdf",
-          "publication_date": "2021-09-25",
-          "collected_at": "2026-09-27T01:46:58.637Z",
-          "document_sha256": "6efc50fa6e5503e1bd17c88466b717c342f512526d622cc4746eb61aafab8933"
-        }
-      ],
-      "first_observed_at": "2026-09-27T01:46:58.637Z",
-      "last_collected_at": "2026-09-27T01:46:58.637Z",
-      "board_evidence": [],
-      "status_evidence": [
-        {
-          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20210930-7",
-          "document_type": "Listing Notice 20210930-7",
-          "document_identity": "Paras Defence and Space Technologies Limited — Listing Notice 20210930-7 [paras_bse_listing_notice]",
-          "publication_date": "2021-09-30",
-          "page": null,
-          "collected_at": "2026-09-27T01:46:22.499Z",
-          "document_sha256": "e616d5c4fac82cd773e22ed874c4b6fc999f840ab4a86a101abf247af5959fa4",
-          "evidence_locator": "Notice: effective 01-Oct-2021 listing; BSE scrip 543367; ISIN INE045601015; market lot 1; current public issue price ₹175."
-        }
-      ],
-      "price_band": {
-        "value": null,
-        "status": "missing",
-        "source": null,
-        "corrections": []
-      },
-      "issue_price": {
-        "value": 175,
-        "source_value": 175,
-        "status": "verified",
-        "page": null,
-        "source": {
-          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20210930-7",
-          "document_type": "Listing Notice 20210930-7",
-          "document_identity": "Paras Defence and Space Technologies Limited — Listing Notice 20210930-7 [paras_bse_listing_notice]",
-          "publication_date": "2021-09-30",
-          "page": null,
-          "collected_at": "2026-09-27T01:46:22.499Z",
-          "document_sha256": "e616d5c4fac82cd773e22ed874c4b6fc999f840ab4a86a101abf247af5959fa4",
-          "evidence_locator": "Notice: effective 01-Oct-2021 listing; BSE scrip 543367; ISIN INE045601015; market lot 1; current public issue price ₹175."
-        },
-        "corrections": []
-      },
-      "issue_size_inr": {
-        "value": null,
-        "status": "missing",
-        "source": null,
-        "corrections": []
-      },
-      "market_lot": {
-        "value": 1,
-        "source_value": 1,
-        "status": "verified",
-        "page": null,
-        "source": {
-          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20210930-7",
-          "document_type": "Listing Notice 20210930-7",
-          "document_identity": "Paras Defence and Space Technologies Limited — Listing Notice 20210930-7 [paras_bse_listing_notice]",
-          "publication_date": "2021-09-30",
-          "page": null,
-          "collected_at": "2026-09-27T01:46:22.499Z",
-          "document_sha256": "e616d5c4fac82cd773e22ed874c4b6fc999f840ab4a86a101abf247af5959fa4",
-          "evidence_locator": "Notice: effective 01-Oct-2021 listing; BSE scrip 543367; ISIN INE045601015; market lot 1; current public issue price ₹175."
-        },
-        "corrections": []
-      },
-      "minimum_bid_quantity": {
-        "value": null,
-        "status": "missing",
-        "source": null,
-        "corrections": []
-      },
-      "open_date": {
-        "value": null,
-        "status": "missing",
-        "source": null,
-        "corrections": []
-      },
-      "close_date": {
-        "value": null,
-        "status": "missing",
-        "source": null,
-        "corrections": []
-      },
-      "listing_date": {
-        "value": "2021-10-01",
-        "source_value": "2021-10-01",
-        "status": "verified",
-        "page": null,
-        "source": {
-          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20210930-7",
-          "document_type": "Listing Notice 20210930-7",
-          "document_identity": "Paras Defence and Space Technologies Limited — Listing Notice 20210930-7 [paras_bse_listing_notice]",
-          "publication_date": "2021-09-30",
-          "page": null,
-          "collected_at": "2026-09-27T01:46:22.499Z",
-          "document_sha256": "e616d5c4fac82cd773e22ed874c4b6fc999f840ab4a86a101abf247af5959fa4",
-          "evidence_locator": "Notice: effective 01-Oct-2021 listing; BSE scrip 543367; ISIN INE045601015; market lot 1; current public issue price ₹175."
-        },
-        "corrections": []
-      },
-      "bse_2021_batch3_import": {
-        "manifest": "data/verified-bse-listings/2026-09-27-bse-2021-batch3-paras.json",
-        "review": "data/discovery/bse-2021-batch3-paras-review-2026-09-27.json",
-        "receipt": "data/evidence/bse-2021-batch3-paras-source-receipt-2026-09-27.json",
-        "action_key": "paras",
-        "artifact_id": 10920747805,
-        "artifact_digest": "sha256:f0020d1ee6f2711f7ee1c02073f07329c4bc4e4dfbc8e7980d3198470b35bf16"
       }
     }
   ]
