@@ -25,36 +25,56 @@ jobs:
           import path from "node:path";
           import {createHash} from "node:crypto";
           import {execFileSync} from "node:child_process";
-          const out=process.env.OUT,receipt=[];
+          const out=process.env.OUT,receipt=[],CHUNK=1024*1024;
           const docs=[
             ["tmb_prospectus","https://www.sebi.gov.in/sebi_data/attachdocs/sep-2022/1663570839596.pdf"],
             ["tmb_track","https://www.sebi.gov.in/sebi_data/attachdocs/dec-2023/1702623912451.PDF"],
             ["dcx_prospectus","https://www.sebi.gov.in/sebi_data/attachdocs/nov-2022/1667796864708.pdf"],
             ["dcx_track","https://www.sebi.gov.in/sebi_data/attachdocs/nov-2023/1700224103192.pdf"]
           ];
-          for(const [key,url] of docs){
-            let b=null,finalUrl=url,status=null,attempt=0,last=null;
-            for(attempt=1;attempt<=6;attempt++){
+          const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+          async function get(url,range){
+            let last;
+            for(let attempt=1;attempt<=6;attempt++){
               try{
-                const r=await fetch(url,{redirect:"follow",signal:AbortSignal.timeout(180000),headers:{"user-agent":"Mozilla/5.0","accept":"application/pdf,*/*"}});
-                status=r.status;finalUrl=r.url;
-                if(!r.ok)throw Error("bad_status:"+r.status);
-                b=Buffer.from(await r.arrayBuffer());
-                if(b.subarray(0,5).toString()!=="%PDF-")throw Error("not_pdf:"+key);
-                break;
-              }catch(e){last=e;b=null;if(attempt===6)throw last;await new Promise(r=>setTimeout(r,attempt*2000));}
+                const r=await fetch(url,{redirect:"follow",signal:AbortSignal.timeout(45000),headers:{"user-agent":"Mozilla/5.0","accept":"application/pdf,*/*","range":range}});
+                if(![200,206].includes(r.status))throw Error("bad_status:"+r.status);
+                const b=Buffer.from(await r.arrayBuffer());
+                if(!b.length)throw Error("empty_body");
+                return {r,b,attempt};
+              }catch(e){last=e;if(attempt===6)throw last;await sleep(attempt*1000);}
             }
-            const pdf=path.join(out,key+".pdf"),txt=path.join(out,key+".txt");
-            fs.writeFileSync(pdf,b);
-            execFileSync("pdftotext",["-layout",pdf,txt]);
-            receipt.push({key,source_url:url,final_url:finalUrl,http_status:status,response_bytes:b.length,response_sha256:createHash("sha256").update(b).digest("hex"),collected_at:new Date().toISOString(),attempt,download_method:"node_fetch_retry_6"});
+          }
+          async function fetchPdf(url,key){
+            const first=await get(url,`bytes=0-${CHUNK-1}`);
+            if(first.r.status===200){
+              if(first.b.subarray(0,5).toString()!=="%PDF-")throw Error("not_pdf:"+key);
+              return {bytes:first.b,final_url:first.r.url,attempts:first.attempt,mode:"single_response"};
+            }
+            const cr=first.r.headers.get("content-range")||"";
+            const m=cr.match(/^bytes\s+(\d+)-(\d+)\/(\d+)$/i);
+            if(!m||Number(m[1])!==0)throw Error("invalid_content_range:"+key+":"+cr);
+            const total=Number(m[3]); if(!Number.isSafeInteger(total)||total<=first.b.length)throw Error("invalid_total:"+key);
+            const parts=[first.b]; let offset=first.b.length, attempts=first.attempt;
+            while(offset<total){
+              const end=Math.min(offset+CHUNK-1,total-1),part=await get(url,`bytes=${offset}-${end}`);
+              attempts+=part.attempt;
+              if(part.r.status!==206)throw Error("range_not_honored:"+key+":"+offset);
+              const pcr=part.r.headers.get("content-range")||"",pm=pcr.match(/^bytes\s+(\d+)-(\d+)\/(\d+)$/i);
+              if(!pm||Number(pm[1])!==offset||Number(pm[3])!==total||part.b.length!==Number(pm[2])-offset+1)throw Error("range_mismatch:"+key+":"+offset+":"+pcr);
+              parts.push(part.b); offset+=part.b.length;
+            }
+            const b=Buffer.concat(parts);
+            if(b.length!==total||b.subarray(0,5).toString()!=="%PDF-")throw Error("reassembly_failed:"+key);
+            return {bytes:b,final_url:first.r.url,attempts,mode:"verified_ranges"};
+          }
+          for(const [key,url] of docs){
+            const got=await fetchPdf(url,key),pdf=path.join(out,key+".pdf"),txt=path.join(out,key+".txt");
+            fs.writeFileSync(pdf,got.bytes); execFileSync("pdftotext",["-layout",pdf,txt]);
+            receipt.push({key,source_url:url,final_url:got.final_url,http_status:200,response_bytes:got.bytes.length,response_sha256:createHash("sha256").update(got.bytes).digest("hex"),collected_at:new Date().toISOString(),request_attempts:got.attempts,download_method:got.mode});
           }
           const pats=[/TAMILNAD MERCANTILE BANK LIMITED/i,/DCX SYSTEMS LIMITED/i,/Offer Price.{0,180}/i,/Issue Price.{0,180}/i,/Bid\/Offer Opens.{0,180}/i,/Bid\/Offer Closes.{0,180}/i,/minimum bid.{0,180}/i,/Market Lot.{0,180}/i,/September 15,?\s*2022/i,/November 11,?\s*2022/i];
-          for(const [key] of docs){
-            const t=fs.readFileSync(path.join(out,key+".txt"),"utf8").replace(/\s+/g," ");
-            console.log("DOC",key);
-            for(const p of pats){const m=t.match(p);if(m)console.log(m[0]);}
-          }
+          for(const [key] of docs){const t=fs.readFileSync(path.join(out,key+".txt"),"utf8").replace(/\s+/g," ");console.log("DOC",key);for(const p of pats){const m=t.match(p);if(m)console.log(m[0]);}}
           fs.writeFileSync(path.join(out,"receipt.json"),JSON.stringify({schema_version:"1.0.0",status:"collected",workflow_run_id:process.env.GITHUB_RUN_ID,total_response_bytes:receipt.reduce((n,d)=>n+d.response_bytes,0),documents:receipt},null,2)+"\n");
           JS
       - uses: actions/upload-artifact@v4
