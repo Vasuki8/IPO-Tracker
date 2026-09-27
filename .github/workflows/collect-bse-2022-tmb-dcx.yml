@@ -3,6 +3,9 @@ on:
   push:
     branches: [data/bse-2022-tmb-dcx-20260927]
     paths: [.github/workflows/collect-bse-2022-tmb-dcx.yml]
+  pull_request:
+    branches: [main]
+    paths: [.github/workflows/collect-bse-2022-tmb-dcx.yml]
 permissions: {contents: read}
 jobs:
   collect:
