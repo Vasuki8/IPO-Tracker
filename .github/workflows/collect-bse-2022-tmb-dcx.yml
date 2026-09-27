@@ -25,7 +25,7 @@ jobs:
           import path from "node:path";
           import {createHash} from "node:crypto";
           import {execFileSync} from "node:child_process";
-          const out=process.env.OUT,receipt=[],CHUNK=1024*1024;
+          const out=process.env.OUT,receipt=[],CHUNK=128*1024;
           const docs=[
             ["tmb_prospectus","https://www.sebi.gov.in/sebi_data/attachdocs/sep-2022/1663570839596.pdf"],
             ["tmb_track","https://www.sebi.gov.in/sebi_data/attachdocs/dec-2023/1702623912451.PDF"],
