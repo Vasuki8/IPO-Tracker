@@ -37,7 +37,7 @@ Collection time, source observation, dataset generation and Pages publication ar
 
 ## Handoff for the next prompt
 
-**Thirteen of the original 16 unmatched BSE 2021 issuers are now reviewed and published; FSN E-Commerce reconciles to the existing NYKAA recovery record, leaving only Sigachi Industries (543389) and Adeshwar Meditex (543309) awaiting issuer-specific review.** The [current handoff](docs/PROJECT_STATUS.md) and [machine-readable 2021 disposition](data/discovery/bse-2021-unmatched-disposition-2026-09-27.json) supersede older task lists. Overall Indian IPO coverage remains incomplete.
+**The original 16 unmatched BSE 2021 rows are fully resolved: 15 reviewed IPOs published and FSN E-Commerce reconciled to the existing NYKAA recovery record. Do not replay the 2021 unmatched queue. The next bounded P1 review starts with 2022 Mainboard candidates Veranda Learning Solutions (543514) and Uma Exports (543513).** The [current handoff](docs/PROJECT_STATUS.md) and [machine-readable 2021 disposition](data/discovery/bse-2021-unmatched-disposition-2026-09-27.json) supersede older task lists. Overall Indian IPO coverage remains incomplete.
 
 **The interrupted identity/DRHP release is complete: PR #248 and PR #249 are merged and verified. Do not replay batches 1–9.**
 
@@ -103,8 +103,6 @@ PR **#263** materialized **4 official BSE/SEBI documents / 12,642,908 response b
 
 ### Exact next backend task
 
-Review **Jetmall Spices and Masala Limited (543286)** and **Brandbucket Media & Technology Limited (543439)** next. Sigachi/Adeshwar remain pending after unrelated BSE notices and 404 prospectus guesses were rejected; FSN E-Commerce Ventures remains pending separate identity reconciliation. Do not reuse failed URLs or relax the verifier. Issue-summary rows remain discovery evidence only.
+Start the **2022 unmatched BSE review** with **Veranda Learning Solutions Limited (543514)** and **Uma Exports Limited (543513)**. The retained 2022 audit has **90 official rows / 74 exact matches / 16 unmatched**. Reconcile against latest recovery first; then retain issuer-specific official BSE/SEBI evidence and original bytes before importing anything. Issue-summary rows remain discovery evidence only.
 
-IRFC, Anupam Rasayan India, Exxaro Tiles, Nureca, Paras Defence, EKI Energy, Gretex, Getalong Enterprise, Shri Venkatesh Refineries, HP Adhesives and Nuvoco Vistas are already published; do not replay those releases. PR #293 reused the established BSE verifier/importer for EKI and Gretex. Its actual Pages check passed **2 issuers / 6 fields / 0 failed issuers**, with **1,345 served records** fetched **2026-09-27T02:08:52.115Z**, SHA-256 `c3bc50254cf0a6cc5215e853a7301b98c0ac6eb30b8ad5b4d3200842d32c6f06`. See the [retained verification receipt](docs/verification/bse-2021-sme-pair-live-2026-09-27.json).
-
-The four BSE 2020 unmatched issuers, pinned NSE review, earlier historical repairs and BSE parser v1.5 cursor are complete. SEBI historical pagination and NSE-series gaps remain separate. UI/research-depth work stays in its own handoff. No minimum-investment, billing/accounts/ads, spending or access-policy expansion.
+The original BSE 2021 unmatched set is complete: **15 published reviewed IPOs + 1 existing alias (FSN/NYKAA)**. Sigachi Industries and Adeshwar Meditex were the final published pair under PR #305. Earlier 2020/2021 releases, the pinned NSE review, historical repair batches and BSE parser v1.5 cursor must not be replayed. SEBI historical pagination, NSE-series coverage and wider overall IPO-universe completeness remain separate gaps.
