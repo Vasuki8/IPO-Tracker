@@ -1,0 +1,141 @@
+{
+  "schema_version": "1.0.0",
+  "status": "reviewed_bse_2021_final_pair",
+  "source_year": 2021,
+  "auto_import_allowed": false,
+  "publication_change": false,
+  "actions": [
+    {
+      "key": "sigachi",
+      "issuer_name": "Sigachi Industries Limited",
+      "stable_id": "sigachi-industries-limited",
+      "discovery_bse_scrip_code": "543389",
+      "decision": "confirmed_missing_historical_ipo_candidate",
+      "target": {
+        "board": null,
+        "listing_date": "2021-11-15",
+        "issue_price": 163,
+        "issue_size_inr": 1254285000,
+        "open_date": "2021-11-01",
+        "close_date": "2021-11-03",
+        "market_lot": 1,
+        "minimum_bid_quantity": 90
+      },
+      "identity_sources": [
+        "sigachi_final",
+        "sigachi_track"
+      ],
+      "field_sources": {
+        "listing_date": "sigachi_track",
+        "issue_price": "sigachi_final",
+        "issue_size_inr": "sigachi_final",
+        "open_date": "sigachi_final",
+        "close_date": "sigachi_final",
+        "market_lot": "sigachi_final",
+        "minimum_bid_quantity": "sigachi_final"
+      }
+    },
+    {
+      "key": "adeshwar",
+      "issuer_name": "Adeshwar Meditex Limited",
+      "stable_id": "adeshwar-meditex-limited",
+      "discovery_bse_scrip_code": "543309",
+      "decision": "confirmed_missing_historical_ipo_candidate",
+      "target": {
+        "board": "SME",
+        "listing_date": "2021-06-28",
+        "issue_price": 25,
+        "issue_size_inr": 97500000,
+        "open_date": "2021-06-15",
+        "close_date": "2021-06-18",
+        "market_lot": 6000,
+        "minimum_bid_quantity": 6000
+      },
+      "identity_sources": [
+        "adeshwar_prospectus",
+        "adeshwar_track"
+      ],
+      "field_sources": {
+        "board": "adeshwar_prospectus",
+        "listing_date": "adeshwar_track",
+        "issue_price": "adeshwar_prospectus",
+        "issue_size_inr": "adeshwar_prospectus",
+        "open_date": "adeshwar_prospectus",
+        "close_date": "adeshwar_prospectus",
+        "market_lot": "adeshwar_prospectus",
+        "minimum_bid_quantity": "adeshwar_prospectus"
+      }
+    }
+  ],
+  "sources": [
+    {
+      "key": "sigachi_final",
+      "authority": "SEBI",
+      "document_type": "Final Prospectus",
+      "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2021/1636518664579.pdf",
+      "publication_date": "2021-11-08",
+      "page": "cover / definitions / issue terms",
+      "evidence_locator": "Cover: ₹163 issue price, ₹12,542.85 lakh issue; programme 01–03 Nov 2021. Definitions: Bid Lot 90. Terms: market lot one equity share.",
+      "projection": {
+        "issuer": "Sigachi Industries Limited",
+        "issue_type": "IPO",
+        "issue_price": 163,
+        "issue_size_inr": 1254285000,
+        "open_date": "2021-11-01",
+        "close_date": "2021-11-03",
+        "market_lot": 1,
+        "minimum_bid_quantity": 90
+      }
+    },
+    {
+      "key": "sigachi_track",
+      "authority": "SEBI",
+      "document_type": "SEBI-hosted BRLM track record",
+      "url": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2023/1693311018812.pdf",
+      "publication_date": null,
+      "page": "past issues table",
+      "evidence_locator": "Sigachi Industries Limited row: ₹12,542.85 lakh, ₹163, listing 15-Nov-2021.",
+      "projection": {
+        "issuer": "Sigachi Industries Limited",
+        "listing_date": "2021-11-15",
+        "issue_price": 163,
+        "issue_size_inr": 1254285000
+      }
+    },
+    {
+      "key": "adeshwar_prospectus",
+      "authority": "BSE",
+      "document_type": "Prospectus",
+      "url": "https://www.bseindia.com/corporates/download/374911/SME_IPO%20Open/2.%20Adeshwar%20Meditex%20Limited%20-%20Prospectus_20210610150935.pdf",
+      "publication_date": "2021-06-09",
+      "page": "cover / issue structure / market lot",
+      "evidence_locator": "Cover: ₹25 issue price, ₹975 lakh issue, BSE SME, 15–18 Jun 2021. Market lot/minimum retail application: 6,000 shares.",
+      "projection": {
+        "issuer": "Adeshwar Meditex Limited",
+        "issue_type": "IPO",
+        "board": "SME",
+        "issue_price": 25,
+        "issue_size_inr": 97500000,
+        "open_date": "2021-06-15",
+        "close_date": "2021-06-18",
+        "market_lot": 6000,
+        "minimum_bid_quantity": 6000
+      }
+    },
+    {
+      "key": "adeshwar_track",
+      "authority": "SEBI",
+      "document_type": "SEBI-hosted lead-manager track record",
+      "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2022/1670404259679.pdf",
+      "publication_date": null,
+      "page": "past issues table",
+      "evidence_locator": "Adeshwar Meditex Ltd row: ₹9.75 crore, ₹25, listing 28-Jun-2021.",
+      "projection": {
+        "issuer": "Adeshwar Meditex Limited",
+        "listing_date": "2021-06-28",
+        "issue_price": 25,
+        "issue_size_inr": 97500000
+      }
+    }
+  ]
+}
