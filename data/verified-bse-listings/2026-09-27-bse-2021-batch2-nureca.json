@@ -1,0 +1,26 @@
+{
+  "schema_version": "1.0.0",
+  "status": "approved_bse_2021_batch2_nureca_import",
+  "review_path": "data/discovery/bse-2021-batch2-nureca-review-2026-09-27.json",
+  "receipt_path": "data/evidence/bse-2021-batch2-nureca-source-receipt-2026-09-27.json",
+  "review_sha256": "af76425cefe3a7b5794f59f9747ef2c2b09ce07d6838813f73e1d228bda655ab",
+  "source_artifact_id": 10919129192,
+  "source_artifact_digest": "sha256:b91ec68e1cc40e9a24f596812df8f24b2a3f2cfee581aea206e2193a1733e345",
+  "target_year": 2021,
+  "actions": [
+    {
+      "key": "nureca",
+      "stable_id": "nureca-limited"
+    }
+  ],
+  "publication_rules": {
+    "supported_fields": [
+      "listing_date",
+      "issue_price",
+      "issue_size_inr",
+      "nse_symbol",
+      "bse_scrip_code"
+    ],
+    "unsupported_fields": "remain null"
+  }
+}
