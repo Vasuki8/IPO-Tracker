@@ -1,5 +1,15 @@
 # Project status and handoff
 
+Updated **2026-09-27 (UTC)** after publishing the third bounded BSE 2021 follow-up.
+
+**Paras Defence and Space Technologies Limited is published — do not replay this batch.** Official BSE listing notice **20210930-7** directly supports the **01-Oct-2021** listing, issue price **₹175**, market lot **1**, BSE scrip **543367** and ISIN **INE045601015**. The issuer identity/IPO context is also bound to the official SEBI Final Offer Document filing. Evidence materialization run **36286537578** retained **2 original official documents / 3,895,642 response bytes** in artifact **10920747805**, digest `sha256:f0020d1ee6f2711f7ee1c02073f07329c4bc4e4dfbc8e7980d3198470b35bf16`. The BSE notice hash is `e616d5c4fac82cd773e22ed874c4b6fc999f840ab4a86a101abf247af5959fa4`; the SEBI PDF hash is `6efc50fa6e5503e1bd17c88466b717c342f512526d622cc4746eb61aafab8933`.
+
+PR **#290** merged as **0b3e0370039ddc998643dab91f929c7acd5fcf1f**. Its dedicated publication rehearsal passed, and publication commit **3e7160d0f409f9366889c0e264e22b5aad7be72b** added the record to 2021 recovery and rebuilt the public dataset. Only directly supported fields were published. **Board, issue size, offer dates, NSE symbol and unsupported values remain null.** The importer is rerun-safe and rejects cross-year identity/BSE-code/ISIN collisions.
+
+**Live verification is the final closeout gate.** The documentation merge following this note triggers a fresh Pages deployment after publication commit `3e7160d0`. Record the served record count/hash after that byte check succeeds.
+
+**Exact next bounded P1 task after live verification:** continue the **remaining 11 unmatched BSE 2021 rows** with the same issuer-specific official-evidence rule. The exploratory Sigachi/Latteys URLs from this run were not used because they did not provide clean issuer evidence; do not promote them without a fresh reviewed source path.
+
 Updated **2026-09-27 (UTC)** after publishing the second bounded BSE 2021 unmatched batch.
 
 **Nureca Limited is published — do not replay this batch.** The BSE-hosted Nureca Annual Report 2020-21 directly records the IPO, public price **₹400**, aggregate issue **₹1,000 million**, NSE identifier **NURECA**, BSE identifier **543264**, and listing on **25-Feb-2021**. The source was materialized as **8,560,185 original bytes**, SHA-256 `c6d82f4ea9447d4fdcbc2d340435ea2d0f2462a0e2fe8937d325f5fb7fbdf919`, in workflow run **36283523313**, artifact **10919129192**, digest `sha256:b91ec68e1cc40e9a24f596812df8f24b2a3f2cfee581aea206e2193a1733e345`. Temporary research/materialization workflows were removed before merge.
