@@ -1,12 +1,27 @@
 # Project status and handoff
 
-Updated **2026-09-27 (UTC)** after publishing and live-verifying Tamilnad Mercantile Bank / DCX Systems. Active priority remains **P1 issuer identity and universe correctness**.
+Updated **2026-09-27 (UTC)** after publishing and live-verifying MAAGH Advertising / Technopack Polymers. Active priority remains **P1 issuer identity and universe correctness**.
 
 ## Exact next bounded task
 
-Continue the **2022 BSE unmatched review** with **MAAGH ADVERTISING AND MARKETING SERVICES LIMITED (543624)** and **Technopack Polymers Limited (543656)**. Reconcile against latest recovery first, then retain issuer-specific official BSE/SEBI evidence and original bytes before any import. Keep BSE issue-summary values as discovery evidence only.
+Continue the **2022 BSE unmatched review** with **Eighty Jewellers Limited (543518)** and **Virtuoso Optoelectronics Limited (543597)**. Reconcile against latest recovery first, then retain issuer-specific official BSE/SEBI evidence and original bytes before any import. Keep BSE issue-summary values as discovery evidence only.
 
-The pinned [2022 disposition](../data/discovery/bse-2022-unmatched-disposition-2026-09-27.json) now accounts for the original 16 unmatched rows as **5 reviewed/published + 1 existing-recovery alias + 10 awaiting review**. The retained 2022 source surface remains **90 official rows / 74 original exact matches / 16 original unmatched**. This remains a bounded follow-up, not a complete Indian IPO-universe claim.
+The pinned [2022 disposition](../data/discovery/bse-2022-unmatched-disposition-2026-09-27.json) now accounts for the original 16 unmatched rows as **7 reviewed/published + 1 existing-recovery alias + 8 awaiting review**. The retained 2022 source surface remains **90 official rows / 74 original exact matches / 16 original unmatched**. This remains a bounded follow-up, not a complete Indian IPO-universe claim.
+
+## Latest release — MAAGH and Technopack published and live-verified
+
+PR **#316** merged as **1e8806e124edeaf23661b702e0f7a1497a277eaa**. Publication commit **8134fb9bf5829c930dc9dbf3f0b42c622d8f0139** added exactly two 2022 recovery records and rebuilt the public dataset: **MAAGH ADVERTISING AND MARKETING SERVICES LIMITED** and **Technopack Polymers Limited**. **Do not replay this batch.**
+
+| Issuer | Board | Issue price | Issue size | Market lot | Minimum bid | Offer dates | Listing |
+| --- | --- | ---: | ---: | ---: | ---: | --- | --- |
+| MAAGH Advertising and Marketing Services Limited | SME | INR 60 | INR 91.2m | 2,000 | 2,000 | 26–29 Sep-2022 | 13-Oct-2022 |
+| Technopack Polymers Limited | SME | INR 55 | INR 78.65m | 2,000 | 2,000 | 02–07 Nov-2022 | 16-Nov-2022 |
+
+Both are **fixed-price SME IPOs**, so price_band remains missing instead of duplicating the fixed issue price. Market lot and minimum bid quantity remain separate fields even though both values are 2,000 for these issuers. BSE scrip codes remain discovery-only; symbols, ISIN and minimum application amount remain null.
+
+Four original SEBI/BSE-hosted PDFs were retained in collection run **36350197841**: **22,019,129 response bytes**, artifact **10942246091**, SHA-256 **8dbbf23e52a8cfaf815002b2c076fac813cc425abcf4e29c5d12c0d8e0c6983c**. Field-level page evidence is retained for issue price, issue size, offer dates, board, lot/minimum bid and listing date. The first PR rehearsal exposed a projection-revalidation gap in expected(); commit **dba0382d0d6e28ffa45488fee7d3fcf64a98559a** tightened the importer to recheck source projections instead of weakening the test.
+
+PR-head dedicated publication rehearsal, reviewed-BSE validation and the full data-contract suite all passed. Merged-main publication/live-verification run **36350829120** published successfully. GitHub Pages needed two propagation retries; the third check passed with **1,360 records** and dataset generation timestamp **2026-09-27T21:12:33.765Z**. MAAGH and Technopack are therefore **published and live-verified**.
 
 ## Latest release — TMB and DCX published and live-verified
 
