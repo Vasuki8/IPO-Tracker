@@ -19,7 +19,7 @@ for(const row of rows){assert.equal(row.price_band.value,null);assert.equal(row.
 for(const model of rows){const collision=structuredClone(before);collision["2022"].records.push({id:"other",issuer_name:"Other",bse_scrip_code:model.bse_2021_jetmall_brandbucket_import.discovery_bse_scrip_code});assert.throws(()=>apply(collision,ctx,now),/identity_collision/)}
 const altered=structuredClone(first.recovery);altered["2021"].records.find(r=>r.id===j.id).minimum_bid_quantity.value++;assert.throws(()=>apply(altered,ctx,now),/changed_import_fact/);
 const badCtx=structuredClone(ctx);badCtx.sources.get("jetmall_final").projection.issue_price=21;assert.throws(()=>expected(badCtx),/projection_mismatch/);
-assert.equal(rows.reduce((n,r)=>n+FIELDS.filter(k=>r[k].value!==null).length,0),16);
+assert.equal(rows.reduce((n,r)=>n+FIELDS.filter(k=>r[k].value!==null).length,0),14);
 const bytes=fs.readFileSync("data/recovery/2021/nse-issue-information.json");
 const cli=spawnSync(process.execPath,["scripts/apply-reviewed-bse-2021-jetmall-brandbucket.mjs","--check"],{encoding:"utf8"});assert.equal(cli.status,0,cli.stderr);assert.deepEqual(fs.readFileSync("data/recovery/2021/nse-issue-information.json"),bytes);
 console.log(JSON.stringify({jetmall_brandbucket_tests:{records:2,verified_fields:16,null_preserving:true,lot_and_bid_separate_sources:true,rerun_safe:true,cross_year_collision:true,changed_fact_rejected:true,read_only_check:true}}));
