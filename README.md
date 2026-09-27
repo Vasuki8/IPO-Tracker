@@ -37,7 +37,7 @@ Collection time, source observation, dataset generation and Pages publication ar
 
 ## Handoff for the next prompt
 
-**The original 16 unmatched BSE 2021 rows are fully resolved: 15 reviewed IPOs published and FSN E-Commerce reconciled to the existing NYKAA recovery record. Do not replay the 2021 unmatched queue. The next bounded P1 review starts with 2022 Mainboard candidates Veranda Learning Solutions (543514) and Uma Exports (543513).** The [current handoff](docs/PROJECT_STATUS.md) and [machine-readable 2021 disposition](data/discovery/bse-2021-unmatched-disposition-2026-09-27.json) supersede older task lists. Overall Indian IPO coverage remains incomplete.
+**The original BSE 2021 unmatched queue is complete. The 2022 follow-up has now published Veranda Learning Solutions and Uma Exports, leaving 14 of the original 16 BSE 2022 unmatched rows for review. Next bounded P1 pair: Hariom Pipe Industries (543517) + Rainbow Children's Medicare (543524).** The [current handoff](docs/PROJECT_STATUS.md) and [machine-readable 2022 disposition](data/discovery/bse-2022-unmatched-disposition-2026-09-27.json) supersede older task lists. Overall Indian IPO coverage remains incomplete.
 
 **The interrupted identity/DRHP release is complete: PR #248 and PR #249 are merged and verified. Do not replay batches 1–9.**
 
@@ -103,6 +103,6 @@ PR **#263** materialized **4 official BSE/SEBI documents / 12,642,908 response b
 
 ### Exact next backend task
 
-Start the **2022 unmatched BSE review** with **Veranda Learning Solutions Limited (543514)** and **Uma Exports Limited (543513)**. The retained 2022 audit has **90 official rows / 74 exact matches / 16 unmatched**. Reconcile against latest recovery first; then retain issuer-specific official BSE/SEBI evidence and original bytes before importing anything. Issue-summary rows remain discovery evidence only.
+Continue the **2022 unmatched BSE review** with **Hariom Pipe Industries Limited (543517)** and **Rainbow Children's Medicare Limited (543524)**. The pinned 2022 disposition has **2 reviewed/published and 14 awaiting review** from the original 16 unmatched rows. Reconcile against latest recovery first; then retain issuer-specific official BSE/SEBI evidence and original bytes before importing anything.
 
-The original BSE 2021 unmatched set is complete: **15 published reviewed IPOs + 1 existing alias (FSN/NYKAA)**. Sigachi Industries and Adeshwar Meditex were the final published pair under PR #305. Earlier 2020/2021 releases, the pinned NSE review, historical repair batches and BSE parser v1.5 cursor must not be replayed. SEBI historical pagination, NSE-series coverage and wider overall IPO-universe completeness remain separate gaps.
+Veranda Learning Solutions and Uma Exports are already published under PR #308; do not replay them. The original BSE 2021 queue remains complete at 15 published reviewed IPOs + 1 existing alias (FSN/NYKAA). Earlier 2020/2021 releases, the pinned NSE review, historical repair batches and BSE parser v1.5 cursor must not be replayed. SEBI historical pagination, NSE-series coverage and wider overall IPO-universe completeness remain separate gaps.
