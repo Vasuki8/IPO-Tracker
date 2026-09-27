@@ -4,9 +4,22 @@ Updated **2026-09-27 (UTC)** after publishing Jetmall Spices / Brandbucket Media
 
 ## Exact next bounded task
 
-Revisit **Sigachi Industries Limited (543389)** and **Adeshwar Meditex Limited (543309)** using the newly identified official source family, not the previously rejected notice guesses. Sigachi now has a SEBI-hosted BRLM past-issues row; Adeshwar has a BSE-hosted final prospectus plus SEBI-hosted past-issues rows. Materialize those originals before any import.
+The original **16 unmatched BSE 2021 rows are fully resolved**: **15 reviewed IPOs published + 1 existing-recovery alias (FSN/NYKAA)**. Do not replay the 2021 unmatched queue.
 
-The pinned original-16 disposition is now: **13 reviewed/published, 1 reconciled to an existing recovery alias, 2 awaiting issuer-specific review**. **FSN E-Commerce Ventures Limited (543384)** is not missing: it reconciles to existing recovery record `fsn-ecommerce-ventures-limited` / issuer `FSN Ecommerce Ventures Limited`, NSE symbol **NYKAA**. Do not create a duplicate.
+Start the next bounded P1 source-family review with two **2022 Mainboard** unmatched rows from the retained BSE audit: **Veranda Learning Solutions Limited (543514)** and **Uma Exports Limited (543513)**. Reconcile against latest recovery first, then obtain issuer-specific official BSE/SEBI evidence and original bytes. The 2022 audit has **90 official rows / 74 exact matches / 16 unmatched**; this is not a complete Indian IPO-universe claim.
+
+## Latest release — final 2021 pair complete
+
+PR **#305** merged as **5bb6a53fcd6feacfce1bb6ba3cb574c9476f8453**. Publication commit **f18c05a5a6677f37e1b1c1f21b404a162574a245** added **Sigachi Industries Limited** and **Adeshwar Meditex Limited** to 2021 recovery. **Do not replay this batch.**
+
+| Issuer | Board | Listing | Issue price | Issue size | Market lot | Minimum bid | Offer dates |
+| --- | --- | --- | ---: | ---: | ---: | ---: | --- |
+| Sigachi Industries Limited | missing | 15-Nov-2021 | INR 163 | INR 1,254,285,000 | 1 | 90 | 01–03 Nov-2021 |
+| Adeshwar Meditex Limited | SME | 28-Jun-2021 | INR 25 | INR 97,500,000 | 6,000 | 6,000 | 15–18 Jun-2021 |
+
+Four original official PDFs were retained in successful collection run **36294152639**: **31,154,774 response bytes**, artifact **10923273210**, SHA-256 **5a21b43d148fd8dc1179e21b1455978de3daa485819682abdc69ad363ae42e8f**. Sigachi is bound to its SEBI final Prospectus and a SEBI-hosted BRLM past-issues table; Adeshwar is bound to its BSE-hosted Prospectus and a SEBI-hosted lead-manager past-issues table.
+
+The release deliberately keeps BSE scrip codes as discovery metadata and leaves unsupported price-band / ISIN / NSE identity fields null. Sigachi's one-share trading lot and 90-share minimum bid quantity remain distinct fields; they must not be collapsed. PR-head publication rehearsal **36313752438**, reviewed-BSE validation **36313752391**, and full data-contract run **36313752361** passed. Merged-main publication run **36313829030** validated and published successfully. A clean documentation merge follows this note to trigger the final served-byte check before the entire original 2021 unmatched queue is marked live-verified.
 
 ## Latest release — Jetmall Spices and Brandbucket Media
 

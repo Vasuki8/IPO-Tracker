@@ -11,15 +11,12 @@
   "original_official_rows": 91,
   "original_exact_matches": 75,
   "original_unmatched": 16,
-  "reviewed_and_published": 13,
-  "awaiting_review": 2,
+  "reviewed_and_published": 15,
+  "awaiting_review": 0,
   "complete_indian_ipo_universe": false,
   "auto_import_allowed": false,
   "scope_note": "Disposition of the original sixteen unmatched 2021 BSE historical rows only. Not a fresh complete-universe audit. Scrip codes on pending rows remain discovery metadata, not approved publication facts.",
-  "next_bounded_review_codes": [
-    "543389",
-    "543309"
-  ],
+  "next_bounded_review_codes": [],
   "rows": [
     {
       "issuer_name": "Nureca Limited",
@@ -99,10 +96,11 @@
       "source_year": 2021,
       "source_row_index": 38,
       "source_original_match_type": "none",
-      "disposition": "awaiting_issuer_specific_official_review",
-      "stable_id": null,
-      "manifest": null,
-      "review_note": "2026-09-27 bounded review held: fresh guessed BSE notice numbers resolved to unrelated notices; guessed BSE/SEBI prospectus URLs returned 404. No publishable issuer-specific source retained."
+      "disposition": "published_reviewed_ipo",
+      "stable_id": "sigachi-industries-limited",
+      "manifest": "data/verified-bse-listings/2026-09-27-final-pair.json",
+      "reviewed_issuer_name": "Sigachi Industries Limited",
+      "release_pr": 305
     },
     {
       "issuer_name": "Adeshwar Meditex Limited",
@@ -110,10 +108,11 @@
       "source_year": 2021,
       "source_row_index": 53,
       "source_original_match_type": "none",
-      "disposition": "awaiting_issuer_specific_official_review",
-      "stable_id": null,
-      "manifest": null,
-      "review_note": "2026-09-27 bounded review held: fresh guessed BSE notice numbers resolved to unrelated notices; guessed BSE/SEBI prospectus URLs returned 404. No publishable issuer-specific source retained."
+      "disposition": "published_reviewed_ipo",
+      "stable_id": "adeshwar-meditex-limited",
+      "manifest": "data/verified-bse-listings/2026-09-27-final-pair.json",
+      "reviewed_issuer_name": "Adeshwar Meditex Limited",
+      "release_pr": 305
     },
     {
       "issuer_name": "HP Adhesives Limited",
@@ -212,5 +211,7 @@
       "reconciliation_note": "Existing 2021 recovery record uses spacing variant 'Ecommerce' and NSE symbol NYKAA; no duplicate import required."
     }
   ],
-  "reconciled_existing_aliases": 1
+  "reconciled_existing_aliases": 1,
+  "completed_original_unmatched_review": true,
+  "completion_note": "All 16 originally unmatched BSE 2021 rows are resolved: 15 published through issuer-specific reviewed evidence and one (FSN E-Commerce Ventures) reconciled to an existing recovery alias."
 }
