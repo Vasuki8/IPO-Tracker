@@ -1,0 +1,29 @@
+{
+  "schema_version": "1.0.0",
+  "status": "approved_bse_2022_maagh_technopack_import",
+  "review_path": "data/discovery/bse-2022-maagh-technopack-review-2026-09-27.json",
+  "receipt_path": "data/evidence/bse-2022-maagh-technopack-source-receipt-2026-09-27.json",
+  "review_sha256": "17a061cf4d966ad0c68ff82e3110770f852381d6c9c31dc7d0ac45e900e2e3b7",
+  "receipt_sha256": "b6e638dd6ebd2bcbf152e8c59a6dec29374a0163c8d487b39f34bdb16d525145",
+  "source_artifact_id": 10942246091,
+  "source_artifact_sha256": "8dbbf23e52a8cfaf815002b2c076fac813cc425abcf4e29c5d12c0d8e0c6983c",
+  "target_year": 2022,
+  "actions": [
+    {
+      "key": "maagh",
+      "stable_id": "maagh-advertising-and-marketing-services-limited"
+    },
+    {
+      "key": "technopack",
+      "stable_id": "technopack-polymers-limited"
+    }
+  ],
+  "rules": {
+    "no_inference": true,
+    "bse_scrip_codes": "discovery-only",
+    "market_lot_distinct_from_minimum_bid_quantity": true,
+    "fixed_price_issue_price_band": "missing",
+    "minimum_application_amount": "out_of_scope",
+    "unsupported_fields": "missing"
+  }
+}

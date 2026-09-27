@@ -1,0 +1,193 @@
+{
+  "schema_version": "1.0.0",
+  "status": "reviewed_bse_2022_maagh_technopack",
+  "source_year": 2022,
+  "auto_import_allowed": false,
+  "publication_change": false,
+  "actions": [
+    {
+      "key": "maagh",
+      "issuer_name": "MAAGH ADVERTISING AND MARKETING SERVICES LIMITED",
+      "stable_id": "maagh-advertising-and-marketing-services-limited",
+      "discovery_bse_scrip_code": "543624",
+      "decision": "confirmed_missing_historical_ipo_candidate",
+      "target": {
+        "board": "SME",
+        "listing_date": "2022-10-13",
+        "issue_price": 60,
+        "issue_size_inr": 91200000,
+        "open_date": "2022-09-26",
+        "close_date": "2022-09-29",
+        "market_lot": 2000,
+        "minimum_bid_quantity": 2000
+      },
+      "identity_sources": [
+        "maagh_prospectus",
+        "maagh_track"
+      ],
+      "field_sources": {
+        "board": "maagh_prospectus",
+        "listing_date": "maagh_track",
+        "issue_price": "maagh_prospectus",
+        "issue_size_inr": "maagh_prospectus",
+        "open_date": "maagh_prospectus",
+        "close_date": "maagh_prospectus",
+        "market_lot": "maagh_prospectus",
+        "minimum_bid_quantity": "maagh_prospectus"
+      },
+      "field_pages": {
+        "board": 1,
+        "listing_date": 145,
+        "issue_price": 1,
+        "issue_size_inr": 1,
+        "open_date": 1,
+        "close_date": 1,
+        "market_lot": 144,
+        "minimum_bid_quantity": 156
+      },
+      "field_locators": {
+        "board": "Cover: proposed listing on SME Platform of BSE.",
+        "listing_date": "Printed p. 141, Inventure past-issues table, MAAGH row.",
+        "issue_price": "Cover: issue price ₹60 per equity share.",
+        "issue_size_inr": "Cover: 15,20,000 shares aggregating ₹912.00 lakh.",
+        "open_date": "Cover: Issue Opens On 26-Sep-2022.",
+        "close_date": "Cover: Issue Closes On 29-Sep-2022.",
+        "market_lot": "Market Lot and Trading Lot: minimum contract size 2,000 equity shares.",
+        "minimum_bid_quantity": "Maximum and Minimum Application Size: retail application minimum 2,000 equity shares."
+      }
+    },
+    {
+      "key": "technopack",
+      "issuer_name": "Technopack Polymers Limited",
+      "stable_id": "technopack-polymers-limited",
+      "discovery_bse_scrip_code": "543656",
+      "decision": "confirmed_missing_historical_ipo_candidate",
+      "target": {
+        "board": "SME",
+        "listing_date": "2022-11-16",
+        "issue_price": 55,
+        "issue_size_inr": 78650000,
+        "open_date": "2022-11-02",
+        "close_date": "2022-11-07",
+        "market_lot": 2000,
+        "minimum_bid_quantity": 2000
+      },
+      "identity_sources": [
+        "technopack_prospectus",
+        "technopack_annual"
+      ],
+      "field_sources": {
+        "board": "technopack_prospectus",
+        "listing_date": "technopack_annual",
+        "issue_price": "technopack_prospectus",
+        "issue_size_inr": "technopack_prospectus",
+        "open_date": "technopack_prospectus",
+        "close_date": "technopack_prospectus",
+        "market_lot": "technopack_prospectus",
+        "minimum_bid_quantity": "technopack_prospectus"
+      },
+      "field_pages": {
+        "board": 1,
+        "listing_date": 29,
+        "issue_price": 7,
+        "issue_size_inr": 1,
+        "open_date": 1,
+        "close_date": 1,
+        "market_lot": 7,
+        "minimum_bid_quantity": 7
+      },
+      "field_locators": {
+        "board": "Cover: proposed listing on SME Platform of BSE.",
+        "listing_date": "Annual Report p. 26 / PDF p. 29: listed on BSE SME Platform effective 16-Nov-2022.",
+        "issue_price": "Definitions: issue price ₹55 per equity share.",
+        "issue_size_inr": "Cover: fresh issue ₹786.50 lakh.",
+        "open_date": "Cover: Issue Opens On 02-Nov-2022.",
+        "close_date": "Cover: Issue Closes On 07-Nov-2022.",
+        "market_lot": "Definitions: market lot and trading lot 2,000 shares.",
+        "minimum_bid_quantity": "Definitions: minimum allotment 2,000 shares to successful applicants."
+      }
+    }
+  ],
+  "sources": [
+    {
+      "key": "maagh_prospectus",
+      "authority": "SEBI",
+      "document_type": "Final Prospectus",
+      "document_identity": "MAAGH Advertising and Marketing Services Limited — Prospectus dated 16 September 2022",
+      "document_date": "2022-09-16",
+      "publication_date": null,
+      "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2022/1668686300030.pdf",
+      "page": "cover / application size / market lot",
+      "evidence_locator": "IPO identity; SME Platform of BSE; ₹60 issue price; ₹912 lakh issue; 26–29 Sep 2022 issue programme; 2,000-share market lot and retail minimum application.",
+      "projection": {
+        "issuer": "MAAGH ADVERTISING AND MARKETING SERVICES LIMITED",
+        "issue_type": "IPO",
+        "board": "SME",
+        "issue_price": 60,
+        "issue_size_inr": 91200000,
+        "open_date": "2022-09-26",
+        "close_date": "2022-09-29",
+        "market_lot": 2000,
+        "minimum_bid_quantity": 2000
+      }
+    },
+    {
+      "key": "maagh_track",
+      "authority": "BSE-hosted offer document",
+      "document_type": "Draft Prospectus — BRLM past-issues table",
+      "document_identity": "Innovatus Entertainment Networks Limited — Draft Prospectus dated 17 February 2023; Inventure Merchant Banker past-issues table",
+      "document_date": "2023-02-17",
+      "publication_date": null,
+      "url": "https://www.bseindia.com/corporates/download/311357/Innovatus%20DP_20230220182359.pdf",
+      "page": 145,
+      "evidence_locator": "Printed p. 141 past-issues table: MAAGH issue size ₹9.12 crore, issue price ₹60, listing date 13-Oct-2022.",
+      "projection": {
+        "issuer": "MAAGH ADVERTISING AND MARKETING SERVICES LIMITED",
+        "listing_date": "2022-10-13",
+        "issue_price": 60,
+        "issue_size_inr": 91200000
+      }
+    },
+    {
+      "key": "technopack_prospectus",
+      "authority": "SEBI",
+      "document_type": "Final Prospectus",
+      "document_identity": "Technopack Polymers Limited — Prospectus dated 14 October 2022",
+      "document_date": "2022-10-14",
+      "publication_date": null,
+      "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2022/1669197757553.pdf",
+      "page": "cover / definitions",
+      "evidence_locator": "IPO identity; SME Platform of BSE; ₹55 issue price; ₹786.50 lakh issue; 02–07 Nov 2022 issue programme; lot size and minimum allotment 2,000 shares.",
+      "projection": {
+        "issuer": "Technopack Polymers Limited",
+        "issue_type": "IPO",
+        "board": "SME",
+        "issue_price": 55,
+        "issue_size_inr": 78650000,
+        "open_date": "2022-11-02",
+        "close_date": "2022-11-07",
+        "market_lot": 2000,
+        "minimum_bid_quantity": 2000
+      }
+    },
+    {
+      "key": "technopack_annual",
+      "authority": "BSE-hosted issuer filing",
+      "document_type": "Annual Report 2022-23",
+      "document_identity": "Technopack Polymers Limited — Annual Report 2022-23 filed 19 August 2023",
+      "document_date": "2023-08-19",
+      "publication_date": null,
+      "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/86ebcc65-b2c6-44e7-b1d6-de8e8bdbc103.pdf",
+      "page": 29,
+      "evidence_locator": "Annual report states IPO at ₹55 aggregating ₹7,86,50,000 and BSE SME listing effective 16-Nov-2022.",
+      "projection": {
+        "issuer": "Technopack Polymers Limited",
+        "listing_date": "2022-11-16",
+        "issue_price": 55,
+        "issue_size_inr": 78650000,
+        "open_date": "2022-11-02",
+        "close_date": "2022-11-07"
+      }
+    }
+  ]
+}
