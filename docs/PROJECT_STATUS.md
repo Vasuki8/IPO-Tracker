@@ -1,26 +1,25 @@
 # Project status and handoff
 
-Updated **2026-09-27 (UTC)** after the EKI Energy / Gretex release was **VERIFIED on actual Pages**. Active priority remains **P1 issuer identity and universe correctness** under [DEVELOPMENT_PROCESS.md](DEVELOPMENT_PROCESS.md).
+Updated **2026-09-27 (UTC)** after publishing Getalong Enterprise / Shri Venkatesh Refineries. Active priority remains **P1 issuer identity and universe correctness**.
 
 ## Exact next bounded task
 
-Review **Getalong Enterprise Limited (543372)** and **Shri Venkatesh Refineries Limited (543373)** from the remaining nine original BSE 2021 unmatched rows. First reconcile against latest recovery to avoid duplicates. Obtain issuer-specific official listing/offer evidence and original response bytes, validate identity and issue type, then publish only supported facts through the existing reviewed-BSE path. The historical issue-summary rows are discovery evidence, never import authorization.
+Review **Sigachi Industries Limited (543389)** and **Adeshwar Meditex Limited (543309)** from the remaining seven original BSE 2021 unmatched rows. Reconcile against latest recovery first, obtain issuer-specific official evidence and original bytes, and publish only supported facts. Do not reuse the earlier exploratory Sigachi URL as positive evidence.
 
-The machine-readable [2021 disposition](../data/discovery/bse-2021-unmatched-disposition-2026-09-27.json) accounts for all **16 original unmatched rows: seven reviewed/published and nine awaiting review**. Original source totals remain **91 official rows / 75 exact matches / 16 unmatched**; this is a follow-up disposition, not a new complete-universe audit.
+The pinned disposition now accounts for all **16 original unmatched rows: nine reviewed/published and seven awaiting review**. Overall Indian IPO-universe coverage remains incomplete.
 
-| Still awaiting issuer-specific review | Discovery BSE code |
-| --- | --- |
-| Getalong Enterprise Limited | 543372 |
-| Sigachi Industries Limited | 543389 |
-| Adeshwar Meditex Limited | 543309 |
-| HP Adhesives Limited | 543433 |
-| Jetmall Spices and Masala Limited | 543286 |
-| Nuvoco Vistas Corporation Limited | 543334 |
-| Brandbucket Media & Technology Limited | 543439 |
-| Shri Venkatesh Refineries Limited | 543373 |
-| FSN E-Commerce Ventures Limited | 543384 |
+## Latest release — Getalong Enterprise and Shri Venkatesh Refineries
 
-Do not reuse the earlier exploratory Sigachi/Latteys URLs as positive issuer evidence. They did not establish a clean source path. Later corporate names, migrations, splits, bonus issues and current trading lots must not overwrite original IPO facts.
+PR **#295** merged as **a8157cbc2b54441568de67a904d9ef0fbcd0f5f8**. Publication commit **a408b27b84e8187b78721a969474088e9a8c3ded** added exactly two 2021 recovery records and rebuilt the public dataset. **Do not replay this batch.**
+
+| Issuer | Board | Listing | Issue price | Gross issue | Historical lot | Minimum bid | Offer dates |
+| --- | --- | --- | ---: | ---: | ---: | ---: | --- |
+| Getalong Enterprise Limited | SME | 08-Oct-2021 | INR 69 | INR 51.75m | 2,000 | missing | missing |
+| Shri Venkatesh Refineries Limited | SME | 11-Oct-2021 | INR 40 | INR 117.12m | 3,000 | 3,000 | 29-Sep–01-Oct-2021 |
+
+Four issuer-specific BSE PDFs were retained in collection run **36288334517**: **10,811,327 original response bytes**, artifact **10920948015**, SHA-256 **59b253317b595943d71100faf3dd61873e17053f42ee1c0412ba83c7dc3ee2ff**. Getalong is bound to its BSE-hosted draft prospectus plus issuer annual-report filing; SVRL is bound to its BSE-hosted final prospectus plus BSE listing/index release. Unsupported price bands, ISIN/NSE identity and Getalong offer/minimum-bid fields remain missing. Market lot and minimum bid quantity remain distinct.
+
+PR-head publication rehearsal **36288408467**, reviewed-BSE validation **36288408451**, and full data-contract run **36288408461** passed. Merged-main publication run **36288465950** validated and published successfully. A clean post-publication documentation merge follows this note to trigger the final Pages served-byte check; record that result before treating this batch as fully live-verified.
 
 ## Latest release — EKI Energy and Gretex complete
 
