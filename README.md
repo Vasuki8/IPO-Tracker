@@ -103,6 +103,6 @@ PR **#263** materialized **4 official BSE/SEBI documents / 12,642,908 response b
 
 ### Exact next backend task
 
-Continue the **2022 unmatched BSE review** with **Hariom Pipe Industries Limited (543517)** and **Rainbow Children's Medicare Limited (543524)**. The pinned 2022 disposition has **2 reviewed/published and 14 awaiting review** from the original 16 unmatched rows. Reconcile against latest recovery first; then retain issuer-specific official BSE/SEBI evidence and original bytes before importing anything.
+Review **Tamilnad Mercantile Bank Limited (543596)** and **DCX Systems Limited (543650)** from the remaining **12** original BSE 2022 unmatched rows. Reconcile against latest recovery first; then retain issuer-specific official BSE/SEBI evidence and original bytes before importing anything. Issue-summary rows remain discovery evidence only.
 
-Veranda Learning Solutions and Uma Exports are already published under PR #308; do not replay them. The original BSE 2021 queue remains complete at 15 published reviewed IPOs + 1 existing alias (FSN/NYKAA). Earlier 2020/2021 releases, the pinned NSE review, historical repair batches and BSE parser v1.5 cursor must not be replayed. SEBI historical pagination, NSE-series coverage and wider overall IPO-universe completeness remain separate gaps.
+Hariom Pipe Industries is already published through PR #311 with its issue-size source conflict preserved; Rainbow Children's Medicare is an existing RAINBOW recovery alias and must not be duplicated. Veranda Learning Solutions and Uma Exports are already published and live-verified. The original 2021 unmatched queue and earlier 2020 repairs must not be replayed. Overall Indian IPO-universe completeness remains incomplete.
