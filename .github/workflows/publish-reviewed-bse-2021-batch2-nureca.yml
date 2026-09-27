@@ -1,0 +1,66 @@
+name: Publish reviewed BSE 2021 Nureca
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "data/discovery/bse-2021-batch2-nureca-review-2026-09-27.json"
+      - "data/evidence/bse-2021-batch2-nureca-source-receipt-2026-09-27.json"
+      - "data/verified-bse-listings/2026-09-27-bse-2021-batch2-nureca.json"
+      - "scripts/*bse-2021-batch2-nureca*"
+      - ".github/workflows/publish-reviewed-bse-2021-batch2-nureca.yml"
+  push:
+    branches: [main]
+    paths:
+      - "data/verified-bse-listings/2026-09-27-bse-2021-batch2-nureca.json"
+      - "scripts/*bse-2021-batch2-nureca*"
+      - ".github/workflows/publish-reviewed-bse-2021-batch2-nureca.yml"
+permissions:
+  contents: read
+concurrency:
+  group: bse-2021-batch2-nureca-publication
+  cancel-in-progress: false
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: "20"}
+      - run: |
+          node scripts/test-reviewed-bse-2021-batch2-nureca.mjs
+          node scripts/apply-reviewed-bse-2021-batch2-nureca.mjs --apply
+          node scripts/build-published-data.mjs
+          node scripts/build-published-data.mjs --check
+          node scripts/validate-data.mjs
+          node scripts/test-reviewed-bse-2021-batch2-nureca.mjs
+  publish:
+    needs: validate
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - uses: actions/setup-node@v4
+        with: {node-version: "20"}
+      - shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for attempt in 1 2 3; do
+            git fetch origin main
+            git reset --hard origin/main
+            node scripts/test-reviewed-bse-2021-batch2-nureca.mjs
+            node scripts/apply-reviewed-bse-2021-batch2-nureca.mjs --apply
+            node scripts/build-published-data.mjs
+            node scripts/build-published-data.mjs --check
+            node scripts/validate-data.mjs
+            node scripts/test-reviewed-bse-2021-batch2-nureca.mjs
+            git add data/recovery/2021/nse-issue-information.json data/ipos.json
+            git diff --cached --quiet && exit 0
+            git commit -m "data: publish reviewed Nureca 2021 IPO"
+            git push origin HEAD:main && exit 0
+          done
+          exit 1
