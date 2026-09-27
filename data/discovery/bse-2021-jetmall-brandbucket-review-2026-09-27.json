@@ -1,0 +1,160 @@
+{
+  "schema_version": "1.0.0",
+  "status": "reviewed_bse_2021_jetmall_brandbucket",
+  "source_year": 2021,
+  "auto_import_allowed": false,
+  "publication_change": false,
+  "actions": [
+    {
+      "key": "jetmall",
+      "issuer_name": "Jetmall Spices and Masala Limited",
+      "stable_id": "jetmall-spices-and-masala-limited",
+      "discovery_bse_scrip_code": "543286",
+      "decision": "confirmed_missing_historical_ipo_candidate",
+      "target": {
+        "board": "SME",
+        "listing_date": "2021-04-19",
+        "issue_price": 20,
+        "issue_size_inr": 49800000,
+        "open_date": "2021-03-31",
+        "close_date": "2021-04-07",
+        "market_lot": 6000,
+        "minimum_bid_quantity": 6000
+      },
+      "identity_sources": [
+        "jetmall_final",
+        "jetmall_track"
+      ],
+      "field_sources": {
+        "board": "jetmall_final",
+        "listing_date": "jetmall_track",
+        "issue_price": "jetmall_final",
+        "issue_size_inr": "jetmall_final",
+        "open_date": "jetmall_final",
+        "close_date": "jetmall_final",
+        "market_lot": "jetmall_final",
+        "minimum_bid_quantity": "jetmall_final"
+      }
+    },
+    {
+      "key": "brandbucket",
+      "issuer_name": "Brandbucket Media & Technology Limited",
+      "stable_id": "brandbucket-media-and-technology-limited",
+      "discovery_bse_scrip_code": "543439",
+      "decision": "confirmed_missing_historical_ipo_candidate",
+      "target": {
+        "board": "SME",
+        "listing_date": "2021-12-31",
+        "issue_price": 55,
+        "issue_size_inr": 82500000,
+        "open_date": "2021-12-20",
+        "close_date": "2021-12-23",
+        "market_lot": 2000,
+        "minimum_bid_quantity": 2000
+      },
+      "identity_sources": [
+        "brandbucket_prospectus",
+        "brandbucket_track"
+      ],
+      "field_sources": {
+        "board": "brandbucket_prospectus",
+        "listing_date": "brandbucket_track",
+        "issue_price": "brandbucket_prospectus",
+        "issue_size_inr": "brandbucket_prospectus",
+        "open_date": "brandbucket_prospectus",
+        "close_date": "brandbucket_prospectus",
+        "market_lot": "brandbucket_prospectus",
+        "minimum_bid_quantity": "brandbucket_prospectus"
+      }
+    }
+  ],
+  "sources": [
+    {
+      "key": "jetmall_draft",
+      "authority": "BSE",
+      "document_type": "Draft Prospectus",
+      "url": "https://www.bseindia.com/corporates/download/331402/Jetmall_DP_Final_05%20.02.2021_20210206142321.pdf",
+      "publication_date": "2021-02-05",
+      "page": "cover / definitions",
+      "evidence_locator": "IPO identity; ₹20 issue price; ₹498 lakh size; BSE SME venue; 6,000 market lot.",
+      "projection": {
+        "issuer": "Jetmall Spices and Masala Limited",
+        "issue_type": "IPO",
+        "board": "SME",
+        "issue_price": 20,
+        "issue_size_inr": 49800000,
+        "market_lot": 6000
+      }
+    },
+    {
+      "key": "jetmall_final",
+      "authority": "SEBI",
+      "document_type": "Final Prospectus",
+      "url": "https://www.sebi.gov.in/sebi_data/attachdocs/apr-2021/1617853574677.pdf",
+      "publication_date": "2021-03-16",
+      "page": "cover / issue procedure",
+      "evidence_locator": "IPO identity; ₹20 issue price; ₹498 lakh size; BSE SME; 31-Mar–07-Apr offer; retail minimum application and trading lot 6,000 shares.",
+      "projection": {
+        "issuer": "Jetmall Spices and Masala Limited",
+        "issue_type": "IPO",
+        "board": "SME",
+        "issue_price": 20,
+        "issue_size_inr": 49800000,
+        "open_date": "2021-03-31",
+        "close_date": "2021-04-07",
+        "market_lot": 6000,
+        "minimum_bid_quantity": 6000
+      }
+    },
+    {
+      "key": "jetmall_track",
+      "authority": "SEBI",
+      "document_type": "SEBI-hosted lead-manager track record",
+      "url": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2023/1689936568009.pdf",
+      "publication_date": null,
+      "page": "past issues table",
+      "evidence_locator": "Jetmall row: ₹4.98 crore, ₹20, listed 19-Apr-2021.",
+      "projection": {
+        "issuer": "Jetmall Spices and Masala Limited",
+        "listing_date": "2021-04-19",
+        "issue_price": 20,
+        "issue_size_inr": 49800000
+      }
+    },
+    {
+      "key": "brandbucket_prospectus",
+      "authority": "BSE",
+      "document_type": "Prospectus",
+      "url": "https://www.bseindia.com/corporates/download/345649/SME_IPO%20Open/Brandbucket%20Prospectus_20211214155022.pdf",
+      "publication_date": "2021-12-13",
+      "page": "cover / issue procedure",
+      "evidence_locator": "IPO identity; ₹55 issue price; ₹825 lakh size; BSE SME; 20–23 Dec offer; retail minimum application and trading lot 2,000 shares.",
+      "projection": {
+        "issuer": "Brandbucket Media & Technology Limited",
+        "issue_type": "IPO",
+        "board": "SME",
+        "issue_price": 55,
+        "issue_size_inr": 82500000,
+        "open_date": "2021-12-20",
+        "close_date": "2021-12-23",
+        "market_lot": 2000,
+        "minimum_bid_quantity": 2000
+      }
+    },
+    {
+      "key": "brandbucket_track",
+      "authority": "SEBI",
+      "document_type": "SEBI-hosted lead-manager track record",
+      "url": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2023/1687608017479_107.pdf",
+      "publication_date": null,
+      "page": "past issues table",
+      "evidence_locator": "Brandbucket row: ₹8.25 crore, ₹55, listed 31-Dec-2021.",
+      "projection": {
+        "issuer": "Brandbucket Media & Technology Limited",
+        "listing_date": "2021-12-31",
+        "issue_price": 55,
+        "issue_size_inr": 82500000
+      }
+    }
+  ]
+}

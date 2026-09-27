@@ -145,6 +145,9 @@ jobs:
       - name: Test reviewed HP Adhesives and Nuvoco import
         run: node scripts/test-reviewed-bse-2021-hp-nuvoco.mjs
 
+      - name: Test reviewed Jetmall and Brandbucket import
+        run: node scripts/test-reviewed-bse-2021-jetmall-brandbucket.mjs
+
       - name: Test BSE detail and listing parsers
         run: node scripts/test-extract-bse-ipo-fields.mjs
 

@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0.0",
+  "status": "approved_bse_2021_jetmall_brandbucket_import",
+  "review_path": "data/discovery/bse-2021-jetmall-brandbucket-review-2026-09-27.json",
+  "receipt_path": "data/evidence/bse-2021-jetmall-brandbucket-source-receipt-2026-09-27.json",
+  "source_artifact_id": 10922279333,
+  "source_artifact_sha256": "5e8bd0331c0a13ab112ea175040a4459ebae109e6927e36c193acb4f7dca86aa",
+  "target_year": 2021,
+  "actions": [
+    {
+      "key": "jetmall",
+      "stable_id": "jetmall-spices-and-masala-limited"
+    },
+    {
+      "key": "brandbucket",
+      "stable_id": "brandbucket-media-and-technology-limited"
+    }
+  ],
+  "rules": {
+    "no_inference": true,
+    "bse_scrip_codes": "discovery-only",
+    "market_lot_distinct_from_minimum_bid_quantity": true,
+    "unsupported_fields": "missing"
+  }
+}
