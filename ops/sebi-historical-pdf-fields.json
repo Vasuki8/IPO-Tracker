@@ -3450,10 +3450,28 @@
     "2021|sansera-engineering-limited": {
       "issuer_name": "Sansera Engineering Limited",
       "listing_date": "2021-09-24",
-      "last_attempted_at": "2026-09-26T13:26:48.069Z",
+      "last_attempted_at": "2026-09-27T14:22:40.711Z",
       "parser_version": "1.2.0",
-      "status": "error",
-      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 75 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-historical-pdf-G4R7lI/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/may-2023/1683091301745.pdf\ncurl: (18) transfer closed with 7287162 bytes remaining to read\ncurl: (18) transfer closed with 1780970 bytes remaining to read\n",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "price_band",
+        "issue_size_inr",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Sansera Engineering Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/may-2023/1683091301745.pdf",
+        "publication_date": "2021-10-06"
+      },
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/may-2023/1683091301745.pdf"
     },
     "2024|baazar-style-retail-limited": {
