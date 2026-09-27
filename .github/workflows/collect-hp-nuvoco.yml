@@ -46,7 +46,7 @@ jobs:
           must(/HP ADHESIVES LIMITED/i.test(hp)&&/274/.test(hp)&&/12,?596\.33/.test(hp),"hp_identity_price_size");
           must(/Offer Opens on:\s*Wednesday, December 15, 2021/i.test(hp)&&/Offer Closes on:\s*Friday, December 17, 2021/i.test(hp),"hp_offer_dates");
           must(/HP Adhesives Limited/i.test(hpt),"hp_track_identity");
-          must(/Nuvoco Vistas Corporation Limited/i.test(nuv)&&/23-Aug-\s*21/i.test(nuv)&&/570/.test(nuv)&&/5000\.0/.test(nuv),"nuvoco_terms");
+          must(/Nuvoco Vistas Corporation Limited/i.test(nuv)&&/23-Aug.*?21.*?570.*?5000\.0/i.test(nuv),"nuvoco_terms");
           const result={schema_version:"1.0.0",status:"complete",workflow_run_id:process.env.GITHUB_RUN_ID,total_response_bytes:receipt.reduce((n,d)=>n+d.response_bytes,0),documents:receipt};
           fs.writeFileSync(path.join(out,"receipt.json"),JSON.stringify(result,null,2)+"\n");
           console.log(JSON.stringify({documents:receipt.length,bytes:result.total_response_bytes,hashes:receipt.map(d=>[d.key,d.response_sha256])}));
