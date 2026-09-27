@@ -1,0 +1,63 @@
+{
+  "schema_version": "1.0.0",
+  "status": "reviewed_bse_2021_batch2_nureca",
+  "source_year": 2021,
+  "scope": {
+    "remaining_before_batch": 13,
+    "reviewed_in_batch": 1,
+    "remaining_after_batch": 12,
+    "note": "Bounded single-issuer batch selected because one BSE-hosted issuer annual report directly supports identity, IPO price, gross issue amount, exchange identifiers and listing date."
+  },
+  "import_allowed": false,
+  "publication_change": false,
+  "actions": [
+    {
+      "key": "nureca",
+      "issuer_name": "Nureca Limited",
+      "stable_id": "nureca-limited",
+      "discovery_bse_scrip_code": "543264",
+      "decision": "confirmed_missing_historical_ipo_candidate",
+      "target": {
+        "board": null,
+        "listing_date": "2021-02-25",
+        "issue_price": 400,
+        "issue_size_inr": 1000000000,
+        "open_date": null,
+        "close_date": null,
+        "market_lot": null,
+        "nse_symbol": "NURECA",
+        "bse_scrip_code": "543264"
+      },
+      "identity_sources": [
+        "nureca_bse_annual_report"
+      ],
+      "field_sources": {
+        "listing_date": "nureca_bse_annual_report",
+        "issue_price": "nureca_bse_annual_report",
+        "issue_size_inr": "nureca_bse_annual_report",
+        "nse_symbol": "nureca_bse_annual_report",
+        "bse_scrip_code": "nureca_bse_annual_report"
+      }
+    }
+  ],
+  "sources": [
+    {
+      "key": "nureca_bse_annual_report",
+      "authority": "BSE-hosted issuer filing",
+      "document_type": "Annual Report 2020-21",
+      "url": "https://www.bseindia.com/bseplus/AnnualReport/543264/72007543264.pdf",
+      "publication_date": null,
+      "page": "141",
+      "evidence_locator": "Note 39: IPO of 2,500,175 shares; public price ₹400; aggregate ₹1,000 million; listed on NSE as NURECA and BSE as 543264 on 25-Feb-2021.",
+      "projection": {
+        "issuer": "Nureca Limited",
+        "issue_type": "IPO",
+        "issue_price_inr": 400,
+        "issue_size_inr": 1000000000,
+        "listing_date": "2021-02-25",
+        "nse_symbol": "NURECA",
+        "bse_scrip_code": "543264"
+      }
+    }
+  ]
+}
