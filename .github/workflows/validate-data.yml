@@ -133,6 +133,9 @@ jobs:
           node scripts/test-bse-2021-mainboard-batch1-review.mjs
           node scripts/test-reviewed-bse-2021-mainboard-batch1-import.mjs
 
+      - name: Test reviewed BSE 2021 Nureca import
+        run: node scripts/test-reviewed-bse-2021-batch2-nureca.mjs
+
       - name: Test BSE detail and listing parsers
         run: node scripts/test-extract-bse-ipo-fields.mjs
 
