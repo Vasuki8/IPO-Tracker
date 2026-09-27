@@ -22,7 +22,7 @@ for(const model of rows){
 }
 const altered=structuredClone(first.recovery);altered["2021"].records.find(r=>r.id===hp.id).issue_price.value++;
 assert.throws(()=>apply(altered,ctx,now),/changed_import_fact/);
-const badCtx=structuredClone(ctx);badCtx.receipt.artifact_id++;assert.throws(()=>expected(badCtx),/./);
+const badCtx=structuredClone(ctx);badCtx.sources.get("hp_prospectus").projection.issue_price=275;assert.throws(()=>expected(badCtx),/projection_mismatch/);
 assert.equal(rows.reduce((n,r)=>n+FIELDS.filter(k=>r[k].value!==null).length,0),8);
 const bytes=fs.readFileSync("data/recovery/2021/nse-issue-information.json");
 const cli=spawnSync(process.execPath,["scripts/apply-reviewed-bse-2021-hp-nuvoco.mjs","--check"],{encoding:"utf8"});
