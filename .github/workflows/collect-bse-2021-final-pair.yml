@@ -41,7 +41,7 @@ jobs:
           must(/Sigachi Industries/i.test(st)&&/12,?542\.85\s+163\s+November 15,/i.test(st)&&/Limited\s+2021/i.test(st),"sigachi_track");
           must(/ADESHWAR MEDITEX LIMITED/i.test(ap)&&/INITIAL PUBLIC ISSUE/i.test(ap)&&/975\.00/.test(ap)&&/₹\s*25|Issue Price is ₹25/i.test(ap)&&/SME Platform of BSE/i.test(ap),"adeshwar_terms");
           must(/June 15,?\s*2021/i.test(ap)&&/June 18,?\s*2021/i.test(ap)&&/minimum contract size of 6000 Equity Shares/i.test(ap),"adeshwar_offer_lot");
-          must(/Adeshwar Meditex Ltd/i.test(at)&&/9\.75\s+25\.00\s+28-06-21/i.test(at),"adeshwar_track");
+          must(/Adeshwar\s+\d+\s+Meditex Ltd/i.test(at)&&/9\.75\s+25\.00\s+28-06-21/i.test(at),"adeshwar_track");
           const result={schema_version:"1.0.0",status:"complete",workflow_run_id:process.env.GITHUB_RUN_ID,total_response_bytes:receipt.reduce((n,d)=>n+d.response_bytes,0),documents:receipt};
           fs.writeFileSync(path.join(out,"receipt.json"),JSON.stringify(result,null,2)+"\n");
           console.log(JSON.stringify({documents:receipt.length,bytes:result.total_response_bytes,hashes:receipt.map(d=>[d.key,d.response_sha256])}));
