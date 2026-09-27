@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0.0",
+  "status": "approved_bse_2021_final_pair_import",
+  "review_path": "data/discovery/bse-2021-final-pair-review-2026-09-27.json",
+  "receipt_path": "data/evidence/bse-2021-final-pair-source-receipt-2026-09-27.json",
+  "source_artifact_id": 10923273210,
+  "source_artifact_sha256": "5a21b43d148fd8dc1179e21b1455978de3daa485819682abdc69ad363ae42e8f",
+  "target_year": 2021,
+  "actions": [
+    {
+      "key": "sigachi",
+      "stable_id": "sigachi-industries-limited"
+    },
+    {
+      "key": "adeshwar",
+      "stable_id": "adeshwar-meditex-limited"
+    }
+  ],
+  "rules": {
+    "no_inference": true,
+    "bse_scrip_codes": "discovery-only",
+    "market_lot_distinct_from_minimum_bid_quantity": true,
+    "unsupported_fields": "missing"
+  }
+}
