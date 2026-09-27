@@ -1,0 +1,146 @@
+{
+  "schema_version": "1.0.0",
+  "status": "verified",
+  "release_pr": 293,
+  "release_merge_commit": "4114e0aae95a3b36444e4f910da7f3904dfab923",
+  "publication_commit": "8b0621a82d6a8f4d700b5145757a2df338618fd4",
+  "verification_workflow_run_id": "36287598558",
+  "verification_artifact": {
+    "artifact_id": 10921320961,
+    "sha256": "34f6d2068028ff0ac8f0d35a007335561ebcf17040854815a5f4f1e1978988a7",
+    "retention_days": 14,
+    "report_path": "publication-report.json",
+    "selected_snapshot_path": "attempt-3/deployed-data.json"
+  },
+  "source_receipt": "data/evidence/bse-2021-sme-pair-source-receipt-2026-09-27.json",
+  "attempts": [
+    {
+      "status": "failed",
+      "snapshot_fetched_at": "2026-09-27T02:08:21.329Z",
+      "snapshot_sha256": "77375fb557de4dde0cbec6268cc2e640dbeb6b91623dd1eb8e5ad5aad3bde040",
+      "published_records": 1343,
+      "attempt": 1
+    },
+    {
+      "status": "failed",
+      "snapshot_fetched_at": "2026-09-27T02:08:36.718Z",
+      "snapshot_sha256": "77375fb557de4dde0cbec6268cc2e640dbeb6b91623dd1eb8e5ad5aad3bde040",
+      "published_records": 1343,
+      "attempt": 2
+    },
+    {
+      "status": "verified",
+      "snapshot_fetched_at": "2026-09-27T02:08:52.115Z",
+      "snapshot_sha256": "c3bc50254cf0a6cc5215e853a7301b98c0ac6eb30b8ad5b4d3200842d32c6f06",
+      "published_records": 1345,
+      "attempt": 3
+    }
+  ],
+  "baseline_comparison": {
+    "baseline_pages_commit": "07cb56e1186363cf88d33c64471711ae81946ea3",
+    "baseline_snapshot_sha256": "77375fb557de4dde0cbec6268cc2e640dbeb6b91623dd1eb8e5ad5aad3bde040",
+    "baseline_records": 1343,
+    "verified_records": 1345,
+    "added_ids": [
+      "eki-energy-services-limited",
+      "gretex-corporate-services-limited"
+    ],
+    "removed_ids": [],
+    "changed_existing_ids": [],
+    "unchanged_existing_records": 1343
+  },
+  "publication_report": {
+    "schema_version": "1.0.0",
+    "status": "verified",
+    "source_url": "https://vasuki8.github.io/IPO-Tracker/data/ipos.json",
+    "started_at": "2026-09-27T02:08:51.858Z",
+    "checked_at": "2026-09-27T02:08:52.172Z",
+    "code_commit_sha": "4114e0aae95a3b36444e4f910da7f3904dfab923",
+    "run_id": "36287598558",
+    "read_only": true,
+    "manifests": [
+      {
+        "path": "data/verified-bse-listings/2026-09-27.json",
+        "sha256": "9bbb4dff746296c26f58e7f62ed195af9dba1859ac77f2a7d5d1508e8d8a2bc8"
+      }
+    ],
+    "snapshot_fetched_at": "2026-09-27T02:08:52.115Z",
+    "snapshot_sha256": "c3bc50254cf0a6cc5215e853a7301b98c0ac6eb30b8ad5b4d3200842d32c6f06",
+    "snapshot_bytes": 7412470,
+    "snapshot_file": "deployed-data.json",
+    "dataset_generated_at": "2026-09-27T01:57:02.271Z",
+    "published_records": 1345,
+    "checked_issuers": 2,
+    "checked_fields": 6,
+    "failed_issuers": 0,
+    "document_hash_scope": {
+      "retained_fields": 6,
+      "serialized_live_fields": 0,
+      "note": "Original document hashes are verified in retained recovery. Missing public hashes are not reported as live hash verification."
+    },
+    "results": [
+      {
+        "issuer_name": "EKI Energy Services Limited",
+        "listing_notice_no": "20210406-21",
+        "manifest": "data/verified-bse-listings/2026-09-27.json",
+        "public_occurrences": 1,
+        "recovery_occurrences": 1,
+        "facts": {
+          "listing_date": "2021-04-07",
+          "market_lot": 1200,
+          "issue_price": 102
+        },
+        "null_fields": [
+          "price_band",
+          "open_date",
+          "close_date",
+          "issue_size_inr",
+          "minimum_bid_quantity",
+          "minimum_application_amount_inr"
+        ],
+        "retained_document_hash_fields": 3,
+        "live_document_hash_fields": 0,
+        "errors": []
+      },
+      {
+        "issuer_name": "Gretex Corporate Services Limited",
+        "listing_notice_no": "20210806-21",
+        "manifest": "data/verified-bse-listings/2026-09-27.json",
+        "public_occurrences": 1,
+        "recovery_occurrences": 1,
+        "facts": {
+          "listing_date": "2021-08-09",
+          "market_lot": 800,
+          "issue_price": 170
+        },
+        "null_fields": [
+          "price_band",
+          "open_date",
+          "close_date",
+          "issue_size_inr",
+          "minimum_bid_quantity",
+          "minimum_application_amount_inr"
+        ],
+        "retained_document_hash_fields": 3,
+        "live_document_hash_fields": 0,
+        "errors": []
+      }
+    ],
+    "cursor": {
+      "parser_version": "1.5.0",
+      "updated_at": "2026-09-25T03:53:14.049Z",
+      "catalog": {
+        "catalog_rows": 1652,
+        "eligible_count": 236,
+        "newest_notice_no": "20260821-22",
+        "oldest_notice_no": "20200113-10",
+        "observed_at": "2026-09-25T03:53:14.049Z"
+      },
+      "tracked": 236,
+      "statuses": {
+        "parsed": 236
+      }
+    },
+    "finished_at": "2026-09-27T02:08:52.193Z"
+  }
+}
