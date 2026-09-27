@@ -21,23 +21,40 @@ jobs:
           set -euo pipefail
           mkdir -p "$RUNNER_TEMP/evidence"
           OUT="$RUNNER_TEMP/evidence" node --input-type=module <<'JS'
-          import fs from "node:fs";import path from "node:path";import {createHash} from "node:crypto";import {execFileSync} from "node:child_process";
+          import fs from "node:fs";
+          import path from "node:path";
+          import {createHash} from "node:crypto";
+          import {execFileSync} from "node:child_process";
           const out=process.env.OUT,receipt=[];
           const docs=[
-            ["tmb_prospectus","https://www.sebi.gov.in/sebi_data/attachdocs/sep-2022/1663570839596.pdf","pdf"],
-            ["tmb_track","https://www.sebi.gov.in/sebi_data/attachdocs/dec-2023/1702623912451.PDF","pdf"],
-            ["dcx_prospectus","https://www.sebi.gov.in/sebi_data/attachdocs/nov-2022/1667796864708.pdf","pdf"],
-            ["dcx_track","https://www.sebi.gov.in/sebi_data/attachdocs/nov-2023/1700224103192.pdf","pdf"]
+            ["tmb_prospectus","https://www.sebi.gov.in/sebi_data/attachdocs/sep-2022/1663570839596.pdf"],
+            ["tmb_track","https://www.sebi.gov.in/sebi_data/attachdocs/dec-2023/1702623912451.PDF"],
+            ["dcx_prospectus","https://www.sebi.gov.in/sebi_data/attachdocs/nov-2022/1667796864708.pdf"],
+            ["dcx_track","https://www.sebi.gov.in/sebi_data/attachdocs/nov-2023/1700224103192.pdf"]
           ];
-          for(const[key,url,type]of docs){
-            const file=path.join(out,key+"."+type);
-            execFileSync("curl",["--fail","--location","--retry","4","--retry-all-errors","--retry-delay","2","--connect-timeout","20","--max-time","150","--user-agent","Mozilla/5.0","--output",file,url],{stdio:"inherit"});
-            const b=fs.readFileSync(file);
-            if(type==="pdf"){execFileSync("pdftotext",["-layout",file,path.join(out,key+".txt")]);}
-            receipt.push({key,source_url:url,final_url:finalUrl,http_status:status,response_bytes:b.length,response_sha256:createHash("sha256").update(b).digest("hex"),collected_at:new Date().toISOString(),attempt,download_method:"node_fetch_retry_6",type});
+          for(const [key,url] of docs){
+            let b=null,finalUrl=url,status=null,attempt=0,last=null;
+            for(attempt=1;attempt<=6;attempt++){
+              try{
+                const r=await fetch(url,{redirect:"follow",signal:AbortSignal.timeout(180000),headers:{"user-agent":"Mozilla/5.0","accept":"application/pdf,*/*"}});
+                status=r.status;finalUrl=r.url;
+                if(!r.ok)throw Error("bad_status:"+r.status);
+                b=Buffer.from(await r.arrayBuffer());
+                if(b.subarray(0,5).toString()!=="%PDF-")throw Error("not_pdf:"+key);
+                break;
+              }catch(e){last=e;b=null;if(attempt===6)throw last;await new Promise(r=>setTimeout(r,attempt*2000));}
+            }
+            const pdf=path.join(out,key+".pdf"),txt=path.join(out,key+".txt");
+            fs.writeFileSync(pdf,b);
+            execFileSync("pdftotext",["-layout",pdf,txt]);
+            receipt.push({key,source_url:url,final_url:finalUrl,http_status:status,response_bytes:b.length,response_sha256:createHash("sha256").update(b).digest("hex"),collected_at:new Date().toISOString(),attempt,download_method:"node_fetch_retry_6"});
           }
-          const clean=s=>String(s).replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi," ").replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi," ").replace(/<[^>]+>/g," ").replace(/&nbsp;|&#160;/gi," ").replace(/&amp;/gi,"&").replace(/\s+/g," ").trim();
-          for(const k of ["tmb_prospectus","tmb_track","dcx_prospectus","dcx_track"]){const t=fs.readFileSync(path.join(out,k+".txt"),"utf8").replace(/\s+/g," ");console.log(k,t.match(/.{0,180}(?:TAMILNAD MERCANTILE BANK LIMITED|DCX SYSTEMS LIMITED|Offer Price|Issue Price|Bid\/Offer Opens|Bid\/Offer Closes|minimum bid|Market Lot).{0,260}/i)?.[0]||"no-sample");}
+          const pats=[/TAMILNAD MERCANTILE BANK LIMITED/i,/DCX SYSTEMS LIMITED/i,/Offer Price.{0,180}/i,/Issue Price.{0,180}/i,/Bid\/Offer Opens.{0,180}/i,/Bid\/Offer Closes.{0,180}/i,/minimum bid.{0,180}/i,/Market Lot.{0,180}/i,/September 15,?\s*2022/i,/November 11,?\s*2022/i];
+          for(const [key] of docs){
+            const t=fs.readFileSync(path.join(out,key+".txt"),"utf8").replace(/\s+/g," ");
+            console.log("DOC",key);
+            for(const p of pats){const m=t.match(p);if(m)console.log(m[0]);}
+          }
           fs.writeFileSync(path.join(out,"receipt.json"),JSON.stringify({schema_version:"1.0.0",status:"collected",workflow_run_id:process.env.GITHUB_RUN_ID,total_response_bytes:receipt.reduce((n,d)=>n+d.response_bytes,0),documents:receipt},null,2)+"\n");
           JS
       - uses: actions/upload-artifact@v4
