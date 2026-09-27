@@ -1,0 +1,156 @@
+{
+  "schema_version": "1.0.0",
+  "status": "reviewed_hariom_and_rainbow_alias",
+  "source_year": 2022,
+  "auto_import_allowed": false,
+  "sources": [
+    {
+      "key": "hariom_prospectus",
+      "url": "https://www.sebi.gov.in/sebi_data/attachdocs/apr-2023/1681727071854.pdf",
+      "document_type": "Final Prospectus",
+      "document_identity": "Hariom Pipe Industries Limited — Final Prospectus dated 7 April 2022",
+      "document_date": "2022-04-07",
+      "publication_date": null,
+      "date_note": "Printed document date is retained separately; upload/publication date is not inferred from URL."
+    },
+    {
+      "key": "hariom_track",
+      "url": "https://www.sebi.gov.in/sebi_data/attachdocs/feb-2025/1738661250075.pdf",
+      "document_type": "Prospectus — BRLM past-issues table",
+      "document_identity": "Waaree Energies Limited — Prospectus dated 23 October 2024; ITI Capital past-issues table",
+      "document_date": "2024-10-23",
+      "publication_date": null,
+      "date_note": "Printed document date is retained separately; upload/publication date is not inferred from URL."
+    },
+    {
+      "key": "rainbow_prospectus",
+      "url": "https://www.sebi.gov.in/sebi_data/attachdocs/may-2022/1651665517350.pdf",
+      "document_type": "Final Prospectus",
+      "document_identity": "Rainbow Children’s Medicare Limited — Prospectus dated 2 May 2022",
+      "document_date": "2022-05-02",
+      "publication_date": null,
+      "date_note": "Printed document date is retained separately; upload/publication date is not inferred from URL."
+    }
+  ],
+  "import": {
+    "issuer_name": "Hariom Pipe Industries Limited",
+    "stable_id": "hariom-pipe-industries-limited",
+    "discovery_bse_scrip_code": "543517",
+    "issue_type": "IPO",
+    "identity_source": "hariom_prospectus",
+    "identity_pdf_page": 2,
+    "board": null,
+    "fields": {
+      "price_band": {
+        "value": {
+          "min": 144,
+          "max": 153
+        },
+        "status": "verified",
+        "source_key": "hariom_prospectus",
+        "pdf_page": 2,
+        "evidence_locator": "Unnumbered inner cover: original price band",
+        "source_value": "INR 144 to INR 153",
+        "unit": "INR/share"
+      },
+      "issue_price": {
+        "value": 153,
+        "status": "verified",
+        "source_key": "hariom_prospectus",
+        "pdf_page": 2,
+        "evidence_locator": "Unnumbered inner cover: original issue price",
+        "source_value": "INR 153",
+        "unit": "INR/share"
+      },
+      "issue_size_inr": {
+        "value": 1300500000,
+        "status": "conflict",
+        "source_key": "hariom_prospectus",
+        "pdf_page": 2,
+        "evidence_locator": "Unnumbered inner cover: up to INR 13,005 lakh; subject to finalisation of Basis of Allotment",
+        "source_value": "13005",
+        "unit": "INR lakh"
+      },
+      "market_lot": {
+        "value": 1,
+        "status": "verified",
+        "source_key": "hariom_prospectus",
+        "pdf_page": 285,
+        "evidence_locator": "Printed p. 282, Market Lot and Trading Lot",
+        "source_value": "1",
+        "unit": "shares"
+      },
+      "minimum_bid_quantity": {
+        "value": 98,
+        "status": "verified",
+        "source_key": "hariom_prospectus",
+        "pdf_page": 2,
+        "evidence_locator": "Inner cover: minimum bid of 98 shares; also PDF p. 6, Bid Lot",
+        "source_value": "98",
+        "unit": "shares"
+      },
+      "open_date": {
+        "value": "2022-03-30",
+        "status": "verified",
+        "source_key": "hariom_prospectus",
+        "pdf_page": 2,
+        "evidence_locator": "Inner cover: Bid/Issue opened on",
+        "source_value": "2022-03-30",
+        "unit": "date"
+      },
+      "close_date": {
+        "value": "2022-04-05",
+        "status": "verified",
+        "source_key": "hariom_prospectus",
+        "pdf_page": 2,
+        "evidence_locator": "Inner cover: Bid/Issue closed on",
+        "source_value": "2022-04-05",
+        "unit": "date"
+      },
+      "listing_date": {
+        "value": "2022-04-13",
+        "status": "verified",
+        "source_key": "hariom_track",
+        "pdf_page": 542,
+        "evidence_locator": "Printed p. 538, ITI Capital past-issues table, row 3: Hariom Pipe Industries Limited",
+        "source_value": "2022-04-13",
+        "unit": "date"
+      }
+    },
+    "conflicts": [
+      {
+        "field": "issue_size_inr",
+        "status": "unresolved",
+        "preferred_candidate_source": "hariom_prospectus",
+        "reason": "Original Hariom prospectus reports up to INR 13,005 lakh, while the later ITI Capital table in the Waaree prospectus prints 130.05 under an INR millions column. These normalize to different rupee amounts. Preserve the original prospectus candidate with conflict status; do not silently repair the later table unit or treat it as verified corroboration.",
+        "competing": {
+          "value": 130050000,
+          "source_value": "130.05",
+          "unit": "INR million",
+          "source_key": "hariom_track",
+          "pdf_page": 542,
+          "evidence_locator": "Printed p. 538, ITI Capital past-issues table, row 3 and Issue size (INR millions) header"
+        }
+      }
+    ]
+  },
+  "existing_alias": {
+    "discovery_issuer_name": "Rainbow Children's Medicare Limited",
+    "discovery_bse_scrip_code": "543524",
+    "stable_id": "rainbow-childrens-medicare-limited",
+    "recovery_issuer_name": "Rainbow Childrens Medicare Limited",
+    "nse_symbol": "RAINBOW",
+    "source_key": "rainbow_prospectus",
+    "identity_pdf_page": 1,
+    "corroboration": {
+      "issue_price": 542,
+      "minimum_bid_quantity": 27
+    },
+    "corroboration_pdf_pages": {
+      "issue_price": 3,
+      "minimum_bid_quantity": 521
+    },
+    "decision": "existing_recovery_alias_no_import",
+    "note": "Explicitly reviewed apostrophe variant, corroborated by original Rainbow prospectus and existing NSE-backed record. No global fuzzy matching, duplicate record, or change to Rainbow fields."
+  }
+}

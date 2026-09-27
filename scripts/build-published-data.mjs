@@ -45,7 +45,7 @@ function officialUrl(url, context) {
   } catch {
     fail(`${context}: invalid URL ${url}`);
   }
-  if (parsed.protocol !== "https:" || !OFFICIAL_HOSTS.has(parsed.hostname)) {
+  if (parsed.protocol !== "https:" || parsed.username || parsed.password || !OFFICIAL_HOSTS.has(parsed.hostname)) {
     fail(`${context}: unsupported source host ${parsed.hostname}`);
   }
   return url;
@@ -78,13 +78,20 @@ function verifiedField(value, source, page = null) {
 
 function retainedField(field, collectedAt) {
   if (!field || field.value === null || field.value === undefined) return emptyField();
+  // Additional retained sources preserve competing official disclosures. Do not
+  // change a field's conflict/provisional state merely because it has evidence.
+  if (field.additional_sources !== undefined && !Array.isArray(field.additional_sources)) {
+    fail("additional_sources must be an array");
+  }
+  const sources = [evidence(
+    { ...field.source, collected_at: field.source.collected_at ?? collectedAt },
+    field.page ?? null
+  ), ...retainedEvidence(field.additional_sources, collectedAt)];
   return {
     value: field.value,
     status: retainedFieldStatus(field),
-    evidence: [evidence(
-      { ...field.source, collected_at: field.source.collected_at ?? collectedAt },
-      field.page ?? null
-    )],
+    evidence: sources.filter((item, i) => sources.findIndex(other =>
+      JSON.stringify(other) === JSON.stringify(item)) === i),
     corrections: Array.isArray(field.corrections) ? field.corrections : []
   };
 }

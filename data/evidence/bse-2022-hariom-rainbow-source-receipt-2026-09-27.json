@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0.0",
+  "status": "reviewed_original_documents",
+  "workflow_run_id": "36328972266",
+  "total_response_bytes": 25147772,
+  "documents": [
+    {
+      "key": "hariom_prospectus",
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/apr-2023/1681727071854.pdf",
+      "final_url": "https://www.sebi.gov.in/sebi_data/attachdocs/apr-2023/1681727071854.pdf",
+      "http_status": 200,
+      "response_bytes": 4664284,
+      "response_sha256": "a0d8d733da814ddd034b62ded18cc8bf24bd8a4675c3303cc205a28997ff19c9",
+      "collected_at": "2026-09-27T15:17:30.241Z",
+      "attempt": 1
+    },
+    {
+      "key": "hariom_track",
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/feb-2025/1738661250075.pdf",
+      "final_url": "https://www.sebi.gov.in/sebi_data/attachdocs/feb-2025/1738661250075.pdf",
+      "http_status": 200,
+      "response_bytes": 8749613,
+      "response_sha256": "e43eccf533fbe81ebe875f9792d32d4f541570b035d39df17326ead11b8a5c89",
+      "collected_at": "2026-09-27T15:18:03.936Z",
+      "attempt": 1
+    },
+    {
+      "key": "rainbow_prospectus",
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/may-2022/1651665517350.pdf",
+      "final_url": "https://www.sebi.gov.in/sebi_data/attachdocs/may-2022/1651665517350.pdf",
+      "http_status": 200,
+      "response_bytes": 11733875,
+      "response_sha256": "4de99d7d34d27ddb1021606516df5d26c9b0093867a3a9821edd143194dd8e4a",
+      "collected_at": "2026-09-27T15:19:02.235Z",
+      "attempt": 2
+    }
+  ],
+  "review_path": "data/discovery/bse-2022-hariom-rainbow-review-2026-09-27.json",
+  "review_sha256": "3fbd55a5b21c5f3bde32c94f856c2143f581c928da07763980c0d6046cd71ddb",
+  "artifact_id": 10934534436,
+  "artifact_sha256": "9782e741a776ed8197bd83a7379dc8770833b4aabb197fd761d1399344052cb0",
+  "retention_days": 14,
+  "collection_completed_at": "2026-09-27T15:19:02.235Z",
+  "review_note": "Original PDF bytes were hash/length checked against the collection receipt; relevant cover, terms and table pages visually inspected. Collected does not mean all facts agree."
+}

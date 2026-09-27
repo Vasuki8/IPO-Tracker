@@ -1,0 +1,104 @@
+name: Publish reviewed Hariom and reconcile Rainbow
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+    paths:
+      - data/verified-bse-listings/2026-09-27-hariom-rainbow.json
+      - scripts/*hariom-rainbow.mjs
+      - .github/workflows/publish-reviewed-bse-2022-hariom-rainbow.yml
+permissions:
+  contents: read
+concurrency:
+  group: hariom-rainbow-${{ github.event.pull_request.number || 'main' }}
+  cancel-in-progress: false
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Rehearse conflict-preserving publication without changing existing issuers
+        run: |
+          node scripts/test-reviewed-bse-2022-hariom-rainbow.mjs
+          node scripts/apply-reviewed-bse-2022-hariom-rainbow.mjs --apply
+          node scripts/build-published-data.mjs
+          node scripts/build-published-data.mjs --check
+          node scripts/validate-data.mjs
+          node scripts/test-reviewed-bse-2022-hariom-rainbow.mjs
+  publish:
+    needs: validate
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Recompute on latest main and reject intervening code or approval changes
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          for attempt in 1 2 3; do
+            git fetch origin main
+            git diff --exit-code "$GITHUB_SHA" origin/main -- scripts/ \
+              data/discovery/bse-2022-hariom-rainbow-review-2026-09-27.json \
+              data/evidence/bse-2022-hariom-rainbow-source-receipt-2026-09-27.json \
+              data/verified-bse-listings/2026-09-27-hariom-rainbow.json \
+              .github/workflows/publish-reviewed-bse-2022-hariom-rainbow.yml
+            git reset --hard origin/main
+            node scripts/test-reviewed-bse-2022-hariom-rainbow.mjs
+            node scripts/apply-reviewed-bse-2022-hariom-rainbow.mjs --apply
+            node scripts/build-published-data.mjs
+            node scripts/build-published-data.mjs --check
+            node scripts/validate-data.mjs
+            git add data/recovery/2022/nse-issue-information.json data/ipos.json
+            if git diff --cached --quiet; then echo 'Hariom already published; Rainbow untouched.'; exit 0; fi
+            git commit -m 'data: publish source-conflict-aware Hariom 2022 IPO'
+            if git push origin HEAD:main; then exit 0; fi
+          done
+          exit 1
+  verify:
+    needs: publish
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Check actual Pages values and both competing sources
+        shell: bash
+        run: |
+          set -euo pipefail
+          for attempt in 1 2 3 4 5 6 7 8; do
+            dir="$RUNNER_TEMP/hariom-live/attempt-$attempt"
+            if node scripts/verify-bse-2022-hariom-rainbow.mjs --output-dir="$dir"; then
+              cp "$dir/report.json" "$RUNNER_TEMP/hariom-live/report.json"
+              exit 0
+            fi
+            if [ "$attempt" -lt 8 ]; then sleep 15; fi
+          done
+          exit 1
+      - name: Retain failed and successful served snapshots and reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: hariom-rainbow-live-${{ github.run_id }}
+          path: ${{ runner.temp }}/hariom-live
+          retention-days: 14
+          if-no-files-found: error
