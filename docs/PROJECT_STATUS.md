@@ -6,9 +6,9 @@ Updated **2026-09-27 (UTC)** after publishing the second bounded BSE 2021 unmatc
 
 PR **#287** merged as **159fbf84c445b5e7766bcc3daef67b5d9e33a92e**. Its dedicated publication rehearsal and reviewed-BSE evidence validation passed. Publication commit **b9908948166b4b92d93387c42b824d3ae0ab6458** added `nureca-limited` to 2021 recovery and rebuilt the public dataset. Only directly supported facts were published. **Board, market lot, offer dates, ISIN and unsupported fields remain null.** The importer is rerun-safe and rejects cross-year identity/BSE-code/NSE-symbol collisions.
 
-**Live verification is the final closeout gate for this batch.** The documentation merge following this note intentionally triggers a fresh Pages deployment after publication commit `b9908948`. Verify that deployment's served-byte check succeeds, record the served record count/hash below or in a follow-up handoff commit, then treat Nureca as fully live-verified.
+**Actual Pages verification run 36283705972 passed on attempt 1.** The served `data/ipos.json` matched committed bytes with **1,342 records**, dataset generation timestamp **2026-09-27T00:49:13.757Z**, SHA-256 **ddc8d562d08feeb1d37d81a105056a5e12c573ad959de968b9182c2ede129c54**. Nureca is therefore **published and live-verified**.
 
-**Exact next bounded P1 task after live verification:** continue the **remaining 12 unmatched BSE 2021 rows**. Use a small coherent issuer batch and issuer-specific official BSE/SEBI/issuer evidence. BSE issue-summary rows remain discovery evidence only. Retain original bytes/hashes, preserve unsupported values as null, and import only through a reviewed collision-safe path.
+**Exact next bounded P1 task:** continue the **remaining 12 unmatched BSE 2021 rows**. Use a small coherent issuer batch and issuer-specific official BSE/SEBI/issuer evidence. BSE issue-summary rows remain discovery evidence only. Retain original bytes/hashes, preserve unsupported values as null, and import only through a reviewed collision-safe path.
 
 Updated **2026-09-26 (UTC)** after publishing the first bounded BSE 2021 unmatched batch.
 
