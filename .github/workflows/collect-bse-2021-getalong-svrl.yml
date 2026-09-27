@@ -16,7 +16,7 @@ jobs:
         run: |
           mkdir -p "$RUNNER_TEMP/evidence"
           OUT="$RUNNER_TEMP/evidence" node --input-type=module <<'JS'
-          import fs from "node:fs";import path from "node:path";import {createHash} from "node:crypto";import {execFileSync} from "node:child_process";
+          import fs from "node:fs";import path from "node:path";import {createHash} from "node:crypto";
           const out=process.env.OUT,docs=[];
           const urls=[
             ["getalong_draft","https://www.bseindia.com/corporates/download/347690/Getalong%20Enterprise%20Limited%20-%20Draft%20Prospectus_20210830225325.pdf"],
@@ -24,7 +24,7 @@ jobs:
             ["svrl_prospectus","https://www.bseindia.com/corporates/download/373676/SME_IPO%20Open/1Prospectus%20-%20SVRL%2023.09.2021_20210924170138.pdf"],
             ["svrl_index_release","https://www.bseindia.com/downloads/SPDJ_ANN/MediaReleasePDF/1444159_mediareleaseadditionstothes%26pbseindices20211011.pdf"]
           ];
-          for(const[k,u]of urls){let last;for(let a=1;a<=3;a++){try{const r=await fetch(u,{redirect:"follow",signal:AbortSignal.timeout(60000),headers:{"user-agent":"Mozilla/5.0","accept":"application/pdf,*/*"}});if(!r.ok||new URL(r.url).hostname!=="www.bseindia.com")throw Error("bad_"+r.status);const b=Buffer.from(await r.arrayBuffer());if(b.subarray(0,5).toString()!=="%PDF-")throw Error("not_pdf");const file=k+".pdf";fs.writeFileSync(path.join(out,file),b);execFileSync("pdftotext",["-layout",path.join(out,file),path.join(out,k+".txt")]);docs.push({key:k,source_url:u,final_url:r.url,http_status:r.status,response_bytes:b.length,response_sha256:createHash("sha256").update(b).digest("hex"),collected_at:new Date().toISOString(),attempt:a});break}catch(e){last=e;if(a===3)throw e;await new Promise(r=>setTimeout(r,a*1500))}}}
+          for(const[k,u]of urls){let last;for(let a=1;a<=3;a++){try{const r=await fetch(u,{redirect:"follow",signal:AbortSignal.timeout(60000),headers:{"user-agent":"Mozilla/5.0","accept":"application/pdf,*/*"}});if(!r.ok||new URL(r.url).hostname!=="www.bseindia.com")throw Error("bad_"+r.status);const b=Buffer.from(await r.arrayBuffer());if(b.subarray(0,5).toString()!=="%PDF-")throw Error("not_pdf");const file=k+".pdf";fs.writeFileSync(path.join(out,file),b);docs.push({key:k,source_url:u,final_url:r.url,http_status:r.status,response_bytes:b.length,response_sha256:createHash("sha256").update(b).digest("hex"),collected_at:new Date().toISOString(),attempt:a});break}catch(e){last=e;if(a===3)throw e;await new Promise(r=>setTimeout(r,a*1500))}}}
           fs.writeFileSync(path.join(out,"receipt.json"),JSON.stringify({schema_version:"1.0.0",status:"complete",run_id:process.env.GITHUB_RUN_ID,documents:docs,total_response_bytes:docs.reduce((n,d)=>n+d.response_bytes,0)},null,2)+"\n");
           console.log(JSON.stringify({documents:docs.length,bytes:docs.reduce((n,d)=>n+d.response_bytes,0),hashes:docs.map(d=>[d.key,d.response_sha256])}));
           JS
