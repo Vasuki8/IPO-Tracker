@@ -1,0 +1,215 @@
+{
+  "schema_version": "1.0.0",
+  "status": "reviewed_bse_2022_tmb_dcx",
+  "source_year": 2022,
+  "auto_import_allowed": false,
+  "publication_change": false,
+  "sources": [
+    {
+      "key": "tmb_prospectus",
+      "authority": "SEBI",
+      "document_type": "Final Prospectus",
+      "document_identity": "Tamilnad Mercantile Bank Limited — Prospectus dated 8 September 2022",
+      "document_date": "2022-09-08",
+      "publication_date": null,
+      "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2022/1663570839596.pdf",
+      "projection": {
+        "issuer": "Tamilnad Mercantile Bank Limited",
+        "issue_type": "IPO",
+        "price_band": {
+          "min": 500,
+          "max": 525
+        },
+        "issue_price": 510,
+        "issue_size_inr": 8078400000,
+        "open_date": "2022-09-05",
+        "close_date": "2022-09-07",
+        "market_lot": 1,
+        "minimum_bid_quantity": 28
+      }
+    },
+    {
+      "key": "tmb_track",
+      "authority": "SEBI",
+      "document_type": "Red Herring Prospectus — BRLM past-issues table",
+      "document_identity": "Azad Engineering Limited — Red Herring Prospectus dated 14 December 2023; SBI Capital Markets past-issues table",
+      "document_date": "2023-12-14",
+      "publication_date": null,
+      "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2023/1702623912451.PDF",
+      "projection": {
+        "issuer": "Tamilnad Mercantile Bank Limited",
+        "listing_date": "2022-09-15",
+        "issue_price": 510,
+        "issue_size_inr": 8078400000
+      }
+    },
+    {
+      "key": "dcx_prospectus",
+      "authority": "SEBI",
+      "document_type": "Final Prospectus",
+      "document_identity": "DCX Systems Limited — Prospectus dated 4 November 2022",
+      "document_date": "2022-11-04",
+      "publication_date": null,
+      "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2022/1667796864708.pdf",
+      "projection": {
+        "issuer": "DCX Systems Limited",
+        "issue_type": "IPO",
+        "price_band": {
+          "min": 197,
+          "max": 207
+        },
+        "issue_price": 207,
+        "issue_size_inr": 5000000000,
+        "open_date": "2022-10-31",
+        "close_date": "2022-11-02",
+        "market_lot": 1,
+        "minimum_bid_quantity": 72
+      }
+    },
+    {
+      "key": "dcx_track",
+      "authority": "SEBI",
+      "document_type": "Red Herring Prospectus — BRLM past-issues table",
+      "document_identity": "Flair Writing Industries Limited — Red Herring Prospectus dated 16 November 2023; Nuvama past-issues table",
+      "document_date": "2023-11-16",
+      "publication_date": null,
+      "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2023/1700224103192.pdf",
+      "projection": {
+        "issuer": "DCX Systems Limited",
+        "listing_date": "2022-11-11",
+        "issue_price": 207,
+        "issue_size_inr": 5000000000
+      }
+    }
+  ],
+  "issuers": [
+    {
+      "key": "tmb",
+      "issuer_name": "Tamilnad Mercantile Bank Limited",
+      "stable_id": "tamilnad-mercantile-bank-limited",
+      "discovery_bse_scrip_code": "543596",
+      "decision": "confirmed_missing_historical_ipo_candidate",
+      "identity_sources": [
+        "tmb_prospectus",
+        "tmb_track"
+      ],
+      "fields": {
+        "price_band": {
+          "value": {
+            "min": 500,
+            "max": 525
+          },
+          "source_key": "tmb_prospectus",
+          "pdf_page": 9,
+          "evidence_locator": "Definitions table: Price Band — floor ₹500 and cap ₹525 per Equity Share."
+        },
+        "issue_price": {
+          "value": 510,
+          "source_key": "tmb_prospectus",
+          "pdf_page": 2,
+          "evidence_locator": "Prospectus cover: Offer Price ₹510 per Equity Share."
+        },
+        "issue_size_inr": {
+          "value": 8078400000,
+          "source_key": "tmb_prospectus",
+          "pdf_page": 2,
+          "evidence_locator": "Prospectus cover: 15,840,000 shares aggregating to ₹8,078.40 million."
+        },
+        "market_lot": {
+          "value": 1,
+          "source_key": "tmb_prospectus",
+          "pdf_page": 321,
+          "evidence_locator": "Market Lot and Trading Lot: tradable lot is one Equity Share."
+        },
+        "minimum_bid_quantity": {
+          "value": 28,
+          "source_key": "tmb_prospectus",
+          "pdf_page": 327,
+          "evidence_locator": "Offer structure table: Retail Individual Bidders minimum bid 28 Equity Shares; bid lot 28."
+        },
+        "open_date": {
+          "value": "2022-09-05",
+          "source_key": "tmb_prospectus",
+          "pdf_page": 2,
+          "evidence_locator": "Prospectus cover: Bid/Offer opened Monday, September 5, 2022."
+        },
+        "close_date": {
+          "value": "2022-09-07",
+          "source_key": "tmb_prospectus",
+          "pdf_page": 2,
+          "evidence_locator": "Prospectus cover: Bid/Offer closed Wednesday, September 7, 2022."
+        },
+        "listing_date": {
+          "value": "2022-09-15",
+          "source_key": "tmb_track",
+          "pdf_page": 381,
+          "evidence_locator": "SBI Capital Markets past public issues table, Tamilnad Mercantile Bank row: listing date September 15, 2022."
+        }
+      }
+    },
+    {
+      "key": "dcx",
+      "issuer_name": "DCX Systems Limited",
+      "stable_id": "dcx-systems-limited",
+      "discovery_bse_scrip_code": "543650",
+      "decision": "confirmed_missing_historical_ipo_candidate",
+      "identity_sources": [
+        "dcx_prospectus",
+        "dcx_track"
+      ],
+      "fields": {
+        "price_band": {
+          "value": {
+            "min": 197,
+            "max": 207
+          },
+          "source_key": "dcx_prospectus",
+          "pdf_page": 355,
+          "evidence_locator": "Terms of the Offer: floor price ₹197 and cap price ₹207 per Equity Share."
+        },
+        "issue_price": {
+          "value": 207,
+          "source_key": "dcx_prospectus",
+          "pdf_page": 2,
+          "evidence_locator": "Prospectus cover: Offer Price ₹207 per Equity Share."
+        },
+        "issue_size_inr": {
+          "value": 5000000000,
+          "source_key": "dcx_prospectus",
+          "pdf_page": 2,
+          "evidence_locator": "Prospectus cover: total Offer aggregating to ₹5,000.00 million."
+        },
+        "market_lot": {
+          "value": 1,
+          "source_key": "dcx_prospectus",
+          "pdf_page": 356,
+          "evidence_locator": "Market lot and trading lot: tradable lot is one Equity Share."
+        },
+        "minimum_bid_quantity": {
+          "value": 72,
+          "source_key": "dcx_prospectus",
+          "pdf_page": 362,
+          "evidence_locator": "Offer structure table: Retail Individual Investors minimum bid 72 Equity Shares; bid lot 72."
+        },
+        "open_date": {
+          "value": "2022-10-31",
+          "source_key": "dcx_prospectus",
+          "pdf_page": 1,
+          "evidence_locator": "Prospectus cover: Bid/Offer opened Monday, October 31, 2022."
+        },
+        "close_date": {
+          "value": "2022-11-02",
+          "source_key": "dcx_prospectus",
+          "pdf_page": 1,
+          "evidence_locator": "Prospectus cover: Bid/Offer closed Wednesday, November 2, 2022."
+        },
+        "listing_date": {
+          "value": "2022-11-11",
+          "source_key": "dcx_track",
+          "pdf_page": 418,
+          "evidence_locator": "Nuvama past public issues table, DCX Systems row: listing date November 11, 2022."
+        }
+      }
+    }
+  ]
+}
