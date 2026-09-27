@@ -1,7 +1,7 @@
 {
   "source_family": "Official NSE / SEBI / BSE offer-document and exchange evidence",
   "collection_started_at": "2026-09-23T19:29:29.146Z",
-  "generated_at": "2026-09-27T21:45:07.477Z",
+  "generated_at": "2026-09-27T22:18:17.068Z",
   "records": [
     {
       "id": "3b-films-limited",
@@ -9832,10 +9832,17 @@
           "publication_date": null,
           "collected_at": "2026-09-26T18:32:04.162Z",
           "document_sha256": "de552c2090439b0eff1bd886f3770bbd3c318ac6f76e9042bce7bb0fb9988901"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — FABTECH",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=FABTECH&series=EQ",
+          "publication_date": null,
+          "collected_at": "2026-09-27T22:18:17.068Z"
         }
       ],
       "first_observed_at": "2026-09-26T18:32:08.691Z",
-      "last_collected_at": "2026-09-26T18:32:08.691Z",
+      "last_collected_at": "2026-09-27T22:18:17.068Z",
       "board_evidence": [
         {
           "url": "https://nsearchives.nseindia.com/content/circulars/CML70624.pdf",
@@ -9963,6 +9970,22 @@
           "fabtech_cleanrooms_identity": "efda89593aca540decd4fcba5f425d9bf31d64d3f83baae5c27883a1dc237774"
         },
         "previous": null
+      },
+      "price_band": {
+        "value": {
+          "min": 181,
+          "max": 191
+        },
+        "source_value": "Rs. 181 to Rs. 191 per Equity Share",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=FABTECH&series=EQ",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — FABTECH",
+          "publication_date": null,
+          "collected_at": "2026-09-27T22:18:17.068Z"
+        }
       }
     },
     {
