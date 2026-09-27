@@ -1,0 +1,49 @@
+name: Collect BSE 2021 SME pair evidence
+on:
+  push:
+    branches: [data/bse-2021-sme-pair-20260927]
+    paths:
+      - data/discovery/bse-2021-sme-pair-2026-09-27.json
+      - .github/workflows/collect-bse-2021-sme-pair.yml
+permissions:
+  contents: read
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Collect and strictly verify two original listing notices
+        shell: bash
+        run: |
+          OUT="$RUNNER_TEMP/bse-pair" node --input-type=module <<'JS'
+          import fs from 'node:fs';
+          import {verifyBatch} from './scripts/verify-bse-listing-candidates.mjs';
+          const batch=JSON.parse(fs.readFileSync('data/discovery/bse-2021-sme-pair-2026-09-27.json'));
+          const out=process.env.OUT;
+          fs.mkdirSync(out,{recursive:true});
+          for(let attempt=1;attempt<=3;attempt++){
+            const dir=out+'/attempt-'+attempt;
+            const report=await verifyBatch(batch,{evidenceDir:dir});
+            fs.writeFileSync(dir+'/report.json',JSON.stringify(report,null,2)+'\n');
+            console.log(JSON.stringify({attempt,status:report.status,results:report.results.map(r=>({issuer:r.candidate.issuer_name,status:r.status,reasons:r.reasons,error:r.error}))}));
+            if(report.status==='complete'){
+              fs.writeFileSync(out+'/selected-attempt.json',JSON.stringify({attempt,source_commit:process.env.GITHUB_SHA,run_id:process.env.GITHUB_RUN_ID,read_only:true})+'\n');
+              process.exit(0);
+            }
+            if(attempt<3)await new Promise(r=>setTimeout(r,2000));
+          }
+          process.exitCode=1;
+          JS
+      - name: Retain responses and validation reports, including failures
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bse-2021-sme-pair-original-evidence
+          path: ${{ runner.temp }}/bse-pair
+          retention-days: 14
+          compression-level: 0
+          if-no-files-found: error
