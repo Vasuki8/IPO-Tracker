@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0.0",
+  "status": "complete",
+  "review_path": "data/discovery/bse-2021-batch3-paras-review-2026-09-27.json",
+  "review_sha256": "48499c93815b59fb1ded519637fd803ae907ab907691b50101cf4faea9dc10fc",
+  "collection_completed_at": "2026-09-27T01:46:58.637Z",
+  "source_documents_collected": 2,
+  "total_response_bytes": 3895642,
+  "documents": [
+    {
+      "key": "paras_bse_listing_notice",
+      "source_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20210930-7",
+      "final_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20210930-7",
+      "http_status": 200,
+      "response_bytes": 110525,
+      "response_sha256": "e616d5c4fac82cd773e22ed874c4b6fc999f840ab4a86a101abf247af5959fa4",
+      "collected_at": "2026-09-27T01:46:22.499Z",
+      "attempt": 1,
+      "file": "paras_bse_listing_notice.html"
+    },
+    {
+      "key": "paras_sebi_final_offer",
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2023/1687843975673.pdf",
+      "final_url": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2023/1687843975673.pdf",
+      "http_status": 200,
+      "response_bytes": 3785117,
+      "response_sha256": "6efc50fa6e5503e1bd17c88466b717c342f512526d622cc4746eb61aafab8933",
+      "collected_at": "2026-09-27T01:46:58.637Z",
+      "attempt": 2,
+      "file": "paras_sebi_final_offer.pdf"
+    }
+  ],
+  "workflow_run_id": "36286537578",
+  "workflow_artifact": {
+    "artifact_id": 10920747805,
+    "artifact_digest": "sha256:f0020d1ee6f2711f7ee1c02073f07329c4bc4e4dfbc8e7980d3198470b35bf16",
+    "retention_days": 14
+  }
+}
