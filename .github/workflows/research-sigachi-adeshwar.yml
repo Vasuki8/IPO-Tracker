@@ -19,9 +19,9 @@ jobs:
           const out=process.env.OUT,docs=[],errors=[];
           const seeds=[
             ["sigachi_bse_listing","https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20211112-2"],
-            ["sigachi_sebi","https://www.sebi.gov.in/filings/public-issues/oct-2021/sigachi-industries-limited_53518.html"],
+            ["sigachi_bse_prospectus","https://www.bseindia.com/corporates/download/369328/SME_IPO%20Open/1Prospectus%20-%20Sigachi%20Industries%20Limited_20211027151904.pdf"],
             ["adeshwar_bse_listing","https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20210614-12"],
-            ["adeshwar_sebi","https://www.sebi.gov.in/filings/public-issues/jun-2021/adeshwar-meditex-limited_50569.html"]
+            ["adeshwar_bse_prospectus","https://www.bseindia.com/corporates/download/353511/SME_IPO%20Open/1Prospectus%20-%20Adeshwar%20Meditex%20Limited_20210608185217.pdf"]
           ];
           const hosts=new Set(["www.bseindia.com","bseindia.com","www.sebi.gov.in","sebi.gov.in"]);
           for(const[k,u]of seeds){let last;for(let a=1;a<=3;a++){try{const r=await fetch(u,{redirect:"follow",signal:AbortSignal.timeout(45000),headers:{"user-agent":"Mozilla/5.0","accept":"text/html,application/pdf,*/*"}});if(!r.ok||!hosts.has(new URL(r.url).hostname))throw Error("bad_"+r.status);const b=Buffer.from(await r.arrayBuffer()),file=k+(b.subarray(0,5).toString()==="%PDF-"?".pdf":".html");fs.writeFileSync(path.join(out,file),b);docs.push({key:k,source_url:u,final_url:r.url,http_status:r.status,response_bytes:b.length,response_sha256:createHash("sha256").update(b).digest("hex"),file,collected_at:new Date().toISOString(),attempt:a});break}catch(e){last=e;if(a===3)errors.push(k+":"+e.message);else await new Promise(r=>setTimeout(r,a*1500))}}}
