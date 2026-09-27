@@ -61,8 +61,9 @@ export function expected(ctx){
   return ctx.review.actions.map(a=>{
     const m=manifestActions.get(a.key);req(m&&m.stable_id===a.stable_id,"manifest_review_mismatch:"+a.key);
     const src={};
-    for(const name of FIELDS){if(a.target[name]!=null){const k=a.field_sources[name];src[name]=descriptor(ctx,k,a.issuer_name,a.field_pages[name],a.field_locators[name])}}
-    const boardSource=descriptor(ctx,a.field_sources.board,a.issuer_name,a.field_pages.board,a.field_locators.board);
+    for(const name of FIELDS){if(a.target[name]!=null){const k=a.field_sources[name],s=ctx.sources.get(k);req(s&&same(s.projection?.[name],a.target[name]),"projection_mismatch:"+a.key+":"+name);src[name]=descriptor(ctx,k,a.issuer_name,a.field_pages[name],a.field_locators[name])}}
+    const boardKey=a.field_sources.board,boardProjection=ctx.sources.get(boardKey);req(boardProjection&&boardProjection.projection?.board===a.target.board,"projection_mismatch:"+a.key+":board");
+    const boardSource=descriptor(ctx,boardKey,a.issuer_name,a.field_pages.board,a.field_locators.board);
     const docs=[...new Set(a.identity_sources)].map(k=>descriptor(ctx,k,a.issuer_name));
     const last=docs.map(d=>d.collected_at).sort().at(-1);
     const out={id:a.stable_id,issuer_name:a.issuer_name,board:a.target.board,sector:null,status:"listed",nse_symbol:null,nse_series:null,nse_source:null,bse_symbol:null,bse_scrip_code:null,isin:null,bse_source:null,terms:{price_band:null,market_lot:null,minimum_bid_quantity:null,open_date:null,close_date:null},documents:docs.map(s=>({type:s.document_type,identity:s.document_identity,url:s.url,publication_date:s.publication_date,collected_at:s.collected_at,document_sha256:s.document_sha256})),first_observed_at:last,last_collected_at:last,board_evidence:[boardSource],status_evidence:[src.listing_date],bse_2022_maagh_technopack_import:{manifest:MANIFEST,review:REVIEW,receipt:RECEIPT,action_key:a.key,discovery_bse_scrip_code:a.discovery_bse_scrip_code,artifact_id:ctx.receipt.artifact_id,artifact_sha256:ctx.receipt.artifact_sha256}};
