@@ -1,12 +1,25 @@
 # Project status and handoff
 
-Updated **2026-09-27 (UTC)** after publishing Jetmall Spices / Brandbucket Media. Active priority remains **P1 issuer identity and universe correctness**.
+Updated **2026-09-27 (UTC)** after publishing Veranda Learning Solutions / Uma Exports. Active priority remains **P1 issuer identity and universe correctness**.
 
 ## Exact next bounded task
 
-The original **16 unmatched BSE 2021 rows are fully resolved**: **15 reviewed IPOs published + 1 existing-recovery alias (FSN/NYKAA)**. Do not replay the 2021 unmatched queue.
+Continue the **2022 BSE unmatched review** with two Mainboard issuers: **Hariom Pipe Industries Limited (543517)** and **Rainbow Children's Medicare Limited (543524)**. Reconcile against latest recovery first, then retain issuer-specific official BSE/SEBI evidence and original bytes before any import.
 
-Start the next bounded P1 source-family review with two **2022 Mainboard** unmatched rows from the retained BSE audit: **Veranda Learning Solutions Limited (543514)** and **Uma Exports Limited (543513)**. Reconcile against latest recovery first, then obtain issuer-specific official BSE/SEBI evidence and original bytes. The 2022 audit has **90 official rows / 74 exact matches / 16 unmatched**; this is not a complete Indian IPO-universe claim.
+The pinned [2022 disposition](../data/discovery/bse-2022-unmatched-disposition-2026-09-27.json) accounts for all **16 original unmatched rows: 2 reviewed/published and 14 awaiting review**. The retained 2022 source surface remains **90 official rows / 74 original exact matches / 16 original unmatched**. This is a bounded follow-up, not a complete Indian IPO-universe claim.
+
+## Latest release — Veranda Learning Solutions and Uma Exports
+
+PR **#308** merged as **a9a516fec30d32a25bfe721f05eaa890f5e91d60**. Publication commit **6f14be875020dedc81bc0b368ae0944a68c3a8eb** added exactly two 2022 recovery records and rebuilt `data/ipos.json`. **Do not replay this batch.**
+
+| Issuer | Listing | Issue price | Issue size | Market lot | Minimum bid | Offer dates |
+| --- | --- | ---: | ---: | ---: | ---: | --- |
+| Veranda Learning Solutions Limited | 11-Apr-2022 | INR 137 | INR 2.0bn | 1 | 100 | 29–31 Mar-2022 |
+| Uma Exports Limited | 07-Apr-2022 | INR 68 | INR 600m | missing | missing | 28–30 Mar-2022 |
+
+Four original SEBI/BSE PDFs were retained in collection run **36314573796**: **26,811,441 response bytes**, artifact **10929843482**, SHA-256 **8f485b10e03a3f8936e55d9305bfd7b5917baf9fa141016284abb943cb02ffc6**. Veranda is bound to its SEBI final Prospectus for original offer terms and its BSE-hosted annual report for listing date. Uma is bound to its SEBI RHP plus BSE-hosted annual report; the annual report directly states ₹68 issue price, ₹60 crore IPO, 28–30 Mar offer dates and 07-Apr listing.
+
+Only directly supported contract fields were published. **Board, BSE scrip code, price band, ISIN/NSE identity and Uma lot/minimum-bid remain null.** Veranda's one-share trading lot and 100-share minimum bid quantity remain separate fields. PR-head publication rehearsal **36314853104**, reviewed-BSE validation **36314853096**, and full data-contract run **36314853075** passed. Merged-main publication run **36314913798** validated and published successfully. A clean documentation merge follows this note to trigger the final served-byte check.
 
 ## Latest release — final 2021 pair complete
 
