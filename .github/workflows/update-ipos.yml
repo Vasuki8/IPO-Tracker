@@ -282,6 +282,12 @@ jobs:
           git add ops/operator-snapshot.json ops/operator-health-history.json
           git commit -m "chore(ops): record operator state"
 
+          # The sync may have left tracked recovery/public-data mutations in the
+          # worktree even when rebuild/validation failed. They are deliberately
+          # not part of this ops-only commit and must not block or leak into the
+          # operator-state publication.
+          git reset --hard HEAD
+
           # Preserve data/Pages bot commits that may have advanced main since
           # checkout before publishing the latest operational snapshot.
           git fetch origin main
