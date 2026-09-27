@@ -4,9 +4,15 @@ Updated **2026-09-27 (UTC)** after publishing Getalong Enterprise / Shri Venkate
 
 ## Exact next bounded task
 
-Review **Sigachi Industries Limited (543389)** and **Adeshwar Meditex Limited (543309)** from the remaining seven original BSE 2021 unmatched rows. Reconcile against latest recovery first, obtain issuer-specific official evidence and original bytes, and publish only supported facts. Do not reuse the earlier exploratory Sigachi URL as positive evidence.
+Review **HP Adhesives Limited (543433)** and **Nuvoco Vistas Corporation Limited (543334)** next. Sigachi Industries (543389) and Adeshwar Meditex (543309) were re-reviewed on 2026-09-27 and remain held: fresh guessed BSE notice numbers resolved to unrelated notices, while guessed BSE/SEBI prospectus URLs returned 404. No values were published and those failed URLs must not be reused as positive evidence.
 
 The pinned disposition now accounts for all **16 original unmatched rows: nine reviewed/published and seven awaiting review**. Overall Indian IPO-universe coverage remains incomplete.
+
+## Latest bounded review — Sigachi / Adeshwar held, no publication
+
+Both issuers remain absent from recovery. Fresh official-source probing run **36290437470** successfully retained only the two BSE HTML responses for the tested notice URLs; the SEBI URLs returned 404. A second probe replaced those with guessed BSE prospectus URLs, which also returned 404. Strict issuer-specific listing verification then showed the tested notice numbers were unrelated: **20211112-34** was a BSE membership notice, and **20210614-39** was an ESOP/further-securities notice. Both were rejected for issuer/code/date/SME/equity-listing mismatch. No importer, manifest, recovery record or public-data change was created.
+
+This is a useful negative result: do not weaken the verifier, do not infer IPO terms from the historical issue-summary row, and do not reuse the failed exploratory URLs. Sigachi and Adeshwar remain in the seven-row pending queue for a later source-family approach.
 
 ## Latest release — Getalong Enterprise and Shri Venkatesh Refineries
 
