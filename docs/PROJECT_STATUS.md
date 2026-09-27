@@ -1,10 +1,27 @@
 # Project status and handoff
 
-Updated **2026-09-27 (UTC)** after publishing HP Adhesives / Nuvoco Vistas. Active priority remains **P1 issuer identity and universe correctness**.
+Updated **2026-09-27 (UTC)** after publishing Jetmall Spices / Brandbucket Media. Active priority remains **P1 issuer identity and universe correctness**.
 
 ## Exact next bounded task
 
-Review **Jetmall Spices and Masala Limited (543286)** and **Brandbucket Media & Technology Limited (543439)** next. The pinned disposition now accounts for all **16 original unmatched rows: eleven reviewed/published and five awaiting review**. Sigachi Industries (543389) and Adeshwar Meditex (543309) remain held after failed source attempts; FSN E-Commerce Ventures (543384) remains pending separate identity reconciliation. Overall Indian IPO-universe coverage remains incomplete.
+Revisit **Sigachi Industries Limited (543389)** and **Adeshwar Meditex Limited (543309)** using the newly identified official source family, not the previously rejected notice guesses. Sigachi now has a SEBI-hosted BRLM past-issues row; Adeshwar has a BSE-hosted final prospectus plus SEBI-hosted past-issues rows. Materialize those originals before any import.
+
+The pinned original-16 disposition is now: **13 reviewed/published, 1 reconciled to an existing recovery alias, 2 awaiting issuer-specific review**. **FSN E-Commerce Ventures Limited (543384)** is not missing: it reconciles to existing recovery record `fsn-ecommerce-ventures-limited` / issuer `FSN Ecommerce Ventures Limited`, NSE symbol **NYKAA**. Do not create a duplicate.
+
+## Latest release — Jetmall Spices and Brandbucket Media
+
+PR **#302** merged as **f39725b46085dabddd33b1441d8f23b950930ebc**. Publication commit **f36dad255d2fcc491f93c9d6f29e29dd28db4cc6** added exactly two 2021 recovery records and rebuilt `data/ipos.json`. **Do not replay this batch.**
+
+| Issuer | Board | Listing | Issue price | Issue size | Market lot | Minimum bid quantity | Offer dates |
+| --- | --- | --- | ---: | ---: | ---: | ---: | --- |
+| Jetmall Spices and Masala Limited | SME | 19-Apr-2021 | INR 20 | INR 49.8m | 6,000 | 6,000 | 31-Mar–07-Apr-2021 |
+| Brandbucket Media & Technology Limited | SME | 31-Dec-2021 | INR 55 | INR 82.5m | 2,000 | 2,000 | 20–23 Dec-2021 |
+
+Five original BSE/SEBI PDFs were retained in collection run **36292730634**: **21,126,205 response bytes**, artifact **10922279333**, SHA-256 **5e8bd0331c0a13ab112ea175040a4459ebae109e6927e36c193acb4f7dca86aa**. Jetmall is bound to its SEBI final Prospectus for original terms and a SEBI-hosted lead-manager track record for listing date; Brandbucket is bound to its BSE-hosted Prospectus plus a SEBI-hosted lead-manager track record. The Jetmall BSE draft is retained as corroborating original evidence.
+
+Market lot and minimum bid quantity are stored separately because the prospectuses state both separately; equality is not inferred. **BSE scrip codes remain discovery metadata only**, and price bands, ISIN/NSE identities and unsupported values remain null.
+
+PR-head dedicated publication rehearsal **36293015660**, reviewed-BSE validation **36293015649**, and full data-contract run **36293015652** passed. Merged-main publication run **36293086864** validated and published successfully; merged-main data contract **36293086793** passed. A clean documentation merge follows this note to trigger a post-publication Pages served-byte verification before the batch is marked fully live-verified.
 
 ## Latest release — HP Adhesives and Nuvoco Vistas
 
@@ -19,7 +36,7 @@ Three original SEBI PDFs were retained in collection run **36291613284**: **9,01
 
 Only directly supported fields were published. **Board, BSE scrip code, market lot, minimum bid quantity, price band, ISIN/NSE identity and unsupported values remain null in this batch.** The BSE codes 543433 and 543334 remain discovery metadata only. HP/Nuvoco PR-head publication rehearsal **36291857793**, reviewed-BSE validation **36291857728**, and full data-contract run **36291857749** passed; merged-main publication run **36291915717** and data-contract run **36291915690** also passed.
 
-A clean post-publication documentation merge follows this note to trigger the final Pages served-byte check. Record the served record count/hash before treating this batch as fully live-verified.
+**Actual Pages verification run 36292097474 passed on attempt 1:** served `data/ipos.json` contained **1,349 records**, generation timestamp **2026-09-27T03:37:14.445Z**, SHA-256 **68a5a3dbb6cdb78e71688dcb3d8545b139da1e31ba7fe55af4260661d3b09d34**. HP Adhesives and Nuvoco are therefore **published and live-verified**.
 
 ## Latest bounded review — Sigachi / Adeshwar held, no publication
 
