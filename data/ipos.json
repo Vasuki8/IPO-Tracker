@@ -1,6 +1,6 @@
 {
   "schema_version": "1.2.0",
-  "generated_at": "2026-09-27T11:11:40.040Z",
+  "generated_at": "2026-09-27T15:52:18.059Z",
   "collection_started_at": "2026-09-22T02:14:14Z",
   "records": [
     {
@@ -46305,6 +46305,243 @@
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
       "last_collected_at": "2026-09-26T17:23:26.357Z"
+    },
+    {
+      "id": "hariom-pipe-industries-limited",
+      "issuer_name": "Hariom Pipe Industries Limited",
+      "board": null,
+      "board_evidence": [],
+      "sector": null,
+      "status": "listed",
+      "status_evidence": [
+        {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/feb-2025/1738661250075.pdf",
+          "document_type": "Prospectus — BRLM past-issues table",
+          "document_identity": "Waaree Energies Limited — Prospectus dated 23 October 2024; ITI Capital past-issues table",
+          "publication_date": null,
+          "page": 542,
+          "collected_at": "2026-09-27T15:18:03.936Z"
+        }
+      ],
+      "price_band": {
+        "value": {
+          "min": 144,
+          "max": 153
+        },
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.sebi.gov.in/sebi_data/attachdocs/apr-2023/1681727071854.pdf",
+            "document_type": "Final Prospectus",
+            "document_identity": "Hariom Pipe Industries Limited — Final Prospectus dated 7 April 2022",
+            "publication_date": null,
+            "page": 2,
+            "collected_at": "2026-09-27T15:17:30.241Z"
+          }
+        ],
+        "corrections": []
+      },
+      "issue_price": {
+        "value": 153,
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.sebi.gov.in/sebi_data/attachdocs/apr-2023/1681727071854.pdf",
+            "document_type": "Final Prospectus",
+            "document_identity": "Hariom Pipe Industries Limited — Final Prospectus dated 7 April 2022",
+            "publication_date": null,
+            "page": 2,
+            "collected_at": "2026-09-27T15:17:30.241Z"
+          }
+        ],
+        "corrections": []
+      },
+      "issue_size_inr": {
+        "value": 1300500000,
+        "status": "conflict",
+        "evidence": [
+          {
+            "url": "https://www.sebi.gov.in/sebi_data/attachdocs/apr-2023/1681727071854.pdf",
+            "document_type": "Final Prospectus",
+            "document_identity": "Hariom Pipe Industries Limited — Final Prospectus dated 7 April 2022",
+            "publication_date": null,
+            "page": 2,
+            "collected_at": "2026-09-27T15:17:30.241Z"
+          },
+          {
+            "url": "https://www.sebi.gov.in/sebi_data/attachdocs/feb-2025/1738661250075.pdf",
+            "document_type": "Prospectus — BRLM past-issues table",
+            "document_identity": "Waaree Energies Limited — Prospectus dated 23 October 2024; ITI Capital past-issues table",
+            "publication_date": null,
+            "page": 542,
+            "collected_at": "2026-09-27T15:18:03.936Z"
+          }
+        ],
+        "corrections": [
+          {
+            "kind": "unresolved_source_conflict",
+            "status": "unresolved",
+            "note": "Original Hariom prospectus reports up to INR 13,005 lakh, while the later ITI Capital table in the Waaree prospectus prints 130.05 under an INR millions column. These normalize to different rupee amounts. Preserve the original prospectus candidate with conflict status; do not silently repair the later table unit or treat it as verified corroboration.",
+            "candidate": {
+              "value": 1300500000,
+              "source_value": "13005",
+              "unit": "INR lakh",
+              "source_key": "hariom_prospectus",
+              "pdf_page": 2
+            },
+            "competing": {
+              "value": 130050000,
+              "source_value": "130.05",
+              "unit": "INR million",
+              "source_key": "hariom_track",
+              "pdf_page": 542
+            }
+          }
+        ]
+      },
+      "market_lot": {
+        "value": 1,
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.sebi.gov.in/sebi_data/attachdocs/apr-2023/1681727071854.pdf",
+            "document_type": "Final Prospectus",
+            "document_identity": "Hariom Pipe Industries Limited — Final Prospectus dated 7 April 2022",
+            "publication_date": null,
+            "page": 285,
+            "collected_at": "2026-09-27T15:17:30.241Z"
+          }
+        ],
+        "corrections": []
+      },
+      "minimum_bid_quantity": {
+        "value": 98,
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.sebi.gov.in/sebi_data/attachdocs/apr-2023/1681727071854.pdf",
+            "document_type": "Final Prospectus",
+            "document_identity": "Hariom Pipe Industries Limited — Final Prospectus dated 7 April 2022",
+            "publication_date": null,
+            "page": 2,
+            "collected_at": "2026-09-27T15:17:30.241Z"
+          }
+        ],
+        "corrections": []
+      },
+      "minimum_application_amount_inr": {
+        "value": null,
+        "status": "missing",
+        "evidence": [],
+        "corrections": []
+      },
+      "application_requirements": {
+        "retail": {
+          "minimum_application_amount_inr": {
+            "value": null,
+            "status": "missing",
+            "evidence": [],
+            "corrections": []
+          },
+          "minimum_bid_quantity": {
+            "value": null,
+            "status": "missing",
+            "evidence": [],
+            "corrections": []
+          }
+        },
+        "non_institutional": {
+          "minimum_application_amount_inr": {
+            "value": null,
+            "status": "missing",
+            "evidence": [],
+            "corrections": []
+          },
+          "minimum_bid_quantity": {
+            "value": null,
+            "status": "missing",
+            "evidence": [],
+            "corrections": []
+          }
+        },
+        "anchor_investor": {
+          "minimum_application_amount_inr": {
+            "value": null,
+            "status": "missing",
+            "evidence": [],
+            "corrections": []
+          },
+          "minimum_bid_quantity": {
+            "value": null,
+            "status": "missing",
+            "evidence": [],
+            "corrections": []
+          }
+        }
+      },
+      "open_date": {
+        "value": "2022-03-30",
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.sebi.gov.in/sebi_data/attachdocs/apr-2023/1681727071854.pdf",
+            "document_type": "Final Prospectus",
+            "document_identity": "Hariom Pipe Industries Limited — Final Prospectus dated 7 April 2022",
+            "publication_date": null,
+            "page": 2,
+            "collected_at": "2026-09-27T15:17:30.241Z"
+          }
+        ],
+        "corrections": []
+      },
+      "close_date": {
+        "value": "2022-04-05",
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.sebi.gov.in/sebi_data/attachdocs/apr-2023/1681727071854.pdf",
+            "document_type": "Final Prospectus",
+            "document_identity": "Hariom Pipe Industries Limited — Final Prospectus dated 7 April 2022",
+            "publication_date": null,
+            "page": 2,
+            "collected_at": "2026-09-27T15:17:30.241Z"
+          }
+        ],
+        "corrections": []
+      },
+      "listing_date": {
+        "value": "2022-04-13",
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.sebi.gov.in/sebi_data/attachdocs/feb-2025/1738661250075.pdf",
+            "document_type": "Prospectus — BRLM past-issues table",
+            "document_identity": "Waaree Energies Limited — Prospectus dated 23 October 2024; ITI Capital past-issues table",
+            "publication_date": null,
+            "page": 542,
+            "collected_at": "2026-09-27T15:18:03.936Z"
+          }
+        ],
+        "corrections": []
+      },
+      "documents": [
+        {
+          "type": "Final Prospectus",
+          "identity": "Hariom Pipe Industries Limited — Final Prospectus dated 7 April 2022",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/apr-2023/1681727071854.pdf",
+          "publication_date": null,
+          "collected_at": "2026-09-27T15:17:30.241Z"
+        },
+        {
+          "type": "Prospectus — BRLM past-issues table",
+          "identity": "Waaree Energies Limited — Prospectus dated 23 October 2024; ITI Capital past-issues table",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/feb-2025/1738661250075.pdf",
+          "publication_date": null,
+          "collected_at": "2026-09-27T15:18:03.936Z"
+        }
+      ],
+      "first_observed_at": "2026-09-27T15:18:03.936Z",
+      "last_collected_at": "2026-09-27T15:18:03.936Z"
     },
     {
       "id": "veranda-learning-solutions-limited",
