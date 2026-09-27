@@ -103,7 +103,7 @@ PR **#263** materialized **4 official BSE/SEBI documents / 12,642,908 response b
 
 ### Exact next backend task
 
-Review **Getalong Enterprise Limited (543372)** and **Shri Venkatesh Refineries Limited (543373)** from the **nine remaining original BSE 2021 unmatched rows**. Reconcile against latest recovery first; verify each issuer from issuer-specific official BSE/SEBI/issuer evidence, retain original bytes/hashes, preserve missing/conflicting values, and import only through a reviewed collision/idempotency-safe path. Issue-summary rows are discovery evidence only, not approval to publish facts.
+Review **Sigachi Industries Limited (543389)** and **Adeshwar Meditex Limited (543309)** from the **seven remaining original BSE 2021 unmatched rows**. Reconcile against latest recovery first and obtain fresh issuer-specific official evidence; do not reuse the earlier exploratory Sigachi URL as positive evidence. Issue-summary rows remain discovery evidence only.
 
 IRFC, Anupam Rasayan India, Exxaro Tiles, Nureca, Paras Defence, EKI Energy and Gretex are already published; do not replay those releases. PR #293 reused the established BSE verifier/importer for EKI and Gretex. Its actual Pages check passed **2 issuers / 6 fields / 0 failed issuers**, with **1,345 served records** fetched **2026-09-27T02:08:52.115Z**, SHA-256 `c3bc50254cf0a6cc5215e853a7301b98c0ac6eb30b8ad5b4d3200842d32c6f06`. See the [retained verification receipt](docs/verification/bse-2021-sme-pair-live-2026-09-27.json).
 
