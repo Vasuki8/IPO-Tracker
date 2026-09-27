@@ -9,14 +9,14 @@
   "original_official_rows": 90,
   "original_exact_matches": 74,
   "original_unmatched": 16,
-  "reviewed_and_published": 2,
-  "awaiting_review": 14,
+  "reviewed_and_published": 3,
+  "awaiting_review": 12,
   "complete_indian_ipo_universe": false,
   "auto_import_allowed": false,
   "scope_note": "Disposition of the original sixteen unmatched 2022 BSE historical rows only. Not a fresh complete-universe audit. Issue-summary fields are discovery evidence only and cannot authorize publication.",
   "next_bounded_review_codes": [
-    "543517",
-    "543524"
+    "543596",
+    "543650"
   ],
   "rows": [
     {
@@ -65,9 +65,12 @@
       "source_year": 2022,
       "source_row_index": 14,
       "source_original_match_type": "none",
-      "disposition": "awaiting_issuer_specific_official_review",
-      "stable_id": null,
-      "manifest": null
+      "disposition": "published_reviewed_ipo",
+      "stable_id": "hariom-pipe-industries-limited",
+      "manifest": "data/verified-bse-listings/2026-09-27-hariom-rainbow.json",
+      "release_pr": 311,
+      "reviewed_issuer_name": "Hariom Pipe Industries Limited",
+      "review_note": "Published with issue_size_inr retained as unresolved source conflict; no silent unit correction."
     },
     {
       "issuer_name": "Technopack Polymers Limited",
@@ -101,9 +104,11 @@
       "source_year": 2022,
       "source_row_index": 20,
       "source_original_match_type": "none",
-      "disposition": "awaiting_issuer_specific_official_review",
-      "stable_id": null,
-      "manifest": null
+      "disposition": "existing_recovery_alias",
+      "stable_id": "rainbow-childrens-medicare-limited",
+      "manifest": null,
+      "reviewed_issuer_name": "Rainbow Childrens Medicare Limited",
+      "reconciliation_note": "Apostrophe variant corroborated by original Rainbow prospectus; existing NSE-backed RAINBOW record retained, no duplicate import."
     },
     {
       "issuer_name": "Tamilnad Mercantile Bank Limited",
@@ -213,5 +218,6 @@
       "stable_id": null,
       "manifest": null
     }
-  ]
+  ],
+  "reconciled_existing_aliases": 1
 }
