@@ -6,9 +6,9 @@ Updated **2026-09-27 (UTC)** after publishing the third bounded BSE 2021 follow-
 
 PR **#290** merged as **0b3e0370039ddc998643dab91f929c7acd5fcf1f**. Its dedicated publication rehearsal passed, and publication commit **3e7160d0f409f9366889c0e264e22b5aad7be72b** added the record to 2021 recovery and rebuilt the public dataset. Only directly supported fields were published. **Board, issue size, offer dates, NSE symbol and unsupported values remain null.** The importer is rerun-safe and rejects cross-year identity/BSE-code/ISIN collisions.
 
-**Live verification is the final closeout gate.** The documentation merge following this note triggers a fresh Pages deployment after publication commit `3e7160d0`. Record the served record count/hash after that byte check succeeds.
+**Actual Pages verification run 36286692272 passed on attempt 1.** The served `data/ipos.json` matched committed bytes with **1,343 records**, dataset generation timestamp **2026-09-27T01:48:39.603Z**, SHA-256 **77375fb557de4dde0cbec6268cc2e640dbeb6b91623dd1eb8e5ad5aad3bde040**. Paras Defence is therefore **published and live-verified**.
 
-**Exact next bounded P1 task after live verification:** continue the **remaining 11 unmatched BSE 2021 rows** with the same issuer-specific official-evidence rule. The exploratory Sigachi/Latteys URLs from this run were not used because they did not provide clean issuer evidence; do not promote them without a fresh reviewed source path.
+**Exact next bounded P1 task:** continue the **remaining 11 unmatched BSE 2021 rows** with the same issuer-specific official-evidence rule. The exploratory Sigachi/Latteys URLs from this run were not used because they did not provide clean issuer evidence; do not promote them without a fresh reviewed source path.
 
 Updated **2026-09-27 (UTC)** after publishing the second bounded BSE 2021 unmatched batch.
 
