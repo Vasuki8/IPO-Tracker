@@ -136,6 +136,9 @@ jobs:
       - name: Test reviewed BSE 2021 Nureca import
         run: node scripts/test-reviewed-bse-2021-batch2-nureca.mjs
 
+      - name: Test reviewed BSE 2021 Paras Defence import
+        run: node scripts/test-reviewed-bse-2021-batch3-paras.mjs
+
       - name: Test BSE detail and listing parsers
         run: node scripts/test-extract-bse-ipo-fields.mjs
 
