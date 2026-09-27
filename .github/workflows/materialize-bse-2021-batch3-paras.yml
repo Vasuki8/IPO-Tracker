@@ -1,0 +1,48 @@
+name: Materialize Paras Defence BSE 2021 evidence
+on:
+  push:
+    branches: [research/bse-2021-batch3-20260927]
+    paths:
+      - "data/discovery/bse-2021-batch3-paras-review-2026-09-27.json"
+      - ".github/workflows/materialize-bse-2021-batch3-paras.yml"
+permissions:
+  contents: write
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: "20"}
+      - name: Fetch original official sources
+        shell: bash
+        run: |
+          mkdir -p "$RUNNER_TEMP/paras"
+          node --input-type=module <<'JS'
+          import fs from "node:fs";import {createHash} from "node:crypto";
+          const p="data/discovery/bse-2021-batch3-paras-review-2026-09-27.json",rb=fs.readFileSync(p),review=JSON.parse(rb),docs=[];
+          for(const s of review.sources){let last;for(let attempt=1;attempt<=3;attempt++){try{const r=await fetch(s.url,{redirect:"follow",signal:AbortSignal.timeout(45000),headers:{"user-agent":"Mozilla/5.0","accept":"application/pdf,text/html,*/*"}});const host=new URL(r.url).hostname;if(!r.ok||!["www.bseindia.com","www.sebi.gov.in"].includes(host))throw Error("bad_"+r.status);const b=Buffer.from(await r.arrayBuffer()),pdf=b.subarray(0,5).toString()==="%PDF-";if(s.key.includes("sebi")&&!pdf)throw Error("sebi_not_pdf");const file=s.key+(pdf?".pdf":".html");fs.writeFileSync(process.env.RUNNER_TEMP+"/paras/"+file,b);docs.push({key:s.key,source_url:s.url,final_url:r.url,http_status:r.status,response_bytes:b.length,response_sha256:createHash("sha256").update(b).digest("hex"),collected_at:new Date().toISOString(),attempt,file});break}catch(e){last=e;if(attempt===3)throw e;await new Promise(r=>setTimeout(r,attempt*1500))}}}
+          const receipt={schema_version:"1.0.0",status:"complete",review_path:p,review_sha256:createHash("sha256").update(rb).digest("hex"),collection_completed_at:new Date().toISOString(),source_documents_collected:docs.length,total_response_bytes:docs.reduce((n,d)=>n+d.response_bytes,0),documents:docs};fs.writeFileSync(process.env.RUNNER_TEMP+"/paras/receipt.json",JSON.stringify(receipt,null,2)+"\n");
+          JS
+      - id: evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: bse-2021-paras-evidence
+          path: ${{ runner.temp }}/paras
+          retention-days: 14
+          compression-level: 0
+      - name: Bind artifact and retain receipt
+        env:
+          ARTIFACT_ID: ${{ steps.evidence.outputs.artifact-id }}
+          ARTIFACT_DIGEST: ${{ steps.evidence.outputs.artifact-digest }}
+        shell: bash
+        run: |
+          node --input-type=module <<'JS'
+          import fs from "node:fs";const p=process.env.RUNNER_TEMP+"/paras/receipt.json",r=JSON.parse(fs.readFileSync(p));r.workflow_run_id=process.env.GITHUB_RUN_ID;r.workflow_artifact={artifact_id:Number(process.env.ARTIFACT_ID),artifact_digest:String(process.env.ARTIFACT_DIGEST).startsWith("sha256:")?process.env.ARTIFACT_DIGEST:"sha256:"+process.env.ARTIFACT_DIGEST,retention_days:14};fs.writeFileSync(p,JSON.stringify(r,null,2)+"\n");
+          JS
+          git config user.name "github-actions[bot]"; git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          mkdir -p data/evidence; cp "$RUNNER_TEMP/paras/receipt.json" data/evidence/bse-2021-batch3-paras-source-receipt-2026-09-27.json
+          git add data/evidence/bse-2021-batch3-paras-source-receipt-2026-09-27.json
+          git commit -m "data(evidence): retain Paras Defence BSE 2021 receipt"
+          git push origin HEAD:research/bse-2021-batch3-20260927
