@@ -9,3 +9,14 @@ console.log("NSE historical universe tests passed.");
 // adjacent historical years remain isolated.
 const y2024={records:[]};const y2024Result=materializeYear(rows,2024,y2024,"2026-09-23T16:30:00Z");
 assert.equal(y2024Result.official_rows,1);assert.equal(y2024.records[0].nse_symbol,"OLD");
+
+const corrected={records:[{id:"computer-age-management-services-limited",issuer_name:"Computer Age Management Services Limited",nse_symbol:"CAMS",nse_series:"EQ",listing_date:{value:"2020-10-01"}}]};
+const badPast=[{symbol:"CAMS",company:"Computer Age Management Services Limited",securityType:"EQ",listingDate:"07-MAY-2021",issuePrice:"1230"}];
+const identityIndex=(await import("./sync-nse-historical.mjs")).buildRecoveryIdentityIndex({"2020":corrected,"2021":{records:[]}});
+const y2021={records:[]};
+const held=materializeYear(badPast,2021,y2021,"2026-09-27T21:30:00Z",identityIndex);
+assert.equal(held.added,0);
+assert.equal(held.cross_year_holds,1);
+assert.equal(y2021.records.length,0);
+assert.deepEqual(held.holds[0].existing_years,[2020]);
+assert.equal(held.holds[0].existing_ids[0],"computer-age-management-services-limited");
