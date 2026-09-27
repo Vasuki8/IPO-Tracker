@@ -3,6 +3,7 @@ import fs from "node:fs";
 import {spawnSync} from "node:child_process";
 import {apply,context,expected,loadRecovery,FIELDS,REVIEW,RECEIPT} from "./apply-reviewed-bse-2022-tmb-dcx.mjs";
 import {sha256} from "./verify-bse-listing-candidates.mjs";
+import {verifyTmbDcxPublication} from "./verify-bse-2022-tmb-dcx.mjs";
 
 const ctx=context(),rows=expected(ctx),current=loadRecovery(),before=structuredClone(current);
 for(const m of Object.values(before))m.records=m.records.filter(r=>!rows.some(x=>x.id===r.id));
@@ -27,4 +28,9 @@ assert.equal(ctx.manifest.review_sha256,sha256(fs.readFileSync(REVIEW)));assert.
 const bytes=fs.readFileSync("data/recovery/2022/nse-issue-information.json");
 const cli=spawnSync(process.execPath,["scripts/apply-reviewed-bse-2022-tmb-dcx.mjs","--check"],{encoding:"utf8"});
 assert.equal(cli.status,0,cli.stderr);assert.deepEqual(fs.readFileSync("data/recovery/2022/nse-issue-information.json"),bytes);
-console.log(JSON.stringify({bse_2022_tmb_dcx_tests:{records:2,verified_fields:16,field_page_evidence:true,source_hashes:true,lot_vs_min_bid:true,null_preserving:true,rerun_safe:true,cross_year_collision:true,changed_fact_rejected:true,manifest_content_binding:true,read_only_check:true}}));
+const published=JSON.parse(fs.readFileSync("data/ipos.json","utf8"));
+let fetchCalls=0;
+const fakeFetch=async()=>{fetchCalls++;return new Response(JSON.stringify(published),{status:200,headers:{"content-type":"application/json"}})};
+const live=await verifyTmbDcxPublication({fetchImpl:fakeFetch});
+assert.equal(fetchCalls,1);assert.equal(live.ok,true);assert.deepEqual(live.records,["tamilnad-mercantile-bank-limited","dcx-systems-limited"]);
+console.log(JSON.stringify({bse_2022_tmb_dcx_tests:{records:2,verified_fields:16,field_page_evidence:true,source_hashes:true,lot_vs_min_bid:true,null_preserving:true,rerun_safe:true,cross_year_collision:true,changed_fact_rejected:true,manifest_content_binding:true,read_only_check:true,live_fetch_contract:true}}));
