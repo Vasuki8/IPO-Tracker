@@ -1,7 +1,7 @@
 /* Static directory UI. Published data and its source fields remain read-only. */
 let IPO_DATA = [];
 let loadState = "loading";
-const PAGE_SIZE = 20;
+const PAGE_SIZES = [25, 50, 100];
 const state = {
   board: "all",
   status: "all",
@@ -9,6 +9,7 @@ const state = {
   year: "all",
   sort: "newest",
   page: 1,
+  pageSize: PAGE_SIZES[0],
 };
 const $ = (selector) => document.querySelector(selector);
 const $$ = (selector) => [...document.querySelectorAll(selector)];
@@ -215,8 +216,10 @@ function updateUrl() {
     year: "all",
     sort: "newest",
     page: 1,
+    pageSize: PAGE_SIZES[0],
   })) {
-    const param = key === "query" ? "q" : key;
+    const param =
+      key === "query" ? "q" : key === "pageSize" ? "perPage" : key;
     if (state[key] === fallback) url.searchParams.delete(param);
     else url.searchParams.set(param, state[key]);
   }
@@ -239,17 +242,22 @@ function readUrl() {
     ? params.get("year")
     : "all";
   state.sort = params.get("sort") === "name" ? "name" : "newest";
+  const requestedPageSize = Number(params.get("perPage"));
+  state.pageSize = PAGE_SIZES.includes(requestedPageSize)
+    ? requestedPageSize
+    : PAGE_SIZES[0];
   state.page = Math.max(1, Math.floor(Number(params.get("page")) || 1));
   $("#searchInput").value = state.query;
   $("#yearFilter").value = state.year;
   $("#sortFilter").value = state.sort;
+  $("#pageSize").value = String(state.pageSize);
 }
 function render() {
   const rows = filteredRows();
-  const pages = Math.max(1, Math.ceil(rows.length / PAGE_SIZE));
+  const pages = Math.max(1, Math.ceil(rows.length / state.pageSize));
   state.page = Math.min(state.page, pages);
-  const start = (state.page - 1) * PAGE_SIZE;
-  const pageRows = rows.slice(start, start + PAGE_SIZE);
+  const start = (state.page - 1) * state.pageSize;
+  const pageRows = rows.slice(start, start + state.pageSize);
   $("#ipoRows").innerHTML = pageRows
     .map(
       (ipo) => `<tr>
@@ -574,6 +582,15 @@ $("#yearFilter").addEventListener("change", (event) =>
 $("#sortFilter").addEventListener("change", (event) =>
   changeFilter("sort", event.target.value),
 );
+$("#pageSize").addEventListener("change", (event) => {
+  const pageSize = Number(event.target.value);
+  if (!PAGE_SIZES.includes(pageSize)) return;
+  state.pageSize = pageSize;
+  state.page = 1;
+  render();
+  updateUrl();
+  $(".directory").scrollIntoView({ behavior: "smooth" });
+});
 for (const key of ["board", "status"])
   $(`#${key}Filter`).addEventListener("click", (event) => {
     const button = event.target.closest(`[data-${key}]`);

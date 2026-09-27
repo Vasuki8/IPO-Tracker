@@ -10,7 +10,7 @@
     <meta name="theme-color" content="#fafbf8" />
     <title>IPO Tracker — Indian IPO directory</title>
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
-    <link rel="stylesheet" href="assets/styles.css?v=20260926-drhp2" />
+    <link rel="stylesheet" href="assets/styles.css?v=20260927-pagesize1" />
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -238,7 +238,17 @@
               </button>
             </div>
             <div class="table-footer">
-              <span id="resultCount" role="status" aria-live="polite"></span>
+              <div class="table-footer__summary">
+                <span id="resultCount" role="status" aria-live="polite"></span>
+                <label class="page-size-control">
+                  <span>Rows per page</span>
+                  <select id="pageSize" aria-label="IPOs per page">
+                    <option value="25">25</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                  </select>
+                </label>
+              </div>
               <nav class="pagination" aria-label="Results pages">
                 <button
                   id="previousPage"
@@ -457,6 +467,6 @@
     >
     <script src="assets/ipo-order.js?v=20260922-newest2"></script>
     <script src="assets/lot-size.js?v=20260922-lot1"></script>
-    <script src="assets/app.js?v=20260926-drhp2"></script>
+    <script src="assets/app.js?v=20260927-pagesize1"></script>
   </body>
 </html>

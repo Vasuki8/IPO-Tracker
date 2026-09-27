@@ -73,9 +73,10 @@ async function loaded() {
 try {
   await page.goto(base);
   await loaded();
+  assert.equal(await page.locator("#pageSize").inputValue(), "25");
   assert.equal(
     await page.locator("#ipoRows tr").count(),
-    Math.min(20, data.records.length),
+    Math.min(25, data.records.length),
   );
   assert.equal(
     await page.locator("#metricTotal").textContent(),
@@ -86,14 +87,34 @@ try {
     data.records[0].issuer_name,
   );
   await screenshot("ipo-desktop.png");
-  if (data.records.length > 20) {
+  if (data.records.length > 25) {
     await page.locator("#nextPage").click();
     assert.equal(
       await page.locator("#pageLabel").textContent(),
-      `2 / ${Math.ceil(data.records.length / 20)}`,
+      `2 / ${Math.ceil(data.records.length / 25)}`,
     );
-    await page.locator("#previousPage").click();
   }
+  await page.locator("#pageSize").selectOption("50");
+  assert.equal(await page.locator("#pageLabel").textContent(), `1 / ${Math.max(1, Math.ceil(data.records.length / 50))}`);
+  assert.equal(
+    await page.locator("#ipoRows tr").count(),
+    Math.min(50, data.records.length),
+  );
+  assert.equal(new URL(page.url()).searchParams.get("perPage"), "50");
+  await page.reload();
+  await loaded();
+  assert.equal(await page.locator("#pageSize").inputValue(), "50");
+  assert.equal(
+    await page.locator("#ipoRows tr").count(),
+    Math.min(50, data.records.length),
+  );
+  await page.locator("#pageSize").selectOption("100");
+  assert.equal(
+    await page.locator("#ipoRows tr").count(),
+    Math.min(100, data.records.length),
+  );
+  await page.locator("#pageSize").selectOption("25");
+  assert.equal(new URL(page.url()).searchParams.has("perPage"), false);
   await page.locator("#searchInput").fill(sourceRecord.issuer_name);
   assert.equal(await page.locator("#ipoRows tr").count(), 1);
   await page.locator("#ipoRows .company-name").first().click();
@@ -395,7 +416,7 @@ try {
   await page.waitForSelector("#errorState:not([hidden])");
   assert.deepEqual(errors, []);
   console.log(
-    "UI browser checks passed: real data, filters, pagination, direct links/back, source evidence, mobile 320–1440px, fractional prices, missing/provisional/conflict, escaping, invalid URLs, loading/error/retry/empty.",
+    "UI browser checks passed: real data, filters, 25/50/100 pagination, direct links/back, source evidence, mobile 320–1440px, fractional prices, missing/provisional/conflict, escaping, invalid URLs, loading/error/retry/empty.",
   );
 } finally {
   await browser.close();
