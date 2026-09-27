@@ -19,7 +19,7 @@ PR **#295** merged as **a8157cbc2b54441568de67a904d9ef0fbcd0f5f8**. Publication 
 
 Four issuer-specific BSE PDFs were retained in collection run **36288334517**: **10,811,327 original response bytes**, artifact **10920948015**, SHA-256 **59b253317b595943d71100faf3dd61873e17053f42ee1c0412ba83c7dc3ee2ff**. Getalong is bound to its BSE-hosted draft prospectus plus issuer annual-report filing; SVRL is bound to its BSE-hosted final prospectus plus BSE listing/index release. Unsupported price bands, ISIN/NSE identity and Getalong offer/minimum-bid fields remain missing. Market lot and minimum bid quantity remain distinct.
 
-PR-head publication rehearsal **36288408467**, reviewed-BSE validation **36288408451**, and full data-contract run **36288408461** passed. Merged-main publication run **36288465950** validated and published successfully. A clean post-publication documentation merge follows this note to trigger the final Pages served-byte check; record that result before treating this batch as fully live-verified.
+PR-head publication rehearsal **36288408467**, reviewed-BSE validation **36288408451**, and full data-contract run **36288408461** passed. Merged-main publication run **36288465950** validated and published successfully. **Actual Pages verification run 36288580617 passed on attempt 1:** served `data/ipos.json` contains **1,347 records**, generation timestamp **2026-09-27T02:25:51.579Z**, SHA-256 **a4bd158642fb2f62709d564c9f7dffe8edafe4abe75e4271f4f70185bdfdf364**. Getalong and SVRL are therefore **published and live-verified**.
 
 ## Latest release — EKI Energy and Gretex complete
 
