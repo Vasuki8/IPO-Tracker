@@ -1904,10 +1904,10 @@
     "2021|pb-fintech-limited": {
       "issuer_name": "PB Fintech Limited",
       "listing_date": "2021-11-15",
-      "last_attempted_at": "2026-09-25T23:40:28.304Z",
+      "last_attempted_at": "2026-09-27T02:10:30.203Z",
       "parser_version": "1.2.0",
       "status": "error",
-      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 75 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-historical-pdf-XRqwQN/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/oct-2021/1635395300515.pdf\ncurl: (18) transfer closed with 14668539 bytes remaining to read\ncurl: (28) Operation timed out after 75000 milliseconds with 24228271 out of 27205538 bytes received\n",
+      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 75 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-historical-pdf-lm2wGS/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/oct-2021/1635395300515.pdf\ncurl: (18) transfer closed with 18286939 bytes remaining to read\ncurl: (28) Operation timed out after 75000 milliseconds with 21349807 out of 27205538 bytes received\n",
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2021/1635395300515.pdf"
     },
     "2025|jain-resource-recycling-limited": {
@@ -2827,10 +2827,26 @@
     "2025|euro-pratik-sales-limited": {
       "issuer_name": "Euro Pratik Sales Limited",
       "listing_date": "2025-09-23",
-      "last_attempted_at": "2026-09-25T23:40:28.304Z",
+      "last_attempted_at": "2026-09-27T02:10:30.203Z",
       "parser_version": "1.2.0",
-      "status": "error",
-      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 75 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-historical-pdf-x0Smfy/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/sep-2025/1757407216296.pdf\ncurl: (18) transfer closed with 10561210 bytes remaining to read\ncurl: (18) transfer closed with 13953490 bytes remaining to read\n",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Euro Pratik Sales Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2025/1757407216296.pdf",
+        "publication_date": "2025-09-09"
+      },
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2025/1757407216296.pdf"
     },
     "2024|western-carriers-india-limited": {
