@@ -25,9 +25,9 @@ jobs:
           const out=process.env.OUT,receipt=[];
           const docs=[
             ["tmb_prospectus","https://www.sebi.gov.in/sebi_data/attachdocs/sep-2022/1663570839596.pdf","pdf"],
-            ["tmb_listing","https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20220914-31","html"],
+            ["tmb_track","https://www.sebi.gov.in/sebi_data/attachdocs/dec-2023/1702623912451.PDF","pdf"],
             ["dcx_prospectus","https://www.sebi.gov.in/sebi_data/attachdocs/nov-2022/1667796864708.pdf","pdf"],
-            ["dcx_listing","https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20221110-32","html"]
+            ["dcx_track","https://www.sebi.gov.in/sebi_data/attachdocs/nov-2023/1700224103192.pdf","pdf"]
           ];
           for(const[key,url,type]of docs){
             const file=path.join(out,key+"."+type);
@@ -37,8 +37,7 @@ jobs:
             receipt.push({key,source_url:url,http_status:200,response_bytes:b.length,response_sha256:createHash("sha256").update(b).digest("hex"),collected_at:new Date().toISOString(),download_method:"curl_retry_4",type});
           }
           const clean=s=>String(s).replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi," ").replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi," ").replace(/<[^>]+>/g," ").replace(/&nbsp;|&#160;/gi," ").replace(/&amp;/gi,"&").replace(/\s+/g," ").trim();
-          for(const k of ["tmb_prospectus","dcx_prospectus"]){const t=fs.readFileSync(path.join(out,k+".txt"),"utf8").replace(/\s+/g," ");console.log(k,t.match(/.{0,180}(?:TAMILNAD MERCANTILE BANK LIMITED|DCX SYSTEMS LIMITED|Offer Price|Issue Price|Bid\/Offer Opens|Bid\/Offer Closes|minimum bid|Market Lot).{0,260}/i)?.[0]||"no-sample");}
-          for(const k of ["tmb_listing","dcx_listing"]){const t=clean(fs.readFileSync(path.join(out,k+".html"),"utf8"));console.log(k,t.match(/.{0,180}(?:Tamilnad Mercantile Bank Limited|DCX Systems Limited).{0,500}/i)?.[0]||"no-sample");}
+          for(const k of ["tmb_prospectus","tmb_track","dcx_prospectus","dcx_track"]){const t=fs.readFileSync(path.join(out,k+".txt"),"utf8").replace(/\s+/g," ");console.log(k,t.match(/.{0,180}(?:TAMILNAD MERCANTILE BANK LIMITED|DCX SYSTEMS LIMITED|Offer Price|Issue Price|Bid\/Offer Opens|Bid\/Offer Closes|minimum bid|Market Lot).{0,260}/i)?.[0]||"no-sample");}
           fs.writeFileSync(path.join(out,"receipt.json"),JSON.stringify({schema_version:"1.0.0",status:"collected",workflow_run_id:process.env.GITHUB_RUN_ID,total_response_bytes:receipt.reduce((n,d)=>n+d.response_bytes,0),documents:receipt},null,2)+"\n");
           JS
       - uses: actions/upload-artifact@v4
