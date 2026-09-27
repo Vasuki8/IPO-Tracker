@@ -4,9 +4,19 @@ Updated **2026-09-27 (UTC)** after publishing Veranda Learning Solutions / Uma E
 
 ## Exact next bounded task
 
-Continue the **2022 BSE unmatched review** with two Mainboard issuers: **Hariom Pipe Industries Limited (543517)** and **Rainbow Children's Medicare Limited (543524)**. Reconcile against latest recovery first, then retain issuer-specific official BSE/SEBI evidence and original bytes before any import.
+Continue the **2022 BSE unmatched review** with two Mainboard issuers: **Tamilnad Mercantile Bank Limited (543596)** and **DCX Systems Limited (543650)**. Reconcile against latest recovery first, then retain issuer-specific official BSE/SEBI evidence and original bytes before any import.
 
-The pinned [2022 disposition](../data/discovery/bse-2022-unmatched-disposition-2026-09-27.json) accounts for all **16 original unmatched rows: 2 reviewed/published and 14 awaiting review**. The retained 2022 source surface remains **90 official rows / 74 original exact matches / 16 original unmatched**. This is a bounded follow-up, not a complete Indian IPO-universe claim.
+The pinned [2022 disposition](../data/discovery/bse-2022-unmatched-disposition-2026-09-27.json) now accounts for the original 16 unmatched rows as **3 reviewed/published + 1 existing-recovery alias + 12 awaiting review**. The retained 2022 source surface remains **90 official rows / 74 original exact matches / 16 original unmatched**. This remains a bounded follow-up, not a complete Indian IPO-universe claim.
+
+## Latest release — Hariom published, Rainbow reconciled
+
+PR **#311** merged as **c4b8e7163d61f698699df3e7b6cc517367d65883**. Publication commit **277468aab66cea3e314e0f42c7e48395e911824a** added exactly one new 2022 recovery record: **Hariom Pipe Industries Limited**. **Rainbow Children's Medicare Limited** was reviewed as an apostrophe/name-spacing alias of existing recovery record `rainbow-childrens-medicare-limited` / NSE **RAINBOW** and was not duplicated or changed.
+
+Hariom retained facts: price band **INR 144–153**, issue price **INR 153**, bid dates **30-Mar–05-Apr-2022**, listing **13-Apr-2022**, trading lot **1 share**, minimum bid **98 shares**. Board and exchange identifiers remain null.
+
+**Hariom issue size is intentionally not marked verified.** The original Hariom prospectus reports up to **INR 13,005 lakh** (normalized candidate INR 1,300,500,000), while the later ITI Capital past-issues table inside the Waaree Energies prospectus prints **130.05 under an INR millions column** (normalized INR 130,050,000). Recovery preserves the original prospectus candidate with `status: conflict`, both sources, both reported units, and an unresolved correction note. Do not silently repair or collapse this conflict.
+
+Three original SEBI PDFs were retained in collection run **36328972266**: **25,147,772 response bytes**, artifact **10934534436**, SHA-256 **9782e741a776ed8197bd83a7379dc8770833b4aabb197fd761d1399344052cb0**. PR-head publication/data-contract/reviewed-BSE checks passed; merged-main publication run **36331102654** succeeded. This documentation merge intentionally triggers a clean Pages deployment so actual served bytes can be recorded before the batch is marked fully live-verified.
 
 ## Latest release — Veranda Learning Solutions and Uma Exports
 
