@@ -13,10 +13,17 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with: {node-version: "20"}
-      - run: node scripts/verify-bse-listing-candidates.mjs --input=data/discovery/bse-listing-candidates-sigachi-adeshwar-2026-09-27.json --output="$RUNNER_TEMP/verified.json" || status=$?\n          cat "$RUNNER_TEMP/verified.json"\n          exit ${status:-0}
+      - name: Verify and expose diagnostics
+        shell: bash
+        run: |
+          set +e
+          node scripts/verify-bse-listing-candidates.mjs --input=data/discovery/bse-listing-candidates-sigachi-adeshwar-2026-09-27.json --output="$RUNNER_TEMP/verified.json"
+          status=$?
+          cat "$RUNNER_TEMP/verified.json"
+          exit "$status"
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: sigachi-adeshwar-verified-notices
           path: ${{ runner.temp }}/verified.json
           retention-days: 14
-
