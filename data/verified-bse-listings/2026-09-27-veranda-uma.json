@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0.0",
+  "status": "approved_bse_2022_veranda_uma_import",
+  "review_path": "data/discovery/bse-2022-veranda-uma-review-2026-09-27.json",
+  "receipt_path": "data/evidence/bse-2022-veranda-uma-source-receipt-2026-09-27.json",
+  "source_artifact_id": 10929843482,
+  "source_artifact_sha256": "8f485b10e03a3f8936e55d9305bfd7b5917baf9fa141016284abb943cb02ffc6",
+  "target_year": 2022,
+  "actions": [
+    {
+      "key": "veranda",
+      "stable_id": "veranda-learning-solutions-limited"
+    },
+    {
+      "key": "uma",
+      "stable_id": "uma-exports-limited"
+    }
+  ],
+  "rules": {
+    "no_inference": true,
+    "bse_scrip_codes": "discovery-only",
+    "market_lot_distinct_from_minimum_bid_quantity": true,
+    "unsupported_fields": "missing"
+  }
+}
