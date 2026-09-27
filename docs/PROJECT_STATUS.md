@@ -1,12 +1,25 @@
 # Project status and handoff
 
-Updated **2026-09-27 (UTC)** after publishing Getalong Enterprise / Shri Venkatesh Refineries. Active priority remains **P1 issuer identity and universe correctness**.
+Updated **2026-09-27 (UTC)** after publishing HP Adhesives / Nuvoco Vistas. Active priority remains **P1 issuer identity and universe correctness**.
 
 ## Exact next bounded task
 
-Review **HP Adhesives Limited (543433)** and **Nuvoco Vistas Corporation Limited (543334)** next. Sigachi Industries (543389) and Adeshwar Meditex (543309) were re-reviewed on 2026-09-27 and remain held: fresh guessed BSE notice numbers resolved to unrelated notices, while guessed BSE/SEBI prospectus URLs returned 404. No values were published and those failed URLs must not be reused as positive evidence.
+Review **Jetmall Spices and Masala Limited (543286)** and **Brandbucket Media & Technology Limited (543439)** next. The pinned disposition now accounts for all **16 original unmatched rows: eleven reviewed/published and five awaiting review**. Sigachi Industries (543389) and Adeshwar Meditex (543309) remain held after failed source attempts; FSN E-Commerce Ventures (543384) remains pending separate identity reconciliation. Overall Indian IPO-universe coverage remains incomplete.
 
-The pinned disposition now accounts for all **16 original unmatched rows: nine reviewed/published and seven awaiting review**. Overall Indian IPO-universe coverage remains incomplete.
+## Latest release — HP Adhesives and Nuvoco Vistas
+
+PR **#299** merged as **93c5bb0a880991b6bd7a767f0a4647803af18451**. Publication commit **2af9da4046d61c3d91438fd498cfd4745df943e6** added exactly two 2021 recovery records and rebuilt `data/ipos.json`. **Do not replay this batch.**
+
+| Issuer | Listing | Issue price | Issue size | Offer dates |
+| --- | --- | ---: | ---: | --- |
+| HP Adhesives Limited | 27-Dec-2021 | INR 274 | INR 1,259,633,000 | 15–17 Dec 2021 |
+| Nuvoco Vistas Corporation Limited | 23-Aug-2021 | INR 570 | INR 50,000,000,000 | missing |
+
+Three original SEBI PDFs were retained in collection run **36291613284**: **9,016,934 response bytes**, artifact **10922282542**, SHA-256 **7c6dbe124e583c0a95753c8641186b84b17e4e6ee135503a51c9d817679de318**. HP is bound to the final Prospectus for IPO identity, ₹274 price, ₹12,596.33 lakh aggregate offer and 15–17 Dec offer dates, plus a SEBI-hosted BRLM track-record document for the 27-Dec listing date. Nuvoco is bound to the September 2021 SEBI Bulletin for IPO identity, 23-Aug listing, ₹570 issue price and ₹5,000 crore issue size.
+
+Only directly supported fields were published. **Board, BSE scrip code, market lot, minimum bid quantity, price band, ISIN/NSE identity and unsupported values remain null in this batch.** The BSE codes 543433 and 543334 remain discovery metadata only. HP/Nuvoco PR-head publication rehearsal **36291857793**, reviewed-BSE validation **36291857728**, and full data-contract run **36291857749** passed; merged-main publication run **36291915717** and data-contract run **36291915690** also passed.
+
+A clean post-publication documentation merge follows this note to trigger the final Pages served-byte check. Record the served record count/hash before treating this batch as fully live-verified.
 
 ## Latest bounded review — Sigachi / Adeshwar held, no publication
 
