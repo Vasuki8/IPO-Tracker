@@ -151,6 +151,9 @@ jobs:
       - name: Test final reviewed BSE 2021 pair
         run: node scripts/test-reviewed-bse-2021-final-pair.mjs
 
+      - name: Test reviewed Veranda and Uma import
+        run: node scripts/test-reviewed-bse-2022-veranda-uma.mjs
+
       - name: Test BSE detail and listing parsers
         run: node scripts/test-extract-bse-ipo-fields.mjs
 

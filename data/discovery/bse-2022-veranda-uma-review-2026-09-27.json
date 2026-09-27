@@ -1,0 +1,135 @@
+{
+  "schema_version": "1.0.0",
+  "status": "reviewed_bse_2022_veranda_uma",
+  "source_year": 2022,
+  "auto_import_allowed": false,
+  "publication_change": false,
+  "actions": [
+    {
+      "key": "veranda",
+      "issuer_name": "Veranda Learning Solutions Limited",
+      "stable_id": "veranda-learning-solutions-limited",
+      "discovery_bse_scrip_code": "543514",
+      "decision": "confirmed_missing_historical_ipo_candidate",
+      "target": {
+        "board": null,
+        "listing_date": "2022-04-11",
+        "issue_price": 137,
+        "issue_size_inr": 2000000000,
+        "open_date": "2022-03-29",
+        "close_date": "2022-03-31",
+        "market_lot": 1,
+        "minimum_bid_quantity": 100
+      },
+      "identity_sources": [
+        "veranda_prospectus",
+        "veranda_annual"
+      ],
+      "field_sources": {
+        "listing_date": "veranda_annual",
+        "issue_price": "veranda_prospectus",
+        "issue_size_inr": "veranda_prospectus",
+        "open_date": "veranda_prospectus",
+        "close_date": "veranda_prospectus",
+        "market_lot": "veranda_prospectus",
+        "minimum_bid_quantity": "veranda_prospectus"
+      }
+    },
+    {
+      "key": "uma",
+      "issuer_name": "Uma Exports Limited",
+      "stable_id": "uma-exports-limited",
+      "discovery_bse_scrip_code": "543513",
+      "decision": "confirmed_missing_historical_ipo_candidate",
+      "target": {
+        "board": null,
+        "listing_date": "2022-04-07",
+        "issue_price": 68,
+        "issue_size_inr": 600000000,
+        "open_date": "2022-03-28",
+        "close_date": "2022-03-30",
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "identity_sources": [
+        "uma_rhp",
+        "uma_annual"
+      ],
+      "field_sources": {
+        "listing_date": "uma_annual",
+        "issue_price": "uma_annual",
+        "issue_size_inr": "uma_annual",
+        "open_date": "uma_annual",
+        "close_date": "uma_annual"
+      }
+    }
+  ],
+  "sources": [
+    {
+      "key": "veranda_prospectus",
+      "authority": "SEBI",
+      "document_type": "Final Prospectus",
+      "url": "https://www.sebi.gov.in/sebi_data/attachdocs/apr-2023/1681124753382.pdf",
+      "publication_date": "2022-04-05",
+      "page": "cover / definitions / issue terms",
+      "evidence_locator": "IPO identity; ₹137 offer price; ₹2,000 million offer; 29–31 Mar 2022 bid period; tradable lot one share; minimum bid 100 shares.",
+      "projection": {
+        "issuer": "Veranda Learning Solutions Limited",
+        "issue_type": "IPO",
+        "issue_price": 137,
+        "issue_size_inr": 2000000000,
+        "open_date": "2022-03-29",
+        "close_date": "2022-03-31",
+        "market_lot": 1,
+        "minimum_bid_quantity": 100
+      }
+    },
+    {
+      "key": "veranda_annual",
+      "authority": "BSE-hosted issuer filing",
+      "document_type": "Annual Report 2021-22",
+      "url": "https://www.bseindia.com/bseplus/AnnualReport/543514/77133543514.pdf",
+      "publication_date": null,
+      "page": "Board's Report / general shareholder information / Note 14.2",
+      "evidence_locator": "IPO listed on BSE/NSE with effect from 11-Apr-2022; IPO fresh issue ₹20,000 lakh; ₹137 allocation noted.",
+      "projection": {
+        "issuer": "Veranda Learning Solutions Limited",
+        "listing_date": "2022-04-11"
+      }
+    },
+    {
+      "key": "uma_rhp",
+      "authority": "SEBI",
+      "document_type": "Red Herring Prospectus",
+      "url": "https://www.sebi.gov.in/sebi_data/attachdocs/mar-2022/1647946195230.PDF",
+      "publication_date": "2022-03-15",
+      "page": "cover / issue structure",
+      "evidence_locator": "IPO identity; issue aggregating up to ₹6,000 lakh; 28–30 Mar 2022 issue programme.",
+      "projection": {
+        "issuer": "Uma Exports Limited",
+        "issue_type": "IPO",
+        "issue_size_inr": 600000000,
+        "open_date": "2022-03-28",
+        "close_date": "2022-03-30"
+      }
+    },
+    {
+      "key": "uma_annual",
+      "authority": "BSE-hosted issuer filing",
+      "document_type": "Annual Report 2021-22",
+      "url": "https://www.bseindia.com/bseplus/AnnualReport/543513/75230543513.pdf",
+      "publication_date": null,
+      "page": "Directors' Report / Note 14.8",
+      "evidence_locator": "IPO opened 28-Mar and closed 30-Mar-2022; issue price ₹68; listing 07-Apr-2022; annual report states the IPO mopped up ₹60 crore.",
+      "projection": {
+        "issuer": "Uma Exports Limited",
+        "issue_type": "IPO",
+        "listing_date": "2022-04-07",
+        "issue_price": 68,
+        "issue_size_inr": 600000000,
+        "open_date": "2022-03-28",
+        "close_date": "2022-03-30"
+      }
+    }
+  ]
+}
