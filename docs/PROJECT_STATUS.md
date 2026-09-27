@@ -1,12 +1,25 @@
 # Project status and handoff
 
-Updated **2026-09-27 (UTC)** after publishing Veranda Learning Solutions / Uma Exports. Active priority remains **P1 issuer identity and universe correctness**.
+Updated **2026-09-27 (UTC)** after publishing and live-verifying Tamilnad Mercantile Bank / DCX Systems. Active priority remains **P1 issuer identity and universe correctness**.
 
 ## Exact next bounded task
 
-Continue the **2022 BSE unmatched review** with two Mainboard issuers: **Tamilnad Mercantile Bank Limited (543596)** and **DCX Systems Limited (543650)**. Reconcile against latest recovery first, then retain issuer-specific official BSE/SEBI evidence and original bytes before any import.
+Continue the **2022 BSE unmatched review** with **MAAGH ADVERTISING AND MARKETING SERVICES LIMITED (543624)** and **Technopack Polymers Limited (543656)**. Reconcile against latest recovery first, then retain issuer-specific official BSE/SEBI evidence and original bytes before any import. Keep BSE issue-summary values as discovery evidence only.
 
-The pinned [2022 disposition](../data/discovery/bse-2022-unmatched-disposition-2026-09-27.json) now accounts for the original 16 unmatched rows as **3 reviewed/published + 1 existing-recovery alias + 12 awaiting review**. The retained 2022 source surface remains **90 official rows / 74 original exact matches / 16 original unmatched**. This remains a bounded follow-up, not a complete Indian IPO-universe claim.
+The pinned [2022 disposition](../data/discovery/bse-2022-unmatched-disposition-2026-09-27.json) now accounts for the original 16 unmatched rows as **5 reviewed/published + 1 existing-recovery alias + 10 awaiting review**. The retained 2022 source surface remains **90 official rows / 74 original exact matches / 16 original unmatched**. This remains a bounded follow-up, not a complete Indian IPO-universe claim.
+
+## Latest release — TMB and DCX published and live-verified
+
+PR **#313** merged as **ac3e9542d4892ba33754bd9ee8c347cfdecfb7a9**. Publication commit **fc174a5fe9d1adff6259ca92d5dd3fd382eeab81** added exactly two 2022 recovery records and rebuilt the public dataset: **Tamilnad Mercantile Bank Limited** and **DCX Systems Limited**. **Do not replay this batch.**
+
+| Issuer | Price band | Issue price | Issue size | Market lot | Minimum bid | Offer dates | Listing |
+| --- | --- | ---: | ---: | ---: | ---: | --- | --- |
+| Tamilnad Mercantile Bank Limited | INR 500–525 | INR 510 | INR 8,078.4m | 1 | 28 | 05–07 Sep-2022 | 15-Sep-2022 |
+| DCX Systems Limited | INR 197–207 | INR 207 | INR 5,000m | 1 | 72 | 31-Oct–02-Nov-2022 | 11-Nov-2022 |
+
+Four original SEBI PDFs were retained in collection run **36338583977**: **47,009,680 response bytes**, artifact **10937724221**, SHA-256 **c79617e4a654ddddb0ab9d65a2770a2678ff15ecc8e5c0d1af74992902647181**. Each published field is tied to an issuer-specific prospectus page or a later SEBI-hosted BRLM past-issues table. BSE scrip codes remain discovery-only; board, symbols, ISIN and minimum application amount remain null. Market lot and minimum bid quantity remain separate fields.
+
+The merged-main publication workflow initially published successfully but its live-verification job failed because the TMB/DCX verifier passed the wrong argument shape to the shared snapshot helper. PR **#314** fixed that verifier and added regression coverage; merge commit **d2c9afb61c6477e207f07fde2c21fd5432c305ad** passed the full data-contract suite. Re-run **36349668016** then passed live verification on the first HTTP attempt for both issuer IDs against GitHub Pages, with served dataset generation timestamp **2026-09-27T18:12:05.708Z**. The batch is therefore **published and live-verified**.
 
 ## Latest release — Hariom published, Rainbow reconciled
 
