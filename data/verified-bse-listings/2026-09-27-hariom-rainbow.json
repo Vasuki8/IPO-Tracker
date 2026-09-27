@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0.0",
+  "status": "approved_hariom_import_and_rainbow_alias",
+  "review_path": "data/discovery/bse-2022-hariom-rainbow-review-2026-09-27.json",
+  "receipt_path": "data/evidence/bse-2022-hariom-rainbow-source-receipt-2026-09-27.json",
+  "review_sha256": "3fbd55a5b21c5f3bde32c94f856c2143f581c928da07763980c0d6046cd71ddb",
+  "receipt_sha256": "6b3eea342420297cc15b25b79bb1461ef28e2eae86c18ebb2e135581601f720d",
+  "target_year": 2022,
+  "import_ids": [
+    "hariom-pipe-industries-limited"
+  ],
+  "existing_alias_ids": [
+    "rainbow-childrens-medicare-limited"
+  ],
+  "source_artifact_id": 10934534436,
+  "source_artifact_sha256": "9782e741a776ed8197bd83a7379dc8770833b4aabb197fd761d1399344052cb0",
+  "conflict_policy": "Retain issue_size_inr as conflict with both sources, original reported amounts/units, and no inferred unit correction.",
+  "minimum_application_amount": "out_of_scope"
+}
