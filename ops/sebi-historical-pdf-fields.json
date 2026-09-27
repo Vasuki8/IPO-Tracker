@@ -2629,10 +2629,32 @@
     "2025|saatvik-green-energy-limited": {
       "issuer_name": "Saatvik Green Energy Limited",
       "listing_date": "2025-09-26",
-      "last_attempted_at": "2026-09-26T20:17:19.352Z",
+      "last_attempted_at": "2026-09-27T21:43:15.754Z",
       "parser_version": "1.2.0",
-      "status": "error",
-      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 75 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-historical-pdf-A40Leq/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/sep-2025/1758262557157.pdf\ncurl: (28) Operation timed out after 75002 milliseconds with 8487007 out of 11243765 bytes received\ncurl: (28) Operation timed out after 75001 milliseconds with 10671183 out of 11243765 bytes received\n",
+      "status": "extracted",
+      "extracted_fields": [
+        "issue_size_inr"
+      ],
+      "remaining_fields": [
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": {
+          "value": 9000000000,
+          "source_value": "₹9,000 MILLION",
+          "page": 3
+        },
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Saatvik Green Energy Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2025/1758262557157.pdf",
+        "publication_date": "2025-09-16"
+      },
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2025/1758262557157.pdf"
     },
     "2024|krn-heat-exchanger-and-refrigeration-limited": {
@@ -3650,10 +3672,28 @@
     "2023|rishabh-instruments-limited": {
       "issuer_name": "Rishabh Instruments Limited",
       "listing_date": "2023-09-11",
-      "last_attempted_at": "2026-09-26T20:17:19.352Z",
+      "last_attempted_at": "2026-09-27T21:43:15.754Z",
       "parser_version": "1.2.0",
-      "status": "error",
-      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 75 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-historical-pdf-TD0RmX/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/aug-2023/1693289844543.PDF\ncurl: (18) transfer closed with 3316746 bytes remaining to read\ncurl: (28) Operation timed out after 75000 milliseconds with 9059799 out of 12120489 bytes received\n",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "price_band",
+        "issue_size_inr",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Rishabh Instruments Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2023/1693289844543.PDF",
+        "publication_date": "2023-08-24"
+      },
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2023/1693289844543.PDF"
     },
     "2022|annapurna-swadisht-limited": {
