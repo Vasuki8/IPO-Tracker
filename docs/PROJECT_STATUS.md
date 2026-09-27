@@ -1,5 +1,15 @@
 # Project status and handoff
 
+Updated **2026-09-27 (UTC)** after publishing the second bounded BSE 2021 unmatched batch.
+
+**Nureca Limited is published — do not replay this batch.** The BSE-hosted Nureca Annual Report 2020-21 directly records the IPO, public price **₹400**, aggregate issue **₹1,000 million**, NSE identifier **NURECA**, BSE identifier **543264**, and listing on **25-Feb-2021**. The source was materialized as **8,560,185 original bytes**, SHA-256 `c6d82f4ea9447d4fdcbc2d340435ea2d0f2462a0e2fe8937d325f5fb7fbdf919`, in workflow run **36283523313**, artifact **10919129192**, digest `sha256:b91ec68e1cc40e9a24f596812df8f24b2a3f2cfee581aea206e2193a1733e345`. Temporary research/materialization workflows were removed before merge.
+
+PR **#287** merged as **159fbf84c445b5e7766bcc3daef67b5d9e33a92e**. Its dedicated publication rehearsal and reviewed-BSE evidence validation passed. Publication commit **b9908948166b4b92d93387c42b824d3ae0ab6458** added `nureca-limited` to 2021 recovery and rebuilt the public dataset. Only directly supported facts were published. **Board, market lot, offer dates, ISIN and unsupported fields remain null.** The importer is rerun-safe and rejects cross-year identity/BSE-code/NSE-symbol collisions.
+
+**Live verification is the final closeout gate for this batch.** The documentation merge following this note intentionally triggers a fresh Pages deployment after publication commit `b9908948`. Verify that deployment's served-byte check succeeds, record the served record count/hash below or in a follow-up handoff commit, then treat Nureca as fully live-verified.
+
+**Exact next bounded P1 task after live verification:** continue the **remaining 12 unmatched BSE 2021 rows**. Use a small coherent issuer batch and issuer-specific official BSE/SEBI/issuer evidence. BSE issue-summary rows remain discovery evidence only. Retain original bytes/hashes, preserve unsupported values as null, and import only through a reviewed collision-safe path.
+
 Updated **2026-09-26 (UTC)** after publishing the first bounded BSE 2021 unmatched batch.
 
 **First BSE 2021 batch is published — do not replay it.** The reviewed records are Indian Railway Finance Corporation Limited (IRFC), Anupam Rasayan India Limited and Exxaro Tiles Limited. PR **#282** corrected a source-integrity defect before materialization: the earlier Anupam SEBI attachment resolved to an unrelated Spectrum Talent document, so the review was rebound to the official Anupam Rasayan India Red Herring Prospectus dated 05-Mar-2021. PR **#283** added bounded retries after SEBI terminated a PDF socket mid-download; validation remained strict on official HTTPS hosts and PDF bytes.
