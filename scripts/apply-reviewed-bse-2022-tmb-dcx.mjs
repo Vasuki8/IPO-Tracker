@@ -59,7 +59,7 @@ export function expected(ctx){
  const actions=new Map(ctx.manifest.actions.map(a=>[a.key,a]));
  return ctx.review.issuers.map(i=>{
   const m=actions.get(i.key);req(m&&m.stable_id===i.stable_id,"manifest_review_mismatch:"+i.key);
-  const src={};for(const name of FIELDS){const e=i.fields[name];src[name]=descriptor(ctx,e.source_key,i.issuer_name,e)}
+  const src={};for(const name of FIELDS){const e=i.fields[name],s=ctx.sources.get(e.source_key);req(s&&same(s.projection?.[name],e.value),"projection_mismatch:"+i.key+":"+name);src[name]=descriptor(ctx,e.source_key,i.issuer_name,e)}
   const docKeys=[...new Set(i.identity_sources)],docs=docKeys.map(k=>descriptor(ctx,k,i.issuer_name)),last=docs.map(d=>d.collected_at).sort().at(-1);
   const out={id:i.stable_id,issuer_name:i.issuer_name,board:null,sector:null,status:"listed",nse_symbol:null,nse_series:null,nse_source:null,bse_symbol:null,bse_scrip_code:null,isin:null,bse_source:null,terms:{price_band:null,market_lot:null,minimum_bid_quantity:null,open_date:null,close_date:null},documents:docs.map(s=>({type:s.document_type,identity:s.document_identity,url:s.url,publication_date:s.publication_date,collected_at:s.collected_at,document_sha256:s.document_sha256})),first_observed_at:last,last_collected_at:last,board_evidence:[],status_evidence:[src.listing_date],bse_2022_tmb_dcx_import:{manifest:MANIFEST,review:REVIEW,receipt:RECEIPT,action_key:i.key,discovery_bse_scrip_code:i.discovery_bse_scrip_code,artifact_id:ctx.receipt.artifact_id,artifact_sha256:ctx.receipt.artifact_sha256}};
   for(const name of FIELDS)out[name]=field(i.fields[name].value,src[name]);
