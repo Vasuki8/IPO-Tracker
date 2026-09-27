@@ -37,7 +37,7 @@ Collection time, source observation, dataset generation and Pages publication ar
 
 ## Handoff for the next prompt
 
-**The pinned 119-group NSE review, the nine historical excluded-event IPO repairs, Fabino, the BSE historical high-priority reconciliation, the four BSE 2020 repairs, and the first five BSE 2021 unmatched IPOs are published. The next P1 task is the remaining 11 unmatched official BSE 2021 rows.**
+**Seven of the original 16 unmatched BSE 2021 issuers are now reviewed and published, including EKI Energy and Gretex. Nine remain. Next bounded P1 review: Getalong Enterprise (543372) and Shri Venkatesh Refineries (543373).** The [current handoff](docs/PROJECT_STATUS.md) and [machine-readable 2021 disposition](data/discovery/bse-2021-unmatched-disposition-2026-09-27.json) supersede older task lists. Overall Indian IPO coverage remains incomplete.
 
 **The interrupted identity/DRHP release is complete: PR #248 and PR #249 are merged and verified. Do not replay batches 1–9.**
 
@@ -103,6 +103,8 @@ PR **#263** materialized **4 official BSE/SEBI documents / 12,642,908 response b
 
 ### Exact next backend task
 
-Continue the **remaining 11 unmatched official BSE 2021 rows** retained by `data/discovery/bse-issue-summary-coverage-audit-2026-09-26.json`. The first two bounded batches have published IRFC, Anupam Rasayan India, Exxaro Tiles, Nureca and Paras Defence. Nureca is bound to a retained BSE-hosted annual report; unsupported fields remain null. Treat the remaining issue-summary rows as discovery evidence only; verify each candidate from issuer-specific official BSE/SEBI/issuer evidence, retain original source bytes/hashes, preserve missing/conflicting values, and import only independently supported IPOs through a reviewed collision/idempotency-safe path.
+Review **Getalong Enterprise Limited (543372)** and **Shri Venkatesh Refineries Limited (543373)** from the **nine remaining original BSE 2021 unmatched rows**. Reconcile against latest recovery first; verify each issuer from issuer-specific official BSE/SEBI/issuer evidence, retain original bytes/hashes, preserve missing/conflicting values, and import only through a reviewed collision/idempotency-safe path. Issue-summary rows are discovery evidence only, not approval to publish facts.
 
-The four BSE 2020 unmatched issuers are already published and live-verified; do not replay that batch. The served dataset verification after PR #279 matched **1,338 records** at SHA-256 `300e2c100046116349b64034646d66f64b3618282755bf96c00a534166252fed`. SEBI historical pagination and NSE-series gaps remain separate. UI/research-depth work remains in its own handoff. No minimum-investment, billing/accounts/ads, spending or access-policy expansion.
+IRFC, Anupam Rasayan India, Exxaro Tiles, Nureca, Paras Defence, EKI Energy and Gretex are already published; do not replay those releases. PR #293 reused the established BSE verifier/importer for EKI and Gretex. Its actual Pages check passed **2 issuers / 6 fields / 0 failed issuers**, with **1,345 served records** fetched **2026-09-27T02:08:52.115Z**, SHA-256 `c3bc50254cf0a6cc5215e853a7301b98c0ac6eb30b8ad5b4d3200842d32c6f06`. See the [retained verification receipt](docs/verification/bse-2021-sme-pair-live-2026-09-27.json).
+
+The four BSE 2020 unmatched issuers, pinned NSE review, earlier historical repairs and BSE parser v1.5 cursor are complete. SEBI historical pagination and NSE-series gaps remain separate. UI/research-depth work stays in its own handoff. No minimum-investment, billing/accounts/ads, spending or access-policy expansion.
