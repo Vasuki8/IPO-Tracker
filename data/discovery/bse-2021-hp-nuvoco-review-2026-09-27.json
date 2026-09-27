@@ -1,0 +1,115 @@
+{
+  "schema_version": "1.0.0",
+  "status": "reviewed_bse_2021_hp_nuvoco",
+  "source_year": 2021,
+  "scope": {
+    "remaining_before_batch": 7,
+    "reviewed_in_batch": 2,
+    "note": "Two Mainboard IPO candidates reviewed from issuer-specific/original SEBI evidence. Historical BSE issue-summary scrip codes remain discovery metadata only."
+  },
+  "auto_import_allowed": false,
+  "publication_change": false,
+  "actions": [
+    {
+      "key": "hp",
+      "issuer_name": "HP Adhesives Limited",
+      "stable_id": "hp-adhesives-limited",
+      "discovery_bse_scrip_code": "543433",
+      "decision": "confirmed_missing_historical_ipo_candidate",
+      "target": {
+        "board": null,
+        "listing_date": "2021-12-27",
+        "issue_price": 274,
+        "issue_size_inr": 1259633000,
+        "open_date": "2021-12-15",
+        "close_date": "2021-12-17",
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "identity_sources": [
+        "hp_prospectus",
+        "hp_track_record"
+      ],
+      "field_sources": {
+        "listing_date": "hp_track_record",
+        "issue_price": "hp_prospectus",
+        "issue_size_inr": "hp_prospectus",
+        "open_date": "hp_prospectus",
+        "close_date": "hp_prospectus"
+      }
+    },
+    {
+      "key": "nuvoco",
+      "issuer_name": "Nuvoco Vistas Corporation Limited",
+      "stable_id": "nuvoco-vistas-corporation-limited",
+      "discovery_bse_scrip_code": "543334",
+      "decision": "confirmed_missing_historical_ipo_candidate",
+      "target": {
+        "board": null,
+        "listing_date": "2021-08-23",
+        "issue_price": 570,
+        "issue_size_inr": 50000000000,
+        "open_date": null,
+        "close_date": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "identity_sources": [
+        "nuvoco_bulletin"
+      ],
+      "field_sources": {
+        "listing_date": "nuvoco_bulletin",
+        "issue_price": "nuvoco_bulletin",
+        "issue_size_inr": "nuvoco_bulletin"
+      }
+    }
+  ],
+  "sources": [
+    {
+      "key": "hp_prospectus",
+      "authority": "SEBI",
+      "document_type": "Final Prospectus",
+      "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2021/1640076626700.pdf",
+      "publication_date": "2021-12-20",
+      "page": "cover",
+      "evidence_locator": "Cover: IPO identity; ₹274 offer price; ₹12,596.33 lakh aggregate offer; 15–17 Dec 2021 offer programme.",
+      "projection": {
+        "issuer": "HP Adhesives Limited",
+        "issue_type": "IPO",
+        "issue_price": 274,
+        "issue_size_inr": 1259633000,
+        "open_date": "2021-12-15",
+        "close_date": "2021-12-17"
+      }
+    },
+    {
+      "key": "hp_track_record",
+      "authority": "SEBI",
+      "document_type": "SEBI-hosted BRLM track record",
+      "url": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2023/1686912387439.pdf",
+      "publication_date": null,
+      "page": "past issues table",
+      "evidence_locator": "Past issues table: HP Adhesives Limited, listing 27-Dec-2021.",
+      "projection": {
+        "issuer": "HP Adhesives Limited",
+        "listing_date": "2021-12-27"
+      }
+    },
+    {
+      "key": "nuvoco_bulletin",
+      "authority": "SEBI",
+      "document_type": "SEBI Bulletin — September 2021",
+      "url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2021/1633688089802.pdf",
+      "publication_date": null,
+      "page": "Table 2, p. 821",
+      "evidence_locator": "August 2021 equity capital table: Nuvoco Vistas Corporation Limited.",
+      "projection": {
+        "issuer": "Nuvoco Vistas Corporation Limited",
+        "issue_type": "IPO",
+        "listing_date": "2021-08-23",
+        "issue_price": 570,
+        "issue_size_inr": 50000000000
+      }
+    }
+  ]
+}
