@@ -37,7 +37,7 @@ Collection time, source observation, dataset generation and Pages publication ar
 
 ## Handoff for the next prompt
 
-**Eleven of the original 16 unmatched BSE 2021 issuers are now reviewed and published. Five remain. Next bounded P1 review: Jetmall Spices and Masala (543286) and Brandbucket Media & Technology (543439).** The [current handoff](docs/PROJECT_STATUS.md) and [machine-readable 2021 disposition](data/discovery/bse-2021-unmatched-disposition-2026-09-27.json) supersede older task lists. Overall Indian IPO coverage remains incomplete.
+**Thirteen of the original 16 unmatched BSE 2021 issuers are now reviewed and published; FSN E-Commerce reconciles to the existing NYKAA recovery record, leaving only Sigachi Industries (543389) and Adeshwar Meditex (543309) awaiting issuer-specific review.** The [current handoff](docs/PROJECT_STATUS.md) and [machine-readable 2021 disposition](data/discovery/bse-2021-unmatched-disposition-2026-09-27.json) supersede older task lists. Overall Indian IPO coverage remains incomplete.
 
 **The interrupted identity/DRHP release is complete: PR #248 and PR #249 are merged and verified. Do not replay batches 1–9.**
 
