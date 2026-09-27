@@ -1,0 +1,76 @@
+{
+  "schema_version": "1.0.0",
+  "status": "reviewed_bse_2021_batch3_paras",
+  "source_year": 2021,
+  "scope": {
+    "remaining_before_batch": 12,
+    "reviewed_in_batch": 1,
+    "remaining_after_batch": 11
+  },
+  "import_allowed": false,
+  "publication_change": false,
+  "actions": [
+    {
+      "key": "paras",
+      "issuer_name": "Paras Defence and Space Technologies Limited",
+      "stable_id": "paras-defence-and-space-technologies-limited",
+      "decision": "confirmed_missing_historical_ipo_candidate",
+      "target": {
+        "board": null,
+        "listing_date": "2021-10-01",
+        "issue_price": 175,
+        "issue_size_inr": null,
+        "market_lot": 1,
+        "open_date": null,
+        "close_date": null,
+        "nse_symbol": null,
+        "bse_scrip_code": "543367",
+        "isin": "INE045601015"
+      },
+      "identity_sources": [
+        "paras_bse_listing_notice",
+        "paras_sebi_final_offer"
+      ],
+      "field_sources": {
+        "listing_date": "paras_bse_listing_notice",
+        "issue_price": "paras_bse_listing_notice",
+        "market_lot": "paras_bse_listing_notice",
+        "bse_scrip_code": "paras_bse_listing_notice",
+        "isin": "paras_bse_listing_notice"
+      }
+    }
+  ],
+  "sources": [
+    {
+      "key": "paras_bse_listing_notice",
+      "authority": "BSE",
+      "document_type": "Listing Notice 20210930-7",
+      "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20210930-7",
+      "publication_date": "2021-09-30",
+      "page": null,
+      "evidence_locator": "Notice: effective 01-Oct-2021 listing; BSE scrip 543367; ISIN INE045601015; market lot 1; current public issue price ₹175.",
+      "projection": {
+        "issuer": "Paras Defence and Space Technologies Limited",
+        "listing_date": "2021-10-01",
+        "issue_price_inr": 175,
+        "market_lot": 1,
+        "bse_scrip_code": "543367",
+        "isin": "INE045601015"
+      }
+    },
+    {
+      "key": "paras_sebi_final_offer",
+      "authority": "SEBI",
+      "document_type": "Final Offer Document filed with ROC",
+      "url": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2023/1687843975673.pdf",
+      "publication_date": "2021-09-25",
+      "page": null,
+      "evidence_locator": "Official SEBI final-offer-document attachment linked from Paras Defence filing page.",
+      "projection": {
+        "issuer": "Paras Defence and Space Technologies Limited",
+        "filing_stage": "final_offer_document",
+        "issue_type": "IPO"
+      }
+    }
+  ]
+}

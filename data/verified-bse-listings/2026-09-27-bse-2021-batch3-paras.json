@@ -1,0 +1,26 @@
+{
+  "schema_version": "1.0.0",
+  "status": "approved_bse_2021_batch3_paras_import",
+  "review_path": "data/discovery/bse-2021-batch3-paras-review-2026-09-27.json",
+  "receipt_path": "data/evidence/bse-2021-batch3-paras-source-receipt-2026-09-27.json",
+  "review_sha256": "48499c93815b59fb1ded519637fd803ae907ab907691b50101cf4faea9dc10fc",
+  "source_artifact_id": 10920747805,
+  "source_artifact_digest": "sha256:f0020d1ee6f2711f7ee1c02073f07329c4bc4e4dfbc8e7980d3198470b35bf16",
+  "target_year": 2021,
+  "actions": [
+    {
+      "key": "paras",
+      "stable_id": "paras-defence-and-space-technologies-limited"
+    }
+  ],
+  "publication_rules": {
+    "supported_fields": [
+      "listing_date",
+      "issue_price",
+      "market_lot",
+      "bse_scrip_code",
+      "isin"
+    ],
+    "unsupported_fields": "remain null"
+  }
+}
