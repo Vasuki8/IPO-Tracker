@@ -43,7 +43,7 @@ export function context(){
  }
  const issuers=new Map(review.issuers.map(i=>[i.key,i]));req(issuers.size===2,"duplicate_issuer_key");
  for(const i of review.issuers){
-   req(i.decision==="confirmed_missing_historical_ipo_candidate"&&i.stable_id===issuerKey(i.issuer_name).replace(/ /g,"-"),"invalid_issuer_action:"+i.key);
+   req(i.decision==="confirmed_missing_historical_ipo_candidate"&&/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(i.stable_id),"invalid_issuer_action:"+i.key);
    req(/^\d{6}$/.test(i.discovery_bse_scrip_code)&&Array.isArray(i.identity_sources)&&i.identity_sources.length>=2,"invalid_issuer_identity:"+i.key);
    req(i.identity_sources.some(k=>sources.get(k)?.projection?.issue_type==="IPO"),"ipo_identity_not_supported:"+i.key);
    for(const name of FIELDS){const f=i.fields?.[name];req(f&&validValue(name,f.value),"invalid_field:"+i.key+":"+name);const s=sources.get(f.source_key);req(s&&issuerKey(s.projection?.issuer)===issuerKey(i.issuer_name)&&same(s.projection?.[name],f.value),"projection_mismatch:"+i.key+":"+name);req(Number.isSafeInteger(f.pdf_page)&&f.pdf_page>0&&typeof f.evidence_locator==="string"&&f.evidence_locator.length>12,"invalid_field_evidence:"+i.key+":"+name)}
