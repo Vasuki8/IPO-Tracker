@@ -37,7 +37,7 @@ Collection time, source observation, dataset generation and Pages publication ar
 
 ## Handoff for the next prompt
 
-**Seven of the original 16 unmatched BSE 2021 issuers are now reviewed and published, including EKI Energy and Gretex. Nine remain. Next bounded P1 review: Getalong Enterprise (543372) and Shri Venkatesh Refineries (543373).** The [current handoff](docs/PROJECT_STATUS.md) and [machine-readable 2021 disposition](data/discovery/bse-2021-unmatched-disposition-2026-09-27.json) supersede older task lists. Overall Indian IPO coverage remains incomplete.
+**Eleven of the original 16 unmatched BSE 2021 issuers are now reviewed and published. Five remain. Next bounded P1 review: Jetmall Spices and Masala (543286) and Brandbucket Media & Technology (543439).** The [current handoff](docs/PROJECT_STATUS.md) and [machine-readable 2021 disposition](data/discovery/bse-2021-unmatched-disposition-2026-09-27.json) supersede older task lists. Overall Indian IPO coverage remains incomplete.
 
 **The interrupted identity/DRHP release is complete: PR #248 and PR #249 are merged and verified. Do not replay batches 1–9.**
 
@@ -103,8 +103,8 @@ PR **#263** materialized **4 official BSE/SEBI documents / 12,642,908 response b
 
 ### Exact next backend task
 
-Review **HP Adhesives Limited (543433)** and **Nuvoco Vistas Corporation Limited (543334)** next. Sigachi/Adeshwar remain pending after unrelated BSE notices and 404 prospectus guesses were rejected; do not reuse those URLs or relax the verifier. Issue-summary rows remain discovery evidence only.
+Review **Jetmall Spices and Masala Limited (543286)** and **Brandbucket Media & Technology Limited (543439)** next. Sigachi/Adeshwar remain pending after unrelated BSE notices and 404 prospectus guesses were rejected; FSN E-Commerce Ventures remains pending separate identity reconciliation. Do not reuse failed URLs or relax the verifier. Issue-summary rows remain discovery evidence only.
 
-IRFC, Anupam Rasayan India, Exxaro Tiles, Nureca, Paras Defence, EKI Energy and Gretex are already published; do not replay those releases. PR #293 reused the established BSE verifier/importer for EKI and Gretex. Its actual Pages check passed **2 issuers / 6 fields / 0 failed issuers**, with **1,345 served records** fetched **2026-09-27T02:08:52.115Z**, SHA-256 `c3bc50254cf0a6cc5215e853a7301b98c0ac6eb30b8ad5b4d3200842d32c6f06`. See the [retained verification receipt](docs/verification/bse-2021-sme-pair-live-2026-09-27.json).
+IRFC, Anupam Rasayan India, Exxaro Tiles, Nureca, Paras Defence, EKI Energy, Gretex, Getalong Enterprise, Shri Venkatesh Refineries, HP Adhesives and Nuvoco Vistas are already published; do not replay those releases. PR #293 reused the established BSE verifier/importer for EKI and Gretex. Its actual Pages check passed **2 issuers / 6 fields / 0 failed issuers**, with **1,345 served records** fetched **2026-09-27T02:08:52.115Z**, SHA-256 `c3bc50254cf0a6cc5215e853a7301b98c0ac6eb30b8ad5b4d3200842d32c6f06`. See the [retained verification receipt](docs/verification/bse-2021-sme-pair-live-2026-09-27.json).
 
 The four BSE 2020 unmatched issuers, pinned NSE review, earlier historical repairs and BSE parser v1.5 cursor are complete. SEBI historical pagination and NSE-series gaps remain separate. UI/research-depth work stays in its own handoff. No minimum-investment, billing/accounts/ads, spending or access-policy expansion.
