@@ -31,7 +31,7 @@ jobs:
           const must=(x,m)=>{if(!x)throw Error(m)};
           must(/SIGACHI INDUSTRIES LIMITED/i.test(sf)&&/INITIAL PUBLIC OFFERING/i.test(sf),"sigachi_identity");
           must(/Monday,?\s*November 0?1,?\s*2021/i.test(sf)&&/Wednesday,?\s*November 0?3,?\s*2021/i.test(sf),"sigachi_offer_dates");
-          must(/Sigachi Industries Limited/i.test(st)&&/12,?542\.85/.test(st)&&/163/.test(st)&&/November 15,?\s*2021/i.test(st),"sigachi_track");
+          must(/Sigachi Industries/i.test(st)&&/12,?542\.85\s+163\s+November 15,/i.test(st)&&/Limited\s+2021/i.test(st),"sigachi_track");
           must(/ADESHWAR MEDITEX LIMITED/i.test(ap)&&/INITIAL PUBLIC ISSUE/i.test(ap)&&/25/.test(ap)&&/975\.00/.test(ap)&&/SME Platform of BSE/i.test(ap),"adeshwar_terms");
           must(/June 15,?\s*2021/i.test(ap)&&/June 18,?\s*2021/i.test(ap),"adeshwar_offer_dates");
           must(/Adeshwar Meditex Ltd/i.test(at)&&/9\.75/.test(at)&&/25/.test(at)&&/28-06-21/.test(at),"adeshwar_track");
