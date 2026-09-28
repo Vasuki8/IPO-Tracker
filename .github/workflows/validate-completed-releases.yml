@@ -1,0 +1,90 @@
+name: Validate completed historical releases
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: [main]
+    paths:
+      - ".github/workflows/**"
+      - "scripts/test-*.mjs"
+      - "scripts/build-published-data.mjs"
+      - "scripts/validate-data.mjs"
+      - "data/verified-bse-listings/**"
+      - "data/verified-historical-ipos/**"
+      - "data/discovery/**"
+      - "data/evidence/**"
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/**"
+      - "scripts/test-completed-release-workflow-retirement.mjs"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: completed-release-validation-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      TZ: UTC
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Guard retired production writers
+        run: node scripts/test-completed-release-workflow-retirement.mjs
+
+      - name: Re-run completed evidence and release contracts
+        shell: bash
+        run: |
+          set -euo pipefail
+          tests=(
+            scripts/test-bse-2020-unmatched-review.mjs
+            scripts/test-bse-2021-mainboard-batch1-review.mjs
+            scripts/test-materialize-bse-audit-conflict-evidence.mjs
+            scripts/test-audit-bse-sme-ipo-index.mjs
+            scripts/test-materialize-fabino-listing-evidence.mjs
+            scripts/test-materialize-historical-ipo-evidence.mjs
+            scripts/test-verify-bse-listing-candidates.mjs
+            scripts/test-apply-verified-bse-listings.mjs
+            scripts/test-verify-bse-publication.mjs
+            scripts/test-bse-2021-sme-pair.mjs
+            scripts/test-reviewed-bse-2021-batch2-nureca.mjs
+            scripts/test-reviewed-bse-2021-batch3-paras.mjs
+            scripts/test-reviewed-bse-2021-final-pair.mjs
+            scripts/test-reviewed-bse-2021-getalong-svrl.mjs
+            scripts/test-reviewed-bse-2021-hp-nuvoco.mjs
+            scripts/test-reviewed-bse-2021-jetmall-brandbucket.mjs
+            scripts/test-reviewed-bse-2021-mainboard-batch1-import.mjs
+            scripts/test-reviewed-bse-2022-eighty-virtuoso.mjs
+            scripts/test-reviewed-bse-2022-final-pair.mjs
+            scripts/test-reviewed-bse-2022-hariom-rainbow.mjs
+            scripts/test-reviewed-bse-2022-maagh-technopack.mjs
+            scripts/test-reviewed-bse-2022-maruti-olatech.mjs
+            scripts/test-reviewed-bse-2022-pace-gargi.mjs
+            scripts/test-reviewed-bse-2022-tmb-dcx.mjs
+            scripts/test-reviewed-bse-2022-veranda-uma.mjs
+            scripts/test-reviewed-bse-2023-four.mjs
+            scripts/test-reviewed-bse-2023-rvpe.mjs
+            scripts/test-reviewed-bse-reconciliation.mjs
+            scripts/test-reviewed-fabino.mjs
+            scripts/test-reviewed-historical-ipos.mjs
+          )
+          for test in "${tests[@]}"; do
+            echo "::group::$test"
+            node "$test"
+            echo "::endgroup::"
+          done
+
+      - name: Verify current published projection remains reproducible
+        run: |
+          node scripts/build-published-data.mjs --check
+          node scripts/validate-data.mjs
+          git diff --exit-code
