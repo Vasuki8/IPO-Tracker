@@ -58,3 +58,43 @@ The shell could read the repository but had no GitHub push credential. The autho
 ## Next work
 
 For UI follow-ups, preserve the light theme and source-visible values. Do not add placeholder controls for unavailable features. For generic backend continuation, follow the current cursor7 next task in `PROJECT_STATUS.md`; this UI batch does not close or replay that work.
+
+
+---
+
+# IPO Tracker UI V3 — source-first research workspace
+
+Date: 2026-09-28. User granted complete redesign freedom while retaining the project's light-theme and trustworthy-data requirements.
+
+## Design direction
+
+V3 keeps the proven static application and source mechanics but changes the visual language from a simple directory into a calmer financial-research workspace. The hierarchy now emphasizes market context first, then filters/comparison, then field-level evidence. Cards, tabs, controls and status states use a tighter system of surfaces, borders, spacing and typography rather than introducing new product features without data support.
+
+The homepage hero, market metrics, directory controls/table, mobile IPO cards, IPO detail hero/KPIs, research-section navigation, timeline, evidence rows, source library, methodology dialog and Pre-IPO page now share one visual system. Mobile uses stacked research cards and a two-column KPI layout instead of merely compressing desktop content.
+
+## Boundaries preserved
+
+- Light theme only.
+- Existing search, filters, sorting, page-size controls, pagination, hash routes, browser history and source links are unchanged.
+- Missing, provisional and conflicting values remain explicit.
+- Lot Size continues to use the existing verified market-lot/minimum-bid fallback behavior.
+- No watchlist, alerts, compare, subscription, valuation, financial, analytics, billing or account features were invented.
+- No data, collector, source-recovery, evidence or publication contracts changed.
+
+## Release
+
+PR **#330** merged as `f07f32315835818717f93bcd589207920b8dc3d9`.
+
+PR checks:
+- UI: `36380130962`
+- full data contract: `36380130924`
+- reviewed BSE evidence: `36380130950`
+- retained Hariom/Rainbow guard: `36380130982`
+
+Post-merge:
+- UI: `36380223730` — passed
+- full data contract: `36380223658` — passed
+- reviewed BSE evidence: `36380223681` — passed
+- Pages: `36380223692` — deployment workflow succeeded
+
+The current execution environment could not fetch the public GitHub Pages hostname directly, so V3 has deployment-workflow verification but not the byte-for-byte served-site verification recorded for V2.
