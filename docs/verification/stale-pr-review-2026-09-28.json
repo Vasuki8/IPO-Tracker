@@ -1,0 +1,204 @@
+{
+  "schema_version": "1.0.0",
+  "review_date": "2026-09-28",
+  "reviewed_main": "9a544996475e84788a7cc08fc6e49d9acd8b52bb",
+  "disposition": "closed_unmerged_no_production_delta",
+  "prs": [
+    {
+      "number": 196,
+      "head": "5a3f7fdf7dfdb0bd0c2ebf29eca3f905abb3c02b",
+      "merge_base": "fd06045ac437636bc5d0c8dba087397ad4897c28",
+      "behind": 684,
+      "ahead": 4,
+      "closed_at": "2026-09-28T14:24:28Z",
+      "merged": false,
+      "files": [
+        {
+          "path": ".github/workflows/verify-bse-listing-candidates.yml",
+          "pr_blob": "2ba9bc1ebb8f2c36fd4a71cf54c6bec95f138363",
+          "main_blob": "403790e6b9662febd1f9e23dc0879ae3f6b8ca9d"
+        },
+        {
+          "path": "data/discovery/bse-listing-candidates-2026-09-24-batch17.json",
+          "pr_blob": "14ba8ef25ef430cbe1300fb9aa1bb6f92e9c5085",
+          "main_blob": "42faf4a2e5d289d4bb858d34720013f3b794dbb0"
+        },
+        {
+          "path": "data/discovery/bse-listing-reconciliation-2026-09-24-cursor5-repaired.json",
+          "pr_blob": "2971d086bb22afe7958c02202dbfc144b0e094c3",
+          "main_blob": "e9a143a1a47daae11f07a293b9bf93f0000ed87a"
+        },
+        {
+          "path": "data/verified-bse-listings/2026-09-24-batch22.json",
+          "pr_blob": "a9711faba48a16ae904e40fbcab9822d57a5a897",
+          "main_blob": "aa958172cffd64e0007f2f40590f40fbcbf287ed"
+        }
+      ]
+    },
+    {
+      "number": 246,
+      "head": "e7933aaccbfe21a3d215e93609efb5c90064466d",
+      "merge_base": "a1f15e89959bebeff4ad4ed3c020fa62938afe18",
+      "behind": 331,
+      "ahead": 3,
+      "closed_at": "2026-09-28T14:24:35Z",
+      "merged": false,
+      "files": [
+        {
+          "path": ".github/workflows/collect-drhp-pages.yml",
+          "pr_blob": "3bca1f8546455f9118b5c739b01836323c057b3b",
+          "main_blob": null
+        },
+        {
+          "path": ".github/workflows/materialize-drhp-feature.yml",
+          "pr_blob": "414e94617a1eca00948d1a96a0b83211caed2587",
+          "main_blob": null
+        },
+        {
+          "path": ".github/workflows/review-drhp-sources.yml",
+          "pr_blob": "e0b1501b6b2b789f20c95ee4e9c6c470c2e4ed09",
+          "main_blob": null
+        }
+      ]
+    }
+  ],
+  "batch22_rehearsal": {
+    "reviewed_main": "9a544996475e84788a7cc08fc6e49d9acd8b52bb",
+    "records": 1375,
+    "semantic_entries_equal": 4,
+    "candidates_identical": true,
+    "reconciliation_same_except_redundant_subject": true,
+    "manifests": {
+      "main": {
+        "validated": 4,
+        "stats": {
+          "added": 0,
+          "already_present": 4,
+          "held_existing": 0,
+          "held_identity_conflict": 0
+        },
+        "holds": []
+      },
+      "pr196": {
+        "validated": 4,
+        "stats": {
+          "added": 0,
+          "already_present": 0,
+          "held_existing": 4,
+          "held_identity_conflict": 0
+        },
+        "holds": [
+          {
+            "notice": "20241210-61",
+            "reason": "existing_record_not_overwritten"
+          },
+          {
+            "notice": "20241129-72",
+            "reason": "existing_record_not_overwritten"
+          },
+          {
+            "notice": "20240719-44",
+            "reason": "existing_record_not_overwritten"
+          },
+          {
+            "notice": "20240719-38",
+            "reason": "existing_record_not_overwritten"
+          }
+        ]
+      }
+    },
+    "issuers": [
+      {
+        "name": "NISUS FINANCE SERVICES CO LIMITED",
+        "code": "544296",
+        "public_id": "nisus-finance-services-co-limited",
+        "source_run_id": "36035011920",
+        "fields": {
+          "listing_date": "2024-12-11",
+          "market_lot": 800,
+          "issue_price": 180
+        }
+      },
+      {
+        "name": "Rajesh Power Services Limited.",
+        "code": "544291",
+        "public_id": "rajesh-power-services-limited",
+        "source_run_id": "36035011920",
+        "fields": {
+          "listing_date": "2024-12-02",
+          "market_lot": 400,
+          "issue_price": 335
+        }
+      },
+      {
+        "name": "Aelea Commodities Limited",
+        "code": "544213",
+        "public_id": "aelea-commodities-limited",
+        "source_run_id": "36035011920",
+        "fields": {
+          "listing_date": "2024-07-22",
+          "market_lot": 1200,
+          "issue_price": 95
+        }
+      },
+      {
+        "name": "Three M Paper Boards Ltd",
+        "code": "544214",
+        "public_id": "three-m-paper-boards-ltd",
+        "source_run_id": "36035011920",
+        "fields": {
+          "listing_date": "2024-07-22",
+          "market_lot": 2000,
+          "issue_price": 69
+        }
+      }
+    ]
+  },
+  "limits": {
+    "fresh_official_source_collection": false,
+    "fresh_live_site_verification": false,
+    "opaque_drhp_payload_decoded": false,
+    "old_workflows_executed": false,
+    "production_data_changed": false,
+    "branches_deleted": false
+  },
+  "pr196_historical_only_metadata": {
+    "not_a_current_import_queue": true,
+    "generated_at": "2026-09-24T16:39:00.000Z",
+    "current_snapshot": {
+      "public": {
+        "path": "data/ipos.json",
+        "blob_sha": "9d3724dd445ef0e0e12a6bb7fa43c4fc40d42345",
+        "record_count": 1068,
+        "generated_at": "2026-09-24T16:21:47.053Z"
+      },
+      "recovery_2024": {
+        "path": "data/recovery/2024/nse-issue-information.json",
+        "blob_sha": "304a11c1ddaa76a58f8c649cbf2b83fd91e2eab3",
+        "record_count": 269
+      },
+      "recovery_2025": {
+        "path": "data/recovery/2025/nse-issue-information.json",
+        "blob_sha": "c7ae14219723ae8256e936deeb24bd469a473a40",
+        "record_count": 293
+      }
+    },
+    "repaired_notice_nos": [
+      "20241211-15",
+      "20241202-11",
+      "20240722-21"
+    ],
+    "index_notice_subjects": [
+      "Addition to the BSE SME IPO INDEX"
+    ]
+  },
+  "unchanged_scopes": {
+    "data": "378437ea7b0fcd124e16be89fec8108946c368a4",
+    "ops": "224eb74c76eba3ab572c2af41f58e17b42d69bea",
+    "scripts": "81710b87981d609d24c64b1104b39b310d94c8f9",
+    "assets": "30441b3f239ad014088e4d9935c82f5f6b40cac6",
+    ".github": "bb7eae3387ea3116d22aa1673817206238f4b72d",
+    "drhp.html": "9125f33be212fc5a78ff69b1b3556545f23d7ea0",
+    "index.html": "13c565a8a36262f50d2f13e8030d600a4251c919"
+  }
+}
