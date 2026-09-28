@@ -1,8 +1,15 @@
 {
   "schema_version": "1.0.0",
-  "status": "field_review_complete_final_release_checks_pending",
-  "release_pr": null,
-  "merge_commit": null,
+  "status": "merged_prospectus_field_review_complete_listing_evidence_pending",
+  "release_pr": 336,
+  "merge_commit": "76894931534e25932b0b3c9665cc3ebaae599501",
+  "merged_at": "2026-09-28T15:01:46Z",
+  "final_pr_head": "05cc799885dd49d93535af8a0b2ffba5917d8b1c",
+  "tested_base_commit": "f36f32c6e7d9221281bbd334fdf72ee28c7a8195",
+  "tested_pr_merge_commit": "c9c0609528e8657eb99b5b645609507325b61ef4",
+  "tested_tree": "fea83a8561d7f2b73cbc9b3925ae724b0a059846",
+  "actual_merge_tree": "fea83a8561d7f2b73cbc9b3925ae724b0a059846",
+  "merge_tree_matches_tested_tree": true,
   "review_path": "data/discovery/bse-2023-irms-field-review-2026-09-28.json",
   "review_sha256": "71f38ae34e23e774ef08e216d774cd7bf01fbcd14212375654c34b4ff0105ef5",
   "local_snapshot_commit": "9e8e9341f159dddbca2b668a5848a2561654c14e",
@@ -12,18 +19,8 @@
   "new_test_cases_passed": 45,
   "new_test_red_then_green_observed": true,
   "original_attempts_revalidated": [
-    {
-      "attempt": 1,
-      "accepted": 7,
-      "status": "partial",
-      "response_bytes": 27082607
-    },
-    {
-      "attempt": 2,
-      "accepted": 7,
-      "status": "partial",
-      "response_bytes": 33388351
-    }
+    {"attempt": 1, "accepted": 7, "status": "partial", "response_bytes": 27082607},
+    {"attempt": 2, "accepted": 7, "status": "partial", "response_bytes": 33388351}
   ],
   "field_review_result": {
     "review": {
@@ -37,29 +34,13 @@
       "publication_import_allowed": false
     },
     "reconciliation": {
-      "years_checked": [
-        2020,
-        2021,
-        2022,
-        2023,
-        2024,
-        2025,
-        2026
-      ],
+      "years_checked": [2020, 2021, 2022, 2023, 2024, 2025, 2026],
       "records_checked": 1375,
       "matches": [],
       "clearance_for_import": false,
       "scope": "Exact current id, canonical legal-name and BSE-code matches only; not fuzzy matching, permanent alias clearance or publication approval."
     }
   },
-  "new_public_records": 0,
-  "new_public_fields_approved": 0,
-  "publication_import_allowed": false,
-  "source_refetched": false,
-  "browser_test_run": false,
-  "live_fields_verified_in_this_task": false,
-  "review_mode": "inline",
-  "note": "Local full-suite passed; awaiting final PR CI and actual merge evidence. This review does not publish an IPO, close a queue row, resolve actual listing dates or relabel partial collection outcomes.",
   "local_final_suite": {
     "completed_at": "2026-09-28T14:48:50.608Z",
     "entry_points": 90,
@@ -68,12 +49,72 @@
     "failures": [],
     "browser_run": false
   },
+  "final_ci_suite": {
+    "workflow_run_id": 36440030032,
+    "job_id": 108987816594,
+    "entry_points": 90,
+    "passed": 90,
+    "failed": 0,
+    "new_test_cases_passed": 45,
+    "tracked_working_tree_after_checks": "unchanged",
+    "build_schema_records_checked": 1375,
+    "bse_2023_progress": {"published": 8, "awaiting": 22, "warnings": []},
+    "bse_2022_disposition": {"published": 14, "aliases": 2, "awaiting": 0, "warnings": []},
+    "test_artifact": {
+      "id": 10978205320,
+      "bytes": 27939,
+      "sha256": "6096d63f4f1ea28f1537c4d0ec0e285ccf9f6714c40b4f94eca25f847c91a8ac",
+      "downloaded_digest_independently_verified": true,
+      "summary": "Non-browser test entry points: 90; failures: 0",
+      "url": "https://github.com/Vasuki8/IPO-Tracker/actions/runs/36440030032/artifacts/10978205320"
+    }
+  },
+  "final_pr_workflows": [
+    {"id": 36440029928, "name": "Check BSE 2022 handoff consistency", "conclusion": "success"},
+    {"id": 36440030073, "name": "Check BSE 2023 review progress", "conclusion": "success"},
+    {"id": 36440029891, "name": "Publish reviewed Hariom and reconcile Rainbow", "conclusion": "success", "scope": "PR checks only, not a production import"},
+    {"id": 36440030032, "name": "Validate retained BSE 2023 prospectus field review", "conclusion": "success"},
+    {"id": 36440030036, "name": "Validate reviewed BSE listing evidence", "conclusion": "success"},
+    {"id": 36440030026, "name": "Validate IPO data contract", "conclusion": "success"}
+  ],
+  "merge_deployment": {
+    "workflow_run_id": 36440461631,
+    "workflow_attempt": 1,
+    "job_id": 108989279123,
+    "commit_sha": "76894931534e25932b0b3c9665cc3ebaae599501",
+    "job_conclusion": "success",
+    "deploy_step_conclusion": "success",
+    "served_dataset_check_step_conclusion": "success",
+    "page_url": "https://vasuki8.github.io/IPO-Tracker/",
+    "publication_health_completed_at": "2026-09-28T15:02:42Z",
+    "verification_log_timestamp": "2026-09-28T15:02:42.7140332Z",
+    "served_dataset": {
+      "pages_dataset_verified": true,
+      "records": 1375,
+      "generated_at": "2026-09-28T14:49:43.944Z",
+      "sha256": "697af180b000d7f48ba9a99a22319e420395f3d33e7bb1e119e539b5bfc803f4",
+      "attempt": 1
+    },
+    "evidence_scope": "Inspected actual completed deployment job and its served-JSON hash-equality output. This verifies the existing deployed dataset, not publication of the four reviewed candidates, a new source collection, or browser/UI behavior. The workflow did not retain the fetched response bytes in a separate live artifact."
+  },
+  "new_public_records": 0,
+  "new_public_fields_approved": 0,
+  "publication_import_allowed": false,
+  "source_refetched": false,
+  "browser_test_run": false,
+  "live_fields_verified_in_this_task": false,
+  "existing_served_dataset_hash_verified_by_deployment": true,
+  "review_mode": "inline",
   "upstream_base_for_pr": "c1739184838e7f8329bc0516768053647c7d3fee",
-  "concurrent_handoff_section_preserved": "Stale PR retirement review \u2014 2026-09-28",
+  "concurrent_handoff_section_preserved": "Stale PR retirement review — 2026-09-28",
   "prior_handoff_archived_blob": "68ab0beb4e498d919f0b39467e43b1fe7a41d353",
   "publication_inputs_changed_by_this_task": false,
   "handoff_wording_guard": {
     "initial_failure": "status_count_mismatch",
     "fix": "Restored the exact existing 2022 disposition wording; production guard unchanged."
-  }
+  },
+  "canonical_handoff": "docs/PROJECT_STATUS.md",
+  "readme_handoff": "README.md",
+  "next_task": "Retain approved original actual-listing evidence for IREDA, Motisons Jewellers, RBZ Jewellers and Shelter Pharma; recheck all-year identities and aliases; prepare a separate reviewed import and verify exact served public projections before closing queue rows. Do not repeat completed prospectus term review or promote provisional amounts to realised proceeds.",
+  "note": "The prospectus field-review stage is merged, tested and deployed. All six final PR workflows passed and the actual merged tree equals the CI-tested tree, preserving concurrent updates. This documentation-only closeout records those observed outcomes; it is not another source observation or IPO import. All four actual listing dates remain unverified in this review, and both original partial collection outcomes remain partial. Browser/UI testing was not performed."
 }
