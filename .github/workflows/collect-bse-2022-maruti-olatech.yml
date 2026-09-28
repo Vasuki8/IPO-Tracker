@@ -1,0 +1,74 @@
+name: Collect Maruti and Olatech 2022 evidence
+on:
+  push:
+    branches: [data/bse-2022-maruti-olatech-20260928]
+    paths: [.github/workflows/collect-bse-2022-maruti-olatech.yml]
+permissions: {contents: read}
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install PDF tools
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils
+      - name: Collect official originals and reconcile recovery
+        shell: bash
+        run: |
+          set -euo pipefail
+          export OUT="$RUNNER_TEMP/evidence"
+          mkdir -p "$OUT"
+          git archive --format=tar.gz -o "$OUT/repository.tar.gz" HEAD
+          node --input-type=module <<'JS'
+          import fs from 'node:fs';
+          import path from 'node:path';
+          import {createHash} from 'node:crypto';
+          import {execFileSync} from 'node:child_process';
+          const out=process.env.OUT, documents=[];
+          const specs=[
+            ['maruti_prospectus','https://www.sebi.gov.in/sebi_data/attachdocs/feb-2022/1643966136177.pdf'],
+            ['maruti_annual','https://www.bseindia.com/xml-data/corpfiling/AttachHis/d7fc563c-50ee-4c83-9ceb-49899fab0d91.pdf'],
+            ['olatech_prospectus','https://www.sebi.gov.in/sebi_data/attachdocs/nov-2022/1668164900732.PDF'],
+            ['olatech_annual','https://www.bseindia.com/xml-data/corpfiling/AttachHis/d5579a93-5e15-4311-b72f-694a74c0c7b6.pdf']
+          ];
+          const hash=b=>createHash('sha256').update(b).digest('hex');
+          for(const [key,url] of specs){
+            const pdf=path.join(out,key+'.pdf');
+            const meta=execFileSync('curl',['--fail','--location','--retry','3','--retry-all-errors','--retry-delay','2','--connect-timeout','20','--max-time','120','--user-agent','Mozilla/5.0','--output',pdf,'--write-out','%{http_code}\n%{url_effective}\n',url],{encoding:'utf8'});
+            const b=fs.readFileSync(pdf),[status,finalUrl]=meta.trim().split(/\r?\n/);
+            if(status!=='200'||!['www.sebi.gov.in','www.bseindia.com'].includes(new URL(finalUrl).hostname)||b.subarray(0,5).toString()!=='%PDF-')throw Error('invalid_official_pdf:'+key);
+            execFileSync('pdfinfo',[pdf]);
+            execFileSync('pdftotext',['-layout',pdf,path.join(out,key+'.txt')]);
+            const pages=fs.readFileSync(path.join(out,key+'.txt'),'utf8').split('\f');
+            documents.push({key,source_url:url,final_url:finalUrl,http_status:Number(status),response_bytes:b.length,response_sha256:hash(b),collected_at:new Date().toISOString(),pdf_pages:pages.filter(p=>p.trim()).length});
+            const hits=[];
+            for(let i=0;i<pages.length;i++){
+              const t=pages[i].replace(/\s+/g,' ').trim();
+              for(const label of ['ISSUE OPENS ON','ISSUE CLOSES ON','minimum contract size','minimum application','minimum bid','Market Lot','listed on','got listed','w.e.f.']){
+                const at=t.toLowerCase().indexOf(label.toLowerCase());
+                if(at>=0&&hits.filter(h=>h.label===label).length<3)hits.push({label,pdf_page:i+1,snippet:t.slice(Math.max(0,at-180),at+650)});
+              }
+            }
+            console.log('DOC',key,JSON.stringify({cover:pages[0].replace(/\s+/g,' ').slice(0,2400),hits}));
+          }
+          const matches=[];
+          for(const year of fs.readdirSync('data/recovery').filter(y=>/^20\d{2}$/.test(y))){
+            const p='data/recovery/'+year+'/nse-issue-information.json';
+            if(!fs.existsSync(p))continue;
+            const m=JSON.parse(fs.readFileSync(p,'utf8'));
+            for(const r of m.records||[])if(/maruti.*interior|olatech/i.test(r.issuer_name||'')||['543464','543578'].includes(String(r.bse_scrip_code)))matches.push({year,record:r});
+          }
+          const receipt={schema_version:'1.0.0',status:'collected_original_official_documents',workflow_run_id:process.env.GITHUB_RUN_ID,baseline_commit:process.env.GITHUB_SHA,total_response_bytes:documents.reduce((n,d)=>n+d.response_bytes,0),documents,collection_completed_at:new Date().toISOString()};
+          fs.writeFileSync(path.join(out,'receipt.json'),JSON.stringify(receipt,null,2)+'\n');
+          fs.writeFileSync(path.join(out,'reconciliation.json'),JSON.stringify({baseline_commit:process.env.GITHUB_SHA,matches},null,2)+'\n');
+          console.log('RECEIPT',JSON.stringify(receipt));
+          console.log('RECONCILIATION',JSON.stringify({matches:matches.map(x=>({year:x.year,id:x.record.id,issuer_name:x.record.issuer_name}))}));
+          JS
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: bse-2022-maruti-olatech-evidence
+          path: ${{ runner.temp }}/evidence
+          retention-days: 14
+          compression-level: 0
+          if-no-files-found: error
