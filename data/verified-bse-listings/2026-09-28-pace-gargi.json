@@ -1,0 +1,29 @@
+{
+  "schema_version": "1.0.0",
+  "status": "approved_bse_2022_pace_gargi_import",
+  "review_path": "data/discovery/bse-2022-pace-gargi-review-2026-09-28.json",
+  "receipt_path": "data/evidence/bse-2022-pace-gargi-source-receipt-2026-09-28.json",
+  "review_sha256": "863bbdd8c02b198d8ab26f35881667f213a04f80359f1a0139bfd230484eadf4",
+  "receipt_sha256": "737c085ec87041340497a5ce3e244a1c2935f6f2965e845f5dc99e20e8b0903c",
+  "source_artifact_id": 10946596746,
+  "source_artifact_sha256": "b2c9bcd68ec692a9b325c3156cde21af50c6071d5e170f5782165d9562854406",
+  "target_year": 2022,
+  "actions": [
+    {
+      "key": "pace",
+      "stable_id": "pace-e-commerce-ventures-limited"
+    },
+    {
+      "key": "gargi",
+      "stable_id": "pngs-gargi-fashion-jewellery-limited"
+    }
+  ],
+  "rules": {
+    "no_inference": true,
+    "bse_scrip_codes": "discovery-only",
+    "market_lot_distinct_from_minimum_bid_quantity": true,
+    "fixed_price_issue_price_band": "missing",
+    "minimum_application_amount": "out_of_scope",
+    "unsupported_fields": "missing"
+  }
+}
