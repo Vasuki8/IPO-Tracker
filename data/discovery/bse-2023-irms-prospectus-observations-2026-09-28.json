@@ -1,0 +1,95 @@
+{
+  "schema_version": "1.0.0",
+  "status": "prospectus_terms_reviewed_listing_evidence_pending",
+  "source_year": 2023,
+  "reviewed_at": "2026-09-28T14:28:27Z",
+  "repository_baseline": "9a544996475e84788a7cc08fc6e49d9acd8b52bb",
+  "source_set_receipt": "data/evidence/bse-2023-irms-source-receipt-2026-09-28.json",
+  "source_set_receipt_sha256": "26892f2185d3fe32545f5b3606bb6d255a2beac5229936a2ca22279f48747768",
+  "source_set_complete_across_partial_attempts": true,
+  "single_collection_complete": false,
+  "all_recovery_years_exact_name_and_code_checked": true,
+  "exact_recovery_matches": [],
+  "semantic_review_complete": false,
+  "publication_import_allowed": false,
+  "note": "These are prospectus term observations, not approved IPO records. Physical PDF pages were visually inspected after original response hashes were checked. Actual listing, exchange identity, broader alias reconciliation and independent release review remain pending. No application amount is inferred from price and quantity.",
+  "issuers": [
+    {
+      "discovery_bse_scrip_code": "544026",
+      "issuer_name": "Indian Renewable Energy Development Agency Limited",
+      "prospectus_document_date": "2023-11-24",
+      "pdf_sha256": "0a0691f45e1d62b4c1815f52e9956ee44fe51b8f7c080a9962dfcaf8eed90c06",
+      "selected_attempt": 1,
+      "terms": {
+        "price_band_inr_per_share": {"min": 30, "max": 32, "physical_pdf_page": 11},
+        "issue_price_inr_per_share": {"value": 32, "physical_pdf_page": 2},
+        "total_offer_amount": {"source_value": "21,502.12", "source_unit": "INR million", "candidate_value_inr": 21502120000, "physical_pdf_pages": [1, 2], "status": "provisional", "qualification": "Fresh issue plus offer for sale; asterisk says subject to finalisation of Basis of Allotment. Not final realised proceeds."},
+        "market_lot_shares": {"value": 1, "physical_pdf_page": 620},
+        "minimum_bid_quantity_shares": {"value": 460, "investor_category": "retail individual", "physical_pdf_pages": [8, 625]},
+        "open_date": {"value": "2023-11-21", "physical_pdf_pages": [1, 2]},
+        "close_date": {"value": "2023-11-23", "physical_pdf_pages": [1, 2]}
+      },
+      "actual_listing_date": null,
+      "verified_exchange_identifiers": null,
+      "board": null
+    },
+    {
+      "discovery_bse_scrip_code": "544053",
+      "issuer_name": "Motisons Jewellers Limited",
+      "prospectus_document_date": "2023-12-20",
+      "pdf_sha256": "d69e1a9505ca8e3ee003582f7e0c7727208c39c17096fc446a23c65451cbf362",
+      "selected_attempt": 2,
+      "terms": {
+        "price_band_inr_per_share": {"min": 52, "max": 55, "physical_pdf_page": 12},
+        "issue_price_inr_per_share": {"value": 55, "physical_pdf_page": 2},
+        "total_offer_amount": {"source_value": "15,109.05", "source_unit": "INR lakh", "candidate_value_inr": 1510905000, "physical_pdf_pages": [1, 2], "status": "provisional", "qualification": "Fresh issue after the separately disclosed INR 3,300 lakh pre-IPO placement reduction; do not add the placement or treat the issue amount as final realised proceeds."},
+        "market_lot_shares": {"value": 1, "physical_pdf_page": 409},
+        "minimum_bid_quantity_shares": {"value": 250, "investor_category": "retail individual", "physical_pdf_page": 416},
+        "open_date": {"value": "2023-12-18", "physical_pdf_pages": [1, 2]},
+        "close_date": {"value": "2023-12-20", "physical_pdf_pages": [1, 2]}
+      },
+      "actual_listing_date": null,
+      "verified_exchange_identifiers": null,
+      "board": null
+    },
+    {
+      "discovery_bse_scrip_code": "544060",
+      "issuer_name": "RBZ Jewellers Limited",
+      "prospectus_document_date": "2023-12-21",
+      "pdf_sha256": "d1700d28f6e3a65b721a653ef117b39dd89c343b1b2d066c951483f638691eea",
+      "selected_attempt": 1,
+      "terms": {
+        "price_band_inr_per_share": {"min": 95, "max": 100, "physical_pdf_page": 12, "qualification": "Explicit final definition on physical page 12; the generic future-advertisement wording on page 3 does not supply the value."},
+        "issue_price_inr_per_share": {"value": 100, "physical_pdf_page": 3},
+        "total_offer_amount": {"source_value": "10,000", "source_unit": "INR lakh", "candidate_value_inr": 1000000000, "physical_pdf_pages": [1, 3], "status": "provisional", "qualification": "Fresh issue; the prospectus marks the issue share count/amount subject to finalisation of Basis of Allotment. Not final realised proceeds."},
+        "market_lot_shares": {"value": 1, "physical_pdf_page": 379},
+        "minimum_bid_quantity_shares": {"value": 150, "investor_category": "retail individual", "physical_pdf_page": 385},
+        "open_date": {"value": "2023-12-19", "physical_pdf_pages": [2, 3]},
+        "close_date": {"value": "2023-12-21", "physical_pdf_pages": [2, 3]}
+      },
+      "actual_listing_date": null,
+      "verified_exchange_identifiers": null,
+      "board": null
+    },
+    {
+      "discovery_bse_scrip_code": "543963",
+      "issuer_name": "SHELTER PHARMA LIMITED",
+      "prospectus_document_date": "2023-08-05",
+      "pdf_sha256": "b9762831ac5a0ed8c9f3dce9d4fb58a7d52e9fd7a95bd847e13a41ad089ba83f",
+      "selected_attempt": 1,
+      "terms": {
+        "price_band_inr_per_share": null,
+        "price_band_note": "Fixed Price Issue; do not manufacture a one-point book-built band.",
+        "issue_price_inr_per_share": {"value": 42, "physical_pdf_page": 2},
+        "total_offer_amount": {"source_value": "1,602.72", "source_unit": "INR lakh", "candidate_value_inr": 160272000, "physical_pdf_page": 1, "status": "qualified", "qualification": "Disclosed fresh issue total, including the market maker reservation; not a separately verified final realised-proceeds figure."},
+        "market_lot_shares": {"value": 3000, "physical_pdf_pages": [8, 220]},
+        "minimum_bid_quantity_shares": {"value": 3000, "investor_category": "retail individual", "physical_pdf_page": 225},
+        "open_date": {"value": "2023-08-10", "physical_pdf_pages": [1, 2]},
+        "close_date": {"value": "2023-08-14", "physical_pdf_pages": [1, 2]}
+      },
+      "actual_listing_date": null,
+      "verified_exchange_identifiers": null,
+      "board": null
+    }
+  ]
+}
