@@ -1,0 +1,97 @@
+name: Publish reviewed final BSE 2022 pair 2022 IPOs
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'data/discovery/bse-2022-final-pair-review-2026-09-28.json'
+      - 'data/evidence/bse-2022-final-pair-source-receipt-2026-09-28.json'
+      - 'data/verified-bse-listings/2026-09-28-final-pair.json'
+      - 'scripts/*final-pair*'
+      - 'scripts/build-published-data.mjs'
+      - 'scripts/verify-bse-publication.mjs'
+      - '.github/workflows/publish-reviewed-bse-2022-final-pair.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'data/discovery/bse-2022-final-pair-review-2026-09-28.json'
+      - 'data/evidence/bse-2022-final-pair-source-receipt-2026-09-28.json'
+      - 'data/verified-bse-listings/2026-09-28-final-pair.json'
+      - 'scripts/*final-pair*'
+      - '.github/workflows/publish-reviewed-bse-2022-final-pair.yml'
+permissions: {contents: read}
+concurrency:
+  group: bse-2022-final-pair
+  cancel-in-progress: false
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: '20'}
+      - name: Rehearse bounded import and public projection
+        run: |
+          node scripts/test-reviewed-bse-2022-final-pair.mjs
+          node scripts/apply-reviewed-bse-2022-final-pair.mjs --apply
+          node scripts/build-published-data.mjs
+          node scripts/build-published-data.mjs --check
+          node scripts/validate-data.mjs
+          node scripts/test-reviewed-bse-2022-final-pair.mjs
+  publish:
+    needs: validate
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions: {contents: write}
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - uses: actions/setup-node@v4
+        with: {node-version: '20'}
+      - name: Recompute and publish on latest main
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          for attempt in 1 2 3; do
+            git fetch origin main
+            git reset --hard origin/main
+            node scripts/test-reviewed-bse-2022-final-pair.mjs
+            node scripts/apply-reviewed-bse-2022-final-pair.mjs --apply
+            node scripts/build-published-data.mjs
+            node scripts/build-published-data.mjs --check
+            node scripts/validate-data.mjs
+            node scripts/test-reviewed-bse-2022-final-pair.mjs
+            git add data/recovery/2022/nse-issue-information.json data/ipos.json
+            git diff --cached --quiet && exit 0
+            git commit -m 'data: publish reviewed final BSE 2022 pair 2022 IPOs'
+            git push origin HEAD:main && exit 0
+          done
+          exit 1
+  verify-live:
+    needs: publish
+    if: github.event_name == 'push' && needs.publish.result == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: '20'}
+      - name: Verify actual GitHub Pages bytes
+        shell: bash
+        run: |
+          set -euo pipefail
+          for attempt in $(seq 1 18); do
+            VERIFICATION_DIR="$RUNNER_TEMP/verification/attempt-$attempt" node scripts/verify-bse-2022-final-pair.mjs && exit 0
+            sleep 20
+          done
+          exit 1
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: bse-2022-final-pair-live-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/verification
+          retention-days: 14
+          if-no-files-found: error
