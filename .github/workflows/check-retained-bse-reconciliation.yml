@@ -1,0 +1,95 @@
+name: Check retained BSE reconciliation
+on:
+  pull_request:
+    paths:
+      - 'scripts/*retained-bse*'
+      - 'data/discovery/bse-retained-reconciliation-*'
+      - 'data/discovery/bse-2023-review-queue-*'
+      - '.github/workflows/check-retained-bse-reconciliation.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/*retained-bse*'
+      - 'data/discovery/bse-retained-reconciliation-*'
+      - 'data/discovery/bse-2023-review-queue-*'
+      - '.github/workflows/check-retained-bse-reconciliation.yml'
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: '20'}
+      - name: Test read-only reconciliation and pinned report
+        run: |
+          node scripts/test-retained-bse-universe.mjs
+          node scripts/test-retained-bse-snapshot.mjs
+          node scripts/check-retained-bse-snapshot.mjs
+          git diff --exit-code
+  replay-archive:
+    needs: check
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions: {contents: read, actions: read}
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - uses: actions/setup-node@v4
+        with: {node-version: '20'}
+      - name: Check archived artifact availability
+        id: archive
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if gh api repos/Vasuki8/IPO-Tracker/actions/artifacts/10910707544 > "$RUNNER_TEMP/artifact.json"; then
+            available=$(node -e 'const a=require(process.argv[1]);console.log(a.expired ? "false" : "true")' "$RUNNER_TEMP/artifact.json")
+          else
+            available=false
+          fi
+          echo "available=$available" >> "$GITHUB_OUTPUT"
+          if [ "$available" != true ]; then
+            echo '::warning::Original retained archive unavailable or expired; source replay NOT performed. Synthetic and committed-receipt checks remain separate.'
+            echo 'Archived-source replay unavailable. No fresh source check or updated completeness result is claimed.' >> "$GITHUB_STEP_SUMMARY"
+          fi
+      - name: Reproduce dated audit from original bytes
+        if: steps.archive.outputs.available == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/retained-replay"
+          mkdir -p "$out/raw-archive" "$out/pinned-root/data/discovery" "$out/report"
+          gh api repos/Vasuki8/IPO-Tracker/actions/artifacts/10910707544/zip > "$out/source.zip"
+          echo "5105397fdae479e05e46528ecb2cf7665f3f329c6cbae74169ac9dc64b35cac5  $out/source.zip" | sha256sum -c -
+          python3 - "$out" <<'PY'
+          import sys,pathlib,zipfile
+          out=pathlib.Path(sys.argv[1])
+          with zipfile.ZipFile(out/'source.zip') as z:
+              for name in z.namelist():
+                  p=pathlib.PurePosixPath(name)
+                  if p.is_absolute() or '..' in p.parts: raise ValueError('unsafe_archive_path')
+              z.extractall(out/'raw-archive')
+          PY
+          git archive 74ef09c365fad379366b9eba56a857345e7ff0a2 data/recovery | tar -x -C "$out/pinned-root"
+          cp data/discovery/bse-issue-summary-coverage-audit-2026-09-26.json "$out/pinned-root/data/discovery/"
+          cp data/discovery/bse-2021-unmatched-disposition-2026-09-27.json "$out/pinned-root/data/discovery/"
+          cp data/discovery/bse-2022-unmatched-disposition-2026-09-27.json "$out/pinned-root/data/discovery/"
+          node scripts/reconcile-retained-bse-universe.mjs \
+            --input="$out/raw-archive" --root="$out/pinned-root" \
+            --output="$out/report/bse-retained-reconciliation-full-2026-09-28.json" \
+            --as-of=2026-09-28T03:21:52.783Z --recovery-commit=74ef09c365fad379366b9eba56a857345e7ff0a2
+          node scripts/check-retained-bse-snapshot.mjs "$out/report/bse-retained-reconciliation-full-2026-09-28.json"
+          git diff --exit-code
+      - uses: actions/upload-artifact@v4
+        if: steps.archive.outputs.available == 'true' && always()
+        with:
+          name: bse-retained-reconciliation-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/retained-replay/report
+          retention-days: 14
+          if-no-files-found: warn

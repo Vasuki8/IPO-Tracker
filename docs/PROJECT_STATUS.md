@@ -1,35 +1,55 @@
 # Project status and handoff
 
-Updated **2026-09-28 (UTC)** after closing the published and live-verified Maruti Interior Products / Olatech Solutions release. Active priority remains **P1 issuer identity and universe correctness**.
+Updated **2026-09-28 (UTC)** after completing the original 2022 unmatched queue, publishing Droneacharya, repairing FiveStar terms, and reconciling the retained 2020–2026 BSE universe. Active priority remains **P1 issuer identity and data correctness**.
 
 ## Exact next bounded task
 
-Continue the **2022 BSE unmatched review** with **Droneacharya Aerial Innovations Limited (543713)** and **Five-Star Business Finance Ltd. (543663)**. Reconcile names, aliases and exchange identities against all current recovery years before treating either row as missing. Retain issuer-specific official BSE/SEBI evidence and original bytes before any import. BSE issue-summary values remain discovery evidence only.
+Review **Sah Polymers, Global Surfaces, Udayshivakumar Infra and Pyramid Technoplast** as one four-issuer 2023 evidence batch, where official evidence permits. Exact discovery codes and rows are in the [2023 candidate queue](../data/discovery/bse-2023-review-queue-2026-09-28.json). Reconcile names, aliases and exchange identities across all recovery years before importing. Retain original official documents and field evidence; do not auto-import discovery values.
 
-The pinned [2022 disposition](../data/discovery/bse-2022-unmatched-disposition-2026-09-27.json) now accounts for the original 16 unmatched rows as **13 reviewed/published + 1 existing-recovery alias + 2 awaiting review**. The retained source surface remains **90 official rows / 74 original exact matches / 16 original unmatched**. Resolving this queue will not, by itself, establish complete Indian IPO-universe coverage.
+The original [2022 disposition](../data/discovery/bse-2022-unmatched-disposition-2026-09-27.json) is **14 reviewed/published + 2 existing-recovery alias + 0 awaiting review**. Its original 16 unmatched rows are resolved. This is not complete Indian IPO-universe coverage. The new retained-source audit leaves 30 candidates in 2023 and 215 across 2023–2026.
 
-## Latest release — Maruti and Olatech published and live-verified
+## Latest release — final 2022 pair and FiveStar repair
 
-PR **#325** merged as **8c226855046eb8e8b30a272cfccc632d59e5b98c**. Publication commit **4b0853a315ad1e74cf340ce53ac11c448afdb68e** added exactly two 2022 recovery records: **Maruti Interior Products Limited** and **Olatech Solutions Limited**. This closeout reconciles the handoff with that completed release; **do not replay or duplicate the import**.
+PR **#327** merged as **f569f249f6fb90d2f77b584b5c419afecc103e0e**. Publication **74ef09c365fad379366b9eba56a857345e7ff0a2** added one issuer, **Droneacharya Aerial Innovations Limited**, and repaired the existing **FiveStar Business Finance Limited / FIVESTAR** record. Do not create a second Five-Star issuer or replay the import.
 
-| Issuer | Board | Issue price | Issue size | Market lot | Minimum bid | Offer dates | Listing |
-| --- | --- | ---: | ---: | ---: | ---: | --- | --- |
-| Maruti Interior Products Limited | SME | INR 55 | INR 110m | 2,000 | 2,000 | 03–08 Feb-2022 | 16-Feb-2022 |
-| Olatech Solutions Limited | SME | INR 27 | INR 18.9m | 4,000 | 4,000 | 12–19 Aug-2022 | 29-Aug-2022 |
+Droneacharya: BSE SME, book-built band INR 52–54, issue price INR 54, total issue INR 339.66m, trading lot 2,000 and separately evidenced minimum bid 2,000; public offer 13–15 December 2022, actual listing 23 December 2022. Anchor bidding was 12 December and is not the public opening. SEBI's later order is used only for its explicit historical listing statement, not a current regulatory-status inference.
 
-Both are fixed-price SME IPOs: `price_band` remains missing. Market lot and minimum bid are separate fields with separate source pages. Unsupported exchange identifiers and minimum application amounts remain null. Raw source values, INR-lakh normalization, reporting periods, physical PDF pages, document dates and source hashes are retained in recovery; first observation and last collection use the earliest and latest retained collection respectively. They are not source publication dates.
+FiveStar: filled four missing fields—band INR 450–474, trading lot **1 share**, public dates 9–11 November 2022. Existing minimum bid **31 shares**, listing 21 November, issue price 474, stable ID, issuer spelling, NSE identity and first-observed timestamp remain unchanged. Anchor date 7 November is not the public opening.
 
-Source collection run **36365847939** retained **4 original SEBI/BSE PDFs / 22,346,671 source bytes** in artifact **10947656355**, ZIP SHA-256 **c14bab5a36044894c54b5e9f30ffbecdd591cfd6f6329083a09b20a15b0b0c20**. The release regression covers 22 rejected mutations, before/after publication, unchanged existing records, unit normalization, read-only checks and the live-fetch contract.
+**FiveStar offer size remains an unresolved scope/stage conflict.** The retained NSE initial offer describes up to INR 19,600.05m including anchor allocation; the later Final Prospectus reports INR 15,934.49m **subject to finalization of Basis of Allotment**, excluding multiple bids and bids not banked. The public field prefers the prospectus candidate with `status: conflict`, both source observations and an explicit correction note. Do not call it verified or finalized proceeds. Reconcile an official final basis-of-allotment disclosure before resolving it. Hariom's earlier conflict is unchanged.
 
-Publication workflow **36367972688** completed successfully on **workflow attempt 2**. Its retained successful live snapshot was fetched **2026-09-28T02:04:21.827Z**, contains **1,366 records / 7,580,477 response bytes**, and has dataset generation **2026-09-28T01:58:22.999Z** and SHA-256 **5b37be24bbb70b6ae6073f8cfd8887885d5a2cddd78a6523c60a5f9798a43b76**. Successful live artifact **10948117298** has ZIP SHA-256 **2f1061a5b83ec5c190fd9eeaa55011fcc65f71d47526e311683c95ac3cb2745f**. Both ZIP and response hashes were independently checked during closeout. The [durable live receipt](verification/bse-2022-maruti-olatech-live-2026-09-28.json) records these as-of observations; inner `attempt-1` is the fetch loop of workflow attempt 2, not the first workflow attempt.
+Source run **36371487755**, artifact **10948564535**, retained **3 PDFs + 3 landing responses / 14,006,299 response bytes**; ZIP SHA-256 **be4bfc110ccb1aba363e0f99f82f805de8dccb88305d2c70b33eea166cfbf23a**. Original hashes/lengths and physical PDF pages were checked. Unknown PDF publication dates remain null; FiveStar's November-2022-labelled landing page currently links a May-2023-path PDF whose cover is dated 15 November 2022. Those clocks are not interchangeable.
 
-Merged-main data-contract run **36367972691**, reviewed-BSE run **36367972669**, and Pages deployment **36367972668** passed. Production sync **36367972667** subsequently passed NSE/SEBI collection, rebuild, validation and repository publication; operator snapshot **2026-09-28T02:11:57.537Z** recorded healthy status. Its later dataset generation **2026-09-28T01:58:31.497Z** is distinct from the retained release snapshot above. Raw artifacts expire after 14 days; durable projections, receipt hashes and URLs remain in the repository. No new browser/UI test or complete-universe claim is made.
+Release tests passed **46 rejected-mutation cases**, the real builder/validator, rerun safety, all 1,365 unrelated records unchanged, alias collision rejection, source hash/unit/page binding, public/anchor dates, market-lot/minimum-bid distinction and live-fetch projection. All PR-head and merged-main data-contract/reviewed-BSE checks passed. Workflow **36373086633**, workflow attempt 1, succeeded on live fetch attempt 3. The retained successful snapshot was fetched **2026-09-28T03:18:01.629Z**, generated **2026-09-28T03:17:00.726Z**, and contains **1,367 records / 7,596,148 response bytes**. Response SHA-256 **ecea0544bc585e5a7e6d1b3e1c445113908ef66c65fb2be06d33f35c4d55d418**. Live artifact **10950101413** ZIP SHA-256 **71f693bd6cae4992353554e292f633a2f7f11bf7d194419d4508b2a5fc4e48c1**. See the [durable receipt](verification/bse-2022-final-pair-live-2026-09-28.json).
 
-## Handoff consistency checks
+## Retained BSE universe reconciliation — additional work this run
 
-Run `node scripts/test-bse-2022-disposition.mjs` and `node scripts/check-bse-2022-disposition.mjs` before closing a 2022 batch. The read-only check reconciles declared counts, unique source rows, approved manifest references, recovery/public identities, and all current README/status next-task sections. It accepts the legacy manifest format and preserved aliases. A possible existing identity on an awaiting row is a warning requiring review, not authority to import or auto-close it. Discovery price/date disagreements are not used to rewrite published facts.
+The [dated audit receipt](../data/discovery/bse-retained-reconciliation-2026-09-28.json) rechecks all **16 original responses / 296,942 bytes** against pinned SHA-256 hashes and reconstructs the parsed year rows from raw bytes before comparing them. It rejects a forged saved projection even when the archived raw files are unchanged. It is read-only and does not collect or publish IPOs. Source observation remains **2026-09-26T16:40:34.440Z**; reconciliation is **2026-09-28T03:21:52.783Z** against publication commit **74ef09c365fad379366b9eba56a857345e7ff0a2**, plus the separately hash-pinned closeout alias dispositions.
 
-The dedicated `check-bse-2022-handoff.yml` workflow runs these checks without importing, publishing or rewriting data. IPO values, source allowlists and the public schema are unchanged by this closeout.
+| Retained year | Source rows | Exact matches | Reviewed aliases | Awaiting review |
+| --- | ---: | ---: | ---: | ---: |
+| 2020 | 31 | 31 | 0 | 0 |
+| 2021 | 91 | 90 | 1 | 0 |
+| 2022 | 90 | 88 | 2 | 0 |
+| 2023 | 120 | 90 | 0 | 30 |
+| 2024 | 158 | 120 | 0 | 38 |
+| 2025 | 255 | 164 | 0 | 91 |
+| 2026 | 175 | 119 | 0 | 56 |
+| **Total** | **920** | **702** | **3** | **215** |
+
+These are identity-reconciliation counts, not 705 independently re-reviewed prospectuses or a field-completeness audit. Explicit reviewed aliases are linked; approximate names and code-only hints remain review candidates, never automatic matches/imports. The 30-row 2023 discovery queue preserves original source row numbers and hashes and proposes the next four names. No 2023 IPO is imported by this closeout.
+
+Two provenance exceptions are preserved: the compact original pin labels source commit **460df3b91a509b82b30c7e5630cfcf83de784842**, while the retained collection archive labels **fb81541413afd32a2fc1eddf10d29fff4ad20cd1**. All raw response hashes and parsed projections match; the commit-label discrepancy is disclosed, not silently repaired. The 2024 TRAFIKSOL source row has no usable BSE scrip code and remains held rather than receiving an invented code.
+
+The full row-level report is reproducible from source artifact **10910707544**, ZIP SHA-256 **5105397fdae479e05e46528ecb2cf7665f3f329c6cbae74169ac9dc64b35cac5**, the pinned recovery commit and alias files. It is attached to the closeout CI archive while original raw artifacts remain available and is also provided with the conversation. Raw Actions artifacts expire; the committed compact receipt, 2023 queue and input/output hashes remain. A missing/expired replay archive is explicitly reported, not presented as a successful source check.
+
+## Handoff and audit tests
+
+Run `node scripts/test-bse-2022-disposition.mjs`, `node scripts/check-bse-2022-disposition.mjs`, `node scripts/test-retained-bse-universe.mjs`, `node scripts/test-retained-bse-snapshot.mjs` and `node scripts/check-retained-bse-snapshot.mjs`. The new universe test covers **19 rejected cases**, raw/projection tampering, alias identity binding, cross-year/date holds, missing codes, source-clock separation and non-mutation. Snapshot tests additionally validate the committed report/queue counts and boundaries. CI does not rewrite production data. All previous archives, data conflicts and reviewed manifests remain intact.
+
+## Previous release — Maruti and Olatech
+
+PR #325 and closeout #326 remain complete. Maruti (INR 55, INR 110m, lot/minimum 2,000, public 3–8 February 2022, listed 16 February) and Olatech (INR 27, INR 18.9m, lot/minimum 4,000, public 12–19 August 2022, listed 29 August) are already published. Original source artifact 10947656355 and [live receipt](verification/bse-2022-maruti-olatech-live-2026-09-28.json) remain intact. No prior imports or historical correction records were changed by the audit closeout.
 
 ## Completed work — do not restart
 
@@ -41,7 +61,7 @@ PR #319's cross-year historical identity guard remains in force: stale NSE rows 
 
 ## Remaining boundaries and parallel workstreams
 
-Overall Indian IPO-universe coverage and field/source coverage remain incomplete. After the final two original 2022 unmatched rows, continue bounded year/source-family reconciliation. SEBI historical pagination, NSE-series coverage and wider Pre-IPO lead-manager discovery remain separate gaps. Maintain observation, collection, generation and publication distinctions; preserve nulls, source conflicts and correction history. Do not enable or expand P5/performance while P4 remains blocked.
+Overall Indian IPO-universe coverage and field/source coverage remain incomplete. The original 2022 queue is complete; continue with the pinned 2023 candidates and later retained years. SEBI historical pagination, NSE-series coverage and wider Pre-IPO lead-manager discovery remain separate gaps. Maintain observation, collection, generation and publication distinctions; preserve nulls, source conflicts and correction history. Do not enable or expand P5/performance while P4 remains blocked.
 
 The active application-term requirement is **Lot Size only**: display verified market lot first, then verified minimum bid quantity when market lot is missing, while keeping the raw fields distinct. Minimum investment/application amount remains out of scope; do not derive it from price times quantity. Final Prospectus terms are authoritative where available; inclusion is not contingent on having a final Prospectus. Every displayed figure must remain source-backed.
 
