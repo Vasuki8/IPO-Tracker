@@ -53,43 +53,20 @@ jobs:
       - name: Validate committed operator state
         run: node scripts/validate-operator-state.mjs
 
-      - name: Check sync publication race guards
+      - name: Check active publication race guards and retired writers
         shell: bash
         run: |
+          node scripts/test-completed-release-workflow-retirement.mjs
           grep -q 'prepare-live-sync-proposal.mjs' .github/workflows/update-ipos.yml
           grep -q 'apply-live-sync-proposal.mjs' .github/workflows/update-ipos.yml
           grep -q 'git reset --hard origin/main' .github/workflows/update-ipos.yml
           grep -q 'group: live-ipo-sync' .github/workflows/update-ipos.yml
           grep -q 'group: historical-offer-date-backfill' .github/workflows/backfill-historical-offer-dates.yml
           grep -q 'group: historical-pdf-field-backfill' .github/workflows/backfill-historical-pdf-fields.yml
-          grep -q 'group: historical-ipo-evidence-materialization' .github/workflows/materialize-historical-ipo-evidence.yml
-          grep -q 'git reset --hard origin/main' .github/workflows/materialize-historical-ipo-evidence.yml
-          grep -q 'actions/upload-artifact@v4' .github/workflows/materialize-historical-ipo-evidence.yml
-          grep -q 'group: fabino-listing-evidence-materialization' .github/workflows/materialize-fabino-listing-evidence.yml
           grep -q 'group: bse-issue-summary-audit-' .github/workflows/audit-bse-issue-summary.yml
-          grep -q 'group: bse-high-priority-reconciliation-evidence' .github/workflows/materialize-bse-audit-conflict-evidence.yml
-          grep -q 'git reset --hard origin/main' .github/workflows/materialize-bse-audit-conflict-evidence.yml
-          grep -q 'actions/upload-artifact@v4' .github/workflows/materialize-bse-audit-conflict-evidence.yml
-          grep -q 'group: bse-2020-unmatched-evidence' .github/workflows/materialize-bse-2020-unmatched-evidence.yml
-          grep -q 'git reset --hard origin/main' .github/workflows/materialize-bse-2020-unmatched-evidence.yml
-          grep -q 'actions/upload-artifact@v4' .github/workflows/materialize-bse-2020-unmatched-evidence.yml
           grep -q 'permissions:' .github/workflows/audit-bse-issue-summary.yml
           grep -q 'contents: read' .github/workflows/audit-bse-issue-summary.yml
           grep -q 'Ensure audit is read-only' .github/workflows/audit-bse-issue-summary.yml
-          grep -q 'git reset --hard origin/main' .github/workflows/materialize-fabino-listing-evidence.yml
-          grep -q 'actions/upload-artifact@v4' .github/workflows/materialize-fabino-listing-evidence.yml
-          grep -q 'group: reviewed-historical-ipo-publication' .github/workflows/publish-reviewed-historical-ipos.yml
-          grep -q 'git reset --hard origin/main' .github/workflows/publish-reviewed-historical-ipos.yml
-          grep -q 'node scripts/build-published-data.mjs --check' .github/workflows/publish-reviewed-historical-ipos.yml
-          grep -q 'group: verify-reviewed-historical-ipo-publication' .github/workflows/verify-reviewed-historical-ipo-publication.yml
-          grep -q 'group: reviewed-fabino-publication' .github/workflows/publish-reviewed-fabino.yml
-          grep -q 'git reset --hard origin/main' .github/workflows/publish-reviewed-fabino.yml
-          grep -q 'node scripts/build-published-data.mjs --check' .github/workflows/publish-reviewed-fabino.yml
-          grep -q 'group: verify-reviewed-fabino-publication' .github/workflows/verify-reviewed-fabino-publication.yml
-          grep -q 'group: reviewed-bse-reconciliation-publication' .github/workflows/publish-reviewed-bse-reconciliation.yml
-          grep -q 'git reset --hard origin/main' .github/workflows/publish-reviewed-bse-reconciliation.yml
-          grep -q 'node scripts/build-published-data.mjs --check' .github/workflows/publish-reviewed-bse-reconciliation.yml
-          grep -q 'group: verify-reviewed-bse-reconciliation-publication' .github/workflows/verify-reviewed-bse-reconciliation-publication.yml
           grep -q 'git ls-files --error-unmatch ops/operator-snapshot.json' .github/workflows/update-ipos.yml
           grep -q 'git reset --hard HEAD' .github/workflows/update-ipos.yml
           grep -q 'Pages publication-state attempt' .github/workflows/deploy-pages.yml
