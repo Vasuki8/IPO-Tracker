@@ -21,6 +21,8 @@ jobs:
         run: node scripts/test-verify-bse-listing-candidates.mjs
       - name: Test official PDF retry safety
         run: node scripts/test-retry-bse-listing-pdf.mjs
+      - name: Test isolated 2020 import lifecycle and enrichment guards
+        run: node scripts/test-reviewed-bse-2020-unmatched-import.mjs
       - name: Test reviewed import, conflicts and idempotency
         run: node scripts/test-apply-verified-bse-listings.mjs
       - name: Rehearse publication and prove existing records unchanged
