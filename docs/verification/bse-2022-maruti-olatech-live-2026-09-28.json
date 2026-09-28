@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.0.0",
+  "status": "verified_retained_live_snapshot",
+  "release_pr": 325,
+  "merge_commit_sha": "8c226855046eb8e8b30a272cfccc632d59e5b98c",
+  "publication_commit_sha": "4b0853a315ad1e74cf340ce53ac11c448afdb68e",
+  "verification_workflow_run_id": "36367972688",
+  "verification_workflow_attempt": 2,
+  "artifact_id": 10948117298,
+  "artifact_sha256": "2f1061a5b83ec5c190fd9eeaa55011fcc65f71d47526e311683c95ac3cb2745f",
+  "artifact_retention_days": 14,
+  "snapshot_path_in_artifact": "attempt-1/live-data.json",
+  "report_path_in_artifact": "attempt-1/verification.json",
+  "verification": {
+    "ok": true,
+    "url": "https://vasuki8.github.io/IPO-Tracker/data/ipos.json",
+    "checked_at": "2026-09-28T02:04:21.827Z",
+    "response_bytes": 7580477,
+    "response_sha256": "5b37be24bbb70b6ae6073f8cfd8887885d5a2cddd78a6523c60a5f9798a43b76",
+    "records": [
+      "maruti-interior-products-limited",
+      "olatech-solutions-limited"
+    ],
+    "generated_at": "2026-09-28T01:58:22.999Z",
+    "published_records": 1366
+  },
+  "scope_note": "As-of evidence from the successful second workflow attempt, independently checked against the retained response bytes. Inner directory attempt-1 is the first fetch loop of workflow attempt 2. This is not a claim about the latest served snapshot, original source publication time, completeness of the Indian IPO universe, or source document hashes exposed by the public schema."
+}

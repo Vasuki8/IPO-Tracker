@@ -1,0 +1,41 @@
+name: Check BSE 2022 handoff consistency
+on:
+  pull_request:
+    paths:
+      - "README.md"
+      - "docs/PROJECT_STATUS.md"
+      - "data/discovery/bse-2022-unmatched-disposition-2026-09-27.json"
+      - "data/verified-bse-listings/**"
+      - "data/recovery/**"
+      - "data/ipos.json"
+      - "scripts/*bse-2022-disposition.mjs"
+      - ".github/workflows/check-bse-2022-handoff.yml"
+  push:
+    branches: [main]
+    paths:
+      - "README.md"
+      - "docs/PROJECT_STATUS.md"
+      - "data/discovery/bse-2022-unmatched-disposition-2026-09-27.json"
+      - "data/verified-bse-listings/**"
+      - "data/recovery/**"
+      - "data/ipos.json"
+      - "scripts/*bse-2022-disposition.mjs"
+      - ".github/workflows/check-bse-2022-handoff.yml"
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: "20"}
+      - name: Test disposition and handoff invariants
+        run: |
+          node --check scripts/check-bse-2022-disposition.mjs
+          node scripts/test-bse-2022-disposition.mjs
+      - name: Check committed release bookkeeping
+        run: node scripts/check-bse-2022-disposition.mjs
+      - name: Ensure check is read-only
+        run: git diff --exit-code
