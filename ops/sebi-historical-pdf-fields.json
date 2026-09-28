@@ -4156,6 +4156,42 @@
         "publication_date": "2023-09-07"
       },
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2023/1694084221136.pdf"
+    },
+    "2025|jsw-cement-limited": {
+      "issuer_name": "JSW Cement Limited",
+      "listing_date": "2025-08-14",
+      "last_attempted_at": "2026-09-28T20:54:11.971Z",
+      "parser_version": "1.2.0",
+      "status": "error",
+      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 75 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-historical-pdf-lVua5q/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/aug-2025/1754974418670.pdf\ncurl: (18) transfer closed with 8628366 bytes remaining to read\ncurl: (18) transfer closed with 3905982 bytes remaining to read\n",
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2025/1754974418670.pdf"
+    },
+    "2023|netweb-technologies-india-limited": {
+      "issuer_name": "Netweb Technologies India Limited",
+      "listing_date": "2023-07-27",
+      "last_attempted_at": "2026-09-28T20:54:11.971Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "price_band",
+        "issue_size_inr",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Netweb Technologies India Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2023/1689162734070.PDF",
+        "publication_date": "2023-07-12"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2023/1689162734070.PDF"
     }
   }
 }
