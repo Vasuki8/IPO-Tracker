@@ -1,7 +1,7 @@
 {
   "source_family": "Official NSE / SEBI / BSE offer-document and exchange evidence",
   "collection_started_at": "2026-09-23T19:29:29.146Z",
-  "generated_at": "2026-09-28T06:00:16.135Z",
+  "generated_at": "2026-09-28T06:04:20.542Z",
   "records": [
     {
       "id": "a-g-universal-limited",
@@ -24911,6 +24911,1005 @@
           "collected_at": "2026-09-28T03:56:07.089Z",
           "document_sha256": "ce1d3d5d218e831a210214b9bf9e943958bb7d02ca885a5883ce01f74a007ec2",
           "evidence_locator": "Issuer-specific actual admission to trading / historical listing statement."
+        },
+        "corrections": []
+      }
+    },
+    {
+      "id": "ratnaveer-precision-engineering-limited",
+      "issuer_name": "Ratnaveer Precision Engineering Limited",
+      "board": null,
+      "sector": null,
+      "status": "listed",
+      "nse_symbol": null,
+      "nse_series": null,
+      "nse_source": null,
+      "bse_symbol": null,
+      "bse_scrip_code": null,
+      "isin": null,
+      "bse_source": null,
+      "terms": {
+        "price_band": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null,
+        "open_date": null,
+        "close_date": null
+      },
+      "documents": [
+        {
+          "type": "SEBI Offer Document Landing Page",
+          "identity": "Ratnaveer Precision Engineering Limited — SEBI Offer Document Landing Page dated 2023-09-11",
+          "url": "https://www.sebi.gov.in/filings/public-issues/sep-2023/ratnaveer-precision-engineering-limited-prospectus_76730.html",
+          "publication_date": "2023-09-11",
+          "collected_at": "2026-09-28T05:26:14.731Z",
+          "document_sha256": "c56d00e265e7080b20bd2717dca858f04b0d8e3db0e895865406b333605ef451"
+        },
+        {
+          "type": "Final Prospectus",
+          "identity": "Ratnaveer Precision Engineering Limited — Final Prospectus dated 2023-09-06",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2023/1694432967148.PDF",
+          "publication_date": null,
+          "collected_at": "2026-09-28T05:26:41.239Z",
+          "document_sha256": "536ff2ef9cb7e2d069f43d57de5df403ae3f6ead85d89e57ca99f9308523305e"
+        },
+        {
+          "type": "BSE Listing Notice",
+          "identity": "Ratnaveer Precision Engineering Limited — BSE Listing Notice dated 2023-09-08",
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20230908-27",
+          "publication_date": "2023-09-08",
+          "collected_at": "2026-09-28T05:36:52.725Z",
+          "document_sha256": "917847c4979163f7ee047d6a04e86c4050ff9da3a9d35a04ee08fa072aa910d3"
+        }
+      ],
+      "first_observed_at": "2026-09-28T05:26:14.731Z",
+      "last_collected_at": "2026-09-28T05:36:52.725Z",
+      "board_evidence": [],
+      "status_evidence": [
+        {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20230908-27",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "Ratnaveer Precision Engineering Limited — BSE Listing Notice dated 2023-09-08",
+          "document_date": "2023-09-08",
+          "reporting_period": "2023 IPO",
+          "publication_date": "2023-09-08",
+          "page": null,
+          "collected_at": "2026-09-28T05:36:52.725Z",
+          "document_sha256": "917847c4979163f7ee047d6a04e86c4050ff9da3a9d35a04ee08fa072aa910d3",
+          "evidence_locator": "Actual exchange admission or issuer post-listing statement, not a tentative prospectus timetable."
+        }
+      ],
+      "bse_2023_rvpe_import": {
+        "manifest": "data/verified-bse-listings/2026-09-28-rvpe-2023.json",
+        "review": "data/discovery/bse-2023-rvpe-review-2026-09-28.json",
+        "receipt": "data/evidence/bse-2023-rvpe-source-receipt-2026-09-28.json",
+        "action_key": "ratnaveer",
+        "discovery_bse_scrip_code": "543978"
+      },
+      "price_band": {
+        "value": {
+          "min": 93,
+          "max": 98
+        },
+        "source_value": "93–98",
+        "source_unit": "INR/share",
+        "reporting_period": "2023 IPO",
+        "status": "verified",
+        "page": 14,
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2023/1694432967148.PDF",
+          "document_type": "Final Prospectus",
+          "document_identity": "Ratnaveer Precision Engineering Limited — Final Prospectus dated 2023-09-06",
+          "document_date": "2023-09-06",
+          "reporting_period": "2023 IPO",
+          "publication_date": null,
+          "page": 14,
+          "collected_at": "2026-09-28T05:26:41.239Z",
+          "document_sha256": "536ff2ef9cb7e2d069f43d57de5df403ae3f6ead85d89e57ca99f9308523305e",
+          "evidence_locator": "Explicit floor and cap prices for the historical public offer."
+        },
+        "corrections": []
+      },
+      "issue_price": {
+        "value": 98,
+        "source_value": "98",
+        "source_unit": "INR/share",
+        "reporting_period": "2023 IPO",
+        "status": "verified",
+        "page": 2,
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2023/1694432967148.PDF",
+          "document_type": "Final Prospectus",
+          "document_identity": "Ratnaveer Precision Engineering Limited — Final Prospectus dated 2023-09-06",
+          "document_date": "2023-09-06",
+          "reporting_period": "2023 IPO",
+          "publication_date": null,
+          "page": 2,
+          "collected_at": "2026-09-28T05:26:41.239Z",
+          "document_sha256": "536ff2ef9cb7e2d069f43d57de5df403ae3f6ead85d89e57ca99f9308523305e",
+          "evidence_locator": "Explicit standard public offer price, not face value or employee-discount price."
+        },
+        "corrections": []
+      },
+      "issue_size_inr": {
+        "value": 1650320000,
+        "source_value": "1650.32",
+        "source_unit": "INR million",
+        "reporting_period": "2023 IPO",
+        "status": "provisional",
+        "page": 1,
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2023/1694432967148.PDF",
+          "document_type": "Final Prospectus",
+          "document_identity": "Ratnaveer Precision Engineering Limited — Final Prospectus dated 2023-09-06",
+          "document_date": "2023-09-06",
+          "reporting_period": "2023 IPO",
+          "publication_date": null,
+          "page": 1,
+          "collected_at": "2026-09-28T05:26:41.239Z",
+          "document_sha256": "536ff2ef9cb7e2d069f43d57de5df403ae3f6ead85d89e57ca99f9308523305e",
+          "evidence_locator": "Prospectus states an up-to total offer amount; not independently verified as final realised proceeds."
+        },
+        "corrections": [],
+        "qualification": "Prospectus states an up-to total offer amount; not independently verified as final realised proceeds."
+      },
+      "market_lot": {
+        "value": 1,
+        "source_value": "one Equity Share",
+        "source_unit": "shares",
+        "reporting_period": "2023 IPO",
+        "status": "verified",
+        "page": 374,
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2023/1694432967148.PDF",
+          "document_type": "Final Prospectus",
+          "document_identity": "Ratnaveer Precision Engineering Limited — Final Prospectus dated 2023-09-06",
+          "document_date": "2023-09-06",
+          "reporting_period": "2023 IPO",
+          "publication_date": null,
+          "page": 374,
+          "collected_at": "2026-09-28T05:26:41.239Z",
+          "document_sha256": "536ff2ef9cb7e2d069f43d57de5df403ae3f6ead85d89e57ca99f9308523305e",
+          "evidence_locator": "Market Lot and Trading Lot: tradable lot is one Equity Share."
+        },
+        "corrections": []
+      },
+      "minimum_bid_quantity": {
+        "value": 150,
+        "source_value": "150",
+        "source_unit": "shares",
+        "reporting_period": "2023 IPO",
+        "status": "verified",
+        "page": 9,
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2023/1694432967148.PDF",
+          "document_type": "Final Prospectus",
+          "document_identity": "Ratnaveer Precision Engineering Limited — Final Prospectus dated 2023-09-06",
+          "document_date": "2023-09-06",
+          "reporting_period": "2023 IPO",
+          "publication_date": null,
+          "page": 9,
+          "collected_at": "2026-09-28T05:26:41.239Z",
+          "document_sha256": "536ff2ef9cb7e2d069f43d57de5df403ae3f6ead85d89e57ca99f9308523305e",
+          "evidence_locator": "Bid Lot: explicit public minimum quantity, separately evidenced from trading lot."
+        },
+        "corrections": []
+      },
+      "open_date": {
+        "value": "2023-09-04",
+        "source_value": "2023-09-04",
+        "source_unit": "ISO date",
+        "reporting_period": "2023 IPO",
+        "status": "verified",
+        "page": 1,
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2023/1694432967148.PDF",
+          "document_type": "Final Prospectus",
+          "document_identity": "Ratnaveer Precision Engineering Limited — Final Prospectus dated 2023-09-06",
+          "document_date": "2023-09-06",
+          "reporting_period": "2023 IPO",
+          "publication_date": null,
+          "page": 1,
+          "collected_at": "2026-09-28T05:26:41.239Z",
+          "document_sha256": "536ff2ef9cb7e2d069f43d57de5df403ae3f6ead85d89e57ca99f9308523305e",
+          "evidence_locator": "Public offer opened; anchor bidding is separately stated and excluded."
+        },
+        "corrections": []
+      },
+      "close_date": {
+        "value": "2023-09-06",
+        "source_value": "2023-09-06",
+        "source_unit": "ISO date",
+        "reporting_period": "2023 IPO",
+        "status": "verified",
+        "page": 1,
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2023/1694432967148.PDF",
+          "document_type": "Final Prospectus",
+          "document_identity": "Ratnaveer Precision Engineering Limited — Final Prospectus dated 2023-09-06",
+          "document_date": "2023-09-06",
+          "reporting_period": "2023 IPO",
+          "publication_date": null,
+          "page": 1,
+          "collected_at": "2026-09-28T05:26:41.239Z",
+          "document_sha256": "536ff2ef9cb7e2d069f43d57de5df403ae3f6ead85d89e57ca99f9308523305e",
+          "evidence_locator": "Public offer closed, as explicitly dated in the prospectus."
+        },
+        "corrections": []
+      },
+      "listing_date": {
+        "value": "2023-09-11",
+        "source_value": "2023-09-11",
+        "source_unit": "ISO date",
+        "reporting_period": "2023 IPO",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20230908-27",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "Ratnaveer Precision Engineering Limited — BSE Listing Notice dated 2023-09-08",
+          "document_date": "2023-09-08",
+          "reporting_period": "2023 IPO",
+          "publication_date": "2023-09-08",
+          "page": null,
+          "collected_at": "2026-09-28T05:36:52.725Z",
+          "document_sha256": "917847c4979163f7ee047d6a04e86c4050ff9da3a9d35a04ee08fa072aa910d3",
+          "evidence_locator": "Actual exchange admission or issuer post-listing statement, not a tentative prospectus timetable."
+        },
+        "corrections": []
+      }
+    },
+    {
+      "id": "valiant-laboratories-limited",
+      "issuer_name": "Valiant Laboratories Limited",
+      "board": null,
+      "sector": null,
+      "status": "listed",
+      "nse_symbol": null,
+      "nse_series": null,
+      "nse_source": null,
+      "bse_symbol": null,
+      "bse_scrip_code": null,
+      "isin": null,
+      "bse_source": null,
+      "terms": {
+        "price_band": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null,
+        "open_date": null,
+        "close_date": null
+      },
+      "documents": [
+        {
+          "type": "SEBI Offer Document Landing Page",
+          "identity": "Valiant Laboratories Limited — SEBI Offer Document Landing Page dated 2023-09-22",
+          "url": "https://www.sebi.gov.in/filings/public-issues/sep-2023/valiant-laboratories-limited-rhp_77238.html",
+          "publication_date": "2023-09-22",
+          "collected_at": "2026-09-28T05:29:29.246Z",
+          "document_sha256": "8f4c4e78c53bdc3f4c31e2d4a27a6e7c1afd9ac2a5a5ae6a345abc0c6e8b571a"
+        },
+        {
+          "type": "Red Herring Prospectus",
+          "identity": "Valiant Laboratories Limited — Red Herring Prospectus dated 2023-09-18",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2023/1695373896705.pdf",
+          "publication_date": null,
+          "collected_at": "2026-09-28T05:29:54.289Z",
+          "document_sha256": "120fa0efda85b8d8595808491dedc5729485fc9533b3ae23dbdbfe64590f68a7"
+        },
+        {
+          "type": "Annual Report FY 2023-24",
+          "identity": "Valiant Laboratories Limited — Annual Report FY 2023-24 dated 2024-07-17",
+          "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/b50a737b-15bb-407c-b7e8-382773330878.pdf",
+          "publication_date": null,
+          "collected_at": "2026-09-28T05:27:45.787Z",
+          "document_sha256": "074a753ac6cbc110a0fbed60d5a48946373199f20582548a897a987e72c4cb62"
+        }
+      ],
+      "first_observed_at": "2026-09-28T05:27:45.787Z",
+      "last_collected_at": "2026-09-28T05:29:54.289Z",
+      "board_evidence": [],
+      "status_evidence": [
+        {
+          "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/b50a737b-15bb-407c-b7e8-382773330878.pdf",
+          "document_type": "Annual Report FY 2023-24",
+          "document_identity": "Valiant Laboratories Limited — Annual Report FY 2023-24 dated 2024-07-17",
+          "document_date": "2024-07-17",
+          "reporting_period": "FY 2023-24; historical 2023 IPO",
+          "publication_date": null,
+          "page": 22,
+          "collected_at": "2026-09-28T05:27:45.787Z",
+          "document_sha256": "074a753ac6cbc110a0fbed60d5a48946373199f20582548a897a987e72c4cb62",
+          "evidence_locator": "Annual-report historical IPO paragraph states listed 6 October in the 2023 IPO context; corroborated by the dated listing statement on page 24."
+        }
+      ],
+      "bse_2023_rvpe_import": {
+        "manifest": "data/verified-bse-listings/2026-09-28-rvpe-2023.json",
+        "review": "data/discovery/bse-2023-rvpe-review-2026-09-28.json",
+        "receipt": "data/evidence/bse-2023-rvpe-source-receipt-2026-09-28.json",
+        "action_key": "valiant",
+        "discovery_bse_scrip_code": "543998",
+        "held_fields": {
+          "minimum_bid_quantity": "SEBI RHP has an unfilled Bid Lot placeholder; annual report says lot size 105 without distinguishing trading lot from minimum bid. Issuer-hosted Final Prospectus reviewed but outside existing publication-source allowlist; retain null pending an approved official mirror."
+        }
+      },
+      "price_band": {
+        "value": {
+          "min": 133,
+          "max": 140
+        },
+        "source_value": "133–140",
+        "source_unit": "INR/share",
+        "reporting_period": "2023 IPO",
+        "status": "verified",
+        "page": 22,
+        "source": {
+          "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/b50a737b-15bb-407c-b7e8-382773330878.pdf",
+          "document_type": "Annual Report FY 2023-24",
+          "document_identity": "Valiant Laboratories Limited — Annual Report FY 2023-24 dated 2024-07-17",
+          "document_date": "2024-07-17",
+          "reporting_period": "FY 2023-24; historical 2023 IPO",
+          "publication_date": null,
+          "page": 22,
+          "collected_at": "2026-09-28T05:27:45.787Z",
+          "document_sha256": "074a753ac6cbc110a0fbed60d5a48946373199f20582548a897a987e72c4cb62",
+          "evidence_locator": "Historical IPO paragraph explicitly states price band INR 133 to INR 140 per share; its separate amount discrepancy is retained on issue_size_inr."
+        },
+        "corrections": []
+      },
+      "issue_price": {
+        "value": 140,
+        "source_value": "140",
+        "source_unit": "INR/share",
+        "reporting_period": "2023 IPO",
+        "status": "verified",
+        "page": 70,
+        "source": {
+          "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/b50a737b-15bb-407c-b7e8-382773330878.pdf",
+          "document_type": "Annual Report FY 2023-24",
+          "document_identity": "Valiant Laboratories Limited — Annual Report FY 2023-24 dated 2024-07-17",
+          "document_date": "2024-07-17",
+          "reporting_period": "FY 2023-24; historical 2023 IPO",
+          "publication_date": null,
+          "page": 70,
+          "collected_at": "2026-09-28T05:27:45.787Z",
+          "document_sha256": "074a753ac6cbc110a0fbed60d5a48946373199f20582548a897a987e72c4cb62",
+          "evidence_locator": "Independent auditor annexure: shares issued at INR 140 per share."
+        },
+        "corrections": []
+      },
+      "issue_size_inr": {
+        "value": 1524600000,
+        "source_value": "152.46",
+        "source_unit": "INR crore",
+        "reporting_period": "2023 IPO",
+        "status": "conflict",
+        "page": 70,
+        "source": {
+          "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/b50a737b-15bb-407c-b7e8-382773330878.pdf",
+          "document_type": "Annual Report FY 2023-24",
+          "document_identity": "Valiant Laboratories Limited — Annual Report FY 2023-24 dated 2024-07-17",
+          "document_date": "2024-07-17",
+          "reporting_period": "FY 2023-24; historical 2023 IPO",
+          "publication_date": null,
+          "page": 70,
+          "collected_at": "2026-09-28T05:27:45.787Z",
+          "document_sha256": "074a753ac6cbc110a0fbed60d5a48946373199f20582548a897a987e72c4cb62",
+          "evidence_locator": "Auditor annexure states total raised INR 1,52,46,00,000 (INR 152.46 crore); narrative discrepancy retained."
+        },
+        "corrections": [
+          {
+            "kind": "intradocument_amount_conflict",
+            "status": "unresolved",
+            "note": "Unresolved intradocument amount discrepancy: physical annual-report page 70 audited report states INR 152.46 crore raised; narrative page 22 states INR 2152.46 crore. Prefer the audited candidate while retaining conflict status and both observations. Page 24 also uses offer-for-sale wording inconsistent with the fresh-issue documents; do not infer issuer versus selling-shareholder proceeds from that paragraph.",
+            "preferred_candidate": {
+              "value": 1524600000,
+              "source_value": "152.46",
+              "source_unit": "INR crore",
+              "source_key": "valiant_annual",
+              "page": 70
+            },
+            "competing_observations": [
+              {
+                "value": 21524600000,
+                "source_key": "valiant_annual",
+                "page": 22,
+                "source_value": "2152.46",
+                "source_unit": "INR crore",
+                "reported_amount": "2152.46",
+                "normalization_multiplier": 10000000,
+                "evidence_locator": "Narrative IPO paragraph explicitly prints INR 2152.46 crore, inconsistent with the auditor annexure on page 70."
+              }
+            ]
+          }
+        ],
+        "qualification": "Unresolved intradocument amount discrepancy: physical annual-report page 70 audited report states INR 152.46 crore raised; narrative page 22 states INR 2152.46 crore. Prefer the audited candidate while retaining conflict status and both observations. Page 24 also uses offer-for-sale wording inconsistent with the fresh-issue documents; do not infer issuer versus selling-shareholder proceeds from that paragraph.",
+        "additional_sources": [
+          {
+            "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/b50a737b-15bb-407c-b7e8-382773330878.pdf",
+            "document_type": "Annual Report FY 2023-24",
+            "document_identity": "Valiant Laboratories Limited — Annual Report FY 2023-24 dated 2024-07-17",
+            "document_date": "2024-07-17",
+            "reporting_period": "FY 2023-24; historical 2023 IPO",
+            "publication_date": null,
+            "page": 22,
+            "collected_at": "2026-09-28T05:27:45.787Z",
+            "document_sha256": "074a753ac6cbc110a0fbed60d5a48946373199f20582548a897a987e72c4cb62",
+            "evidence_locator": "Narrative IPO paragraph explicitly prints INR 2152.46 crore, inconsistent with the auditor annexure on page 70."
+          }
+        ]
+      },
+      "market_lot": {
+        "value": 1,
+        "source_value": "one Equity Share",
+        "source_unit": "shares",
+        "reporting_period": "2023 IPO",
+        "status": "verified",
+        "page": 358,
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2023/1695373896705.pdf",
+          "document_type": "Red Herring Prospectus",
+          "document_identity": "Valiant Laboratories Limited — Red Herring Prospectus dated 2023-09-18",
+          "document_date": "2023-09-18",
+          "reporting_period": "2023 IPO",
+          "publication_date": null,
+          "page": 358,
+          "collected_at": "2026-09-28T05:29:54.289Z",
+          "document_sha256": "120fa0efda85b8d8595808491dedc5729485fc9533b3ae23dbdbfe64590f68a7",
+          "evidence_locator": "Market Lot and Trading Lot: one Equity Share is explicit; minimum allotment remains a placeholder in this RHP."
+        },
+        "corrections": []
+      },
+      "minimum_bid_quantity": {
+        "value": null,
+        "status": "missing",
+        "source": null,
+        "corrections": []
+      },
+      "open_date": {
+        "value": "2023-09-27",
+        "source_value": "2023-09-27",
+        "source_unit": "ISO date",
+        "reporting_period": "2023 IPO",
+        "status": "verified",
+        "page": 22,
+        "source": {
+          "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/b50a737b-15bb-407c-b7e8-382773330878.pdf",
+          "document_type": "Annual Report FY 2023-24",
+          "document_identity": "Valiant Laboratories Limited — Annual Report FY 2023-24 dated 2024-07-17",
+          "document_date": "2024-07-17",
+          "reporting_period": "FY 2023-24; historical 2023 IPO",
+          "publication_date": null,
+          "page": 22,
+          "collected_at": "2026-09-28T05:27:45.787Z",
+          "document_sha256": "074a753ac6cbc110a0fbed60d5a48946373199f20582548a897a987e72c4cb62",
+          "evidence_locator": "Annual-report historical IPO paragraph: opened 27 September 2023."
+        },
+        "corrections": []
+      },
+      "close_date": {
+        "value": "2023-10-03",
+        "source_value": "2023-10-03",
+        "source_unit": "ISO date",
+        "reporting_period": "2023 IPO",
+        "status": "verified",
+        "page": 22,
+        "source": {
+          "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/b50a737b-15bb-407c-b7e8-382773330878.pdf",
+          "document_type": "Annual Report FY 2023-24",
+          "document_identity": "Valiant Laboratories Limited — Annual Report FY 2023-24 dated 2024-07-17",
+          "document_date": "2024-07-17",
+          "reporting_period": "FY 2023-24; historical 2023 IPO",
+          "publication_date": null,
+          "page": 22,
+          "collected_at": "2026-09-28T05:27:45.787Z",
+          "document_sha256": "074a753ac6cbc110a0fbed60d5a48946373199f20582548a897a987e72c4cb62",
+          "evidence_locator": "Annual-report historical IPO paragraph: closed 3 October 2023."
+        },
+        "corrections": []
+      },
+      "listing_date": {
+        "value": "2023-10-06",
+        "source_value": "2023-10-06",
+        "source_unit": "ISO date",
+        "reporting_period": "2023 IPO",
+        "status": "verified",
+        "page": 22,
+        "source": {
+          "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/b50a737b-15bb-407c-b7e8-382773330878.pdf",
+          "document_type": "Annual Report FY 2023-24",
+          "document_identity": "Valiant Laboratories Limited — Annual Report FY 2023-24 dated 2024-07-17",
+          "document_date": "2024-07-17",
+          "reporting_period": "FY 2023-24; historical 2023 IPO",
+          "publication_date": null,
+          "page": 22,
+          "collected_at": "2026-09-28T05:27:45.787Z",
+          "document_sha256": "074a753ac6cbc110a0fbed60d5a48946373199f20582548a897a987e72c4cb62",
+          "evidence_locator": "Annual-report historical IPO paragraph states listed 6 October in the 2023 IPO context; corroborated by the dated listing statement on page 24."
+        },
+        "corrections": []
+      }
+    },
+    {
+      "id": "esaf-small-finance-bank-limited",
+      "issuer_name": "ESAF Small Finance Bank Limited",
+      "board": null,
+      "sector": null,
+      "status": "listed",
+      "nse_symbol": null,
+      "nse_series": null,
+      "nse_source": null,
+      "bse_symbol": null,
+      "bse_scrip_code": null,
+      "isin": null,
+      "bse_source": null,
+      "terms": {
+        "price_band": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null,
+        "open_date": null,
+        "close_date": null
+      },
+      "documents": [
+        {
+          "type": "SEBI Offer Document Landing Page",
+          "identity": "ESAF Small Finance Bank Limited — SEBI Offer Document Landing Page dated 2023-11-09",
+          "url": "https://www.sebi.gov.in/filings/public-issues/nov-2023/esaf-small-finance-bank-limited-prospectus_79039.html",
+          "publication_date": "2023-11-09",
+          "collected_at": "2026-09-28T05:26:44.056Z",
+          "document_sha256": "ad24853531b149c8f13613f9d92f25a2828b25ee13329748b5e73a195f0fdd91"
+        },
+        {
+          "type": "Final Prospectus",
+          "identity": "ESAF Small Finance Bank Limited — Final Prospectus dated 2023-11-08",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2023/1699531924694.pdf",
+          "publication_date": null,
+          "collected_at": "2026-09-28T05:27:12.420Z",
+          "document_sha256": "c1deb54b2673c14b980275788565c7611e68ab987e1b771d8cd3801b8efea55c"
+        },
+        {
+          "type": "Annual Report FY 2023-24",
+          "identity": "ESAF Small Finance Bank Limited — Annual Report FY 2023-24 dated 2024-07-20",
+          "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/02511851-de0e-48bb-9216-3ecde6953ba9.pdf",
+          "publication_date": null,
+          "collected_at": "2026-09-28T05:27:50.958Z",
+          "document_sha256": "531e3843b9ff9aac89fc532089d477b1f67322ce81b79bc3af8b65c637f95b5c"
+        }
+      ],
+      "first_observed_at": "2026-09-28T05:26:44.056Z",
+      "last_collected_at": "2026-09-28T05:27:50.958Z",
+      "board_evidence": [],
+      "status_evidence": [
+        {
+          "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/02511851-de0e-48bb-9216-3ecde6953ba9.pdf",
+          "document_type": "Annual Report FY 2023-24",
+          "document_identity": "ESAF Small Finance Bank Limited — Annual Report FY 2023-24 dated 2024-07-20",
+          "document_date": "2024-07-20",
+          "reporting_period": "FY 2023-24; historical 2023 IPO",
+          "publication_date": null,
+          "page": 17,
+          "collected_at": "2026-09-28T05:27:50.958Z",
+          "document_sha256": "531e3843b9ff9aac89fc532089d477b1f67322ce81b79bc3af8b65c637f95b5c",
+          "evidence_locator": "Actual exchange admission or issuer post-listing statement, not a tentative prospectus timetable."
+        }
+      ],
+      "bse_2023_rvpe_import": {
+        "manifest": "data/verified-bse-listings/2026-09-28-rvpe-2023.json",
+        "review": "data/discovery/bse-2023-rvpe-review-2026-09-28.json",
+        "receipt": "data/evidence/bse-2023-rvpe-source-receipt-2026-09-28.json",
+        "action_key": "esaf",
+        "discovery_bse_scrip_code": "544020"
+      },
+      "price_band": {
+        "value": {
+          "min": 57,
+          "max": 60
+        },
+        "source_value": "57–60",
+        "source_unit": "INR/share",
+        "reporting_period": "2023 IPO",
+        "status": "verified",
+        "page": 13,
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2023/1699531924694.pdf",
+          "document_type": "Final Prospectus",
+          "document_identity": "ESAF Small Finance Bank Limited — Final Prospectus dated 2023-11-08",
+          "document_date": "2023-11-08",
+          "reporting_period": "2023 IPO",
+          "publication_date": null,
+          "page": 13,
+          "collected_at": "2026-09-28T05:27:12.420Z",
+          "document_sha256": "c1deb54b2673c14b980275788565c7611e68ab987e1b771d8cd3801b8efea55c",
+          "evidence_locator": "Explicit floor and cap prices for the historical public offer."
+        },
+        "corrections": []
+      },
+      "issue_price": {
+        "value": 60,
+        "source_value": "60",
+        "source_unit": "INR/share",
+        "reporting_period": "2023 IPO",
+        "status": "verified",
+        "page": 13,
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2023/1699531924694.pdf",
+          "document_type": "Final Prospectus",
+          "document_identity": "ESAF Small Finance Bank Limited — Final Prospectus dated 2023-11-08",
+          "document_date": "2023-11-08",
+          "reporting_period": "2023 IPO",
+          "publication_date": null,
+          "page": 13,
+          "collected_at": "2026-09-28T05:27:12.420Z",
+          "document_sha256": "c1deb54b2673c14b980275788565c7611e68ab987e1b771d8cd3801b8efea55c",
+          "evidence_locator": "Explicit standard public offer price, not face value or employee-discount price."
+        },
+        "corrections": []
+      },
+      "issue_size_inr": {
+        "value": 4630000000,
+        "source_value": "4630.00",
+        "source_unit": "INR million",
+        "reporting_period": "2023 IPO",
+        "status": "provisional",
+        "page": 1,
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2023/1699531924694.pdf",
+          "document_type": "Final Prospectus",
+          "document_identity": "ESAF Small Finance Bank Limited — Final Prospectus dated 2023-11-08",
+          "document_date": "2023-11-08",
+          "reporting_period": "2023 IPO",
+          "publication_date": null,
+          "page": 1,
+          "collected_at": "2026-09-28T05:27:12.420Z",
+          "document_sha256": "c1deb54b2673c14b980275788565c7611e68ab987e1b771d8cd3801b8efea55c",
+          "evidence_locator": "Prospectus total offer is subject to finalisation of Basis of Allotment; retain provisional status, not final realised proceeds. Total includes fresh issue and offer for sale, including the disclosed employee discount; not share count multiplied by the standard offer price."
+        },
+        "corrections": [],
+        "qualification": "Prospectus total offer is subject to finalisation of Basis of Allotment; retain provisional status, not final realised proceeds. Total includes fresh issue and offer for sale, including the disclosed employee discount; not share count multiplied by the standard offer price."
+      },
+      "market_lot": {
+        "value": 1,
+        "source_value": "one Equity Share",
+        "source_unit": "shares",
+        "reporting_period": "2023 IPO",
+        "status": "verified",
+        "page": 467,
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2023/1699531924694.pdf",
+          "document_type": "Final Prospectus",
+          "document_identity": "ESAF Small Finance Bank Limited — Final Prospectus dated 2023-11-08",
+          "document_date": "2023-11-08",
+          "reporting_period": "2023 IPO",
+          "publication_date": null,
+          "page": 467,
+          "collected_at": "2026-09-28T05:27:12.420Z",
+          "document_sha256": "c1deb54b2673c14b980275788565c7611e68ab987e1b771d8cd3801b8efea55c",
+          "evidence_locator": "Market Lot and Trading Lot: tradable lot is one Equity Share."
+        },
+        "corrections": []
+      },
+      "minimum_bid_quantity": {
+        "value": 250,
+        "source_value": "250",
+        "source_unit": "shares",
+        "reporting_period": "2023 IPO",
+        "status": "verified",
+        "page": 10,
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2023/1699531924694.pdf",
+          "document_type": "Final Prospectus",
+          "document_identity": "ESAF Small Finance Bank Limited — Final Prospectus dated 2023-11-08",
+          "document_date": "2023-11-08",
+          "reporting_period": "2023 IPO",
+          "publication_date": null,
+          "page": 10,
+          "collected_at": "2026-09-28T05:27:12.420Z",
+          "document_sha256": "c1deb54b2673c14b980275788565c7611e68ab987e1b771d8cd3801b8efea55c",
+          "evidence_locator": "Bid Lot: explicit public minimum quantity, separately evidenced from trading lot."
+        },
+        "corrections": []
+      },
+      "open_date": {
+        "value": "2023-11-03",
+        "source_value": "2023-11-03",
+        "source_unit": "ISO date",
+        "reporting_period": "2023 IPO",
+        "status": "verified",
+        "page": 2,
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2023/1699531924694.pdf",
+          "document_type": "Final Prospectus",
+          "document_identity": "ESAF Small Finance Bank Limited — Final Prospectus dated 2023-11-08",
+          "document_date": "2023-11-08",
+          "reporting_period": "2023 IPO",
+          "publication_date": null,
+          "page": 2,
+          "collected_at": "2026-09-28T05:27:12.420Z",
+          "document_sha256": "c1deb54b2673c14b980275788565c7611e68ab987e1b771d8cd3801b8efea55c",
+          "evidence_locator": "Public offer opened; anchor bidding is separately stated and excluded."
+        },
+        "corrections": []
+      },
+      "close_date": {
+        "value": "2023-11-07",
+        "source_value": "2023-11-07",
+        "source_unit": "ISO date",
+        "reporting_period": "2023 IPO",
+        "status": "verified",
+        "page": 2,
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2023/1699531924694.pdf",
+          "document_type": "Final Prospectus",
+          "document_identity": "ESAF Small Finance Bank Limited — Final Prospectus dated 2023-11-08",
+          "document_date": "2023-11-08",
+          "reporting_period": "2023 IPO",
+          "publication_date": null,
+          "page": 2,
+          "collected_at": "2026-09-28T05:27:12.420Z",
+          "document_sha256": "c1deb54b2673c14b980275788565c7611e68ab987e1b771d8cd3801b8efea55c",
+          "evidence_locator": "Public offer closed, as explicitly dated in the prospectus."
+        },
+        "corrections": []
+      },
+      "listing_date": {
+        "value": "2023-11-10",
+        "source_value": "2023-11-10",
+        "source_unit": "ISO date",
+        "reporting_period": "2023 IPO",
+        "status": "verified",
+        "page": 17,
+        "source": {
+          "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/02511851-de0e-48bb-9216-3ecde6953ba9.pdf",
+          "document_type": "Annual Report FY 2023-24",
+          "document_identity": "ESAF Small Finance Bank Limited — Annual Report FY 2023-24 dated 2024-07-20",
+          "document_date": "2024-07-20",
+          "reporting_period": "FY 2023-24; historical 2023 IPO",
+          "publication_date": null,
+          "page": 17,
+          "collected_at": "2026-09-28T05:27:50.958Z",
+          "document_sha256": "531e3843b9ff9aac89fc532089d477b1f67322ce81b79bc3af8b65c637f95b5c",
+          "evidence_locator": "Actual exchange admission or issuer post-listing statement, not a tentative prospectus timetable."
+        },
+        "corrections": []
+      }
+    },
+    {
+      "id": "plaza-wires-limited",
+      "issuer_name": "Plaza Wires Limited",
+      "board": null,
+      "sector": null,
+      "status": "listed",
+      "nse_symbol": null,
+      "nse_series": null,
+      "nse_source": null,
+      "bse_symbol": null,
+      "bse_scrip_code": null,
+      "isin": null,
+      "bse_source": null,
+      "terms": {
+        "price_band": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null,
+        "open_date": null,
+        "close_date": null
+      },
+      "documents": [
+        {
+          "type": "SEBI Offer Document Landing Page",
+          "identity": "Plaza Wires Limited — SEBI Offer Document Landing Page dated 2023-11-01",
+          "url": "https://www.sebi.gov.in/filings/public-issues/nov-2023/plaza-wires-limited-prospectus_78758.html",
+          "publication_date": "2023-11-01",
+          "collected_at": "2026-09-28T05:27:14.823Z",
+          "document_sha256": "08da4f4621ff761c84f06502c30beeeeeae50896dc8a3a0dbe7c6c4e139ef6d0"
+        },
+        {
+          "type": "Final Prospectus",
+          "identity": "Plaza Wires Limited — Final Prospectus dated 2023-10-06",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2023/1699265096481.pdf",
+          "publication_date": null,
+          "collected_at": "2026-09-28T05:27:39.881Z",
+          "document_sha256": "1abb3c60358f2281a961015615080acd8ae2f8d89ced24134d9cc3864a4f3e94"
+        },
+        {
+          "type": "Annual Report FY 2023-24",
+          "identity": "Plaza Wires Limited — Annual Report FY 2023-24 dated 2024-09-07",
+          "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/3a468c8e-8ab9-4b54-82f2-b42ddc574310.pdf",
+          "publication_date": null,
+          "collected_at": "2026-09-28T05:28:12.915Z",
+          "document_sha256": "976db4d749bfb4a047a583158781380a0eec48b6d4a96e4e97af5946977dd5c2"
+        }
+      ],
+      "first_observed_at": "2026-09-28T05:27:14.823Z",
+      "last_collected_at": "2026-09-28T05:28:12.915Z",
+      "board_evidence": [],
+      "status_evidence": [
+        {
+          "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/3a468c8e-8ab9-4b54-82f2-b42ddc574310.pdf",
+          "document_type": "Annual Report FY 2023-24",
+          "document_identity": "Plaza Wires Limited — Annual Report FY 2023-24 dated 2024-09-07",
+          "document_date": "2024-09-07",
+          "reporting_period": "FY 2023-24; historical 2023 IPO",
+          "publication_date": null,
+          "page": 52,
+          "collected_at": "2026-09-28T05:28:12.915Z",
+          "document_sha256": "976db4d749bfb4a047a583158781380a0eec48b6d4a96e4e97af5946977dd5c2",
+          "evidence_locator": "Actual exchange admission or issuer post-listing statement, not a tentative prospectus timetable."
+        }
+      ],
+      "bse_2023_rvpe_import": {
+        "manifest": "data/verified-bse-listings/2026-09-28-rvpe-2023.json",
+        "review": "data/discovery/bse-2023-rvpe-review-2026-09-28.json",
+        "receipt": "data/evidence/bse-2023-rvpe-source-receipt-2026-09-28.json",
+        "action_key": "plaza",
+        "discovery_bse_scrip_code": "544003"
+      },
+      "price_band": {
+        "value": {
+          "min": 51,
+          "max": 54
+        },
+        "source_value": "51–54",
+        "source_unit": "INR/share",
+        "reporting_period": "2023 IPO",
+        "status": "verified",
+        "page": 1,
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2023/1699265096481.pdf",
+          "document_type": "Final Prospectus",
+          "document_identity": "Plaza Wires Limited — Final Prospectus dated 2023-10-06",
+          "document_date": "2023-10-06",
+          "reporting_period": "2023 IPO",
+          "publication_date": null,
+          "page": 1,
+          "collected_at": "2026-09-28T05:27:39.881Z",
+          "document_sha256": "1abb3c60358f2281a961015615080acd8ae2f8d89ced24134d9cc3864a4f3e94",
+          "evidence_locator": "Explicit floor and cap prices for the historical public offer."
+        },
+        "corrections": []
+      },
+      "issue_price": {
+        "value": 54,
+        "source_value": "54",
+        "source_unit": "INR/share",
+        "reporting_period": "2023 IPO",
+        "status": "verified",
+        "page": 1,
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2023/1699265096481.pdf",
+          "document_type": "Final Prospectus",
+          "document_identity": "Plaza Wires Limited — Final Prospectus dated 2023-10-06",
+          "document_date": "2023-10-06",
+          "reporting_period": "2023 IPO",
+          "publication_date": null,
+          "page": 1,
+          "collected_at": "2026-09-28T05:27:39.881Z",
+          "document_sha256": "1abb3c60358f2281a961015615080acd8ae2f8d89ced24134d9cc3864a4f3e94",
+          "evidence_locator": "Explicit standard public offer price, not face value or employee-discount price."
+        },
+        "corrections": []
+      },
+      "issue_size_inr": {
+        "value": 712810000,
+        "source_value": "712.81",
+        "source_unit": "INR million",
+        "reporting_period": "2023 IPO",
+        "status": "provisional",
+        "page": 1,
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2023/1699265096481.pdf",
+          "document_type": "Final Prospectus",
+          "document_identity": "Plaza Wires Limited — Final Prospectus dated 2023-10-06",
+          "document_date": "2023-10-06",
+          "reporting_period": "2023 IPO",
+          "publication_date": null,
+          "page": 1,
+          "collected_at": "2026-09-28T05:27:39.881Z",
+          "document_sha256": "1abb3c60358f2281a961015615080acd8ae2f8d89ced24134d9cc3864a4f3e94",
+          "evidence_locator": "Prospectus total offer is subject to finalisation of Basis of Allotment; retain provisional status, not final realised proceeds."
+        },
+        "corrections": [],
+        "qualification": "Prospectus total offer is subject to finalisation of Basis of Allotment; retain provisional status, not final realised proceeds."
+      },
+      "market_lot": {
+        "value": 1,
+        "source_value": "one Equity Share",
+        "source_unit": "shares",
+        "reporting_period": "2023 IPO",
+        "status": "verified",
+        "page": 325,
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2023/1699265096481.pdf",
+          "document_type": "Final Prospectus",
+          "document_identity": "Plaza Wires Limited — Final Prospectus dated 2023-10-06",
+          "document_date": "2023-10-06",
+          "reporting_period": "2023 IPO",
+          "publication_date": null,
+          "page": 325,
+          "collected_at": "2026-09-28T05:27:39.881Z",
+          "document_sha256": "1abb3c60358f2281a961015615080acd8ae2f8d89ced24134d9cc3864a4f3e94",
+          "evidence_locator": "Market Lot and Trading Lot: tradable lot is one Equity Share."
+        },
+        "corrections": []
+      },
+      "minimum_bid_quantity": {
+        "value": 277,
+        "source_value": "277",
+        "source_unit": "shares",
+        "reporting_period": "2023 IPO",
+        "status": "verified",
+        "page": 8,
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2023/1699265096481.pdf",
+          "document_type": "Final Prospectus",
+          "document_identity": "Plaza Wires Limited — Final Prospectus dated 2023-10-06",
+          "document_date": "2023-10-06",
+          "reporting_period": "2023 IPO",
+          "publication_date": null,
+          "page": 8,
+          "collected_at": "2026-09-28T05:27:39.881Z",
+          "document_sha256": "1abb3c60358f2281a961015615080acd8ae2f8d89ced24134d9cc3864a4f3e94",
+          "evidence_locator": "Bid Lot: explicit public minimum quantity, separately evidenced from trading lot."
+        },
+        "corrections": []
+      },
+      "open_date": {
+        "value": "2023-09-29",
+        "source_value": "2023-09-29",
+        "source_unit": "ISO date",
+        "reporting_period": "2023 IPO",
+        "status": "verified",
+        "page": 1,
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2023/1699265096481.pdf",
+          "document_type": "Final Prospectus",
+          "document_identity": "Plaza Wires Limited — Final Prospectus dated 2023-10-06",
+          "document_date": "2023-10-06",
+          "reporting_period": "2023 IPO",
+          "publication_date": null,
+          "page": 1,
+          "collected_at": "2026-09-28T05:27:39.881Z",
+          "document_sha256": "1abb3c60358f2281a961015615080acd8ae2f8d89ced24134d9cc3864a4f3e94",
+          "evidence_locator": "Public offer opened; anchor bidding is separately stated and excluded."
+        },
+        "corrections": []
+      },
+      "close_date": {
+        "value": "2023-10-05",
+        "source_value": "2023-10-05",
+        "source_unit": "ISO date",
+        "reporting_period": "2023 IPO",
+        "status": "verified",
+        "page": 1,
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2023/1699265096481.pdf",
+          "document_type": "Final Prospectus",
+          "document_identity": "Plaza Wires Limited — Final Prospectus dated 2023-10-06",
+          "document_date": "2023-10-06",
+          "reporting_period": "2023 IPO",
+          "publication_date": null,
+          "page": 1,
+          "collected_at": "2026-09-28T05:27:39.881Z",
+          "document_sha256": "1abb3c60358f2281a961015615080acd8ae2f8d89ced24134d9cc3864a4f3e94",
+          "evidence_locator": "Public offer closed, as explicitly dated in the prospectus."
+        },
+        "corrections": []
+      },
+      "listing_date": {
+        "value": "2023-10-12",
+        "source_value": "2023-10-12",
+        "source_unit": "ISO date",
+        "reporting_period": "2023 IPO",
+        "status": "verified",
+        "page": 52,
+        "source": {
+          "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/3a468c8e-8ab9-4b54-82f2-b42ddc574310.pdf",
+          "document_type": "Annual Report FY 2023-24",
+          "document_identity": "Plaza Wires Limited — Annual Report FY 2023-24 dated 2024-09-07",
+          "document_date": "2024-09-07",
+          "reporting_period": "FY 2023-24; historical 2023 IPO",
+          "publication_date": null,
+          "page": 52,
+          "collected_at": "2026-09-28T05:28:12.915Z",
+          "document_sha256": "976db4d749bfb4a047a583158781380a0eec48b6d4a96e4e97af5946977dd5c2",
+          "evidence_locator": "Actual exchange admission or issuer post-listing statement, not a tentative prospectus timetable."
         },
         "corrections": []
       }
