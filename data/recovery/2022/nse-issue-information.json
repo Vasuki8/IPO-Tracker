@@ -1,7 +1,7 @@
 {
   "source_family": "Official NSE / SEBI / BSE offer-document and exchange evidence",
   "collection_started_at": "2026-09-23T19:29:29.146Z",
-  "generated_at": "2026-09-28T01:58:22.999Z",
+  "generated_at": "2026-09-28T03:17:00.726Z",
   "records": [
     {
       "id": "aaa-technologies-limited",
@@ -6525,10 +6525,18 @@
           "url": "https://www.nseindia.com/api/ipo-detail?symbol=FIVESTAR&series=EQ",
           "publication_date": null,
           "collected_at": "2026-09-23T21:18:31.049Z"
+        },
+        {
+          "type": "Final Prospectus",
+          "identity": "Five-Star Business Finance Limited - Prospectus dated 15 November 2022",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/may-2023/1684485901684.pdf",
+          "publication_date": null,
+          "collected_at": "2026-09-28T02:53:35.661548Z",
+          "document_sha256": "e19316f651204bc0120857bc50e96ef7f3df2ef95bc817da47db8c967f1d479e"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T23:36:29.109Z",
+      "last_collected_at": "2026-09-28T02:53:35.661548Z",
       "board_evidence": [
         {
           "url": "https://www.nseindia.com/api/public-past-issues",
@@ -6591,17 +6599,167 @@
         }
       },
       "issue_size_inr": {
-        "value": 19600050000,
-        "source_value": "Initial Public Offer aggregating up to Rs. 19,600.05 million (Including Anchor Allocation of 1,24,05,094 Equity Shares)",
-        "status": "verified",
-        "page": null,
+        "value": 15934490000,
+        "source_value": "Rs. 15,934.49 million",
+        "source_unit": "INR million",
+        "reporting_period": "2022 IPO",
+        "status": "conflict",
+        "page": 1,
         "source": {
-          "url": "https://www.nseindia.com/api/ipo-detail?symbol=FIVESTAR&series=EQ",
-          "document_type": "NSE Issue Information API",
-          "document_identity": "NSE Issue Information — FIVESTAR",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/may-2023/1684485901684.pdf",
+          "document_type": "Final Prospectus",
+          "document_identity": "Five-Star Business Finance Limited - Prospectus dated 15 November 2022",
+          "document_date": "2022-11-15",
           "publication_date": null,
-          "collected_at": "2026-09-23T23:36:29.109Z"
-        }
+          "reporting_period": "2022 IPO",
+          "page": 1,
+          "evidence_locator": "Physical cover: total Offer for Sale with footnote subject to finalization of Basis of Allotment; not claimed as unqualified final proceeds.",
+          "collected_at": "2026-09-28T02:53:35.661548Z",
+          "document_sha256": "e19316f651204bc0120857bc50e96ef7f3df2ef95bc817da47db8c967f1d479e"
+        },
+        "corrections": [
+          {
+            "kind": "unresolved_source_scope_conflict",
+            "status": "unresolved",
+            "note": "The retained NSE Issue Information describes an initial offer up to INR 19,600.05 million, including anchor allocation. The later Final Prospectus states INR 15,934.49 million subject to finalization of the Basis of Allotment and excludes multiple bids and bids not banked. These are different-stage/scope disclosures. Preserve both observations; prefer the prospectus candidate without calling it verified or claiming a finalized raised amount. Reconcile against an official final basis-of-allotment disclosure before resolving.",
+            "preferred_candidate": {
+              "value": 15934490000,
+              "source_value": "Rs. 15,934.49 million",
+              "unit": "INR million",
+              "qualification": "Subject to finalization of Basis of Allotment; excludes multiple bids and bids not banked.",
+              "source_key": "fivestar_prospectus",
+              "pdf_page": 1
+            },
+            "previous_observation": {
+              "value": 19600050000,
+              "source_value": "Initial Public Offer aggregating up to Rs. 19,600.05 million (Including Anchor Allocation of 1,24,05,094 Equity Shares)",
+              "unit": "INR million",
+              "status": "verified",
+              "source": {
+                "url": "https://www.nseindia.com/api/ipo-detail?symbol=FIVESTAR&series=EQ",
+                "document_type": "NSE Issue Information API",
+                "document_identity": "NSE Issue Information — FIVESTAR",
+                "publication_date": null,
+                "collected_at": "2026-09-23T23:36:29.109Z"
+              }
+            }
+          }
+        ],
+        "additional_sources": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=FIVESTAR&series=EQ",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — FIVESTAR",
+            "publication_date": null,
+            "collected_at": "2026-09-23T23:36:29.109Z",
+            "page": null
+          }
+        ]
+      },
+      "price_band": {
+        "value": {
+          "min": 450,
+          "max": 474
+        },
+        "source_value": "minimum price of Rs. 450 and maximum price of Rs. 474 per Equity Share",
+        "source_unit": "INR per share",
+        "reporting_period": "2022 IPO",
+        "status": "verified",
+        "page": 11,
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/may-2023/1684485901684.pdf",
+          "document_type": "Final Prospectus",
+          "document_identity": "Five-Star Business Finance Limited - Prospectus dated 15 November 2022",
+          "document_date": "2022-11-15",
+          "publication_date": null,
+          "reporting_period": "2022 IPO",
+          "page": 11,
+          "evidence_locator": "Physical PDF 11 (printed 6): Price Band definition.",
+          "collected_at": "2026-09-28T02:53:35.661548Z",
+          "document_sha256": "e19316f651204bc0120857bc50e96ef7f3df2ef95bc817da47db8c967f1d479e"
+        },
+        "corrections": []
+      },
+      "market_lot": {
+        "value": 1,
+        "source_value": "the tradable lot is one Equity Share",
+        "source_unit": "equity shares",
+        "reporting_period": "2022 IPO",
+        "status": "verified",
+        "page": 415,
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/may-2023/1684485901684.pdf",
+          "document_type": "Final Prospectus",
+          "document_identity": "Five-Star Business Finance Limited - Prospectus dated 15 November 2022",
+          "document_date": "2022-11-15",
+          "publication_date": null,
+          "reporting_period": "2022 IPO",
+          "page": 415,
+          "evidence_locator": "Physical PDF 415 (printed 410): Market Lot and Trading Lot; minimum allotment 31 remains a separate quantity.",
+          "collected_at": "2026-09-28T02:53:35.661548Z",
+          "document_sha256": "e19316f651204bc0120857bc50e96ef7f3df2ef95bc817da47db8c967f1d479e"
+        },
+        "corrections": []
+      },
+      "open_date": {
+        "value": "2022-11-09",
+        "source_value": "BID/OFFER OPENED ON: November 9, 2022",
+        "source_unit": "calendar date",
+        "reporting_period": "2022 IPO",
+        "status": "verified",
+        "page": 2,
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/may-2023/1684485901684.pdf",
+          "document_type": "Final Prospectus",
+          "document_identity": "Five-Star Business Finance Limited - Prospectus dated 15 November 2022",
+          "document_date": "2022-11-15",
+          "publication_date": null,
+          "reporting_period": "2022 IPO",
+          "page": 2,
+          "evidence_locator": "Physical PDF 2: public opening date, not anchor bidding date November 7.",
+          "collected_at": "2026-09-28T02:53:35.661548Z",
+          "document_sha256": "e19316f651204bc0120857bc50e96ef7f3df2ef95bc817da47db8c967f1d479e"
+        },
+        "corrections": []
+      },
+      "close_date": {
+        "value": "2022-11-11",
+        "source_value": "BID/OFFER CLOSED ON: November 11, 2022",
+        "source_unit": "calendar date",
+        "reporting_period": "2022 IPO",
+        "status": "verified",
+        "page": 2,
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/may-2023/1684485901684.pdf",
+          "document_type": "Final Prospectus",
+          "document_identity": "Five-Star Business Finance Limited - Prospectus dated 15 November 2022",
+          "document_date": "2022-11-15",
+          "publication_date": null,
+          "reporting_period": "2022 IPO",
+          "page": 2,
+          "evidence_locator": "Physical PDF 2: public closing date.",
+          "collected_at": "2026-09-28T02:53:35.661548Z",
+          "document_sha256": "e19316f651204bc0120857bc50e96ef7f3df2ef95bc817da47db8c967f1d479e"
+        },
+        "corrections": []
+      },
+      "bse_2022_final_pair_repair": {
+        "manifest": "data/verified-bse-listings/2026-09-28-final-pair.json",
+        "review": "data/discovery/bse-2022-final-pair-review-2026-09-28.json",
+        "receipt": "data/evidence/bse-2022-final-pair-source-receipt-2026-09-28.json",
+        "artifact_id": 10948564535,
+        "artifact_sha256": "be4bfc110ccb1aba363e0f99f82f805de8dccb88305d2c70b33eea166cfbf23a",
+        "discovery_bse_scrip_code": "543663",
+        "preserved_stable_id": "fivestar-business-finance-limited",
+        "filled_missing_fields": [
+          "price_band",
+          "market_lot",
+          "open_date",
+          "close_date"
+        ],
+        "conflicting_fields": [
+          "issue_size_inr"
+        ]
       }
     },
     {
@@ -19326,6 +19484,254 @@
           "collected_at": "2026-09-28T01:25:24.720Z",
           "document_sha256": "feb2dede6fcf989b0f1588181b30c25384fcb2d9c50f7a1240dddd73554a9827",
           "evidence_locator": "Annual Report FY 2022-23: statement of actual BSE SME listing; not an indicative IPO timetable."
+        },
+        "corrections": []
+      }
+    },
+    {
+      "id": "droneacharya-aerial-innovations-limited",
+      "issuer_name": "Droneacharya Aerial Innovations Limited",
+      "board": "SME",
+      "sector": null,
+      "status": "listed",
+      "nse_symbol": null,
+      "nse_series": null,
+      "nse_source": null,
+      "bse_symbol": null,
+      "bse_scrip_code": null,
+      "isin": null,
+      "bse_source": null,
+      "terms": {
+        "price_band": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null,
+        "open_date": null,
+        "close_date": null
+      },
+      "documents": [
+        {
+          "type": "Final Prospectus",
+          "identity": "Droneacharya Aerial Innovations Limited - Prospectus dated 19 December 2022",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2022/1671603733388.PDF",
+          "publication_date": null,
+          "collected_at": "2026-09-28T02:53:08.915696Z",
+          "document_sha256": "8ddc1a5f5286867e0baf829bac15f2dfc3ce8da85e09339a4b2c4e60d90dac1f"
+        },
+        {
+          "type": "SEBI Order - historical listing corroboration",
+          "identity": "SEBI order dated 28 November 2025 in respect of Droneacharya Aerial Innovations Limited",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2025/1764334203019_1.pdf",
+          "publication_date": null,
+          "collected_at": "2026-09-28T02:53:43.377371Z",
+          "document_sha256": "3f840a7f26189e19f75c33772f3fc9efee482e24fa0de21130e427d0c79f6449"
+        }
+      ],
+      "first_observed_at": "2026-09-28T02:53:08.915696Z",
+      "last_collected_at": "2026-09-28T02:53:43.377371Z",
+      "board_evidence": [
+        {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2022/1671603733388.PDF",
+          "document_type": "Final Prospectus",
+          "document_identity": "Droneacharya Aerial Innovations Limited - Prospectus dated 19 December 2022",
+          "document_date": "2022-12-19",
+          "publication_date": null,
+          "reporting_period": "2022 IPO",
+          "page": 1,
+          "evidence_locator": "Prospectus cover: BSE SME listing.",
+          "collected_at": "2026-09-28T02:53:08.915696Z",
+          "document_sha256": "8ddc1a5f5286867e0baf829bac15f2dfc3ce8da85e09339a4b2c4e60d90dac1f"
+        }
+      ],
+      "status_evidence": [
+        {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2025/1764334203019_1.pdf",
+          "document_type": "SEBI Order - historical listing corroboration",
+          "document_identity": "SEBI order dated 28 November 2025 in respect of Droneacharya Aerial Innovations Limited",
+          "document_date": "2025-11-28",
+          "publication_date": null,
+          "reporting_period": "Historical 2022 listing",
+          "page": 2,
+          "evidence_locator": "SEBI order physical PDF 2, background paragraph 1: historical actual listing, not indicative timetable.",
+          "collected_at": "2026-09-28T02:53:43.377371Z",
+          "document_sha256": "3f840a7f26189e19f75c33772f3fc9efee482e24fa0de21130e427d0c79f6449"
+        }
+      ],
+      "bse_2022_final_pair_import": {
+        "manifest": "data/verified-bse-listings/2026-09-28-final-pair.json",
+        "review": "data/discovery/bse-2022-final-pair-review-2026-09-28.json",
+        "receipt": "data/evidence/bse-2022-final-pair-source-receipt-2026-09-28.json",
+        "artifact_id": 10948564535,
+        "artifact_sha256": "be4bfc110ccb1aba363e0f99f82f805de8dccb88305d2c70b33eea166cfbf23a",
+        "discovery_bse_scrip_code": "543713"
+      },
+      "price_band": {
+        "value": {
+          "min": 52,
+          "max": 54
+        },
+        "source_value": "PRICE BAND: 52.00 to 54.00 PER EQUITY SHARE",
+        "source_unit": "INR per share",
+        "reporting_period": "2022 IPO",
+        "status": "verified",
+        "page": 2,
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2022/1671603733388.PDF",
+          "document_type": "Final Prospectus",
+          "document_identity": "Droneacharya Aerial Innovations Limited - Prospectus dated 19 December 2022",
+          "document_date": "2022-12-19",
+          "publication_date": null,
+          "reporting_period": "2022 IPO",
+          "page": 2,
+          "evidence_locator": "Physical PDF page 2: book-built price band, not a fixed-price pseudo-band.",
+          "collected_at": "2026-09-28T02:53:08.915696Z",
+          "document_sha256": "8ddc1a5f5286867e0baf829bac15f2dfc3ce8da85e09339a4b2c4e60d90dac1f"
+        },
+        "corrections": []
+      },
+      "issue_price": {
+        "value": 54,
+        "source_value": "Rs. 54 PER EQUITY SHARE",
+        "source_unit": "INR per share",
+        "reporting_period": "2022 IPO",
+        "status": "verified",
+        "page": 2,
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2022/1671603733388.PDF",
+          "document_type": "Final Prospectus",
+          "document_identity": "Droneacharya Aerial Innovations Limited - Prospectus dated 19 December 2022",
+          "document_date": "2022-12-19",
+          "publication_date": null,
+          "reporting_period": "2022 IPO",
+          "page": 2,
+          "evidence_locator": "Physical PDF page 2: final issue price.",
+          "collected_at": "2026-09-28T02:53:08.915696Z",
+          "document_sha256": "8ddc1a5f5286867e0baf829bac15f2dfc3ce8da85e09339a4b2c4e60d90dac1f"
+        },
+        "corrections": []
+      },
+      "issue_size_inr": {
+        "value": 339660000,
+        "source_value": "Rs. 3396.60 Lakhs",
+        "source_unit": "INR lakh",
+        "reporting_period": "2022 IPO",
+        "status": "verified",
+        "page": 1,
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2022/1671603733388.PDF",
+          "document_type": "Final Prospectus",
+          "document_identity": "Droneacharya Aerial Innovations Limited - Prospectus dated 19 December 2022",
+          "document_date": "2022-12-19",
+          "publication_date": null,
+          "reporting_period": "2022 IPO",
+          "page": 1,
+          "evidence_locator": "Physical cover: total fresh issue, not net issue or market-maker portion.",
+          "collected_at": "2026-09-28T02:53:08.915696Z",
+          "document_sha256": "8ddc1a5f5286867e0baf829bac15f2dfc3ce8da85e09339a4b2c4e60d90dac1f"
+        },
+        "corrections": []
+      },
+      "market_lot": {
+        "value": 2000,
+        "source_value": "minimum contract size of 2000 Equity Shares",
+        "source_unit": "equity shares",
+        "reporting_period": "2022 IPO",
+        "status": "verified",
+        "page": 226,
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2022/1671603733388.PDF",
+          "document_type": "Final Prospectus",
+          "document_identity": "Droneacharya Aerial Innovations Limited - Prospectus dated 19 December 2022",
+          "document_date": "2022-12-19",
+          "publication_date": null,
+          "reporting_period": "2022 IPO",
+          "page": 226,
+          "evidence_locator": "Physical PDF 226 (printed 227): Minimum Application Value, Market Lot and Trading Lot.",
+          "collected_at": "2026-09-28T02:53:08.915696Z",
+          "document_sha256": "8ddc1a5f5286867e0baf829bac15f2dfc3ce8da85e09339a4b2c4e60d90dac1f"
+        },
+        "corrections": []
+      },
+      "minimum_bid_quantity": {
+        "value": 2000,
+        "source_value": "BID CAN BE MADE FOR MINIMUM OF 2000 EQUITY SHARES",
+        "source_unit": "equity shares",
+        "reporting_period": "2022 IPO",
+        "status": "verified",
+        "page": 2,
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2022/1671603733388.PDF",
+          "document_type": "Final Prospectus",
+          "document_identity": "Droneacharya Aerial Innovations Limited - Prospectus dated 19 December 2022",
+          "document_date": "2022-12-19",
+          "publication_date": null,
+          "reporting_period": "2022 IPO",
+          "page": 2,
+          "evidence_locator": "Physical PDF 2: explicit minimum bid; independently sourced from the market lot.",
+          "collected_at": "2026-09-28T02:53:08.915696Z",
+          "document_sha256": "8ddc1a5f5286867e0baf829bac15f2dfc3ce8da85e09339a4b2c4e60d90dac1f"
+        },
+        "corrections": []
+      },
+      "open_date": {
+        "value": "2022-12-13",
+        "source_value": "ISSUE OPENS ON: TUESDAY, DECEMBER 13, 2022",
+        "source_unit": "calendar date",
+        "reporting_period": "2022 IPO",
+        "status": "verified",
+        "page": 1,
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2022/1671603733388.PDF",
+          "document_type": "Final Prospectus",
+          "document_identity": "Droneacharya Aerial Innovations Limited - Prospectus dated 19 December 2022",
+          "document_date": "2022-12-19",
+          "publication_date": null,
+          "reporting_period": "2022 IPO",
+          "page": 1,
+          "evidence_locator": "Cover public issue programme; anchor-only 12 December is not the public opening date.",
+          "collected_at": "2026-09-28T02:53:08.915696Z",
+          "document_sha256": "8ddc1a5f5286867e0baf829bac15f2dfc3ce8da85e09339a4b2c4e60d90dac1f"
+        },
+        "corrections": []
+      },
+      "close_date": {
+        "value": "2022-12-15",
+        "source_value": "ISSUE CLOSES ON: THURSDAY, DECEMBER 15, 2022",
+        "source_unit": "calendar date",
+        "reporting_period": "2022 IPO",
+        "status": "verified",
+        "page": 1,
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2022/1671603733388.PDF",
+          "document_type": "Final Prospectus",
+          "document_identity": "Droneacharya Aerial Innovations Limited - Prospectus dated 19 December 2022",
+          "document_date": "2022-12-19",
+          "publication_date": null,
+          "reporting_period": "2022 IPO",
+          "page": 1,
+          "evidence_locator": "Cover public issue programme.",
+          "collected_at": "2026-09-28T02:53:08.915696Z",
+          "document_sha256": "8ddc1a5f5286867e0baf829bac15f2dfc3ce8da85e09339a4b2c4e60d90dac1f"
+        },
+        "corrections": []
+      },
+      "listing_date": {
+        "value": "2022-12-23",
+        "source_value": "listed on the BSE SME platform since December 23, 2022",
+        "source_unit": "calendar date",
+        "reporting_period": "2022 IPO",
+        "status": "verified",
+        "page": 2,
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2025/1764334203019_1.pdf",
+          "document_type": "SEBI Order - historical listing corroboration",
+          "document_identity": "SEBI order dated 28 November 2025 in respect of Droneacharya Aerial Innovations Limited",
+          "document_date": "2025-11-28",
+          "publication_date": null,
+          "reporting_period": "Historical 2022 listing",
+          "page": 2,
+          "evidence_locator": "SEBI order physical PDF 2, background paragraph 1: historical actual listing, not indicative timetable.",
+          "collected_at": "2026-09-28T02:53:43.377371Z",
+          "document_sha256": "3f840a7f26189e19f75c33772f3fc9efee482e24fa0de21130e427d0c79f6449"
         },
         "corrections": []
       }
