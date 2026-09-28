@@ -1,14 +1,29 @@
 # Project status and handoff
 
-Updated **2026-09-28 (UTC)** after publishing and live-verifying Eighty Jewellers / Virtuoso Optoelectronics. Active priority remains **P1 issuer identity and universe correctness**.
+Updated **2026-09-28 (UTC)** after publishing and live-verifying PACE E-Commerce Ventures / PNGS Gargi Fashion Jewellery. Active priority remains **P1 issuer identity and universe correctness**.
 
 ## Exact next bounded task
 
-Continue the **2022 BSE unmatched review** with **PACE E-COMMERCE VENTURES LIMITED (543637)** and **PNGS GARGI FASHION JEWELLERY LIMITED (543709)**. Reconcile against latest recovery first, then retain issuer-specific official BSE/SEBI evidence and original bytes before any import. Keep BSE issue-summary values as discovery evidence only.
+Continue the **2022 BSE unmatched review** with **Maruti Interior Products Limited (543464)** and **Olatech Solutions Limited (543578)**. Reconcile against latest recovery first, then retain issuer-specific official BSE/SEBI evidence and original bytes before any import. Keep BSE issue-summary values as discovery evidence only.
 
-The pinned [2022 disposition](../data/discovery/bse-2022-unmatched-disposition-2026-09-27.json) now accounts for the original 16 unmatched rows as **9 reviewed/published + 1 existing-recovery alias + 6 awaiting review**. The retained 2022 source surface remains **90 official rows / 74 original exact matches / 16 original unmatched**. This remains a bounded follow-up, not a complete Indian IPO-universe claim.
+The pinned [2022 disposition](../data/discovery/bse-2022-unmatched-disposition-2026-09-27.json) now accounts for the original 16 unmatched rows as **11 reviewed/published + 1 existing-recovery alias + 4 awaiting review**. The retained 2022 source surface remains **90 official rows / 74 original exact matches / 16 original unmatched**. This remains a bounded follow-up, not a complete Indian IPO-universe claim.
 
-## Latest release — Eighty and Virtuoso published and live-verified
+## Latest release — PACE and Gargi published and live-verified
+
+PR **#323** merged as **ae37ed1b590cd78938ff582ffd84e754e71006b6**. Publication commit **a104376d2877b3f76a58cad80bf4f076ff39a043** added exactly two 2022 recovery records and rebuilt the public dataset: **PACE E-COMMERCE VENTURES LIMITED** and **PNGS GARGI FASHION JEWELLERY LIMITED**. **Do not replay this batch.**
+
+| Issuer | Board | Issue price | Issue size | Market lot | Minimum bid | Offer dates | Listing |
+| --- | --- | ---: | ---: | ---: | ---: | --- | --- |
+| PACE E-Commerce Ventures Limited | SME | INR 103 | INR 665.339m | 1,200 | 1,200 | 29-Sep–04-Oct-2022 | 20-Oct-2022 |
+| PNGS Gargi Fashion Jewellery Limited | SME | INR 30 | INR 78m | 4,000 | 4,000 | 08–13 Dec-2022 | 20-Dec-2022 |
+
+Both are **fixed-price SME IPOs**, so price_band remains missing rather than duplicating issue price. Market lot and minimum bid quantity remain separate fields even where the values are equal. BSE scrip codes remain discovery-only; symbols, ISIN and minimum application amount remain null.
+
+Four original SEBI/BSE-hosted PDFs were retained in collection run **36364017754**: **44,822,094 response bytes**, artifact **10946596746**, SHA-256 **b2c9bcd68ec692a9b325c3156cde21af50c6071d5e170f5782165d9562854406**. Field-level page evidence is retained for board, issue price, issue size, offer dates, market lot, minimum bid and listing date. PACE's actual listing date is corroborated by a later SEBI-hosted BRLM past-issues table; Gargi's is corroborated by its BSE-hosted FY2022-23 annual report.
+
+PR-head dedicated publication rehearsal, reviewed-BSE validation and the full data-contract suite all passed. Merged-main publication/live-verification run **36364635249** published successfully. GitHub Pages required two propagation retries; the third check passed with **1,364 records** and dataset generation timestamp **2026-09-28T01:06:01.590Z**. PACE and Gargi are therefore **published and live-verified**.
+
+## Previous release — Eighty and Virtuoso published and live-verified
 
 PR **#321** merged as **8b9a882a102054386cd4b999c0b9c1d00a8a14d6**. Publication commit **a49ecacc5f6d8ea0f77aa7c12b48f4f3468d0afd** added exactly two 2022 recovery records and rebuilt the public dataset: **Eighty Jewellers Limited** and **Virtuoso Optoelectronics Limited**. **Do not replay this batch.**
 
