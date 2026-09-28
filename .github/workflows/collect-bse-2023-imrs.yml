@@ -1,0 +1,56 @@
+name: Collect IMRS official evidence
+on:
+  push:
+    branches: [data/bse-2023-imrs-20260928]
+    paths: [.github/workflows/collect-bse-2023-imrs.yml]
+permissions: {contents: read}
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - name: Retain baseline and official source bytes
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/imrs"
+          git archive --format=tar.gz HEAD > "$RUNNER_TEMP/imrs/repository.tar.gz"
+          git rev-parse HEAD > "$RUNNER_TEMP/imrs/commit.txt"
+          git rev-parse HEAD^{tree} > "$RUNNER_TEMP/imrs/tree.txt"
+          OUT="$RUNNER_TEMP/imrs" python3 - <<'PY'
+          import os,json,hashlib,subprocess,datetime,concurrent.futures
+          from pathlib import Path
+          from urllib.parse import urlparse
+          out=Path(os.environ['OUT'])
+          sources=[
+            ('ireda_landing','https://www.sebi.gov.in/filings/public-issues/nov-2023/indian-renewable-energy-development-agency-limited-prospectus_79408.html'),
+            ('ireda_prospectus','https://www.sebi.gov.in/sebi_data/attachdocs/nov-2023/1701153045219.pdf'),
+            ('motisons_landing','https://www.sebi.gov.in/filings/public-issues/dec-2023/motisons-jewellers-limited-prospectus_83370.html'),
+            ('motisons_prospectus','https://www.sebi.gov.in/sebi_data/attachdocs/may-2024/1715767249861.pdf'),
+            ('rbz_landing','https://www.sebi.gov.in/filings/public-issues/dec-2023/rbz-jewellers-limited-prospectus_80179.html'),
+            ('rbz_prospectus','https://www.sebi.gov.in/sebi_data/attachdocs/dec-2023/1703235647923.pdf'),
+            ('shelter_landing','https://www.sebi.gov.in/filings/public-issues/aug-2023/shelter-pharma-limited-sme-issue-prospectus_75109.html'),
+            ('shelter_prospectus','https://www.sebi.gov.in/sebi_data/attachdocs/aug-2023/1691563510556.pdf')]
+          def collect(pair):
+            key,url=pair; suffix='.pdf' if '_prospectus' in key else '.html'; file=out/(key+suffix)
+            started=datetime.datetime.now(datetime.timezone.utc).isoformat().replace('+00:00','Z')
+            result=subprocess.run(['curl','--fail','--location','--retry','2','--retry-all-errors','--connect-timeout','15','--max-time','100','--user-agent','Mozilla/5.0','--output',str(file),'--write-out','%{http_code}\n%{url_effective}',url],capture_output=True,text=True)
+            if result.returncode: return {'key':key,'source_url':url,'error':result.stderr[-1200:]}
+            status,final=result.stdout.strip().split('\n')[-2:]; b=file.read_bytes()
+            if status!='200' or urlparse(final).hostname!='www.sebi.gov.in': raise ValueError('unexpected response '+key)
+            if suffix=='.pdf' and not b.startswith(b'%PDF-'): raise ValueError('not a PDF '+key)
+            return {'key':key,'source_url':url,'final_url':final,'http_status':int(status),'requested_at':started,'collected_at':datetime.datetime.now(datetime.timezone.utc).isoformat().replace('+00:00','Z'),'response_bytes':len(b),'response_sha256':hashlib.sha256(b).hexdigest(),'file':file.name}
+          with concurrent.futures.ThreadPoolExecutor(max_workers=4) as pool: docs=list(pool.map(collect,sources))
+          receipt={'schema_version':'1.0.0','status':'collected_unreviewed','workflow_run_id':os.environ['GITHUB_RUN_ID'],'documents':docs,'total_response_bytes':sum(d.get('response_bytes',0) for d in docs)}
+          (out/'receipt.json').write_text(json.dumps(receipt,indent=2)+'\n')
+          print(json.dumps(receipt,indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: bse-2023-imrs-official-source
+          path: ${{ runner.temp }}/imrs
+          retention-days: 14
+          compression-level: 0
+          if-no-files-found: error
