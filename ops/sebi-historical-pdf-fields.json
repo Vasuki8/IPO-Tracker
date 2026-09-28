@@ -626,10 +626,10 @@
     "2025|lenskart-solutions-limited": {
       "issuer_name": "Lenskart Solutions Limited",
       "listing_date": "2025-11-10",
-      "last_attempted_at": "2026-09-27T08:39:16.150Z",
+      "last_attempted_at": "2026-09-28T14:39:02.029Z",
       "parser_version": "1.2.0",
       "status": "error",
-      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 75 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-historical-pdf-enXT1d/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/oct-2025/1761802414095.pdf\ncurl: (18) transfer closed with 21505998 bytes remaining to read\ncurl: (18) transfer closed with 11851366 bytes remaining to read\n",
+      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 75 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-historical-pdf-wf90ph/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/oct-2025/1761802414095.pdf\ncurl: (18) transfer closed with 23087350 bytes remaining to read\ncurl: (28) Operation timed out after 75000 milliseconds with 19845631 out of 27796285 bytes received\n",
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2025/1761802414095.pdf"
     },
     "2025|studds-accessories-limited": {
@@ -2140,10 +2140,10 @@
     "2023|cello-world-limited": {
       "issuer_name": "Cello World Limited",
       "listing_date": "2023-11-06",
-      "last_attempted_at": "2026-09-27T08:39:16.150Z",
+      "last_attempted_at": "2026-09-28T14:39:02.029Z",
       "parser_version": "1.2.0",
       "status": "error",
-      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 75 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-historical-pdf-AMofIP/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/oct-2023/1698221152394.pdf\ncurl: (18) transfer closed with 9197446 bytes remaining to read\ncurl: (28) Operation timed out after 75000 milliseconds with 20413887 out of 27831717 bytes received\n",
+      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 75 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-historical-pdf-NzB4Yz/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/oct-2023/1698221152394.pdf\ncurl: (28) Operation timed out after 75000 milliseconds with 22222159 out of 27831717 bytes received\ncurl: (28) Operation timed out after 75000 milliseconds with 11723167 out of 27831717 bytes received\n",
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2023/1698221152394.pdf"
     },
     "2022|inox-green-energy-services-limited": {
@@ -3235,10 +3235,32 @@
     "2025|taurian-mps-limited": {
       "issuer_name": "Taurian MPS Limited",
       "listing_date": "2025-09-16",
-      "last_attempted_at": "2026-09-27T08:39:16.150Z",
+      "last_attempted_at": "2026-09-28T14:39:02.029Z",
       "parser_version": "1.2.0",
-      "status": "error",
-      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 75 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-historical-pdf-AswH6c/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/sep-2025/1758607889393.pdf\ncurl: (28) Operation timed out after 75000 milliseconds with 20117975 out of 21061759 bytes received\ncurl: (28) Operation timed out after 75000 milliseconds with 20597207 out of 21061759 bytes received\n",
+      "status": "extracted",
+      "extracted_fields": [
+        "issue_size_inr"
+      ],
+      "remaining_fields": [
+        "minimum_bid_quantity"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": {
+          "value": 425311000,
+          "source_value": "₹4,253.11 LAKHS",
+          "page": 2
+        },
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Taurian MPS Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2025/1758607889393.pdf",
+        "publication_date": "2025-09-23"
+      },
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2025/1758607889393.pdf"
     },
     "2023|zaggle-prepaid-ocean-services-limited": {
@@ -4013,6 +4035,127 @@
       "status": "error",
       "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 75 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-historical-pdf-qmLBcY/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/aug-2025/1755684803258.pdf\ncurl: (28) Operation timed out after 75000 milliseconds with 16187655 out of 17730470 bytes received\ncurl: (18) transfer closed with 2704087 bytes remaining to read\n",
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2025/1755684803258.pdf"
+    },
+    "2024|brainbees-solutions-limited": {
+      "issuer_name": "Brainbees Solutions Limited",
+      "listing_date": "2024-08-13",
+      "last_attempted_at": "2026-09-28T14:39:02.029Z",
+      "parser_version": "1.2.0",
+      "status": "error",
+      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 75 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-historical-pdf-x1kmM0/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/aug-2024/1723181955525.pdf\ncurl: (18) transfer closed with 9378245 bytes remaining to read\ncurl: (28) Operation timed out after 75001 milliseconds with 9495559 out of 17397092 bytes received\n",
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2024/1723181955525.pdf"
+    },
+    "2024|unicommerce-esolutions-limited": {
+      "issuer_name": "Unicommerce eSolutions Limited",
+      "listing_date": "2024-08-13",
+      "last_attempted_at": "2026-09-28T14:39:02.029Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "issue_size_inr",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Unicommerce eSolutions Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2024/1722916733179.pdf",
+        "publication_date": "2024-07-30"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2024/1722916733179.pdf"
+    },
+    "2023|sbfc-finance-limited": {
+      "issuer_name": "SBFC Finance Limited",
+      "listing_date": "2023-08-16",
+      "last_attempted_at": "2026-09-28T14:39:02.029Z",
+      "parser_version": "1.2.0",
+      "status": "extracted",
+      "extracted_fields": [
+        "issue_size_inr"
+      ],
+      "remaining_fields": [
+        "price_band",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": {
+          "value": 10250000000,
+          "source_value": "₹10,250 MILLION",
+          "page": 3
+        },
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "SBFC Finance Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2023/1690783310912.pdf",
+        "publication_date": "2023-07-31"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2023/1690783310912.pdf"
+    },
+    "2023|yatharth-hospital-and-trauma-care-services-limited": {
+      "issuer_name": "Yatharth Hospital and Trauma Care Services Limited",
+      "listing_date": "2023-08-07",
+      "last_attempted_at": "2026-09-28T14:39:02.029Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "price_band",
+        "issue_size_inr",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Yatharth Hospital & Trauma Care Services Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2023/1689850580820.pdf",
+        "publication_date": "2023-07-20"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2023/1689850580820.pdf"
+    },
+    "2023|innovatus-entertainment-networks-limited": {
+      "issuer_name": "Innovatus Entertainment Networks Limited",
+      "listing_date": "2023-08-04",
+      "last_attempted_at": "2026-09-28T14:39:02.029Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "price_band",
+        "issue_size_inr",
+        "minimum_bid_quantity"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Innovatus Entertainment Networks Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2023/1694084221136.pdf",
+        "publication_date": "2023-09-07"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2023/1694084221136.pdf"
     }
   }
 }
