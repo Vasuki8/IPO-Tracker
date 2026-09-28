@@ -1,0 +1,71 @@
+name: Collect four Mainboard 2023 sources
+on:
+  push:
+    branches: [data/bse-2023-four-mainboard-20260928]
+    paths: [.github/workflows/collect-bse-2023-four-mainboard.yml]
+permissions: {contents: read}
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - name: Archive tracked baseline
+        run: |
+          mkdir -p "$RUNNER_TEMP/evidence"
+          git archive HEAD | gzip > "$RUNNER_TEMP/evidence/repository.tar.gz"
+          git rev-parse HEAD > "$RUNNER_TEMP/evidence/repository-commit.txt"
+      - name: Collect original official sources
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils
+          OUT="$RUNNER_TEMP/evidence" python3 - <<'PY'
+          import os,re,json,pathlib,subprocess,hashlib,datetime,urllib.parse,html
+          out=pathlib.Path(os.environ['OUT']); docs=[]; errors=[]
+          def now(): return datetime.datetime.now(datetime.timezone.utc).isoformat(timespec='milliseconds').replace('+00:00','Z')
+          def get(key,url,pdf=False):
+              requested=now(); dest=out/(key+('.pdf' if pdf else '.html'))
+              r=subprocess.run(['curl','--fail','--location','--retry','2','--retry-all-errors','--retry-delay','2','--connect-timeout','15','--max-time','120','--user-agent','Mozilla/5.0','--dump-header',str(out/(key+'.headers')),'--output',str(dest),'--write-out','%{http_code}\n%{url_effective}',url],capture_output=True,text=True)
+              if r.returncode: raise RuntimeError(key+': '+r.stderr[-240:])
+              status,final=r.stdout.strip().split('\n')[-2:]
+              if status!='200' or urllib.parse.urlparse(final).hostname not in ['www.sebi.gov.in','www.bseindia.com']: raise RuntimeError('invalid status/host '+key)
+              b=dest.read_bytes(); entry=dict(key=key,source_url=url,final_url=final,http_status=200,requested_at=requested,collected_at=now(),response_bytes=len(b),response_sha256=hashlib.sha256(b).hexdigest(),file=dest.name)
+              if pdf:
+                  if not b.startswith(b'%PDF-'): raise RuntimeError('not_pdf '+key)
+                  info=subprocess.check_output(['pdfinfo',str(dest)],text=True)
+                  entry['pdf_pages']=int(re.search(r'Pages:\s+(\d+)',info).group(1))
+                  subprocess.run(['pdftotext','-layout',str(dest),str(out/(key+'.txt'))],check=True)
+              docs.append(entry); return b
+          landings=[
+            ('sah','https://www.sebi.gov.in/filings/public-issues/jan-2023/sah-polymers-limited-prospectus_67267.html'),
+            ('global','https://www.sebi.gov.in/filings/public-issues/apr-2023/global-surfaces-limited-prospectus_69689.html'),
+            ('uday','https://www.sebi.gov.in/filings/public-issues/mar-2023/udayshivakumar-infra-limited-prospectus_69402.html'),
+            ('pyramid','https://www.sebi.gov.in/filings/public-issues/aug-2024/pyramid-technoplast-limited-prospectus_87252.html')]
+          for key,url in landings:
+              try:
+                  text=html.unescape(urllib.parse.unquote(get(key+'_landing',url).decode('utf8')))
+                  links=list(dict.fromkeys(re.findall(r'https://www\.sebi\.gov\.in/sebi_data/attachdocs/[^\s\"<>?]+?\.pdf',text,re.I)))
+                  if len(links)!=1: raise RuntimeError('ambiguous_pdf_links '+key+' '+repr(links))
+                  get(key+'_prospectus',links[0],True)
+              except Exception as e: errors.append(str(e))
+          for key,no in [('sah_notice','20230111-20'),('uday_notice','20230331-17')]:
+              try: get(key,'https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page='+no)
+              except Exception as e: errors.append(str(e))
+          aliases=['sah polymers','global surfaces','udayshivakumar','pyramid technoplast']; matches=[]
+          for f in pathlib.Path('data/recovery').glob('*/nse-issue-information.json'):
+              for r in json.loads(f.read_text()).get('records',[]):
+                  if any(a in r.get('issuer_name','').lower() for a in aliases): matches.append(dict(year=f.parent.name,record=r))
+          (out/'reconciliation.json').write_text(json.dumps(dict(repository_commit=os.environ['GITHUB_SHA'],matches=matches),indent=2))
+          receipt=dict(schema_version='1.0.0',status='collected' if not errors else 'partial',workflow_run_id=os.environ['GITHUB_RUN_ID'],repository_commit=os.environ['GITHUB_SHA'],documents=docs,errors=errors,collection_completed_at=now(),total_response_bytes=sum(d['response_bytes'] for d in docs))
+          (out/'receipt.json').write_text(json.dumps(receipt,indent=2)+'\n'); print(json.dumps(receipt,indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: bse-2023-four-mainboard-source
+          path: ${{ runner.temp }}/evidence
+          retention-days: 14
+          compression-level: 0
+          if-no-files-found: error
