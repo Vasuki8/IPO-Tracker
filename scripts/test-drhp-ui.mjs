@@ -9,9 +9,9 @@ const index=fs.readFileSync("index.html","utf8");
 const data=JSON.parse(fs.readFileSync("data/drhp-filings.json","utf8"));
 const ipoData=JSON.parse(fs.readFileSync("data/ipos.json","utf8"));
 
-assert.match(index,/href="drhp\.html"[^>]*>Pre-IPO companies<\/a>/);
-assert.match(html,/Companies that have filed for an IPO\./);
-assert.match(html,/progress into the published IPO pipeline are hidden automatically/i);
+assert.match(index,/href="drhp\.html"[^>]*>Pre-IPO pipeline<\/a>/);
+assert.match(html,/Follow the filing pipeline before an IPO opens\./);
+assert.match(html,/leave this view automatically once they progress into the published IPO pipeline/i);
 assert.match(html,/assets\/pre-ipo-filter\.js/);
 assert.doesNotMatch(html,/Filing records/);
 assert.doesNotMatch(html,/DRHP filing companies/);

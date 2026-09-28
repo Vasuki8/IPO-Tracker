@@ -7,10 +7,10 @@
       name="description"
       content="Explore Indian IPOs, compare offer terms, and inspect the official sources behind every published figure."
     />
-    <meta name="theme-color" content="#fafbf8" />
+    <meta name="theme-color" content="#f4f6f3" />
     <title>IPO Tracker — Indian IPO directory</title>
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
-    <link rel="stylesheet" href="assets/styles.css?v=20260927-pagesize1" />
+    <link rel="stylesheet" href="assets/styles.css?v=20260928-workspace3" />
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -25,11 +25,11 @@
         </a>
         <nav class="primary-nav" aria-label="Primary navigation">
           <a class="nav-link active" href="#" aria-current="page"
-            >Explore IPOs</a
+            >IPO market</a
           >
-          <a class="nav-link drhp-nav" href="drhp.html">Pre-IPO companies</a>
+          <a class="nav-link drhp-nav" href="drhp.html">Pre-IPO pipeline</a>
           <button class="nav-link" data-methodology>
-            Data & sources <span aria-hidden="true">↗</span>
+            Methodology <span aria-hidden="true">↗</span>
           </button>
         </nav>
         <span class="market-label"
@@ -43,11 +43,11 @@
       <section id="homeView" aria-labelledby="pageTitle">
         <div class="page-heading">
           <div>
-            <p class="eyebrow">THE IPO DIRECTORY</p>
-            <h1 id="pageTitle">The market, at a glance.</h1>
+            <p class="eyebrow">INDIA IPO INTELLIGENCE</p>
+            <h1 id="pageTitle">India’s IPO market, organized.</h1>
             <p class="page-description">
-              Discover Indian IPOs. Explore the details. Go straight to the
-              source.
+              Track offers, dates, lot sizes and official evidence in one calm
+              research workspace.
             </p>
           </div>
           <button class="source-note" data-methodology>
@@ -55,8 +55,8 @@
               <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10" />
               <path d="m9 12 2 2 4-4" /></svg
             ><span
-              >Built on official sources<small
-                >Transparent by design</small
+              >Source-first by design<small
+                >Official evidence stays attached</small
               ></span
             ><span aria-hidden="true">↗</span>
           </button>
@@ -64,7 +64,7 @@
 
         <section
           class="market-overview"
-          aria-label="Published dataset overview"
+          aria-label="Market snapshot"
         >
           <button class="metric" data-metric="all">
             <span class="metric-label"
@@ -98,13 +98,12 @@
           <div class="directory-top">
             <div>
               <h2>
-                Explore IPOs <span id="datasetCount" class="count-chip">—</span>
+                IPO market <span id="datasetCount" class="count-chip">—</span>
               </h2>
-              <p>Key details, in one place.</p>
+              <p>Filter, compare and open any record to inspect its source trail.</p>
             </div>
             <span class="coverage-note"
-              >Coverage is growing <span aria-hidden="true">·</span> Missing
-              values stay visible</span
+              >Source-backed <span aria-hidden="true">·</span> Missing values stay visible</span
             >
           </div>
           <div
@@ -297,7 +296,7 @@
               </div>
             </div>
             <button class="button button--primary" id="jumpDocuments">
-              View source documents <span aria-hidden="true">↗</span>
+              Open source trail <span aria-hidden="true">↗</span>
             </button>
           </div>
           <div class="detail-kpis">
@@ -317,7 +316,7 @@
           </div>
         </section>
         <nav class="detail-sections" aria-label="On this IPO page">
-          <span class="detail-sections__label">On this page</span>
+          <span class="detail-sections__label">Research sections</span>
           <button type="button" data-detail-section="timeline">
             Key dates
           </button>
@@ -332,8 +331,8 @@
           <div class="detail-main">
             <section class="panel" id="timeline">
               <div class="section-heading">
-                <p class="eyebrow">KEY DATES</p>
-                <h2>The IPO timeline</h2>
+                <p class="eyebrow">OFFER TIMELINE</p>
+                <h2>Key dates</h2>
               </div>
               <div class="timeline" id="timelineEvents"></div>
               <p class="small muted">
@@ -342,8 +341,8 @@
             </section>
             <section class="panel" id="fieldEvidence">
               <div class="section-heading">
-                <p class="eyebrow">BEHIND THE NUMBERS</p>
-                <h2>Terms & evidence</h2>
+                <p class="eyebrow">TERMS & SOURCES</p>
+                <h2>Offer terms, field by field</h2>
                 <p>
                   Expand a field to inspect its sources and reporting dates.
                 </p>
@@ -358,9 +357,9 @@
           <aside class="detail-side">
             <section class="panel" id="documents">
               <div class="section-heading">
-                <p class="eyebrow">THE SOURCE TRAIL</p>
+                <p class="eyebrow">SOURCE LIBRARY</p>
                 <h2>
-                  Documents & disclosures
+                  Official documents
                   <span id="documentCount" class="count-chip"></span>
                 </h2>
                 <p>Official records connected to this IPO.</p>
@@ -378,7 +377,7 @@
                 <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10" />
                 <path d="m9 12 2 2 4-4" />
               </svg>
-              <h3>Every value has a story.</h3>
+              <h3>Trust the trail, not the summary.</h3>
               <p>
                 Unavailable information stays blank. Provisional values and
                 source conflicts stay labelled.
@@ -392,8 +391,7 @@
       </section>
       <footer class="site-footer">
         <span
-          >IPO Tracker <span class="separator">/</span> Independent research,
-          official sources.</span
+          >IPO Tracker <span class="separator">/</span> Independent research · official-source evidence.</span
         ><span id="datasetTimestamp">Dataset generation time unavailable</span>
       </footer>
     </main>
