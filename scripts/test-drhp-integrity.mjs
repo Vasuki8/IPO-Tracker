@@ -67,9 +67,38 @@ const response=(url,text)=>({url,ok:true,status:200,headers:new Headers({'conten
 const out=fs.mkdtempSync(path.join(os.tmpdir(),'drhp-integrity-'));
 let calls=0;
 const data=await collectDrhpYear({fetchImpl:async(url,opts)=>{calls++;if(calls===2)assert.equal(opts.body.get('doDirect'),'1');return response(url,page(calls,calls===1?2026:2025));},clock:()=>fresh.generated_at,retainSources:out,supplementalSources:false});
-assert.equal(data.companies.length,25);assert.equal(data.coverage.filing_records,25);assert.equal(data.coverage.pages_fetched,2);assert.equal(fs.readdirSync(out).length,2);validateDrhpData(data);
+assert.equal(data.companies.length,25);assert.equal(data.coverage.filing_records,25);assert.equal(data.coverage.pages_fetched,2);
+assert.equal(data.coverage.pagination_consistent,true);assert.equal(data.coverage.selected_pagination_attempt,1);
+assert.equal(data.coverage.pagination_attempts.length,1);
+assert.deepEqual(fs.readdirSync(out).sort(),['page-01.html','page-02.html','sebi-attempt-01']);
+assert.equal(fs.readdirSync(path.join(out,'sebi-attempt-01')).length,2);validateDrhpData(data);
+let driftCalls=0;
+const driftOut=fs.mkdtempSync(path.join(os.tmpdir(),'drhp-pagination-retry-'));
+const recovered=await collectDrhpYear({fetchImpl:async url=>{
+  driftCalls++;
+  const localPage=((driftCalls-1)%2)+1;
+  const attempt=Math.ceil(driftCalls/2);
+  const total=attempt===1?(localPage===1?50:51):52;
+  return response(url,page(localPage,localPage===1?2026:2025,total));
+},clock:()=>fresh.generated_at,retainSources:driftOut,supplementalSources:false,scanAttempts:2});
+assert.equal(driftCalls,4);
+assert.equal(recovered.coverage.pagination_consistent,true);
+assert.equal(recovered.coverage.selected_pagination_attempt,2);
+assert.deepEqual(recovered.coverage.pagination_attempts.map(a=>a.pagination_consistent),[false,true]);
+assert.deepEqual(recovered.coverage.observed_source_totals,[52]);
+assert.ok(recovered.coverage.warnings.some(w=>w.code==='source_total_changed_retry_recovered'));
+assert.deepEqual(fs.readdirSync(driftOut).sort(),['page-01.html','page-02.html','sebi-attempt-01','sebi-attempt-02']);
+fs.rmSync(driftOut,{recursive:true});
+
+let unstableCalls=0;
+await assert.rejects(()=>collectDrhpYear({fetchImpl:async url=>{
+  unstableCalls++;
+  const localPage=((unstableCalls-1)%2)+1;
+  return response(url,page(localPage,localPage===1?2026:2025,localPage===1?60:61));
+},clock:()=>fresh.generated_at,supplementalSources:false,scanAttempts:2}),/drhp_pagination_unstable_after_2_attempts/);
+assert.equal(unstableCalls,4);
 let repeat=0;await assert.rejects(()=>collectDrhpYear({fetchImpl:async url=>response(url,page(++repeat===1?1:1)),clock:()=>fresh.generated_at,supplementalSources:false}),/did_not_advance/);
 let malformed=0;await assert.rejects(()=>collectDrhpYear({fetchImpl:async url=>response(url,++malformed===1?page(1):'<h1>Access denied</h1>'),clock:()=>fresh.generated_at,supplementalSources:false}),/pagination/);
 await assert.rejects(()=>collectDrhpYear({fetchImpl:async()=>response('https://evil.test',page(1)),clock:()=>fresh.generated_at,supplementalSources:false}),/response/);
 fs.rmSync(out,{recursive:true});
-console.log(JSON.stringify({drhp_integrity_tests:{non_destructive_merge:true,unique_counts:true,source_drift_label:true,stale_and_conflicting_data_rejected:true,pagination_and_raw_retention:true,official_host_guards:true,lead_manager_url_guards:true,legacy_axis_mirror_corrections:true,superseded_axis_identity_removed:true}}));
+console.log(JSON.stringify({drhp_integrity_tests:{non_destructive_merge:true,unique_counts:true,source_drift_label:true,pagination_retry_recovery:true,unstable_pagination_rejected:true,stale_and_conflicting_data_rejected:true,pagination_and_raw_retention:true,official_host_guards:true,lead_manager_url_guards:true,legacy_axis_mirror_corrections:true,superseded_axis_identity_removed:true}}));

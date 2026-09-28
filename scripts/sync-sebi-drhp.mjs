@@ -201,22 +201,26 @@ export function pageRange(html) {
   if(start<1||end<start||end>total||total>10000)throw new Error("invalid_drhp_pagination");
   return {start,end,total};
 }
-export async function collectDrhpYear({ year=DEFAULT_YEAR, maxPages=DEFAULT_MAX_PAGES,
-  fetchImpl=fetch, clock=()=>new Date().toISOString(), retainSources=null, supplementalSources=true } = {}) {
-  if (!Number.isInteger(year) || year < 2000 || year > 2100 || !Number.isInteger(maxPages) || maxPages < 2 || maxPages>120) throw new Error("invalid_drhp_collection_options");
-  const collection_started_at=clock(), source_pages=[], supplemental_source_pages=[], selected=[], warnings=[];
-  if(retainSources)fs.mkdirSync(retainSources,{recursive:true});
+export const DRHP_SEBI_SCAN_ATTEMPTS = 2;
+
+export async function collectSebiDrhpAttempt({ year, maxPages, fetchImpl=fetch, clock=()=>new Date().toISOString(),
+  retainSources=null, attempt=1 } = {}) {
+  const source_pages=[], selected=[], warnings=[];
+  const attempt_started_at=clock();
+  const artifact_dir="sebi-attempt-"+String(attempt).padStart(2,"0");
+  const attemptDir=retainSources?path.join(retainSources,artifact_dir):null;
+  if(attemptDir)fs.mkdirSync(attemptDir,{recursive:true});
   let stop_reason=null, firstTotal=null;
   for(let page=1;page<=maxPages;page++) {
     const url=page===1?DRHP_LIST_URL:DRHP_AJAX_URL;
     const body=page===1?null:paginationBody(page);
     const requested_at=clock();
     const response=await fetchImpl(url,{method:page===1?"GET":"POST",redirect:"follow",signal:AbortSignal.timeout(35000),
-      headers:{"user-agent":USER_AGENT,"accept":"text/html,*/*","cache-control":"no-cache",
+      headers:{"user-agent":USER_AGENT,"accept":"text/html,*/*","cache-control":"no-cache","pragma":"no-cache",
         ...(body?{"content-type":"application/x-www-form-urlencoded; charset=UTF-8","x-requested-with":"XMLHttpRequest","referer":DRHP_LIST_URL}:{})},...(body?{body}:{})});
     const bytes=Buffer.from(await response.arrayBuffer()), collected_at=clock();
     const file="page-"+String(page).padStart(2,"0")+".html";
-    if(retainSources)fs.writeFileSync(path.join(retainSources,file),bytes);
+    if(attemptDir)fs.writeFileSync(path.join(attemptDir,file),bytes);
     if(!response.ok||!officialSebiUrl(response.url,"/sebiweb/")||!response.headers.get("content-type")?.includes("text/html"))throw new Error("invalid_drhp_response:"+page);
     const fragment=parseAjaxFragment(bytes.toString("utf8")), range=pageRange(fragment), stats=listingStats(fragment);
     if(range.start!==(page-1)*25+1 || stats.page!==page || range.end!==Math.min(page*25,range.total))throw new Error("drhp_page_did_not_advance:"+page);
@@ -224,13 +228,65 @@ export async function collectDrhpYear({ year=DEFAULT_YEAR, maxPages=DEFAULT_MAX_
     if(dates.length!==range.end-range.start+1||dates.some(d=>!d||d>collected_at.slice(0,10)))throw new Error("invalid_drhp_row_dates:"+page);
     firstTotal??=range.total;
     if(range.total!==firstTotal)warnings.push({code:"source_total_changed",page,first_total:firstTotal,observed_total:range.total});
-    const meta={page,url,final_url:response.url,http_status:response.status,requested_at,collected_at,bytes:bytes.length,sha256:hash(bytes),observed_records:range.total,range,request_do_direct:page-1,artifact_file:file};
+    const meta={page,url,final_url:response.url,http_status:response.status,requested_at,collected_at,bytes:bytes.length,sha256:hash(bytes),observed_records:range.total,range,request_do_direct:page-1,
+      artifact_file:retainSources?path.posix.join(artifact_dir,file):file};
     source_pages.push(meta);
     for(const row of parseDrhpRows(fragment).filter(r=>r.filing_date.startsWith(year+"-")))selected.push({...row,
       source_evidence:{url,final_url:response.url,response_sha256:meta.sha256,collected_at,page,filing_url:row.filing_url}});
     if(dates.every(d=>Number(d.slice(0,4))<year)){stop_reason="first_page_strictly_older_than_year";break;}
   }
   if(!stop_reason)throw new Error("drhp_year_boundary_not_reached_within_page_budget");
+  const observed_source_totals=[...new Set(source_pages.map(page=>page.observed_records).filter(Number.isInteger))];
+  return {attempt,attempt_started_at,attempt_completed_at:clock(),artifact_dir,source_pages,selected,warnings,stop_reason,firstTotal,
+    observed_source_totals,pagination_consistent:observed_source_totals.length===1};
+}
+
+export async function collectDrhpYear({ year=DEFAULT_YEAR, maxPages=DEFAULT_MAX_PAGES,
+  fetchImpl=fetch, clock=()=>new Date().toISOString(), retainSources=null, supplementalSources=true,
+  scanAttempts=DRHP_SEBI_SCAN_ATTEMPTS } = {}) {
+  if (!Number.isInteger(year) || year < 2000 || year > 2100 || !Number.isInteger(maxPages) || maxPages < 2 || maxPages>120 ||
+      !Number.isInteger(scanAttempts) || scanAttempts < 1 || scanAttempts > 3) throw new Error("invalid_drhp_collection_options");
+  const collection_started_at=clock(), supplemental_source_pages=[];
+  if(retainSources)fs.mkdirSync(retainSources,{recursive:true});
+
+  const pagination_attempts=[];
+  let scan=null;
+  for(let attempt=1;attempt<=scanAttempts;attempt++) {
+    const current=await collectSebiDrhpAttempt({year,maxPages,fetchImpl,clock,retainSources,attempt});
+    pagination_attempts.push({
+      attempt,
+      started_at:current.attempt_started_at,
+      completed_at:current.attempt_completed_at,
+      pages_fetched:current.source_pages.length,
+      stopped_after_page:current.source_pages.length,
+      stop_reason:current.stop_reason,
+      observed_source_totals:current.observed_source_totals,
+      pagination_consistent:current.pagination_consistent,
+      artifact_dir:retainSources?current.artifact_dir:null,
+      warnings:current.warnings
+    });
+    if(current.pagination_consistent){scan=current;break;}
+  }
+  if(!scan) {
+    const detail=pagination_attempts.map(item=>item.observed_source_totals.join(",")).join("|");
+    throw new Error("drhp_pagination_unstable_after_"+scanAttempts+"_attempts:"+detail);
+  }
+
+  const source_pages=scan.source_pages, selected=scan.selected, stop_reason=scan.stop_reason, firstTotal=scan.firstTotal;
+  const warnings=[...scan.warnings];
+  if(pagination_attempts.some(item=>!item.pagination_consistent))warnings.push({
+    code:"source_total_changed_retry_recovered",
+    selected_attempt:scan.attempt,
+    attempts:pagination_attempts.map(item=>({attempt:item.attempt,observed_source_totals:item.observed_source_totals,pagination_consistent:item.pagination_consistent}))
+  });
+  if(retainSources) {
+    for(const meta of source_pages) {
+      const file=path.basename(meta.artifact_file);
+      fs.copyFileSync(path.join(retainSources,meta.artifact_file),path.join(retainSources,file));
+      meta.artifact_file=file;
+    }
+  }
+
   if (supplementalSources) {
     const requested_at=clock();
     try {
@@ -260,7 +316,6 @@ export async function collectDrhpYear({ year=DEFAULT_YEAR, maxPages=DEFAULT_MAX_
       warnings.push({code:"supplemental_source_unavailable",source:"axis_capital_offer_documents",detail:String(error?.message||error).slice(0,180)});
     }
   }
-  // Global URL uniqueness: duplicate observations are not additional filings.
   const unique=new Map();
   for(const row of selected){
     const old=unique.get(row.filing_url);
@@ -270,7 +325,7 @@ export async function collectDrhpYear({ year=DEFAULT_YEAR, maxPages=DEFAULT_MAX_
   const companies=buildCompanies([...unique.values()]);
   if(!companies.length)throw new Error("no_drhp_companies_for_year");
   const supplementalAdded=supplemental_source_pages.reduce((n,p)=>n+(p.companies_added_as_fallback||0),0);
-  return {schema_version:"1.0.0",collector_version:"2.2.0",collection_started_at,generated_at:clock(),
+  return {schema_version:"1.0.0",collector_version:"2.3.0",collection_started_at,generated_at:clock(),
     source:{authority:"Securities and Exchange Board of India",section:"Draft Offer Documents filed with SEBI",listing_url:DRHP_LIST_URL,ajax_url:DRHP_AJAX_URL},
     supplemental_sources:[{authority:"Axis Capital Limited",role:"Book Running Lead Manager",listing_url:AXIS_OFFER_DOCS_URL,
       purpose:"Official lead-manager fallback for DRHPs not yet visible in the SEBI draft-offer index."}],
@@ -278,7 +333,8 @@ export async function collectDrhpYear({ year=DEFAULT_YEAR, maxPages=DEFAULT_MAX_
       pages_fetched:source_pages.length,stopped_after_page:source_pages.length,stop_reason,official_listing_records_observed:firstTotal,
       raw_filing_observations:selected.length,duplicate_observations:selected.length-unique.size,filing_records:unique.size,companies:companies.length,
       supplemental_source_surfaces_checked:supplemental_source_pages.length,supplemental_companies_added:supplementalAdded,
-      pagination_consistent:!warnings.some(w=>w.code==="source_total_changed"),warnings,full_universe_complete:false},
+      pagination_consistent:true,observed_source_totals:scan.observed_source_totals,selected_pagination_attempt:scan.attempt,
+      pagination_attempt_limit:scanAttempts,pagination_attempts,warnings,full_universe_complete:false},
     source_pages,supplemental_source_pages,companies};
 }
 async function run() {
