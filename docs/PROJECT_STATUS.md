@@ -1,12 +1,18 @@
 # Project status and handoff
 
-Updated **2026-09-28 (UTC)** after closing the four-issuer 2023 release and adding a tested, source-preserving review-progress ledger. Active priority remains **P1 issuer identity and data correctness**.
+Updated **2026-09-28 (UTC)** after closing the four-issuer 2023 release and adding a tested, source-preserving review-progress ledger, with the concurrent UI release preserved. Active priority remains **P1 issuer identity and data correctness**.
 
 ## Exact next bounded task
 
 Review **Ratnaveer Precision Engineering Limited (543978)**, **Valiant Laboratories Limited (543998)**, **ESAF Small Finance Bank Ltd (544020)** and **Plaza Wires Limited (544003)** as the next four-issuer 2023 evidence batch, where official evidence permits. Reconcile names, aliases and exchange identities across all current recovery years before importing. Retain original official documents and field evidence; never auto-import discovery values. The [2023 progress ledger](../data/discovery/bse-2023-review-progress-2026-09-28.json) is the current work queue; the original [2023 candidate snapshot](../data/discovery/bse-2023-review-queue-2026-09-28.json) remains immutable.
 
 The original 2022 queue remains **14 reviewed/published + 2 existing-recovery alias + 0 awaiting review**. Of the original **30** 2023 candidates, **4 are now reviewed/published and 26 await review**. These progress counts do not update or replace the dated 920-row retained-source audit, whose 215-candidate total is an earlier observation. No complete Indian IPO-universe claim is made.
+
+## Preserved parallel product release — source-first research workspace
+
+PR **#330** merged as **f07f32315835818717f93bcd589207920b8dc3d9** while this backend closeout was being prepared. Its light-theme redesign across the directory, mobile cards, IPO detail view, methodology surface and Pre-IPO pipeline is preserved, together with the current `docs/UI_DESIGN_HANDOFF.md`. This closeout does not change or revert those product files.
+
+The UI handoff records passing PR-head interface **36380130962**, data-contract **36380130924**, reviewed-BSE **36380130950** and Hariom/Rainbow guard **36380130982** checks; post-merge interface **36380223730**, data-contract **36380223658** and reviewed-BSE **36380223681** checks; and successful Pages deployment **36380223692**. That release could not directly fetch Pages for served-byte/browser verification. Preserve that limitation: the earlier four-issuer JSON snapshot proves backend records, not the later redesign's served assets. The original 2023 queue stays immutable; the separate progress ledger satisfies the UI handoff's pending queue-reconciliation task without falsifying its source observation.
 
 ## Latest release — four 2023 IPOs verified and closed
 
