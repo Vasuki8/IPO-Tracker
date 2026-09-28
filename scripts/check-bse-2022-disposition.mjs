@@ -79,7 +79,10 @@ export function validateDisposition({disposition: d, recoveryByYear, published, 
   const overview = section(readme, '## Handoff for the next prompt');
   for (const [label, text] of [['status', statusSection], ['readme', readmeSection], ['readme_overview', overview]]) {
     const mentionedCodes = [...text.matchAll(/\((\d{6})\)/g)].map(m => m[1]);
-    requireThat(JSON.stringify(mentionedCodes) === JSON.stringify(next), `${label}_next_queue_mismatch`);
+    // After this queue is complete, later-year codes are validated by their
+    // own progress checker. Still reject any closed 2022 code as a next task.
+    const scopedCodes = counts[AWAITING] === 0 ? mentionedCodes.filter(code => codes.has(code)) : mentionedCodes;
+    requireThat(JSON.stringify(scopedCodes) === JSON.stringify(next), `${label}_next_queue_mismatch`);
   }
   requireThat(statusSection.includes(`${counts[PUBLISHED]} reviewed/published + ${counts[ALIAS]} existing-recovery alias + ${counts[AWAITING]} awaiting review`), 'status_count_mismatch');
   requireThat(readmeSection.includes(`remaining **${counts[AWAITING]}**`), 'readme_count_mismatch');

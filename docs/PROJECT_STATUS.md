@@ -1,14 +1,43 @@
 # Project status and handoff
 
-Updated **2026-09-28 (UTC)** after completing the original 2022 unmatched queue, publishing Droneacharya, repairing FiveStar terms, and reconciling the retained 2020–2026 BSE universe. Active priority remains **P1 issuer identity and data correctness**.
+Updated **2026-09-28 (UTC)** after closing the four-issuer 2023 release and adding a tested, source-preserving review-progress ledger. Active priority remains **P1 issuer identity and data correctness**.
 
 ## Exact next bounded task
 
-Review **Sah Polymers, Global Surfaces, Udayshivakumar Infra and Pyramid Technoplast** as one four-issuer 2023 evidence batch, where official evidence permits. Exact discovery codes and rows are in the [2023 candidate queue](../data/discovery/bse-2023-review-queue-2026-09-28.json). Reconcile names, aliases and exchange identities across all recovery years before importing. Retain original official documents and field evidence; do not auto-import discovery values.
+Review **Ratnaveer Precision Engineering Limited (543978)**, **Valiant Laboratories Limited (543998)**, **ESAF Small Finance Bank Ltd (544020)** and **Plaza Wires Limited (544003)** as the next four-issuer 2023 evidence batch, where official evidence permits. Reconcile names, aliases and exchange identities across all current recovery years before importing. Retain original official documents and field evidence; never auto-import discovery values. The [2023 progress ledger](../data/discovery/bse-2023-review-progress-2026-09-28.json) is the current work queue; the original [2023 candidate snapshot](../data/discovery/bse-2023-review-queue-2026-09-28.json) remains immutable.
 
-The original [2022 disposition](../data/discovery/bse-2022-unmatched-disposition-2026-09-27.json) is **14 reviewed/published + 2 existing-recovery alias + 0 awaiting review**. Its original 16 unmatched rows are resolved. This is not complete Indian IPO-universe coverage. The new retained-source audit leaves 30 candidates in 2023 and 215 across 2023–2026.
+The original 2022 queue remains **14 reviewed/published + 2 existing-recovery alias + 0 awaiting review**. Of the original **30** 2023 candidates, **4 are now reviewed/published and 26 await review**. These progress counts do not update or replace the dated 920-row retained-source audit, whose 215-candidate total is an earlier observation. No complete Indian IPO-universe claim is made.
 
-## Latest release — final 2022 pair and FiveStar repair
+## Latest release — four 2023 IPOs verified and closed
+
+PR **#329** merged as **7c20ed7322aeaa834efe985273506411bccb4c1e**; publication commit **d5f56485e1f7ab213e1390fb219bc7681e0a50ce** added **Sah Polymers**, **Global Surfaces**, **Udayshivakumar Infra** and **Pyramid Technoplast**. They are already published; **do not replay the import or duplicate these issuers**. A fresh local rerun during closeout skipped all four and left all **1,371 public records unchanged**.
+
+| Issuer | Price band | Issue price | Trading lot | Minimum bid | Public offer dates | Actual listing |
+| --- | --- | ---: | ---: | ---: | --- | --- |
+| Sah Polymers | INR 61–65 | INR 65 | 1 | 230 | 30-Dec-2022–04-Jan-2023 | 12-Jan-2023 |
+| Global Surfaces | INR 133–140 | INR 140 | 1 | 100 | 13–15 Mar-2023 | 23-Mar-2023 |
+| Udayshivakumar Infra | INR 33–35 | INR 35 | 1 | 428 | 20–23 Mar-2023 | 03-Apr-2023 |
+| Pyramid Technoplast | INR 151–166 | INR 166 | 1 | 90 | 18–22 Aug-2023 | 29-Aug-2023 |
+
+**All four total offer amounts remain provisional:** Sah INR 663m, Global INR 1,549.8m, Uday INR 660m and Pyramid INR 1,530.52m. The first three prospectuses qualify amounts as subject to finalization of the Basis of Allotment; Pyramid reports an up-to offer. These are not independently verified final realized proceeds. Trading lots and minimum bids remain separate; public offer dates exclude anchor bidding. Board and unreviewed identifiers remain null. Pyramid's 2024 landing-page label is distinct from its 2023 prospectus date; unknown PDF publication dates remain null. Existing Hariom and FiveStar conflicts are unchanged.
+
+The two source artifacts **10951145040 / 10949889655** (runs **36375320101 / 36375618559**) retain **12 official responses: 6 PDFs, 4 SEBI landing pages and 2 BSE listing notices / 37,415,464 bytes**. All original hashes and byte lengths were independently rechecked during closeout. Physical PDF pages were rendered and visually reviewed, and original listing-notice HTML was read. Web PDF screenshots failed, so original local-byte renders were used rather than OCR or substitute third-party data. Source receipt and review remain bound to their existing manifest.
+
+Live workflow **36377209242**, workflow attempt **1**, succeeded on fetch attempt **3**. The retained response was checked **2026-09-28T04:20:53.915Z**, generated **2026-09-28T04:19:55.164Z**, and contains **1,371 records / 7,630,323 bytes**. Response SHA-256 **b6405fc41759f1df53f0cc16cabc20a7c7fa17fc519bfe5bfe9e064978e3f4f1**. Live artifact **10951711384** has ZIP SHA-256 **397396f752fcf2b4e4868abac51795ee268d7c509c3c6ac2cab4a8eae420ced8**. The [durable receipt](verification/bse-2023-four-live-2026-09-28.json) records that historical observation, not a new source check. Archive/response hashes, byte counts and all four served record projections were independently checked during closeout. The release regression suite passes **62 rejected-mutation cases** and real builder projection checks.
+
+## Additional work — durable 2023 progress and consistency checks
+
+The separate [progress ledger](../data/discovery/bse-2023-review-progress-2026-09-28.json) closes four source rows without changing the immutable candidate snapshot or its hash. Run `node scripts/test-bse-2023-progress.mjs` and `node scripts/check-bse-2023-progress.mjs` before handoff. The checker binds progress to original source bytes, validates counts, approved review/manifest identity, retained live evidence, all-year recovery/public identity presence and all current README/status next-task sections. Matches on an awaiting row create a review warning, not authority to auto-import or auto-close. Discovery price/date values never rewrite published facts.
+
+The new read-only CI workflow uses contents-read permission, leaves production data unchanged and tests **50 rejected cases**, including wrong-year duplicates, bad evidence hashes/paths, false completeness/freshness, stale handoff sections and an empty completed queue. The completed 2022 checker now scopes next-task codes to its own closed queue, allowing the 2023 handoff while still rejecting replay of completed 2022 rows. Its regression suite passes **37 rejected cases**, including all three current handoff sections. The frozen retained-universe snapshot remains intact. Original Actions artifacts expire after their retention period; durable source links, projections and hashes do not claim raw bytes are stored forever.
+
+## Closeout verification and known test exceptions
+
+Local broad regression executed all **86** `scripts/test-*.mjs` entry points on the release snapshot: **84 passed**, one pre-existing legacy import assertion failed, and one browser test was environment-blocked. `test-reviewed-bse-2020-unmatched-import.mjs` fails with `collision:likhitha-infrastructure-limited` on both untouched main snapshot `d5f56485e1f7ab213e1390fb219bc7681e0a50ce` and this closeout. Do not weaken the old importer's changed-evidence guard or replay its completed release; repair the legacy test in a separate bounded task. `test-ui.mjs` could not start because Playwright is not installed in the local runtime; this is not a browser pass or a discovered UI assertion failure. The aggregate NSE import test initially exceeded a 12-second local harness limit, then passed with a full allowance. These exceptions do not replace PR-head or post-merge CI verification.
+
+The new 2023 progress check, completed-2022 transition tests, four-issuer release regression, frozen snapshot checks, public-data builder and data validator passed. No production IPO object, immutable discovery queue, historical audit receipt or source manifest was changed by this closeout. Review was performed inline; no independent reviewer or new interactive browser verification is claimed.
+
+## Previous release — final 2022 pair and FiveStar repair
 
 PR **#327** merged as **f569f249f6fb90d2f77b584b5c419afecc103e0e**. Publication **74ef09c365fad379366b9eba56a857345e7ff0a2** added one issuer, **Droneacharya Aerial Innovations Limited**, and repaired the existing **FiveStar Business Finance Limited / FIVESTAR** record. Do not create a second Five-Star issuer or replay the import.
 
@@ -37,7 +66,7 @@ The [dated audit receipt](../data/discovery/bse-retained-reconciliation-2026-09-
 | 2026 | 175 | 119 | 0 | 56 |
 | **Total** | **920** | **702** | **3** | **215** |
 
-These are identity-reconciliation counts, not 705 independently re-reviewed prospectuses or a field-completeness audit. Explicit reviewed aliases are linked; approximate names and code-only hints remain review candidates, never automatic matches/imports. The 30-row 2023 discovery queue preserves original source row numbers and hashes and proposes the next four names. No 2023 IPO is imported by this closeout.
+These are identity-reconciliation counts, not 705 independently re-reviewed prospectuses or a field-completeness audit. Explicit reviewed aliases are linked; approximate names and code-only hints remain review candidates, never automatic matches/imports. The immutable 30-row 2023 discovery snapshot preserves original row numbers and hashes. It proposed the first four names as of that audit; use the separate progress ledger above for the current batch. The audit itself imported no 2023 IPOs.
 
 Two provenance exceptions are preserved: the compact original pin labels source commit **460df3b91a509b82b30c7e5630cfcf83de784842**, while the retained collection archive labels **fb81541413afd32a2fc1eddf10d29fff4ad20cd1**. All raw response hashes and parsed projections match; the commit-label discrepancy is disclosed, not silently repaired. The 2024 TRAFIKSOL source row has no usable BSE scrip code and remains held rather than receiving an invented code.
 
