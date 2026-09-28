@@ -1,0 +1,58 @@
+name: Check Valiant official source mirrors
+on:
+  push:
+    branches: [data/bse-2023-ratnaveer-valiant-esaf-plaza-20260928]
+    paths: [.github/workflows/collect-valiant-mirror.yml]
+permissions: {contents: read}
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - name: Collect targeted SEBI index and offer documents
+        shell: bash
+        run: |
+          set -euo pipefail
+          export OUT="$RUNNER_TEMP/valiant"
+          mkdir -p "$OUT"
+          python - <<'PY'
+          import os,json,re,hashlib,subprocess,html
+          from pathlib import Path
+          from datetime import datetime,timezone
+          from urllib.parse import urlparse
+          out=Path(os.environ['OUT']); docs=[]; errors=[]
+          now=lambda:datetime.now(timezone.utc).isoformat(timespec='milliseconds').replace('+00:00','Z')
+          def get(key,url):
+              assert urlparse(url).hostname=='www.sebi.gov.in'
+              start=now(); p=out/(key+('.pdf' if url.lower().endswith('.pdf') else '.html'))
+              run=subprocess.run(['curl','-fL','--connect-timeout','15','--max-time','90','--user-agent','Mozilla/5.0','-o',str(p),'-w','%{http_code}\n%{url_effective}',url],text=True,capture_output=True)
+              if run.returncode: raise ValueError(key+':'+run.stderr[-150:])
+              status,final=run.stdout.strip().splitlines()[-2:];assert status=='200' and urlparse(final).hostname=='www.sebi.gov.in'
+              b=p.read_bytes();docs.append({'key':key,'source_url':url,'final_url':final,'requested_at':start,'collected_at':now(),'http_status':200,'response_bytes':len(b),'response_sha256':hashlib.sha256(b).hexdigest(),'file':p.name})
+              return b.decode('utf8',errors='replace')
+          for key,url in [('valiant_search','https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListingAll=yes&search=valiant'),('valiant_rhp_landing','https://www.sebi.gov.in/filings/public-issues/sep-2023/valiant-laboratories-limited-rhp_77238.html')]:
+              try:
+                  text=get(key,url)
+                  links=list(dict.fromkeys(html.unescape(x) for x in re.findall(r'https://www\.sebi\.gov\.in/[^\s\"\'<>]+(?:\.pdf|\.html)',text,re.I)))
+                  print(key,json.dumps(links),flush=True)
+                  if key=='valiant_search':
+                      finals=[x for x in links if 'valiant-laboratories-limited-prospectus_' in x]
+                      for i,link in enumerate(finals[:2]):
+                          page=get('valiant_final_landing_'+str(i),link)
+                          pdfs=list(dict.fromkeys(re.findall(r'https://www\.sebi\.gov\.in/[^\s\"\'<>]+\.pdf',page,re.I)))
+                          if len(pdfs)==1:get('valiant_final_'+str(i),pdfs[0])
+                  else:
+                      pdfs=[x for x in links if x.lower().endswith('.pdf')]
+                      if len(pdfs)==1:get('valiant_rhp',pdfs[0])
+              except Exception as e:errors.append(str(e))
+          (out/'receipt.json').write_text(json.dumps({'schema_version':'1.0.0','status':'collected_not_approved','workflow_run_id':os.environ['GITHUB_RUN_ID'],'documents':docs,'errors':errors,'collection_completed_at':now()},indent=2)+'\n')
+          print(json.dumps({'documents':docs,'errors':errors}),flush=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: valiant-official-mirrors
+          path: ${{ runner.temp }}/valiant
+          retention-days: 14
+          if-no-files-found: error
