@@ -37,76 +37,18 @@ Collection time, source observation, dataset generation and Pages publication ar
 
 ## Handoff for the next prompt
 
-**The original BSE 2021 unmatched queue is complete. The pinned 2022 follow-up now has 13 reviewed/published + 1 existing-recovery alias + 2 awaiting review. Next bounded P1 pair: Droneacharya Aerial Innovations Limited (543713) + Five-Star Business Finance Ltd. (543663).** Reconcile all recovery years and aliases before importing either. The [current handoff](docs/PROJECT_STATUS.md) and [machine-readable 2022 disposition](data/discovery/bse-2022-unmatched-disposition-2026-09-27.json) supersede older task lists. Overall Indian IPO coverage remains incomplete.
+**The original 2022 queue is complete: 14 reviewed/published + 2 existing-recovery alias + 0 awaiting review.** PR #327 added Droneacharya and repaired the existing FiveStar record without duplicating it. FiveStar's differently scoped offer-size disclosures remain an unresolved source conflict. The original 2021 queue is also complete; do not replay closed batches.
 
-Run `node scripts/check-bse-2022-disposition.mjs` to check counts, release references and next-task consistency without changing IPO data.
+Next P1 batch: **Sah Polymers, Global Surfaces, Udayshivakumar Infra and Pyramid Technoplast** from the [30-row 2023 candidate queue](data/discovery/bse-2023-review-queue-2026-09-28.json). Reconcile all recovery years first and review official documents before any import. The [920-row retained-source reconciliation](data/discovery/bse-retained-reconciliation-2026-09-28.json) identifies 215 rows still requiring review across 2023–2026. It reuses sources collected 26 September 2026; it is not a new source collection or a complete Indian IPO-universe claim.
 
-### Previous identity/DRHP release notes
-
-**The interrupted identity/DRHP release is complete: PR #248 and PR #249 are merged and verified. Do not replay batches 1–9.**
-
-The retained draft source currently contains **95 companies / 97 DRHP/UDRHP source documents**. The lifecycle-aware reconciliation currently leaves **84 visible Pre-IPO companies** and hides **11 issuers that have already progressed** in the published IPO dataset. Abakkus Asset Manager Limited is retained and visible with its **22-Sep-2026 DRHP** from Axis Capital's official offer-document source.
-
-The current collector combines the SEBI draft-offer index with the configured Axis Capital BRLM fallback. Three invalid legacy Axis mirror projections were removed with explicit correction history: two out-of-scope mirrors and one superseded malformed EAAA identity. Coverage remains partial because unconfigured lead-manager sources, unlabelled SEBI rows, other years, addenda and corrigenda remain outside the claimed universe.
-
-**AMIRCHAND and LEAP are resolved.** Official identity evidence establishes AMIRCHAND / INE05TO01019 and LEAPIND / INE00GO01025; LEAP remains the IPO lookup symbol, distinct from trading symbol LEAPIND. The retained actual IPO snapshot fetched **2026-09-26T02:21:48.511Z** contains **1,323 records** and passes all **105 reviewed issuers / 627 facts**, including **2/2 batch9 issuers and 12/12 facts**. It has no invalid statuses or missing status evidence. This is the earlier IPO snapshot, not a new 02:57 UTC IPO fetch; subsequent routine historical fills on main remain separate from this DRHP-only repair.
-
-Final-head CI, merged-main data-contract tests and local retained-source regressions passed. Exact fetched DRHP assets were rendered offline at 320/375/1440 pixels, with search, empty/error/retry, failed-refresh preservation and mobile navigation passing without page overflow. Actual remote byte verification was performed by Actions; the browser checks used retained JSON test doubles.
-
-[Combined live receipt](docs/verification/drhp-identity-release-live-2026-09-26.json) · [Current review/hold state](data/discovery/nse-universe-current-review-2026-09-26.json).
-
-### Pre-IPO source coverage correction
-
-Abakkus Asset Manager exposed a real discovery gap: its DRHP was present on official book-running lead-manager offer-document pages while the SEBI Draft Offer Documents index did not list it. PR **#253** added Axis Capital's official offer-document page as the first fallback; PR **#254** corrected original-document timing and filing-year interpretation; PR **#255** updated the Pre-IPO contract; PR **#256** removed the final superseded malformed Axis mirror identity. Abakkus is now automatically discovered without a hard-coded row. This improves coverage but still does **not** justify a complete-universe claim.
-
-### Pre-IPO company-list interpretation corrected
-
-The user-facing DRHP feature is now explicitly a **company list for proposed IPOs**, not a filing-record directory. PR **#251** merged as `8fdc9bdfa8c1b03acb98ae9546ab0a9efabe0c66`. The page shows one company per row with a `DRHP filed` stage, latest retained draft date and official SEBI document. Multiple DRHP/UDRHP versions remain behind the company record as evidence. The underlying collector/data file stays source-first and history-preserving. The post-merge GitHub Pages deployment workflow completed successfully.
-
-This correction does **not** promote a DRHP to an approved/upcoming/open IPO. The page cross-checks `data/ipos.json` on every load: once the same canonical legal issuer progresses to Upcoming/Open/Closed/Listed—or an IPO open/close/listing date is published—it disappears from the visible Pre-IPO list automatically. The retained DRHP history is not deleted. Current reconciliation: **84 visible / 11 progressed and hidden**. The final source-refresh verifier completed **2026-09-26T11:29:55.995Z** and matched all six checked published files byte-for-byte; served DRHP dataset SHA-256 is `4a5b5fb545eb99e653a019b2628f9e19ddbb4a0d9bda2fa823b65f85bb2fa8c5`.
-
-### Rights-security review complete
-
-**ADANIENPP1 and SILGOPP are resolved as non-IPO 2026 rights-security events.** Official NSE/issuer evidence identifies both as partly paid-up equity securities issued on a rights basis. ADANIENPP1 / IN9423A01048 was listed as a further issue effective 10-Feb-2026 after Adani Enterprises' first call; SILGOPP / IN901II01012 was listed effective 19-Feb-2026 as partly paid-up shares allotted on rights basis. No public IPO row was added, removed or edited.
-
-The Silgo sources disagree on the allotment date: NSE records 13-Feb-2026, while the issuer's later call notice states 17-Feb-2026. That conflict is retained because it is not needed to classify the event. Original PDF bytes were not materialized in this connector run; the review retains literal official-source projections and projection SHA-256 values without representing them as original-file hashes. See [the rights-security review](data/discovery/nse-universe-rights-security-review-2026-09-26.json).
-
-### Final three NSE holds resolved
-
-**GICL, VITAL and KOTYARK are resolved as 2026 SME→Main Board migration events, not new 2026 IPOs.** Official NSE/issuer evidence explicitly identifies the migration dates as 18-Feb-2026, 11-Mar-2026 and 12-Mar-2026 respectively. Their earlier SME IPO histories remain separate and preserved: GICL 2016, VITAL 2022 and KOTYARK 2021. See [the final migration review](data/discovery/nse-universe-final-migration-review-2026-09-26.json).
-
-The pinned 119-group review now has **zero unresolved NSE groups**: **105 approved IPOs + five debt-event exclusions + seven migration exclusions + two rights-issue security exclusions = 119**. This closes the pinned review set but still does **not** establish full Indian IPO-universe completeness.
-
-### Nine excluded-event issuers — historical IPO release verified live
-
-All **nine** original historical equity IPOs behind the earlier excluded 2026 debt/migration events are now published through the reviewed recovery path:
-
-- **MWL** — Mangalam Worldwide Limited — listed 11-Jul-2022.
-- **QMSMEDI** — QMS Medical Allied Services Limited — listed 11-Oct-2022.
-- **VIVIANA** — Viviana Power Tech Limited — listed 16-Sep-2022.
-- **ANNAPURNA** — Annapurna Swadisht Limited — listed 27-Sep-2022.
-- **SWARAJ** — Swaraj Suiting Limited — listed 28-Mar-2022.
-- **VIESL** — Vision Infra Equipment Solutions Limited — listed 13-Sep-2024.
-- **AVPINFRA** — AVP Infracon Limited — listed 20-Mar-2024.
-- **DOLLEX** — Dollex Agrotech Limited — listed 28-Dec-2022.
-- **DCCL** — Dar Credit & Capital Limited — listed 28-May-2025.
-
-The evidence review is [data/discovery/excluded-event-issuer-historical-ipo-review-2026-09-26.json](data/discovery/excluded-event-issuer-historical-ipo-review-2026-09-26.json). The durable source receipt is [data/evidence/historical-ipo-nine-source-receipt-2026-09-26.json](data/evidence/historical-ipo-nine-source-receipt-2026-09-26.json), backed by **25 original official documents / 146,148,394 response bytes** in Actions artifact **10906719463** with digest `sha256:6f0a6ad7fbe3ece39e2b010d66bb9a306ffe4d2590b67c02e4980c3b42c90c52`.
-
-PR **#261** merged as `85e6e96239089ec7237c34cca17df912af029ce0`; the race-safe recovery publication created commit `e956549413205d2cfe6c7e7aa563f91804929ff1`. Actual GitHub Pages verification run **36248129988** passed **9/9 issuers and 33/33 reviewed fields** with zero failures. The served dataset contains **1,332 records**; snapshot fetched **2026-09-26T14:20:28.176Z**, SHA-256 `d6a7ada5aeb2f20b0445efa2c04d0a2033f3e0df809e4be46756492d0ebb9004`, retained in artifact **10908262582**.
-
-No excluded 2026 debt/migration event was reintroduced. Source-policy boundaries were preserved: VIESL offer dates remain missing because the reviewed date source is the issuer website, and SWARAJ offer terms remain missing because `archives.nseindia.com` was not added to the publication allowlist in this release.
-
-### Fabino Life Sciences listing-year correction — verified live
-
-Fabino Life Sciences Limited is now published as a **BSE SME IPO listed 13-Jan-2022** (scrip **543444 / FABINO**, ISIN **INE0DRT01018**). The IPO opened **31-Dec-2021**, closed **05-Jan-2022**, issue price was **₹36**, and market lot was **3,000**.
-
-BSE Notice **20220112-10** is retained exactly as evidence even though one listing sentence contains the typo **"January 13, 2021"**. The correction does not rewrite that source: independent BSE SME IPO Index evidence explicitly confirms listing on **13-Jan-2022**, and the public record retains the correction history.
-
-PR **#263** materialized **4 official BSE/SEBI documents / 12,642,908 response bytes** in artifact **10908566869** with digest `sha256:b1dce44e5806fa6998cc25a4895159c4b2f2d32d1e7d65afc11a03606e26a841`. PR **#264** merged as `5391027eaac6c18724f482c2ef1c5111a33f0f7d`; publication commit `6d7fad63f478d17d8238a0976efb1f4a247866ef` added the single 2022 recovery record. Actual Pages verification run **36254088389** passed all **5 reviewed fields**, retained artifact **10909383646**, and fetched a **1,333-record** dataset at **2026-09-26T16:04:08.456Z** with SHA-256 `64a6ddbfb04e556f9f1deca2f54038561e1bed4444702a6a94b06af5eb8269ad`.
+Use [PROJECT_STATUS](docs/PROJECT_STATUS.md) and the pinned queues. Run `node scripts/check-bse-2022-disposition.mjs` and `node scripts/check-retained-bse-snapshot.mjs` before handoff. The read-only audit checks archived source hashes and rejects forged parsed projections; CI retains the reproducible full report while raw artifacts remain available.
 
 ### Exact next backend task
 
-Review **Droneacharya Aerial Innovations Limited (543713)** and **Five-Star Business Finance Ltd. (543663)** from the remaining **2** original BSE 2022 unmatched rows. Reconcile identities and aliases across all current recovery years first; then retain issuer-specific official BSE/SEBI evidence and original bytes before importing anything. Issue-summary rows remain discovery evidence only. Closing this queue does not establish complete Indian IPO-universe coverage.
+The remaining **0** original BSE 2022 unmatched rows need no further import. Next review **Sah Polymers, Global Surfaces, Udayshivakumar Infra and Pyramid Technoplast** from the 2023 candidate queue. Target one four-issuer evidence family in a run when feasible, but publish only independently verified records. Discovery prices/dates never authorize publication. Resolve FiveStar's offer-size conflict only against an official final basis-of-allotment disclosure, preserving both earlier observations.
 
-Maruti Interior Products and Olatech Solutions are already published through PR #325 and live-verified; see the [retained live receipt](docs/verification/bse-2022-maruti-olatech-live-2026-09-28.json). PACE E-Commerce Ventures and PNGS Gargi Fashion Jewellery are already published through PR #323 and live-verified. Eighty Jewellers and Virtuoso Optoelectronics are already published through PR #321 and live-verified. MAAGH Advertising and Technopack Polymers are already published through PR #316 and live-verified. Tamilnad Mercantile Bank and DCX Systems are already published through PR #313 and live-verified after the PR #314 verifier fix. Hariom Pipe Industries is already published through PR #311 with its issue-size source conflict preserved; Rainbow Children's Medicare is an existing RAINBOW recovery alias and must not be duplicated. Veranda Learning Solutions and Uma Exports are already published and live-verified. The original 2021 unmatched queue and earlier 2020 repairs must not be replayed. Overall Indian IPO-universe completeness remains incomplete.
+Droneacharya is published through PR #327; Five-Star is the existing `fivestar-business-finance-limited` / FIVESTAR alias, not a new issuer. The release fills its band, one-share trading lot and public offer dates while retaining the 31-share minimum bid and original identity/evidence. Maruti/Olatech and all preceding 2020–2022 releases remain complete. Keep Hariom and FiveStar source conflicts, Rainbow's existing alias, and all historical correction evidence intact. Overall Indian IPO-universe and field coverage remain incomplete.
+
+## Historical release notes
+
+The previous README is preserved byte-for-byte in [the release-note archive](docs/README_ARCHIVE_THROUGH_MARUTI_2026-09-28.md), original Git blob `83ceae2732ab2b095637782bab6b061d774c0a97`. Old next-task paragraphs and snapshot counts there are historical, not current instructions. Current source decisions and run receipts are in [PROJECT_STATUS](docs/PROJECT_STATUS.md) and its linked archives.
