@@ -1,0 +1,79 @@
+{
+  "schema_version": "1.0.0",
+  "status": "field_review_complete_final_release_checks_pending",
+  "release_pr": null,
+  "merge_commit": null,
+  "review_path": "data/discovery/bse-2023-irms-field-review-2026-09-28.json",
+  "review_sha256": "71f38ae34e23e774ef08e216d774cd7bf01fbcd14212375654c34b4ff0105ef5",
+  "local_snapshot_commit": "9e8e9341f159dddbca2b668a5848a2561654c14e",
+  "local_snapshot_artifact": 10973979843,
+  "local_snapshot_archive_sha256": "84c058d8ad7f4894199df80a2909f67a0df679314f581760192acd729bd72435",
+  "baseline_non_browser_tests_passed": 89,
+  "new_test_cases_passed": 45,
+  "new_test_red_then_green_observed": true,
+  "original_attempts_revalidated": [
+    {
+      "attempt": 1,
+      "accepted": 7,
+      "status": "partial",
+      "response_bytes": 27082607
+    },
+    {
+      "attempt": 2,
+      "accepted": 7,
+      "status": "partial",
+      "response_bytes": 33388351
+    }
+  ],
+  "field_review_result": {
+    "review": {
+      "ok": true,
+      "issuers": 4,
+      "field_dispositions": 32,
+      "verified_stated_terms": 24,
+      "provisional": 3,
+      "not_applicable": 1,
+      "missing": 4,
+      "publication_import_allowed": false
+    },
+    "reconciliation": {
+      "years_checked": [
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "records_checked": 1375,
+      "matches": [],
+      "clearance_for_import": false,
+      "scope": "Exact current id, canonical legal-name and BSE-code matches only; not fuzzy matching, permanent alias clearance or publication approval."
+    }
+  },
+  "new_public_records": 0,
+  "new_public_fields_approved": 0,
+  "publication_import_allowed": false,
+  "source_refetched": false,
+  "browser_test_run": false,
+  "live_fields_verified_in_this_task": false,
+  "review_mode": "inline",
+  "note": "Local full-suite passed; awaiting final PR CI and actual merge evidence. This review does not publish an IPO, close a queue row, resolve actual listing dates or relabel partial collection outcomes.",
+  "local_final_suite": {
+    "completed_at": "2026-09-28T14:48:50.608Z",
+    "entry_points": 90,
+    "passed": 90,
+    "failed": 0,
+    "failures": [],
+    "browser_run": false
+  },
+  "upstream_base_for_pr": "c1739184838e7f8329bc0516768053647c7d3fee",
+  "concurrent_handoff_section_preserved": "Stale PR retirement review \u2014 2026-09-28",
+  "prior_handoff_archived_blob": "68ab0beb4e498d919f0b39467e43b1fe7a41d353",
+  "publication_inputs_changed_by_this_task": false,
+  "handoff_wording_guard": {
+    "initial_failure": "status_count_mismatch",
+    "fix": "Restored the exact existing 2022 disposition wording; production guard unchanged."
+  }
+}
