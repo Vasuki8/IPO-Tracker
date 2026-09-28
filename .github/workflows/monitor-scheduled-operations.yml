@@ -1,0 +1,117 @@
+name: Monitor scheduled operations
+
+on:
+  schedule:
+    - cron: "7 * * * *"
+  workflow_dispatch:
+  workflow_run:
+    workflows:
+      - "Sync live IPO data"
+      - "Sync Pre-IPO draft sources"
+      - "Backfill historical BSE SME addition notices"
+      - "Backfill historical IPO offer dates"
+      - "Backfill historical IPO PDF fields"
+    types: [completed]
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: scheduled-operation-health
+  cancel-in-progress: true
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Test schedule-health semantics
+        run: node scripts/test-check-schedule-health.mjs
+
+      - name: Collect recent workflow-run clocks
+        uses: actions/github-script@v7
+        env:
+          OUTPUT: ${{ runner.temp }}/schedule-health-runs.json
+        with:
+          script: |
+            const fs = require("fs");
+            const specs = [
+              [".github/workflows/update-ipos.yml", "Sync live IPO data"],
+              [".github/workflows/update-drhp.yml", "Sync Pre-IPO draft sources"],
+              [".github/workflows/backfill-bse-sme-addition-notices.yml", "Backfill historical BSE SME addition notices"],
+              [".github/workflows/backfill-historical-offer-dates.yml", "Backfill historical IPO offer dates"],
+              [".github/workflows/backfill-historical-pdf-fields.yml", "Backfill historical IPO PDF fields"]
+            ];
+            const workflows = [];
+            for (const [path, name] of specs) {
+              const { data } = await github.rest.actions.listWorkflowRuns({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                workflow_id: path,
+                per_page: 20
+              });
+              workflows.push({
+                path,
+                name,
+                runs: data.workflow_runs.map((run) => ({
+                  id: run.id,
+                  event: run.event,
+                  status: run.status,
+                  conclusion: run.conclusion,
+                  created_at: run.created_at,
+                  updated_at: run.updated_at,
+                  html_url: run.html_url,
+                  head_sha: run.head_sha
+                }))
+              });
+            }
+            fs.writeFileSync(process.env.OUTPUT, JSON.stringify({
+              schema_version: "1.0.0",
+              collected_at: new Date().toISOString(),
+              workflows
+            }, null, 2) + "\n");
+
+      - name: Evaluate missed starts separately from execution failures
+        id: evaluate
+        continue-on-error: true
+        run: |
+          node scripts/check-schedule-health.mjs \
+            --input="${{ runner.temp }}/schedule-health-runs.json" \
+            --output="${{ runner.temp }}/schedule-health-report.json"
+
+      - name: Publish readable job summary
+        if: always()
+        env:
+          REPORT: ${{ runner.temp }}/schedule-health-report.json
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from "node:fs";
+          const p=process.env.REPORT;
+          if(!fs.existsSync(p)){fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY,"## Scheduled operations\n\nNo report was produced.\n");process.exit(0);}
+          const d=JSON.parse(fs.readFileSync(p));
+          let s="## Scheduled operations\n\n";
+          s+=`Overall: **${d.overall}** · critical ${d.critical_count} · warnings ${d.warning_count}\n\n`;
+          s+="| Workflow | Trigger | Execution | Age (min) | Max recent gap (min) | Reasons |\n|---|---|---|---:|---:|---|\n";
+          for(const r of d.workflows)s+=`| ${r.name} | ${r.trigger_status} | ${r.execution_status} | ${r.age_minutes??"—"} | ${r.max_recent_gap_minutes??"—"} | ${r.reasons.join(", ")||"—"} |\n`;
+          fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY,s);
+          NODE
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: scheduled-operation-health-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            ${{ runner.temp }}/schedule-health-runs.json
+            ${{ runner.temp }}/schedule-health-report.json
+          retention-days: 14
+          if-no-files-found: warn
+
+      - name: Fail only on critical schedule health
+        if: steps.evaluate.outcome == 'failure'
+        run: exit 1
