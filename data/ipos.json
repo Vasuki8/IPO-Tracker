@@ -1,6 +1,6 @@
 {
   "schema_version": "1.2.0",
-  "generated_at": "2026-09-28T17:52:47.119Z",
+  "generated_at": "2026-09-28T23:22:34.252Z",
   "collection_started_at": "2026-09-22T02:14:14Z",
   "records": [
     {
@@ -359,7 +359,7 @@
         }
       ],
       "sector": null,
-      "status": "upcoming",
+      "status": "open",
       "status_evidence": [
         {
           "url": "https://www.nseindia.com/api/all-upcoming-issues?category=ipo",
@@ -368,6 +368,14 @@
           "publication_date": null,
           "page": null,
           "collected_at": "2026-09-28T17:42:25.454Z"
+        },
+        {
+          "url": "https://www.nseindia.com/api/ipo-current-issue",
+          "document_type": "NSE IPO Live Feed",
+          "document_identity": "NSE IPO Live Feed — PAPADMALJI",
+          "publication_date": null,
+          "page": null,
+          "collected_at": "2026-09-28T23:21:11.825Z"
         }
       ],
       "price_band": {
@@ -514,10 +522,17 @@
           "url": "https://www.nseindia.com/api/all-upcoming-issues?category=ipo",
           "publication_date": null,
           "collected_at": "2026-09-28T17:42:25.454Z"
+        },
+        {
+          "type": "NSE IPO Live Feed",
+          "identity": "NSE IPO Live Feed — PAPADMALJI",
+          "url": "https://www.nseindia.com/api/ipo-current-issue",
+          "publication_date": null,
+          "collected_at": "2026-09-28T23:21:11.825Z"
         }
       ],
       "first_observed_at": "2026-09-28T17:42:25.454Z",
-      "last_collected_at": "2026-09-28T17:42:25.454Z"
+      "last_collected_at": "2026-09-28T23:21:11.825Z"
     },
     {
       "id": "shah-investor-s-home-limited",
@@ -2198,7 +2213,7 @@
         }
       ],
       "sector": null,
-      "status": "open",
+      "status": "closed",
       "status_evidence": [
         {
           "url": "https://www.nseindia.com/api/all-upcoming-issues?category=ipo",
@@ -2215,6 +2230,14 @@
           "publication_date": null,
           "page": null,
           "collected_at": "2026-09-23T19:29:27.142Z"
+        },
+        {
+          "url": "https://www.nseindia.com/api/all-upcoming-issues?category=ipo",
+          "document_type": "NSE IPO Live Feed",
+          "document_identity": "NSE IPO Live Feed — AONESTEELS",
+          "publication_date": null,
+          "page": null,
+          "collected_at": "2026-09-28T23:21:11.825Z"
         }
       ],
       "price_band": {
@@ -2371,7 +2394,7 @@
         }
       ],
       "first_observed_at": "2026-09-23T11:47:20.236Z",
-      "last_collected_at": "2026-09-23T19:29:27.142Z"
+      "last_collected_at": "2026-09-28T23:21:11.825Z"
     },
     {
       "id": "green-asia-impex-limited",
@@ -2578,7 +2601,7 @@
         }
       ],
       "sector": null,
-      "status": "open",
+      "status": "closed",
       "status_evidence": [
         {
           "url": "https://www.nseindia.com/api/all-upcoming-issues?category=ipo",
@@ -2595,6 +2618,14 @@
           "publication_date": null,
           "page": null,
           "collected_at": "2026-09-23T19:29:27.142Z"
+        },
+        {
+          "url": "https://www.nseindia.com/api/all-upcoming-issues?category=ipo",
+          "document_type": "NSE IPO Live Feed",
+          "document_identity": "NSE IPO Live Feed — MONEYVIEW",
+          "publication_date": null,
+          "page": null,
+          "collected_at": "2026-09-28T23:21:11.825Z"
         }
       ],
       "price_band": {
@@ -2772,7 +2803,7 @@
         }
       ],
       "first_observed_at": "2026-09-22T13:09:40.974Z",
-      "last_collected_at": "2026-09-23T19:29:27.142Z"
+      "last_collected_at": "2026-09-28T23:21:11.825Z"
     },
     {
       "id": "adroit-industries-india-limited",
@@ -4089,9 +4120,18 @@
         "corrections": []
       },
       "issue_price": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": 148,
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/public-past-issues",
+            "document_type": "NSE Public Past Issues",
+            "document_identity": "NSE Public Past Issues — VARMORA",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-28T23:22:34.252Z"
+          }
+        ],
         "corrections": []
       },
       "issue_size_inr": {
@@ -4202,9 +4242,18 @@
         "corrections": []
       },
       "listing_date": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": "2026-09-29",
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/public-past-issues",
+            "document_type": "NSE Public Past Issues",
+            "document_identity": "NSE Public Past Issues — VARMORA",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-28T23:22:34.252Z"
+          }
+        ],
         "corrections": []
       },
       "documents": [
@@ -4242,10 +4291,17 @@
           "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2026/1790230475459.pdf",
           "publication_date": "2026-09-16",
           "collected_at": "2026-09-24T06:40:32.955Z"
+        },
+        {
+          "type": "NSE Public Past Issues",
+          "identity": "NSE Public Past Issues — VARMORA",
+          "url": "https://www.nseindia.com/api/public-past-issues",
+          "publication_date": null,
+          "collected_at": "2026-09-28T23:22:34.252Z"
         }
       ],
       "first_observed_at": "2026-09-22T03:34:37.086Z",
-      "last_collected_at": "2026-09-24T18:54:41.274Z"
+      "last_collected_at": "2026-09-28T23:22:34.252Z"
     },
     {
       "id": "axiom-gas-engineering-limited",
@@ -131466,10 +131522,38 @@
           "url": "https://www.nseindia.com/api/ipo-detail?symbol=CEIGALL&series=EQ",
           "publication_date": null,
           "collected_at": "2026-09-24T06:06:51.876Z"
+        },
+        {
+          "type": "SEBI Prospectus filing",
+          "identity": "Ceigall India Limited - Prospectus",
+          "url": "https://www.sebi.gov.in/filings/public-issues/aug-2024/ceigall-india-limited-prospectus_85525.html",
+          "publication_date": "2024-08-07",
+          "collected_at": "2026-09-28T23:21:33.955Z"
+        },
+        {
+          "type": "SEBI Prospectus PDF",
+          "identity": "Ceigall India Limited - Prospectus — PDF",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2024/1723013588143.pdf",
+          "publication_date": "2024-08-07",
+          "collected_at": "2026-09-28T23:21:33.955Z"
+        },
+        {
+          "type": "SEBI RHP filing",
+          "identity": "Ceigall India Limited-RHP",
+          "url": "https://www.sebi.gov.in/filings/public-issues/jul-2024/ceigall-india-limited-rhp_85262.html",
+          "publication_date": "2024-07-29",
+          "collected_at": "2026-09-28T23:21:33.955Z"
+        },
+        {
+          "type": "SEBI RHP PDF",
+          "identity": "Ceigall India Limited-RHP — PDF",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2024/1722318178572.pdf",
+          "publication_date": "2024-07-29",
+          "collected_at": "2026-09-28T23:21:33.955Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-24T06:06:51.876Z"
+      "last_collected_at": "2026-09-28T23:21:33.955Z"
     },
     {
       "id": "dhariwalcorp-limited",
@@ -227041,10 +227125,24 @@
           "url": "https://www.nseindia.com/api/ipo-detail?symbol=CARTRADE&series=EQ",
           "publication_date": null,
           "collected_at": "2026-09-24T03:20:59.438Z"
+        },
+        {
+          "type": "SEBI RHP filing",
+          "identity": "Cartrade Tech Limited - RHP",
+          "url": "https://www.sebi.gov.in/filings/public-issues/aug-2021/cartrade-tech-limited-rhp_51536.html",
+          "publication_date": "2021-08-02",
+          "collected_at": "2026-09-28T23:21:33.955Z"
+        },
+        {
+          "type": "SEBI RHP PDF",
+          "identity": "Cartrade Tech Limited - RHP — PDF",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2021/1627878307780.pdf",
+          "publication_date": "2021-08-02",
+          "collected_at": "2026-09-28T23:21:33.955Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-24T03:20:59.438Z"
+      "last_collected_at": "2026-09-28T23:21:33.955Z"
     },
     {
       "id": "devyani-international-limited",
