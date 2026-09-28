@@ -78,6 +78,18 @@ finished.disposition.awaiting_review = 0; finished.disposition.next_bounded_revi
 finished.projectStatus = '## Exact next bounded task\n1 reviewed/published + 1 existing-recovery alias + 0 awaiting review';
 finished.readme = '## Handoff for the next prompt\n1 reviewed/published + 1 existing-recovery alias + 0 awaiting review\n\n### Exact next backend task\nNo rows remain; remaining **0**.';
 assert.equal(validateDisposition(finished).awaiting, 0);
+// Once this queue is complete, later-year task codes belong to that year's checker.
+const nextYear = structuredClone(finished);
+nextYear.projectStatus += '\nNext 2023 candidate (543998).';
+nextYear.readme = nextYear.readme.replace('existing-recovery alias + 0 awaiting review', 'existing-recovery alias + 0 awaiting review\nNext 2023 candidate (543998).') + '\nNext 2023 candidate (543998).';
+assert.equal(validateDisposition(nextYear).ok, true, 'completed 2022 queue must allow a 2023 handoff');
+for (const sectionName of ['status', 'overview', 'footer']) {
+  const bad = structuredClone(nextYear);
+  if (sectionName === 'status') bad.projectStatus = bad.projectStatus.replace('543998', '543001');
+  else if (sectionName === 'overview') bad.readme = bad.readme.replace('543998', '543001');
+  else bad.readme = bad.readme.slice(0, bad.readme.lastIndexOf('543998')) + bad.readme.slice(bad.readme.lastIndexOf('543998')).replace('543998', '543001');
+  assert.throws(() => validateDisposition(bad), /next_queue_mismatch/, 'closed 2022 code must not become the next task again');
+}
 const temp = fs.mkdtempSync(path.join(os.tmpdir(), 'ipo-disposition-'));
 try {
   const x = fixture();
@@ -86,4 +98,4 @@ try {
   assert.equal(checkRepository(temp).ok, true);
   for (const [p, text] of Object.entries(files)) assert.equal(fs.readFileSync(path.join(temp, p), 'utf8'), text, 'repository check is read-only');
 } finally { fs.rmSync(temp, {recursive: true, force: true}); }
-console.log(JSON.stringify({bse_2022_disposition_tests: {rejected_mutations: rejected.length, legacy_manifest: true, alias_preserved: true, pending_closeout_warning: true, no_fact_inference: true, empty_queue: true, read_only: true}}));
+console.log(JSON.stringify({bse_2022_disposition_tests: {rejected_mutations: rejected.length + 3, next_year_handoff: true, legacy_manifest: true, alias_preserved: true, pending_closeout_warning: true, no_fact_inference: true, empty_queue: true, read_only: true}}));

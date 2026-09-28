@@ -1,0 +1,39 @@
+name: Check BSE 2023 review progress
+on:
+  pull_request:
+    paths:
+      - 'data/**'
+      - 'docs/PROJECT_STATUS.md'
+      - 'docs/verification/**'
+      - 'README.md'
+      - 'scripts/*bse-2023-progress*'
+      - 'scripts/sync-sebi-documents.mjs'
+      - '.github/workflows/check-bse-2023-progress.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'data/**'
+      - 'docs/PROJECT_STATUS.md'
+      - 'docs/verification/**'
+      - 'README.md'
+      - 'scripts/*bse-2023-progress*'
+      - 'scripts/sync-sebi-documents.mjs'
+      - '.github/workflows/check-bse-2023-progress.yml'
+permissions: {contents: read}
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: '20'}
+      - name: Test source-preserving progress and handoff checks
+        run: node scripts/test-bse-2023-progress.mjs
+      - name: Check current bookkeeping without importing
+        run: |
+          node scripts/check-bse-2023-progress.mjs
+          node scripts/check-bse-2022-disposition.mjs
+          node scripts/check-retained-bse-snapshot.mjs
+      - name: Ensure checks do not rewrite tracked data
+        run: git diff --exit-code
