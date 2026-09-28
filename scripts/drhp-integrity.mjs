@@ -101,7 +101,7 @@ export function mergeDrhpSnapshots(previous,incoming) {
     latest.set(f.filing_url,copy);retained.push(f.filing_url);
   }
   for(const f of incoming.companies.flatMap(c=>c.filings))if(latest.has(f.filing_url)&&!f.not_seen_in_latest_scan)latest.get(f.filing_url).not_seen_in_latest_scan=false;
-  const data=structuredClone(incoming);data.collector_version='2.2.0';data.corrections=corrections;
+  const data=structuredClone(incoming);data.collector_version=incoming.collector_version||previous?.collector_version||'2.2.0';data.corrections=corrections;
   data.collection_started_at ||= incoming.generated_at;
   data.collection_completed_at ||= [...incoming.source_pages.map(p=>p.collected_at),...(incoming.supplemental_source_pages||[]).map(p=>p.collected_at),incoming.generated_at].sort().at(-1);data.companies=buildCompanies([...latest.values()]);
   const totals=[...new Set(data.source_pages.map(p=>p.observed_records).filter(Number.isInteger))];
@@ -110,7 +110,7 @@ export function mergeDrhpSnapshots(previous,incoming) {
     retained_not_seen_latest:data.companies.flatMap(c=>c.filings).filter(f=>f.not_seen_in_latest_scan).length,
     corrected_invalid_supplemental_rows:corrections.filter(c=>['removed_out_of_scope_axis_fallback','corrected_axis_fallback_projection','removed_superseded_axis_mirror_identity'].includes(c.action)).length,
     pagination_consistent:totals.length===1,observed_source_totals:totals,full_universe_complete:false,
-    limitations:'2026 explicit SEBI DRHP/UDRHP observations plus configured official lead-manager fallbacks only. Changing pagination may omit rows; past filings are retained, not presumed withdrawn. Unlabelled SEBI filings, other years and unconfigured lead-manager sources remain outside coverage.'};
+    limitations:'2026 explicit SEBI DRHP/UDRHP observations plus configured official lead-manager fallbacks only. Internally inconsistent pagination scans are rejected; past filings are retained, not presumed withdrawn. Unlabelled SEBI filings, other years and unconfigured lead-manager sources remain outside coverage.'};
   validateDrhpData(data);return data;
 }
 if(process.argv[1]&&pathToFileURL(path.resolve(process.argv[1])).href===import.meta.url){
