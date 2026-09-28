@@ -1,0 +1,189 @@
+{
+  "schema_version": "1.0.0",
+  "status": "reviewed_bse_2022_pace_gargi",
+  "source_year": 2022,
+  "auto_import_allowed": false,
+  "publication_change": false,
+  "actions": [
+    {
+      "key": "pace",
+      "issuer_name": "PACE E-COMMERCE VENTURES LIMITED",
+      "stable_id": "pace-e-commerce-ventures-limited",
+      "discovery_bse_scrip_code": "543637",
+      "decision": "confirmed_missing_historical_ipo_candidate",
+      "target": {
+        "board": "SME",
+        "price_band": null,
+        "issue_price": 103,
+        "issue_size_inr": 665339000,
+        "market_lot": 1200,
+        "minimum_bid_quantity": 1200,
+        "open_date": "2022-09-29",
+        "close_date": "2022-10-04",
+        "listing_date": "2022-10-20"
+      },
+      "identity_sources": [
+        "pace_prospectus",
+        "pace_track"
+      ],
+      "field_sources": {
+        "board": "pace_prospectus",
+        "issue_price": "pace_prospectus",
+        "issue_size_inr": "pace_prospectus",
+        "market_lot": "pace_prospectus",
+        "minimum_bid_quantity": "pace_prospectus",
+        "open_date": "pace_prospectus",
+        "close_date": "pace_prospectus",
+        "listing_date": "pace_track"
+      },
+      "field_pages": {
+        "board": 1,
+        "issue_price": 2,
+        "issue_size_inr": 2,
+        "market_lot": 165,
+        "minimum_bid_quantity": 181,
+        "open_date": 1,
+        "close_date": 1,
+        "listing_date": 158
+      },
+      "field_locators": {
+        "board": "Prospectus cover: equity shares proposed to be listed on the SME Platform of BSE Limited.",
+        "issue_price": "Prospectus PDF page 2: 64,59,600 equity shares at an issue price of Rs. 103 per equity share.",
+        "issue_size_inr": "Prospectus PDF page 2: total offer aggregating to Rs. 6653.39 lacs.",
+        "market_lot": "Prospectus PDF page 165: minimum contract size of 1,200 equity shares.",
+        "minimum_bid_quantity": "Prospectus PDF page 181: retail application must be for a minimum of 1,200 equity shares.",
+        "open_date": "Prospectus cover: Issue Opens On September 29, 2022.",
+        "close_date": "Prospectus cover: Issue Closes On October 04, 2022.",
+        "listing_date": "Vivaa Tradecom prospectus PDF page 158: Interactive Financial Services past-issues table lists PACE on October 20, 2022."
+      }
+    },
+    {
+      "key": "gargi",
+      "issuer_name": "PNGS GARGI FASHION JEWELLERY LIMITED",
+      "stable_id": "pngs-gargi-fashion-jewellery-limited",
+      "discovery_bse_scrip_code": "543709",
+      "decision": "confirmed_missing_historical_ipo_candidate",
+      "target": {
+        "board": "SME",
+        "price_band": null,
+        "issue_price": 30,
+        "issue_size_inr": 78000000,
+        "market_lot": 4000,
+        "minimum_bid_quantity": 4000,
+        "open_date": "2022-12-08",
+        "close_date": "2022-12-13",
+        "listing_date": "2022-12-20"
+      },
+      "identity_sources": [
+        "gargi_prospectus",
+        "gargi_annual"
+      ],
+      "field_sources": {
+        "board": "gargi_prospectus",
+        "issue_price": "gargi_prospectus",
+        "issue_size_inr": "gargi_prospectus",
+        "market_lot": "gargi_prospectus",
+        "minimum_bid_quantity": "gargi_prospectus",
+        "open_date": "gargi_prospectus",
+        "close_date": "gargi_prospectus",
+        "listing_date": "gargi_annual"
+      },
+      "field_pages": {
+        "board": 1,
+        "issue_price": 8,
+        "issue_size_inr": 1,
+        "market_lot": 220,
+        "minimum_bid_quantity": 233,
+        "open_date": 1,
+        "close_date": 1,
+        "listing_date": 65
+      },
+      "field_locators": {
+        "board": "Prospectus cover: equity shares proposed to be listed on the SME Platform of BSE.",
+        "issue_price": "Prospectus PDF page 8: Issue Price is Rs. 30 per equity share.",
+        "issue_size_inr": "Prospectus cover: 26,00,000 equity shares aggregating to Rs. 780.00 lakhs.",
+        "market_lot": "Prospectus PDF page 220: minimum contract size of 4,000 equity shares.",
+        "minimum_bid_quantity": "Prospectus PDF page 233: retail application must be for a minimum of 4,000 equity shares.",
+        "open_date": "Prospectus cover: Issue Opens On December 08, 2022.",
+        "close_date": "Prospectus cover: Issue Closes On December 13, 2022.",
+        "listing_date": "Annual Report PDF page 65: equity shares got listed on BSE SME with effect from December 20, 2022."
+      }
+    }
+  ],
+  "sources": [
+    {
+      "key": "pace_prospectus",
+      "authority": "SEBI",
+      "document_type": "Final Prospectus",
+      "document_identity": "PACE E-Commerce Ventures Limited - Prospectus dated 22 September 2022",
+      "document_date": "2022-09-22",
+      "publication_date": null,
+      "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2022/1671770329353.pdf",
+      "evidence_locator": "Prospectus cover, issue terms and application-size pages; fixed-price BSE SME IPO.",
+      "projection": {
+        "issuer": "PACE E-COMMERCE VENTURES LIMITED",
+        "issue_type": "IPO",
+        "board": "SME",
+        "issue_price": 103,
+        "issue_size_inr": 665339000,
+        "market_lot": 1200,
+        "minimum_bid_quantity": 1200,
+        "open_date": "2022-09-29",
+        "close_date": "2022-10-04"
+      }
+    },
+    {
+      "key": "pace_track",
+      "authority": "SEBI",
+      "document_type": "Final Prospectus - BRLM past-issues table",
+      "document_identity": "Vivaa Tradecom Limited - Prospectus dated 19 September 2023; Interactive Financial Services past-issues table",
+      "document_date": "2023-09-19",
+      "publication_date": null,
+      "url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2023/1697628668036_153.pdf",
+      "evidence_locator": "PDF page 158 past-issues table: PACE E-Commerce Ventures Limited (BSE SME), issue price 103, listing date October 20, 2022.",
+      "projection": {
+        "issuer": "PACE E-COMMERCE VENTURES LIMITED",
+        "listing_date": "2022-10-20",
+        "issue_price": 103
+      }
+    },
+    {
+      "key": "gargi_prospectus",
+      "authority": "SEBI",
+      "document_type": "Final Prospectus",
+      "document_identity": "PNGS Gargi Fashion Jewellery Limited - Prospectus dated 02 December 2022",
+      "document_date": "2022-12-02",
+      "publication_date": null,
+      "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2022/1671770004458.pdf",
+      "evidence_locator": "Prospectus cover, definitions and application-size pages; fixed-price BSE SME IPO.",
+      "projection": {
+        "issuer": "PNGS GARGI FASHION JEWELLERY LIMITED",
+        "issue_type": "IPO",
+        "board": "SME",
+        "issue_price": 30,
+        "issue_size_inr": 78000000,
+        "market_lot": 4000,
+        "minimum_bid_quantity": 4000,
+        "open_date": "2022-12-08",
+        "close_date": "2022-12-13"
+      }
+    },
+    {
+      "key": "gargi_annual",
+      "authority": "BSE-hosted issuer filing",
+      "document_type": "Annual Report FY 2022-23",
+      "document_identity": "PNGS Gargi Fashion Jewellery Limited - Annual Report FY 2022-23 filed 01 June 2023",
+      "document_date": "2023-06-01",
+      "publication_date": "2023-06-01",
+      "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/bb64c726-a2b8-47f7-9b8f-c16da2b5b7fc.pdf",
+      "evidence_locator": "Annual report states IPO terms and BSE SME listing effective December 20, 2022.",
+      "projection": {
+        "issuer": "PNGS GARGI FASHION JEWELLERY LIMITED",
+        "board": "SME",
+        "listing_date": "2022-12-20",
+        "issue_price": 30,
+        "issue_size_inr": 78000000
+      }
+    }
+  ]
+}
