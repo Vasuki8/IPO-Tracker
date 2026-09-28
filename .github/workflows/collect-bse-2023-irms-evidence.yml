@@ -6,6 +6,8 @@ on:
       - 'data/discovery/bse-2023-irms-source-plan-2026-09-28.json'
       - 'scripts/collect-bse-2023-irms-evidence.mjs'
       - 'scripts/test-bse-2023-irms-evidence.mjs'
+      - 'scripts/test-bse-2023-irms-handoff.mjs'
+      - 'data/evidence/bse-2023-irms-source-receipt-2026-09-28.json'
       - '.github/workflows/collect-bse-2023-irms-evidence.yml'
 permissions:
   contents: read
@@ -60,6 +62,8 @@ jobs:
           retention-days: 14
           if-no-files-found: error
   sources:
+    # External collection health is separate from deterministic PR checks.
+    if: github.event_name == 'workflow_dispatch'
     needs: checks
     runs-on: ubuntu-latest
     timeout-minutes: 10
