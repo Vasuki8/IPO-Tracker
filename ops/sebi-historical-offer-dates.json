@@ -2505,10 +2505,10 @@
     "2025|taurian-mps-limited": {
       "issuer_name": "Taurian MPS Limited",
       "listing_date": "2025-09-16",
-      "last_attempted_at": "2026-09-26T23:10:03.376Z",
+      "last_attempted_at": "2026-09-27T23:59:13.817Z",
       "parser_version": "2.0.0",
       "status": "error",
-      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 45 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-offer-dates-qlv5I2/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/sep-2025/1758607889393.pdf\ncurl: (28) Operation timed out after 45000 milliseconds with 11785343 out of 21061759 bytes received\ncurl: (28) Operation timed out after 45000 milliseconds with 12015183 out of 21061759 bytes received\n",
+      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 45 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-offer-dates-7oFjyo/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/sep-2025/1758607889393.pdf\ncurl: (28) Operation timed out after 45000 milliseconds with 12295919 out of 21061759 bytes received\ncurl: (28) Operation timed out after 45000 milliseconds with 12116311 out of 21061759 bytes received\n",
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2025/1758607889393.pdf"
     },
     "2023|samhi-hotels-limited": {
@@ -2795,6 +2795,58 @@
         "publication_date": "2023-09-05"
       },
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2023/1694777734222.pdf"
+    },
+    "2023|vishnu-prakash-r-punglia-limited": {
+      "issuer_name": "Vishnu Prakash R Punglia Limited",
+      "listing_date": "2023-09-05",
+      "last_attempted_at": "2026-09-27T23:59:13.817Z",
+      "parser_version": "2.0.0",
+      "status": "extracted",
+      "open_date": "2023-08-24",
+      "close_date": "2023-08-28",
+      "open_extraction": {
+        "value": "2023-08-24",
+        "source_value": "BID/ ISSUE OPENED ON Thursday, August 24, 2023",
+        "page": 2
+      },
+      "close_extraction": {
+        "value": "2023-08-28",
+        "source_value": "BID/ ISSUE CLOSED ON Monday, August 28, 2023",
+        "page": 2
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Vishnu Prakash R Punglia Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2023/1693456138034.pdf",
+        "publication_date": "2023-08-31"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2023/1693456138034.pdf"
+    },
+    "2023|aeroflex-industries-limited": {
+      "issuer_name": "Aeroflex Industries Limited",
+      "listing_date": "2023-08-31",
+      "last_attempted_at": "2026-09-27T23:59:13.817Z",
+      "parser_version": "2.0.0",
+      "status": "extracted",
+      "open_date": "2023-08-22",
+      "close_date": "2023-08-24",
+      "open_extraction": {
+        "value": "2023-08-22",
+        "source_value": "OFFER OPENED ON Tuesday, August 22, 2023",
+        "page": 1
+      },
+      "close_extraction": {
+        "value": "2023-08-24",
+        "source_value": "OFFER CLOSED ON Thursday, August 24, 2023",
+        "page": 1
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Aeroflex Industries Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2023/1693309886094.pdf",
+        "publication_date": "2023-08-29"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2023/1693309886094.pdf"
     }
   }
 }
