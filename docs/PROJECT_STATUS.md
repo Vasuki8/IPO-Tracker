@@ -1,12 +1,20 @@
 # Project status and handoff
 
-Updated **2026-09-28 (UTC)** after completing the original 2022 unmatched queue, publishing Droneacharya, repairing FiveStar terms, and reconciling the retained 2020–2026 BSE universe. Active priority remains **P1 issuer identity and data correctness**.
+Updated **2026-09-28 (UTC)** after the source-first UI/UX redesign release. Active backend priority remains **P1 issuer identity and data correctness**; the redesign did not change any IPO data, evidence, collection or publication contracts.
 
-## Exact next bounded task
+## Latest product release — source-first research workspace
 
-Review **Sah Polymers, Global Surfaces, Udayshivakumar Infra and Pyramid Technoplast** as one four-issuer 2023 evidence batch, where official evidence permits. Exact discovery codes and rows are in the [2023 candidate queue](../data/discovery/bse-2023-review-queue-2026-09-28.json). Reconcile names, aliases and exchange identities across all recovery years before importing. Retain original official documents and field evidence; do not auto-import discovery values.
+PR **#330** merged as **f07f32315835818717f93bcd589207920b8dc3d9**. The light-theme product shell was redesigned across the IPO directory, mobile cards, IPO detail research view, methodology surface and Pre-IPO pipeline. The redesign improves hierarchy, scan density, responsive behavior, filter/status treatment, source-trail prominence and visual consistency while preserving existing application logic and source-visible states.
 
-The original [2022 disposition](../data/discovery/bse-2022-unmatched-disposition-2026-09-27.json) is **14 reviewed/published + 2 existing-recovery alias + 0 awaiting review**. Its original 16 unmatched rows are resolved. This is not complete Indian IPO-universe coverage. The new retained-source audit leaves 30 candidates in 2023 and 215 across 2023–2026.
+Changed product files: `index.html`, `drhp.html`, `assets/styles.css`, plus the UI-copy regression assertion in `scripts/test-drhp-ui.mjs`. No `data/`, `ops/`, source recovery, collection schedule, public field contract, URL/filter logic or JavaScript application behavior was changed.
+
+PR-head checks passed: interface **36380130962**, full data contract **36380130924**, reviewed BSE evidence **36380130950**, and the retained Hariom/Rainbow publication guard **36380130982**. Post-merge checks also passed: interface **36380223730**, full data contract **36380223658**, reviewed BSE evidence **36380223681**. GitHub Pages deployment **36380223692** succeeded. The execution environment could not directly fetch the public Pages hostname for byte-level/browser verification, so deployment-workflow success is the available release verification; do not describe served-byte verification as completed for this release.
+
+## Exact next bounded backend task
+
+The four issuers named in the prior handoff — **Sah Polymers, Global Surfaces, Udayshivakumar Infra and Pyramid Technoplast** — were published before this UI batch and must not be replayed. The committed 2023 discovery queue still reflects the pre-publication reconciliation snapshot. Before choosing the next issuer batch, regenerate or reconcile that queue against current publication so those four are removed from awaiting-review counts, then select the next bounded evidence batch from the remaining candidates. Preserve cross-year identity matching, original official documents and field evidence; do not auto-import discovery values.
+
+The original [2022 disposition](../data/discovery/bse-2022-unmatched-disposition-2026-09-27.json) remains **14 reviewed/published + 2 existing-recovery alias + 0 awaiting review**. Its original 16 unmatched rows are resolved. This is not complete Indian IPO-universe coverage.
 
 ## Latest release — final 2022 pair and FiveStar repair
 
