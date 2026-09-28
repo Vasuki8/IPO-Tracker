@@ -2,6 +2,12 @@
 
 Updated **2026-09-28 (UTC)** after preparing original SEBI source evidence for the next four BSE 2023 candidates in **PR #334**. Active priority remains **P1 issuer identity and data correctness**. This task imports **zero** issuers and approves **zero** public IPO fields. The previous public-data release remains PR #332.
 
+## Stale PR retirement review — 2026-09-28
+
+**PR #196 and PR #246 are closed unmerged.** The [seven-file semantic review](verification/stale-pr-review-2026-09-28.md) and [comparison receipt](verification/stale-pr-review-2026-09-28.json) are pinned to main `9a544996475e84788a7cc08fc6e49d9acd8b52bb`. #196 is superseded by #198/#199: its four issuer facts already exist, while main retains later batch22 evidence. The current importer recognizes main's four entries and holds all four old-hash entries without overwriting anything. #246 is obsolete temporary DRHP collection/materialization scaffolding; #248–#256 already delivered the feature, identity resolution, history retention, lifecycle filtering and source corrections. No validated production delta needed porting, and no stale workflow or import was run. Branch history remains retained.
+
+Targeted BSE/DRHP regression tests, the real isolated BSE publication rehearsal, current progress guards and build/schema checks passed. All **1,375** IPO records stayed unchanged; the full BSE rehearsal added zero records and was idempotent. This documentation-only retirement does not constitute a new public-data release or a fresh live-site/source verification. The next P1 task and PR #334's source-review boundaries below remain unchanged; do not replay either retired PR.
+
 ## Exact next bounded task
 
 Review **Indian Renewable Energy Development Agency Limited (544026)**, **Motisons Jewellers Limited (544053)**, **RBZ Jewellers Limited (544060)** and **SHELTER PHARMA LIMITED (543963)** using the [retained source-set receipt](../data/evidence/bse-2023-irms-source-receipt-2026-09-28.json). Original SEBI landing pages and prospectuses are now retained; do not repeat source discovery unnecessarily. Complete physical-page field review, obtain approved official evidence for actual listing and exchange identifiers, and reconcile names/aliases/codes across all current recovery years before preparing a bounded reviewed import. A prospectus proposing a listing does not prove the actual listing date. Preserve provisional amounts, missing values and conflicts; never infer minimum application amounts.
