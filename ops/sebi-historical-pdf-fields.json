@@ -1904,10 +1904,10 @@
     "2021|pb-fintech-limited": {
       "issuer_name": "PB Fintech Limited",
       "listing_date": "2021-11-15",
-      "last_attempted_at": "2026-09-27T02:10:30.203Z",
+      "last_attempted_at": "2026-09-28T06:02:54.165Z",
       "parser_version": "1.2.0",
       "status": "error",
-      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 75 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-historical-pdf-lm2wGS/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/oct-2021/1635395300515.pdf\ncurl: (18) transfer closed with 18286939 bytes remaining to read\ncurl: (28) Operation timed out after 75000 milliseconds with 21349807 out of 27205538 bytes received\n",
+      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 75 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-historical-pdf-lKwPVR/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/oct-2021/1635395300515.pdf\ncurl: (18) transfer closed with 8314771 bytes remaining to read\ncurl: (28) Operation timed out after 75000 milliseconds with 18869207 out of 27205538 bytes received\n",
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2021/1635395300515.pdf"
     },
     "2025|jain-resource-recycling-limited": {
@@ -3837,6 +3837,182 @@
         "publication_date": "2023-08-14"
       },
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2023/1691993364058.PDF"
+    },
+    "2025|mangal-electrical-industries-limited": {
+      "issuer_name": "Mangal Electrical Industries Limited",
+      "listing_date": "2025-08-28",
+      "last_attempted_at": "2026-09-28T06:02:54.165Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Mangal Electrical Industries Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2025/1755684239451.pdf",
+        "publication_date": "2025-08-20"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2025/1755684239451.pdf"
+    },
+    "2024|interarch-building-products-limited": {
+      "issuer_name": "Interarch Building Products Limited",
+      "listing_date": "2024-08-26",
+      "last_attempted_at": "2026-09-28T06:02:54.165Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "issue_size_inr",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Interarch Building Products Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2024/1723615638484.pdf",
+        "publication_date": "2024-08-14"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2024/1723615638484.pdf"
+    },
+    "2023|tvs-supply-chain-solutions-limited": {
+      "issuer_name": "TVS Supply Chain Solutions Limited",
+      "listing_date": "2023-08-23",
+      "last_attempted_at": "2026-09-28T06:02:54.165Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "issue_size_inr",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "TVS Supply Chain Solutions Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2023/1691137912214.PDF",
+        "publication_date": "2023-08-04"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2023/1691137912214.PDF"
+    },
+    "2022|campus-activewear-limited": {
+      "issuer_name": "Campus Activewear Limited",
+      "listing_date": "2022-05-09",
+      "last_attempted_at": "2026-09-28T06:02:54.165Z",
+      "parser_version": "1.2.0",
+      "status": "extracted",
+      "extracted_fields": [
+        "issue_size_inr"
+      ],
+      "remaining_fields": [
+        "price_band",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": {
+          "value": 13996000000,
+          "source_value": "₹13,996.00 MILLION",
+          "page": 2
+        },
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Campus Activewear Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2022/1655719379046.pdf",
+        "publication_date": "2022-06-20"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2022/1655719379046.pdf"
+    },
+    "2025|vikram-solar-limited": {
+      "issuer_name": "Vikram Solar Limited",
+      "listing_date": "2025-08-26",
+      "last_attempted_at": "2026-09-28T06:02:54.165Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "issue_size_inr",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Vikram Solar Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2025/1755059573481.pdf",
+        "publication_date": "2025-08-13"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2025/1755059573481.pdf"
+    },
+    "2023|yudiz-solutions-limited": {
+      "issuer_name": "Yudiz Solutions Limited",
+      "listing_date": "2023-08-17",
+      "last_attempted_at": "2026-09-28T06:02:54.165Z",
+      "parser_version": "1.2.0",
+      "status": "extracted",
+      "extracted_fields": [
+        "issue_size_inr"
+      ],
+      "remaining_fields": [
+        "price_band",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": {
+          "value": 448404000,
+          "source_value": "₹4,484.04 LAKHS",
+          "page": 2
+        },
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Yudiz Solutions Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/mar-2024/1709722751495.pdf",
+        "publication_date": "2023-08-11"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/mar-2024/1709722751495.pdf"
+    },
+    "2025|regaal-resources-limited": {
+      "issuer_name": "Regaal Resources Limited",
+      "listing_date": "2025-08-20",
+      "last_attempted_at": "2026-09-28T06:02:54.165Z",
+      "parser_version": "1.2.0",
+      "status": "error",
+      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 75 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-historical-pdf-qmLBcY/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/aug-2025/1755684803258.pdf\ncurl: (28) Operation timed out after 75000 milliseconds with 16187655 out of 17730470 bytes received\ncurl: (18) transfer closed with 2704087 bytes remaining to read\n",
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2025/1755684803258.pdf"
     }
   }
 }
