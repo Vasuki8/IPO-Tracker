@@ -1,0 +1,113 @@
+name: Collect Eighty and Virtuoso 2022 evidence
+on:
+  push:
+    branches: [data/bse-2022-eighty-virtuoso-20260928]
+    paths: [.github/workflows/collect-bse-2022-eighty-virtuoso.yml]
+permissions: {contents: read}
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install PDF tools
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils
+      - name: Fetch and inspect original official PDFs
+        shell: bash
+        run: |
+          set -euo pipefail
+          OUT="$RUNNER_TEMP/evidence"
+          mkdir -p "$OUT"
+          OUT="$OUT" node --input-type=module <<'JS'
+          import fs from "node:fs";
+          import path from "node:path";
+          import {createHash} from "node:crypto";
+          import {execFileSync} from "node:child_process";
+
+          const out=process.env.OUT;
+          const docs=[
+            ["eighty_prospectus","https://www.sebi.gov.in/sebi_data/attachdocs/mar-2022/1648525515454.pdf"],
+            ["eighty_annual","https://www.bseindia.com/xml-data/corpfiling/AttachHis/316457fa-d43b-4a78-93da-a26516afb35f.pdf"],
+            ["virtuoso_prospectus","https://www.sebi.gov.in/sebi_data/attachdocs/sep-2022/1662006296288.PDF"],
+            ["virtuoso_annual","https://www.bseindia.com/xml-data/corpfiling/AttachHis/379e4664-ee14-4101-b817-1fe792df6beb.pdf"]
+          ];
+          const allowed=new Set(["www.sebi.gov.in","sebi.gov.in","www.bseindia.com","bseindia.com"]);
+          const receipt=[];
+          for(const [key,url] of docs){
+            const pdf=path.join(out,key+".pdf"), meta=path.join(out,key+".meta");
+            let ok=false,last="";
+            for(let attempt=1;attempt<=6&&!ok;attempt++){
+              try{
+                fs.rmSync(pdf,{force:true});fs.rmSync(meta,{force:true});
+                const fd=fs.openSync(meta,"w");
+                execFileSync("curl",[
+                  "--fail","--location","--retry","2","--retry-all-errors","--retry-delay","2",
+                  "--connect-timeout","20","--max-time","240","--user-agent","Mozilla/5.0",
+                  "--output",pdf,"--write-out","%{http_code}\n%{url_effective}\n",url
+                ],{stdio:["ignore",fd,"inherit"]});
+                fs.closeSync(fd);
+                const b=fs.readFileSync(pdf);
+                const [status,finalUrl]=fs.readFileSync(meta,"utf8").trim().split(/\r?\n/);
+                if(status!=="200"||!allowed.has(new URL(finalUrl).hostname)) throw Error("bad_http_or_host:"+status+":"+finalUrl);
+                if(b.subarray(0,5).toString()!=="%PDF-") throw Error("not_pdf");
+                execFileSync("pdfinfo",[pdf],{stdio:"ignore"});
+                execFileSync("pdftotext",["-layout",pdf,path.join(out,key+".txt")]);
+                receipt.push({key,source_url:url,final_url:finalUrl,http_status:Number(status),response_bytes:b.length,
+                  response_sha256:createHash("sha256").update(b).digest("hex"),collected_at:new Date().toISOString(),attempt});
+                ok=true;
+              }catch(e){last=String(e.message||e);if(attempt<6)await new Promise(r=>setTimeout(r,attempt*2000));}
+            }
+            if(!ok)throw Error("download_failed:"+key+":"+last);
+          }
+          const patterns={
+            eighty_prospectus:[
+              ["identity",/EIGHTY JEWELLERS LIMITED/i],
+              ["issue_programme",/ISSUE OPENS ON.{0,180}ISSUE CLOSES ON/i],
+              ["issue_price_size",/Issue Price.{0,180}(?:41|₹\s*41|Rs\.?\s*41)|1,?107(?:\.00)?\s*Lakhs|27,?00,?000 Equity Shares/i],
+              ["market_lot",/Market Lot.{0,500}/i],
+              ["minimum_bid",/(?:minimum application|minimum bid|minimum of).{0,300}/i],
+              ["sme",/SME Platform of BSE/i]
+            ],
+            eighty_annual:[
+              ["listing",/Listed on\s+13\.04\.2022|listed.{0,120}April 13, 2022/i],
+              ["ipo",/initial public offer|public issue/i]
+            ],
+            virtuoso_prospectus:[
+              ["identity",/VIRTUOSO OPTOELECTRONICS LIMITED/i],
+              ["issue_programme",/ISSUE OPENS ON.{0,180}ISSUE CLOSES ON/i],
+              ["issue_price_size",/Issue Price.{0,180}(?:56|₹\s*56|Rs\.?\s*56)|3,?024(?:\.00)?\s*Lakhs|54,?00,?000 Equity Shares/i],
+              ["market_lot",/Market Lot.{0,500}/i],
+              ["minimum_bid",/(?:minimum application|minimum bid|minimum of).{0,300}/i],
+              ["sme",/SME Platform of BSE/i]
+            ],
+            virtuoso_annual:[
+              ["listing",/listed on BSE Limited \(SME Platform\).{0,120}September 15, 2022/i],
+              ["ipo_price",/fresh shares in IPO.{0,240}56/i]
+            ]
+          };
+          const inspection={schema_version:"1.0.0",documents:{}};
+          for(const [key,pats] of Object.entries(patterns)){
+            const pages=fs.readFileSync(path.join(out,key+".txt"),"utf8").split("\f");
+            const hits=[];
+            for(const [label,re] of pats){
+              for(let i=0;i<pages.length;i++){
+                const clean=pages[i].replace(/\s+/g," ").trim();
+                const m=clean.match(re);
+                if(m){const at=m.index??0;hits.push({label,pdf_page:i+1,snippet:clean.slice(Math.max(0,at-220),Math.min(clean.length,at+1100))});break;}
+              }
+            }
+            inspection.documents[key]={page_count:pages.length,hits};
+            console.log("DOC",key,JSON.stringify(inspection.documents[key]));
+          }
+          const receiptDoc={schema_version:"1.0.0",status:"collected_original_official_documents",workflow_run_id:process.env.GITHUB_RUN_ID,
+            total_response_bytes:receipt.reduce((n,d)=>n+d.response_bytes,0),documents:receipt,collection_completed_at:new Date().toISOString()};
+          fs.writeFileSync(path.join(out,"receipt.json"),JSON.stringify(receiptDoc,null,2)+"\n");
+          fs.writeFileSync(path.join(out,"inspection.json"),JSON.stringify(inspection,null,2)+"\n");
+          JS
+      - uses: actions/upload-artifact@v4
+        with:
+          name: bse-2022-eighty-virtuoso-evidence
+          path: ${{ runner.temp }}/evidence
+          retention-days: 14
+          compression-level: 0
+          if-no-files-found: error
