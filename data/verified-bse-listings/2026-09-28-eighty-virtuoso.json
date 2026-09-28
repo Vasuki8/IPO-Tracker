@@ -1,0 +1,29 @@
+{
+  "schema_version": "1.0.0",
+  "status": "approved_bse_2022_eighty_virtuoso_import",
+  "review_path": "data/discovery/bse-2022-eighty-virtuoso-review-2026-09-28.json",
+  "receipt_path": "data/evidence/bse-2022-eighty-virtuoso-source-receipt-2026-09-28.json",
+  "review_sha256": "dec1f83d2d30fcccb703e2396e4b200dddbb4c8da957d95484c8aba4d91fa8c2",
+  "receipt_sha256": "facb94e47fc105a1ca4925b6bee7313cbc123b3f34e38008ea97dc094f958bd6",
+  "source_artifact_id": 10946160540,
+  "source_artifact_sha256": "7a46ad90df6e2decf2462b09700eb436831572b79b0542b9d8168ef0e383f562",
+  "target_year": 2022,
+  "actions": [
+    {
+      "key": "eighty",
+      "stable_id": "eighty-jewellers-limited"
+    },
+    {
+      "key": "virtuoso",
+      "stable_id": "virtuoso-optoelectronics-limited"
+    }
+  ],
+  "rules": {
+    "no_inference": true,
+    "bse_scrip_codes": "discovery-only",
+    "market_lot_distinct_from_minimum_bid_quantity": true,
+    "fixed_price_issue_price_band": "missing",
+    "minimum_application_amount": "out_of_scope",
+    "unsupported_fields": "missing"
+  }
+}

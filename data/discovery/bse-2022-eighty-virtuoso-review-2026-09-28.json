@@ -1,0 +1,188 @@
+{
+  "schema_version": "1.0.0",
+  "status": "reviewed_bse_2022_eighty_virtuoso",
+  "source_year": 2022,
+  "auto_import_allowed": false,
+  "publication_change": false,
+  "actions": [
+    {
+      "key": "eighty",
+      "issuer_name": "Eighty Jewellers Limited",
+      "stable_id": "eighty-jewellers-limited",
+      "discovery_bse_scrip_code": "543518",
+      "decision": "confirmed_missing_historical_ipo_candidate",
+      "target": {
+        "board": "SME",
+        "price_band": null,
+        "issue_price": 41,
+        "issue_size_inr": 110700000,
+        "market_lot": 3000,
+        "minimum_bid_quantity": 3000,
+        "open_date": "2022-03-31",
+        "close_date": "2022-04-05",
+        "listing_date": "2022-04-13"
+      },
+      "identity_sources": [
+        "eighty_prospectus",
+        "eighty_annual"
+      ],
+      "field_sources": {
+        "board": "eighty_prospectus",
+        "issue_price": "eighty_prospectus",
+        "issue_size_inr": "eighty_prospectus",
+        "market_lot": "eighty_prospectus",
+        "minimum_bid_quantity": "eighty_prospectus",
+        "open_date": "eighty_prospectus",
+        "close_date": "eighty_prospectus",
+        "listing_date": "eighty_annual"
+      },
+      "field_pages": {
+        "board": 1,
+        "issue_price": 2,
+        "issue_size_inr": 2,
+        "market_lot": 184,
+        "minimum_bid_quantity": 184,
+        "open_date": 1,
+        "close_date": 1,
+        "listing_date": 6
+      },
+      "field_locators": {
+        "board": "Prospectus cover: equity shares proposed to be listed on the SME Platform of BSE.",
+        "issue_price": "Prospectus page 2: 27,00,000 equity shares at an issue price of Rs. 41 per equity share.",
+        "issue_size_inr": "Prospectus page 2: public issue aggregating up to Rs. 1107 lakhs.",
+        "market_lot": "Prospectus PDF page 184: minimum contract size of 3000 equity shares.",
+        "minimum_bid_quantity": "Prospectus PDF page 184: allotment in multiples of 3000 shares subject to minimum allotment of 3000 shares.",
+        "open_date": "Prospectus cover: Issue Opens On March 31, 2022.",
+        "close_date": "Prospectus cover: Issue Closes On April 05, 2022.",
+        "listing_date": "Revised Annual Report FY 2022-23 PDF page 6: BSE SME Platform, Listed on 13.04.2022."
+      }
+    },
+    {
+      "key": "virtuoso",
+      "issuer_name": "Virtuoso Optoelectronics Limited",
+      "stable_id": "virtuoso-optoelectronics-limited",
+      "discovery_bse_scrip_code": "543597",
+      "decision": "confirmed_missing_historical_ipo_candidate",
+      "target": {
+        "board": "SME",
+        "price_band": null,
+        "issue_price": 56,
+        "issue_size_inr": 302400000,
+        "market_lot": 2000,
+        "minimum_bid_quantity": 2000,
+        "open_date": "2022-09-02",
+        "close_date": "2022-09-07",
+        "listing_date": "2022-09-15"
+      },
+      "identity_sources": [
+        "virtuoso_prospectus",
+        "virtuoso_annual"
+      ],
+      "field_sources": {
+        "board": "virtuoso_prospectus",
+        "issue_price": "virtuoso_prospectus",
+        "issue_size_inr": "virtuoso_prospectus",
+        "market_lot": "virtuoso_prospectus",
+        "minimum_bid_quantity": "virtuoso_prospectus",
+        "open_date": "virtuoso_prospectus",
+        "close_date": "virtuoso_prospectus",
+        "listing_date": "virtuoso_annual"
+      },
+      "field_pages": {
+        "board": 1,
+        "issue_price": 7,
+        "issue_size_inr": 1,
+        "market_lot": 269,
+        "minimum_bid_quantity": 269,
+        "open_date": 1,
+        "close_date": 1,
+        "listing_date": 70
+      },
+      "field_locators": {
+        "board": "Prospectus cover: equity shares proposed to be listed on the SME Platform of BSE Limited (BSE SME).",
+        "issue_price": "Prospectus PDF page 7: issue price Rs. 56 per equity share.",
+        "issue_size_inr": "Prospectus cover: 54,00,000 equity shares at Rs. 56 aggregating to Rs. 3024.00 lakhs.",
+        "market_lot": "Prospectus PDF page 269: minimum contract size of 2000 equity shares.",
+        "minimum_bid_quantity": "Prospectus PDF page 269: allotment in multiples of 2000 shares subject to minimum allotment of 2000 shares.",
+        "open_date": "Prospectus cover: Issue Opens On September 02, 2022.",
+        "close_date": "Prospectus cover: Issue Closes On September 07, 2022.",
+        "listing_date": "Annual Report FY 2022-23 PDF page 70: shares listed on BSE Limited (SME Platform) on September 15, 2022."
+      }
+    }
+  ],
+  "sources": [
+    {
+      "key": "eighty_prospectus",
+      "authority": "SEBI",
+      "document_type": "Final Prospectus",
+      "document_identity": "Eighty Jewellers Limited — Prospectus dated 25 March 2022",
+      "document_date": "2022-03-25",
+      "publication_date": "2022-03-28",
+      "url": "https://www.sebi.gov.in/sebi_data/attachdocs/mar-2022/1648525515454.pdf",
+      "evidence_locator": "Prospectus cover and issue terms; fixed-price BSE SME IPO.",
+      "projection": {
+        "issuer": "Eighty Jewellers Limited",
+        "issue_type": "IPO",
+        "board": "SME",
+        "issue_price": 41,
+        "issue_size_inr": 110700000,
+        "market_lot": 3000,
+        "minimum_bid_quantity": 3000,
+        "open_date": "2022-03-31",
+        "close_date": "2022-04-05"
+      }
+    },
+    {
+      "key": "eighty_annual",
+      "authority": "BSE-hosted issuer filing",
+      "document_type": "Revised Annual Report FY 2022-23",
+      "document_identity": "Eighty Jewellers Limited — Revised Annual Report FY 2022-23 filed 09 October 2023",
+      "document_date": "2023-10-09",
+      "publication_date": "2023-10-09",
+      "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/316457fa-d43b-4a78-93da-a26516afb35f.pdf",
+      "evidence_locator": "Company Information page: BSE LTD (SME Platform), Listed on 13.04.2022.",
+      "projection": {
+        "issuer": "Eighty Jewellers Limited",
+        "board": "SME",
+        "listing_date": "2022-04-13"
+      }
+    },
+    {
+      "key": "virtuoso_prospectus",
+      "authority": "SEBI",
+      "document_type": "Final Prospectus",
+      "document_identity": "Virtuoso Optoelectronics Limited — Prospectus dated 24 August 2022",
+      "document_date": "2022-08-24",
+      "publication_date": "2022-09-01",
+      "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2022/1662006296288.PDF",
+      "evidence_locator": "Prospectus cover and issue terms; fixed-price BSE SME IPO.",
+      "projection": {
+        "issuer": "Virtuoso Optoelectronics Limited",
+        "issue_type": "IPO",
+        "board": "SME",
+        "issue_price": 56,
+        "issue_size_inr": 302400000,
+        "market_lot": 2000,
+        "minimum_bid_quantity": 2000,
+        "open_date": "2022-09-02",
+        "close_date": "2022-09-07"
+      }
+    },
+    {
+      "key": "virtuoso_annual",
+      "authority": "BSE-hosted issuer filing",
+      "document_type": "Annual Report FY 2022-23",
+      "document_identity": "Virtuoso Optoelectronics Limited — Annual Report FY 2022-23",
+      "document_date": "2023-09-07",
+      "publication_date": null,
+      "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/379e4664-ee14-4101-b817-1fe792df6beb.pdf",
+      "evidence_locator": "Corporate Governance page: shares listed on BSE Limited (SME Platform) on September 15, 2022.",
+      "projection": {
+        "issuer": "Virtuoso Optoelectronics Limited",
+        "board": "SME",
+        "listing_date": "2022-09-15",
+        "issue_price": 56
+      }
+    }
+  ]
+}

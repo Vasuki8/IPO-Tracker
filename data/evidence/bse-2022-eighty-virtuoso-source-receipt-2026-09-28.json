@@ -1,0 +1,55 @@
+{
+  "schema_version": "1.0.0",
+  "status": "reviewed_original_official_documents",
+  "workflow_run_id": "36361384419",
+  "total_response_bytes": 34237774,
+  "documents": [
+    {
+      "key": "eighty_prospectus",
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/mar-2022/1648525515454.pdf",
+      "final_url": "https://www.sebi.gov.in/sebi_data/attachdocs/mar-2022/1648525515454.pdf",
+      "http_status": 200,
+      "response_bytes": 3317912,
+      "response_sha256": "27a2b38213630a159bcc821ac42bb275f07f24b99f7ec060de46f71a423ddb55",
+      "collected_at": "2026-09-28T00:13:39.165Z",
+      "attempt": 1
+    },
+    {
+      "key": "eighty_annual",
+      "source_url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/316457fa-d43b-4a78-93da-a26516afb35f.pdf",
+      "final_url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/316457fa-d43b-4a78-93da-a26516afb35f.pdf",
+      "http_status": 200,
+      "response_bytes": 5958736,
+      "response_sha256": "71a2a51585a420a15238f11e0ddca0617dae6196b71705778ea7f64661cff70d",
+      "collected_at": "2026-09-28T00:13:40.072Z",
+      "attempt": 1
+    },
+    {
+      "key": "virtuoso_prospectus",
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2022/1662006296288.PDF",
+      "final_url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2022/1662006296288.PDF",
+      "http_status": 200,
+      "response_bytes": 12570775,
+      "response_sha256": "dbb404c0e2100e6d197aabcf7a9b305d3bc353c9a6566e77acc3e9f7cdab3ace",
+      "collected_at": "2026-09-28T00:14:20.082Z",
+      "attempt": 1
+    },
+    {
+      "key": "virtuoso_annual",
+      "source_url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/379e4664-ee14-4101-b817-1fe792df6beb.pdf",
+      "final_url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/379e4664-ee14-4101-b817-1fe792df6beb.pdf",
+      "http_status": 200,
+      "response_bytes": 12390351,
+      "response_sha256": "9f39077a6cf2d035ee79f4a1cb3288266a0ec2b7bf3f6474d199425e221935c6",
+      "collected_at": "2026-09-28T00:14:21.313Z",
+      "attempt": 1
+    }
+  ],
+  "collection_completed_at": "2026-09-28T00:14:21.363Z",
+  "review_path": "data/discovery/bse-2022-eighty-virtuoso-review-2026-09-28.json",
+  "review_sha256": "dec1f83d2d30fcccb703e2396e4b200dddbb4c8da957d95484c8aba4d91fa8c2",
+  "artifact_id": 10946160540,
+  "artifact_sha256": "7a46ad90df6e2decf2462b09700eb436831572b79b0542b9d8168ef0e383f562",
+  "retention_days": 14,
+  "review_note": "Original SEBI/BSE-hosted PDF bytes were retained with byte lengths and SHA-256 hashes. Prospectus issue pages and annual-report listing pages were visually inspected before approval."
+}
