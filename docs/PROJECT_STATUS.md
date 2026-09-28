@@ -1,14 +1,29 @@
 # Project status and handoff
 
-Updated **2026-09-27 (UTC)** after publishing and live-verifying MAAGH Advertising / Technopack Polymers. Active priority remains **P1 issuer identity and universe correctness**.
+Updated **2026-09-28 (UTC)** after publishing and live-verifying Eighty Jewellers / Virtuoso Optoelectronics. Active priority remains **P1 issuer identity and universe correctness**.
 
 ## Exact next bounded task
 
-Continue the **2022 BSE unmatched review** with **Eighty Jewellers Limited (543518)** and **Virtuoso Optoelectronics Limited (543597)**. Reconcile against latest recovery first, then retain issuer-specific official BSE/SEBI evidence and original bytes before any import. Keep BSE issue-summary values as discovery evidence only.
+Continue the **2022 BSE unmatched review** with **PACE E-COMMERCE VENTURES LIMITED (543637)** and **PNGS GARGI FASHION JEWELLERY LIMITED (543709)**. Reconcile against latest recovery first, then retain issuer-specific official BSE/SEBI evidence and original bytes before any import. Keep BSE issue-summary values as discovery evidence only.
 
-The pinned [2022 disposition](../data/discovery/bse-2022-unmatched-disposition-2026-09-27.json) now accounts for the original 16 unmatched rows as **7 reviewed/published + 1 existing-recovery alias + 8 awaiting review**. The retained 2022 source surface remains **90 official rows / 74 original exact matches / 16 original unmatched**. This remains a bounded follow-up, not a complete Indian IPO-universe claim.
+The pinned [2022 disposition](../data/discovery/bse-2022-unmatched-disposition-2026-09-27.json) now accounts for the original 16 unmatched rows as **9 reviewed/published + 1 existing-recovery alias + 6 awaiting review**. The retained 2022 source surface remains **90 official rows / 74 original exact matches / 16 original unmatched**. This remains a bounded follow-up, not a complete Indian IPO-universe claim.
 
-## Latest release — MAAGH and Technopack published and live-verified
+## Latest release — Eighty and Virtuoso published and live-verified
+
+PR **#321** merged as **8b9a882a102054386cd4b999c0b9c1d00a8a14d6**. Publication commit **a49ecacc5f6d8ea0f77aa7c12b48f4f3468d0afd** added exactly two 2022 recovery records and rebuilt the public dataset: **Eighty Jewellers Limited** and **Virtuoso Optoelectronics Limited**. **Do not replay this batch.**
+
+| Issuer | Board | Issue price | Issue size | Market lot | Minimum bid | Offer dates | Listing |
+| --- | --- | ---: | ---: | ---: | ---: | --- | --- |
+| Eighty Jewellers Limited | SME | INR 41 | INR 110.7m | 3,000 | 3,000 | 31-Mar–05-Apr-2022 | 13-Apr-2022 |
+| Virtuoso Optoelectronics Limited | SME | INR 56 | INR 302.4m | 2,000 | 2,000 | 02–07 Sep-2022 | 15-Sep-2022 |
+
+Both are **fixed-price SME IPOs**, so price_band remains missing rather than duplicating the fixed issue price. Market lot and minimum bid quantity remain separate fields even when the values are equal. BSE scrip codes remain discovery-only; symbols, ISIN and minimum application amount remain null.
+
+Four original SEBI/BSE-hosted PDFs were retained in collection run **36361384419**: **34,237,774 response bytes**, artifact **10946160540**, SHA-256 **7a46ad90df6e2decf2462b09700eb436831572b79b0542b9d8168ef0e383f562**. Field-level page evidence is retained for board, issue price, issue size, offer dates, market lot, minimum bid and listing date.
+
+PR-head dedicated publication rehearsal, reviewed-BSE validation and the full data-contract suite all passed. Merged-main publication/live-verification run **36362034859** published successfully and the live check passed on its first attempt with **1,362 records** and dataset generation timestamp **2026-09-28T00:23:43.725Z**. Eighty and Virtuoso are therefore **published and live-verified**.
+
+## Previous release — MAAGH and Technopack published and live-verified
 
 PR **#316** merged as **1e8806e124edeaf23661b702e0f7a1497a277eaa**. Publication commit **8134fb9bf5829c930dc9dbf3f0b42c622d8f0139** added exactly two 2022 recovery records and rebuilt the public dataset: **MAAGH ADVERTISING AND MARKETING SERVICES LIMITED** and **Technopack Polymers Limited**. **Do not replay this batch.**
 
