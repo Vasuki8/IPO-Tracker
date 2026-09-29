@@ -1,6 +1,6 @@
 {
   "schema_version": "1.2.0",
-  "generated_at": "2026-09-29T16:05:18.587Z",
+  "generated_at": "2026-09-29T16:31:46.084Z",
   "collection_started_at": "2026-09-22T02:14:14Z",
   "records": [
     {
@@ -177,6 +177,188 @@
       ],
       "first_observed_at": "2026-09-28T17:42:25.454Z",
       "last_collected_at": "2026-09-28T17:42:25.454Z"
+    },
+    {
+      "id": "nityas-gems-and-jewellery-limited",
+      "issuer_name": "Nityas Gems and Jewellery Limited",
+      "board": "Mainboard",
+      "board_evidence": [
+        {
+          "url": "https://www.nseindia.com/api/all-upcoming-issues?category=ipo",
+          "document_type": "NSE IPO Live Feed",
+          "document_identity": "NSE IPO Live Feed — NITYAS",
+          "publication_date": null,
+          "page": null,
+          "collected_at": "2026-09-29T16:20:30.952Z"
+        }
+      ],
+      "sector": null,
+      "status": "upcoming",
+      "status_evidence": [
+        {
+          "url": "https://www.nseindia.com/api/all-upcoming-issues?category=ipo",
+          "document_type": "NSE IPO Live Feed",
+          "document_identity": "NSE IPO Live Feed — NITYAS",
+          "publication_date": null,
+          "page": null,
+          "collected_at": "2026-09-29T16:20:30.952Z"
+        }
+      ],
+      "price_band": {
+        "value": {
+          "min": 70,
+          "max": 75
+        },
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/all-upcoming-issues?category=ipo",
+            "document_type": "NSE IPO Live Feed",
+            "document_identity": "NSE IPO Live Feed — NITYAS",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-29T16:20:30.952Z"
+          }
+        ],
+        "corrections": []
+      },
+      "issue_price": {
+        "value": null,
+        "status": "missing",
+        "evidence": [],
+        "corrections": []
+      },
+      "issue_size_inr": {
+        "value": null,
+        "status": "missing",
+        "evidence": [],
+        "corrections": []
+      },
+      "market_lot": {
+        "value": null,
+        "status": "missing",
+        "evidence": [],
+        "corrections": []
+      },
+      "minimum_bid_quantity": {
+        "value": 200,
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=NITYAS&series=EQ",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — NITYAS",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-29T16:21:54.060Z"
+          }
+        ],
+        "corrections": []
+      },
+      "minimum_application_amount_inr": {
+        "value": null,
+        "status": "missing",
+        "evidence": [],
+        "corrections": []
+      },
+      "application_requirements": {
+        "retail": {
+          "minimum_application_amount_inr": {
+            "value": null,
+            "status": "missing",
+            "evidence": [],
+            "corrections": []
+          },
+          "minimum_bid_quantity": {
+            "value": null,
+            "status": "missing",
+            "evidence": [],
+            "corrections": []
+          }
+        },
+        "non_institutional": {
+          "minimum_application_amount_inr": {
+            "value": null,
+            "status": "missing",
+            "evidence": [],
+            "corrections": []
+          },
+          "minimum_bid_quantity": {
+            "value": null,
+            "status": "missing",
+            "evidence": [],
+            "corrections": []
+          }
+        },
+        "anchor_investor": {
+          "minimum_application_amount_inr": {
+            "value": null,
+            "status": "missing",
+            "evidence": [],
+            "corrections": []
+          },
+          "minimum_bid_quantity": {
+            "value": null,
+            "status": "missing",
+            "evidence": [],
+            "corrections": []
+          }
+        }
+      },
+      "open_date": {
+        "value": "2026-09-30",
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/all-upcoming-issues?category=ipo",
+            "document_type": "NSE IPO Live Feed",
+            "document_identity": "NSE IPO Live Feed — NITYAS",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-29T16:20:30.952Z"
+          }
+        ],
+        "corrections": []
+      },
+      "close_date": {
+        "value": "2026-10-05",
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/all-upcoming-issues?category=ipo",
+            "document_type": "NSE IPO Live Feed",
+            "document_identity": "NSE IPO Live Feed — NITYAS",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-29T16:20:30.952Z"
+          }
+        ],
+        "corrections": []
+      },
+      "listing_date": {
+        "value": null,
+        "status": "missing",
+        "evidence": [],
+        "corrections": []
+      },
+      "documents": [
+        {
+          "type": "NSE IPO Live Feed",
+          "identity": "NSE IPO Live Feed — NITYAS",
+          "url": "https://www.nseindia.com/api/all-upcoming-issues?category=ipo",
+          "publication_date": null,
+          "collected_at": "2026-09-29T16:20:30.952Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — NITYAS",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=NITYAS&series=EQ",
+          "publication_date": null,
+          "collected_at": "2026-09-29T16:21:54.060Z"
+        }
+      ],
+      "first_observed_at": "2026-09-29T16:20:30.952Z",
+      "last_collected_at": "2026-09-29T16:21:54.060Z"
     },
     {
       "id": "vishal-nirmiti-limited",
@@ -2653,9 +2835,18 @@
         "corrections": []
       },
       "issue_size_inr": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": 10916800000,
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2026/1790674448687.pdf",
+            "document_type": "SEBI Prospectus PDF",
+            "document_identity": "Moneyview Limited - Prospectus — PDF",
+            "publication_date": "2026-09-29",
+            "page": 3,
+            "collected_at": "2026-09-29T16:31:46.084Z"
+          }
+        ],
         "corrections": []
       },
       "market_lot": {
@@ -2800,10 +2991,24 @@
           "url": "https://www.nseindia.com/api/ipo-detail?symbol=MONEYVIEW&series=EQ",
           "publication_date": null,
           "collected_at": "2026-09-22T13:12:58.584Z"
+        },
+        {
+          "type": "SEBI Prospectus filing",
+          "identity": "Moneyview Limited - Prospectus",
+          "url": "https://www.sebi.gov.in/filings/public-issues/sep-2026/moneyview-limited-prospectus_104787.html",
+          "publication_date": "2026-09-29",
+          "collected_at": "2026-09-29T16:20:57.301Z"
+        },
+        {
+          "type": "SEBI Prospectus PDF",
+          "identity": "Moneyview Limited - Prospectus — PDF",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2026/1790674448687.pdf",
+          "publication_date": "2026-09-29",
+          "collected_at": "2026-09-29T16:20:57.301Z"
         }
       ],
       "first_observed_at": "2026-09-22T13:09:40.974Z",
-      "last_collected_at": "2026-09-28T23:21:11.825Z"
+      "last_collected_at": "2026-09-29T16:31:46.084Z"
     },
     {
       "id": "adroit-industries-india-limited",
@@ -182431,10 +182636,24 @@
           "url": "https://www.nseindia.com/api/ipo-detail?symbol=SENCO&series=EQ",
           "publication_date": null,
           "collected_at": "2026-09-24T06:36:23.026Z"
+        },
+        {
+          "type": "SEBI RHP filing",
+          "identity": "Senco Gold Limited - RHP",
+          "url": "https://www.sebi.gov.in/filings/public-issues/jun-2023/senco-gold-limited-rhp_73223.html",
+          "publication_date": "2023-06-28",
+          "collected_at": "2026-09-29T16:20:57.301Z"
+        },
+        {
+          "type": "SEBI RHP PDF",
+          "identity": "Senco Gold Limited - RHP — PDF",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2023/1687945732583.pdf",
+          "publication_date": "2023-06-28",
+          "collected_at": "2026-09-29T16:20:57.301Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-24T06:36:23.026Z"
+      "last_collected_at": "2026-09-29T16:20:57.301Z"
     },
     {
       "id": "synoptics-technologies-limited",

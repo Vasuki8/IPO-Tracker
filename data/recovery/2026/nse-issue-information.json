@@ -1,7 +1,7 @@
 {
   "source_family": "Official NSE / SEBI / issuer offer-document evidence",
   "collection_started_at": "2026-09-22T02:14:14Z",
-  "generated_at": "2026-09-29T06:02:01.633Z",
+  "generated_at": "2026-09-29T16:31:46.084Z",
   "records": [
     {
       "id": "a-one-steels-india-limited",
@@ -17455,10 +17455,24 @@
           "url": "https://www.nseindia.com/api/ipo-detail?symbol=MONEYVIEW&series=EQ",
           "publication_date": null,
           "collected_at": "2026-09-22T13:12:58.584Z"
+        },
+        {
+          "type": "SEBI Prospectus filing",
+          "identity": "Moneyview Limited - Prospectus",
+          "url": "https://www.sebi.gov.in/filings/public-issues/sep-2026/moneyview-limited-prospectus_104787.html",
+          "publication_date": "2026-09-29",
+          "collected_at": "2026-09-29T16:20:57.301Z"
+        },
+        {
+          "type": "SEBI Prospectus PDF",
+          "identity": "Moneyview Limited - Prospectus — PDF",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2026/1790674448687.pdf",
+          "publication_date": "2026-09-29",
+          "collected_at": "2026-09-29T16:20:57.301Z"
         }
       ],
       "first_observed_at": "2026-09-22T13:09:40.974Z",
-      "last_collected_at": "2026-09-28T23:21:11.825Z",
+      "last_collected_at": "2026-09-29T16:31:46.084Z",
       "board_evidence": [
         {
           "url": "https://www.nseindia.com/api/all-upcoming-issues?category=ipo",
@@ -17506,6 +17520,18 @@
           "document_identity": "NSE Issue Information — MONEYVIEW",
           "publication_date": null,
           "collected_at": "2026-09-22T13:12:58.584Z"
+        }
+      },
+      "issue_size_inr": {
+        "value": 10916800000,
+        "source_value": "₹10,916.80 MILLION",
+        "page": 3,
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2026/1790674448687.pdf",
+          "document_type": "SEBI Prospectus PDF",
+          "document_identity": "Moneyview Limited - Prospectus — PDF",
+          "publication_date": "2026-09-29",
+          "collected_at": "2026-09-29T16:31:46.084Z"
         }
       }
     },
@@ -18168,6 +18194,83 @@
         "source_artifact_sha256": "7aa33f4f7066e20a246a5da8328e8271759b4f2b2356b6ae4eed6cdec93185ad",
         "detail_response_sha256": "ce6a326f9bae955f537f9306a82192c63e664392e543f6dc0bd9e991acbdd704",
         "decision": "verified_initial_equity_ipo"
+      }
+    },
+    {
+      "id": "nityas-gems-and-jewellery-limited",
+      "issuer_name": "Nityas Gems and Jewellery Limited",
+      "board": "Mainboard",
+      "sector": null,
+      "status": "upcoming",
+      "nse_symbol": "NITYAS",
+      "nse_series": "EQ",
+      "nse_source": {
+        "url": "https://www.nseindia.com/api/all-upcoming-issues?category=ipo",
+        "document_type": "NSE IPO Live Feed",
+        "document_identity": "NSE IPO Live Feed — NITYAS",
+        "publication_date": null,
+        "collected_at": "2026-09-29T16:20:30.952Z"
+      },
+      "terms": {
+        "price_band": {
+          "min": 70,
+          "max": 75
+        },
+        "market_lot": null,
+        "minimum_bid_quantity": null,
+        "open_date": "2026-09-30",
+        "close_date": "2026-10-05"
+      },
+      "documents": [
+        {
+          "type": "NSE IPO Live Feed",
+          "identity": "NSE IPO Live Feed — NITYAS",
+          "url": "https://www.nseindia.com/api/all-upcoming-issues?category=ipo",
+          "publication_date": null,
+          "collected_at": "2026-09-29T16:20:30.952Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — NITYAS",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=NITYAS&series=EQ",
+          "publication_date": null,
+          "collected_at": "2026-09-29T16:21:54.060Z"
+        }
+      ],
+      "first_observed_at": "2026-09-29T16:20:30.952Z",
+      "last_collected_at": "2026-09-29T16:21:54.060Z",
+      "board_evidence": [
+        {
+          "url": "https://www.nseindia.com/api/all-upcoming-issues?category=ipo",
+          "document_type": "NSE IPO Live Feed",
+          "document_identity": "NSE IPO Live Feed — NITYAS",
+          "publication_date": null,
+          "page": null,
+          "collected_at": "2026-09-29T16:20:30.952Z"
+        }
+      ],
+      "status_evidence": [
+        {
+          "url": "https://www.nseindia.com/api/all-upcoming-issues?category=ipo",
+          "document_type": "NSE IPO Live Feed",
+          "document_identity": "NSE IPO Live Feed — NITYAS",
+          "publication_date": null,
+          "page": null,
+          "collected_at": "2026-09-29T16:20:30.952Z"
+        }
+      ],
+      "minimum_bid_quantity": {
+        "value": 200,
+        "source_value": "200 Equity Shares",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=NITYAS&series=EQ",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — NITYAS",
+          "publication_date": null,
+          "collected_at": "2026-09-29T16:21:54.060Z"
+        }
       }
     },
     {
