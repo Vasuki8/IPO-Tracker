@@ -32,7 +32,11 @@ const retired = [
   "publish-reviewed-bse-2023-rvpe.yml",
   "publish-reviewed-bse-reconciliation.yml",
   "publish-reviewed-fabino.yml",
-  "publish-reviewed-historical-ipos.yml"
+  "publish-reviewed-historical-ipos.yml",
+  "publish-reviewed-bse-2020-unmatched.yml",
+  "verify-reviewed-bse-reconciliation-publication.yml",
+  "verify-reviewed-fabino-publication.yml",
+  "verify-reviewed-historical-ipo-publication.yml"
 ];
 const allowedWriters = new Set([
   "backfill-bse-sme-addition-notices.yml",
@@ -64,10 +68,6 @@ for (const file of allowedWriters) {
   assert.ok(observedWriters.includes(file), "approved active writer no longer writes; remove it from the allowlist: " + file);
 }
 
-const completed2020 = fs.readFileSync(path.join(WORKFLOWS, "publish-reviewed-bse-2020-unmatched.yml"), "utf8");
-assert.match(completed2020, /contents:\s*read/);
-assert.doesNotMatch(completed2020, /contents:\s*write/);
-assert.doesNotMatch(completed2020, /git\s+push[^\n]*main/);
 
 console.log(JSON.stringify({
   retired_workflows: retired.length,

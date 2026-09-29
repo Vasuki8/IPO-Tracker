@@ -1,47 +1,45 @@
 # Project status and handoff
 
-Updated **2026-09-29 (UTC)** for **PR #342**, the bounded IREDA/Motisons/RBZ/Shelter actual-listing review and import. Active priority remains **P1 issuer identity and data correctness**. Original listing evidence and the reviewed importer are ready; **final CI, data publication and live verification are pending**. No queue row is closed by preparation alone.
+Updated **2026-09-29 (UTC)** after the verified live closeout of PR #342 in **PR #343** and the repository loose-end hardening sequence. Active product priority remains **P1 issuer identity and data correctness**.
+
+The IREDA/Motisons/RBZ/Shelter release is **fully published and live-verified**. The bounded `reviewed_irms` publisher has been retired. The immutable 2023 review ledger is now **12 reviewed/published + 18 awaiting review**. Do not replay the IRMS import or its temporary verifier.
 
 ## Exact next bounded task
 
-Finish the reviewed publication of **Indian Renewable Energy Development Agency Limited (544026)**, **Motisons Jewellers Limited (544053)**, **RBZ Jewellers Limited (544060)** and **SHELTER PHARMA LIMITED (543963)** through the [approved manifest](../data/verified-bse-listings/2026-09-29-irms-2023.json). Original actual-listing evidence is now reviewed; do not redo prospectus or listing research. Recheck latest recovery across every year and preserve all unrelated records. Inspect the [release lifecycle](verification/bse-2023-irms-release-2026-09-29.json) before attempting anything: do not replay a completed import.
+Review **SHANTI SPINTEX LIMITED (544059)**, **Shoora Designs Limited (543970)**, **Exhicon Events Media Solutions Limited (543895)** and **Khazanchi Jewellers Limited (543953)** from the existing immutable 2023 queue. Start with official source retention and all-year identity reconciliation; preserve discovery-only values as non-authoritative until issuer-specific evidence is reviewed. Do not infer missing application terms or overwrite later recovery evidence.
 
-After publication, verify the four exact served projections, retain actual response bytes and receipt, retire the bounded `reviewed_irms` job from the existing active updater, and only then close these progress rows. The [2023 progress ledger](../data/discovery/bse-2023-review-progress-2026-09-28.json) remains **8 reviewed/published + 22 awaiting review** from the original 30 candidates. The original queue and its **2026-09-26T16:40:34.440Z** source observation remain unchanged. The original 2022 queue remains **14 reviewed/published + 2 existing-recovery alias + 0 awaiting review**; 2021 is also complete. These are bounded queue counts, not complete IPO-universe claims.
+The next batch remains part of the bounded 30-row 2023 snapshot, not a fresh complete-universe audit. The original 2022 queue remains **14 reviewed/published + 2 existing-recovery alias + 0 awaiting review**; 2021 is also complete.
 
-## Reviewed source findings
+## IRMS live closeout
 
-Four original exchange-hosted annual reports, **31,582,979 response bytes**, establish actual equity listings: IREDA **29-Nov-2023**, Motisons **26-Dec-2023**, RBZ **27-Dec-2023**, Shelter **23-Aug-2023**. Primary physical PDF pages are **93, 38, 20 and 42**, respectively. RBZ physical page 20 is a two-page spread; its listing statement is on printed page 37. Explicit BSE codes for all four and NSE symbols for the first three are retained with identity evidence. Board, unreviewed ISIN, Shelter NSE symbol and minimum application amounts remain null.
+PR #342 published exactly four reviewed records through data commit **ed5599db1a625f7d8513c8990b29e1bc40ab6375**. The publication artifact recorded **1,378 existing records unchanged + 4 additions = 1,382 published records**.
 
-The [listing review](../data/discovery/bse-2023-irms-listing-review-2026-09-29.json) references the immutable PR #336 prospectus review; it does not rewrite its former listing holds, source clocks or provisional qualifications. Unknown PDF publication dates remain null. Dated covering letters/AGM notice are identified separately from actual publication and collection.
+PR #343's read-only verifier fetched the actual served `data/ipos.json` on the first attempt at **2026-09-29T14:41:23.875Z**. The served response was **7,738,917 bytes**, SHA-256 **f61a41fc9b0db23f256dfc9b4a55a6183bbbbf32aa62cd21949e633a78a273b9**, generated at **2026-09-29T14:37:16.380Z**, and matched all four exact reviewed public projections. The durable [live receipt](verification/bse-2023-irms-live-2026-09-29.json) is backed by workflow run **36584512199**, artifact **11040473771**, ZIP SHA-256 **90b963dec8cd97b4845bc21805909e1e077b95b14fb4da4b1b53fb3fd20316ec**. Raw artifact retention expires **13-Oct-2026**.
 
-**IREDA offer total is an unresolved conflict.** Retain the final-prospectus candidate **INR 21,502.12 million**, originally provisional and subject to finalisation of Basis of Allotment. The annual report, physical page 38, states **INR 2,150.22 crore**, a normalized difference of **INR 80,000**. Preserve both observations, source evidence and correction history. Do not resolve this by rounding or call either candidate independently verified realised proceeds. The importer normalizes decimal money exactly instead of using binary-floating-point equality.
+The four closed records are Indian Renewable Energy Development Agency Limited, Motisons Jewellers Limited, RBZ Jewellers Limited and SHELTER PHARMA LIMITED. The approved manifest and original listing/prospectus evidence remain unchanged. IREDA's offer-total discrepancy remains an unresolved conflict; Motisons/RBZ amounts remain provisional; Shelter remains fixed-price with no invented band. Market lot, minimum bid quantity and minimum application amount remain distinct.
 
-Motisons and RBZ offer totals remain **provisional**. Shelter retains its exact stated fixed-price gross issue amount, not an invented book-building band or a new realised-proceeds claim. Its band remains publicly null/missing. Historical trading lot and retail minimum bid remain distinct: **1/460, 1/250, 1/150, 3000/3000**. Public opening dates remain separate from anchor dates.
+The [release lifecycle](verification/bse-2023-irms-release-2026-09-29.json) is now `verified_and_publisher_retired`. The temporary closeout workflow is not retained in the final tree, and the one-shot `reviewed_irms` job has been removed from `update-ipos.yml`.
 
-Motisons physical page 13 gives an inconsistent **02-Aug-2023 approval date** alongside its December IPO. That approval-date paragraph is not used as actual-listing authority; the **26-Dec-2023** listing is repeated elsewhere, including the explicit scrip-code statement on physical page 38. The discrepancy is retained, not silently corrected.
+## Repository loose-end hardening completed
 
-## Original bytes, failures and retention
+The repository-wide audit and repair sequence completed the following safe work:
 
-Successful source run **36578204890**, attempt **1**, artifact **11038004780**, retained the four linked exchange-hosted originals. ZIP SHA-256 **d2cd559feb46f05867c9b9700d26f4f3570e966ab8ad68e00a0f261b6f04fd07** and every PDF hash/length were independently checked. IREDA was fetched directly from the approved `nsearchives.nseindia.com` host; it is not mislabeled as a different mirror. No public source allowlist changed. Web PDF screenshots failed; original-byte local renders and extracted text were used without OCR.
+- stale PRs **#152, #196, #246, #247, #317 and #335** are closed unmerged after semantic supersession review;
+- completed one-shot release/materialization writers were retired, followed by consolidation of redundant completed-release validators; the active workflow surface fell from **50 to 23** before the temporary IRMS closeout workflow was removed;
+- production-write workflow capability is guarded by an explicit allowlist for the sanctioned operational writers;
+- missed scheduled starts are now monitored separately from execution failures;
+- DRHP pagination drift now fails closed after bounded retry; two fresh attempts on **29-Sep-2026** still alternated between SEBI totals **2215/2213**, so the last good 96-company / 98-filing snapshot remains retained rather than replaced by an inconsistent scan;
+- historical SEBI PDF downloads now resume partial transfers. The first post-merge production runs reduced offer-date transport errors **33 → 23** and historical PDF-field errors **5 → 2**;
+- `SECURITY.md`, `CONTRIBUTING.md`, CODEOWNERS, PR checks and focused issue templates are now present.
 
-Initial source run **36577257607**, artifact **11037723554**, tried four conventional BSE annual-report paths and received **four HTTP 404 responses**. Those rejected bodies and the failed collection remain retained in the [source receipt](../data/evidence/bse-2023-irms-listing-source-receipt-2026-09-29.json). Neither failures nor old PR #334 partial collections were relabeled successful. The temporary research workflow is removed from the final tree.
+Three repository-administration/legal items remain intentionally open because the current connector cannot or should not decide them automatically: **#339** protect `main` without breaking sanctioned Actions writers; **#347** decide source-code license vs data redistribution terms; **#348** delete the **310** exact merged-PR branch tips identified by the branch audit. Do not bulk-delete the remaining closed-unmerged/no-PR/advanced-after-merge branches without semantic review.
 
-New raw source artifacts expire **13-Oct-2026** after 14 days. The earlier prospectus artifacts expire **12-Oct-2026**. Hashes and durable metadata are not permanent raw-PDF storage. Retrieve original archives before expiry, or record a genuinely new collection and compare hashes.
+## Preserved release evidence and boundaries
 
-## Tests and controlled publication
+The pre-closeout handoff is preserved byte-for-byte in [PROJECT_STATUS_ARCHIVE_THROUGH_IRMS_RELEASE_2026-09-29.md](PROJECT_STATUS_ARCHIVE_THROUGH_IRMS_RELEASE_2026-09-29.md). Earlier IRMS field/source archives remain authoritative for original evidence and qualifications.
 
-The existing baseline has **92 non-browser test entry points**, passed in source-research CI. Local baseline execution hit an overall command timeout after earlier completed tests and was continued separately; no timeout is claimed as a suite pass. The new **63 targeted cases pass locally**, including source binding, decimal normalization, nulls, field qualifications, all-year identity collisions, rejection of replay over later enrichment, exact live-projection checks and writer-retirement guards. New guards were observed red before their implementations, then green.
+Do not replay PR #342 or earlier completed BSE/NSE releases. Preserve all retained conflicts, aliases, nulls, source hashes, clocks and correction history. The active application term remains **Lot Size only**, using verified market lot first and verified minimum bid only when market lot is missing. Never derive minimum investment/application amounts.
 
-The real local rehearsal added **exactly four records, 1,378 to 1,382**, with **all 1,378 existing public objects unchanged**, all six other recovery-year files byte-identical, and all four new projections matching the normal public builder. Production inputs were restored byte-for-byte afterwards. This is an offline rehearsal, not live publication. Its receipt is included in the release lifecycle.
+DRHP collection is currently **source-unstable, fail-closed** rather than healthy: the last successful collection remains **2026-09-28T13:49:35.161Z** with **96 companies / 98 filings**. The schedule-health monitor correctly treats the latest critical DRHP run as failed. Do not relabel that run successful or drop retained filings.
 
-The bounded offline publisher uses **only the existing `update-ipos.yml` writer**, gated by a push commit message beginning `release(irms):`. It is not scheduled; ordinary hourly sync keeps its existing schedule. It re-fetches current main, applies the fully pinned approval with all-year guards, rebuilds normally, checks every prior public object and only stages 2023 recovery plus `data/ipos.json`. It must be removed after verified closeout. The six-workflow production-writer allowlist and all 26 historical workflow retirements remain unchanged.
-
-Final PR-head tests/merge/deployment evidence belongs in the release lifecycle; do not substitute earlier research CI for final verification. Review is inline, not independent-agent review. Browser/UI tests are not claimed.
-
-## Preserved history and product boundaries
-
-The prior canonical handoff is preserved byte-for-byte in [the IRMS-field archive](PROJECT_STATUS_ARCHIVE_THROUGH_IRMS_FIELDS_2026-09-29.md), Git blob **98719874e29169fa57c21f6077dc3f83d6069a50**. It retains PR #334/#336 source history, earlier release receipts, and the stale-PR retirement review. **PR #196 and PR #246 remain closed unmerged**. Preserve [completed-workflow retirement](verification/completed-release-workflow-retirement-2026-09-28.md), the read-only completed 2020 validator, and the newer scheduled-operation monitor.
-
-Do not replay RVPE, Sah/Global/Uday/Pyramid, earlier 2020–2022 releases, reviewed NSE batches or parser-v1.5's completed cursor. Preserve Valiant/Hariom/FiveStar conflicts, Rainbow/FiveStar aliases, CAMS/Protean cross-year safeguards and the immutable original 920-row audit. The old 215-candidate audit count is not a current queue total.
-
-No UI, public schema, source allowlist or commercial feature changes. Preserve light-theme UI, lifecycle-aware Pre-IPO filtering and incomplete-coverage labels. The active application term remains **Lot Size only**, verified market lot first and verified minimum bid only when market lot is missing. Never derive minimum investment amounts. Continue P1; **do not expand P5/performance while P4 is blocked**. No new spending, contracts, accounts, analytics, ads, billing, infrastructure or access changes without approval. Follow [DEVELOPMENT_PROCESS](DEVELOPMENT_PROCESS.md).
+Continue P1. Do not expand P5/performance while upstream correctness remains materially blocked. No new spending, contracts, accounts, analytics, ads, billing, infrastructure or material access changes without approval. Follow [DEVELOPMENT_PROCESS](DEVELOPMENT_PROCESS.md).

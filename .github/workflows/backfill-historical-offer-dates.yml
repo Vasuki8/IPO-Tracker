@@ -14,6 +14,8 @@ on:
       - "scripts/test-prepare-historical-offer-date-corrections.mjs"
       - "scripts/test-apply-historical-offer-date-state.mjs"
       - "scripts/historical-batch-selection.mjs"
+      - "scripts/download-official-sebi-pdf.mjs"
+      - "scripts/test-download-official-sebi-pdf.mjs"
       - "scripts/test-historical-batch-selection.mjs"
       - ".github/workflows/backfill-historical-offer-dates.yml"
 
@@ -41,6 +43,9 @@ jobs:
           sudo apt-get update
           sudo apt-get install --yes --no-install-recommends poppler-utils
           pdftotext -v
+
+      - name: Test resumable official SEBI PDF downloads
+        run: node scripts/test-download-official-sebi-pdf.mjs
 
       - name: Test historical SEBI offer-date parser
         run: node scripts/test-backfill-historical-offer-dates.mjs

@@ -149,6 +149,9 @@ jobs:
       - name: Test historical IPO coverage audit
         run: node scripts/test-audit-historical-coverage.mjs
 
+      - name: Test resumable official SEBI PDF downloads
+        run: node scripts/test-download-official-sebi-pdf.mjs
+
       - name: Test historical IPO source materializer
         run: node scripts/test-materialize-historical-ipo-evidence.mjs
 

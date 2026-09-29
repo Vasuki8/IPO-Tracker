@@ -30,6 +30,10 @@ This repository-hygiene change removes production write/replay capability from c
 - `publish-reviewed-bse-reconciliation.yml`
 - `publish-reviewed-fabino.yml`
 - `publish-reviewed-historical-ipos.yml`
+- `publish-reviewed-bse-2020-unmatched.yml`
+- `verify-reviewed-bse-reconciliation-publication.yml`
+- `verify-reviewed-fabino-publication.yml`
+- `verify-reviewed-historical-ipo-publication.yml`
 
 These workflow files are removed from current `main`; their historical definitions remain available in Git history. No historical evidence JSON, importer script, correction history, public IPO record, or recovery record is deleted.
 
@@ -46,7 +50,7 @@ These workflow files are removed from current `main`; their historical definitio
 - `update-drhp.yml`
 - `update-ipos.yml`
 
-The already-completed 2020 unmatched publisher remains as a read-only validator and is explicitly checked by the guard.
+The completed 2020 validator and three orphaned publication verifiers were later consolidated into the same read-only validation surface. Their verifier scripts and tests remain in the repository; only redundant workflow entry points were removed.
 
 ## Boundaries
 

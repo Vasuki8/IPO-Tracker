@@ -4,6 +4,7 @@ import os from "node:os";
 import { execFileSync } from "node:child_process";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { selectBalancedByListingYear } from "./historical-batch-selection.mjs";
+import { downloadOfficialSebiPdf } from "./download-official-sebi-pdf.mjs";
 import {
   applyIssuePriceExtraction,
   applyIssueSizeExtraction,
@@ -24,6 +25,7 @@ const USER_AGENT = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/12
 export const HISTORICAL_PDF_FIELD_BATCH_SIZE = 8;
 export const HISTORICAL_PDF_FIELD_PARSER_VERSION = "1.2.0";
 export const HISTORICAL_PDF_DOWNLOAD_MAX_SECONDS = 75;
+export const HISTORICAL_PDF_DOWNLOAD_ATTEMPTS = 4;
 const MAX_PAGES = 35;
 
 function normalizeText(value) {
@@ -157,23 +159,12 @@ function writeState(state) {
 }
 
 function fetchPdf(url) {
-  const dir = fs.mkdtempSync(path.join(os.tmpdir(), "ipo-historical-pdf-"));
-  const file = path.join(dir, "document.pdf");
-  try {
-    execFileSync("curl", [
-      "--fail", "--location", "--silent", "--show-error",
-      "--retry", "1", "--retry-all-errors",
-      "--connect-timeout", "10", "--max-time", String(HISTORICAL_PDF_DOWNLOAD_MAX_SECONDS),
-      "--user-agent", USER_AGENT,
-      "--referer", "https://www.sebi.gov.in/",
-      "--output", file, url
-    ], { stdio: ["ignore", "ignore", "pipe"], maxBuffer: 1024 * 1024 });
-    const bytes = fs.readFileSync(file);
-    if (bytes.length < 5 || bytes.subarray(0, 5).toString("ascii") !== "%PDF-") throw new Error("response was not PDF");
-    return bytes;
-  } finally {
-    fs.rmSync(dir, { recursive: true, force: true });
-  }
+  return downloadOfficialSebiPdf(url, {
+    userAgent: USER_AGENT,
+    maxSeconds: HISTORICAL_PDF_DOWNLOAD_MAX_SECONDS,
+    attempts: HISTORICAL_PDF_DOWNLOAD_ATTEMPTS,
+    tempPrefix: "ipo-historical-pdf-"
+  }).bytes;
 }
 
 function firstPages(pdfBytes) {

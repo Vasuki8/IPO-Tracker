@@ -83,10 +83,19 @@
     "2022|elin-electronics-limited": {
       "issuer_name": "Elin Electronics Limited",
       "listing_date": "2022-12-30",
-      "last_attempted_at": "2026-09-28T14:29:59.699Z",
+      "last_attempted_at": "2026-09-29T15:50:58.430Z",
       "parser_version": "2.0.0",
-      "status": "error",
-      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 45 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-offer-dates-swF6Yy/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/apr-2023/1682057466538.pdf\ncurl: (28) Operation timed out after 45000 milliseconds with 14176695 out of 15064686 bytes received\ncurl: (28) Operation timed out after 45001 milliseconds with 12669439 out of 15064686 bytes received\n",
+      "status": "official_date_conflict",
+      "open_date": null,
+      "close_date": null,
+      "open_extraction": null,
+      "close_extraction": null,
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Elin Electronics Limited – RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/apr-2023/1682057466538.pdf",
+        "publication_date": "2022-12-15"
+      },
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/apr-2023/1682057466538.pdf"
     },
     "2020|burger-king-india-limited": {
@@ -390,10 +399,19 @@
     "2024|concord-enviro-systems-limited": {
       "issuer_name": "Concord Enviro Systems Limited",
       "listing_date": "2024-12-27",
-      "last_attempted_at": "2026-09-28T14:29:59.699Z",
+      "last_attempted_at": "2026-09-29T15:50:58.430Z",
       "parser_version": "2.0.0",
-      "status": "error",
-      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 45 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-offer-dates-ZATLUp/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/jan-2025/1735818485116.pdf\ncurl: (28) Operation timed out after 45000 milliseconds with 14146663 out of 15800154 bytes received\ncurl: (18) transfer closed with 11037819 bytes remaining to read\n",
+      "status": "explicit_dates_absent",
+      "open_date": null,
+      "close_date": null,
+      "open_extraction": null,
+      "close_extraction": null,
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Concord Enviro Systems Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/jan-2025/1735818485116.pdf",
+        "publication_date": "2024-12-24"
+      },
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/jan-2025/1735818485116.pdf"
     },
     "2025|aequs-limited": {
@@ -425,19 +443,45 @@
     "2025|meesho-limited": {
       "issuer_name": "Meesho Limited",
       "listing_date": "2025-12-10",
-      "last_attempted_at": "2026-09-28T14:29:59.699Z",
+      "last_attempted_at": "2026-09-29T15:50:58.430Z",
       "parser_version": "2.0.0",
-      "status": "error",
-      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 45 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-offer-dates-cFvTBZ/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/dec-2025/1765186673646.pdf\ncurl: (28) Operation timed out after 45000 milliseconds with 14173471 out of 17102785 bytes received\ncurl: (18) transfer closed with 12033746 bytes remaining to read\n",
+      "status": "extracted",
+      "open_date": null,
+      "close_date": "2025-12-02",
+      "open_extraction": null,
+      "close_extraction": {
+        "value": "2025-12-02",
+        "source_value": "Offer closed on DECEMBER 2, 2025",
+        "page": 4
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Meesho Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2025/1765186673646.pdf",
+        "publication_date": "2025-12-08"
+      },
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2025/1765186673646.pdf"
     },
     "2025|vidya-wires-limited": {
       "issuer_name": "Vidya Wires Limited",
       "listing_date": "2025-12-10",
-      "last_attempted_at": "2026-09-28T14:29:59.699Z",
+      "last_attempted_at": "2026-09-29T15:50:58.430Z",
       "parser_version": "2.0.0",
-      "status": "error",
-      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 45 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-offer-dates-zPo701/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/dec-2025/1764671022304.pdf\ncurl: (18) transfer closed with 10090864 bytes remaining to read\ncurl: (28) Operation timed out after 45000 milliseconds with 12420879 out of 14575527 bytes received\n",
+      "status": "extracted",
+      "open_date": "2025-12-03",
+      "close_date": null,
+      "open_extraction": {
+        "value": "2025-12-03",
+        "source_value": "Offer Opening Date i.e., Wednesday, 3 December, 2025",
+        "page": 2
+      },
+      "close_extraction": null,
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Vidya Wires Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2025/1764671022304.pdf",
+        "publication_date": "2025-11-28"
+      },
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2025/1764671022304.pdf"
     },
     "2025|sudeep-pharma-limited": {
@@ -553,10 +597,27 @@
     "2025|lenskart-solutions-limited": {
       "issuer_name": "Lenskart Solutions Limited",
       "listing_date": "2025-11-10",
-      "last_attempted_at": "2026-09-28T14:29:59.699Z",
+      "last_attempted_at": "2026-09-29T15:50:58.430Z",
       "parser_version": "2.0.0",
-      "status": "error",
-      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 45 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-offer-dates-BHXmrM/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/dec-2025/1764586985473.pdf\ncurl: (28) Operation timed out after 45000 milliseconds with 11029375 out of 17410868 bytes received\ncurl: (28) Operation timed out after 45000 milliseconds with 14004159 out of 17410868 bytes received\n",
+      "status": "extracted",
+      "open_date": "2025-10-31",
+      "close_date": "2025-11-04",
+      "open_extraction": {
+        "value": "2025-10-31",
+        "source_value": "OFFER OPENED ON Friday, October 31, 2025",
+        "page": 2
+      },
+      "close_extraction": {
+        "value": "2025-11-04",
+        "source_value": "OFFER CLOSED ON Tuesday, November 4, 2025",
+        "page": 2
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Lenskart Solutions Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2025/1764586985473.pdf",
+        "publication_date": "2025-12-01"
+      },
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2025/1764586985473.pdf"
     },
     "2025|studds-accessories-limited": {
@@ -638,10 +699,23 @@
     "2025|trualt-bioenergy-limited": {
       "issuer_name": "TruAlt Bioenergy Limited",
       "listing_date": "2025-10-03",
-      "last_attempted_at": "2026-09-28T14:29:59.699Z",
+      "last_attempted_at": "2026-09-29T15:50:58.430Z",
       "parser_version": "2.0.0",
-      "status": "error",
-      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 45 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-offer-dates-BGMMTl/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/oct-2025/1760692316356.pdf\ncurl: (28) Operation timed out after 45000 milliseconds with 11754479 out of 20255279 bytes received\ncurl: (18) transfer closed with 10004968 bytes remaining to read\n",
+      "status": "extracted",
+      "open_date": null,
+      "close_date": "2025-09-29",
+      "open_extraction": null,
+      "close_extraction": {
+        "value": "2025-09-29",
+        "source_value": "OFFER CLOSED ON Monday, September 29, 2025",
+        "page": 1
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Trualt Bioenergy Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2025/1760692316356.pdf",
+        "publication_date": "2025-09-30"
+      },
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2025/1760692316356.pdf"
     },
     "2024|sanathan-textiles-limited": {
@@ -985,10 +1059,27 @@
     "2023|inox-india-limited": {
       "issuer_name": "INOX India Limited",
       "listing_date": "2023-12-21",
-      "last_attempted_at": "2026-09-28T14:29:59.699Z",
+      "last_attempted_at": "2026-09-29T15:50:58.430Z",
       "parser_version": "2.0.0",
-      "status": "error",
-      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 45 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-offer-dates-c2Qqaf/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/dec-2023/1702983583674.pdf\ncurl: (28) Operation timed out after 45001 milliseconds with 14183487 out of 16545359 bytes received\ncurl: (18) transfer closed with 13613952 bytes remaining to read\n",
+      "status": "extracted",
+      "open_date": "2023-12-14",
+      "close_date": "2023-12-18",
+      "open_extraction": {
+        "value": "2023-12-14",
+        "source_value": "OFFER OPENED ON Thursday, December 14, 2023",
+        "page": 3
+      },
+      "close_extraction": {
+        "value": "2023-12-18",
+        "source_value": "OFFER CLOSED ON Monday, December 18, 2023",
+        "page": 3
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Inox India Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2023/1702983583674.pdf",
+        "publication_date": "2023-12-19"
+      },
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2023/1702983583674.pdf"
     },
     "2025|excelsoft-technologies-limited": {
@@ -1142,10 +1233,23 @@
     "2025|capillary-technologies-india-limited": {
       "issuer_name": "Capillary Technologies India Limited",
       "listing_date": "2025-11-21",
-      "last_attempted_at": "2026-09-28T14:29:59.699Z",
+      "last_attempted_at": "2026-09-29T15:50:58.430Z",
       "parser_version": "2.0.0",
-      "status": "error",
-      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 45 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-offer-dates-neowKV/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/feb-2026/1771411971970.pdf\ncurl: (18) transfer closed with 10233712 bytes remaining to read\ncurl: (28) Operation timed out after 45000 milliseconds with 12812071 out of 20016471 bytes received\n",
+      "status": "extracted",
+      "open_date": "2025-11-14",
+      "close_date": null,
+      "open_extraction": {
+        "value": "2025-11-14",
+        "source_value": "OFFER OPENS ON Friday, November 14, 2025",
+        "page": 3
+      },
+      "close_extraction": null,
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Capillary Technologies India Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/feb-2026/1771411971970.pdf",
+        "publication_date": "2025-11-12"
+      },
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/feb-2026/1771411971970.pdf"
     },
     "2024|suraksha-diagnostic-limited": {
@@ -3018,10 +3122,27 @@
     "2024|brainbees-solutions-limited": {
       "issuer_name": "Brainbees Solutions Limited",
       "listing_date": "2024-08-13",
-      "last_attempted_at": "2026-09-28T14:29:59.699Z",
+      "last_attempted_at": "2026-09-29T15:50:58.430Z",
       "parser_version": "2.0.0",
-      "status": "error",
-      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 45 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-offer-dates-lkVWNG/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/aug-2024/1724823577322.pdf\ncurl: (18) transfer closed with 6905241 bytes remaining to read\ncurl: (28) Operation timed out after 45000 milliseconds with 13338391 out of 14591624 bytes received\n",
+      "status": "extracted",
+      "open_date": "2024-08-06",
+      "close_date": "2024-08-08",
+      "open_extraction": {
+        "value": "2024-08-06",
+        "source_value": "Offer Opened on Tuesday, August 6, 2024",
+        "page": 3
+      },
+      "close_extraction": {
+        "value": "2024-08-08",
+        "source_value": "Offer Closed on Thursday, August 8, 2024",
+        "page": 3
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Brainbees Solutions Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2024/1724823577322.pdf",
+        "publication_date": "2024-08-28"
+      },
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2024/1724823577322.pdf"
     },
     "2023|yatharth-hospital-and-trauma-care-services-limited": {
@@ -3045,10 +3166,19 @@
     "2024|unicommerce-esolutions-limited": {
       "issuer_name": "Unicommerce eSolutions Limited",
       "listing_date": "2024-08-13",
-      "last_attempted_at": "2026-09-28T14:29:59.699Z",
+      "last_attempted_at": "2026-09-29T15:50:58.430Z",
       "parser_version": "2.0.0",
-      "status": "error",
-      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 45 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-offer-dates-7mKVcV/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/aug-2024/1724310153161.pdf\ncurl: (18) transfer closed with 5061118 bytes remaining to read\ncurl: (18) transfer closed with 11284174 bytes remaining to read\n",
+      "status": "official_date_conflict",
+      "open_date": null,
+      "close_date": null,
+      "open_extraction": null,
+      "close_extraction": null,
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Unicommerce eSolutions Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2024/1724310153161.pdf",
+        "publication_date": "2024-08-10"
+      },
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2024/1724310153161.pdf"
     },
     "2023|innovatus-entertainment-networks-limited": {
