@@ -31,27 +31,29 @@ The existing hourly `update-ipos.yml` collects NSE/SEBI data and imports reviewe
 
 `audit-ipo-universe.yml` is a read-only bounded official-universe audit with no schedule. It collects eight NSE/BSE/SEBI source surfaces, verifies source hashes and reconciles identities while retaining incomplete-coverage labels. Candidates are not automatically imported. Raw Actions artifacts expire after 14 days; durable review projections and evidence references remain in the repository.
 
-Completed historical one-shot publication/materialization workflows have been retired from current main; their evidence and Git history remain intact. The [retirement record](docs/verification/completed-release-workflow-retirement-2026-09-28.md) documents 26 removed surfaces and the unchanged six-workflow writer allowlist. Completed releases are checked read-only. PR #342 uses a tightly bounded temporary job inside the existing active updater; it must be removed after verified closeout, not converted into another recurring historical importer.
+Completed historical one-shot publication/materialization workflows have been retired from current main; their evidence and Git history remain intact. The [retirement record](docs/verification/completed-release-workflow-retirement-2026-09-28.md) covers the retired writer and redundant-validator surfaces, with completed releases checked through one read-only validator. PR #342's temporary bounded publisher was removed after verified live closeout in PR #343.
 
 Collection time, source observation, dataset generation and Pages publication are distinct. `node scripts/operator-report.mjs` reports IPO operational health without rewriting values. DRHP collection health is separate.
 
-`collect-bse-2023-irms-evidence.yml` is a read-only, manual-dispatch source collector for the next four retained 2023 candidates. Its PR checks run the non-browser suite and data guards without external source downloads. A manual collection retains original landing pages/PDFs and reports partial failures; it never imports issuers, approves fields or advances the review queue. The [multi-attempt source receipt](data/evidence/bse-2023-irms-source-receipt-2026-09-28.json) retains both partial outcomes and the exact source selections used for subsequent review.
+`collect-bse-2023-irms-evidence.yml` remains a read-only historical/manual collector for the now-closed IRMS source set; it does not authorize replay or publication. The [multi-attempt source receipt](data/evidence/bse-2023-irms-source-receipt-2026-09-28.json) retains both partial outcomes and the exact source selections used for the completed review.
 
 ## Handoff for the next prompt
 
-**PR #342 has prepared the actual-listing review and bounded import; publication and live closeout remain pending.** The [listing review](data/discovery/bse-2023-irms-listing-review-2026-09-29.json) preserves PR #336's prospectus terms and adds original exchange-hosted actual-listing evidence. IREDA's newly observed offer-total discrepancy is retained as a conflict; Motisons/RBZ amounts remain provisional. See [PROJECT_STATUS](docs/PROJECT_STATUS.md) and the [release lifecycle](docs/verification/bse-2023-irms-release-2026-09-29.json) before proceeding.
+The IREDA/Motisons/RBZ/Shelter release is complete and live-verified. The 2023 immutable review ledger is now **12 reviewed/published + 18 awaiting review**. The bounded IRMS publisher is retired; do not replay the completed import.
 
-Finish the reviewed batch for **Indian Renewable Energy Development Agency Limited (544026)**, **Motisons Jewellers Limited (544053)**, **RBZ Jewellers Limited (544060)** and **SHELTER PHARMA LIMITED (543963)**. The original 2023 ledger remains **8 reviewed/published + 22 awaiting review**, not an updated universe audit. Verify exact served projections and retire the bounded publisher before queue closeout. Original discovery and prospectus-review bytes are unchanged.
+Continue with **SHANTI SPINTEX LIMITED (544059)**, **Shoora Designs Limited (543970)**, **Exhicon Events Media Solutions Limited (543895)** and **Khazanchi Jewellers Limited (543953)**. Start with official source retention and all-year identity reconciliation, then prepare a separately reviewed bounded import only for unambiguous evidence-backed identities.
 
-**The original 2022 queue is complete: 14 reviewed/published + 2 existing-recovery alias + 0 awaiting review.** The original 2021 queue is also complete. Preserve all historical conflict, alias and evidence safeguards; never replay completed releases.
+**The original 2022 queue is complete: 14 reviewed/published + 2 existing-recovery alias + 0 awaiting review.** The original 2021 queue is also complete. Preserve historical conflicts, aliases, evidence hashes and nulls; never replay completed releases.
+
+Repository hardening is recorded in [PROJECT_STATUS](docs/PROJECT_STATUS.md). Administration/legal follow-ups remain tracked in issues #339, #347 and #348.
 
 ### Exact next backend task
 
-The remaining **0** original BSE 2022 unmatched rows need no further import.
+The original BSE 2022 queue has remaining **0** unmatched rows requiring import.
 
-Publish only the pinned approved batch for **Indian Renewable Energy Development Agency Limited (544026)**, **Motisons Jewellers Limited (544053)**, **RBZ Jewellers Limited (544060)** and **SHELTER PHARMA LIMITED (543963)**, after checking the release lifecycle and all current recovery years. Original listing research is complete. Do not repeat source discovery, promote provisional figures to realised proceeds, substitute approval/anchor dates, or derive minimum application amounts. After actual public-data verification, remove the temporary bounded job from the existing active updater, retain live evidence, and advance the progress ledger and both handoffs together.
+Review **SHANTI SPINTEX LIMITED (544059)**, **Shoora Designs Limited (543970)**, **Exhicon Events Media Solutions Limited (543895)** and **Khazanchi Jewellers Limited (543953)** from the pinned 2023 queue. Do not treat discovery values as publication authority. Retain original official evidence, reconcile identity across every recovery year, preserve conflicts/nulls, and only publish after a separate reviewed manifest and exact served verification.
 
-Use `node scripts/test-reviewed-bse-2023-irms.mjs`, `node scripts/apply-reviewed-bse-2023-irms.mjs --review`, `node scripts/check-bse-2023-progress.mjs`, `node scripts/check-bse-2022-disposition.mjs`, `node scripts/check-retained-bse-snapshot.mjs`, `node scripts/build-published-data.mjs --check` and `node scripts/validate-data.mjs`. A dry-run collision is a hold, never permission to overwrite later evidence. Source archives expire on 12–13 October 2026; durable hashes do not replace original bytes.
+Use `node scripts/check-bse-2023-progress.mjs`, `node scripts/check-bse-2022-disposition.mjs`, `node scripts/check-retained-bse-snapshot.mjs`, `node scripts/build-published-data.mjs --check` and `node scripts/validate-data.mjs` as baseline guards. The completed IRMS live receipt is [docs/verification/bse-2023-irms-live-2026-09-29.json](docs/verification/bse-2023-irms-live-2026-09-29.json).
 
 ## Historical release notes
 
