@@ -74,7 +74,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  # Explicit release-message trigger only; removed after verified closeout.
+  # PR #342 passed 93 test entry points; exact release trigger, retire after closeout.
   reviewed_irms:
     if: github.event_name == 'push' && startsWith(github.event.head_commit.message, 'release(irms):')
     runs-on: ubuntu-latest
