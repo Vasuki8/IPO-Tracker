@@ -25,8 +25,10 @@ jobs:
           node-version: '20'
       - name: Test listing evidence boundary
         run: node --test scripts/test-bse-2023-ssek-listing-evidence.mjs
-      - name: Verify PDF tooling
+      - name: Install and verify PDF tooling
         run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends poppler-utils
           command -v pdfinfo
           command -v pdftotext
       - name: Collect and inspect original annual reports
