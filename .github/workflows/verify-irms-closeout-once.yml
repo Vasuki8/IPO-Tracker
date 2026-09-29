@@ -1,0 +1,43 @@
+name: Verify served IRMS release before closeout
+on:
+  pull_request:
+    types: [opened]
+    paths: ['.github/workflows/verify-irms-closeout-once.yml']
+permissions:
+  contents: read
+jobs:
+  verify:
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - uses: actions/setup-node@v4
+        with: {node-version: '20'}
+      - name: Test exact projection verifier
+        run: node scripts/test-reviewed-bse-2023-irms.mjs
+      - name: Retain repository context and actual served bytes
+        shell: bash
+        run: |
+          mkdir -p "$RUNNER_TEMP/irms-closeout"
+          git archive HEAD | gzip > "$RUNNER_TEMP/irms-closeout/repository.tar.gz"
+          git rev-parse HEAD > "$RUNNER_TEMP/irms-closeout/repository-commit.txt"
+          git rev-parse HEAD^{tree} > "$RUNNER_TEMP/irms-closeout/repository-tree.txt"
+          for attempt in 1 2 3 4; do
+            if node scripts/verify-bse-2023-irms.mjs --output-dir="$RUNNER_TEMP/irms-closeout/fetch-$attempt"; then
+              printf '%s\n' "$attempt" > "$RUNNER_TEMP/irms-closeout/successful-fetch.txt"
+              git diff --exit-code
+              exit 0
+            fi
+            if [ "$attempt" -lt 4 ]; then sleep 15; fi
+          done
+          exit 1
+      - name: Retain live verification and any failed fetches
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: irms-live-closeout-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/irms-closeout
+          retention-days: 14
+          if-no-files-found: error
