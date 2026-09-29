@@ -47,6 +47,8 @@ jobs:
           set -euo pipefail
           tests=(
             scripts/test-bse-2020-unmatched-review.mjs
+            scripts/test-completed-bse-2020-workflow.mjs
+            scripts/test-reviewed-bse-2020-unmatched-import.mjs
             scripts/test-bse-2021-mainboard-batch1-review.mjs
             scripts/test-materialize-bse-audit-conflict-evidence.mjs
             scripts/test-audit-bse-sme-ipo-index.mjs
@@ -74,8 +76,11 @@ jobs:
             scripts/test-reviewed-bse-2023-four.mjs
             scripts/test-reviewed-bse-2023-rvpe.mjs
             scripts/test-reviewed-bse-reconciliation.mjs
+            scripts/test-reviewed-bse-reconciliation-publication.mjs
             scripts/test-reviewed-fabino.mjs
+            scripts/test-reviewed-fabino-publication.mjs
             scripts/test-reviewed-historical-ipos.mjs
+            scripts/test-reviewed-historical-ipo-publication.mjs
           )
           for test in "${tests[@]}"; do
             echo "::group::$test"
