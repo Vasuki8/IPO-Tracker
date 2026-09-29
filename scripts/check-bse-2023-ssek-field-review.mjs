@@ -16,6 +16,12 @@ const FIXED=new Set(['543970','543953']);
 const PROVISIONAL_AMOUNT=new Set(['544059','543895']);
 const BOOK_BUILT=new Set(['544059','543895']);
 const FIELDS=['price_band','issue_price','issue_size_inr','market_lot','minimum_bid_quantity','open_date','close_date','listing_date'];
+const REVIEWED_PAGES={
+  '544059':{price_band:10,issue_price:2,issue_size_inr:2,market_lot:9,minimum_bid_quantity:7,open_date:1,close_date:1},
+  '543970':{price_band:2,issue_price:2,issue_size_inr:2,market_lot:8,minimum_bid_quantity:201,open_date:1,close_date:1},
+  '543895':{price_band:2,issue_price:2,issue_size_inr:2,market_lot:189,minimum_bid_quantity:7,open_date:1,close_date:1},
+  '543953':{price_band:1,issue_price:1,issue_size_inr:1,market_lot:9,minimum_bid_quantity:216,open_date:1,close_date:1}
+};
 const REVIEWED_GIT_BLOB='279facba3105465d832799c2983d22ccbb3cdc09';
 const RECEIPT_GIT_BLOB='31c1e99c8c71dfd1dd53119a3247c0c5343dc19f';
 const req=(ok,message)=>{if(!ok)throw new Error(message);};
@@ -75,6 +81,7 @@ export function validateReview(ctx){
      if(field==='listing_date'){req(t.status==='missing'&&t.value===null&&t.evidence===null,'actual_listing_evidence_missing');counts.missing++;continue;}
      req(t.reporting_period==='2023 IPO'&&typeof t.source_value==='string'&&t.source_value.length>0,'missing_field_scope');
      const e=t.evidence;req(e&&e.document_sha256===d.response_sha256&&positive(e.page)&&e.page<=d.pdf_pages&&(e.printed_page===null||typeof e.printed_page==='string')&&typeof e.locator==='string'&&e.locator.length>12,'invalid_field_evidence');
+     req(e.page===REVIEWED_PAGES[code][field],'reviewed_evidence_page_changed:'+code+':'+field);
 
      const expectedStatus=field==='price_band'&&FIXED.has(code)?'not_applicable':field==='issue_size_inr'&&PROVISIONAL_AMOUNT.has(code)?'provisional':'verified_stated_term';
      req(t.status===expectedStatus,'unsafe_field_status:'+code+':'+field);counts[t.status==='verified_stated_term'?'verified_stated_terms':t.status]++;
