@@ -49,6 +49,8 @@ Repository hardening is recorded in [PROJECT_STATUS](docs/PROJECT_STATUS.md). Ad
 
 ### Exact next backend task
 
+The original BSE 2022 queue has remaining **0** unmatched rows requiring import.
+
 Review **SHANTI SPINTEX LIMITED (544059)**, **Shoora Designs Limited (543970)**, **Exhicon Events Media Solutions Limited (543895)** and **Khazanchi Jewellers Limited (543953)** from the pinned 2023 queue. Do not treat discovery values as publication authority. Retain original official evidence, reconcile identity across every recovery year, preserve conflicts/nulls, and only publish after a separate reviewed manifest and exact served verification.
 
 Use `node scripts/check-bse-2023-progress.mjs`, `node scripts/check-bse-2022-disposition.mjs`, `node scripts/check-retained-bse-snapshot.mjs`, `node scripts/build-published-data.mjs --check` and `node scripts/validate-data.mjs` as baseline guards. The completed IRMS live receipt is [docs/verification/bse-2023-irms-live-2026-09-29.json](docs/verification/bse-2023-irms-live-2026-09-29.json).
