@@ -1,0 +1,659 @@
+{
+  "schema_version": "1.0.0",
+  "status": "reviewed_prospectus_terms_listing_evidence_pending",
+  "source_year": 2023,
+  "reviewed_at": "2026-09-29T16:56:30.000Z",
+  "prospectus_terms_reviewed": true,
+  "ipo_release_review_complete": false,
+  "publication_import_allowed": false,
+  "auto_import_allowed": false,
+  "source_refetched": false,
+  "complete_indian_ipo_universe": false,
+  "source_receipt": {
+    "path": "data/evidence/bse-2023-ssek-source-receipt-2026-09-29.json",
+    "git_blob_sha": "31c1e99c8c71dfd1dd53119a3247c0c5343dc19f"
+  },
+  "source_queue": {
+    "path": "data/discovery/bse-2023-review-queue-2026-09-28.json",
+    "sha256": "975d244fc1a6166aebbb9a4c4da64b60fe3a85e1b3c1d84b9eca3ab4b2812cb4"
+  },
+  "source_plan": {
+    "path": "data/discovery/bse-2023-ssek-source-plan-2026-09-29.json",
+    "sha256": "c81067ec3c2f62bde5966a23241e4c6d6567ca35390b65d3907a849069a7896f"
+  },
+  "discovery_source_collected_at": "2026-09-26T16:40:34.440Z",
+  "scope_note": "Historical stated 2023 IPO terms only. This read-only review does not establish actual listing, exchange identifiers or board, realised proceeds, a fresh current market lot, or complete IPO-universe coverage. Discovery values remain non-authoritative.",
+  "review_method": {
+    "mode": "inline",
+    "physical_page_numbering": "one_based",
+    "primary_pages_visually_checked": 13,
+    "text_extraction": "Poppler pdftotext with layout preservation; no OCR",
+    "visual_review": "Original retained PDF pages rendered locally from the downloaded Actions artifact. Web PDF screenshot attempts were unavailable for some source URLs, so no web-render claim is made.",
+    "original_bytes_revalidated": true,
+    "source_collection_run_id": 36601106741,
+    "source_collection_artifact_id": 11048768865
+  },
+  "actions": [
+    {
+      "discovery_bse_scrip_code": "544059",
+      "source_row_index": 11,
+      "issuer_name": "SHANTI SPINTEX LIMITED",
+      "candidate_id": "shanti-spintex-limited",
+      "document": {
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2023/1703566950969.pdf",
+        "response_sha256": "3657c9ce663ffe4b83d9fd0ad854d84926cc850c6486b5dc594c894a7a46aa1a",
+        "response_bytes": 3741962,
+        "evidence_file": "544059-prospectus.pdf",
+        "workflow_run_id": 36601106741,
+        "workflow_attempt": 1,
+        "artifact_id": 11048768865,
+        "document_type": "prospectus",
+        "document_date": "2023-12-22",
+        "publication_date": null,
+        "landing_displayed_date": "2023-12-26",
+        "pdf_pages": 253,
+        "requested_at": "2026-09-29T16:54:47.227Z",
+        "collected_at": "2026-09-29T16:54:59.906Z"
+      },
+      "unverified_identifiers": {
+        "bse_scrip_code": null,
+        "nse_symbol": null,
+        "isin": null,
+        "board": null
+      },
+      "anchor_bid_date": {
+        "value": "2023-12-18",
+        "page": 1,
+        "scope": "anchor investor bid date; not public opening"
+      },
+      "source_inconsistencies": [
+        {
+          "kind": "definition_typo",
+          "page": 7,
+          "printed_page": "4",
+          "observation": "The Cut Off Price definition states ₹80 while the same Prospectus states Cap Price ₹70 and final Offer Price ₹70.",
+          "disposition": "Do not use the ₹80 Cut Off Price text. Bind issue price to the explicit final Offer Price ₹70 and price band to Floor ₹66 / Cap ₹70."
+        }
+      ],
+      "terms": {
+        "price_band": {
+          "value": {
+            "min": 66,
+            "max": 70
+          },
+          "status": "verified_stated_term",
+          "source_value": "66–70",
+          "source_unit": "INR/share",
+          "reporting_period": "2023 IPO",
+          "evidence": {
+            "document_sha256": "3657c9ce663ffe4b83d9fd0ad854d84926cc850c6486b5dc594c894a7a46aa1a",
+            "page": 10,
+            "printed_page": "7",
+            "locator": "Definitions: Price Band; Floor Price ₹66 and Cap Price ₹70"
+          },
+          "qualification": "Stated 2023 book-building price band; not a market-price observation."
+        },
+        "issue_price": {
+          "value": 70,
+          "status": "verified_stated_term",
+          "source_value": "70",
+          "source_unit": "INR/share",
+          "reporting_period": "2023 IPO",
+          "evidence": {
+            "document_sha256": "3657c9ce663ffe4b83d9fd0ad854d84926cc850c6486b5dc594c894a7a46aa1a",
+            "page": 2,
+            "printed_page": null,
+            "locator": "Detailed issue cover: Offer Price ₹70 per Equity Share"
+          },
+          "qualification": "Final stated Offer Price in the Prospectus. The conflicting ₹80 Cut Off Price typo in the definitions is retained separately and is not used."
+        },
+        "issue_size_inr": {
+          "value": 312480000,
+          "status": "provisional",
+          "source_value": "3124.80",
+          "source_unit": "INR lakh",
+          "reporting_period": "2023 IPO",
+          "evidence": {
+            "document_sha256": "3657c9ce663ffe4b83d9fd0ad854d84926cc850c6486b5dc594c894a7a46aa1a",
+            "page": 2,
+            "printed_page": null,
+            "locator": "Detailed issue cover: total Offer up to ₹3,124.80 lakh and Basis of Allotment footnote"
+          },
+          "qualification": "Total offer is stated as up to ₹3,124.80 lakh and explicitly subject to finalisation of Basis of Allotment. It includes fresh issue and offer for sale; it is not independently verified realised issuer proceeds.",
+          "scope": "total_offer",
+          "normalization_multiplier": 100000,
+          "realised_proceeds_verified": false
+        },
+        "market_lot": {
+          "value": 2000,
+          "status": "verified_stated_term",
+          "source_value": "2000",
+          "source_unit": "shares",
+          "reporting_period": "2023 IPO",
+          "evidence": {
+            "document_sha256": "3657c9ce663ffe4b83d9fd0ad854d84926cc850c6486b5dc594c894a7a46aa1a",
+            "page": 9,
+            "printed_page": "6",
+            "locator": "Definitions: Lot Size"
+          },
+          "qualification": "Stated 2023 trading lot; distinct from minimum bid quantity and not a fresh current-lot observation."
+        },
+        "minimum_bid_quantity": {
+          "value": 2000,
+          "status": "verified_stated_term",
+          "source_value": "2000",
+          "source_unit": "shares",
+          "reporting_period": "2023 IPO",
+          "evidence": {
+            "document_sha256": "3657c9ce663ffe4b83d9fd0ad854d84926cc850c6486b5dc594c894a7a46aa1a",
+            "page": 7,
+            "printed_page": "4",
+            "locator": "Definitions: Bid Lot"
+          },
+          "qualification": "Stated minimum retail bid lot in shares, not market lot or a monetary minimum investment.",
+          "investor_category": "retail individual"
+        },
+        "open_date": {
+          "value": "2023-12-19",
+          "status": "verified_stated_term",
+          "source_value": "2023-12-19",
+          "source_unit": "ISO date",
+          "reporting_period": "2023 IPO",
+          "evidence": {
+            "document_sha256": "3657c9ce663ffe4b83d9fd0ad854d84926cc850c6486b5dc594c894a7a46aa1a",
+            "page": 1,
+            "printed_page": null,
+            "locator": "Issue Programme: Bid/Issue Opened On"
+          },
+          "qualification": "Stated public offer opening date, separate from the Dec 18 anchor bid date."
+        },
+        "close_date": {
+          "value": "2023-12-21",
+          "status": "verified_stated_term",
+          "source_value": "2023-12-21",
+          "source_unit": "ISO date",
+          "reporting_period": "2023 IPO",
+          "evidence": {
+            "document_sha256": "3657c9ce663ffe4b83d9fd0ad854d84926cc850c6486b5dc594c894a7a46aa1a",
+            "page": 1,
+            "printed_page": null,
+            "locator": "Issue Programme: Bid/Issue Closed On"
+          },
+          "qualification": "Stated public offer closing date."
+        },
+        "listing_date": {
+          "value": null,
+          "status": "missing",
+          "evidence": null,
+          "qualification": "No retained approved original source in this prospectus review establishes the actual listing date. Proposed listing venue, in-principle approval, discovery-table dates or expected listing schedules do not authorize publication."
+        }
+      }
+    },
+    {
+      "discovery_bse_scrip_code": "543970",
+      "source_row_index": 18,
+      "issuer_name": "Shoora Designs Limited",
+      "candidate_id": "shoora-designs-limited",
+      "document": {
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/apr-2024/1712280675615_212.pdf",
+        "response_sha256": "b9dec7d951c778443b2f3bc9abaa37d6b85a609f2b6f6586cc3df569a016da41",
+        "response_bytes": 3954821,
+        "evidence_file": "543970-prospectus.pdf",
+        "workflow_run_id": 36601106741,
+        "workflow_attempt": 1,
+        "artifact_id": 11048768865,
+        "document_type": "prospectus",
+        "document_date": "2023-08-09",
+        "publication_date": null,
+        "landing_displayed_date": "2024-04-04",
+        "pdf_pages": 276,
+        "requested_at": "2026-09-29T16:55:00.802Z",
+        "collected_at": "2026-09-29T16:55:13.564Z"
+      },
+      "unverified_identifiers": {
+        "bse_scrip_code": null,
+        "nse_symbol": null,
+        "isin": null,
+        "board": null
+      },
+      "anchor_bid_date": {
+        "value": null,
+        "page": null,
+        "scope": "not applicable to the fixed-price issue"
+      },
+      "source_inconsistencies": [
+        {
+          "kind": "archive_date_mismatch",
+          "page": 2,
+          "printed_page": null,
+          "observation": "The SEBI landing page is displayed 04-Apr-2024, while the linked original Prospectus is dated 09-Aug-2023 for the August 2023 issue.",
+          "disposition": "Keep landing_displayed_date 2024-04-04 separate from document_date 2023-08-09; do not infer publication date from the attachment directory or later archive landing."
+        }
+      ],
+      "terms": {
+        "price_band": {
+          "value": null,
+          "status": "not_applicable",
+          "source_value": "fixed price",
+          "source_unit": "INR/share",
+          "reporting_period": "2023 IPO",
+          "evidence": {
+            "document_sha256": "b9dec7d951c778443b2f3bc9abaa37d6b85a609f2b6f6586cc3df569a016da41",
+            "page": 2,
+            "printed_page": null,
+            "locator": "Detailed issue cover: Fixed Price Issue"
+          },
+          "qualification": "Fixed-price issue; no book-building price band applies."
+        },
+        "issue_price": {
+          "value": 48,
+          "status": "verified_stated_term",
+          "source_value": "48",
+          "source_unit": "INR/share",
+          "reporting_period": "2023 IPO",
+          "evidence": {
+            "document_sha256": "b9dec7d951c778443b2f3bc9abaa37d6b85a609f2b6f6586cc3df569a016da41",
+            "page": 2,
+            "printed_page": null,
+            "locator": "Detailed issue cover: Issue Price ₹48 per Equity Share"
+          },
+          "qualification": "Stated 2023 fixed issue price; not a market-price observation."
+        },
+        "issue_size_inr": {
+          "value": 20304000,
+          "status": "verified_stated_term",
+          "source_value": "20304.00",
+          "source_unit": "INR thousand",
+          "reporting_period": "2023 IPO",
+          "evidence": {
+            "document_sha256": "b9dec7d951c778443b2f3bc9abaa37d6b85a609f2b6f6586cc3df569a016da41",
+            "page": 2,
+            "printed_page": null,
+            "locator": "Detailed issue cover: 4,23,000 shares aggregating to ₹20,304.00 thousand"
+          },
+          "qualification": "Exact stated gross fresh issue amount. It is not independently verified realised proceeds.",
+          "scope": "total_offer",
+          "normalization_multiplier": 1000,
+          "realised_proceeds_verified": false
+        },
+        "market_lot": {
+          "value": 3000,
+          "status": "verified_stated_term",
+          "source_value": "3000",
+          "source_unit": "shares",
+          "reporting_period": "2023 IPO",
+          "evidence": {
+            "document_sha256": "b9dec7d951c778443b2f3bc9abaa37d6b85a609f2b6f6586cc3df569a016da41",
+            "page": 8,
+            "printed_page": "Page 8 of 276",
+            "locator": "Definitions: Lot Size / Market Lot"
+          },
+          "qualification": "Stated 2023 market and trading lot; not a fresh current-lot observation."
+        },
+        "minimum_bid_quantity": {
+          "value": 3000,
+          "status": "verified_stated_term",
+          "source_value": "3000",
+          "source_unit": "shares",
+          "reporting_period": "2023 IPO",
+          "evidence": {
+            "document_sha256": "b9dec7d951c778443b2f3bc9abaa37d6b85a609f2b6f6586cc3df569a016da41",
+            "page": 201,
+            "printed_page": "Page 201 of 276",
+            "locator": "Maximum and Minimum Application Size: Retail Individual Applicants"
+          },
+          "qualification": "Stated retail minimum application quantity in shares, not a monetary minimum investment.",
+          "investor_category": "retail individual"
+        },
+        "open_date": {
+          "value": "2023-08-17",
+          "status": "verified_stated_term",
+          "source_value": "2023-08-17",
+          "source_unit": "ISO date",
+          "reporting_period": "2023 IPO",
+          "evidence": {
+            "document_sha256": "b9dec7d951c778443b2f3bc9abaa37d6b85a609f2b6f6586cc3df569a016da41",
+            "page": 1,
+            "printed_page": null,
+            "locator": "Issue Programme: Issue Opens On"
+          },
+          "qualification": "Stated public fixed-price issue opening date."
+        },
+        "close_date": {
+          "value": "2023-08-21",
+          "status": "verified_stated_term",
+          "source_value": "2023-08-21",
+          "source_unit": "ISO date",
+          "reporting_period": "2023 IPO",
+          "evidence": {
+            "document_sha256": "b9dec7d951c778443b2f3bc9abaa37d6b85a609f2b6f6586cc3df569a016da41",
+            "page": 1,
+            "printed_page": null,
+            "locator": "Issue Programme: Issue Closes On"
+          },
+          "qualification": "Stated public fixed-price issue closing date."
+        },
+        "listing_date": {
+          "value": null,
+          "status": "missing",
+          "evidence": null,
+          "qualification": "No retained approved original source in this prospectus review establishes the actual listing date. Proposed listing venue, in-principle approval, discovery-table dates or expected listing schedules do not authorize publication."
+        }
+      }
+    },
+    {
+      "discovery_bse_scrip_code": "543895",
+      "source_row_index": 20,
+      "issuer_name": "Exhicon Events Media Solutions Limited",
+      "candidate_id": "exhicon-events-media-solutions-limited",
+      "document": {
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/apr-2023/1681276407209.pdf",
+        "response_sha256": "997871475dfb82efc1711258068a1f004697ec9ee07f789e74c221ec0be3924b",
+        "response_bytes": 4865717,
+        "evidence_file": "543895-prospectus.pdf",
+        "workflow_run_id": 36601106741,
+        "workflow_attempt": 1,
+        "artifact_id": 11048768865,
+        "document_type": "prospectus",
+        "document_date": "2023-04-10",
+        "publication_date": null,
+        "landing_displayed_date": "2023-04-11",
+        "pdf_pages": 278,
+        "requested_at": "2026-09-29T16:55:14.669Z",
+        "collected_at": "2026-09-29T16:55:30.278Z"
+      },
+      "unverified_identifiers": {
+        "bse_scrip_code": null,
+        "nse_symbol": null,
+        "isin": null,
+        "board": null
+      },
+      "anchor_bid_date": {
+        "value": "2023-03-29",
+        "page": 1,
+        "scope": "anchor investor bidding date; not public opening"
+      },
+      "source_inconsistencies": [
+        {
+          "kind": "offer_date_definition_conflict",
+          "page": 7,
+          "printed_page": "3",
+          "observation": "The definitions section misstates Bid/Offer Closing Date as 29-Mar-2023 and elsewhere reverses or mislabels opening/closing dates. The cover Bid/Issue Programme states anchor 29-Mar, public opening 31-Mar and closing 05-Apr.",
+          "disposition": "Use the explicit cover Bid/Issue Programme for public open/close dates and retain the definitions inconsistency without silently correcting the source."
+        }
+      ],
+      "terms": {
+        "price_band": {
+          "value": {
+            "min": 61,
+            "max": 64
+          },
+          "status": "verified_stated_term",
+          "source_value": "61–64",
+          "source_unit": "INR/share",
+          "reporting_period": "2023 IPO",
+          "evidence": {
+            "document_sha256": "997871475dfb82efc1711258068a1f004697ec9ee07f789e74c221ec0be3924b",
+            "page": 2,
+            "printed_page": null,
+            "locator": "Detailed issue cover: Price Band ₹61 to ₹64"
+          },
+          "qualification": "Stated 2023 book-building price band; not a market-price observation."
+        },
+        "issue_price": {
+          "value": 64,
+          "status": "verified_stated_term",
+          "source_value": "64",
+          "source_unit": "INR/share",
+          "reporting_period": "2023 IPO",
+          "evidence": {
+            "document_sha256": "997871475dfb82efc1711258068a1f004697ec9ee07f789e74c221ec0be3924b",
+            "page": 2,
+            "printed_page": null,
+            "locator": "Detailed issue cover and definitions: Issue Price ₹64 per Equity Share"
+          },
+          "qualification": "Final stated issue price in the Prospectus; not a market-price observation."
+        },
+        "issue_size_inr": {
+          "value": 211200000,
+          "status": "provisional",
+          "source_value": "2112.00",
+          "source_unit": "INR lakh",
+          "reporting_period": "2023 IPO",
+          "evidence": {
+            "document_sha256": "997871475dfb82efc1711258068a1f004697ec9ee07f789e74c221ec0be3924b",
+            "page": 2,
+            "printed_page": null,
+            "locator": "Detailed issue cover: 33,00,000 shares aggregating up to ₹2,112.00 lakh"
+          },
+          "qualification": "Total fresh issue is stated as up to ₹2,112.00 lakh and the issue definition is subject to finalisation of Basis of Allotment. Do not label it independently verified realised proceeds.",
+          "scope": "total_offer",
+          "normalization_multiplier": 100000,
+          "realised_proceeds_verified": false
+        },
+        "market_lot": {
+          "value": 2000,
+          "status": "verified_stated_term",
+          "source_value": "2000",
+          "source_unit": "shares",
+          "reporting_period": "2023 IPO",
+          "evidence": {
+            "document_sha256": "997871475dfb82efc1711258068a1f004697ec9ee07f789e74c221ec0be3924b",
+            "page": 189,
+            "printed_page": "185",
+            "locator": "Minimum Application Value, Market Lot and Trading Lot"
+          },
+          "qualification": "Stated 2023 minimum trading contract and market lot; not a fresh current-lot observation."
+        },
+        "minimum_bid_quantity": {
+          "value": 2000,
+          "status": "verified_stated_term",
+          "source_value": "2000",
+          "source_unit": "shares",
+          "reporting_period": "2023 IPO",
+          "evidence": {
+            "document_sha256": "997871475dfb82efc1711258068a1f004697ec9ee07f789e74c221ec0be3924b",
+            "page": 7,
+            "printed_page": "3",
+            "locator": "Definitions: Bid Lot"
+          },
+          "qualification": "Stated minimum bid lot in shares, not market lot or a monetary minimum investment.",
+          "investor_category": "retail individual"
+        },
+        "open_date": {
+          "value": "2023-03-31",
+          "status": "verified_stated_term",
+          "source_value": "2023-03-31",
+          "source_unit": "ISO date",
+          "reporting_period": "2023 IPO",
+          "evidence": {
+            "document_sha256": "997871475dfb82efc1711258068a1f004697ec9ee07f789e74c221ec0be3924b",
+            "page": 1,
+            "printed_page": null,
+            "locator": "Bid/Issue Programme: Bid/Issue Opens On"
+          },
+          "qualification": "Stated public opening date from the cover programme. A conflicting definitions entry is retained separately and not used."
+        },
+        "close_date": {
+          "value": "2023-04-05",
+          "status": "verified_stated_term",
+          "source_value": "2023-04-05",
+          "source_unit": "ISO date",
+          "reporting_period": "2023 IPO",
+          "evidence": {
+            "document_sha256": "997871475dfb82efc1711258068a1f004697ec9ee07f789e74c221ec0be3924b",
+            "page": 1,
+            "printed_page": null,
+            "locator": "Bid/Issue Programme: Bid/Issue Closes On"
+          },
+          "qualification": "Stated public closing date from the cover programme. A conflicting definitions entry is retained separately and not used."
+        },
+        "listing_date": {
+          "value": null,
+          "status": "missing",
+          "evidence": null,
+          "qualification": "No retained approved original source in this prospectus review establishes the actual listing date. Proposed listing venue, in-principle approval, discovery-table dates or expected listing schedules do not authorize publication."
+        }
+      }
+    },
+    {
+      "discovery_bse_scrip_code": "543953",
+      "source_row_index": 22,
+      "issuer_name": "Khazanchi Jewellers Limited",
+      "candidate_id": "khazanchi-jewellers-limited",
+      "document": {
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2023/1689936568009.pdf",
+        "response_sha256": "9bd3b574f12daaf6550932efd84bf005ded2fb664af4d495831b878eab5f2bdf",
+        "response_bytes": 4222459,
+        "evidence_file": "543953-prospectus.pdf",
+        "workflow_run_id": 36601106741,
+        "workflow_attempt": 1,
+        "artifact_id": 11048768865,
+        "document_type": "prospectus",
+        "document_date": "2023-07-15",
+        "publication_date": null,
+        "landing_displayed_date": "2023-07-21",
+        "pdf_pages": 263,
+        "requested_at": "2026-09-29T16:55:31.138Z",
+        "collected_at": "2026-09-29T16:55:44.666Z"
+      },
+      "unverified_identifiers": {
+        "bse_scrip_code": null,
+        "nse_symbol": null,
+        "isin": null,
+        "board": null
+      },
+      "anchor_bid_date": {
+        "value": null,
+        "page": null,
+        "scope": "not applicable to the fixed-price issue"
+      },
+      "source_inconsistencies": [],
+      "terms": {
+        "price_band": {
+          "value": null,
+          "status": "not_applicable",
+          "source_value": "fixed price",
+          "source_unit": "INR/share",
+          "reporting_period": "2023 IPO",
+          "evidence": {
+            "document_sha256": "9bd3b574f12daaf6550932efd84bf005ded2fb664af4d495831b878eab5f2bdf",
+            "page": 1,
+            "printed_page": null,
+            "locator": "Cover: Fixed Price Issue"
+          },
+          "qualification": "Fixed-price issue; no book-building price band applies."
+        },
+        "issue_price": {
+          "value": 140,
+          "status": "verified_stated_term",
+          "source_value": "140",
+          "source_unit": "INR/share",
+          "reporting_period": "2023 IPO",
+          "evidence": {
+            "document_sha256": "9bd3b574f12daaf6550932efd84bf005ded2fb664af4d495831b878eab5f2bdf",
+            "page": 1,
+            "printed_page": null,
+            "locator": "Cover: Issue Price ₹140 per Equity Share"
+          },
+          "qualification": "Stated 2023 fixed issue price; not a market-price observation."
+        },
+        "issue_size_inr": {
+          "value": 967400000,
+          "status": "verified_stated_term",
+          "source_value": "9674.00",
+          "source_unit": "INR lakh",
+          "reporting_period": "2023 IPO",
+          "evidence": {
+            "document_sha256": "9bd3b574f12daaf6550932efd84bf005ded2fb664af4d495831b878eab5f2bdf",
+            "page": 1,
+            "printed_page": null,
+            "locator": "Cover: 69,10,000 shares aggregating to ₹9,674.00 lakh"
+          },
+          "qualification": "Exact stated gross fresh issue amount. It is not independently verified realised proceeds.",
+          "scope": "total_offer",
+          "normalization_multiplier": 100000,
+          "realised_proceeds_verified": false
+        },
+        "market_lot": {
+          "value": 1000,
+          "status": "verified_stated_term",
+          "source_value": "1000",
+          "source_unit": "shares",
+          "reporting_period": "2023 IPO",
+          "evidence": {
+            "document_sha256": "9bd3b574f12daaf6550932efd84bf005ded2fb664af4d495831b878eab5f2bdf",
+            "page": 9,
+            "printed_page": "6",
+            "locator": "Definitions: Lot Size"
+          },
+          "qualification": "Stated 2023 market and trading lot; not a fresh current-lot observation."
+        },
+        "minimum_bid_quantity": {
+          "value": 1000,
+          "status": "verified_stated_term",
+          "source_value": "1000",
+          "source_unit": "shares",
+          "reporting_period": "2023 IPO",
+          "evidence": {
+            "document_sha256": "9bd3b574f12daaf6550932efd84bf005ded2fb664af4d495831b878eab5f2bdf",
+            "page": 216,
+            "printed_page": "213",
+            "locator": "Maximum and Minimum Application Size: Retail Individual Investors"
+          },
+          "qualification": "Stated retail minimum application quantity in shares, not a monetary minimum investment.",
+          "investor_category": "retail individual"
+        },
+        "open_date": {
+          "value": "2023-07-24",
+          "status": "verified_stated_term",
+          "source_value": "2023-07-24",
+          "source_unit": "ISO date",
+          "reporting_period": "2023 IPO",
+          "evidence": {
+            "document_sha256": "9bd3b574f12daaf6550932efd84bf005ded2fb664af4d495831b878eab5f2bdf",
+            "page": 1,
+            "printed_page": null,
+            "locator": "Issue Programme: Issue Opens On"
+          },
+          "qualification": "Stated public fixed-price issue opening date."
+        },
+        "close_date": {
+          "value": "2023-07-28",
+          "status": "verified_stated_term",
+          "source_value": "2023-07-28",
+          "source_unit": "ISO date",
+          "reporting_period": "2023 IPO",
+          "evidence": {
+            "document_sha256": "9bd3b574f12daaf6550932efd84bf005ded2fb664af4d495831b878eab5f2bdf",
+            "page": 1,
+            "printed_page": null,
+            "locator": "Issue Programme: Issue Closes On"
+          },
+          "qualification": "Stated public fixed-price issue closing date."
+        },
+        "listing_date": {
+          "value": null,
+          "status": "missing",
+          "evidence": null,
+          "qualification": "No retained approved original source in this prospectus review establishes the actual listing date. Proposed listing venue, in-principle approval, discovery-table dates or expected listing schedules do not authorize publication."
+        }
+      }
+    }
+  ],
+  "disposition_counts": {
+    "issuers": 4,
+    "field_dispositions": 32,
+    "verified_stated_terms": 24,
+    "provisional": 2,
+    "not_applicable": 2,
+    "missing": 4
+  },
+  "next_required_evidence": [
+    "Retain approved original exchange listing notices or equivalent authoritative actual-listing evidence for all four candidates, with actual listing date, exchange identity and source bytes.",
+    "Re-run all-year exact identity reconciliation against latest recovery immediately before any separately reviewed import; this source-stage no-match result is not permanent alias clearance.",
+    "Preserve Shanti's Cut Off Price typo, Exhicon's offer-date definitions conflict and Shoora's later SEBI landing/archive date as source inconsistencies rather than silently normalizing them away.",
+    "Keep provisional issue amounts provisional until stronger final evidence justifies a status change; exact stated fixed-price gross amounts are still not claims of realised proceeds.",
+    "After a separately reviewed import, verify exact served public projections before closing queue rows."
+  ]
+}

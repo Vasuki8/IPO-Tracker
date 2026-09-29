@@ -1,0 +1,263 @@
+{
+  "schema_version": "1.0.0",
+  "status": "retained_source_set_complete",
+  "batch_id": "bse-2023-ssek",
+  "source_set_complete": true,
+  "single_collection_complete": true,
+  "publication_import_allowed": false,
+  "semantic_review_complete": false,
+  "complete_indian_ipo_universe": false,
+  "discovery_source_refetched": false,
+  "plan_path": "data/discovery/bse-2023-ssek-source-plan-2026-09-29.json",
+  "plan_sha256": "c81067ec3c2f62bde5966a23241e4c6d6567ca35390b65d3907a849069a7896f",
+  "source_queue": "data/discovery/bse-2023-review-queue-2026-09-28.json",
+  "source_queue_sha256": "975d244fc1a6166aebbb9a4c4da64b60fe3a85e1b3c1d84b9eca3ab4b2812cb4",
+  "independently_checked_at": "2026-09-29T16:56:00.000Z",
+  "independent_verification": "Downloaded artifact ZIP SHA-256 matched the Actions digest; all eight retained response hashes and byte lengths, source-plan and immutable queue bindings, landing-to-PDF links, PDF magic, cover dates, page counts, and exact all-year identity-preflight result were checked from the original artifact. This does not approve publication.",
+  "unique_source_documents": 8,
+  "unique_response_bytes": 16817590,
+  "collection": {
+    "workflow_run_id": 36601106741,
+    "workflow_attempt": 1,
+    "source_commit": "a48300331a8b2d43e14088ea4c9825ae887d7199",
+    "collection_started_at": "2026-09-29T16:54:46.289Z",
+    "collection_completed_at": "2026-09-29T16:55:44.667Z",
+    "artifact": {
+      "id": 11048768865,
+      "name": "bse-2023-ssek-evidence-36601106741-1",
+      "digest": "sha256:938d65dbc230e0f0a3264a80dff8fa772d9d99695a7347db0b54a60fd914fcda",
+      "bytes": 16843453,
+      "url": "https://github.com/Vasuki8/IPO-Tracker/actions/runs/36601106741/artifacts/11048768865",
+      "retention_days": 14,
+      "expires_at": "2026-10-13T16:55:44Z"
+    },
+    "raw_receipt_sha256": "704b090187ce88ffe8fbc3d76c41f36c498b2a398afcb89a4239ad1c5c77aa22",
+    "identity_preflight_sha256": "8123287afe2966af1b5dc88bcd8c870e584c476585c160a9567fa4cb39e5e8a8",
+    "identity_preflight": {
+      "schema_version": "1.0.0",
+      "status": "read_only_all_year_identity_preflight",
+      "target_year": 2023,
+      "recovery_records_checked": 1383,
+      "public_records_checked": 1383,
+      "next_bounded_review_codes": [
+        "544059",
+        "543970",
+        "543895",
+        "543953"
+      ],
+      "results": [
+        {
+          "code": "544059",
+          "issuer_name": "SHANTI SPINTEX LIMITED",
+          "canonical_issuer": "shanti spintex",
+          "recovery_matches": [],
+          "public_matches": [],
+          "exact_code_different_name": [],
+          "identity_hold": false,
+          "publication_import_allowed": false
+        },
+        {
+          "code": "543970",
+          "issuer_name": "Shoora Designs Limited",
+          "canonical_issuer": "shoora designs",
+          "recovery_matches": [],
+          "public_matches": [],
+          "exact_code_different_name": [],
+          "identity_hold": false,
+          "publication_import_allowed": false
+        },
+        {
+          "code": "543895",
+          "issuer_name": "Exhicon Events Media Solutions Limited",
+          "canonical_issuer": "exhicon events media solutions",
+          "recovery_matches": [],
+          "public_matches": [],
+          "exact_code_different_name": [],
+          "identity_hold": false,
+          "publication_import_allowed": false
+        },
+        {
+          "code": "543953",
+          "issuer_name": "Khazanchi Jewellers Limited",
+          "canonical_issuer": "khazanchi jewellers",
+          "recovery_matches": [],
+          "public_matches": [],
+          "exact_code_different_name": [],
+          "identity_hold": false,
+          "publication_import_allowed": false
+        }
+      ],
+      "identity_holds": 0,
+      "publication_import_allowed": false,
+      "note": "Exact canonical-name/BSE-code reconciliation only. A clear result permits source review, not publication; fuzzy matching is intentionally excluded.",
+      "checked_at": "2026-09-29T16:55:44.668Z",
+      "repository_ref": "a48300331a8b2d43e14088ea4c9825ae887d7199"
+    }
+  },
+  "documents": [
+    {
+      "code": "544059",
+      "kind": "landing",
+      "url": "https://www.sebi.gov.in/filings/public-issues/dec-2023/shanti-spintex-limited-sme-issue-prospectus_80211.html",
+      "requested_at": "2026-09-29T16:54:46.289Z",
+      "collected_at": "2026-09-29T16:54:47.227Z",
+      "http_status": 200,
+      "content_type": "text/html; charset=UTF-8",
+      "accepted": true,
+      "error": null,
+      "evidence_file": "544059-landing.html",
+      "response_sha256": "d6896a975b0017d66a500ca3c38b8378d2d29341d97dc1aa26626aed3a610d47",
+      "response_bytes": 8173
+    },
+    {
+      "code": "544059",
+      "kind": "prospectus",
+      "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2023/1703566950969.pdf",
+      "requested_at": "2026-09-29T16:54:47.227Z",
+      "collected_at": "2026-09-29T16:54:59.906Z",
+      "http_status": 200,
+      "content_type": "application/pdf",
+      "accepted": true,
+      "error": null,
+      "evidence_file": "544059-prospectus.pdf",
+      "response_sha256": "3657c9ce663ffe4b83d9fd0ad854d84926cc850c6486b5dc594c894a7a46aa1a",
+      "response_bytes": 3741962
+    },
+    {
+      "code": "543970",
+      "kind": "landing",
+      "url": "https://www.sebi.gov.in/filings/public-issues/apr-2024/shoora-designs-limited_82728.html",
+      "requested_at": "2026-09-29T16:54:59.906Z",
+      "collected_at": "2026-09-29T16:55:00.802Z",
+      "http_status": 200,
+      "content_type": "text/html; charset=UTF-8",
+      "accepted": true,
+      "error": null,
+      "evidence_file": "543970-landing.html",
+      "response_sha256": "637da06f70965b69a8c8ed665a42112761604accbcd8946fe5bda9d3459550cd",
+      "response_bytes": 8052
+    },
+    {
+      "code": "543970",
+      "kind": "prospectus",
+      "url": "https://www.sebi.gov.in/sebi_data/attachdocs/apr-2024/1712280675615_212.pdf",
+      "requested_at": "2026-09-29T16:55:00.802Z",
+      "collected_at": "2026-09-29T16:55:13.564Z",
+      "http_status": 200,
+      "content_type": "application/pdf",
+      "accepted": true,
+      "error": null,
+      "evidence_file": "543970-prospectus.pdf",
+      "response_sha256": "b9dec7d951c778443b2f3bc9abaa37d6b85a609f2b6f6586cc3df569a016da41",
+      "response_bytes": 3954821
+    },
+    {
+      "code": "543895",
+      "kind": "landing",
+      "url": "https://www.sebi.gov.in/filings/public-issues/apr-2023/exhicon-events-media-solutions-limited-sme-issue-prospectus_70034.html",
+      "requested_at": "2026-09-29T16:55:13.564Z",
+      "collected_at": "2026-09-29T16:55:14.669Z",
+      "http_status": 200,
+      "content_type": "text/html; charset=UTF-8",
+      "accepted": true,
+      "error": null,
+      "evidence_file": "543895-landing.html",
+      "response_sha256": "2d1eeab98cdb16a8650e4366b788b2c5da29a330e8be3c7c8d69cfc7864b6c4c",
+      "response_bytes": 8268
+    },
+    {
+      "code": "543895",
+      "kind": "prospectus",
+      "url": "https://www.sebi.gov.in/sebi_data/attachdocs/apr-2023/1681276407209.pdf",
+      "requested_at": "2026-09-29T16:55:14.669Z",
+      "collected_at": "2026-09-29T16:55:30.278Z",
+      "http_status": 200,
+      "content_type": "application/pdf",
+      "accepted": true,
+      "error": null,
+      "evidence_file": "543895-prospectus.pdf",
+      "response_sha256": "997871475dfb82efc1711258068a1f004697ec9ee07f789e74c221ec0be3924b",
+      "response_bytes": 4865717
+    },
+    {
+      "code": "543953",
+      "kind": "landing",
+      "url": "https://www.sebi.gov.in/filings/public-issues/jul-2023/khazanchi-jewellers-limited-prospectus_74227.html",
+      "requested_at": "2026-09-29T16:55:30.278Z",
+      "collected_at": "2026-09-29T16:55:31.138Z",
+      "http_status": 200,
+      "content_type": "text/html; charset=UTF-8",
+      "accepted": true,
+      "error": null,
+      "evidence_file": "543953-landing.html",
+      "response_sha256": "e9a118bcac02b7b76cd944062f414e8eb4e9ff755f01c07e2106fdd0668b809b",
+      "response_bytes": 8138
+    },
+    {
+      "code": "543953",
+      "kind": "prospectus",
+      "url": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2023/1689936568009.pdf",
+      "requested_at": "2026-09-29T16:55:31.138Z",
+      "collected_at": "2026-09-29T16:55:44.666Z",
+      "http_status": 200,
+      "content_type": "application/pdf",
+      "accepted": true,
+      "error": null,
+      "evidence_file": "543953-prospectus.pdf",
+      "response_sha256": "9bd3b574f12daaf6550932efd84bf005ded2fb664af4d495831b878eab5f2bdf",
+      "response_bytes": 4222459
+    }
+  ],
+  "landing_pdf_bindings": [
+    {
+      "code": "544059",
+      "link_found": true
+    },
+    {
+      "code": "543970",
+      "link_found": true
+    },
+    {
+      "code": "543895",
+      "link_found": true
+    },
+    {
+      "code": "543953",
+      "link_found": true
+    }
+  ],
+  "document_identity_observations": [
+    {
+      "code": "544059",
+      "document_type": "prospectus",
+      "physical_pdf_page": 1,
+      "pdf_pages": 253,
+      "cover_date_observed": "2023-12-22",
+      "source_response_sha256": "3657c9ce663ffe4b83d9fd0ad854d84926cc850c6486b5dc594c894a7a46aa1a"
+    },
+    {
+      "code": "543970",
+      "document_type": "prospectus",
+      "physical_pdf_page": 2,
+      "pdf_pages": 276,
+      "cover_date_observed": "2023-08-09",
+      "source_response_sha256": "b9dec7d951c778443b2f3bc9abaa37d6b85a609f2b6f6586cc3df569a016da41"
+    },
+    {
+      "code": "543895",
+      "document_type": "prospectus",
+      "physical_pdf_page": 1,
+      "pdf_pages": 278,
+      "cover_date_observed": "2023-04-10",
+      "source_response_sha256": "997871475dfb82efc1711258068a1f004697ec9ee07f789e74c221ec0be3924b"
+    },
+    {
+      "code": "543953",
+      "document_type": "prospectus",
+      "physical_pdf_page": 1,
+      "pdf_pages": 263,
+      "cover_date_observed": "2023-07-15",
+      "source_response_sha256": "9bd3b574f12daaf6550932efd84bf005ded2fb664af4d495831b878eab5f2bdf"
+    }
+  ]
+}

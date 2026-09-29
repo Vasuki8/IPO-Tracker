@@ -39,21 +39,17 @@ Collection time, source observation, dataset generation and Pages publication ar
 
 ## Handoff for the next prompt
 
-The IREDA/Motisons/RBZ/Shelter release is complete and live-verified. The 2023 immutable review ledger is now **12 reviewed/published + 18 awaiting review**. The bounded IRMS publisher is retired; do not replay the completed import.
+The next four 2023 candidates now have a complete retained SEBI source set and reviewed Prospectus terms, but **no actual-listing approval and no publication permission**. The 2023 ledger remains **12 reviewed/published + 18 awaiting review**.
 
-Continue with **SHANTI SPINTEX LIMITED (544059)**, **Shoora Designs Limited (543970)**, **Exhicon Events Media Solutions Limited (543895)** and **Khazanchi Jewellers Limited (543953)**. Start with official source retention and all-year identity reconciliation, then prepare a separately reviewed bounded import only for unambiguous evidence-backed identities.
+Continue with **SHANTI SPINTEX LIMITED (544059)**, **Shoora Designs Limited (543970)**, **Exhicon Events Media Solutions Limited (543895)** and **Khazanchi Jewellers Limited (543953)** by retaining authoritative original actual-listing evidence. Do not redo the completed Prospectus review. Preserve Shanti's ₹80 Cut Off Price typo, Exhicon's definitions-date conflict, Shoora's 2024 SEBI landing/archive date versus its 2023 Prospectus date, and the provisional Shanti/Exhicon issue amounts.
 
-**The original 2022 queue is complete: 14 reviewed/published + 2 existing-recovery alias + 0 awaiting review.** The original 2021 queue is also complete. Preserve historical conflicts, aliases, evidence hashes and nulls; never replay completed releases.
-
-Repository hardening is recorded in [PROJECT_STATUS](docs/PROJECT_STATUS.md). Administration/legal follow-ups remain tracked in issues #339, #347 and #348.
+The complete source collection is recorded in [data/evidence/bse-2023-ssek-source-receipt-2026-09-29.json](data/evidence/bse-2023-ssek-source-receipt-2026-09-29.json); the semantic term review is [data/discovery/bse-2023-ssek-field-review-2026-09-29.json](data/discovery/bse-2023-ssek-field-review-2026-09-29.json). The collection artifact expires 13-Oct-2026.
 
 ### Exact next backend task
 
-The original BSE 2022 queue has remaining **0** unmatched rows requiring import.
+Collect and review original exchange/equivalent evidence that establishes actual listing date and exchange identity for **544059, 543970, 543895 and 543953**. Re-run all-year exact identity reconciliation on latest main before any later import. Prepare a separate reviewed import only after those listing holds are cleared, then verify exact served public projections before advancing the queue.
 
-Review **SHANTI SPINTEX LIMITED (544059)**, **Shoora Designs Limited (543970)**, **Exhicon Events Media Solutions Limited (543895)** and **Khazanchi Jewellers Limited (543953)** from the pinned 2023 queue. Do not treat discovery values as publication authority. Retain original official evidence, reconcile identity across every recovery year, preserve conflicts/nulls, and only publish after a separate reviewed manifest and exact served verification.
-
-Use `node scripts/check-bse-2023-progress.mjs`, `node scripts/check-bse-2022-disposition.mjs`, `node scripts/check-retained-bse-snapshot.mjs`, `node scripts/build-published-data.mjs --check` and `node scripts/validate-data.mjs` as baseline guards. The completed IRMS live receipt is [docs/verification/bse-2023-irms-live-2026-09-29.json](docs/verification/bse-2023-irms-live-2026-09-29.json).
+Use `node scripts/test-bse-2023-ssek-field-review.mjs`, `node scripts/check-bse-2023-ssek-field-review.mjs`, `node scripts/check-bse-2023-progress.mjs`, `node scripts/check-bse-2022-disposition.mjs`, `node scripts/check-retained-bse-snapshot.mjs`, `node scripts/build-published-data.mjs --check` and `node scripts/validate-data.mjs`.
 
 ## Historical release notes
 

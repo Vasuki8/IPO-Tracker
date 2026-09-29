@@ -1,45 +1,41 @@
 # Project status and handoff
 
-Updated **2026-09-29 (UTC)** after the verified live closeout of PR #342 in **PR #343** and the repository loose-end hardening sequence. Active product priority remains **P1 issuer identity and data correctness**.
+Updated **2026-09-29 (UTC)** after completing the bounded **SSEK** source and Prospectus-term review for **SHANTI SPINTEX LIMITED (544059)**, **Shoora Designs Limited (543970)**, **Exhicon Events Media Solutions Limited (543895)** and **Khazanchi Jewellers Limited (543953)**. Active priority remains **P1 issuer identity and data correctness**.
 
-The IREDA/Motisons/RBZ/Shelter release is **fully published and live-verified**. The bounded `reviewed_irms` publisher has been retired. The immutable 2023 review ledger is now **12 reviewed/published + 18 awaiting review**. Do not replay the IRMS import or its temporary verifier.
+The immutable 2023 review ledger remains **12 reviewed/published + 18 awaiting review**. This source/field review does **not** advance those four rows and does not authorize publication.
 
 ## Exact next bounded task
 
-Review **SHANTI SPINTEX LIMITED (544059)**, **Shoora Designs Limited (543970)**, **Exhicon Events Media Solutions Limited (543895)** and **Khazanchi Jewellers Limited (543953)** from the existing immutable 2023 queue. Start with official source retention and all-year identity reconciliation; preserve discovery-only values as non-authoritative until issuer-specific evidence is reviewed. Do not infer missing application terms or overwrite later recovery evidence.
+Retain approved original **actual-listing evidence** for the same four issuers: an exchange listing notice, annual report with explicit actual listing statement, or equivalent authoritative original source that establishes actual listing date and exchange identity. Keep BSE codes from the discovery queue non-authoritative until that evidence is reviewed. Re-run exact all-year identity reconciliation immediately before any later import.
 
-The next batch remains part of the bounded 30-row 2023 snapshot, not a fresh complete-universe audit. The original 2022 queue remains **14 reviewed/published + 2 existing-recovery alias + 0 awaiting review**; 2021 is also complete.
+After actual-listing review, prepare a separate pinned import manifest, preserve all source inconsistencies and provisional qualifications, publish only after current-recovery collision checks, then verify exact served projections before closing any queue row.
 
-## IRMS live closeout
+## SSEK source retention
 
-PR #342 published exactly four reviewed records through data commit **ed5599db1a625f7d8513c8990b29e1bc40ab6375**. The publication artifact recorded **1,378 existing records unchanged + 4 additions = 1,382 published records**.
+Read-only source workflow run **36601106741**, attempt **1**, retained all **8/8** planned official SEBI responses: four landing pages and four linked Prospectus PDFs. Total retained original response bytes: **16,817,590**. Artifact **11048768865** is **16,843,453 bytes**, ZIP SHA-256 **938d65dbc230e0f0a3264a80dff8fa772d9d99695a7347db0b54a60fd914fcda**, expiring **13-Oct-2026 16:55 UTC**.
 
-PR #343's read-only verifier fetched the actual served `data/ipos.json` on the first attempt at **2026-09-29T14:41:23.875Z**. The served response was **7,738,917 bytes**, SHA-256 **f61a41fc9b0db23f256dfc9b4a55a6183bbbbf32aa62cd21949e633a78a273b9**, generated at **2026-09-29T14:37:16.380Z**, and matched all four exact reviewed public projections. The durable [live receipt](verification/bse-2023-irms-live-2026-09-29.json) is backed by workflow run **36584512199**, artifact **11040473771**, ZIP SHA-256 **90b963dec8cd97b4845bc21805909e1e077b95b14fb4da4b1b53fb3fd20316ec**. Raw artifact retention expires **13-Oct-2026**.
+The durable [source receipt](../data/evidence/bse-2023-ssek-source-receipt-2026-09-29.json) retains every original response SHA-256/length and the exact identity preflight. At collection time, **1,383 recovery records and 1,383 public records** were checked with exact stable-id/canonical-name/BSE-code matching; all four candidates had **zero matches and zero identity holds**. This permits source review only and is not permanent alias clearance or import approval.
 
-The four closed records are Indian Renewable Energy Development Agency Limited, Motisons Jewellers Limited, RBZ Jewellers Limited and SHELTER PHARMA LIMITED. The approved manifest and original listing/prospectus evidence remain unchanged. IREDA's offer-total discrepancy remains an unresolved conflict; Motisons/RBZ amounts remain provisional; Shelter remains fixed-price with no invented band. Market lot, minimum bid quantity and minimum application amount remain distinct.
+The temporary source-collection workflow is removed from the final review branch after the complete artifact was retained. Collector/plan/test code stays available for reproducibility but no recurring writer or collector is added.
 
-The [release lifecycle](verification/bse-2023-irms-release-2026-09-29.json) is now `verified_and_publisher_retired`. The temporary closeout workflow is not retained in the final tree, and the one-shot `reviewed_irms` job has been removed from `update-ipos.yml`.
+## Reviewed Prospectus terms
 
-## Repository loose-end hardening completed
+The [field review](../data/discovery/bse-2023-ssek-field-review-2026-09-29.json) records **32 dispositions: 24 verified stated terms, 2 provisional issue amounts, 2 fixed-price band-not-applicable fields and 4 missing actual listing dates**. Original retained PDF pages were visually checked locally; Poppler text extraction was used without OCR.
 
-The repository-wide audit and repair sequence completed the following safe work:
+**SHANTI SPINTEX LIMITED:** Prospectus dated **22-Dec-2023**; price band **₹66–₹70**, final Offer Price **₹70**, total offer **up to ₹3,124.80 lakh / ₹312.48m** retained as provisional, market lot **2,000**, retail minimum bid **2,000**, public open/close **19-Dec / 21-Dec-2023**, anchor **18-Dec-2023**. Preserve the definitions typo stating a **₹80 Cut Off Price**; it is not used because the same Prospectus states Cap Price and final Offer Price at ₹70.
 
-- stale PRs **#152, #196, #246, #247, #317 and #335** are closed unmerged after semantic supersession review;
-- completed one-shot release/materialization writers were retired, followed by consolidation of redundant completed-release validators; the active workflow surface fell from **50 to 23** before the temporary IRMS closeout workflow was removed;
-- production-write workflow capability is guarded by an explicit allowlist for the sanctioned operational writers;
-- missed scheduled starts are now monitored separately from execution failures;
-- DRHP pagination drift now fails closed after bounded retry; two fresh attempts on **29-Sep-2026** still alternated between SEBI totals **2215/2213**, so the last good 96-company / 98-filing snapshot remains retained rather than replaced by an inconsistent scan;
-- historical SEBI PDF downloads now resume partial transfers. The first post-merge production runs reduced offer-date transport errors **33 → 23** and historical PDF-field errors **5 → 2**;
-- `SECURITY.md`, `CONTRIBUTING.md`, CODEOWNERS, PR checks and focused issue templates are now present.
+**Shoora Designs Limited:** original Prospectus dated **09-Aug-2023** despite the SEBI landing page being displayed **04-Apr-2024**. Preserve those as separate clocks. Fixed price **₹48**, gross fresh issue **₹20.304m**, market lot/minimum retail application **3,000**, public open/close **17-Aug / 21-Aug-2023**. No price band or anchor date is invented.
 
-Three repository-administration/legal items remain intentionally open because the current connector cannot or should not decide them automatically: **#339** protect `main` without breaking sanctioned Actions writers; **#347** decide source-code license vs data redistribution terms; **#348** delete the **310** exact merged-PR branch tips identified by the branch audit. Do not bulk-delete the remaining closed-unmerged/no-PR/advanced-after-merge branches without semantic review.
+**Exhicon Events Media Solutions Limited:** Prospectus dated **10-Apr-2023**; price band **₹61–₹64**, final issue price **₹64**, total fresh issue **up to ₹2,112 lakh / ₹211.2m** retained as provisional, market lot/minimum bid **2,000**, anchor **29-Mar-2023**, cover programme public open/close **31-Mar / 05-Apr-2023**. Preserve the conflicting definitions text that misstates/mislabels the offer dates; the review binds to the explicit cover programme rather than silently rewriting the source.
 
-## Preserved release evidence and boundaries
+**Khazanchi Jewellers Limited:** Prospectus dated **15-Jul-2023**; fixed price **₹140**, gross fresh issue **₹9,674 lakh / ₹967.4m**, market lot/minimum retail application **1,000**, public open/close **24-Jul / 28-Jul-2023**. No price band or anchor date is invented.
 
-The pre-closeout handoff is preserved byte-for-byte in [PROJECT_STATUS_ARCHIVE_THROUGH_IRMS_RELEASE_2026-09-29.md](PROJECT_STATUS_ARCHIVE_THROUGH_IRMS_RELEASE_2026-09-29.md). Earlier IRMS field/source archives remain authoritative for original evidence and qualifications.
+For all four, actual listing date, verified exchange identifiers/board, ISIN and monetary minimum application amount remain unapproved/null at this stage. Exact stated gross amounts are not represented as independently verified realised proceeds.
 
-Do not replay PR #342 or earlier completed BSE/NSE releases. Preserve all retained conflicts, aliases, nulls, source hashes, clocks and correction history. The active application term remains **Lot Size only**, using verified market lot first and verified minimum bid only when market lot is missing. Never derive minimum investment/application amounts.
+## Preserved repository boundaries
 
-DRHP collection is currently **source-unstable, fail-closed** rather than healthy: the last successful collection remains **2026-09-28T13:49:35.161Z** with **96 companies / 98 filings**. The schedule-health monitor correctly treats the latest critical DRHP run as failed. Do not relabel that run successful or drop retained filings.
+The prior handoff covering the IRMS closeout and repository hardening is archived byte-for-byte in [PROJECT_STATUS_ARCHIVE_THROUGH_REPO_HARDENING_2026-09-29.md](PROJECT_STATUS_ARCHIVE_THROUGH_REPO_HARDENING_2026-09-29.md). Do not replay the completed IRMS, 2020–2022, NSE or historical release workflows.
 
-Continue P1. Do not expand P5/performance while upstream correctness remains materially blocked. No new spending, contracts, accounts, analytics, ads, billing, infrastructure or material access changes without approval. Follow [DEVELOPMENT_PROCESS](DEVELOPMENT_PROCESS.md).
+Administrative/legal blockers remain tracked separately: **#339** main protection, **#347** code-vs-data licensing, **#348** deletion of exact merged-PR branch tips. DRHP remains fail-closed on unstable SEBI pagination; do not mix that separate source-health issue into this bounded 2023 review.
+
+Continue P1. Preserve nulls, conflicts, original units, document hashes, page locators and reporting periods. Market lot, minimum bid quantity and monetary minimum application amount remain distinct. No new spending, contracts, accounts, analytics, ads, billing or material access changes without approval.
