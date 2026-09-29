@@ -1904,10 +1904,10 @@
     "2021|pb-fintech-limited": {
       "issuer_name": "PB Fintech Limited",
       "listing_date": "2021-11-15",
-      "last_attempted_at": "2026-09-28T06:02:54.165Z",
+      "last_attempted_at": "2026-09-29T06:21:03.481Z",
       "parser_version": "1.2.0",
       "status": "error",
-      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 75 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-historical-pdf-lKwPVR/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/oct-2021/1635395300515.pdf\ncurl: (18) transfer closed with 8314771 bytes remaining to read\ncurl: (28) Operation timed out after 75000 milliseconds with 18869207 out of 27205538 bytes received\n",
+      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 75 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-historical-pdf-dI9QgK/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/oct-2021/1635395300515.pdf\ncurl: (28) Operation timed out after 75000 milliseconds with 21205839 out of 27205538 bytes received\ncurl: (18) transfer closed with 25039091 bytes remaining to read\n",
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2021/1635395300515.pdf"
     },
     "2025|jain-resource-recycling-limited": {
@@ -4030,10 +4030,27 @@
     "2025|regaal-resources-limited": {
       "issuer_name": "Regaal Resources Limited",
       "listing_date": "2025-08-20",
-      "last_attempted_at": "2026-09-28T06:02:54.165Z",
+      "last_attempted_at": "2026-09-29T06:21:03.481Z",
       "parser_version": "1.2.0",
-      "status": "error",
-      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 75 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-historical-pdf-qmLBcY/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/aug-2025/1755684803258.pdf\ncurl: (28) Operation timed out after 75000 milliseconds with 16187655 out of 17730470 bytes received\ncurl: (18) transfer closed with 2704087 bytes remaining to read\n",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "issue_size_inr",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Regaal Resources Limited - prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2025/1755684803258.pdf",
+        "publication_date": "2025-08-20"
+      },
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2025/1755684803258.pdf"
     },
     "2024|brainbees-solutions-limited": {
@@ -4245,6 +4262,58 @@
         "publication_date": "2021-08-02"
       },
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2021/1627878307780.pdf"
+    },
+    "2024|akums-drugs-and-pharmaceuticals-limited": {
+      "issuer_name": "Akums Drugs and Pharmaceuticals Limited",
+      "listing_date": "2024-08-06",
+      "last_attempted_at": "2026-09-29T06:21:03.481Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "issue_size_inr",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Akums Drugs and Pharmaceuticals Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2024/1721886843693.pdf",
+        "publication_date": "2024-07-25"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2024/1721886843693.pdf"
+    },
+    "2023|utkarsh-small-finance-bank-limited": {
+      "issuer_name": "Utkarsh Small Finance Bank Limited",
+      "listing_date": "2023-07-21",
+      "last_attempted_at": "2026-09-29T06:21:03.481Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "price_band",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Utkarsh Small Finance Bank Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2023/1688962965336.PDF",
+        "publication_date": "2023-07-10"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2023/1688962965336.PDF"
     }
   }
 }
