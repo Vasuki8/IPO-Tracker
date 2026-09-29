@@ -1,7 +1,7 @@
 name: Bounded IRMS original listing research
 on:
   pull_request:
-    types: [opened]
+    types: [opened, synchronize]
     paths: ['.github/workflows/research-irms-listing-originals.yml']
 permissions:
   contents: read
@@ -37,16 +37,21 @@ jobs:
           node scripts/validate-data.mjs
           git diff --exit-code
           test "$failures" -eq 0
-      - name: Fetch four original annual reports for actual-listing research only
+      - name: Fetch four linked original annual reports for listing review only
         run: |
           node --input-type=module <<'NODE'
           import fs from 'node:fs';
           import {createHash} from 'node:crypto';
           const dir=process.env.RUNNER_TEMP+'/irms-listing';
           const hash=b=>createHash('sha256').update(b).digest('hex');
+          const sources=[
+            ['544026','https://nsearchives.nseindia.com/annual_reports/AR_24062_IREDA_2023_2024_31052024172229.pdf'],
+            ['544053','https://www.bseindia.com/xml-data/corpfiling/AttachHis/5f411b58-ae46-4f75-b78b-640b764e4c5c.pdf'],
+            ['544060','https://www.bseindia.com/xml-data/corpfiling/AttachHis/93f14563-62ed-4d9e-be2f-f3d927469ec3.pdf'],
+            ['543963','https://www.bseindia.com/xml-data/corpfiling/AttachHis/0ceaf6d3-9fbe-4d1c-97c8-0adb21413c0c.pdf']
+          ];
           const documents=[];
-          for(const code of ['544026','544053','544060','543963']){
-            const url=`https://www.bseindia.com/bseplus/AnnualReport/${code}/${code}0324.pdf`;
+          for(const [code,url] of sources){
             const d={code,url,requested_at:new Date().toISOString(),collected_at:null,status:null,accepted:false,response_sha256:null,response_bytes:0,file:null,error:null};
             try{
               const r=await fetch(url,{redirect:'error',signal:AbortSignal.timeout(90000),headers:{'user-agent':'Mozilla/5.0','accept':'application/pdf','referer':'https://www.bseindia.com/'}});
