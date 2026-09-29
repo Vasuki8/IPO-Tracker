@@ -4,6 +4,7 @@ import os from "node:os";
 import { execFileSync } from "node:child_process";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { selectBalancedByListingYear } from "./historical-batch-selection.mjs";
+import { downloadOfficialSebiPdf } from "./download-official-sebi-pdf.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const RECOVERY_ROOT = path.join(ROOT, "data", "recovery");
@@ -11,6 +12,8 @@ const STATE_PATH = path.join(ROOT, "ops", "sebi-historical-offer-dates.json");
 const USER_AGENT = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36";
 export const HISTORICAL_OFFER_DATE_BATCH_SIZE = 12;
 export const HISTORICAL_OFFER_DATE_PARSER_VERSION = "2.0.0";
+export const HISTORICAL_OFFER_DATE_DOWNLOAD_MAX_SECONDS = 45;
+export const HISTORICAL_OFFER_DATE_DOWNLOAD_ATTEMPTS = 4;
 const MAX_PAGES = 35;
 
 function normalizeText(value) {
@@ -304,23 +307,12 @@ function writeState(state) {
 }
 
 function fetchPdf(url) {
-  const dir = fs.mkdtempSync(path.join(os.tmpdir(), "ipo-offer-dates-"));
-  const file = path.join(dir, "document.pdf");
-  try {
-    execFileSync("curl", [
-      "--fail", "--location", "--silent", "--show-error",
-      "--retry", "1", "--retry-all-errors",
-      "--connect-timeout", "10", "--max-time", "45",
-      "--user-agent", USER_AGENT,
-      "--referer", "https://www.sebi.gov.in/",
-      "--output", file, url
-    ], { stdio: ["ignore", "ignore", "pipe"], maxBuffer: 1024 * 1024 });
-    const bytes = fs.readFileSync(file);
-    if (bytes.length < 5 || bytes.subarray(0, 5).toString("ascii") !== "%PDF-") throw new Error("response was not PDF");
-    return bytes;
-  } finally {
-    fs.rmSync(dir, { recursive: true, force: true });
-  }
+  return downloadOfficialSebiPdf(url, {
+    userAgent: USER_AGENT,
+    maxSeconds: HISTORICAL_OFFER_DATE_DOWNLOAD_MAX_SECONDS,
+    attempts: HISTORICAL_OFFER_DATE_DOWNLOAD_ATTEMPTS,
+    tempPrefix: "ipo-offer-dates-"
+  }).bytes;
 }
 
 function firstPages(pdfBytes) {
