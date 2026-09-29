@@ -3286,6 +3286,98 @@
       "status": "error",
       "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 45 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-offer-dates-dTaPwh/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/jul-2023/1689656554491.pdf\ncurl: (28) Operation timed out after 45000 milliseconds with 7082568 out of 7431930 bytes received\ncurl: (28) Operation timed out after 45000 milliseconds with 6985208 out of 7431930 bytes received\n",
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2023/1689656554491.pdf"
+    },
+    "2023|senco-gold-limited": {
+      "issuer_name": "Senco Gold Limited",
+      "listing_date": "2023-07-14",
+      "last_attempted_at": "2026-09-29T19:39:27.012Z",
+      "parser_version": "2.0.0",
+      "status": "official_date_conflict",
+      "open_date": null,
+      "close_date": null,
+      "open_extraction": null,
+      "close_extraction": null,
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Senco Gold Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2023/1687945732583.pdf",
+        "publication_date": "2023-06-28"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2023/1687945732583.pdf"
+    },
+    "2022|vaidya-sane-ayurved-laboratories-limited": {
+      "issuer_name": "Vaidya Sane Ayurved Laboratories Limited",
+      "listing_date": "2022-02-23",
+      "last_attempted_at": "2026-09-29T19:39:27.012Z",
+      "parser_version": "2.0.0",
+      "status": "extracted",
+      "open_date": "2022-02-10",
+      "close_date": "2022-02-15",
+      "open_extraction": {
+        "value": "2022-02-10",
+        "source_value": "ISSUE OPENS ON: THURSDAY, FEBRUARY 10, 2022",
+        "page": 1
+      },
+      "close_extraction": {
+        "value": "2022-02-15",
+        "source_value": "ISSUE CLOSES ON: TUESDAY, FEBRUARY 15, 2022",
+        "page": 1
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Vaidya Sane Ayurved Laboratories Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2022/1671795970432.pdf",
+        "publication_date": "2022-01-25"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2022/1671795970432.pdf"
+    },
+    "2021|rolex-rings-limited": {
+      "issuer_name": "Rolex Rings Limited",
+      "listing_date": "2021-08-09",
+      "last_attempted_at": "2026-09-29T19:39:27.012Z",
+      "parser_version": "2.0.0",
+      "status": "extracted",
+      "open_date": "2021-07-27",
+      "close_date": "2021-07-30",
+      "open_extraction": {
+        "value": "2021-07-27",
+        "source_value": "Offer Opening Date i.e. July 27, 2021",
+        "page": 1
+      },
+      "close_extraction": {
+        "value": "2021-07-30",
+        "source_value": "OFFER CLOSED ON: Friday, July 30, 2021",
+        "page": 1
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Rolex Rings Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/apr-2023/1681710521634.pdf",
+        "publication_date": "2021-08-05"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/apr-2023/1681710521634.pdf"
+    },
+    "2023|tridhya-tech-limited": {
+      "issuer_name": "Tridhya Tech Limited",
+      "listing_date": "2023-07-13",
+      "last_attempted_at": "2026-09-29T19:39:27.012Z",
+      "parser_version": "2.0.0",
+      "status": "extracted",
+      "open_date": "2023-06-30",
+      "close_date": null,
+      "open_extraction": {
+        "value": "2023-06-30",
+        "source_value": "OFFER OPENS ON :June 30, 2023",
+        "page": 2
+      },
+      "close_extraction": null,
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Tridhya Tech Limited - prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2023/1687842643085.pdf",
+        "publication_date": "2023-06-27"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2023/1687842643085.pdf"
     }
   }
 }
