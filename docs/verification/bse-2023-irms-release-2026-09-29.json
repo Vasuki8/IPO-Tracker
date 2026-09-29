@@ -1,0 +1,41 @@
+{
+  "schema_version": "1.0.0",
+  "status": "prepared_import_pending",
+  "release_pr": 342,
+  "review_path": "data/discovery/bse-2023-irms-listing-review-2026-09-29.json",
+  "new_public_records": 0,
+  "live_receipt": null,
+  "temporary_publication_job": "Existing update-ipos.yml / reviewed_irms; exact release(irms): commit prefix only. Scheduled sync unchanged; no new writer permissions. Remove this bounded job after actual live verification.",
+  "source_artifact_id": 11038004780,
+  "original_listing_pdfs": 4,
+  "original_listing_pdf_bytes": 31582979,
+  "listing_dates": [
+    "2023-11-29",
+    "2023-12-26",
+    "2023-12-27",
+    "2023-08-23"
+  ],
+  "old_prospectus_review_unchanged": true,
+  "ireda_amount_status": "conflict",
+  "motisons_rbz_amount_status": "provisional",
+  "tests_and_merge": "Final CI, merge, data publication and served projection checks pending.",
+  "local_rehearsal": {
+    "checked_at": "2026-09-29T14:10:28.181Z",
+    "kind": "local_offline_rehearsal_not_live",
+    "before_records": 1378,
+    "after_records": 1382,
+    "added": 4,
+    "existing_public_objects_unchanged": 1378,
+    "other_recovery_year_bytes_unchanged": 6,
+    "exact_new_public_projections_checked": 4,
+    "public_projection_sha256": "d92ca9b8c956a16d65da5761e5711bacb70273b6983e1e53434d17c9ccec05e8",
+    "source_snapshot_commit": "9c8597c4805231ecea16514eb895168eb11a5fb8",
+    "publication_inputs_restored": true
+  },
+  "local_targeted_tests": {
+    "cases": 63,
+    "passed": 63,
+    "failed": 0,
+    "red_then_green_observed": true
+  }
+}

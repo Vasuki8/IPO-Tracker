@@ -5,6 +5,14 @@ on:
     branches: [main]
     paths:
       - 'data/discovery/bse-2023-irms-field-review-2026-09-28.json'
+      - 'data/discovery/bse-2023-irms-listing-review-2026-09-29.json'
+      - 'data/evidence/bse-2023-irms-listing-source-receipt-2026-09-29.json'
+      - 'data/verified-bse-listings/2026-09-29-irms-2023.json'
+      - 'scripts/*-bse-2023-irms.mjs'
+      - 'scripts/verify-bse-2023-irms.mjs'
+      - 'scripts/test-reviewed-bse-2023-irms.mjs'
+      - 'docs/verification/bse-2023-irms-release-2026-09-29.json'
+      - '.github/workflows/update-ipos.yml'
       - 'data/evidence/bse-2023-irms-source-receipt-2026-09-28.json'
       - 'scripts/check-bse-2023-irms-field-review.mjs'
       - 'scripts/test-bse-2023-irms-field-review.mjs'
@@ -15,6 +23,14 @@ on:
     branches: [main]
     paths:
       - 'data/discovery/bse-2023-irms-field-review-2026-09-28.json'
+      - 'data/discovery/bse-2023-irms-listing-review-2026-09-29.json'
+      - 'data/evidence/bse-2023-irms-listing-source-receipt-2026-09-29.json'
+      - 'data/verified-bse-listings/2026-09-29-irms-2023.json'
+      - 'scripts/*-bse-2023-irms.mjs'
+      - 'scripts/verify-bse-2023-irms.mjs'
+      - 'scripts/test-reviewed-bse-2023-irms.mjs'
+      - 'docs/verification/bse-2023-irms-release-2026-09-29.json'
+      - '.github/workflows/update-ipos.yml'
       - 'data/evidence/bse-2023-irms-source-receipt-2026-09-28.json'
       - 'scripts/check-bse-2023-irms-field-review.mjs'
       - 'scripts/test-bse-2023-irms-field-review.mjs'

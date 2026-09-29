@@ -74,7 +74,71 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  # Explicit release-message trigger only; removed after verified closeout.
+  reviewed_irms:
+    if: github.event_name == 'push' && startsWith(github.event.head_commit.message, 'release(irms):')
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: '20'}
+      - name: Check reviewed IRMS release before publication
+        run: node scripts/test-reviewed-bse-2023-irms.mjs
+      - name: Publish exactly the reviewed IRMS batch against latest main
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/irms-publication"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for attempt in 1 2 3; do
+            git fetch origin main
+            git reset --hard origin/main
+            cp data/ipos.json "$RUNNER_TEMP/irms-publication/before.json"
+            node scripts/apply-reviewed-bse-2023-irms.mjs --apply > "$RUNNER_TEMP/irms-publication/import.json"
+            node scripts/build-published-data.mjs
+            node scripts/build-published-data.mjs --check
+            node scripts/validate-data.mjs
+            node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import assert from 'node:assert/strict';
+          import {context,expected} from './scripts/apply-reviewed-bse-2023-irms.mjs';
+          import {expectedPublic} from './scripts/verify-bse-2023-rvpe.mjs';
+          const dir=process.env.RUNNER_TEMP+'/irms-publication';
+          const before=JSON.parse(fs.readFileSync(dir+'/before.json')),after=JSON.parse(fs.readFileSync('data/ipos.json'));
+          const byId=new Map(after.records.map(r=>[r.id,r]));
+          assert.equal(byId.size,after.records.length);
+          for(const r of before.records)assert.deepEqual(byId.get(r.id),r,'unrelated_public_record_changed:'+r.id);
+          const targets=expected(context()).map(expectedPublic);
+          for(const r of targets)assert.deepEqual(byId.get(r.id),r,'reviewed_public_projection_mismatch:'+r.id);
+          const added=after.records.filter(r=>!before.records.some(b=>b.id===r.id));
+          assert.ok(added.length===0||added.length===4);
+          assert.ok(added.every(r=>targets.some(t=>t.id===r.id)));
+          fs.writeFileSync(dir+'/preservation.json',JSON.stringify({existing_records_unchanged:before.records.length,added:added.length,published_records:after.records.length},null,2)+'\n');
+          NODE
+            changed="$(git diff --name-only)"
+            while IFS= read -r file; do
+              case "$file" in ''|data/recovery/2023/nse-issue-information.json|data/ipos.json) ;; *) echo "Unexpected mutation: $file"; exit 1;; esac
+            done <<< "$changed"
+            cp data/ipos.json "$RUNNER_TEMP/irms-publication/ipos.json"
+            if [ -z "$changed" ]; then git rev-parse HEAD > "$RUNNER_TEMP/irms-publication/data-commit.txt"; exit 0; fi
+            git add data/recovery/2023/nse-issue-information.json data/ipos.json
+            git commit -m "data(irms): publish four reviewed 2023 IPOs"
+            if git push origin HEAD:main; then git rev-parse HEAD > "$RUNNER_TEMP/irms-publication/data-commit.txt"; exit 0; fi
+          done
+          exit 1
+      - name: Retain actual publication outcome
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: irms-publication-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/irms-publication
+          retention-days: 14
+          if-no-files-found: error
+
   sync:
+    if: github.event_name != 'push' || !startsWith(github.event.head_commit.message, 'release(irms):')
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
