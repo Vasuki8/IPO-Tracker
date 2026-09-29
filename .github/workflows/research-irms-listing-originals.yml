@@ -1,0 +1,78 @@
+name: Bounded IRMS original listing research
+on:
+  pull_request:
+    types: [opened]
+    paths: ['.github/workflows/research-irms-listing-originals.yml']
+permissions:
+  contents: read
+jobs:
+  research:
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with: {node-version: '20'}
+      - name: Retain exact read-only repository snapshot
+        run: |
+          mkdir -p "$RUNNER_TEMP/irms-listing/tests"
+          git archive HEAD | gzip > "$RUNNER_TEMP/irms-listing/repository.tar.gz"
+          git rev-parse HEAD > "$RUNNER_TEMP/irms-listing/repository-commit.txt"
+          git rev-parse HEAD^{tree} > "$RUNNER_TEMP/irms-listing/repository-tree.txt"
+      - name: Baseline non-browser suite and source guards
+        run: |
+          failures=0; count=0
+          for f in scripts/test-*.mjs; do
+            [ "$(basename "$f")" = test-ui.mjs ] && continue
+            count=$((count+1))
+            if timeout 90 node "$f" > "$RUNNER_TEMP/irms-listing/tests/$(basename "$f").log" 2>&1; then echo "PASS $f"; else failures=$((failures+1)); echo "FAIL $f"; cat "$RUNNER_TEMP/irms-listing/tests/$(basename "$f").log"; fi
+          done
+          echo "Non-browser entry points: $count; failures: $failures" | tee "$RUNNER_TEMP/irms-listing/tests/summary.txt"
+          node scripts/check-bse-2023-irms-field-review.mjs
+          node scripts/check-bse-2023-progress.mjs
+          node scripts/build-published-data.mjs --check
+          node scripts/validate-data.mjs
+          git diff --exit-code
+          test "$failures" -eq 0
+      - name: Fetch four original annual reports for actual-listing research only
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import {createHash} from 'node:crypto';
+          const dir=process.env.RUNNER_TEMP+'/irms-listing';
+          const hash=b=>createHash('sha256').update(b).digest('hex');
+          const documents=[];
+          for(const code of ['544026','544053','544060','543963']){
+            const url=`https://www.bseindia.com/bseplus/AnnualReport/${code}/${code}0324.pdf`;
+            const d={code,url,requested_at:new Date().toISOString(),collected_at:null,status:null,accepted:false,response_sha256:null,response_bytes:0,file:null,error:null};
+            try{
+              const r=await fetch(url,{redirect:'error',signal:AbortSignal.timeout(90000),headers:{'user-agent':'Mozilla/5.0','accept':'application/pdf','referer':'https://www.bseindia.com/'}});
+              d.status=r.status;d.content_type=r.headers.get('content-type');d.final_url=r.url;
+              if(r.url!==url)throw Error('unexpected_final_url');
+              let length=0;const chunks=[];
+              for await(const c of r.body){length+=c.length;if(length>80*1024*1024)throw Error('source_size_limit');chunks.push(Buffer.from(c));}
+              const bytes=Buffer.concat(chunks);d.response_bytes=bytes.length;d.response_sha256=hash(bytes);
+              d.accepted=r.status===200&&bytes.subarray(0,5).toString()==='%PDF-';
+              d.file=code+(d.accepted?'-annual-2024.pdf':'-rejected.response');
+              fs.writeFileSync(dir+'/'+d.file,bytes,{flag:'wx'});
+              if(!d.accepted)d.error='http_or_body_rejected';
+            }catch(e){d.error=e.message;}
+            d.collected_at=new Date().toISOString();documents.push(d);
+          }
+          const receipt={schema_version:'1.0.0',status:documents.every(d=>d.accepted)?'collected_research_only':'partial',publication_import_allowed:false,semantic_review_complete:false,workflow_run_id:process.env.GITHUB_RUN_ID,workflow_attempt:process.env.GITHUB_RUN_ATTEMPT,repository_ref:process.env.GITHUB_SHA,documents};
+          fs.writeFileSync(dir+'/source-receipt.json',JSON.stringify(receipt,null,2)+'\n');
+          console.log(JSON.stringify(receipt,null,2));
+          if(!documents.every(d=>d.accepted))process.exitCode=1;
+          NODE
+      - name: Retain research originals and any failures
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: irms-listing-research-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/irms-listing
+          retention-days: 14
+          compression-level: 0
+          if-no-files-found: error
