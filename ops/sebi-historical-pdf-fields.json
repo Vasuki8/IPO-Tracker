@@ -4228,10 +4228,32 @@
     "2025|jsw-cement-limited": {
       "issuer_name": "JSW Cement Limited",
       "listing_date": "2025-08-14",
-      "last_attempted_at": "2026-09-28T20:54:11.971Z",
+      "last_attempted_at": "2026-09-29T23:15:29.925Z",
       "parser_version": "1.2.0",
-      "status": "error",
-      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 75 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-historical-pdf-lVua5q/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/aug-2025/1754974418670.pdf\ncurl: (18) transfer closed with 8628366 bytes remaining to read\ncurl: (18) transfer closed with 3905982 bytes remaining to read\n",
+      "status": "extracted",
+      "extracted_fields": [
+        "issue_size_inr"
+      ],
+      "remaining_fields": [
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": {
+          "value": 36000000000,
+          "source_value": "₹36,000 MILLION",
+          "page": 3
+        },
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "JSW Cement Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2025/1754974418670.pdf",
+        "publication_date": "2025-08-12"
+      },
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2025/1754974418670.pdf"
     },
     "2023|netweb-technologies-india-limited": {
