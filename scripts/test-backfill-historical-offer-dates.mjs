@@ -5,7 +5,9 @@ import {
   offerDateCandidates,
   offerDateExtractionPassesCurrentRules,
   parseExplicitOfferDate,
-  parseExplicitOfferDatesFromPages
+  parseExplicitOfferDatesFromPages,
+  HISTORICAL_OFFER_DATE_DOWNLOAD_MAX_SECONDS,
+  HISTORICAL_OFFER_DATE_DOWNLOAD_ATTEMPTS
 } from "./backfill-historical-offer-dates.mjs";
 
 assert.equal(parseExplicitOfferDate("Bid/Issue Opening Date December 3, 2025"), "2025-12-03");
@@ -111,3 +113,7 @@ assert.equal(
   ),
   false
 );
+
+
+assert.equal(HISTORICAL_OFFER_DATE_DOWNLOAD_MAX_SECONDS,45);
+assert.equal(HISTORICAL_OFFER_DATE_DOWNLOAD_ATTEMPTS,4);

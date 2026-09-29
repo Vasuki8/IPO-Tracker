@@ -3,6 +3,7 @@ import {
   applyHistoricalPdfFields,
   candidateHistoricalPdf,
   HISTORICAL_PDF_DOWNLOAD_MAX_SECONDS,
+  HISTORICAL_PDF_DOWNLOAD_ATTEMPTS,
   historicalPdfCandidates,
   missingHistoricalPdfFields
 } from "./backfill-historical-pdf-fields.mjs";
@@ -74,3 +75,4 @@ assert.deepEqual(result.remaining,[]);
 console.log("Historical SEBI PDF field backfill tests passed.");
 
 assert.equal(HISTORICAL_PDF_DOWNLOAD_MAX_SECONDS, 75);
+assert.equal(HISTORICAL_PDF_DOWNLOAD_ATTEMPTS, 4);
