@@ -1,7 +1,7 @@
 {
   "source_family": "Official NSE / SEBI / BSE offer-document and exchange evidence",
   "collection_started_at": "2026-09-23T19:29:29.146Z",
-  "generated_at": "2026-09-28T06:11:36.776Z",
+  "generated_at": "2026-09-29T18:41:15.944Z",
   "records": [
     {
       "id": "aaa-technologies-limited",
@@ -4920,6 +4920,254 @@
           "publication_date": null,
           "collected_at": "2026-09-24T03:20:59.438Z"
         }
+      }
+    },
+    {
+      "id": "droneacharya-aerial-innovations-limited",
+      "issuer_name": "Droneacharya Aerial Innovations Limited",
+      "board": "SME",
+      "sector": null,
+      "status": "listed",
+      "nse_symbol": null,
+      "nse_series": null,
+      "nse_source": null,
+      "bse_symbol": null,
+      "bse_scrip_code": null,
+      "isin": null,
+      "bse_source": null,
+      "terms": {
+        "price_band": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null,
+        "open_date": null,
+        "close_date": null
+      },
+      "documents": [
+        {
+          "type": "Final Prospectus",
+          "identity": "Droneacharya Aerial Innovations Limited - Prospectus dated 19 December 2022",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2022/1671603733388.PDF",
+          "publication_date": null,
+          "collected_at": "2026-09-28T02:53:08.915696Z",
+          "document_sha256": "8ddc1a5f5286867e0baf829bac15f2dfc3ce8da85e09339a4b2c4e60d90dac1f"
+        },
+        {
+          "type": "SEBI Order - historical listing corroboration",
+          "identity": "SEBI order dated 28 November 2025 in respect of Droneacharya Aerial Innovations Limited",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2025/1764334203019_1.pdf",
+          "publication_date": null,
+          "collected_at": "2026-09-28T02:53:43.377371Z",
+          "document_sha256": "3f840a7f26189e19f75c33772f3fc9efee482e24fa0de21130e427d0c79f6449"
+        }
+      ],
+      "first_observed_at": "2026-09-28T02:53:08.915696Z",
+      "last_collected_at": "2026-09-28T02:53:43.377371Z",
+      "board_evidence": [
+        {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2022/1671603733388.PDF",
+          "document_type": "Final Prospectus",
+          "document_identity": "Droneacharya Aerial Innovations Limited - Prospectus dated 19 December 2022",
+          "document_date": "2022-12-19",
+          "publication_date": null,
+          "reporting_period": "2022 IPO",
+          "page": 1,
+          "evidence_locator": "Prospectus cover: BSE SME listing.",
+          "collected_at": "2026-09-28T02:53:08.915696Z",
+          "document_sha256": "8ddc1a5f5286867e0baf829bac15f2dfc3ce8da85e09339a4b2c4e60d90dac1f"
+        }
+      ],
+      "status_evidence": [
+        {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2025/1764334203019_1.pdf",
+          "document_type": "SEBI Order - historical listing corroboration",
+          "document_identity": "SEBI order dated 28 November 2025 in respect of Droneacharya Aerial Innovations Limited",
+          "document_date": "2025-11-28",
+          "publication_date": null,
+          "reporting_period": "Historical 2022 listing",
+          "page": 2,
+          "evidence_locator": "SEBI order physical PDF 2, background paragraph 1: historical actual listing, not indicative timetable.",
+          "collected_at": "2026-09-28T02:53:43.377371Z",
+          "document_sha256": "3f840a7f26189e19f75c33772f3fc9efee482e24fa0de21130e427d0c79f6449"
+        }
+      ],
+      "bse_2022_final_pair_import": {
+        "manifest": "data/verified-bse-listings/2026-09-28-final-pair.json",
+        "review": "data/discovery/bse-2022-final-pair-review-2026-09-28.json",
+        "receipt": "data/evidence/bse-2022-final-pair-source-receipt-2026-09-28.json",
+        "artifact_id": 10948564535,
+        "artifact_sha256": "be4bfc110ccb1aba363e0f99f82f805de8dccb88305d2c70b33eea166cfbf23a",
+        "discovery_bse_scrip_code": "543713"
+      },
+      "price_band": {
+        "value": {
+          "min": 52,
+          "max": 54
+        },
+        "source_value": "PRICE BAND: 52.00 to 54.00 PER EQUITY SHARE",
+        "source_unit": "INR per share",
+        "reporting_period": "2022 IPO",
+        "status": "verified",
+        "page": 2,
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2022/1671603733388.PDF",
+          "document_type": "Final Prospectus",
+          "document_identity": "Droneacharya Aerial Innovations Limited - Prospectus dated 19 December 2022",
+          "document_date": "2022-12-19",
+          "publication_date": null,
+          "reporting_period": "2022 IPO",
+          "page": 2,
+          "evidence_locator": "Physical PDF page 2: book-built price band, not a fixed-price pseudo-band.",
+          "collected_at": "2026-09-28T02:53:08.915696Z",
+          "document_sha256": "8ddc1a5f5286867e0baf829bac15f2dfc3ce8da85e09339a4b2c4e60d90dac1f"
+        },
+        "corrections": []
+      },
+      "issue_price": {
+        "value": 54,
+        "source_value": "Rs. 54 PER EQUITY SHARE",
+        "source_unit": "INR per share",
+        "reporting_period": "2022 IPO",
+        "status": "verified",
+        "page": 2,
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2022/1671603733388.PDF",
+          "document_type": "Final Prospectus",
+          "document_identity": "Droneacharya Aerial Innovations Limited - Prospectus dated 19 December 2022",
+          "document_date": "2022-12-19",
+          "publication_date": null,
+          "reporting_period": "2022 IPO",
+          "page": 2,
+          "evidence_locator": "Physical PDF page 2: final issue price.",
+          "collected_at": "2026-09-28T02:53:08.915696Z",
+          "document_sha256": "8ddc1a5f5286867e0baf829bac15f2dfc3ce8da85e09339a4b2c4e60d90dac1f"
+        },
+        "corrections": []
+      },
+      "issue_size_inr": {
+        "value": 339660000,
+        "source_value": "Rs. 3396.60 Lakhs",
+        "source_unit": "INR lakh",
+        "reporting_period": "2022 IPO",
+        "status": "verified",
+        "page": 1,
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2022/1671603733388.PDF",
+          "document_type": "Final Prospectus",
+          "document_identity": "Droneacharya Aerial Innovations Limited - Prospectus dated 19 December 2022",
+          "document_date": "2022-12-19",
+          "publication_date": null,
+          "reporting_period": "2022 IPO",
+          "page": 1,
+          "evidence_locator": "Physical cover: total fresh issue, not net issue or market-maker portion.",
+          "collected_at": "2026-09-28T02:53:08.915696Z",
+          "document_sha256": "8ddc1a5f5286867e0baf829bac15f2dfc3ce8da85e09339a4b2c4e60d90dac1f"
+        },
+        "corrections": []
+      },
+      "market_lot": {
+        "value": 2000,
+        "source_value": "minimum contract size of 2000 Equity Shares",
+        "source_unit": "equity shares",
+        "reporting_period": "2022 IPO",
+        "status": "verified",
+        "page": 226,
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2022/1671603733388.PDF",
+          "document_type": "Final Prospectus",
+          "document_identity": "Droneacharya Aerial Innovations Limited - Prospectus dated 19 December 2022",
+          "document_date": "2022-12-19",
+          "publication_date": null,
+          "reporting_period": "2022 IPO",
+          "page": 226,
+          "evidence_locator": "Physical PDF 226 (printed 227): Minimum Application Value, Market Lot and Trading Lot.",
+          "collected_at": "2026-09-28T02:53:08.915696Z",
+          "document_sha256": "8ddc1a5f5286867e0baf829bac15f2dfc3ce8da85e09339a4b2c4e60d90dac1f"
+        },
+        "corrections": []
+      },
+      "minimum_bid_quantity": {
+        "value": 2000,
+        "source_value": "BID CAN BE MADE FOR MINIMUM OF 2000 EQUITY SHARES",
+        "source_unit": "equity shares",
+        "reporting_period": "2022 IPO",
+        "status": "verified",
+        "page": 2,
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2022/1671603733388.PDF",
+          "document_type": "Final Prospectus",
+          "document_identity": "Droneacharya Aerial Innovations Limited - Prospectus dated 19 December 2022",
+          "document_date": "2022-12-19",
+          "publication_date": null,
+          "reporting_period": "2022 IPO",
+          "page": 2,
+          "evidence_locator": "Physical PDF 2: explicit minimum bid; independently sourced from the market lot.",
+          "collected_at": "2026-09-28T02:53:08.915696Z",
+          "document_sha256": "8ddc1a5f5286867e0baf829bac15f2dfc3ce8da85e09339a4b2c4e60d90dac1f"
+        },
+        "corrections": []
+      },
+      "open_date": {
+        "value": "2022-12-13",
+        "source_value": "ISSUE OPENS ON: TUESDAY, DECEMBER 13, 2022",
+        "source_unit": "calendar date",
+        "reporting_period": "2022 IPO",
+        "status": "verified",
+        "page": 1,
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2022/1671603733388.PDF",
+          "document_type": "Final Prospectus",
+          "document_identity": "Droneacharya Aerial Innovations Limited - Prospectus dated 19 December 2022",
+          "document_date": "2022-12-19",
+          "publication_date": null,
+          "reporting_period": "2022 IPO",
+          "page": 1,
+          "evidence_locator": "Cover public issue programme; anchor-only 12 December is not the public opening date.",
+          "collected_at": "2026-09-28T02:53:08.915696Z",
+          "document_sha256": "8ddc1a5f5286867e0baf829bac15f2dfc3ce8da85e09339a4b2c4e60d90dac1f"
+        },
+        "corrections": []
+      },
+      "close_date": {
+        "value": "2022-12-15",
+        "source_value": "ISSUE CLOSES ON: THURSDAY, DECEMBER 15, 2022",
+        "source_unit": "calendar date",
+        "reporting_period": "2022 IPO",
+        "status": "verified",
+        "page": 1,
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2022/1671603733388.PDF",
+          "document_type": "Final Prospectus",
+          "document_identity": "Droneacharya Aerial Innovations Limited - Prospectus dated 19 December 2022",
+          "document_date": "2022-12-19",
+          "publication_date": null,
+          "reporting_period": "2022 IPO",
+          "page": 1,
+          "evidence_locator": "Cover public issue programme.",
+          "collected_at": "2026-09-28T02:53:08.915696Z",
+          "document_sha256": "8ddc1a5f5286867e0baf829bac15f2dfc3ce8da85e09339a4b2c4e60d90dac1f"
+        },
+        "corrections": []
+      },
+      "listing_date": {
+        "value": "2022-12-23",
+        "source_value": "listed on the BSE SME platform since December 23, 2022",
+        "source_unit": "calendar date",
+        "reporting_period": "2022 IPO",
+        "status": "verified",
+        "page": 2,
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2025/1764334203019_1.pdf",
+          "document_type": "SEBI Order - historical listing corroboration",
+          "document_identity": "SEBI order dated 28 November 2025 in respect of Droneacharya Aerial Innovations Limited",
+          "document_date": "2025-11-28",
+          "publication_date": null,
+          "reporting_period": "Historical 2022 listing",
+          "page": 2,
+          "evidence_locator": "SEBI order physical PDF 2, background paragraph 1: historical actual listing, not indicative timetable.",
+          "collected_at": "2026-09-28T02:53:43.377371Z",
+          "document_sha256": "3f840a7f26189e19f75c33772f3fc9efee482e24fa0de21130e427d0c79f6449"
+        },
+        "corrections": []
       }
     },
     {
@@ -10802,6 +11050,237 @@
       }
     },
     {
+      "id": "maruti-interior-products-limited",
+      "issuer_name": "Maruti Interior Products Limited",
+      "board": "SME",
+      "sector": null,
+      "status": "listed",
+      "nse_symbol": null,
+      "nse_series": null,
+      "nse_source": null,
+      "bse_symbol": null,
+      "bse_scrip_code": null,
+      "isin": null,
+      "bse_source": null,
+      "terms": {
+        "price_band": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null,
+        "open_date": null,
+        "close_date": null
+      },
+      "documents": [
+        {
+          "type": "Final Prospectus",
+          "identity": "Maruti Interior Products Limited - Prospectus dated 22 January 2022",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/feb-2022/1643966136177.pdf",
+          "publication_date": null,
+          "collected_at": "2026-09-28T01:25:06.521Z",
+          "document_sha256": "cae3fb97023087ff306e8823c26c07aa9a662d5769c2c2c639b460fa849d948b"
+        },
+        {
+          "type": "Annual Report FY 2022-23",
+          "identity": "Maruti Interior Products Limited - Annual Report FY 2022-23; covering letter dated 05 September 2023",
+          "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/d7fc563c-50ee-4c83-9ceb-49899fab0d91.pdf",
+          "publication_date": null,
+          "collected_at": "2026-09-28T01:25:07.534Z",
+          "document_sha256": "68a3358593ba6c087eb6d77aed3bc7ddf8277cb5b3a9283844c6a53c879896d8"
+        }
+      ],
+      "first_observed_at": "2026-09-28T01:25:06.521Z",
+      "last_collected_at": "2026-09-28T01:25:07.534Z",
+      "board_evidence": [
+        {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/feb-2022/1643966136177.pdf",
+          "document_type": "Final Prospectus",
+          "document_identity": "Maruti Interior Products Limited - Prospectus dated 22 January 2022",
+          "document_date": "2022-01-22",
+          "reporting_period": "2022 IPO",
+          "publication_date": null,
+          "page": 1,
+          "collected_at": "2026-09-28T01:25:06.521Z",
+          "document_sha256": "cae3fb97023087ff306e8823c26c07aa9a662d5769c2c2c639b460fa849d948b",
+          "evidence_locator": "Prospectus cover: proposed BSE SME listing."
+        }
+      ],
+      "status_evidence": [
+        {
+          "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/d7fc563c-50ee-4c83-9ceb-49899fab0d91.pdf",
+          "document_type": "Annual Report FY 2022-23",
+          "document_identity": "Maruti Interior Products Limited - Annual Report FY 2022-23; covering letter dated 05 September 2023",
+          "document_date": "2023-09-05",
+          "reporting_period": "FY 2022-23",
+          "publication_date": null,
+          "page": 100,
+          "collected_at": "2026-09-28T01:25:07.534Z",
+          "document_sha256": "68a3358593ba6c087eb6d77aed3bc7ddf8277cb5b3a9283844c6a53c879896d8",
+          "evidence_locator": "Annual Report FY 2022-23: statement of actual BSE SME listing; not an indicative IPO timetable."
+        }
+      ],
+      "bse_2022_maruti_olatech_import": {
+        "manifest": "data/verified-bse-listings/2026-09-28-maruti-olatech.json",
+        "review": "data/discovery/bse-2022-maruti-olatech-review-2026-09-28.json",
+        "receipt": "data/evidence/bse-2022-maruti-olatech-source-receipt-2026-09-28.json",
+        "action_key": "maruti",
+        "discovery_bse_scrip_code": "543464",
+        "artifact_id": 10947656355,
+        "artifact_sha256": "c14bab5a36044894c54b5e9f30ffbecdd591cfd6f6329083a09b20a15b0b0c20"
+      },
+      "price_band": {
+        "value": null,
+        "status": "missing",
+        "source": null,
+        "corrections": []
+      },
+      "issue_price": {
+        "value": 55,
+        "source_value": "Rs. 55 per share",
+        "source_unit": "INR per share",
+        "reporting_period": "2022 IPO",
+        "status": "verified",
+        "page": 1,
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/feb-2022/1643966136177.pdf",
+          "document_type": "Final Prospectus",
+          "document_identity": "Maruti Interior Products Limited - Prospectus dated 22 January 2022",
+          "document_date": "2022-01-22",
+          "reporting_period": "2022 IPO",
+          "publication_date": null,
+          "page": 1,
+          "collected_at": "2026-09-28T01:25:06.521Z",
+          "document_sha256": "cae3fb97023087ff306e8823c26c07aa9a662d5769c2c2c639b460fa849d948b",
+          "evidence_locator": "Final Prospectus: explicit fixed issue price per equity share."
+        },
+        "corrections": []
+      },
+      "issue_size_inr": {
+        "value": 110000000,
+        "source_value": "Rs. 1100 lakhs",
+        "source_unit": "INR lakh",
+        "reporting_period": "2022 IPO",
+        "status": "verified",
+        "page": 1,
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/feb-2022/1643966136177.pdf",
+          "document_type": "Final Prospectus",
+          "document_identity": "Maruti Interior Products Limited - Prospectus dated 22 January 2022",
+          "document_date": "2022-01-22",
+          "reporting_period": "2022 IPO",
+          "publication_date": null,
+          "page": 1,
+          "collected_at": "2026-09-28T01:25:06.521Z",
+          "document_sha256": "cae3fb97023087ff306e8823c26c07aa9a662d5769c2c2c639b460fa849d948b",
+          "evidence_locator": "Final Prospectus cover: total public issue; reported in INR lakh, normalized by exactly 100000."
+        },
+        "corrections": []
+      },
+      "market_lot": {
+        "value": 2000,
+        "source_value": "2,000 Equity Shares",
+        "source_unit": "equity shares",
+        "reporting_period": "2022 IPO",
+        "status": "verified",
+        "page": 194,
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/feb-2022/1643966136177.pdf",
+          "document_type": "Final Prospectus",
+          "document_identity": "Maruti Interior Products Limited - Prospectus dated 22 January 2022",
+          "document_date": "2022-01-22",
+          "reporting_period": "2022 IPO",
+          "publication_date": null,
+          "page": 194,
+          "collected_at": "2026-09-28T01:25:06.521Z",
+          "document_sha256": "cae3fb97023087ff306e8823c26c07aa9a662d5769c2c2c639b460fa849d948b",
+          "evidence_locator": "Market Lot and Trading Lot: explicit minimum trading contract size."
+        },
+        "corrections": []
+      },
+      "minimum_bid_quantity": {
+        "value": 2000,
+        "source_value": "minimum of 2,000 Equity Shares",
+        "source_unit": "equity shares",
+        "reporting_period": "2022 IPO",
+        "status": "verified",
+        "page": 207,
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/feb-2022/1643966136177.pdf",
+          "document_type": "Final Prospectus",
+          "document_identity": "Maruti Interior Products Limited - Prospectus dated 22 January 2022",
+          "document_date": "2022-01-22",
+          "reporting_period": "2022 IPO",
+          "publication_date": null,
+          "page": 207,
+          "collected_at": "2026-09-28T01:25:06.521Z",
+          "document_sha256": "cae3fb97023087ff306e8823c26c07aa9a662d5769c2c2c639b460fa849d948b",
+          "evidence_locator": "Maximum and Minimum Application Size: explicit minimum for retail individual applicants; not derived from trading lot."
+        },
+        "corrections": []
+      },
+      "open_date": {
+        "value": "2022-02-03",
+        "source_value": "February 03, 2022",
+        "source_unit": "calendar date",
+        "reporting_period": "2022 IPO",
+        "status": "verified",
+        "page": 1,
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/feb-2022/1643966136177.pdf",
+          "document_type": "Final Prospectus",
+          "document_identity": "Maruti Interior Products Limited - Prospectus dated 22 January 2022",
+          "document_date": "2022-01-22",
+          "reporting_period": "2022 IPO",
+          "publication_date": null,
+          "page": 1,
+          "collected_at": "2026-09-28T01:25:06.521Z",
+          "document_sha256": "cae3fb97023087ff306e8823c26c07aa9a662d5769c2c2c639b460fa849d948b",
+          "evidence_locator": "Prospectus cover: Issue Opens On."
+        },
+        "corrections": []
+      },
+      "close_date": {
+        "value": "2022-02-08",
+        "source_value": "February 08, 2022",
+        "source_unit": "calendar date",
+        "reporting_period": "2022 IPO",
+        "status": "verified",
+        "page": 1,
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/feb-2022/1643966136177.pdf",
+          "document_type": "Final Prospectus",
+          "document_identity": "Maruti Interior Products Limited - Prospectus dated 22 January 2022",
+          "document_date": "2022-01-22",
+          "reporting_period": "2022 IPO",
+          "publication_date": null,
+          "page": 1,
+          "collected_at": "2026-09-28T01:25:06.521Z",
+          "document_sha256": "cae3fb97023087ff306e8823c26c07aa9a662d5769c2c2c639b460fa849d948b",
+          "evidence_locator": "Prospectus cover: Issue Closes On."
+        },
+        "corrections": []
+      },
+      "listing_date": {
+        "value": "2022-02-16",
+        "source_value": "16th February, 2022",
+        "source_unit": "calendar date",
+        "reporting_period": "2022 IPO",
+        "status": "verified",
+        "page": 100,
+        "source": {
+          "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/d7fc563c-50ee-4c83-9ceb-49899fab0d91.pdf",
+          "document_type": "Annual Report FY 2022-23",
+          "document_identity": "Maruti Interior Products Limited - Annual Report FY 2022-23; covering letter dated 05 September 2023",
+          "document_date": "2023-09-05",
+          "reporting_period": "FY 2022-23",
+          "publication_date": null,
+          "page": 100,
+          "collected_at": "2026-09-28T01:25:07.534Z",
+          "document_sha256": "68a3358593ba6c087eb6d77aed3bc7ddf8277cb5b3a9283844c6a53c879896d8",
+          "evidence_locator": "Annual Report FY 2022-23: statement of actual BSE SME listing; not an indicative IPO timetable."
+        },
+        "corrections": []
+      }
+    },
+    {
       "id": "mega-flex-plastics-limited",
       "issuer_name": "Mega Flex Plastics Limited",
       "board": "SME",
@@ -11440,6 +11919,237 @@
         "source_artifact_id": 10841898100,
         "source_artifact_sha256": "f1303d5adc7cf14dba75e04464a565f9631bef3b9b0b44ae27aa64bb123f6eb0",
         "listing_notice_no": "20220901-12"
+      }
+    },
+    {
+      "id": "olatech-solutions-limited",
+      "issuer_name": "Olatech Solutions Limited",
+      "board": "SME",
+      "sector": null,
+      "status": "listed",
+      "nse_symbol": null,
+      "nse_series": null,
+      "nse_source": null,
+      "bse_symbol": null,
+      "bse_scrip_code": null,
+      "isin": null,
+      "bse_source": null,
+      "terms": {
+        "price_band": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null,
+        "open_date": null,
+        "close_date": null
+      },
+      "documents": [
+        {
+          "type": "Final Prospectus",
+          "identity": "Olatech Solutions Limited - Prospectus dated 06 August 2022",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2022/1668164900732.PDF",
+          "publication_date": null,
+          "collected_at": "2026-09-28T01:25:24.174Z",
+          "document_sha256": "26b2181f8c97f9c08bd0164e51a41a225d4d1a7509145c46cb06512c270bc373"
+        },
+        {
+          "type": "Annual Report FY 2022-23",
+          "identity": "Olatech Solutions Limited - Annual Report FY 2022-23; covering letter dated 04 September 2023",
+          "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/d5579a93-5e15-4311-b72f-694a74c0c7b6.pdf",
+          "publication_date": null,
+          "collected_at": "2026-09-28T01:25:24.720Z",
+          "document_sha256": "feb2dede6fcf989b0f1588181b30c25384fcb2d9c50f7a1240dddd73554a9827"
+        }
+      ],
+      "first_observed_at": "2026-09-28T01:25:24.174Z",
+      "last_collected_at": "2026-09-28T01:25:24.720Z",
+      "board_evidence": [
+        {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2022/1668164900732.PDF",
+          "document_type": "Final Prospectus",
+          "document_identity": "Olatech Solutions Limited - Prospectus dated 06 August 2022",
+          "document_date": "2022-08-06",
+          "reporting_period": "2022 IPO",
+          "publication_date": null,
+          "page": 1,
+          "collected_at": "2026-09-28T01:25:24.174Z",
+          "document_sha256": "26b2181f8c97f9c08bd0164e51a41a225d4d1a7509145c46cb06512c270bc373",
+          "evidence_locator": "Prospectus cover: proposed BSE SME listing."
+        }
+      ],
+      "status_evidence": [
+        {
+          "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/d5579a93-5e15-4311-b72f-694a74c0c7b6.pdf",
+          "document_type": "Annual Report FY 2022-23",
+          "document_identity": "Olatech Solutions Limited - Annual Report FY 2022-23; covering letter dated 04 September 2023",
+          "document_date": "2023-09-04",
+          "reporting_period": "FY 2022-23",
+          "publication_date": null,
+          "page": 20,
+          "collected_at": "2026-09-28T01:25:24.720Z",
+          "document_sha256": "feb2dede6fcf989b0f1588181b30c25384fcb2d9c50f7a1240dddd73554a9827",
+          "evidence_locator": "Annual Report FY 2022-23: statement of actual BSE SME listing; not an indicative IPO timetable."
+        }
+      ],
+      "bse_2022_maruti_olatech_import": {
+        "manifest": "data/verified-bse-listings/2026-09-28-maruti-olatech.json",
+        "review": "data/discovery/bse-2022-maruti-olatech-review-2026-09-28.json",
+        "receipt": "data/evidence/bse-2022-maruti-olatech-source-receipt-2026-09-28.json",
+        "action_key": "olatech",
+        "discovery_bse_scrip_code": "543578",
+        "artifact_id": 10947656355,
+        "artifact_sha256": "c14bab5a36044894c54b5e9f30ffbecdd591cfd6f6329083a09b20a15b0b0c20"
+      },
+      "price_band": {
+        "value": null,
+        "status": "missing",
+        "source": null,
+        "corrections": []
+      },
+      "issue_price": {
+        "value": 27,
+        "source_value": "Rs. 27 per Equity share",
+        "source_unit": "INR per share",
+        "reporting_period": "2022 IPO",
+        "status": "verified",
+        "page": 8,
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2022/1668164900732.PDF",
+          "document_type": "Final Prospectus",
+          "document_identity": "Olatech Solutions Limited - Prospectus dated 06 August 2022",
+          "document_date": "2022-08-06",
+          "reporting_period": "2022 IPO",
+          "publication_date": null,
+          "page": 8,
+          "collected_at": "2026-09-28T01:25:24.174Z",
+          "document_sha256": "26b2181f8c97f9c08bd0164e51a41a225d4d1a7509145c46cb06512c270bc373",
+          "evidence_locator": "Final Prospectus: explicit fixed issue price per equity share."
+        },
+        "corrections": []
+      },
+      "issue_size_inr": {
+        "value": 18900000,
+        "source_value": "Rs. 189.00 Lakhs",
+        "source_unit": "INR lakh",
+        "reporting_period": "2022 IPO",
+        "status": "verified",
+        "page": 1,
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2022/1668164900732.PDF",
+          "document_type": "Final Prospectus",
+          "document_identity": "Olatech Solutions Limited - Prospectus dated 06 August 2022",
+          "document_date": "2022-08-06",
+          "reporting_period": "2022 IPO",
+          "publication_date": null,
+          "page": 1,
+          "collected_at": "2026-09-28T01:25:24.174Z",
+          "document_sha256": "26b2181f8c97f9c08bd0164e51a41a225d4d1a7509145c46cb06512c270bc373",
+          "evidence_locator": "Final Prospectus cover: total public issue; reported in INR lakh, normalized by exactly 100000."
+        },
+        "corrections": []
+      },
+      "market_lot": {
+        "value": 4000,
+        "source_value": "4,000 Equity Shares",
+        "source_unit": "equity shares",
+        "reporting_period": "2022 IPO",
+        "status": "verified",
+        "page": 193,
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2022/1668164900732.PDF",
+          "document_type": "Final Prospectus",
+          "document_identity": "Olatech Solutions Limited - Prospectus dated 06 August 2022",
+          "document_date": "2022-08-06",
+          "reporting_period": "2022 IPO",
+          "publication_date": null,
+          "page": 193,
+          "collected_at": "2026-09-28T01:25:24.174Z",
+          "document_sha256": "26b2181f8c97f9c08bd0164e51a41a225d4d1a7509145c46cb06512c270bc373",
+          "evidence_locator": "Market Lot and Trading Lot: explicit minimum trading contract size."
+        },
+        "corrections": []
+      },
+      "minimum_bid_quantity": {
+        "value": 4000,
+        "source_value": "minimum of 4,000 Equity Shares",
+        "source_unit": "equity shares",
+        "reporting_period": "2022 IPO",
+        "status": "verified",
+        "page": 206,
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2022/1668164900732.PDF",
+          "document_type": "Final Prospectus",
+          "document_identity": "Olatech Solutions Limited - Prospectus dated 06 August 2022",
+          "document_date": "2022-08-06",
+          "reporting_period": "2022 IPO",
+          "publication_date": null,
+          "page": 206,
+          "collected_at": "2026-09-28T01:25:24.174Z",
+          "document_sha256": "26b2181f8c97f9c08bd0164e51a41a225d4d1a7509145c46cb06512c270bc373",
+          "evidence_locator": "Maximum and Minimum Application Size: explicit minimum for retail individual applicants; not derived from trading lot."
+        },
+        "corrections": []
+      },
+      "open_date": {
+        "value": "2022-08-12",
+        "source_value": "FRIDAY, AUGUST 12, 2022",
+        "source_unit": "calendar date",
+        "reporting_period": "2022 IPO",
+        "status": "verified",
+        "page": 1,
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2022/1668164900732.PDF",
+          "document_type": "Final Prospectus",
+          "document_identity": "Olatech Solutions Limited - Prospectus dated 06 August 2022",
+          "document_date": "2022-08-06",
+          "reporting_period": "2022 IPO",
+          "publication_date": null,
+          "page": 1,
+          "collected_at": "2026-09-28T01:25:24.174Z",
+          "document_sha256": "26b2181f8c97f9c08bd0164e51a41a225d4d1a7509145c46cb06512c270bc373",
+          "evidence_locator": "Prospectus cover: Issue Opens On."
+        },
+        "corrections": []
+      },
+      "close_date": {
+        "value": "2022-08-19",
+        "source_value": "FRIDAY, AUGUST 19, 2022",
+        "source_unit": "calendar date",
+        "reporting_period": "2022 IPO",
+        "status": "verified",
+        "page": 1,
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2022/1668164900732.PDF",
+          "document_type": "Final Prospectus",
+          "document_identity": "Olatech Solutions Limited - Prospectus dated 06 August 2022",
+          "document_date": "2022-08-06",
+          "reporting_period": "2022 IPO",
+          "publication_date": null,
+          "page": 1,
+          "collected_at": "2026-09-28T01:25:24.174Z",
+          "document_sha256": "26b2181f8c97f9c08bd0164e51a41a225d4d1a7509145c46cb06512c270bc373",
+          "evidence_locator": "Prospectus cover: Issue Closes On."
+        },
+        "corrections": []
+      },
+      "listing_date": {
+        "value": "2022-08-29",
+        "source_value": "August 29, 2022",
+        "source_unit": "calendar date",
+        "reporting_period": "2022 IPO",
+        "status": "verified",
+        "page": 20,
+        "source": {
+          "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/d5579a93-5e15-4311-b72f-694a74c0c7b6.pdf",
+          "document_type": "Annual Report FY 2022-23",
+          "document_identity": "Olatech Solutions Limited - Annual Report FY 2022-23; covering letter dated 04 September 2023",
+          "document_date": "2023-09-04",
+          "reporting_period": "FY 2022-23",
+          "publication_date": null,
+          "page": 20,
+          "collected_at": "2026-09-28T01:25:24.720Z",
+          "document_sha256": "feb2dede6fcf989b0f1588181b30c25384fcb2d9c50f7a1240dddd73554a9827",
+          "evidence_locator": "Annual Report FY 2022-23: statement of actual BSE SME listing; not an indicative IPO timetable."
+        },
+        "corrections": []
       }
     },
     {
@@ -17669,10 +18379,24 @@
           "url": "https://www.nseindia.com/api/ipo-detail?symbol=MADHAVBAUG&series=SME",
           "publication_date": null,
           "collected_at": "2026-09-24T05:39:53.799Z"
+        },
+        {
+          "type": "SEBI Prospectus filing",
+          "identity": "Vaidya Sane Ayurved Laboratories Limited - Prospectus",
+          "url": "https://www.sebi.gov.in/filings/public-issues/jan-2022/vaidya-sane-ayurved-laboratories-limited-prospectus_66565.html",
+          "publication_date": "2022-01-25",
+          "collected_at": "2026-09-29T18:41:15.944Z"
+        },
+        {
+          "type": "SEBI Prospectus PDF",
+          "identity": "Vaidya Sane Ayurved Laboratories Limited - Prospectus — PDF",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2022/1671795970432.pdf",
+          "publication_date": "2022-01-25",
+          "collected_at": "2026-09-29T18:41:15.944Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-24T05:39:53.799Z",
+      "last_collected_at": "2026-09-29T18:41:15.944Z",
       "board_evidence": [
         {
           "url": "https://www.nseindia.com/api/public-past-issues",
@@ -19036,716 +19760,6 @@
           "publication_date": "2022-08-29",
           "collected_at": "2026-09-26T20:17:19.352Z"
         }
-      }
-    },
-    {
-      "id": "maruti-interior-products-limited",
-      "issuer_name": "Maruti Interior Products Limited",
-      "board": "SME",
-      "sector": null,
-      "status": "listed",
-      "nse_symbol": null,
-      "nse_series": null,
-      "nse_source": null,
-      "bse_symbol": null,
-      "bse_scrip_code": null,
-      "isin": null,
-      "bse_source": null,
-      "terms": {
-        "price_band": null,
-        "market_lot": null,
-        "minimum_bid_quantity": null,
-        "open_date": null,
-        "close_date": null
-      },
-      "documents": [
-        {
-          "type": "Final Prospectus",
-          "identity": "Maruti Interior Products Limited - Prospectus dated 22 January 2022",
-          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/feb-2022/1643966136177.pdf",
-          "publication_date": null,
-          "collected_at": "2026-09-28T01:25:06.521Z",
-          "document_sha256": "cae3fb97023087ff306e8823c26c07aa9a662d5769c2c2c639b460fa849d948b"
-        },
-        {
-          "type": "Annual Report FY 2022-23",
-          "identity": "Maruti Interior Products Limited - Annual Report FY 2022-23; covering letter dated 05 September 2023",
-          "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/d7fc563c-50ee-4c83-9ceb-49899fab0d91.pdf",
-          "publication_date": null,
-          "collected_at": "2026-09-28T01:25:07.534Z",
-          "document_sha256": "68a3358593ba6c087eb6d77aed3bc7ddf8277cb5b3a9283844c6a53c879896d8"
-        }
-      ],
-      "first_observed_at": "2026-09-28T01:25:06.521Z",
-      "last_collected_at": "2026-09-28T01:25:07.534Z",
-      "board_evidence": [
-        {
-          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/feb-2022/1643966136177.pdf",
-          "document_type": "Final Prospectus",
-          "document_identity": "Maruti Interior Products Limited - Prospectus dated 22 January 2022",
-          "document_date": "2022-01-22",
-          "reporting_period": "2022 IPO",
-          "publication_date": null,
-          "page": 1,
-          "collected_at": "2026-09-28T01:25:06.521Z",
-          "document_sha256": "cae3fb97023087ff306e8823c26c07aa9a662d5769c2c2c639b460fa849d948b",
-          "evidence_locator": "Prospectus cover: proposed BSE SME listing."
-        }
-      ],
-      "status_evidence": [
-        {
-          "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/d7fc563c-50ee-4c83-9ceb-49899fab0d91.pdf",
-          "document_type": "Annual Report FY 2022-23",
-          "document_identity": "Maruti Interior Products Limited - Annual Report FY 2022-23; covering letter dated 05 September 2023",
-          "document_date": "2023-09-05",
-          "reporting_period": "FY 2022-23",
-          "publication_date": null,
-          "page": 100,
-          "collected_at": "2026-09-28T01:25:07.534Z",
-          "document_sha256": "68a3358593ba6c087eb6d77aed3bc7ddf8277cb5b3a9283844c6a53c879896d8",
-          "evidence_locator": "Annual Report FY 2022-23: statement of actual BSE SME listing; not an indicative IPO timetable."
-        }
-      ],
-      "bse_2022_maruti_olatech_import": {
-        "manifest": "data/verified-bse-listings/2026-09-28-maruti-olatech.json",
-        "review": "data/discovery/bse-2022-maruti-olatech-review-2026-09-28.json",
-        "receipt": "data/evidence/bse-2022-maruti-olatech-source-receipt-2026-09-28.json",
-        "action_key": "maruti",
-        "discovery_bse_scrip_code": "543464",
-        "artifact_id": 10947656355,
-        "artifact_sha256": "c14bab5a36044894c54b5e9f30ffbecdd591cfd6f6329083a09b20a15b0b0c20"
-      },
-      "price_band": {
-        "value": null,
-        "status": "missing",
-        "source": null,
-        "corrections": []
-      },
-      "issue_price": {
-        "value": 55,
-        "source_value": "Rs. 55 per share",
-        "source_unit": "INR per share",
-        "reporting_period": "2022 IPO",
-        "status": "verified",
-        "page": 1,
-        "source": {
-          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/feb-2022/1643966136177.pdf",
-          "document_type": "Final Prospectus",
-          "document_identity": "Maruti Interior Products Limited - Prospectus dated 22 January 2022",
-          "document_date": "2022-01-22",
-          "reporting_period": "2022 IPO",
-          "publication_date": null,
-          "page": 1,
-          "collected_at": "2026-09-28T01:25:06.521Z",
-          "document_sha256": "cae3fb97023087ff306e8823c26c07aa9a662d5769c2c2c639b460fa849d948b",
-          "evidence_locator": "Final Prospectus: explicit fixed issue price per equity share."
-        },
-        "corrections": []
-      },
-      "issue_size_inr": {
-        "value": 110000000,
-        "source_value": "Rs. 1100 lakhs",
-        "source_unit": "INR lakh",
-        "reporting_period": "2022 IPO",
-        "status": "verified",
-        "page": 1,
-        "source": {
-          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/feb-2022/1643966136177.pdf",
-          "document_type": "Final Prospectus",
-          "document_identity": "Maruti Interior Products Limited - Prospectus dated 22 January 2022",
-          "document_date": "2022-01-22",
-          "reporting_period": "2022 IPO",
-          "publication_date": null,
-          "page": 1,
-          "collected_at": "2026-09-28T01:25:06.521Z",
-          "document_sha256": "cae3fb97023087ff306e8823c26c07aa9a662d5769c2c2c639b460fa849d948b",
-          "evidence_locator": "Final Prospectus cover: total public issue; reported in INR lakh, normalized by exactly 100000."
-        },
-        "corrections": []
-      },
-      "market_lot": {
-        "value": 2000,
-        "source_value": "2,000 Equity Shares",
-        "source_unit": "equity shares",
-        "reporting_period": "2022 IPO",
-        "status": "verified",
-        "page": 194,
-        "source": {
-          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/feb-2022/1643966136177.pdf",
-          "document_type": "Final Prospectus",
-          "document_identity": "Maruti Interior Products Limited - Prospectus dated 22 January 2022",
-          "document_date": "2022-01-22",
-          "reporting_period": "2022 IPO",
-          "publication_date": null,
-          "page": 194,
-          "collected_at": "2026-09-28T01:25:06.521Z",
-          "document_sha256": "cae3fb97023087ff306e8823c26c07aa9a662d5769c2c2c639b460fa849d948b",
-          "evidence_locator": "Market Lot and Trading Lot: explicit minimum trading contract size."
-        },
-        "corrections": []
-      },
-      "minimum_bid_quantity": {
-        "value": 2000,
-        "source_value": "minimum of 2,000 Equity Shares",
-        "source_unit": "equity shares",
-        "reporting_period": "2022 IPO",
-        "status": "verified",
-        "page": 207,
-        "source": {
-          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/feb-2022/1643966136177.pdf",
-          "document_type": "Final Prospectus",
-          "document_identity": "Maruti Interior Products Limited - Prospectus dated 22 January 2022",
-          "document_date": "2022-01-22",
-          "reporting_period": "2022 IPO",
-          "publication_date": null,
-          "page": 207,
-          "collected_at": "2026-09-28T01:25:06.521Z",
-          "document_sha256": "cae3fb97023087ff306e8823c26c07aa9a662d5769c2c2c639b460fa849d948b",
-          "evidence_locator": "Maximum and Minimum Application Size: explicit minimum for retail individual applicants; not derived from trading lot."
-        },
-        "corrections": []
-      },
-      "open_date": {
-        "value": "2022-02-03",
-        "source_value": "February 03, 2022",
-        "source_unit": "calendar date",
-        "reporting_period": "2022 IPO",
-        "status": "verified",
-        "page": 1,
-        "source": {
-          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/feb-2022/1643966136177.pdf",
-          "document_type": "Final Prospectus",
-          "document_identity": "Maruti Interior Products Limited - Prospectus dated 22 January 2022",
-          "document_date": "2022-01-22",
-          "reporting_period": "2022 IPO",
-          "publication_date": null,
-          "page": 1,
-          "collected_at": "2026-09-28T01:25:06.521Z",
-          "document_sha256": "cae3fb97023087ff306e8823c26c07aa9a662d5769c2c2c639b460fa849d948b",
-          "evidence_locator": "Prospectus cover: Issue Opens On."
-        },
-        "corrections": []
-      },
-      "close_date": {
-        "value": "2022-02-08",
-        "source_value": "February 08, 2022",
-        "source_unit": "calendar date",
-        "reporting_period": "2022 IPO",
-        "status": "verified",
-        "page": 1,
-        "source": {
-          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/feb-2022/1643966136177.pdf",
-          "document_type": "Final Prospectus",
-          "document_identity": "Maruti Interior Products Limited - Prospectus dated 22 January 2022",
-          "document_date": "2022-01-22",
-          "reporting_period": "2022 IPO",
-          "publication_date": null,
-          "page": 1,
-          "collected_at": "2026-09-28T01:25:06.521Z",
-          "document_sha256": "cae3fb97023087ff306e8823c26c07aa9a662d5769c2c2c639b460fa849d948b",
-          "evidence_locator": "Prospectus cover: Issue Closes On."
-        },
-        "corrections": []
-      },
-      "listing_date": {
-        "value": "2022-02-16",
-        "source_value": "16th February, 2022",
-        "source_unit": "calendar date",
-        "reporting_period": "2022 IPO",
-        "status": "verified",
-        "page": 100,
-        "source": {
-          "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/d7fc563c-50ee-4c83-9ceb-49899fab0d91.pdf",
-          "document_type": "Annual Report FY 2022-23",
-          "document_identity": "Maruti Interior Products Limited - Annual Report FY 2022-23; covering letter dated 05 September 2023",
-          "document_date": "2023-09-05",
-          "reporting_period": "FY 2022-23",
-          "publication_date": null,
-          "page": 100,
-          "collected_at": "2026-09-28T01:25:07.534Z",
-          "document_sha256": "68a3358593ba6c087eb6d77aed3bc7ddf8277cb5b3a9283844c6a53c879896d8",
-          "evidence_locator": "Annual Report FY 2022-23: statement of actual BSE SME listing; not an indicative IPO timetable."
-        },
-        "corrections": []
-      }
-    },
-    {
-      "id": "olatech-solutions-limited",
-      "issuer_name": "Olatech Solutions Limited",
-      "board": "SME",
-      "sector": null,
-      "status": "listed",
-      "nse_symbol": null,
-      "nse_series": null,
-      "nse_source": null,
-      "bse_symbol": null,
-      "bse_scrip_code": null,
-      "isin": null,
-      "bse_source": null,
-      "terms": {
-        "price_band": null,
-        "market_lot": null,
-        "minimum_bid_quantity": null,
-        "open_date": null,
-        "close_date": null
-      },
-      "documents": [
-        {
-          "type": "Final Prospectus",
-          "identity": "Olatech Solutions Limited - Prospectus dated 06 August 2022",
-          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2022/1668164900732.PDF",
-          "publication_date": null,
-          "collected_at": "2026-09-28T01:25:24.174Z",
-          "document_sha256": "26b2181f8c97f9c08bd0164e51a41a225d4d1a7509145c46cb06512c270bc373"
-        },
-        {
-          "type": "Annual Report FY 2022-23",
-          "identity": "Olatech Solutions Limited - Annual Report FY 2022-23; covering letter dated 04 September 2023",
-          "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/d5579a93-5e15-4311-b72f-694a74c0c7b6.pdf",
-          "publication_date": null,
-          "collected_at": "2026-09-28T01:25:24.720Z",
-          "document_sha256": "feb2dede6fcf989b0f1588181b30c25384fcb2d9c50f7a1240dddd73554a9827"
-        }
-      ],
-      "first_observed_at": "2026-09-28T01:25:24.174Z",
-      "last_collected_at": "2026-09-28T01:25:24.720Z",
-      "board_evidence": [
-        {
-          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2022/1668164900732.PDF",
-          "document_type": "Final Prospectus",
-          "document_identity": "Olatech Solutions Limited - Prospectus dated 06 August 2022",
-          "document_date": "2022-08-06",
-          "reporting_period": "2022 IPO",
-          "publication_date": null,
-          "page": 1,
-          "collected_at": "2026-09-28T01:25:24.174Z",
-          "document_sha256": "26b2181f8c97f9c08bd0164e51a41a225d4d1a7509145c46cb06512c270bc373",
-          "evidence_locator": "Prospectus cover: proposed BSE SME listing."
-        }
-      ],
-      "status_evidence": [
-        {
-          "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/d5579a93-5e15-4311-b72f-694a74c0c7b6.pdf",
-          "document_type": "Annual Report FY 2022-23",
-          "document_identity": "Olatech Solutions Limited - Annual Report FY 2022-23; covering letter dated 04 September 2023",
-          "document_date": "2023-09-04",
-          "reporting_period": "FY 2022-23",
-          "publication_date": null,
-          "page": 20,
-          "collected_at": "2026-09-28T01:25:24.720Z",
-          "document_sha256": "feb2dede6fcf989b0f1588181b30c25384fcb2d9c50f7a1240dddd73554a9827",
-          "evidence_locator": "Annual Report FY 2022-23: statement of actual BSE SME listing; not an indicative IPO timetable."
-        }
-      ],
-      "bse_2022_maruti_olatech_import": {
-        "manifest": "data/verified-bse-listings/2026-09-28-maruti-olatech.json",
-        "review": "data/discovery/bse-2022-maruti-olatech-review-2026-09-28.json",
-        "receipt": "data/evidence/bse-2022-maruti-olatech-source-receipt-2026-09-28.json",
-        "action_key": "olatech",
-        "discovery_bse_scrip_code": "543578",
-        "artifact_id": 10947656355,
-        "artifact_sha256": "c14bab5a36044894c54b5e9f30ffbecdd591cfd6f6329083a09b20a15b0b0c20"
-      },
-      "price_band": {
-        "value": null,
-        "status": "missing",
-        "source": null,
-        "corrections": []
-      },
-      "issue_price": {
-        "value": 27,
-        "source_value": "Rs. 27 per Equity share",
-        "source_unit": "INR per share",
-        "reporting_period": "2022 IPO",
-        "status": "verified",
-        "page": 8,
-        "source": {
-          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2022/1668164900732.PDF",
-          "document_type": "Final Prospectus",
-          "document_identity": "Olatech Solutions Limited - Prospectus dated 06 August 2022",
-          "document_date": "2022-08-06",
-          "reporting_period": "2022 IPO",
-          "publication_date": null,
-          "page": 8,
-          "collected_at": "2026-09-28T01:25:24.174Z",
-          "document_sha256": "26b2181f8c97f9c08bd0164e51a41a225d4d1a7509145c46cb06512c270bc373",
-          "evidence_locator": "Final Prospectus: explicit fixed issue price per equity share."
-        },
-        "corrections": []
-      },
-      "issue_size_inr": {
-        "value": 18900000,
-        "source_value": "Rs. 189.00 Lakhs",
-        "source_unit": "INR lakh",
-        "reporting_period": "2022 IPO",
-        "status": "verified",
-        "page": 1,
-        "source": {
-          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2022/1668164900732.PDF",
-          "document_type": "Final Prospectus",
-          "document_identity": "Olatech Solutions Limited - Prospectus dated 06 August 2022",
-          "document_date": "2022-08-06",
-          "reporting_period": "2022 IPO",
-          "publication_date": null,
-          "page": 1,
-          "collected_at": "2026-09-28T01:25:24.174Z",
-          "document_sha256": "26b2181f8c97f9c08bd0164e51a41a225d4d1a7509145c46cb06512c270bc373",
-          "evidence_locator": "Final Prospectus cover: total public issue; reported in INR lakh, normalized by exactly 100000."
-        },
-        "corrections": []
-      },
-      "market_lot": {
-        "value": 4000,
-        "source_value": "4,000 Equity Shares",
-        "source_unit": "equity shares",
-        "reporting_period": "2022 IPO",
-        "status": "verified",
-        "page": 193,
-        "source": {
-          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2022/1668164900732.PDF",
-          "document_type": "Final Prospectus",
-          "document_identity": "Olatech Solutions Limited - Prospectus dated 06 August 2022",
-          "document_date": "2022-08-06",
-          "reporting_period": "2022 IPO",
-          "publication_date": null,
-          "page": 193,
-          "collected_at": "2026-09-28T01:25:24.174Z",
-          "document_sha256": "26b2181f8c97f9c08bd0164e51a41a225d4d1a7509145c46cb06512c270bc373",
-          "evidence_locator": "Market Lot and Trading Lot: explicit minimum trading contract size."
-        },
-        "corrections": []
-      },
-      "minimum_bid_quantity": {
-        "value": 4000,
-        "source_value": "minimum of 4,000 Equity Shares",
-        "source_unit": "equity shares",
-        "reporting_period": "2022 IPO",
-        "status": "verified",
-        "page": 206,
-        "source": {
-          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2022/1668164900732.PDF",
-          "document_type": "Final Prospectus",
-          "document_identity": "Olatech Solutions Limited - Prospectus dated 06 August 2022",
-          "document_date": "2022-08-06",
-          "reporting_period": "2022 IPO",
-          "publication_date": null,
-          "page": 206,
-          "collected_at": "2026-09-28T01:25:24.174Z",
-          "document_sha256": "26b2181f8c97f9c08bd0164e51a41a225d4d1a7509145c46cb06512c270bc373",
-          "evidence_locator": "Maximum and Minimum Application Size: explicit minimum for retail individual applicants; not derived from trading lot."
-        },
-        "corrections": []
-      },
-      "open_date": {
-        "value": "2022-08-12",
-        "source_value": "FRIDAY, AUGUST 12, 2022",
-        "source_unit": "calendar date",
-        "reporting_period": "2022 IPO",
-        "status": "verified",
-        "page": 1,
-        "source": {
-          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2022/1668164900732.PDF",
-          "document_type": "Final Prospectus",
-          "document_identity": "Olatech Solutions Limited - Prospectus dated 06 August 2022",
-          "document_date": "2022-08-06",
-          "reporting_period": "2022 IPO",
-          "publication_date": null,
-          "page": 1,
-          "collected_at": "2026-09-28T01:25:24.174Z",
-          "document_sha256": "26b2181f8c97f9c08bd0164e51a41a225d4d1a7509145c46cb06512c270bc373",
-          "evidence_locator": "Prospectus cover: Issue Opens On."
-        },
-        "corrections": []
-      },
-      "close_date": {
-        "value": "2022-08-19",
-        "source_value": "FRIDAY, AUGUST 19, 2022",
-        "source_unit": "calendar date",
-        "reporting_period": "2022 IPO",
-        "status": "verified",
-        "page": 1,
-        "source": {
-          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2022/1668164900732.PDF",
-          "document_type": "Final Prospectus",
-          "document_identity": "Olatech Solutions Limited - Prospectus dated 06 August 2022",
-          "document_date": "2022-08-06",
-          "reporting_period": "2022 IPO",
-          "publication_date": null,
-          "page": 1,
-          "collected_at": "2026-09-28T01:25:24.174Z",
-          "document_sha256": "26b2181f8c97f9c08bd0164e51a41a225d4d1a7509145c46cb06512c270bc373",
-          "evidence_locator": "Prospectus cover: Issue Closes On."
-        },
-        "corrections": []
-      },
-      "listing_date": {
-        "value": "2022-08-29",
-        "source_value": "August 29, 2022",
-        "source_unit": "calendar date",
-        "reporting_period": "2022 IPO",
-        "status": "verified",
-        "page": 20,
-        "source": {
-          "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/d5579a93-5e15-4311-b72f-694a74c0c7b6.pdf",
-          "document_type": "Annual Report FY 2022-23",
-          "document_identity": "Olatech Solutions Limited - Annual Report FY 2022-23; covering letter dated 04 September 2023",
-          "document_date": "2023-09-04",
-          "reporting_period": "FY 2022-23",
-          "publication_date": null,
-          "page": 20,
-          "collected_at": "2026-09-28T01:25:24.720Z",
-          "document_sha256": "feb2dede6fcf989b0f1588181b30c25384fcb2d9c50f7a1240dddd73554a9827",
-          "evidence_locator": "Annual Report FY 2022-23: statement of actual BSE SME listing; not an indicative IPO timetable."
-        },
-        "corrections": []
-      }
-    },
-    {
-      "id": "droneacharya-aerial-innovations-limited",
-      "issuer_name": "Droneacharya Aerial Innovations Limited",
-      "board": "SME",
-      "sector": null,
-      "status": "listed",
-      "nse_symbol": null,
-      "nse_series": null,
-      "nse_source": null,
-      "bse_symbol": null,
-      "bse_scrip_code": null,
-      "isin": null,
-      "bse_source": null,
-      "terms": {
-        "price_band": null,
-        "market_lot": null,
-        "minimum_bid_quantity": null,
-        "open_date": null,
-        "close_date": null
-      },
-      "documents": [
-        {
-          "type": "Final Prospectus",
-          "identity": "Droneacharya Aerial Innovations Limited - Prospectus dated 19 December 2022",
-          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2022/1671603733388.PDF",
-          "publication_date": null,
-          "collected_at": "2026-09-28T02:53:08.915696Z",
-          "document_sha256": "8ddc1a5f5286867e0baf829bac15f2dfc3ce8da85e09339a4b2c4e60d90dac1f"
-        },
-        {
-          "type": "SEBI Order - historical listing corroboration",
-          "identity": "SEBI order dated 28 November 2025 in respect of Droneacharya Aerial Innovations Limited",
-          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2025/1764334203019_1.pdf",
-          "publication_date": null,
-          "collected_at": "2026-09-28T02:53:43.377371Z",
-          "document_sha256": "3f840a7f26189e19f75c33772f3fc9efee482e24fa0de21130e427d0c79f6449"
-        }
-      ],
-      "first_observed_at": "2026-09-28T02:53:08.915696Z",
-      "last_collected_at": "2026-09-28T02:53:43.377371Z",
-      "board_evidence": [
-        {
-          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2022/1671603733388.PDF",
-          "document_type": "Final Prospectus",
-          "document_identity": "Droneacharya Aerial Innovations Limited - Prospectus dated 19 December 2022",
-          "document_date": "2022-12-19",
-          "publication_date": null,
-          "reporting_period": "2022 IPO",
-          "page": 1,
-          "evidence_locator": "Prospectus cover: BSE SME listing.",
-          "collected_at": "2026-09-28T02:53:08.915696Z",
-          "document_sha256": "8ddc1a5f5286867e0baf829bac15f2dfc3ce8da85e09339a4b2c4e60d90dac1f"
-        }
-      ],
-      "status_evidence": [
-        {
-          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2025/1764334203019_1.pdf",
-          "document_type": "SEBI Order - historical listing corroboration",
-          "document_identity": "SEBI order dated 28 November 2025 in respect of Droneacharya Aerial Innovations Limited",
-          "document_date": "2025-11-28",
-          "publication_date": null,
-          "reporting_period": "Historical 2022 listing",
-          "page": 2,
-          "evidence_locator": "SEBI order physical PDF 2, background paragraph 1: historical actual listing, not indicative timetable.",
-          "collected_at": "2026-09-28T02:53:43.377371Z",
-          "document_sha256": "3f840a7f26189e19f75c33772f3fc9efee482e24fa0de21130e427d0c79f6449"
-        }
-      ],
-      "bse_2022_final_pair_import": {
-        "manifest": "data/verified-bse-listings/2026-09-28-final-pair.json",
-        "review": "data/discovery/bse-2022-final-pair-review-2026-09-28.json",
-        "receipt": "data/evidence/bse-2022-final-pair-source-receipt-2026-09-28.json",
-        "artifact_id": 10948564535,
-        "artifact_sha256": "be4bfc110ccb1aba363e0f99f82f805de8dccb88305d2c70b33eea166cfbf23a",
-        "discovery_bse_scrip_code": "543713"
-      },
-      "price_band": {
-        "value": {
-          "min": 52,
-          "max": 54
-        },
-        "source_value": "PRICE BAND: 52.00 to 54.00 PER EQUITY SHARE",
-        "source_unit": "INR per share",
-        "reporting_period": "2022 IPO",
-        "status": "verified",
-        "page": 2,
-        "source": {
-          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2022/1671603733388.PDF",
-          "document_type": "Final Prospectus",
-          "document_identity": "Droneacharya Aerial Innovations Limited - Prospectus dated 19 December 2022",
-          "document_date": "2022-12-19",
-          "publication_date": null,
-          "reporting_period": "2022 IPO",
-          "page": 2,
-          "evidence_locator": "Physical PDF page 2: book-built price band, not a fixed-price pseudo-band.",
-          "collected_at": "2026-09-28T02:53:08.915696Z",
-          "document_sha256": "8ddc1a5f5286867e0baf829bac15f2dfc3ce8da85e09339a4b2c4e60d90dac1f"
-        },
-        "corrections": []
-      },
-      "issue_price": {
-        "value": 54,
-        "source_value": "Rs. 54 PER EQUITY SHARE",
-        "source_unit": "INR per share",
-        "reporting_period": "2022 IPO",
-        "status": "verified",
-        "page": 2,
-        "source": {
-          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2022/1671603733388.PDF",
-          "document_type": "Final Prospectus",
-          "document_identity": "Droneacharya Aerial Innovations Limited - Prospectus dated 19 December 2022",
-          "document_date": "2022-12-19",
-          "publication_date": null,
-          "reporting_period": "2022 IPO",
-          "page": 2,
-          "evidence_locator": "Physical PDF page 2: final issue price.",
-          "collected_at": "2026-09-28T02:53:08.915696Z",
-          "document_sha256": "8ddc1a5f5286867e0baf829bac15f2dfc3ce8da85e09339a4b2c4e60d90dac1f"
-        },
-        "corrections": []
-      },
-      "issue_size_inr": {
-        "value": 339660000,
-        "source_value": "Rs. 3396.60 Lakhs",
-        "source_unit": "INR lakh",
-        "reporting_period": "2022 IPO",
-        "status": "verified",
-        "page": 1,
-        "source": {
-          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2022/1671603733388.PDF",
-          "document_type": "Final Prospectus",
-          "document_identity": "Droneacharya Aerial Innovations Limited - Prospectus dated 19 December 2022",
-          "document_date": "2022-12-19",
-          "publication_date": null,
-          "reporting_period": "2022 IPO",
-          "page": 1,
-          "evidence_locator": "Physical cover: total fresh issue, not net issue or market-maker portion.",
-          "collected_at": "2026-09-28T02:53:08.915696Z",
-          "document_sha256": "8ddc1a5f5286867e0baf829bac15f2dfc3ce8da85e09339a4b2c4e60d90dac1f"
-        },
-        "corrections": []
-      },
-      "market_lot": {
-        "value": 2000,
-        "source_value": "minimum contract size of 2000 Equity Shares",
-        "source_unit": "equity shares",
-        "reporting_period": "2022 IPO",
-        "status": "verified",
-        "page": 226,
-        "source": {
-          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2022/1671603733388.PDF",
-          "document_type": "Final Prospectus",
-          "document_identity": "Droneacharya Aerial Innovations Limited - Prospectus dated 19 December 2022",
-          "document_date": "2022-12-19",
-          "publication_date": null,
-          "reporting_period": "2022 IPO",
-          "page": 226,
-          "evidence_locator": "Physical PDF 226 (printed 227): Minimum Application Value, Market Lot and Trading Lot.",
-          "collected_at": "2026-09-28T02:53:08.915696Z",
-          "document_sha256": "8ddc1a5f5286867e0baf829bac15f2dfc3ce8da85e09339a4b2c4e60d90dac1f"
-        },
-        "corrections": []
-      },
-      "minimum_bid_quantity": {
-        "value": 2000,
-        "source_value": "BID CAN BE MADE FOR MINIMUM OF 2000 EQUITY SHARES",
-        "source_unit": "equity shares",
-        "reporting_period": "2022 IPO",
-        "status": "verified",
-        "page": 2,
-        "source": {
-          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2022/1671603733388.PDF",
-          "document_type": "Final Prospectus",
-          "document_identity": "Droneacharya Aerial Innovations Limited - Prospectus dated 19 December 2022",
-          "document_date": "2022-12-19",
-          "publication_date": null,
-          "reporting_period": "2022 IPO",
-          "page": 2,
-          "evidence_locator": "Physical PDF 2: explicit minimum bid; independently sourced from the market lot.",
-          "collected_at": "2026-09-28T02:53:08.915696Z",
-          "document_sha256": "8ddc1a5f5286867e0baf829bac15f2dfc3ce8da85e09339a4b2c4e60d90dac1f"
-        },
-        "corrections": []
-      },
-      "open_date": {
-        "value": "2022-12-13",
-        "source_value": "ISSUE OPENS ON: TUESDAY, DECEMBER 13, 2022",
-        "source_unit": "calendar date",
-        "reporting_period": "2022 IPO",
-        "status": "verified",
-        "page": 1,
-        "source": {
-          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2022/1671603733388.PDF",
-          "document_type": "Final Prospectus",
-          "document_identity": "Droneacharya Aerial Innovations Limited - Prospectus dated 19 December 2022",
-          "document_date": "2022-12-19",
-          "publication_date": null,
-          "reporting_period": "2022 IPO",
-          "page": 1,
-          "evidence_locator": "Cover public issue programme; anchor-only 12 December is not the public opening date.",
-          "collected_at": "2026-09-28T02:53:08.915696Z",
-          "document_sha256": "8ddc1a5f5286867e0baf829bac15f2dfc3ce8da85e09339a4b2c4e60d90dac1f"
-        },
-        "corrections": []
-      },
-      "close_date": {
-        "value": "2022-12-15",
-        "source_value": "ISSUE CLOSES ON: THURSDAY, DECEMBER 15, 2022",
-        "source_unit": "calendar date",
-        "reporting_period": "2022 IPO",
-        "status": "verified",
-        "page": 1,
-        "source": {
-          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2022/1671603733388.PDF",
-          "document_type": "Final Prospectus",
-          "document_identity": "Droneacharya Aerial Innovations Limited - Prospectus dated 19 December 2022",
-          "document_date": "2022-12-19",
-          "publication_date": null,
-          "reporting_period": "2022 IPO",
-          "page": 1,
-          "evidence_locator": "Cover public issue programme.",
-          "collected_at": "2026-09-28T02:53:08.915696Z",
-          "document_sha256": "8ddc1a5f5286867e0baf829bac15f2dfc3ce8da85e09339a4b2c4e60d90dac1f"
-        },
-        "corrections": []
-      },
-      "listing_date": {
-        "value": "2022-12-23",
-        "source_value": "listed on the BSE SME platform since December 23, 2022",
-        "source_unit": "calendar date",
-        "reporting_period": "2022 IPO",
-        "status": "verified",
-        "page": 2,
-        "source": {
-          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2025/1764334203019_1.pdf",
-          "document_type": "SEBI Order - historical listing corroboration",
-          "document_identity": "SEBI order dated 28 November 2025 in respect of Droneacharya Aerial Innovations Limited",
-          "document_date": "2025-11-28",
-          "publication_date": null,
-          "reporting_period": "Historical 2022 listing",
-          "page": 2,
-          "evidence_locator": "SEBI order physical PDF 2, background paragraph 1: historical actual listing, not indicative timetable.",
-          "collected_at": "2026-09-28T02:53:43.377371Z",
-          "document_sha256": "3f840a7f26189e19f75c33772f3fc9efee482e24fa0de21130e427d0c79f6449"
-        },
-        "corrections": []
       }
     }
   ]
