@@ -1,0 +1,50 @@
+name: Collect BSE 2023 SSEK listing evidence
+
+on:
+  push:
+    branches:
+      - work/bse-2023-ssek-source-review-20260929
+    paths:
+      - .github/workflows/collect-bse-2023-ssek-listing-evidence.yml
+      - data/discovery/bse-2023-ssek-listing-source-plan-2026-09-29.json
+      - scripts/collect-bse-2023-ssek-listing-evidence.mjs
+      - scripts/inspect-bse-2023-ssek-listing-evidence.mjs
+      - scripts/test-bse-2023-ssek-listing-evidence.mjs
+
+permissions:
+  contents: read
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Test listing evidence boundary
+        run: node --test scripts/test-bse-2023-ssek-listing-evidence.mjs
+      - name: Verify PDF tooling
+        run: |
+          command -v pdfinfo
+          command -v pdftotext
+      - name: Collect and inspect original annual reports
+        run: |
+          set -euo pipefail
+          OUT="$RUNNER_TEMP/bse-2023-ssek-listing-evidence"
+          node scripts/collect-bse-2023-ssek-listing-evidence.mjs --out="$OUT"
+          for pdf in "$OUT"/*.pdf; do
+            base="${pdf%.pdf}"
+            pdfinfo "$pdf" > "${base}.pdfinfo"
+            pdftotext -layout "$pdf" "${base}.txt"
+          done
+          node scripts/inspect-bse-2023-ssek-listing-evidence.mjs --dir="$OUT" | tee "$OUT/extraction-index.log.json"
+      - name: Upload immutable research artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bse-2023-ssek-listing-evidence
+          path: ${{ runner.temp }}/bse-2023-ssek-listing-evidence
+          if-no-files-found: error
+          retention-days: 14
