@@ -3231,19 +3231,45 @@
     "2025|regaal-resources-limited": {
       "issuer_name": "Regaal Resources Limited",
       "listing_date": "2025-08-20",
-      "last_attempted_at": "2026-09-29T07:31:17.680Z",
+      "last_attempted_at": "2026-09-30T09:01:10.980Z",
       "parser_version": "2.0.0",
-      "status": "error",
-      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 45 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-offer-dates-uURrpp/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/aug-2025/1755684803258.pdf\ncurl: (28) Operation timed out after 45000 milliseconds with 7081455 out of 17730470 bytes received\ncurl: (28) Operation timed out after 45000 milliseconds with 6885855 out of 17730470 bytes received\n",
+      "status": "explicit_dates_absent",
+      "open_date": null,
+      "close_date": null,
+      "open_extraction": null,
+      "close_extraction": null,
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Regaal Resources Limited - prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2025/1755684803258.pdf",
+        "publication_date": "2025-08-20"
+      },
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2025/1755684803258.pdf"
     },
     "2023|sbfc-finance-limited": {
       "issuer_name": "SBFC Finance Limited",
       "listing_date": "2023-08-16",
-      "last_attempted_at": "2026-09-29T07:31:17.680Z",
+      "last_attempted_at": "2026-09-30T09:01:10.980Z",
       "parser_version": "2.0.0",
-      "status": "error",
-      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 45 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-offer-dates-jdbU03/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/aug-2023/1691670352991.pdf\ncurl: (28) Operation timed out after 45000 milliseconds with 8283975 out of 11699393 bytes received\ncurl: (28) Operation timed out after 45000 milliseconds with 9521615 out of 11699393 bytes received\n",
+      "status": "extracted",
+      "open_date": "2023-08-03",
+      "close_date": "2023-08-07",
+      "open_extraction": {
+        "value": "2023-08-03",
+        "source_value": "OFFER OPENED ON Thursday, August 3, 2023",
+        "page": 3
+      },
+      "close_extraction": {
+        "value": "2023-08-07",
+        "source_value": "OFFER CLOSED ON Monday, August 7, 2023",
+        "page": 3
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "SBFC Finance Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2023/1691670352991.pdf",
+        "publication_date": "2023-08-10"
+      },
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2023/1691670352991.pdf"
     },
     "2024|brainbees-solutions-limited": {
@@ -3429,19 +3455,53 @@
     "2024|akums-drugs-and-pharmaceuticals-limited": {
       "issuer_name": "Akums Drugs and Pharmaceuticals Limited",
       "listing_date": "2024-08-06",
-      "last_attempted_at": "2026-09-29T07:31:17.680Z",
+      "last_attempted_at": "2026-09-30T09:01:10.980Z",
       "parser_version": "2.0.0",
-      "status": "error",
-      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 45 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-offer-dates-bRbgCi/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/aug-2024/1722596126079.pdf\ncurl: (28) Operation timed out after 45000 milliseconds with 3654496 out of 7656264 bytes received\ncurl: (28) Operation timed out after 45000 milliseconds with 6331768 out of 7656264 bytes received\n",
+      "status": "extracted",
+      "open_date": "2024-07-30",
+      "close_date": "2024-08-01",
+      "open_extraction": {
+        "value": "2024-07-30",
+        "source_value": "Offer Opening Date Except in relation to any Bids received from the Anchor Investors, Tuesday, July 30, 2024",
+        "page": 9
+      },
+      "close_extraction": {
+        "value": "2024-08-01",
+        "source_value": "OFFER CLOSED ON THURSDAY, AUGUST 1, 2024",
+        "page": 3
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Akums Drugs and Pharmaceuticals Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2024/1722596126079.pdf",
+        "publication_date": "2024-08-02"
+      },
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2024/1722596126079.pdf"
     },
     "2023|utkarsh-small-finance-bank-limited": {
       "issuer_name": "Utkarsh Small Finance Bank Limited",
       "listing_date": "2023-07-21",
-      "last_attempted_at": "2026-09-29T07:31:17.680Z",
+      "last_attempted_at": "2026-09-30T09:01:10.980Z",
       "parser_version": "2.0.0",
-      "status": "error",
-      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 45 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-offer-dates-dTaPwh/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/jul-2023/1689656554491.pdf\ncurl: (28) Operation timed out after 45000 milliseconds with 7082568 out of 7431930 bytes received\ncurl: (28) Operation timed out after 45000 milliseconds with 6985208 out of 7431930 bytes received\n",
+      "status": "extracted",
+      "open_date": "2023-07-12",
+      "close_date": "2023-07-14",
+      "open_extraction": {
+        "value": "2023-07-12",
+        "source_value": "BID/ISSUE OPENED ON WEDNESDAY, JULY 12, 2023",
+        "page": 1
+      },
+      "close_extraction": {
+        "value": "2023-07-14",
+        "source_value": "BID/ISSUE CLOSED ON FRIDAY, JULY 14, 2023",
+        "page": 1
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Utkarsh Small Finance Bank Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2023/1689656554491.pdf",
+        "publication_date": "2023-07-17"
+      },
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2023/1689656554491.pdf"
     },
     "2023|senco-gold-limited": {
@@ -3553,6 +3613,110 @@
         "publication_date": "2023-07-05"
       },
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2023/1688538460294.pdf"
+    },
+    "2021|zomato-limited": {
+      "issuer_name": "Zomato Limited",
+      "listing_date": "2021-07-23",
+      "last_attempted_at": "2026-09-30T09:01:10.980Z",
+      "parser_version": "2.0.0",
+      "status": "extracted",
+      "open_date": "2021-07-14",
+      "close_date": "2021-07-16",
+      "open_extraction": {
+        "value": "2021-07-14",
+        "source_value": "OFFER OPENS ON Wednesday, July 14, 2021",
+        "page": 1
+      },
+      "close_extraction": {
+        "value": "2021-07-16",
+        "source_value": "OFFER CLOSES ON Friday, July 16, 2021",
+        "page": 1
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Zomato Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2021/1625733194227.pdf",
+        "publication_date": "2021-07-08"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2021/1625733194227.pdf"
+    },
+    "2025|aditya-infotech-limited": {
+      "issuer_name": "Aditya Infotech Limited",
+      "listing_date": "2025-08-05",
+      "last_attempted_at": "2026-09-30T09:01:10.980Z",
+      "parser_version": "2.0.0",
+      "status": "extracted",
+      "open_date": "2025-07-29",
+      "close_date": "2025-07-31",
+      "open_extraction": {
+        "value": "2025-07-29",
+        "source_value": "OFFER OPENED ON Tuesday, July 29, 2025",
+        "page": 3
+      },
+      "close_extraction": {
+        "value": "2025-07-31",
+        "source_value": "OFFER CLOSED ON Thursday, July 31, 2025",
+        "page": 3
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Aditya Infotech Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2025/1755843272732.pdf",
+        "publication_date": "2025-07-31"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2025/1755843272732.pdf"
+    },
+    "2023|ideaforge-technology-limited": {
+      "issuer_name": "Ideaforge Technology Limited",
+      "listing_date": "2023-07-07",
+      "last_attempted_at": "2026-09-30T09:01:10.980Z",
+      "parser_version": "2.0.0",
+      "status": "extracted",
+      "open_date": "2023-06-26",
+      "close_date": "2023-06-30",
+      "open_extraction": {
+        "value": "2023-06-26",
+        "source_value": "OFFER OPENED ON June 26, 2023",
+        "page": 3
+      },
+      "close_extraction": {
+        "value": "2023-06-30",
+        "source_value": "OFFER CLOSED ON June 30, 2023",
+        "page": 3
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Ideaforge Technology Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2023/1688472878236.pdf",
+        "publication_date": "2023-07-04"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2023/1688472878236.pdf"
+    },
+    "2023|greenchef-appliances-limited": {
+      "issuer_name": "Greenchef Appliances Limited",
+      "listing_date": "2023-07-06",
+      "last_attempted_at": "2026-09-30T09:01:10.980Z",
+      "parser_version": "2.0.0",
+      "status": "extracted",
+      "open_date": "2023-06-23",
+      "close_date": "2023-06-27",
+      "open_extraction": {
+        "value": "2023-06-23",
+        "source_value": "Bid/ Issue Opening Date Except in relation to any Bids received from the Anchor Investors, June 23, 2023",
+        "page": 7
+      },
+      "close_extraction": {
+        "value": "2023-06-27",
+        "source_value": "Bid/ Issue Closing Date Except in relation to any Bids received from the Anchor Investors, June 27, 2023",
+        "page": 7
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Greenchef Appliances Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2023/1688554585338.pdf",
+        "publication_date": "2023-07-03"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2023/1688554585338.pdf"
     }
   }
 }
