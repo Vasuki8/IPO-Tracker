@@ -52,8 +52,13 @@ for(const [name,mutate] of [
  ['source plan binding',c=>c.manifest.source_plan_git_blob_sha='0'.repeat(40)],
  ['prospectus review changed',c=>c.fieldContext.review.actions[0].terms.issue_size_inr.status='verified_stated_term']
 ])test('rejects '+name,()=>{const c=clone();mutate(c);assert.throws(()=>validate(c));});
-test('current production has no conflicting target identities before import',()=>{
- const all=loadRecovery(),targets=raw();for(const t of targets){const hits=Object.entries(all).flatMap(([year,m])=>m.records.map(r=>({year,r}))).filter(x=>x.r.id===t.id||String(x.r.bse_scrip_code??'')===t.bse_scrip_code||x.r.issuer_name.toLowerCase()===t.issuer_name.toLowerCase());assert.deepEqual(hits,[]);}
+test('current production is absent before publication or exactly idempotent after publication',()=>{
+ const all=loadRecovery(),targets=raw(),state=JSON.parse(fs.readFileSync(new URL('../docs/verification/bse-2023-ssek-release-2026-09-29.json',import.meta.url)));
+ for(const t of targets){
+  const hits=Object.entries(all).flatMap(([year,m])=>m.records.map(r=>({year,r}))).filter(x=>x.r.id===t.id||String(x.r.bse_scrip_code??'')===t.bse_scrip_code||x.r.issuer_name.toLowerCase()===t.issuer_name.toLowerCase());
+  if(state.status==='prepared_import_pending')assert.deepEqual(hits,[]);
+  else{assert.ok(['published_verification_pending','verified_and_publisher_retired'].includes(state.status));assert.equal(hits.length,1);assert.equal(hits[0].year,'2023');assert.deepEqual(hits[0].r,t);}
+ }
 });
 test('public projection retains null application amounts and exact listing evidence',()=>{
  for(const record of raw().map(expectedPublic)){assert.equal(record.minimum_application_amount_inr.value,null);assert.ok(Object.values(record.application_requirements).every(x=>x.minimum_application_amount_inr.value===null));assert.equal(record.listing_date.status,'verified');assert.equal(record.documents.length,2);}

@@ -39,7 +39,7 @@ Collection time, source observation, dataset generation and Pages publication ar
 
 ## Handoff for the next prompt
 
-The next four 2023 BSE candidates now have reviewed Prospectus terms **and** retained authoritative actual-listing evidence. PR #349's first guarded publication failed safely before push because the builder rejected an issuer-hosted listing source; the repaired release now uses BSE-hosted listing reports for all four. The SSEK batch is still **not published**: the 2023 ledger remains **12 reviewed/published + 18 awaiting review** until the served Pages dataset is verified.
+The next four 2023 BSE candidates now have reviewed Prospectus terms, retained authoritative actual-listing evidence, and a successful bounded repository publication. PR #350 published exactly four reviewed records while preserving 1,383 existing public objects unchanged. The 2023 ledger remains **12 reviewed/published + 18 awaiting review** until the actual served Pages dataset is verified.
 
 The original 2022 queue remains **14 reviewed/published + 2 existing-recovery alias + 0 awaiting review**.
 
@@ -55,7 +55,7 @@ Complete the pending release for **SHANTI SPINTEX LIMITED (544059)**, **Shoora D
 
 The original BSE 2022 queue has remaining **0** unmatched rows requiring import.
 
-Finish the repaired release lifecycle recorded in [docs/verification/bse-2023-ssek-release-2026-09-29.json](docs/verification/bse-2023-ssek-release-2026-09-29.json): merge only with a `release(ssek):` commit after final CI is green, let the temporary `reviewed_ssek` job retry against latest `main`, verify the actual served `data/ipos.json` with `scripts/verify-bse-2023-ssek.mjs`, then close the four queue rows and retire both temporary release surfaces.
+Finish the release lifecycle recorded in [docs/verification/bse-2023-ssek-release-2026-09-29.json](docs/verification/bse-2023-ssek-release-2026-09-29.json): run the temporary read-only served-data verifier against the deployed `data/ipos.json`, retain the actual response and exact projection match, then close the four queue rows and retire both temporary release surfaces.
 
 Do not replay the completed IRMS, 2020–2022 or NSE releases. Continue to use `node scripts/check-bse-2023-progress.mjs`, `node scripts/build-published-data.mjs --check` and `node scripts/validate-data.mjs` as baseline guards.
 

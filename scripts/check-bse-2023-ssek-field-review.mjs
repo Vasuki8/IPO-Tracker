@@ -11,6 +11,7 @@ export const REVIEW='data/discovery/bse-2023-ssek-field-review-2026-09-29.json';
 const RECEIPT='data/evidence/bse-2023-ssek-source-receipt-2026-09-29.json';
 const PLAN='data/discovery/bse-2023-ssek-source-plan-2026-09-29.json';
 const QUEUE='data/discovery/bse-2023-review-queue-2026-09-28.json';
+const LIFECYCLE='docs/verification/bse-2023-ssek-release-2026-09-29.json';
 const CODES=['544059','543970','543895','543953'];
 const FIXED=new Set(['543970','543953']);
 const PROVISIONAL_AMOUNT=new Set(['544059','543895']);
@@ -120,12 +121,28 @@ export function reconcileIdentities(actions,recoveryByYear,published){
  return {records_checked:records,public_records_checked:(published?.records||[]).length,matches,clearance_for_import:false,scope:'Exact current stable-id, canonical legal-name and BSE-code matches only; not fuzzy matching, permanent alias clearance or publication approval.'};
 }
 
+function validateCurrentIdentityState(actions,reconciliation,lifecycle){
+ req(lifecycle?.schema_version==='1.0.0'&&['prepared_import_pending','published_verification_pending','verified_and_publisher_retired'].includes(lifecycle.status),'invalid_ssek_lifecycle');
+ if(lifecycle.status==='prepared_import_pending'){req(reconciliation.matches.length===0,'current_identity_collision_requires_review');return 'pre_publication_clear';}
+ req(reconciliation.matches.length===actions.length*2,'unexpected_post_publication_identity_matches');
+ for(const a of actions){
+  const matches=reconciliation.matches.filter(x=>x.candidate_code===a.discovery_bse_scrip_code);
+  const recovery=matches.filter(x=>x.surface==='recovery'),published=matches.filter(x=>x.surface==='public');
+  req(recovery.length===1&&published.length===1,'missing_or_duplicate_published_identity:'+a.discovery_bse_scrip_code);
+  req(recovery[0].year===2023&&recovery[0].id===a.candidate_id&&published[0].id===a.candidate_id,'post_publication_stable_id_mismatch:'+a.discovery_bse_scrip_code);
+  req(canonicalIssuer(recovery[0].issuer_name)===canonicalIssuer(a.issuer_name)&&canonicalIssuer(published[0].issuer_name)===canonicalIssuer(a.issuer_name),'post_publication_issuer_mismatch:'+a.discovery_bse_scrip_code);
+  req(recovery[0].reasons.includes('candidate_id')&&recovery[0].reasons.includes('canonical_legal_name')&&recovery[0].reasons.includes('bse_scrip_code'),'recovery_identity_not_exact:'+a.discovery_bse_scrip_code);
+  req(published[0].reasons.includes('candidate_id')&&published[0].reasons.includes('canonical_legal_name'),'public_identity_not_exact:'+a.discovery_bse_scrip_code);
+ }
+ return 'post_publication_exact';
+}
 export function checkReview(root=ROOT){
  const ctx=context(root),review=validateReview(ctx),dir=path.join(root,'data/recovery'),all={};
  for(const year of fs.readdirSync(dir).filter(y=>/^20\d{2}$/.test(y)&&fs.existsSync(path.join(dir,y,'nse-issue-information.json'))))all[year]=parse(fs.readFileSync(path.join(dir,year,'nse-issue-information.json')));
  const reconciliation=reconcileIdentities(ctx.review.actions,all,parse(fs.readFileSync(path.join(root,'data/ipos.json'))));
- req(reconciliation.matches.length===0,'current_identity_collision_requires_review');
- return {review,reconciliation};
+ const lifecycle=parse(fs.readFileSync(path.join(root,LIFECYCLE)));
+ const current_identity_state=validateCurrentIdentityState(ctx.review.actions,reconciliation,lifecycle);
+ return {review,reconciliation,current_identity_state};
 }
 if(process.argv[1]&&import.meta.url===pathToFileURL(path.resolve(process.argv[1])).href){
  try{req(process.argv.length===2,'read-only checker accepts no arguments');console.log(JSON.stringify({bse_2023_ssek_field_review:checkReview()},null,2));}
