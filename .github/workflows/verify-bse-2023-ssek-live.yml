@@ -5,13 +5,14 @@ on:
     branches: ["main"]
     paths:
       - "data/ipos.json"
+      - ".github/workflows/verify-bse-2023-ssek-live.yml"
 
 permissions:
   contents: read
 
 jobs:
   verify:
-    if: startsWith(github.event.head_commit.message, 'data(ssek):')
+    if: startsWith(github.event.head_commit.message, 'data(ssek):') || startsWith(github.event.head_commit.message, 'verify(ssek):')
     runs-on: ubuntu-latest
     timeout-minutes: 8
     steps:
