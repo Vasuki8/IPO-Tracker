@@ -1,5 +1,28 @@
 # Project status and handoff
 
+## Website logic repair batch prepared for review — 2026-09-30
+
+All seven subsequent website-review findings have local repairs: date-aware
+bidding status, explicit price conflicts, distinct trading-lot/minimum-bid labels,
+chronological fallback sorting, company-only search, separate draft freshness,
+and unavailable-board browsing. An independent review's open-tab midnight issue
+was also fixed. All 103 regression scripts and the syntax, builder and contract
+checks passed. Every retained source record and dataset timestamp is preserved;
+the public array is reordered through the shared comparator. See the
+[behavior and verification record](verification/product-logic-repairs-2026-09-30.md).
+Changes are prepared on the repair branch; merge, deployment, source pricing reconciliation and the
+historical served-data closeout below remain separate work.
+
+## Code review repair batch prepared for review — 2026-09-30
+
+Nine reviewed correctness, publication, validation and navigation findings have
+local repairs and regression coverage. Five 2026 lifecycle statuses were advanced
+using their existing verified elapsed NSE listing dates, preserving prior evidence
+and the other 1,382 public records. No source was refetched. See the
+[repair and validation record](verification/code-review-repairs-2026-09-30.md).
+Merge and deployment remain pending; the historical SSEK release below is still
+awaiting its separate served-data closeout.
+
 Updated **2026-09-30 (UTC)** after PR #350 repaired the listing-source provenance and the guarded SSEK publisher successfully added four reviewed records to repository data. Active priority remains **P1 issuer identity and data correctness**.
 
 The SSEK release lifecycle is now **`published_verification_pending`**. Repository data commit **d4b196f6e9f37884d11cd48a3ef46cd930dcd47f** added exactly four reviewed records while preserving **1,383** existing public objects unchanged, producing **1,387** public records. The immutable 2023 review ledger intentionally remains **12 reviewed/published + 18 awaiting review** until the actual served Pages dataset is verified.

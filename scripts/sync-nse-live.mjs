@@ -323,9 +323,15 @@ export function enrichExistingRecord(record, issue, now) {
   }
 
   if (liveStatus && record.status !== liveStatus) {
-    record.status = liveStatus;
-    record.status_evidence = addEvidenceOnce(record.status_evidence, evidence);
-    changed = true;
+    if (record.status !== "listed") {
+      record.status = liveStatus;
+      changed = true;
+    }
+    const nextStatusEvidence = addEvidenceOnce(record.status_evidence, evidence);
+    if (nextStatusEvidence !== record.status_evidence) {
+      record.status_evidence = nextStatusEvidence;
+      changed = true;
+    }
   }
 
   record.terms ||= {};

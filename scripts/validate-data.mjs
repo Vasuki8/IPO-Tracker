@@ -2,6 +2,7 @@ import fs from "node:fs";
 
 const path = new URL("../data/ipos.json", import.meta.url);
 const data = JSON.parse(fs.readFileSync(path, "utf8"));
+const schema = JSON.parse(fs.readFileSync(new URL("../data/ipo-schema.json", import.meta.url), "utf8"));
 
 const allowedStatuses = new Set(["verified", "provisional", "conflict", "missing"]);
 const allowedRecordStatuses = new Set(["open", "upcoming", "closed", "listed"]);
@@ -17,6 +18,79 @@ function fail(message) {
   console.error(`DATA CONTRACT ERROR: ${message}`);
   process.exitCode = 1;
 }
+
+function validDate(value) {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) return false;
+  const date = new Date(value + "T00:00:00Z");
+  return Number.isFinite(date.getTime()) && date.toISOString().slice(0, 10) === value;
+}
+
+function validTimestamp(value) {
+  const match = value.match(/^(\d{4}-\d{2}-\d{2})[Tt](\d{2}):(\d{2}):(\d{2})(?:\.\d+)?(?:[Zz]|[+-](\d{2}):(\d{2}))$/);
+  return Boolean(match && validDate(match[1]) && Number(match[2]) < 24 &&
+    Number(match[3]) < 60 && Number(match[4]) < 60 &&
+    (match[5] === undefined || (Number(match[5]) < 24 && Number(match[6]) < 60)) &&
+    Number.isFinite(Date.parse(value)));
+}
+
+// The repository has no runtime package dependencies. Enforce the assertions
+// used by its local schema, including retained correction representations.
+// Reject unsupported assertions so future schema changes cannot silently pass.
+const schemaKeywords = new Set(["$schema", "$id", "title", "description", "$defs", "$ref", "type", "required", "properties", "additionalProperties", "items", "format", "minLength", "minItems", "const", "enum", "anyOf"]);
+function checkSchema(definition) {
+  for (const key of Object.keys(definition)) {
+    if (!schemaKeywords.has(key)) throw new Error(`unsupported schema assertion: ${key}`);
+  }
+  for (const child of Object.values(definition.properties || {})) checkSchema(child);
+  for (const child of Object.values(definition.$defs || {})) checkSchema(child);
+  if (definition.items) checkSchema(definition.items);
+  for (const child of definition.anyOf || []) checkSchema(child);
+}
+
+function schemaErrors(value, definition, prefix = "dataset") {
+  if (definition.$ref) {
+    const match = definition.$ref.match(/^#\/\$defs\/([^/]+)$/);
+    if (!match || !schema.$defs[match[1]]) throw new Error(`unsupported schema reference: ${definition.$ref}`);
+    return schemaErrors(value, schema.$defs[match[1]], prefix);
+  }
+  const errors = [];
+  const object = value !== null && typeof value === "object" && !Array.isArray(value);
+  const types = Array.isArray(definition.type) ? definition.type : [definition.type];
+  const matchesType = type => type === "null" ? value === null
+    : type === "object" ? object : type === "array" ? Array.isArray(value)
+    : type === "integer" ? Number.isInteger(value)
+    : type === "number" ? typeof value === "number" && Number.isFinite(value)
+    : typeof value === type;
+  if (definition.type && !types.some(matchesType)) return [`${prefix} must have type ${types.join(" or ")}`];
+  if (Object.hasOwn(definition, "const") && value !== definition.const) errors.push(`${prefix} must equal ${JSON.stringify(definition.const)}`);
+  if (definition.enum && !definition.enum.includes(value)) errors.push(`${prefix} must be one of ${JSON.stringify(definition.enum)}`);
+  if (definition.anyOf && !definition.anyOf.some(option => schemaErrors(value, option, prefix).length === 0)) errors.push(`${prefix} does not match an allowed representation`);
+  if (typeof value === "string") {
+    if (definition.minLength !== undefined && [...value].length < definition.minLength) errors.push(`${prefix} must not be empty`);
+    if (definition.format === "date" && !validDate(value)) errors.push(`${prefix} must be a valid calendar date`);
+    if (definition.format === "date-time" && !validTimestamp(value)) errors.push(`${prefix} must be a valid timestamp`);
+  }
+  if (object) {
+    for (const name of definition.required || []) {
+      if (!Object.hasOwn(value, name)) errors.push(`${prefix}.${name} is required`);
+    }
+    for (const [name, child] of Object.entries(value)) {
+      if (Object.hasOwn(definition.properties || {}, name)) errors.push(...schemaErrors(child, definition.properties[name], `${prefix}.${name}`));
+      else if (definition.additionalProperties === false) errors.push(`${prefix}.${name} is not allowed`);
+    }
+  }
+  if (Array.isArray(value)) {
+    if (definition.minItems !== undefined && value.length < definition.minItems) errors.push(`${prefix} must contain at least ${definition.minItems} item(s)`);
+    if (definition.items) value.forEach((item, index) => errors.push(...schemaErrors(item, definition.items, `${prefix}[${index}]`)));
+  }
+  return errors;
+}
+
+checkSchema(schema);
+const structuralErrors = schemaErrors(data, schema);
+for (const error of structuralErrors) fail(error);
+// Structural failures are already actionable; do not crash in semantic checks.
+if (structuralErrors.length) process.exit(1);
 
 function validateField(field, prefix) {
   if (!field || typeof field !== "object" || Array.isArray(field)) {

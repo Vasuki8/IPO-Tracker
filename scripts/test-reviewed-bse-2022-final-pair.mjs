@@ -58,7 +58,7 @@ const dataPath=path.join(ROOT,'data/recovery/2022/nse-issue-information.json'),o
 const cli=spawnSync(process.execPath,['scripts/apply-reviewed-bse-2022-final-pair.mjs','--check'],{cwd:ROOT,encoding:'utf8'});assert.equal(cli.status,0,cli.stderr);assert.deepEqual(fs.readFileSync(dataPath),original);
 const temp=fs.mkdtempSync(path.join(os.tmpdir(),'final-pair-test-'));
 try{
- for(const dir of ['data','scripts'])fs.cpSync(path.join(ROOT,dir),path.join(temp,dir),{recursive:true});
+ for(const dir of ['data','scripts','assets'])fs.cpSync(path.join(ROOT,dir),path.join(temp,dir),{recursive:true});
  const write=model=>{for(const [y,m]of Object.entries(model))fs.writeFileSync(path.join(temp,'data/recovery',y,'nse-issue-information.json'),JSON.stringify(m,null,2)+'\n');};
  const run=(name,args=[])=>{const r=spawnSync(process.execPath,[name,...args],{cwd:temp,encoding:'utf8'});assert.equal(r.status,0,r.stderr||r.stdout);};
  const read=()=>JSON.parse(fs.readFileSync(path.join(temp,'data/ipos.json')));

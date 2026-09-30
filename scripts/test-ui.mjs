@@ -70,6 +70,23 @@ async function screenshot(name, fullPage = false) {
 async function loaded() {
   await page.waitForSelector("#results:not([hidden])");
 }
+async function keyboardSkipToContent() {
+  const url = page.url();
+  await page.locator(".skip-link").focus();
+  await page.keyboard.press("Enter");
+  assert.equal(page.url(), url, "Skip to content must preserve the current IPO route and filters");
+  assert.equal(
+    await page.locator("#main").evaluate((el) => el === document.activeElement),
+    true,
+    "Skip to content must move keyboard focus to main",
+  );
+  await page.keyboard.press("Tab");
+  assert.equal(
+    await page.evaluate(() => document.querySelector("#main").contains(document.activeElement)),
+    true,
+    "Tab after skipping must continue within the current main content",
+  );
+}
 try {
   await page.goto(base);
   await loaded();
@@ -123,6 +140,8 @@ try {
     await page.locator("#detailName").textContent(),
     sourceRecord.issuer_name,
   );
+  await keyboardSkipToContent();
+  assert.equal(await page.locator("#detailView").isVisible(), true);
   assert.equal(
     await page.locator("#documentList .document").count(),
     sourceRecord.documents.length,
@@ -146,6 +165,8 @@ try {
     await page.locator("#searchInput").inputValue(),
     sourceRecord.issuer_name,
   );
+  await keyboardSkipToContent();
+  assert.equal(await page.locator("#homeView").isVisible(), true);
   await page.locator("#resetFilters").click();
   assert.ok(
     groupedRecord,
@@ -249,6 +270,8 @@ try {
   assert.equal(await page.locator("#mobileCards").isVisible(), true);
   await page.locator("#mobileCards .company-name").first().click();
   await page.waitForSelector("#detailView:not([hidden])");
+  await keyboardSkipToContent();
+  assert.equal(await page.locator("#detailView").isVisible(), true);
   assert.equal(
     await page.evaluate(
       () => document.documentElement.scrollWidth > innerWidth,

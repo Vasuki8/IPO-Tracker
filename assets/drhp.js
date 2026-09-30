@@ -119,9 +119,12 @@ async function load() {
       !latest || company.latest_filing_date > latest ? company.latest_filing_date : latest, null));
     $("#drhpYear").textContent = sourceData.coverage.year;
     $("#drhpPages").textContent = sourceData.coverage.pages_fetched;
-    $("#drhpGenerated").textContent = "Lifecycle state checked: " + formatTimestamp(
-      [sourceData.collection_completed_at || sourceData.generated_at, ipoData.generated_at].filter(Boolean).sort().at(-1)
-    );
+    const sourceCollected = formatTimestamp(sourceData.collection_completed_at);
+    $("#drhpSourceCollected").textContent = sourceCollected !== "Unavailable"
+      ? "Draft sources last successfully collected: " + sourceCollected
+      : "Draft dataset generated: " + formatTimestamp(sourceData.generated_at) + " · source collection time unavailable";
+    $("#drhpLifecycleGenerated").textContent = "IPO lifecycle dataset generated: " + formatTimestamp(ipoData.generated_at);
+    $("#drhpRefreshAttempt").textContent = "Latest reported draft-source refresh: Checking…";
     $("#drhpCoverageNote").textContent =
       `${activeCompanies.length} active pre-IPO companies · ${progressedCount} progressed issuer(s) hidden · ${sourceData.companies.length} draft-backed companies tracked`;
 
@@ -143,9 +146,23 @@ async function load() {
       const healthResponse = await fetch("ops/drhp-collection.json", {cache:"no-store"});
       if(!healthResponse.ok) throw new Error("health unavailable");
       const health = await healthResponse.json();
-      if(health.status === "failed") $("#drhpIntegrityNote").textContent += " Latest draft-source refresh failed; the last successful evidence set is retained.";
-      else if(health.status !== "success") $("#drhpIntegrityNote").textContent += " Latest draft-source refresh status is unavailable.";
-    } catch { $("#drhpIntegrityNote").textContent += " Latest draft-source refresh status is unavailable."; }
+      const status = health?.status === "failed" ? "Failed" : health?.status === "success" ? "Success" : "Unavailable";
+      $("#drhpRefreshAttempt").textContent = "Latest reported draft-source refresh: " + status +
+        (health?.attempted_at ? " · " + formatTimestamp(health.attempted_at) : " · attempt time unavailable");
+      if(health?.status === "failed") {
+        $("#drhpIntegrityNote").textContent += sourceCollected !== "Unavailable"
+          ? " Latest draft-source refresh failed; the last successful evidence set is retained."
+          : " Latest draft-source refresh failed; the published draft dataset is retained.";
+      } else if(health?.status !== "success") {
+        $("#drhpIntegrityNote").textContent += " Latest draft-source refresh status is unavailable.";
+      } else if(sourceCollected !== "Unavailable" && formatTimestamp(health.last_successful_collection_at) !== "Unavailable" &&
+        new Date(health.last_successful_collection_at).getTime() !== new Date(sourceData.collection_completed_at).getTime()) {
+        $("#drhpIntegrityNote").textContent += " Refresh report describes a different collection; displayed companies use the retained draft dataset above.";
+      }
+    } catch {
+      $("#drhpRefreshAttempt").textContent = "Latest reported draft-source refresh: Unavailable";
+      $("#drhpIntegrityNote").textContent += " Latest draft-source refresh status is unavailable.";
+    }
   } catch (error) {
     console.error(error);
     DRHP_DATA = null;

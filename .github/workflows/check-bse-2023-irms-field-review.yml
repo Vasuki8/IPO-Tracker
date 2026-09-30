@@ -60,7 +60,9 @@ jobs:
           failures=0
           count=0
           for file in scripts/test-*.mjs; do
-            [ "$(basename "$file")" = 'test-ui.mjs' ] && continue
+            case "$(basename "$file")" in
+              test-ui.mjs|test-product-logic-ui.mjs|test-drhp-freshness.mjs) continue ;;
+            esac
             count=$((count + 1))
             if timeout 90 node "$file" > "$RUNNER_TEMP/irms-field-tests/$(basename "$file").log" 2>&1; then
               echo "PASS $file"

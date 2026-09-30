@@ -50,6 +50,14 @@ jobs:
       - name: Test operator state validation
         run: node scripts/test-validate-operator-state.mjs
 
+      - name: Test publication workflow and verification guards
+        run: |
+          node scripts/test-publication-workflows.mjs
+          node scripts/test-record-pages-publication.mjs
+
+      - name: Test published schema rejection cases
+        run: node scripts/test-validate-data.mjs
+
       - name: Test scheduled operation health monitor
         run: node scripts/test-check-schedule-health.mjs
 

@@ -146,7 +146,7 @@ export function applyRecoveryProposal(currentManifest, proposal) {
   const byId = new Map(manifest.records.map((record) => [record.id, record]));
   let changed = false;
 
-  for (const record of proposal?.added_records || []) {
+  for (const record of [...(proposal?.new_manifest?.records || []), ...(proposal?.added_records || [])]) {
     if (!byId.has(record.id)) {
       const added = clone(record);
       manifest.records.push(added);
@@ -200,7 +200,7 @@ export function applyRecoveryProposal(currentManifest, proposal) {
     manifest.records.sort((a, b) => String(a.issuer_name || "").localeCompare(String(b.issuer_name || "")));
     manifest.generated_at = maxTimestamp(
       manifest.generated_at,
-      proposal?.manifest_generated_at_after ?? null
+      proposal?.manifest_generated_at_after ?? proposal?.new_manifest?.generated_at ?? null
     );
   }
 

@@ -95,3 +95,15 @@ try {
 }
 
 console.log("Semantic live-sync proposal/apply tests passed.");
+
+const newYearProposal=buildRecoveryProposal(undefined,{collection_started_at:"2027-01-01T00:00:00Z",generated_at:"2027-01-02T00:00:00Z",records:[{id:"alpha",issuer_name:"Alpha Limited"},{id:"shared",issuer_name:"Shared Limited",terms:{market_lot:100}}]});
+const concurrentNewYear={collection_started_at:"2027-01-01T01:00:00Z",generated_at:"2027-01-03T00:00:00Z",records:[{id:"beta",issuer_name:"Beta Limited"},{id:"shared",issuer_name:"Shared Limited",terms:{market_lot:200}}]};
+const newYearMerged=applyRecoveryProposal(concurrentNewYear,newYearProposal);
+assert.deepEqual(newYearMerged.manifest.records.map(r=>r.id),["alpha","beta","shared"],"Concurrent new manifest must preserve both sets of stable identities");
+assert.equal(newYearMerged.manifest.records.find(r=>r.id==="shared").terms.market_lot,200);
+assert.equal(newYearMerged.stats.conflicts,1,"Divergent same identity must remain a visible conflict");
+assert.equal(newYearMerged.manifest.generated_at,concurrentNewYear.generated_at);
+assert.equal(newYearMerged.manifest.collection_started_at,concurrentNewYear.collection_started_at);
+assert.equal(applyRecoveryProposal(newYearMerged.manifest,newYearProposal).changed,false);
+assert.equal(applyRecoveryProposal(undefined,newYearProposal).manifest.records.length,2);
+console.log("Concurrent new-year manifest merge tests passed.");

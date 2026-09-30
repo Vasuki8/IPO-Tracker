@@ -10,25 +10,54 @@ on:
       - "ops/sebi-historical-offer-dates.json"
       - "ops/sebi-historical-pdf-fields.json"
   workflow_dispatch:
+  # GITHUB_TOKEN data pushes do not emit push-triggered workflow runs.
+  workflow_run:
+    workflows:
+      - "Sync live IPO data"
+      - "Sync Pre-IPO draft sources"
+      - "Backfill historical IPO offer dates"
+      - "Backfill historical IPO PDF fields"
+    types: [completed]
+    branches: [main]
 
 permissions:
   contents: write
   pages: write
   id-token: write
 
-concurrency:
-  group: pages
-  cancel-in-progress: true
-
 jobs:
   deploy:
+    # Never execute a PR payload or an upstream fork revision with write access.
+    if: >-
+      (github.event_name != 'workflow_run' && github.ref == 'refs/heads/main') ||
+      (github.event_name == 'workflow_run' &&
+       github.event.workflow_run.conclusion == 'success' &&
+       github.event.workflow_run.head_branch == 'main' &&
+       github.event.workflow_run.head_repository.full_name == github.repository &&
+       contains(fromJSON('["push","schedule","workflow_dispatch"]'), github.event.workflow_run.event))
+    # Join deployment concurrency only after the trusted-success guard passes.
+    concurrency:
+      group: pages
+      cancel-in-progress: true
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Retain actual deployment revision
+        id: revision
+        run: echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+
+      - name: Use Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
@@ -43,6 +72,7 @@ jobs:
         uses: actions/deploy-pages@v4
 
       - name: Verify served IPO dataset matches this deployment
+        id: verify
         env:
           PAGES_URL: ${{ steps.deployment.outputs.page_url }}
         shell: bash
@@ -53,12 +83,16 @@ jobs:
           const expected=fs.readFileSync("data/ipos.json");
           const hash=b=>createHash("sha256").update(b).digest("hex");
           const expectedHash=hash(expected);
+          const out=process.env.RUNNER_TEMP+"/pages-verification";
+          fs.mkdirSync(out,{recursive:true});
           const base=process.env.PAGES_URL.endsWith("/")?process.env.PAGES_URL:process.env.PAGES_URL+"/";
           let last="";
           for(let attempt=1;attempt<=5;attempt++){
             const response=await fetch(base+"data/ipos.json?verify="+Date.now(),{cache:"no-store"});
             const bytes=Buffer.from(await response.arrayBuffer());
             last=hash(bytes);
+            fs.writeFileSync(out+"/ipos.json",bytes);
+            fs.writeFileSync(out+"/ipos-report.json",JSON.stringify({checked_at:new Date().toISOString(),status:response.status,expected_sha256:expectedHash,served_sha256:last,match:response.ok&&last===expectedHash,attempt},null,2)+"\n");
             if(response.ok&&last===expectedHash){
               const data=JSON.parse(bytes);
               console.log(JSON.stringify({pages_dataset_verified:true,records:data.records?.length??null,generated_at:data.generated_at??null,sha256:last,attempt}));
@@ -69,10 +103,30 @@ jobs:
           throw new Error("served_dataset_mismatch expected="+expectedHash+" actual="+last);
           NODE
 
+          # Compare DRHP data and directory assets with the same uploaded tree.
+          for attempt in $(seq 1 5); do
+            if node scripts/verify-drhp-publication.mjs --output-dir="$RUNNER_TEMP/pages-verification/drhp"; then
+              exit 0
+            fi
+            if [ "$attempt" -lt 5 ]; then sleep 15; fi
+          done
+          exit 1
+
+      - name: Retain served dataset bytes and verification reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pages-verification-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/pages-verification
+          retention-days: 14
+          if-no-files-found: warn
+
       - name: Record Pages publication health
         if: always()
         env:
           PAGES_DEPLOY_OUTCOME: ${{ steps.deployment.outcome }}
+          PAGES_VERIFY_OUTCOME: ${{ steps.verify.outcome }}
+          PAGES_DEPLOY_COMMIT_SHA: ${{ steps.revision.outputs.sha }}
           PAGES_URL: ${{ steps.deployment.outputs.page_url }}
         shell: bash
         run: |

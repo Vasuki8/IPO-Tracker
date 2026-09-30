@@ -69,14 +69,8 @@ jobs:
           cp data/drhp-filings.json "$RUNNER_TEMP/drhp-evidence/published-data.json"
           cp ops/drhp-collection.json "$RUNNER_TEMP/drhp-evidence/collection-status.json"
           git rev-parse HEAD > "$RUNNER_TEMP/drhp-evidence/published-commit.txt"
-      - name: Verify actual Pages data and directory assets
-        if: steps.collect.outcome == 'success'
-        run: |
-          for attempt in $(seq 1 24); do
-            if node scripts/verify-drhp-publication.mjs --output-dir="$RUNNER_TEMP/drhp-evidence/live"; then exit 0; fi
-            sleep 15
-          done
-          exit 1
+      # Live verification runs after Pages deployment. Waiting here would
+      # prevent the successful workflow_run event that starts that deployment.
       - uses: actions/upload-artifact@v4
         if: always()
         with:
