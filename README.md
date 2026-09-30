@@ -41,6 +41,8 @@ Collection time, source observation, dataset generation and Pages publication ar
 
 The next four 2023 BSE candidates now have reviewed Prospectus terms **and** retained authoritative actual-listing evidence. The prepared SSEK release is still **not published**: the 2023 ledger remains **12 reviewed/published + 18 awaiting review** until the served Pages dataset is verified.
 
+The original 2022 queue remains **14 reviewed/published + 2 existing-recovery alias + 0 awaiting review**.
+
 The bounded scope is **SHANTI SPINTEX LIMITED (544059)**, **Shoora Designs Limited (543970)**, **Exhicon Events Media Solutions Limited (543895)** and **Khazanchi Jewellers Limited (543953)**. Reviewed actual listing dates are **27-Dec-2023**, **29-Aug-2023**, **17-Apr-2023** and **07-Aug-2023** respectively.
 
 The guarded import is pinned by [data/verified-bse-listings/2026-09-29-ssek-2023.json](data/verified-bse-listings/2026-09-29-ssek-2023.json). The source receipt is [data/evidence/bse-2023-ssek-listing-source-receipt-2026-09-29.json](data/evidence/bse-2023-ssek-listing-source-receipt-2026-09-29.json). Artifact **11062426975** contains the four retained original annual reports and expires **13-Oct-2026**.
@@ -48,6 +50,8 @@ The guarded import is pinned by [data/verified-bse-listings/2026-09-29-ssek-2023
 Board, NSE identity, ISIN and monetary minimum application amount remain null. Preserve Shanti's ₹80 Cut Off Price typo, Exhicon's Prospectus date-definition conflict, both provisional issue amounts, and the fixed-price semantics for Shoora and Khazanchi.
 
 ### Exact next backend task
+
+The original BSE 2022 queue has remaining **0** unmatched rows requiring import.
 
 Finish the release lifecycle recorded in [docs/verification/bse-2023-ssek-release-2026-09-29.json](docs/verification/bse-2023-ssek-release-2026-09-29.json): merge only with a `release(ssek):` commit after final CI is green, let the temporary `reviewed_ssek` job publish against latest `main`, verify the actual served `data/ipos.json` with `scripts/verify-bse-2023-ssek.mjs`, then close the four queue rows and retire both temporary release surfaces.
 
