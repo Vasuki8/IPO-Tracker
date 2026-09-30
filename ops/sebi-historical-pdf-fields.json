@@ -1921,10 +1921,28 @@
     "2021|pb-fintech-limited": {
       "issuer_name": "PB Fintech Limited",
       "listing_date": "2021-11-15",
-      "last_attempted_at": "2026-09-29T06:21:03.481Z",
+      "last_attempted_at": "2026-09-30T09:05:14.448Z",
       "parser_version": "1.2.0",
-      "status": "error",
-      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 75 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-historical-pdf-dI9QgK/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/oct-2021/1635395300515.pdf\ncurl: (28) Operation timed out after 75000 milliseconds with 21205839 out of 27205538 bytes received\ncurl: (18) transfer closed with 25039091 bytes remaining to read\n",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "price_band",
+        "issue_size_inr",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "PB Fintech Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2021/1635395300515.pdf",
+        "publication_date": "2021-10-28"
+      },
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2021/1635395300515.pdf"
     },
     "2025|jain-resource-recycling-limited": {
@@ -4605,6 +4623,119 @@
         "publication_date": "2023-06-19"
       },
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2023/1687324951765.pdf"
+    },
+    "2025|aditya-infotech-limited": {
+      "issuer_name": "Aditya Infotech Limited",
+      "listing_date": "2025-08-05",
+      "last_attempted_at": "2026-09-30T09:05:14.448Z",
+      "parser_version": "1.2.0",
+      "status": "extracted",
+      "extracted_fields": [
+        "issue_size_inr"
+      ],
+      "remaining_fields": [
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": {
+          "value": 13000000000,
+          "source_value": "₹13,000.00 MILLION",
+          "page": 3
+        },
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Aditya Infotech Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2025/1753782855015.pdf",
+        "publication_date": "2025-07-23"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2025/1753782855015.pdf"
+    },
+    "2023|shoora-designs-limited": {
+      "issuer_name": "Shoora Designs Limited",
+      "listing_date": "2023-08-29",
+      "last_attempted_at": "2026-09-30T09:05:14.448Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "price_band"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Shoora Designs Limited — Prospectus 2023-08-09",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/apr-2024/1712280675615_212.pdf",
+        "publication_date": null
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/apr-2024/1712280675615_212.pdf"
+    },
+    "2023|khazanchi-jewellers-limited": {
+      "issuer_name": "Khazanchi Jewellers Limited",
+      "listing_date": "2023-08-07",
+      "last_attempted_at": "2026-09-30T09:05:14.448Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "price_band"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Khazanchi Jewellers Limited — Prospectus 2023-07-15",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2023/1689936568009.pdf",
+        "publication_date": null
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2023/1689936568009.pdf"
+    },
+    "2023|greenchef-appliances-limited": {
+      "issuer_name": "Greenchef Appliances Limited",
+      "listing_date": "2023-07-06",
+      "last_attempted_at": "2026-09-30T09:05:14.448Z",
+      "parser_version": "1.2.0",
+      "status": "extracted",
+      "extracted_fields": [
+        "market_lot"
+      ],
+      "remaining_fields": [
+        "price_band",
+        "issue_size_inr"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": {
+          "value": 1600,
+          "source_value": "Lot Size 1600 Equity Shares",
+          "page": 9
+        },
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Greenchef Appliances Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2023/1688554585338.pdf",
+        "publication_date": "2023-07-03"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2023/1688554585338.pdf"
     }
   }
 }
