@@ -49,6 +49,8 @@ The original 2022 queue remains **14 reviewed/published + 2 existing-recovery al
 
 ### Exact next backend task
 
+The original BSE 2022 queue has remaining **0** unmatched rows requiring import.
+
 Review **Mish Designs Limited (544015)**, **AHASOLAR TECHNOLOGIES LIMITED (543941)**, **ORGANIC RECYCLING SYSTEMS LIMITED (543997)** and **Meson Valves India Limited (543982)** from the pinned 2023 queue. Do not treat discovery values as publication authority. Retain original official evidence, reconcile identity across every recovery year, preserve conflicts/nulls, and only publish after a separate reviewed manifest and exact served verification.
 
 Use `node scripts/check-bse-2023-progress.mjs`, `node scripts/check-bse-2022-disposition.mjs`, `node scripts/check-retained-bse-snapshot.mjs`, `node scripts/build-published-data.mjs --check` and `node scripts/validate-data.mjs` as baseline guards.
