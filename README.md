@@ -51,6 +51,8 @@ Board, NSE identity, ISIN and monetary minimum application amount remain null. P
 
 ### Exact next backend task
 
+Complete the pending release for **SHANTI SPINTEX LIMITED (544059)**, **Shoora Designs Limited (543970)**, **Exhicon Events Media Solutions Limited (543895)** and **Khazanchi Jewellers Limited (543953)**.
+
 The original BSE 2022 queue has remaining **0** unmatched rows requiring import.
 
 Finish the release lifecycle recorded in [docs/verification/bse-2023-ssek-release-2026-09-29.json](docs/verification/bse-2023-ssek-release-2026-09-29.json): merge only with a `release(ssek):` commit after final CI is green, let the temporary `reviewed_ssek` job publish against latest `main`, verify the actual served `data/ipos.json` with `scripts/verify-bse-2023-ssek.mjs`, then close the four queue rows and retire both temporary release surfaces.
