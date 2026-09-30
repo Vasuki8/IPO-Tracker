@@ -13,7 +13,7 @@ const APPROVED_URLS=new Map([
  ['544059','https://www.bseindia.com/xml-data/corpfiling/AttachHis/7ef41283-ff90-4b34-ab83-815414cc3de9.pdf'],
  ['543970','https://www.bseindia.com/xml-data/corpfiling/AttachHis/5785622d-c982-49ae-88ac-86ef96b89feb.pdf'],
  ['543895','https://www.bseindia.com/xml-data/corpfiling/AttachHis/8b213ed3-4634-48f5-b536-260e484aafba.pdf'],
- ['543953','https://www.khazanchi.co.in/files/Khazanchi%20Jewellers%20AR24.pdf']
+ ['543953','https://www.bseindia.com/xml-data/corpfiling/AttachHis/42262d2a-d78c-4512-9b47-b316e819a87f.pdf']
 ]);
 const sha256=b=>createHash('sha256').update(b).digest('hex');
 const gitBlobSha=b=>{const bytes=Buffer.from(b);return createHash('sha1').update(Buffer.from('blob '+bytes.length+'\0')).update(bytes).digest('hex');};
