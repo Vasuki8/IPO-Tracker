@@ -65,4 +65,20 @@ test('live verifier requires exact reviewed public projections',async t=>{const 
 for(const [name,change] of [
  ['missing issuer',d=>d.records.pop()],['duplicate id',d=>d.records.push(d.records[0])],['listing drift',d=>d.records[2].listing_date.value='2023-04-18'],['invented application amount',d=>d.records[0].minimum_application_amount_inr.value=140000]
 ])test('live verifier rejects '+name,async t=>{const d=published();change(d);await assert.rejects(()=>verifyData(d,t));});
+test('bounded publisher and live verifier exist only while release is pending',()=>{
+ const root=new URL('../',import.meta.url),workflow=fs.readFileSync(new URL('.github/workflows/update-ipos.yml',root),'utf8');
+ const state=JSON.parse(fs.readFileSync(new URL('docs/verification/bse-2023-ssek-release-2026-09-29.json',root)));
+ const live=new URL('.github/workflows/verify-bse-2023-ssek-live.yml',root);
+ if(['prepared_import_pending','published_verification_pending'].includes(state.status)){
+  assert.match(workflow,/reviewed_ssek:/);assert.match(workflow,/startsWith\(github\.event\.head_commit\.message, 'release\(ssek\):'\)/);
+  const job=workflow.split('  reviewed_ssek:')[1].split('  sync:')[0];
+  assert.match(job,/git reset --hard origin\/main/);assert.match(job,/apply-reviewed-bse-2023-ssek\.mjs --apply/);assert.match(job,/build-published-data\.mjs --check/);
+  assert.match(job,/git add data\/recovery\/2023\/nse-issue-information\.json data\/ipos\.json/);assert.doesNotMatch(job,/curl |wget |sync-nse|collect-/);
+  assert.match(workflow,/sync:\n    if: github\.event_name != 'push' \|\| !startsWith\(github\.event\.head_commit\.message, 'release\(ssek\):'\)/);
+  assert.equal(fs.existsSync(live),true);
+ }else{
+  assert.equal(state.status,'verified_and_publisher_retired');assert.equal(state.new_public_records,4);
+  assert.doesNotMatch(workflow,/reviewed_ssek:|apply-reviewed-bse-2023-ssek\.mjs --apply/);assert.equal(fs.existsSync(live),false);
+ }
+});
 test('temporary listing collector workflow is not retained in final tree',()=>{assert.equal(fs.existsSync(new URL('../.github/workflows/collect-bse-2023-ssek-listing-evidence.yml',import.meta.url)),false);});
