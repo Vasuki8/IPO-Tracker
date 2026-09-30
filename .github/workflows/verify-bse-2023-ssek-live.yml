@@ -1,0 +1,43 @@
+name: Verify BSE 2023 SSEK live publication
+
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - "data/ipos.json"
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    if: startsWith(github.event.head_commit.message, 'data(ssek):')
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: '20'}
+      - name: Verify exact served SSEK projections
+        shell: bash
+        run: |
+          set -euo pipefail
+          OUT="$RUNNER_TEMP/ssek-live"
+          for attempt in 1 2 3 4 5 6 7 8 9 10 11 12; do
+            rm -rf "$OUT"
+            echo "SSEK live verification attempt $attempt/12"
+            if node scripts/verify-bse-2023-ssek.mjs --output-dir="$OUT"; then
+              printf '%s\n' "$attempt" > "$OUT/successful-attempt.txt"
+              exit 0
+            fi
+            sleep 20
+          done
+          exit 1
+      - name: Retain actual served verification
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bse-2023-ssek-live-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/ssek-live
+          retention-days: 14
+          if-no-files-found: error

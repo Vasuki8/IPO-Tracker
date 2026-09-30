@@ -1,0 +1,29 @@
+{
+  "schema_version": "1.0.0",
+  "status": "prepared_import_pending",
+  "review_path": "data/discovery/bse-2023-ssek-listing-review-2026-09-29.json",
+  "manifest_path": "data/verified-bse-listings/2026-09-29-ssek-2023.json",
+  "new_public_records": 4,
+  "temporary_publication_job": "reviewed_ssek",
+  "temporary_live_workflow": ".github/workflows/verify-bse-2023-ssek-live.yml",
+  "source_artifact_id": 11062426975,
+  "source_artifact_sha256": "b8e22b8f7a1793034b0178701eb39bd93ad864701935083625e4e8bf1d71548e",
+  "original_listing_pdfs": 4,
+  "original_listing_pdf_bytes": 54435726,
+  "listing_dates": [
+    "2023-12-27",
+    "2023-08-29",
+    "2023-04-17",
+    "2023-08-07"
+  ],
+  "old_prospectus_review_unchanged": true,
+  "preserved_qualifications": [
+    "Shanti issue size remains provisional and its Prospectus ₹80 Cut Off Price typo remains retained but unused.",
+    "Shoora remains a fixed-price offer with no invented price band.",
+    "Exhicon issue size remains provisional and its Prospectus offer-date definition conflict remains retained.",
+    "Khazanchi remains a fixed-price offer with no invented price band.",
+    "Board, NSE identity, ISIN and monetary minimum application amount remain null/unapproved for all four."
+  ],
+  "publication_guard": "The bounded reviewed_ssek job may add only the four exact reviewed targets, must preserve all pre-existing public objects byte-for-object, and may mutate only 2023 recovery plus data/ipos.json.",
+  "closeout_requirement": "Do not advance the 2023 review ledger until the actual served Pages dataset matches all four exact reviewed public projections. Then retire reviewed_ssek and the temporary live verifier."
+}
