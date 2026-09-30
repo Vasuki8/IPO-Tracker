@@ -1,14 +1,14 @@
 # Project status and handoff
 
-Updated **2026-09-30 (UTC)** after completing the bounded **SSEK** Prospectus review, retaining four original actual-listing annual reports, and preparing a guarded reviewed import. Active priority remains **P1 issuer identity and data correctness**.
+Updated **2026-09-30 (UTC)** after PR #349 merged but its guarded SSEK publisher failed safely before any data push, followed by an all-BSE listing-source repair. Active priority remains **P1 issuer identity and data correctness**.
 
-The SSEK release lifecycle is **`prepared_import_pending`**. No SSEK recovery/public records have been published yet, and the immutable 2023 review ledger remains **12 reviewed/published + 18 awaiting review** until the actual served Pages dataset is verified.
+The SSEK release lifecycle remains **`prepared_import_pending`**. PR #349 did **not** publish any SSEK recovery/public record: `build-published-data.mjs` rejected the issuer-hosted Exhicon URL before commit/push, and the normal sync job was skipped. The immutable 2023 review ledger therefore remains **12 reviewed/published + 18 awaiting review** until the actual served Pages dataset is verified.
 
 ## Exact next bounded task
 
 Complete the pending release for **SHANTI SPINTEX LIMITED (544059)**, **Shoora Designs Limited (543970)**, **Exhicon Events Media Solutions Limited (543895)** and **Khazanchi Jewellers Limited (543953)**.
 
-Merge the prepared SSEK release only after final PR/synthetic-merge checks are green. The merge commit must start with **`release(ssek):`** so the temporary `reviewed_ssek` job publishes exactly the four reviewed records against latest `main`. Then verify the actual served `data/ipos.json` with the temporary read-only SSEK verifier. Only after exact served projections match may the four queue rows be closed and both temporary release surfaces retired.
+Merge the **all-BSE source-repair release** only after final PR/synthetic-merge checks are green. The merge commit must start with **`release(ssek):`** so the temporary `reviewed_ssek` job retries exactly the four reviewed records against latest `main`. Then verify the actual served `data/ipos.json` with the temporary read-only SSEK verifier. Only after exact served projections match may the four queue rows be closed and both temporary release surfaces retired.
 
 Do not replay earlier IRMS or historical releases. Do not let the normal sync run on the explicit SSEK release commit.
 
@@ -29,11 +29,13 @@ Board mapping, NSE identity, ISIN and monetary minimum application amount remain
 
 ## Listing-source retention
 
-Successful read-only workflow run **36630044344**, attempt **1**, retained all **4/4** planned original annual-report PDFs. Artifact **11062426975** is **52,983,916 bytes**, ZIP SHA-256 **b8e22b8f7a1793034b0178701eb39bd93ad864701935083625e4e8bf1d71548e**, expiring **13-Oct-2026 20:58:57 UTC**. Original PDFs total **54,435,726 bytes**.
+Final read-only repair workflow run **36661649197**, attempt **1**, retained all **4/4** selected annual-report PDFs from **BSE-hosted filing URLs**. Artifact **11075040486** is **53,439,026 bytes**, ZIP SHA-256 **4d15ea1dcc130e3be3e816dff55a99b8b2df6943aca35660b8221268ba01f81e**, expiring **14-Oct-2026 02:50:36 UTC**. Original PDFs total **54,941,101 bytes**.
 
-The durable [listing-source receipt](../data/evidence/bse-2023-ssek-listing-source-receipt-2026-09-29.json) binds the exact source URLs, response hashes/lengths, page counts, collection clocks and artifact. A prior attempt correctly failed closed at **3/4** because the issuer-hosted Shoora URL returned HTTP 400; the successful run uses Shoora's BSE-hosted Regulation 34 filing instead.
+The durable [listing-source receipt](../data/evidence/bse-2023-ssek-listing-source-receipt-2026-09-29.json) binds exact source URLs, response hashes/lengths, page counts, collection clocks and artifact. Exhicon's BSE-hosted revised annual report is byte-for-byte identical to the previously reviewed issuer copy. Khazanchi's BSE Regulation 34 filing adds one cover page, so its physical listing locator is re-reviewed at PDF page **26** and its BSE code is bound on PDF page **1**.
 
-The temporary collection workflow is not retained in the clean release branch. Reproducibility scripts remain, but collection itself cannot authorize publication.
+The first guarded publication run **36658314491** stopped before push because the public-data builder correctly rejected Exhicon's issuer-hosted source. Artifact **11073505374** retains that failed publication attempt. No SSEK record reached recovery or public data, and the normal sync job remained skipped.
+
+The temporary repair collector has been retired from the release branch. Reproducibility scripts remain, but collection itself cannot authorize publication.
 
 ## Prospectus terms preserved
 
