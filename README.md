@@ -39,25 +39,19 @@ Collection time, source observation, dataset generation and Pages publication ar
 
 ## Handoff for the next prompt
 
-The next four 2023 BSE candidates now have reviewed Prospectus terms, retained authoritative actual-listing evidence, and a successful bounded repository publication. PR #350 published exactly four reviewed records while preserving 1,383 existing public objects unchanged. The 2023 ledger remains **12 reviewed/published + 18 awaiting review** until the actual served Pages dataset is verified.
+The SSEK 2023 release is fully published and live-verified. The immutable 2023 review ledger is now **16 reviewed/published + 14 awaiting review**. The bounded SSEK publisher and temporary served-data verifier are retired; do not replay them.
+
+Continue with **Mish Designs Limited (544015)**, **AHASOLAR TECHNOLOGIES LIMITED (543941)**, **ORGANIC RECYCLING SYSTEMS LIMITED (543997)** and **Meson Valves India Limited (543982)**. Retain issuer-specific authoritative evidence, reconcile exact identity across every recovery year, preserve nulls/conflicts, and only publish through a separately reviewed manifest followed by exact served-data verification.
+
+The completed SSEK live receipt is [docs/verification/bse-2023-ssek-live-2026-09-30.json](docs/verification/bse-2023-ssek-live-2026-09-30.json). The source/provenance repair deliberately kept the public builder trust policy unchanged and moved all four listing reports to BSE-hosted filings.
 
 The original 2022 queue remains **14 reviewed/published + 2 existing-recovery alias + 0 awaiting review**.
 
-The bounded scope is **SHANTI SPINTEX LIMITED (544059)**, **Shoora Designs Limited (543970)**, **Exhicon Events Media Solutions Limited (543895)** and **Khazanchi Jewellers Limited (543953)**. Reviewed actual listing dates are **27-Dec-2023**, **29-Aug-2023**, **17-Apr-2023** and **07-Aug-2023** respectively.
-
-The guarded import is pinned by [data/verified-bse-listings/2026-09-29-ssek-2023.json](data/verified-bse-listings/2026-09-29-ssek-2023.json). The source receipt is [data/evidence/bse-2023-ssek-listing-source-receipt-2026-09-29.json](data/evidence/bse-2023-ssek-listing-source-receipt-2026-09-29.json). Artifact **11075040486** contains the final four BSE-hosted listing reports and expires **14-Oct-2026**. Exhicon's BSE copy is byte-identical to the reviewed issuer copy; Khazanchi's BSE filing adds a cover page and its physical locators were re-reviewed.
-
-Board, NSE identity, ISIN and monetary minimum application amount remain null. Preserve Shanti's ₹80 Cut Off Price typo, Exhicon's Prospectus date-definition conflict, both provisional issue amounts, and the fixed-price semantics for Shoora and Khazanchi.
-
 ### Exact next backend task
 
-Complete the pending release for **SHANTI SPINTEX LIMITED (544059)**, **Shoora Designs Limited (543970)**, **Exhicon Events Media Solutions Limited (543895)** and **Khazanchi Jewellers Limited (543953)**.
+Review **Mish Designs Limited (544015)**, **AHASOLAR TECHNOLOGIES LIMITED (543941)**, **ORGANIC RECYCLING SYSTEMS LIMITED (543997)** and **Meson Valves India Limited (543982)** from the pinned 2023 queue. Do not treat discovery values as publication authority. Retain original official evidence, reconcile identity across every recovery year, preserve conflicts/nulls, and only publish after a separate reviewed manifest and exact served verification.
 
-The original BSE 2022 queue has remaining **0** unmatched rows requiring import.
-
-Finish the release lifecycle recorded in [docs/verification/bse-2023-ssek-release-2026-09-29.json](docs/verification/bse-2023-ssek-release-2026-09-29.json): run the temporary read-only served-data verifier against the deployed `data/ipos.json`, retain the actual response and exact projection match, then close the four queue rows and retire both temporary release surfaces.
-
-Do not replay the completed IRMS, 2020–2022 or NSE releases. Continue to use `node scripts/check-bse-2023-progress.mjs`, `node scripts/build-published-data.mjs --check` and `node scripts/validate-data.mjs` as baseline guards.
+Use `node scripts/check-bse-2023-progress.mjs`, `node scripts/check-bse-2022-disposition.mjs`, `node scripts/check-retained-bse-snapshot.mjs`, `node scripts/build-published-data.mjs --check` and `node scripts/validate-data.mjs` as baseline guards.
 
 ## Historical release notes
 
