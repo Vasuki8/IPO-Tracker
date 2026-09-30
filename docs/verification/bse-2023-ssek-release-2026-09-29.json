@@ -6,10 +6,10 @@
   "new_public_records": 4,
   "temporary_publication_job": "reviewed_ssek",
   "temporary_live_workflow": ".github/workflows/verify-bse-2023-ssek-live.yml",
-  "source_artifact_id": 11062426975,
-  "source_artifact_sha256": "b8e22b8f7a1793034b0178701eb39bd93ad864701935083625e4e8bf1d71548e",
+  "source_artifact_id": 11075040486,
+  "source_artifact_sha256": "4d15ea1dcc130e3be3e816dff55a99b8b2df6943aca35660b8221268ba01f81e",
   "original_listing_pdfs": 4,
-  "original_listing_pdf_bytes": 54435726,
+  "original_listing_pdf_bytes": 54941101,
   "listing_dates": [
     "2023-12-27",
     "2023-08-29",
@@ -25,5 +25,28 @@
     "Board, NSE identity, ISIN and monetary minimum application amount remain null/unapproved for all four."
   ],
   "publication_guard": "The bounded reviewed_ssek job may add only the four exact reviewed targets, must preserve all pre-existing public objects byte-for-object, and may mutate only 2023 recovery plus data/ipos.json.",
-  "closeout_requirement": "Do not advance the 2023 review ledger until the actual served Pages dataset matches all four exact reviewed public projections. Then retire reviewed_ssek and the temporary live verifier."
+  "closeout_requirement": "Merge the source-repair release with a release(ssek): commit only after current synthetic-merge checks pass. The bounded publisher must add exactly four reviewed records, then the actual served Pages dataset must match all four exact projections before queue closeout and retirement of reviewed_ssek/live-verifier surfaces.",
+  "source_artifact_bytes": 53439026,
+  "source_artifact_expires_at": "2026-10-14T02:50:36Z",
+  "first_release": {
+    "pull_request": 349,
+    "merge_commit": "e30cf95e2732f31038f59b0476571cceee15c6da",
+    "publication_run_id": 36658314491,
+    "publication_job_id": 109707298104,
+    "publication_artifact_id": 11073505374,
+    "conclusion": "failure_before_push",
+    "existing_publication_changed": false,
+    "normal_sync_skipped": true,
+    "reason": "build-published-data.mjs correctly rejected the issuer-hosted Exhicon listing source before any data commit or push."
+  },
+  "source_repair": {
+    "repair_branch": "work/bse-2023-ssek-bse-source-repair-20260930",
+    "final_collection_run_id": 36661649197,
+    "final_collection_artifact_id": 11075040486,
+    "final_collection_artifact_sha256": "4d15ea1dcc130e3be3e816dff55a99b8b2df6943aca35660b8221268ba01f81e",
+    "all_listing_sources_bse_hosted": true,
+    "exhicon_semantic_bytes_unchanged": true,
+    "khazanchi_cover_page_added": true,
+    "note": "Exhicon's BSE-hosted revised annual report is byte-identical to the reviewed issuer copy. Khazanchi was recollected from its BSE Regulation 34 filing and physical locators were re-reviewed."
+  }
 }
