@@ -15,11 +15,19 @@ A source-first Indian IPO research website with automated official-source collec
 
 Coverage spans 2020–2026 but is incomplete. Stored record counts are not proof of official IPO-universe completeness.
 
-The active application-term requirement is **Lot Size only**. Display verified market lot first, then verified minimum bid quantity when market lot is missing. Keep the raw fields distinct. Minimum investment/application amount remains out of scope.
+Display verified market lot first, labelled **Trading lot**, then verified minimum bid quantity, labelled **Minimum IPO bid**, when market lot is missing. Show both quantities separately in detail evidence. Keep the raw fields distinct. Minimum investment/application amount remains out of scope.
+
+The directory compares the first valid opening, closing, or listing date across all records for **Newest first**. Search currently covers company names; sector classification is unavailable. Board filters include **Board unavailable** without inferring a classification.
+
+Actionable bidding status considers verified opening and closing dates using the Indian market day. Expired reported Open/Upcoming offers display **Bidding closed**, while a reported Open offer with a future opening date displays **Scheduled**. Retained reported status and evidence remain available; date-based display never confirms listing or trading. A final issue price outside its retained price band displays a **Price conflict** until the basis is reconciled, without overwriting source values.
+
+Bidding displays refresh at Indian midnight and when a tab resumes, while preserving detail-page research state.
 
 Never invent missing values or use price-times-quantity arithmetic to fill them. Preserve official sources, document identity, dates, hashes when retained, nulls, conflicts and correction history. A final Prospectus is not required for inclusion. Repair retained recovery evidence rather than hand-editing `data/ipos.json`.
 
 The **Pre-IPO companies** view is a company-level IPO pipeline backed by retained DRHP/UDRHP evidence from the SEBI draft-offer index, configured official lead-manager offer-document sources, **and the current published IPO lifecycle dataset**. It shows one company per row and dynamically removes an exact canonical issuer match as soon as that issuer is `upcoming`, `open`, `closed`, or `listed`, or has a published IPO open/close/listing date. Draft-document versions remain retained evidence rather than the product itself. Matching uses the same conservative canonical legal-name normalization as the universe audit; no fuzzy matching is allowed. If lifecycle data cannot be validated, the page fails closed instead of showing a potentially stale pre-IPO list. Source coverage is intentionally labelled partial until all relevant official draft-document surfaces are configured.
+
+Pre-IPO freshness separately shows the loaded draft-source collection time, IPO lifecycle dataset generation time, and latest reported refresh attempt/status. Refresh failure retains the loaded evidence; a newer health report cannot redate older displayed source data.
 
 ## Automation
 
@@ -38,6 +46,24 @@ Collection time, source observation, dataset generation and Pages publication ar
 `collect-bse-2023-irms-evidence.yml` remains a read-only historical/manual collector for the now-closed IRMS source set; it does not authorize replay or publication. The [multi-attempt source receipt](data/evidence/bse-2023-irms-source-receipt-2026-09-28.json) retains both partial outcomes and the exact source selections used for the completed review.
 
 ## Handoff for the next prompt
+
+The [2026-09-30 code review repair batch](docs/verification/code-review-repairs-2026-09-30.md)
+is prepared for review with regression coverage for nine findings. It also advances
+five 2026 lifecycle statuses using retained verified NSE listing dates. Merge and
+deployment remain pending; it does not close the historical release below.
+
+The [website logic repair batch](docs/verification/product-logic-repairs-2026-09-30.md)
+addresses all seven subsequent product-review findings. It preserves retained
+source values and reorders the public dataset through its shared builder.
+These changes are prepared on a repair branch; merge and deployment remain pending.
+
+Browser regressions run with an isolated Playwright installation:
+
+```sh
+PLAYWRIGHT_MODULE=/path/to/node_modules/playwright node scripts/test-ui.mjs
+PLAYWRIGHT_MODULE=/path/to/node_modules/playwright node scripts/test-product-logic-ui.mjs
+PLAYWRIGHT_MODULE=/path/to/node_modules/playwright node scripts/test-drhp-freshness.mjs
+```
 
 The next four 2023 BSE candidates now have reviewed Prospectus terms, retained authoritative actual-listing evidence, and a successful bounded repository publication. PR #350 published exactly four reviewed records while preserving 1,383 existing public objects unchanged. The 2023 ledger remains **12 reviewed/published + 18 awaiting review** until the actual served Pages dataset is verified.
 

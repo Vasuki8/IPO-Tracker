@@ -61,7 +61,11 @@
             <span class="sr-only">Search pre-IPO companies</span>
             <input id="drhpSearch" type="search" placeholder="Search a company…" autocomplete="off" />
           </label>
-          <span id="drhpGenerated" class="drhp-generated">Dataset generation time unavailable</span>
+          <div id="drhpGenerated" class="drhp-generated" aria-label="Dataset freshness">
+            <div id="drhpSourceCollected">Draft source collection time unavailable</div>
+            <div id="drhpLifecycleGenerated">IPO lifecycle dataset time unavailable</div>
+            <div id="drhpRefreshAttempt">Latest reported draft-source refresh: Checking…</div>
+          </div>
         </div>
 
         <div id="drhpLoading" class="empty-state" role="status">
@@ -102,6 +106,6 @@
       </footer>
     </main>
     <script src="assets/pre-ipo-filter.js?v=20260926-preipo2"></script>
-    <script src="assets/drhp.js?v=20260926-preipo2"></script>
+    <script src="assets/drhp.js?v=20260930-freshness"></script>
   </body>
 </html>

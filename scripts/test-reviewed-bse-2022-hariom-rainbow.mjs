@@ -88,7 +88,7 @@ assert.equal(cli.status,0,cli.stderr);assert.deepEqual(fs.readFileSync(dataPath)
 // Use the real builder and schema validator in an isolated worktree. No external fetch.
 const temp=fs.mkdtempSync(path.join(os.tmpdir(),'hariom-release-test-'));
 try {
-  for(const name of ['scripts','data'])fs.cpSync(path.join(ROOT,name),path.join(temp,name),{recursive:true});
+  for(const name of ['scripts','data','assets'])fs.cpSync(path.join(ROOT,name),path.join(temp,name),{recursive:true});
   const writeRecovery=model=>{for(const [year,m]of Object.entries(model))fs.writeFileSync(path.join(temp,'data/recovery',year,'nse-issue-information.json'),JSON.stringify(m,null,2)+'\n');};
   const run=(file,args=[])=>{const r=spawnSync(process.execPath,[file,...args],{cwd:temp,encoding:'utf8'});assert.equal(r.status,0,r.stderr||r.stdout);return r;};
   const readPublic=()=>JSON.parse(fs.readFileSync(path.join(temp,'data/ipos.json')));

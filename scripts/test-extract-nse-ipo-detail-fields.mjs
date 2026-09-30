@@ -1,3 +1,7 @@
+import fs from "node:fs";
+import os from "node:os";
+import path from "node:path";
+import { execFileSync } from "node:child_process";
 import assert from "node:assert/strict";
 import {
   applyIssuePrice,
@@ -760,3 +764,50 @@ const missingLeadingCurrencyBand = parsePriceBandFromIpoDetail({
 assert.equal(missingLeadingCurrencyBand.value, null);
 assert.equal(missingLeadingCurrencyBand.reason, "placeholder_or_unparseable");
 console.log("NSE price-band repeated-currency/plural-share tests passed.");
+
+const closedListingRecord={...structuredClone(listedStatusRecord),status:"closed",status_evidence:[{url:"https://www.nseindia.com/api/ipo-current-issue",document_type:"NSE IPO Live Feed",document_identity:"NSE IPO Live Feed — LISTED",publication_date:null,collected_at:"2026-09-22T00:00:00Z"}]};
+const previousStatusEvidence=structuredClone(closedListingRecord.status_evidence[0]);
+assert.equal(applyListedStatusFromVerifiedListingDate(closedListingRecord,"2026-09-25T06:00:00Z"),true,"Elapsed verified NSE listing must advance a closed IPO");
+assert.equal(closedListingRecord.status,"listed");
+assert.deepEqual(closedListingRecord.status_evidence[0],previousStatusEvidence);
+assert.equal(closedListingRecord.status_evidence[1].url,closedListingRecord.listing_date.source.url);
+assert.equal(applyListedStatusFromVerifiedListingDate(closedListingRecord,"2026-09-25T06:00:00Z"),false);
+const pastIssuesListing={...structuredClone(closedListingRecord),status:"closed",status_evidence:[]};
+pastIssuesListing.listing_date.source.url="https://www.nseindia.com/api/public-past-issues";
+assert.equal(applyListedStatusFromVerifiedListingDate(pastIssuesListing,"2026-09-25T06:00:00Z"),true);
+assert.equal(Object.hasOwn(pastIssuesListing.status_evidence[0],"evidence_locator"),false,"Past-issues evidence must not claim the unrelated ipo-detail JSON location");
+const locatedListing={...structuredClone(pastIssuesListing),status:"closed",status_evidence:[]};
+locatedListing.listing_date.source.evidence_locator="row(symbol=LISTED)/listingDate";
+assert.equal(applyListedStatusFromVerifiedListingDate(locatedListing,"2026-09-25T06:00:00Z"),true);
+assert.equal(locatedListing.status_evidence[0].evidence_locator,"row(symbol=LISTED)/listingDate");
+for(const status of ["withdrawn","cancelled","open","upcoming"]){
+ const r={...structuredClone(closedListingRecord),status};
+ assert.equal(applyListedStatusFromVerifiedListingDate(r,"2026-09-25T06:00:00Z"),false,status+" must not be promoted");
+}
+const futureClosed={...structuredClone(closedListingRecord),status:"closed"};
+futureClosed.listing_date.value="2026-09-26";
+assert.equal(applyListedStatusFromVerifiedListingDate(futureClosed,"2026-09-25T06:00:00Z"),false);
+console.log("Closed IPO listing transition retains evidence and rejects premature or excluded statuses.");
+
+for(const unsafeUrl of ["http://www.nseindia.com/api/ipo-detail?symbol=LISTED&series=EQ","https://user:password@www.nseindia.com/api/ipo-detail?symbol=LISTED&series=EQ"]){
+ const r={...structuredClone(closedListingRecord),status:"closed"};
+ r.listing_date.source.url=unsafeUrl;
+ assert.equal(applyListedStatusFromVerifiedListingDate(r,"2026-09-25T06:00:00Z"),false,"Unsafe listing source URL must not authorize lifecycle promotion");
+}
+const allFieldsFixture=fs.mkdtempSync(path.join(os.tmpdir(),"ipo-listing-transition-"));
+try {
+ fs.mkdirSync(path.join(allFieldsFixture,"scripts"));
+ fs.copyFileSync(new URL("./extract-nse-ipo-detail-fields.mjs",import.meta.url),path.join(allFieldsFixture,"scripts/extract-nse-ipo-detail-fields.mjs"));
+ const fixturePath=path.join(allFieldsFixture,"data/recovery/2020/nse-issue-information.json");
+ fs.mkdirSync(path.dirname(fixturePath),{recursive:true});
+ const awaitingListing={id:"fixture",issuer_name:"Fixture Limited",nse_symbol:"FIXTURE",nse_series:"EQ",status:"closed",status_evidence:[previousStatusEvidence],terms:{price_band:{min:90,max:100},market_lot:100,minimum_bid_quantity:100},issue_price:{value:100},issue_size_inr:{value:1000000},documents:[]};
+ fs.writeFileSync(fixturePath,JSON.stringify({collection_started_at:"2020-01-01T00:00:00Z",generated_at:"2020-01-01T00:00:00Z",records:[awaitingListing]}));
+ const preload=path.join(allFieldsFixture,"fetch-fixture.mjs");
+ fs.writeFileSync(preload,'globalThis.fetch = async (url) => new Response(String(url).includes("api/ipo-detail") ? JSON.stringify({metaInfo:{listingDate:"2020-01-03"}}) : "landing", {headers:{"content-type":"application/json"}});');
+ execFileSync(process.execPath,["--import",preload,"scripts/extract-nse-ipo-detail-fields.mjs","--all-fields"],{cwd:allFieldsFixture,encoding:"utf8"});
+ const transitioned=JSON.parse(fs.readFileSync(fixturePath)).records[0];
+ assert.equal(transitioned.listing_date.value,"2020-01-03");
+ assert.equal(transitioned.status,"listed","A listing discovered in all-fields run must advance closed status in the same run");
+ assert.deepEqual(transitioned.status_evidence[0],previousStatusEvidence);
+} finally {fs.rmSync(allFieldsFixture,{recursive:true,force:true});}
+console.log("All-fields collector promotes newly extracted elapsed listing evidence in one run.");

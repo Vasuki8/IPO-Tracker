@@ -29,7 +29,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: bse-sme-addition-notice-backfill
+  group: bse-sme-addition-notice-backfill-${{ github.event_name == 'pull_request' && format('pr-{0}', github.event.pull_request.number) || 'production' }}
   cancel-in-progress: true
 
 jobs:

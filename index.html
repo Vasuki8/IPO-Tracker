@@ -39,7 +39,7 @@
       </div>
     </header>
 
-    <main class="page" id="main">
+    <main class="page" id="main" tabindex="-1">
       <section id="homeView" aria-labelledby="pageTitle">
         <div class="page-heading">
           <div>
@@ -133,11 +133,11 @@
               ><svg viewBox="0 0 24 24" aria-hidden="true">
                 <circle cx="10.5" cy="10.5" r="6.5" />
                 <path d="m16 16 4 4" /></svg
-              ><span class="sr-only">Search companies or sectors</span
+              ><span class="sr-only">Search companies</span
               ><input
                 id="searchInput"
                 type="search"
-                placeholder="Search a company or sector…"
+                placeholder="Search a company…"
                 autocomplete="off"
               /><kbd aria-hidden="true">/</kbd></label
             >
@@ -152,6 +152,7 @@
               ><button data-board="mainboard" aria-pressed="false">
                 Mainboard</button
               ><button data-board="sme" aria-pressed="false">SME</button>
+              <button data-board="unknown" aria-pressed="false">Board unavailable</button>
             </div>
             <label class="select-control"
               ><span class="sr-only"
@@ -213,7 +214,7 @@
                     <th scope="col">Company</th>
                     <th scope="col">Status</th>
                     <th scope="col" class="align-right">Price / band</th>
-                    <th scope="col" class="align-right">Lot size</th>
+                    <th scope="col" class="align-right">Lot / bid</th>
                     <th scope="col">Offer dates</th>
                     <th scope="col" class="align-right">Issue size</th>
                     <th scope="col">Evidence</th>
@@ -293,6 +294,7 @@
                 </div>
                 <h1 id="detailName" tabindex="-1"></h1>
                 <p id="detailSector" class="muted" hidden></p>
+                <p id="detailStatusNote" class="small muted" hidden></p>
               </div>
             </div>
             <button class="button button--primary" id="jumpDocuments">
@@ -303,13 +305,14 @@
             <div>
               <span>Price / band</span><strong id="detailPrice"></strong>
             </div>
-            <div><span>Lot size</span><strong id="detailLot"></strong></div>
+            <div><span id="detailLotLabel">Lot / bid</span><strong id="detailLot"></strong></div>
             <div><span>Issue size</span><strong id="detailIssue"></strong></div>
             <div>
               <span>Evidence coverage</span
               ><strong id="detailCoverage"></strong>
             </div>
           </div>
+          <p id="detailPriceNote" class="small" hidden></p>
           <div class="detail-freshness">
             <span id="detailCollected"></span
             ><span>Values retain their own source dates below.</span>
@@ -349,8 +352,8 @@
               </div>
               <div id="evidenceList"></div>
               <p class="small muted">
-                Lot size uses verified market lot, then verified minimum bid
-                quantity when market lot is unavailable.
+                The headline uses verified trading lot, then verified minimum IPO bid
+                when trading lot is unavailable. Both quantities retain their own evidence above.
               </p>
             </section>
           </div>
@@ -438,10 +441,11 @@
       </dl>
       <h3>What does “Partial” mean?</h3>
       <p>
-        Directory evidence covers six terms: price or band, lot size, issue
+        Directory evidence covers six terms: price or band, trading lot or minimum IPO bid, issue
         size, opening, closing and listing dates. “Partial” means at least one
         is missing; it does not mean the other figures lack sources. “Complete”
-        means all six are verified.
+        means all six are verified. A final issue price outside the retained band
+        is shown as a price conflict until its basis is reconciled.
       </p>
       <h3>Different dates, different meanings</h3>
       <p>
@@ -451,8 +455,11 @@
         checked then.
       </p>
       <p class="small muted">
-        The year filter uses the opening date, then closing or listing date when
-        necessary. A final Prospectus is not required for an IPO to appear.
+        The year filter and “Newest first” use the first valid opening date,
+        then closing or listing date when necessary. Records are compared using
+        that available date, regardless of its type. Bidding status also considers
+        verified opening and closing dates using the Indian market day. Date-based
+        status does not confirm listing or trading. A final Prospectus is not required for an IPO to appear.
       </p>
       <button id="sourcesDone" class="button button--primary">Got it</button>
     </dialog>
@@ -463,8 +470,8 @@
         directly.
       </p></noscript
     >
-    <script src="assets/ipo-order.js?v=20260922-newest2"></script>
+    <script src="assets/ipo-order.js?v=20260930-chronology4"></script>
     <script src="assets/lot-size.js?v=20260922-lot1"></script>
-    <script src="assets/app.js?v=20260927-pagesize1"></script>
+    <script src="assets/app.js?v=20260930-product3"></script>
   </body>
 </html>

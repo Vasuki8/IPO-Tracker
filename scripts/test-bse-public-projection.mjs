@@ -11,7 +11,7 @@ const temp = fs.mkdtempSync(path.join(os.tmpdir(), 'bse-public-projection-'));
 const output = fs.mkdtempSync(path.join(os.tmpdir(), 'bse-projection-receipt-'));
 try {
   // Build actual public output. Recovery-only hashes must not be injected into fixtures.
-  for (const name of ['scripts', 'data', 'ops']) fs.cpSync(path.join(root, name), path.join(temp, name), { recursive: true });
+  for (const name of ['scripts', 'data', 'ops', 'assets']) fs.cpSync(path.join(root, name), path.join(temp, name), { recursive: true });
   const run = (script) => execFileSync(process.execPath, [script], { cwd: temp, encoding: 'utf8' });
   run('scripts/apply-verified-bse-listings.mjs'); run('scripts/build-published-data.mjs');
   const dataPath = path.join(temp, 'data/ipos.json');

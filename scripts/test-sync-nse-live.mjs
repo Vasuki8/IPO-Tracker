@@ -147,3 +147,14 @@ assert.equal(liveRecord.terms.open_date, "2026-09-24");
 assert.equal(liveRecord.terms.close_date, "2026-09-28");
 
 console.log("NSE live sync parser and provenance tests passed.");
+
+for(const liveStatus of ["Closed","Forthcoming","Active"]){
+ const listedRecord={...structuredClone(liveRecord),status:"listed",status_evidence:[{url:"https://www.nseindia.com/api/public-past-issues",document_type:"NSE Public Past Issues",document_identity:"NSE Public Past Issues — LIVE",publication_date:null,collected_at:"2026-09-29T00:00:00Z"}]};
+ const priorEvidence=structuredClone(listedRecord.status_evidence[0]);
+ assert.equal(enrichExistingRecord(listedRecord,{companyName:"Live Recovery Limited",symbol:"LIVE",series:"EQ",status:liveStatus},"2026-09-30T00:00:00Z"),true);
+ assert.equal(listedRecord.status,"listed","Live "+liveStatus+" must not demote a listed issuer");
+ assert.deepEqual(listedRecord.status_evidence[0],priorEvidence);
+ assert.equal(listedRecord.status_evidence.length,2,"Live observation evidence remains available");
+ assert.equal(enrichExistingRecord(listedRecord,{companyName:"Live Recovery Limited",symbol:"LIVE",series:"EQ",status:liveStatus},"2026-09-30T00:00:00Z"),false);
+}
+console.log("Live IPO feed preserves listed lifecycle status and retains observations.");

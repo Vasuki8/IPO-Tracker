@@ -73,12 +73,49 @@ function addDocument(record, evidence) {
     });
   }
 }
+function sameSource(a, b) {
+  return a?.url === b?.url && a?.document_type === b?.document_type &&
+    a?.document_identity === b?.document_identity;
+}
 function fill(record, key, value, sourceValue, evidence, conflicts) {
   if (value === null || value === undefined) return false;
-  const existing = record[key]?.value;
+  const retained = record[key];
+  const existing = retained?.value ?? record.terms?.[key];
   if (existing !== null && existing !== undefined) {
-    if (JSON.stringify(existing) !== JSON.stringify(value)) conflicts.push({ field:key, existing, bse:value });
-    return false;
+    const before = JSON.stringify(retained);
+    const field = retained?.value !== null && retained?.value !== undefined ? retained : {
+      value: structuredClone(existing),
+      status: "verified",
+      page: null,
+      source: { ...record.nse_source, document_type: record.nse_source?.document_type ?? "NSE Issue Information" },
+      corrections: structuredClone(retained?.corrections ?? [])
+    };
+    const differs = JSON.stringify(existing) !== JSON.stringify(value);
+    if (differs) {
+      conflicts.push({ field:key, existing, bse:value });
+      field.status = "conflict";
+      field.corrections ??= [];
+      const competing = { value, source_value:sourceValue, source:evidence, page:null };
+      const alreadyRetained = field.corrections.some((item) =>
+        item.kind === "unresolved_source_conflict" &&
+        JSON.stringify(item.competing?.value) === JSON.stringify(value) &&
+        sameSource(item.competing?.source, evidence));
+      if (!alreadyRetained) field.corrections.push({
+        kind: "unresolved_source_conflict",
+        status: "unresolved",
+        note: "Retain the existing official candidate and the conflicting BSE observation pending source review.",
+        candidate: { value:structuredClone(existing), source:structuredClone(field.source), page:field.page ?? null },
+        competing
+      });
+    }
+    if (!sameSource(field.source, evidence) &&
+        !(field.additional_sources || []).some((item) => sameSource(item, evidence))) {
+      field.additional_sources ??= [];
+      field.additional_sources.push({ ...evidence, page:null });
+    }
+    if (JSON.stringify(field) === before) return false;
+    record[key] = field;
+    return true;
   }
   record[key] = { value, source_value:sourceValue, status:"verified", page:null, source:evidence };
   return true;
