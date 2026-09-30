@@ -1,14 +1,14 @@
 # Project status and handoff
 
-Updated **2026-09-30 (UTC)** after PR #349 merged but its guarded SSEK publisher failed safely before any data push, followed by an all-BSE listing-source repair. Active priority remains **P1 issuer identity and data correctness**.
+Updated **2026-09-30 (UTC)** after PR #350 repaired the listing-source provenance and the guarded SSEK publisher successfully added four reviewed records to repository data. Active priority remains **P1 issuer identity and data correctness**.
 
-The SSEK release lifecycle remains **`prepared_import_pending`**. PR #349 did **not** publish any SSEK recovery/public record: `build-published-data.mjs` rejected the issuer-hosted Exhicon URL before commit/push, and the normal sync job was skipped. The immutable 2023 review ledger therefore remains **12 reviewed/published + 18 awaiting review** until the actual served Pages dataset is verified.
+The SSEK release lifecycle is now **`published_verification_pending`**. Repository data commit **d4b196f6e9f37884d11cd48a3ef46cd930dcd47f** added exactly four reviewed records while preserving **1,383** existing public objects unchanged, producing **1,387** public records. The immutable 2023 review ledger intentionally remains **12 reviewed/published + 18 awaiting review** until the actual served Pages dataset is verified.
 
 ## Exact next bounded task
 
 Complete the pending release for **SHANTI SPINTEX LIMITED (544059)**, **Shoora Designs Limited (543970)**, **Exhicon Events Media Solutions Limited (543895)** and **Khazanchi Jewellers Limited (543953)**.
 
-Merge the **all-BSE source-repair release** only after final PR/synthetic-merge checks are green. The merge commit must start with **`release(ssek):`** so the temporary `reviewed_ssek` job retries exactly the four reviewed records against latest `main`. Then verify the actual served `data/ipos.json` with the temporary read-only SSEK verifier. Only after exact served projections match may the four queue rows be closed and both temporary release surfaces retired.
+Run the temporary **read-only served-data verifier** against the deployed Pages dataset and retain the fetched response. Only after all four exact reviewed projections match may the four queue rows be closed and both temporary release surfaces (`reviewed_ssek` and the SSEK live verifier) be retired.
 
 Do not replay earlier IRMS or historical releases. Do not let the normal sync run on the explicit SSEK release commit.
 
@@ -47,6 +47,14 @@ The original [Prospectus field review](../data/discovery/bse-2023-ssek-field-rev
 - **Khazanchi:** fixed price ₹140, ₹967.4m gross fresh issue, market lot/minimum bid 1,000, public 24–28 Jul 2023. No price band invented.
 
 Market lot, minimum bid quantity and minimum application amount remain distinct. No amount is inferred from price × quantity.
+
+## Repository publication complete; served verification pending
+
+PR **#350** merged as **038593c36e7ad20309c0eb3374dfbd5b1bb39ab7**. Bounded publication workflow run **36662250755**, job **109719343973**, passed its reviewed-import and preservation checks, skipped normal live sync, and pushed data commit **d4b196f6e9f37884d11cd48a3ef46cd930dcd47f**.
+
+Publication artifact **11074921852** is **499,208 bytes**, ZIP SHA-256 **f7e80a5ecda702ef94105d4642563c1416080662394dabbf141e45fe33480a12**, and records **1,383 existing records unchanged + 4 additions = 1,387**. The generated public JSON is **7,798,075 bytes**, SHA-256 **77373449dcf00d800a82452072e92f45676d6611f2724e76a900d9f63adc7c6c**, generated at **2026-09-30T02:58:14.701Z**.
+
+A later Pages build for main commit **268ceb75d9eeff427e2165c18bb88092d4bd6cf5** completed successfully. The data commit was authored by the repository automation token, so the push-only SSEK live verifier did not auto-start. A temporary explicit `verify(ssek):` trigger is being used to obtain and retain the actual served response without changing published data.
 
 ## Import and publication guards
 
