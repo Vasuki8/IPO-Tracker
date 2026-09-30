@@ -1693,10 +1693,19 @@
     "2023|cello-world-limited": {
       "issuer_name": "Cello World Limited",
       "listing_date": "2023-11-06",
-      "last_attempted_at": "2026-09-29T01:17:22.049Z",
+      "last_attempted_at": "2026-09-30T02:24:29.746Z",
       "parser_version": "2.0.0",
-      "status": "error",
-      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 45 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-offer-dates-RXRUg8/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/nov-2023/1698924971457.pdf\ncurl: (28) Operation timed out after 45000 milliseconds with 11968007 out of 28132049 bytes received\ncurl: (18) transfer closed with 22270842 bytes remaining to read\n",
+      "status": "official_date_conflict",
+      "open_date": null,
+      "close_date": null,
+      "open_extraction": null,
+      "close_extraction": null,
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Cello World Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2023/1698924971457.pdf",
+        "publication_date": "2023-11-02"
+      },
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2023/1698924971457.pdf"
     },
     "2022|amiable-logistics-india-limited": {
@@ -2434,19 +2443,49 @@
     "2023|marco-cables-and-conductors-limited": {
       "issuer_name": "Marco Cables and Conductors Limited",
       "listing_date": "2023-09-28",
-      "last_attempted_at": "2026-09-29T01:17:22.049Z",
+      "last_attempted_at": "2026-09-30T02:24:29.746Z",
       "parser_version": "2.0.0",
-      "status": "error",
-      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 45 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-offer-dates-elKdQt/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/sep-2023/1695619868003.pdf\ncurl: (28) Operation timed out after 45000 milliseconds with 11733879 out of 15920789 bytes received\ncurl: (28) Operation timed out after 45000 milliseconds with 12004039 out of 15920789 bytes received\n",
+      "status": "extracted",
+      "open_date": "2023-09-21",
+      "close_date": "2023-09-25",
+      "open_extraction": {
+        "value": "2023-09-21",
+        "source_value": "OFFER OPENS ON: SEPTEMBER 21, 2023",
+        "page": 1
+      },
+      "close_extraction": {
+        "value": "2023-09-25",
+        "source_value": "OFFER CLOSES ON: SEPTEMBER 25, 2023",
+        "page": 1
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Marco Cables & Conductors Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2023/1695619868003.pdf",
+        "publication_date": "2023-09-22"
+      },
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2023/1695619868003.pdf"
     },
     "2025|euro-pratik-sales-limited": {
       "issuer_name": "Euro Pratik Sales Limited",
       "listing_date": "2025-09-23",
-      "last_attempted_at": "2026-09-29T01:17:22.049Z",
+      "last_attempted_at": "2026-09-30T02:24:29.746Z",
       "parser_version": "2.0.0",
-      "status": "error",
-      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 45 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-offer-dates-KiIBNO/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/oct-2025/1761649813870.pdf\ncurl: (28) Operation timed out after 45000 milliseconds with 11468535 out of 16007022 bytes received\ncurl: (28) Operation timed out after 45000 milliseconds with 12067447 out of 16007022 bytes received\n",
+      "status": "extracted",
+      "open_date": "2025-09-16",
+      "close_date": null,
+      "open_extraction": {
+        "value": "2025-09-16",
+        "source_value": "OFFER OPENED ON Tuesday, September 16, 2025",
+        "page": 2
+      },
+      "close_extraction": null,
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Euro Pratik Sales Limited - prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2025/1761649813870.pdf",
+        "publication_date": "2025-10-28"
+      },
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2025/1761649813870.pdf"
     },
     "2024|western-carriers-india-limited": {
@@ -2666,10 +2705,27 @@
     "2025|taurian-mps-limited": {
       "issuer_name": "Taurian MPS Limited",
       "listing_date": "2025-09-16",
-      "last_attempted_at": "2026-09-29T01:17:22.049Z",
+      "last_attempted_at": "2026-09-30T02:24:29.746Z",
       "parser_version": "2.0.0",
-      "status": "error",
-      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 45 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-offer-dates-brGZcq/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/sep-2025/1758607889393.pdf\ncurl: (28) Operation timed out after 45000 milliseconds with 11785367 out of 21061759 bytes received\ncurl: (28) Operation timed out after 45000 milliseconds with 11774639 out of 21061759 bytes received\n",
+      "status": "extracted",
+      "open_date": "2025-09-09",
+      "close_date": "2025-09-11",
+      "open_extraction": {
+        "value": "2025-09-09",
+        "source_value": "OFFER OPENS ON Tuesday, September 9, 2025",
+        "page": 1
+      },
+      "close_extraction": {
+        "value": "2025-09-11",
+        "source_value": "OFFER CLOSES ON Thursday, September 11, 2025",
+        "page": 1
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Taurian MPS Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2025/1758607889393.pdf",
+        "publication_date": "2025-09-23"
+      },
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2025/1758607889393.pdf"
     },
     "2023|samhi-hotels-limited": {
@@ -2921,10 +2977,19 @@
     "2025|vikran-engineering-limited": {
       "issuer_name": "Vikran Engineering Limited",
       "listing_date": "2025-09-03",
-      "last_attempted_at": "2026-09-29T01:17:22.049Z",
+      "last_attempted_at": "2026-09-30T02:24:29.746Z",
       "parser_version": "2.0.0",
-      "status": "error",
-      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 45 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-offer-dates-Xkxb6z/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/sep-2025/1756723161174.pdf\ncurl: (28) Operation timed out after 45000 milliseconds with 11832735 out of 15045511 bytes received\ncurl: (18) transfer closed with 8813776 bytes remaining to read\n",
+      "status": "explicit_dates_absent",
+      "open_date": null,
+      "close_date": null,
+      "open_extraction": null,
+      "close_extraction": null,
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Vikran Engineering Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2025/1756723161174.pdf",
+        "publication_date": "2025-09-01"
+      },
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2025/1756723161174.pdf"
     },
     "2024|ecos-india-mobility-and-hospitality-limited": {
@@ -3342,10 +3407,23 @@
     "2024|ceigall-india-limited": {
       "issuer_name": "Ceigall India Limited",
       "listing_date": "2024-08-08",
-      "last_attempted_at": "2026-09-29T01:17:22.049Z",
+      "last_attempted_at": "2026-09-30T02:24:29.746Z",
       "parser_version": "2.0.0",
-      "status": "error",
-      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 45 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-offer-dates-3ypHbN/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/aug-2024/1723013588143.pdf\ncurl: (28) Operation timed out after 45000 milliseconds with 11598311 out of 15501293 bytes received\ncurl: (28) Operation timed out after 45000 milliseconds with 12006927 out of 15501293 bytes received\n",
+      "status": "extracted",
+      "open_date": null,
+      "close_date": "2024-08-05",
+      "open_extraction": null,
+      "close_extraction": {
+        "value": "2024-08-05",
+        "source_value": "OFFER CLOSED ON Monday, August 5, 2024",
+        "page": 3
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Ceigall India Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2024/1723013588143.pdf",
+        "publication_date": "2024-08-07"
+      },
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2024/1723013588143.pdf"
     },
     "2024|akums-drugs-and-pharmaceuticals-limited": {
@@ -3457,6 +3535,24 @@
         "publication_date": "2023-06-27"
       },
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2023/1687842643085.pdf"
+    },
+    "2023|cyient-dlm-limited": {
+      "issuer_name": "Cyient DLM Limited",
+      "listing_date": "2023-07-10",
+      "last_attempted_at": "2026-09-30T02:24:29.746Z",
+      "parser_version": "2.0.0",
+      "status": "official_date_conflict",
+      "open_date": null,
+      "close_date": null,
+      "open_extraction": null,
+      "close_extraction": null,
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Cyient DLM Limited – Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2023/1688538460294.pdf",
+        "publication_date": "2023-07-05"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2023/1688538460294.pdf"
     }
   }
 }
