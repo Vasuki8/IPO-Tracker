@@ -1,11 +1,11 @@
 {
   "schema_version": "1.0.0",
-  "status": "published_verification_pending",
+  "status": "verified_and_publisher_retired",
   "review_path": "data/discovery/bse-2023-ssek-listing-review-2026-09-29.json",
   "manifest_path": "data/verified-bse-listings/2026-09-29-ssek-2023.json",
   "new_public_records": 4,
-  "temporary_publication_job": "reviewed_ssek",
-  "temporary_live_workflow": ".github/workflows/verify-bse-2023-ssek-live.yml",
+  "temporary_publication_job": null,
+  "temporary_live_workflow": null,
   "source_artifact_id": 11075040486,
   "source_artifact_sha256": "4d15ea1dcc130e3be3e816dff55a99b8b2df6943aca35660b8221268ba01f81e",
   "original_listing_pdfs": 4,
@@ -25,7 +25,7 @@
     "Board, NSE identity, ISIN and monetary minimum application amount remain null/unapproved for all four."
   ],
   "publication_guard": "The bounded reviewed_ssek job may add only the four exact reviewed targets, must preserve all pre-existing public objects byte-for-object, and may mutate only 2023 recovery plus data/ipos.json.",
-  "closeout_requirement": "Run the temporary read-only served-data verifier, retain the actual Pages response and exact projection match, then close the four 2023 queue rows and retire both reviewed_ssek and the temporary live-verifier workflow.",
+  "closeout_requirement": "Complete the closeout PR that retains the live receipt, advances the immutable 2023 ledger, retires the temporary publisher/verifier, and hands off the next four awaiting candidates.",
   "source_artifact_bytes": 53439026,
   "source_artifact_expires_at": "2026-10-14T02:50:36Z",
   "first_release": {
@@ -71,8 +71,45 @@
     "note": "Repository publication succeeded. Queue rows remain open until the actual served Pages response is verified."
   },
   "live_verification_trigger": {
-    "reason": "GITHUB_TOKEN-authored data commit does not start ordinary push-triggered workflows.",
-    "strategy": "Temporarily allow verify(ssek): pushes that modify the read-only verifier workflow itself; no data mutation is required.",
-    "status": "pending"
-  }
+    "pull_request": 351,
+    "merge_commit": "599d81b41baa8d8749c2596af07607ee380dd7b9",
+    "reason": "GITHUB_TOKEN-authored data commit did not start ordinary push-triggered workflows.",
+    "strategy": "A temporary verify(ssek): workflow-file push triggered only the read-only served-data verifier.",
+    "status": "verified"
+  },
+  "live_receipt": "docs/verification/bse-2023-ssek-live-2026-09-30.json",
+  "live_site_verified": true,
+  "live_verification": {
+    "run_id": 36662939353,
+    "attempt": 1,
+    "job_id": 109721410740,
+    "conclusion": "success",
+    "artifact_id": 11075047555,
+    "artifact_bytes": 250608,
+    "artifact_sha256": "3475799c28d017897cd25f502bcdcf8d3ad840328057dc01f134a5d2d991070d",
+    "artifact_expires_at": "2026-10-14T03:07:04Z",
+    "successful_fetch_attempt": 1,
+    "response_sha256": "77373449dcf00d800a82452072e92f45676d6611f2724e76a900d9f63adc7c6c",
+    "response_bytes": 7798075,
+    "snapshot_fetched_at": "2026-09-30T03:07:03.721Z",
+    "checked_at": "2026-09-30T03:07:03.815Z",
+    "generated_at": "2026-09-30T02:58:14.701Z",
+    "published_records": 1387,
+    "exact_target_projections_verified": 4,
+    "repository_verification_commit": "599d81b41baa8d8749c2596af07607ee380dd7b9",
+    "publication_hash_match": true
+  },
+  "publisher_retired": true,
+  "progress_closed": 4,
+  "progress_after": {
+    "reviewed_and_published": 16,
+    "awaiting_review": 14
+  },
+  "next_bounded_review_codes": [
+    "544015",
+    "543941",
+    "543997",
+    "543982"
+  ],
+  "closeout_pr": null
 }
