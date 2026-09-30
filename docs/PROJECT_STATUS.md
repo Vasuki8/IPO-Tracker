@@ -10,6 +10,8 @@ Merge the prepared SSEK release only after final PR/synthetic-merge checks are g
 
 Do not replay earlier IRMS or historical releases. Do not let the normal sync run on the explicit SSEK release commit.
 
+The original 2022 queue remains **14 reviewed/published + 2 existing-recovery alias + 0 awaiting review**; its next bounded queue is empty.
+
 ## SSEK reviewed scope
 
 The four approved identities are:
