@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "status": "prepared_import_pending",
+  "status": "published_verification_pending",
   "review_path": "data/discovery/bse-2023-ssek-listing-review-2026-09-29.json",
   "manifest_path": "data/verified-bse-listings/2026-09-29-ssek-2023.json",
   "new_public_records": 4,
@@ -25,7 +25,7 @@
     "Board, NSE identity, ISIN and monetary minimum application amount remain null/unapproved for all four."
   ],
   "publication_guard": "The bounded reviewed_ssek job may add only the four exact reviewed targets, must preserve all pre-existing public objects byte-for-object, and may mutate only 2023 recovery plus data/ipos.json.",
-  "closeout_requirement": "Merge the source-repair release with a release(ssek): commit only after current synthetic-merge checks pass. The bounded publisher must add exactly four reviewed records, then the actual served Pages dataset must match all four exact projections before queue closeout and retirement of reviewed_ssek/live-verifier surfaces.",
+  "closeout_requirement": "Run the temporary read-only served-data verifier, retain the actual Pages response and exact projection match, then close the four 2023 queue rows and retire both reviewed_ssek and the temporary live-verifier workflow.",
   "source_artifact_bytes": 53439026,
   "source_artifact_expires_at": "2026-10-14T02:50:36Z",
   "first_release": {
@@ -48,5 +48,31 @@
     "exhicon_semantic_bytes_unchanged": true,
     "khazanchi_cover_page_added": true,
     "note": "Exhicon's BSE-hosted revised annual report is byte-identical to the reviewed issuer copy. Khazanchi was recollected from its BSE Regulation 34 filing and physical locators were re-reviewed."
+  },
+  "release_pr": 350,
+  "merge_commit": "038593c36e7ad20309c0eb3374dfbd5b1bb39ab7",
+  "publication": {
+    "run_id": 36662250755,
+    "attempt": 1,
+    "job_id": 109719343973,
+    "conclusion": "success",
+    "data_commit": "d4b196f6e9f37884d11cd48a3ef46cd930dcd47f",
+    "artifact_id": 11074921852,
+    "artifact_bytes": 499208,
+    "artifact_sha256": "f7e80a5ecda702ef94105d4642563c1416080662394dabbf141e45fe33480a12",
+    "existing_public_records_unchanged": 1383,
+    "added": 4,
+    "published_records": 1387,
+    "generated_at": "2026-09-30T02:58:14.701Z",
+    "published_file_sha256": "77373449dcf00d800a82452072e92f45676d6611f2724e76a900d9f63adc7c6c",
+    "published_file_bytes": 7798075,
+    "normal_sync_skipped": true,
+    "exact_new_public_projections_checked": 4,
+    "note": "Repository publication succeeded. Queue rows remain open until the actual served Pages response is verified."
+  },
+  "live_verification_trigger": {
+    "reason": "GITHUB_TOKEN-authored data commit does not start ordinary push-triggered workflows.",
+    "strategy": "Temporarily allow verify(ssek): pushes that modify the read-only verifier workflow itself; no data mutation is required.",
+    "status": "pending"
   }
 }
