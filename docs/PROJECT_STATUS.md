@@ -6,6 +6,8 @@ The SSEK release lifecycle is **`prepared_import_pending`**. No SSEK recovery/pu
 
 ## Exact next bounded task
 
+Complete the pending release for **SHANTI SPINTEX LIMITED (544059)**, **Shoora Designs Limited (543970)**, **Exhicon Events Media Solutions Limited (543895)** and **Khazanchi Jewellers Limited (543953)**.
+
 Merge the prepared SSEK release only after final PR/synthetic-merge checks are green. The merge commit must start with **`release(ssek):`** so the temporary `reviewed_ssek` job publishes exactly the four reviewed records against latest `main`. Then verify the actual served `data/ipos.json` with the temporary read-only SSEK verifier. Only after exact served projections match may the four queue rows be closed and both temporary release surfaces retired.
 
 Do not replay earlier IRMS or historical releases. Do not let the normal sync run on the explicit SSEK release commit.
