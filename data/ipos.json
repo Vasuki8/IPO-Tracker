@@ -762,7 +762,7 @@
         }
       ],
       "sector": null,
-      "status": "open",
+      "status": "closed",
       "status_evidence": [
         {
           "url": "https://www.nseindia.com/api/all-upcoming-issues?category=ipo",
@@ -779,6 +779,14 @@
           "publication_date": null,
           "page": null,
           "collected_at": "2026-09-27T22:17:50.158Z"
+        },
+        {
+          "url": "https://www.nseindia.com/api/all-upcoming-issues?category=ipo",
+          "document_type": "NSE IPO Live Feed",
+          "document_identity": "NSE IPO Live Feed — SHAHINVEST",
+          "publication_date": null,
+          "page": null,
+          "collected_at": "2026-09-30T20:51:19.985Z"
         }
       ],
       "price_band": {
@@ -956,7 +964,7 @@
         }
       ],
       "first_observed_at": "2026-09-24T14:18:41.657Z",
-      "last_collected_at": "2026-09-27T22:17:50.158Z"
+      "last_collected_at": "2026-09-30T20:51:19.985Z"
     },
     {
       "id": "srit-india-limited",
@@ -973,7 +981,7 @@
         }
       ],
       "sector": null,
-      "status": "open",
+      "status": "closed",
       "status_evidence": [
         {
           "url": "https://www.nseindia.com/api/all-upcoming-issues?category=ipo",
@@ -990,6 +998,14 @@
           "publication_date": null,
           "page": null,
           "collected_at": "2026-09-27T22:17:50.158Z"
+        },
+        {
+          "url": "https://www.nseindia.com/api/all-upcoming-issues?category=ipo",
+          "document_type": "NSE IPO Live Feed",
+          "document_identity": "NSE IPO Live Feed — SRIT",
+          "publication_date": null,
+          "page": null,
+          "collected_at": "2026-09-30T20:51:19.985Z"
         }
       ],
       "price_band": {
@@ -1167,7 +1183,7 @@
         }
       ],
       "first_observed_at": "2026-09-24T14:18:41.657Z",
-      "last_collected_at": "2026-09-28T17:42:49.966Z"
+      "last_collected_at": "2026-09-30T20:51:19.985Z"
     },
     {
       "id": "acevector-limited",
@@ -31452,9 +31468,18 @@
         "corrections": []
       },
       "issue_size_inr": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": 4000000000,
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.sebi.gov.in/sebi_data/attachdocs/apr-2026/1776851251292.pdf",
+            "document_type": "SEBI Prospectus PDF",
+            "document_identity": "GSP CROP SCIENCE LIMITED - Prospectus — PDF",
+            "publication_date": "2026-03-18",
+            "page": 3,
+            "collected_at": "2026-09-30T21:02:10.055Z"
+          }
+        ],
         "corrections": []
       },
       "market_lot": {
@@ -31587,10 +31612,38 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-25T16:07:20.322Z"
+        },
+        {
+          "type": "SEBI Prospectus filing",
+          "identity": "GSP CROP SCIENCE LIMITED - Prospectus",
+          "url": "https://www.sebi.gov.in/filings/public-issues/mar-2026/gsp-crop-science-limited-prospectus_101040.html",
+          "publication_date": "2026-03-18",
+          "collected_at": "2026-09-30T20:51:46.060Z"
+        },
+        {
+          "type": "SEBI Prospectus PDF",
+          "identity": "GSP CROP SCIENCE LIMITED - Prospectus — PDF",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/apr-2026/1776851251292.pdf",
+          "publication_date": "2026-03-18",
+          "collected_at": "2026-09-30T20:51:46.060Z"
+        },
+        {
+          "type": "SEBI RHP filing",
+          "identity": "GSP Crop Science Limited - RHP",
+          "url": "https://www.sebi.gov.in/filings/public-issues/mar-2026/gsp-crop-science-limited-rhp_100229.html",
+          "publication_date": "2026-03-11",
+          "collected_at": "2026-09-30T20:51:46.060Z"
+        },
+        {
+          "type": "SEBI RHP PDF",
+          "identity": "GSP Crop Science Limited - RHP — PDF",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/mar-2026/1773209595346.pdf",
+          "publication_date": "2026-03-11",
+          "collected_at": "2026-09-30T20:51:46.060Z"
         }
       ],
       "first_observed_at": "2026-09-25T16:07:40.607Z",
-      "last_collected_at": "2026-09-25T16:07:40.607Z"
+      "last_collected_at": "2026-09-30T21:02:10.055Z"
     },
     {
       "id": "elfin-agro-india-limited",
@@ -32015,9 +32068,18 @@
         "corrections": []
       },
       "issue_size_inr": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": 3192520000,
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.sebi.gov.in/sebi_data/attachdocs/mar-2026/1774008043195.pdf",
+            "document_type": "SEBI Prospectus PDF",
+            "document_identity": "Innovision Limited - Prospectus — PDF",
+            "publication_date": "2026-03-20",
+            "page": 3,
+            "collected_at": "2026-09-30T21:02:10.055Z"
+          }
+        ],
         "corrections": []
       },
       "market_lot": {
@@ -32150,10 +32212,38 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-25T16:07:20.322Z"
+        },
+        {
+          "type": "SEBI Prospectus filing",
+          "identity": "Innovision Limited - Prospectus",
+          "url": "https://www.sebi.gov.in/filings/public-issues/mar-2026/innovision-limited-prospectus_100489.html",
+          "publication_date": "2026-03-20",
+          "collected_at": "2026-09-30T20:51:46.060Z"
+        },
+        {
+          "type": "SEBI Prospectus PDF",
+          "identity": "Innovision Limited - Prospectus — PDF",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/mar-2026/1774008043195.pdf",
+          "publication_date": "2026-03-20",
+          "collected_at": "2026-09-30T20:51:46.060Z"
+        },
+        {
+          "type": "SEBI RHP filing",
+          "identity": "Innovision Limited-RHP",
+          "url": "https://www.sebi.gov.in/filings/public-issues/mar-2026/innovision-limited-rhp_100105.html",
+          "publication_date": "2026-03-04",
+          "collected_at": "2026-09-30T20:51:46.060Z"
+        },
+        {
+          "type": "SEBI RHP PDF",
+          "identity": "Innovision Limited-RHP — PDF",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/mar-2026/1772604652364.pdf",
+          "publication_date": "2026-03-04",
+          "collected_at": "2026-09-30T20:51:46.060Z"
         }
       ],
       "first_observed_at": "2026-09-25T16:07:35.540Z",
-      "last_collected_at": "2026-09-25T16:07:35.540Z"
+      "last_collected_at": "2026-09-30T21:02:10.055Z"
     },
     {
       "id": "rajputana-stainless-limited",
@@ -119119,10 +119209,38 @@
           "url": "https://www.nseindia.com/api/ipo-detail?symbol=SANSTAR&series=EQ",
           "publication_date": null,
           "collected_at": "2026-09-24T06:36:23.026Z"
+        },
+        {
+          "type": "SEBI Prospectus filing",
+          "identity": "Sanstar Limited - Prospectus",
+          "url": "https://www.sebi.gov.in/filings/public-issues/jul-2024/sanstar-limited-prospectus_84969.html",
+          "publication_date": "2024-07-25",
+          "collected_at": "2026-09-30T20:51:46.060Z"
+        },
+        {
+          "type": "SEBI Prospectus PDF",
+          "identity": "Sanstar Limited - Prospectus — PDF",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2024/1721886701805.pdf",
+          "publication_date": "2024-07-25",
+          "collected_at": "2026-09-30T20:51:46.060Z"
+        },
+        {
+          "type": "SEBI RHP filing",
+          "identity": "Sanstar Limited - RHP",
+          "url": "https://www.sebi.gov.in/filings/public-issues/jul-2024/sanstar-limited-rhp_84750.html",
+          "publication_date": "2024-07-15",
+          "collected_at": "2026-09-30T20:51:46.060Z"
+        },
+        {
+          "type": "SEBI RHP PDF",
+          "identity": "Sanstar Limited - RHP — PDF",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2024/1721020818790.PDF",
+          "publication_date": "2024-07-15",
+          "collected_at": "2026-09-30T20:51:46.060Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-24T06:36:23.026Z"
+      "last_collected_at": "2026-09-30T20:51:46.060Z"
     },
     {
       "id": "kataria-industries-limited",
@@ -174269,10 +174387,24 @@
           "url": "https://www.nseindia.com/api/ipo-detail?symbol=AATMAJ&series=SME",
           "publication_date": null,
           "collected_at": "2026-09-24T06:36:23.026Z"
+        },
+        {
+          "type": "SEBI Prospectus filing",
+          "identity": "Aatmaj Healthcare Limited - Prospectus",
+          "url": "https://www.sebi.gov.in/filings/public-issues/jun-2023/aatmaj-healthcare-limited-prospectus_72993.html",
+          "publication_date": "2023-06-19",
+          "collected_at": "2026-09-30T20:51:46.060Z"
+        },
+        {
+          "type": "SEBI Prospectus PDF",
+          "identity": "Aatmaj Healthcare Limited - Prospectus — PDF",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2023/1687516313501.pdf",
+          "publication_date": "2023-06-19",
+          "collected_at": "2026-09-30T20:51:46.060Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-24T06:36:23.026Z"
+      "last_collected_at": "2026-09-30T20:51:46.060Z"
     },
     {
       "id": "cosmic-crf-limited",
