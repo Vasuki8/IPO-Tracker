@@ -3,7 +3,7 @@
   "status": "reviewed_actual_listings_import_approved",
   "batch_id": "bse-2023-ssek",
   "source_year": 2023,
-  "reviewed_at": "2026-09-30T01:49:30.000Z",
+  "reviewed_at": "2026-09-30T02:10:30.000Z",
   "publication_import_allowed": true,
   "auto_import_allowed": false,
   "complete_indian_ipo_universe": false,
@@ -14,11 +14,11 @@
   },
   "listing_receipt": {
     "path": "data/evidence/bse-2023-ssek-listing-source-receipt-2026-09-29.json",
-    "git_blob_sha": "fe9e1a341821dc03f8acb390ed4e4b87cb915ed4"
+    "git_blob_sha": "8876c6dd6e984b3c57358ec353c0fe67b457af01"
   },
   "listing_source_plan": {
     "path": "data/discovery/bse-2023-ssek-listing-source-plan-2026-09-29.json",
-    "git_blob_sha": "616da5da041a35fb6740228561ae46c5f6406f61"
+    "git_blob_sha": "cfb8703d63e0383f6e52f9464c30b8fae3988761"
   },
   "preimport_reconciliation": {
     "required_on_latest_main": true,
@@ -26,7 +26,7 @@
     "fuzzy_matching": false,
     "publication_import_allowed_by_reconciliation_alone": false
   },
-  "method": "Retained original annual-report PDFs were hash-checked, text-extracted with Poppler and visually reviewed on the cited physical pages. Listing approval is separate from the Prospectus-term review and from source collection.",
+  "method": "Retained original annual-report PDFs were hash-checked, text-extracted with Poppler and visually reviewed on the cited physical pages. The Exhicon BSE-hosted revised annual report is byte-identical to the previously reviewed issuer-hosted copy, so its semantic page review is preserved while provenance is repaired. Listing approval remains separate from source collection.",
   "boundaries": "This review approves only actual 2023 equity listing dates and BSE scrip identities for the four issuers. Board mapping, NSE identity, ISIN and monetary minimum application amount remain null/unapproved. Prospectus conflicts, fixed-price semantics and provisional amounts are preserved unchanged.",
   "actions": [
     {
@@ -48,11 +48,11 @@
         "response_sha256": "965e55c78c8bbcb6c8be112198145bf86d484bbcba5a954c54912747ee51e02f",
         "response_bytes": 5996545,
         "evidence_file": "544059-annual-2023-24.pdf",
-        "requested_at": "2026-09-29T20:58:18.099Z",
-        "collected_at": "2026-09-29T20:58:20.105Z",
-        "workflow_run_id": 36630044344,
+        "requested_at": "2026-09-30T02:09:44.664Z",
+        "collected_at": "2026-09-30T02:09:45.808Z",
+        "workflow_run_id": 36658473351,
         "workflow_attempt": 1,
-        "artifact_id": 11062426975
+        "artifact_id": 11073193202
       },
       "listing_date": {
         "value": "2023-12-27",
@@ -102,11 +102,11 @@
         "response_sha256": "9e7ecef4da91eb6bebe48c5e79c56cf00c738461934071182457af3ac4e37f95",
         "response_bytes": 3106894,
         "evidence_file": "543970-annual-2023-24.pdf",
-        "requested_at": "2026-09-29T20:58:20.105Z",
-        "collected_at": "2026-09-29T20:58:22.171Z",
-        "workflow_run_id": 36630044344,
+        "requested_at": "2026-09-30T02:09:45.808Z",
+        "collected_at": "2026-09-30T02:09:46.212Z",
+        "workflow_run_id": 36658473351,
         "workflow_attempt": 1,
-        "artifact_id": 11062426975
+        "artifact_id": 11073193202
       },
       "listing_date": {
         "value": "2023-08-29",
@@ -144,9 +144,9 @@
       "source_row_index": 20,
       "decision": "approved_missing_ipo",
       "document": {
-        "url": "https://exhiconevents.in/wp-content/uploads/2025/06/Annual-Report-FY-2023-24.pdf",
+        "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/8b213ed3-4634-48f5-b536-260e484aafba.pdf",
         "document_identity": "Exhicon Events Media Solutions Limited — Revised Annual Report FY2023-24",
-        "document_type": "Issuer-hosted Annual Report PDF",
+        "document_type": "BSE-hosted Annual Report PDF",
         "document_date": "2024-09-10",
         "document_date_page": 1,
         "document_date_locator": "Covering letter to BSE dated September 10, 2024 identifies this as the revised Annual Report for FY2023-24.",
@@ -156,11 +156,11 @@
         "response_sha256": "6eed16c4bc45e7b05ae71ccfab120924b8feee4e2145b685e0fe0e9996b599bd",
         "response_bytes": 29936128,
         "evidence_file": "543895-annual-2023-24.pdf",
-        "requested_at": "2026-09-29T20:58:22.171Z",
-        "collected_at": "2026-09-29T20:58:26.091Z",
-        "workflow_run_id": 36630044344,
+        "requested_at": "2026-09-30T02:09:46.212Z",
+        "collected_at": "2026-09-30T02:09:48.339Z",
+        "workflow_run_id": 36658473351,
         "workflow_attempt": 1,
-        "artifact_id": 11062426975
+        "artifact_id": 11073193202
       },
       "listing_date": {
         "value": "2023-04-17",
@@ -210,11 +210,11 @@
         "response_sha256": "c2b26441cea190e5449f31aa489c896591ef17e25d90efa8e5296617a6df4763",
         "response_bytes": 15396159,
         "evidence_file": "543953-annual-2023-24.pdf",
-        "requested_at": "2026-09-29T20:58:26.092Z",
-        "collected_at": "2026-09-29T20:58:55.691Z",
-        "workflow_run_id": 36630044344,
+        "requested_at": "2026-09-30T02:09:48.339Z",
+        "collected_at": "2026-09-30T02:09:53.835Z",
+        "workflow_run_id": 36658473351,
         "workflow_attempt": 1,
-        "artifact_id": 11062426975
+        "artifact_id": 11073193202
       },
       "listing_date": {
         "value": "2023-08-07",
