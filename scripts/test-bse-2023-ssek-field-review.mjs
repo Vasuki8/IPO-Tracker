@@ -45,8 +45,14 @@ test('exact identity matching warns but never authorizes an import',()=>{
  const r=reconcileIdentities(actions,rec,pub);assert.equal(r.matches.length,3);assert.equal(r.clearance_for_import,false);
 });
 
-test('current all-year and public identities remain clear at review time',()=>{
- const r=checkReview();assert.deepEqual(r.reconciliation.matches,[]);assert.equal(r.reconciliation.clearance_for_import,false);assert.ok(r.reconciliation.records_checked>=1383);assert.ok(r.reconciliation.public_records_checked>=1383);
+test('current identities remain clear pre-publication or exact after reviewed publication',()=>{
+ const r=checkReview();assert.equal(r.reconciliation.clearance_for_import,false);
+ if(r.current_identity_state==='pre_publication_clear')assert.deepEqual(r.reconciliation.matches,[]);
+ else{
+  assert.equal(r.current_identity_state,'post_publication_exact');assert.equal(r.reconciliation.matches.length,8);
+  for(const code of ['544059','543970','543895','543953'])assert.equal(r.reconciliation.matches.filter(x=>x.candidate_code===code).length,2);
+ }
+ assert.ok(r.reconciliation.records_checked>=1383);assert.ok(r.reconciliation.public_records_checked>=1383);
 });
 
 test('CLI is read-only and temporary source workflow is retired',()=>{
