@@ -146,6 +146,16 @@ jobs:
           node --check scripts/audit-bse-sme-addition-notices.mjs
           node scripts/test-audit-bse-sme-addition-notices.mjs
 
+      - name: Test reviewed BSE 2023 SSEK import
+        run: |
+          node scripts/test-bse-2023-ssek-evidence.mjs
+          node scripts/test-bse-2023-ssek-field-review.mjs
+          node scripts/check-bse-2023-ssek-field-review.mjs
+          node scripts/test-bse-2023-ssek-listing-evidence.mjs
+          node scripts/apply-reviewed-bse-2023-ssek.mjs --review
+          node scripts/apply-reviewed-bse-2023-ssek.mjs --check
+          node scripts/test-reviewed-bse-2023-ssek.mjs
+
       - name: Test historical IPO coverage audit
         run: node scripts/test-audit-historical-coverage.mjs
 
