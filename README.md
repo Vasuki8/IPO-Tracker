@@ -39,21 +39,25 @@ Collection time, source observation, dataset generation and Pages publication ar
 
 ## Handoff for the next prompt
 
-The IREDA/Motisons/RBZ/Shelter release is complete and live-verified. The 2023 immutable review ledger is now **12 reviewed/published + 18 awaiting review**. The bounded IRMS publisher is retired; do not replay the completed import.
+The next four 2023 BSE candidates now have reviewed Prospectus terms **and** retained authoritative actual-listing evidence. The prepared SSEK release is still **not published**: the 2023 ledger remains **12 reviewed/published + 18 awaiting review** until the served Pages dataset is verified.
 
-Continue with **SHANTI SPINTEX LIMITED (544059)**, **Shoora Designs Limited (543970)**, **Exhicon Events Media Solutions Limited (543895)** and **Khazanchi Jewellers Limited (543953)**. Start with official source retention and all-year identity reconciliation, then prepare a separately reviewed bounded import only for unambiguous evidence-backed identities.
+The original 2022 queue remains **14 reviewed/published + 2 existing-recovery alias + 0 awaiting review**.
 
-**The original 2022 queue is complete: 14 reviewed/published + 2 existing-recovery alias + 0 awaiting review.** The original 2021 queue is also complete. Preserve historical conflicts, aliases, evidence hashes and nulls; never replay completed releases.
+The bounded scope is **SHANTI SPINTEX LIMITED (544059)**, **Shoora Designs Limited (543970)**, **Exhicon Events Media Solutions Limited (543895)** and **Khazanchi Jewellers Limited (543953)**. Reviewed actual listing dates are **27-Dec-2023**, **29-Aug-2023**, **17-Apr-2023** and **07-Aug-2023** respectively.
 
-Repository hardening is recorded in [PROJECT_STATUS](docs/PROJECT_STATUS.md). Administration/legal follow-ups remain tracked in issues #339, #347 and #348.
+The guarded import is pinned by [data/verified-bse-listings/2026-09-29-ssek-2023.json](data/verified-bse-listings/2026-09-29-ssek-2023.json). The source receipt is [data/evidence/bse-2023-ssek-listing-source-receipt-2026-09-29.json](data/evidence/bse-2023-ssek-listing-source-receipt-2026-09-29.json). Artifact **11062426975** contains the four retained original annual reports and expires **13-Oct-2026**.
+
+Board, NSE identity, ISIN and monetary minimum application amount remain null. Preserve Shanti's ₹80 Cut Off Price typo, Exhicon's Prospectus date-definition conflict, both provisional issue amounts, and the fixed-price semantics for Shoora and Khazanchi.
 
 ### Exact next backend task
 
+Complete the pending release for **SHANTI SPINTEX LIMITED (544059)**, **Shoora Designs Limited (543970)**, **Exhicon Events Media Solutions Limited (543895)** and **Khazanchi Jewellers Limited (543953)**.
+
 The original BSE 2022 queue has remaining **0** unmatched rows requiring import.
 
-Review **SHANTI SPINTEX LIMITED (544059)**, **Shoora Designs Limited (543970)**, **Exhicon Events Media Solutions Limited (543895)** and **Khazanchi Jewellers Limited (543953)** from the pinned 2023 queue. Do not treat discovery values as publication authority. Retain original official evidence, reconcile identity across every recovery year, preserve conflicts/nulls, and only publish after a separate reviewed manifest and exact served verification.
+Finish the release lifecycle recorded in [docs/verification/bse-2023-ssek-release-2026-09-29.json](docs/verification/bse-2023-ssek-release-2026-09-29.json): merge only with a `release(ssek):` commit after final CI is green, let the temporary `reviewed_ssek` job publish against latest `main`, verify the actual served `data/ipos.json` with `scripts/verify-bse-2023-ssek.mjs`, then close the four queue rows and retire both temporary release surfaces.
 
-Use `node scripts/check-bse-2023-progress.mjs`, `node scripts/check-bse-2022-disposition.mjs`, `node scripts/check-retained-bse-snapshot.mjs`, `node scripts/build-published-data.mjs --check` and `node scripts/validate-data.mjs` as baseline guards. The completed IRMS live receipt is [docs/verification/bse-2023-irms-live-2026-09-29.json](docs/verification/bse-2023-irms-live-2026-09-29.json).
+Do not replay the completed IRMS, 2020–2022 or NSE releases. Continue to use `node scripts/check-bse-2023-progress.mjs`, `node scripts/build-published-data.mjs --check` and `node scripts/validate-data.mjs` as baseline guards.
 
 ## Historical release notes
 

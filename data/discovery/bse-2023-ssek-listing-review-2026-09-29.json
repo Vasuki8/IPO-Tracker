@@ -1,0 +1,249 @@
+{
+  "schema_version": "1.0.0",
+  "status": "reviewed_actual_listings_import_approved",
+  "batch_id": "bse-2023-ssek",
+  "source_year": 2023,
+  "reviewed_at": "2026-09-30T01:49:30.000Z",
+  "publication_import_allowed": true,
+  "auto_import_allowed": false,
+  "complete_indian_ipo_universe": false,
+  "discovery_source_refetched": false,
+  "prospectus_review": {
+    "path": "data/discovery/bse-2023-ssek-field-review-2026-09-29.json",
+    "git_blob_sha": "279facba3105465d832799c2983d22ccbb3cdc09"
+  },
+  "listing_receipt": {
+    "path": "data/evidence/bse-2023-ssek-listing-source-receipt-2026-09-29.json",
+    "git_blob_sha": "fe9e1a341821dc03f8acb390ed4e4b87cb915ed4"
+  },
+  "listing_source_plan": {
+    "path": "data/discovery/bse-2023-ssek-listing-source-plan-2026-09-29.json",
+    "git_blob_sha": "616da5da041a35fb6740228561ae46c5f6406f61"
+  },
+  "preimport_reconciliation": {
+    "required_on_latest_main": true,
+    "matching": "exact stable id, canonical legal name, BSE scrip code",
+    "fuzzy_matching": false,
+    "publication_import_allowed_by_reconciliation_alone": false
+  },
+  "method": "Retained original annual-report PDFs were hash-checked, text-extracted with Poppler and visually reviewed on the cited physical pages. Listing approval is separate from the Prospectus-term review and from source collection.",
+  "boundaries": "This review approves only actual 2023 equity listing dates and BSE scrip identities for the four issuers. Board mapping, NSE identity, ISIN and monetary minimum application amount remain null/unapproved. Prospectus conflicts, fixed-price semantics and provisional amounts are preserved unchanged.",
+  "actions": [
+    {
+      "stable_id": "shanti-spintex-limited",
+      "issuer_name": "SHANTI SPINTEX LIMITED",
+      "discovery_bse_scrip_code": "544059",
+      "source_row_index": 11,
+      "decision": "approved_missing_ipo",
+      "document": {
+        "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/7ef41283-ff90-4b34-ab83-815414cc3de9.pdf",
+        "document_identity": "Shanti Spintex Limited — Annual Report FY2023-24",
+        "document_type": "BSE-hosted Annual Report PDF",
+        "document_date": "2024-08-16",
+        "document_date_page": 1,
+        "document_date_locator": "Regulation 34 annual-report submission letter dated 16.08.2024.",
+        "publication_date": null,
+        "reporting_period": "FY2023-24",
+        "pdf_pages": 116,
+        "response_sha256": "965e55c78c8bbcb6c8be112198145bf86d484bbcba5a954c54912747ee51e02f",
+        "response_bytes": 5996545,
+        "evidence_file": "544059-annual-2023-24.pdf",
+        "requested_at": "2026-09-29T20:58:18.099Z",
+        "collected_at": "2026-09-29T20:58:20.105Z",
+        "workflow_run_id": 36630044344,
+        "workflow_attempt": 1,
+        "artifact_id": 11062426975
+      },
+      "listing_date": {
+        "value": "2023-12-27",
+        "source_value": "2023-12-27",
+        "source_unit": "ISO date",
+        "status": "verified",
+        "page": 33,
+        "printed_page": "29",
+        "evidence_locator": "Board report, 'Listing of Shares on SME Platform of BSE Limited': successfully listed on the SME Platform of BSE Limited on December 27, 2023.",
+        "reporting_period": "2023 IPO",
+        "qualification": "Actual equity listing disclosed retrospectively in the FY2023-24 annual report; not a proposed Prospectus schedule."
+      },
+      "identifiers": {
+        "bse_scrip_code": {
+          "value": "544059",
+          "page": 1,
+          "evidence_locator": "Regulation 34 submission letter explicitly identifies Shanti Spintex Limited, Scrip Code 544059."
+        },
+        "nse_symbol": null,
+        "isin": null,
+        "board": null
+      },
+      "platform_observation": {
+        "value": "BSE SME",
+        "page": 33,
+        "status": "retained_not_mapped_to_board",
+        "evidence_locator": "Annual report explicitly says SME Platform of BSE Limited."
+      },
+      "document_inconsistencies": []
+    },
+    {
+      "stable_id": "shoora-designs-limited",
+      "issuer_name": "Shoora Designs Limited",
+      "discovery_bse_scrip_code": "543970",
+      "source_row_index": 18,
+      "decision": "approved_missing_ipo",
+      "document": {
+        "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/5785622d-c982-49ae-88ac-86ef96b89feb.pdf",
+        "document_identity": "Shoora Designs Limited — Annual Report FY2023-24",
+        "document_type": "BSE-hosted Annual Report PDF",
+        "document_date": "2024-09-06",
+        "document_date_page": 1,
+        "document_date_locator": "Regulation 34 annual-report submission letter dated September 06, 2024.",
+        "publication_date": null,
+        "reporting_period": "FY2023-24",
+        "pdf_pages": 75,
+        "response_sha256": "9e7ecef4da91eb6bebe48c5e79c56cf00c738461934071182457af3ac4e37f95",
+        "response_bytes": 3106894,
+        "evidence_file": "543970-annual-2023-24.pdf",
+        "requested_at": "2026-09-29T20:58:20.105Z",
+        "collected_at": "2026-09-29T20:58:22.171Z",
+        "workflow_run_id": 36630044344,
+        "workflow_attempt": 1,
+        "artifact_id": 11062426975
+      },
+      "listing_date": {
+        "value": "2023-08-29",
+        "source_value": "2023-08-29",
+        "source_unit": "ISO date",
+        "status": "verified",
+        "page": 19,
+        "printed_page": "17",
+        "evidence_locator": "Board report states the equity shares were listed on the BSE platform on August 29, 2023 and repeats that they were listed on the SME Platform of BSE Limited on that date.",
+        "reporting_period": "2023 IPO",
+        "qualification": "Actual equity listing disclosed retrospectively in the FY2023-24 annual report; not an in-principle approval date."
+      },
+      "identifiers": {
+        "bse_scrip_code": {
+          "value": "543970",
+          "page": 1,
+          "evidence_locator": "Regulation 34 submission letter explicitly states BSE Code 543970."
+        },
+        "nse_symbol": null,
+        "isin": null,
+        "board": null
+      },
+      "platform_observation": {
+        "value": "BSE SME",
+        "page": 19,
+        "status": "retained_not_mapped_to_board",
+        "evidence_locator": "Annual report explicitly says SME Platform of BSE Limited."
+      },
+      "document_inconsistencies": []
+    },
+    {
+      "stable_id": "exhicon-events-media-solutions-limited",
+      "issuer_name": "Exhicon Events Media Solutions Limited",
+      "discovery_bse_scrip_code": "543895",
+      "source_row_index": 20,
+      "decision": "approved_missing_ipo",
+      "document": {
+        "url": "https://exhiconevents.in/wp-content/uploads/2025/06/Annual-Report-FY-2023-24.pdf",
+        "document_identity": "Exhicon Events Media Solutions Limited — Revised Annual Report FY2023-24",
+        "document_type": "Issuer-hosted Annual Report PDF",
+        "document_date": "2024-09-10",
+        "document_date_page": 1,
+        "document_date_locator": "Covering letter to BSE dated September 10, 2024 identifies this as the revised Annual Report for FY2023-24.",
+        "publication_date": null,
+        "reporting_period": "FY2023-24",
+        "pdf_pages": 172,
+        "response_sha256": "6eed16c4bc45e7b05ae71ccfab120924b8feee4e2145b685e0fe0e9996b599bd",
+        "response_bytes": 29936128,
+        "evidence_file": "543895-annual-2023-24.pdf",
+        "requested_at": "2026-09-29T20:58:22.171Z",
+        "collected_at": "2026-09-29T20:58:26.091Z",
+        "workflow_run_id": 36630044344,
+        "workflow_attempt": 1,
+        "artifact_id": 11062426975
+      },
+      "listing_date": {
+        "value": "2023-04-17",
+        "source_value": "2023-04-17",
+        "source_unit": "ISO date",
+        "status": "verified",
+        "page": 46,
+        "printed_page": "42",
+        "evidence_locator": "Board report, Initial Public Offering section: post allotment, equity shares got listed and commenced trading on the BSE Limited SME Platform on April 17, 2023.",
+        "reporting_period": "2023 IPO",
+        "qualification": "Actual listing/trading commencement disclosed retrospectively in the revised FY2023-24 annual report; not a proposed Prospectus date."
+      },
+      "identifiers": {
+        "bse_scrip_code": {
+          "value": "543895",
+          "page": 1,
+          "evidence_locator": "Revised annual-report covering letter to BSE explicitly states Scrip Code 543895."
+        },
+        "nse_symbol": null,
+        "isin": null,
+        "board": null
+      },
+      "platform_observation": {
+        "value": "BSE SME",
+        "page": 46,
+        "status": "retained_not_mapped_to_board",
+        "evidence_locator": "Annual report explicitly states BSE Limited SME Platform."
+      },
+      "document_inconsistencies": []
+    },
+    {
+      "stable_id": "khazanchi-jewellers-limited",
+      "issuer_name": "Khazanchi Jewellers Limited",
+      "discovery_bse_scrip_code": "543953",
+      "source_row_index": 22,
+      "decision": "approved_missing_ipo",
+      "document": {
+        "url": "https://www.khazanchi.co.in/files/Khazanchi%20Jewellers%20AR24.pdf",
+        "document_identity": "Khazanchi Jewellers Limited — Annual Report FY2023-24",
+        "document_type": "Issuer-hosted Annual Report PDF",
+        "document_date": null,
+        "document_date_page": null,
+        "document_date_locator": "The retained issuer-hosted Annual Report identifies FY2023-24 but no distinct annual-report publication date is promoted from the reviewed pages.",
+        "publication_date": null,
+        "reporting_period": "FY2023-24",
+        "pdf_pages": 49,
+        "response_sha256": "c2b26441cea190e5449f31aa489c896591ef17e25d90efa8e5296617a6df4763",
+        "response_bytes": 15396159,
+        "evidence_file": "543953-annual-2023-24.pdf",
+        "requested_at": "2026-09-29T20:58:26.092Z",
+        "collected_at": "2026-09-29T20:58:55.691Z",
+        "workflow_run_id": 36630044344,
+        "workflow_attempt": 1,
+        "artifact_id": 11062426975
+      },
+      "listing_date": {
+        "value": "2023-08-07",
+        "source_value": "2023-08-07",
+        "source_unit": "ISO date",
+        "status": "verified",
+        "page": 25,
+        "printed_page": "44–45 spread",
+        "evidence_locator": "Board Report, Listing of Equity Shares: shares were listed with BSE Limited (BSE SME platform) on August 07, 2023.",
+        "reporting_period": "2023 IPO",
+        "qualification": "Actual equity listing disclosed retrospectively in the FY2023-24 annual report."
+      },
+      "identifiers": {
+        "bse_scrip_code": {
+          "value": "543953",
+          "page": 15,
+          "evidence_locator": "Corporate Information lists Bombay Stock Exchange (SME Platform) and Scrip Code 543953."
+        },
+        "nse_symbol": null,
+        "isin": null,
+        "board": null
+      },
+      "platform_observation": {
+        "value": "BSE SME",
+        "page": 25,
+        "status": "retained_not_mapped_to_board",
+        "evidence_locator": "Board report explicitly says BSE Limited (BSE SME platform)."
+      },
+      "document_inconsistencies": []
+    }
+  ]
+}

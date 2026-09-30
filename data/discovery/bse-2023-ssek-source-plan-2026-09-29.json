@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0.0",
+  "status": "source_collection_only",
+  "batch_id": "bse-2023-ssek",
+  "source_queue": "data/discovery/bse-2023-review-queue-2026-09-28.json",
+  "source_queue_sha256": "975d244fc1a6166aebbb9a4c4da64b60fe3a85e1b3c1d84b9eca3ab4b2812cb4",
+  "discovery_source_collected_at": "2026-09-26T16:40:34.440Z",
+  "publication_import_allowed": false,
+  "semantic_review_complete": false,
+  "complete_indian_ipo_universe": false,
+  "issuers": [
+    {
+      "discovery_bse_scrip_code": "544059",
+      "source_row_index": 11,
+      "issuer_name": "SHANTI SPINTEX LIMITED",
+      "landing_url": "https://www.sebi.gov.in/filings/public-issues/dec-2023/shanti-spintex-limited-sme-issue-prospectus_80211.html",
+      "landing_displayed_date": "2023-12-26",
+      "prospectus_url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2023/1703566950969.pdf",
+      "document_date": null
+    },
+    {
+      "discovery_bse_scrip_code": "543970",
+      "source_row_index": 18,
+      "issuer_name": "Shoora Designs Limited",
+      "landing_url": "https://www.sebi.gov.in/filings/public-issues/apr-2024/shoora-designs-limited_82728.html",
+      "landing_displayed_date": "2024-04-04",
+      "prospectus_url": "https://www.sebi.gov.in/sebi_data/attachdocs/apr-2024/1712280675615_212.pdf",
+      "document_date": null
+    },
+    {
+      "discovery_bse_scrip_code": "543895",
+      "source_row_index": 20,
+      "issuer_name": "Exhicon Events Media Solutions Limited",
+      "landing_url": "https://www.sebi.gov.in/filings/public-issues/apr-2023/exhicon-events-media-solutions-limited-sme-issue-prospectus_70034.html",
+      "landing_displayed_date": "2023-04-11",
+      "prospectus_url": "https://www.sebi.gov.in/sebi_data/attachdocs/apr-2023/1681276407209.pdf",
+      "document_date": null
+    },
+    {
+      "discovery_bse_scrip_code": "543953",
+      "source_row_index": 22,
+      "issuer_name": "Khazanchi Jewellers Limited",
+      "landing_url": "https://www.sebi.gov.in/filings/public-issues/jul-2023/khazanchi-jewellers-limited-prospectus_74227.html",
+      "landing_displayed_date": "2023-07-21",
+      "prospectus_url": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2023/1689936568009.pdf",
+      "document_date": null
+    }
+  ],
+  "notes": [
+    "These BSE codes and row indices identify immutable discovery candidates, not verified publication identities.",
+    "Collect each official SEBI landing page and its linked original PDF. Collection, PDF magic checks and URL linkage are not semantic field review or publication approval.",
+    "Shoora Designs is intentionally bound to a SEBI landing page displayed 04-Apr-2024 that links the retained Prospectus for its August 2023 issue. The later archive/landing date is preserved and is not relabelled as the document date.",
+    "All document_date fields remain null until the original PDFs are reviewed. Preserve nulls, conflicts, original units and page evidence in later stages.",
+    "Reconcile every recovery year and the current public dataset before any later import. This batch is not a complete-universe claim."
+  ]
+}
