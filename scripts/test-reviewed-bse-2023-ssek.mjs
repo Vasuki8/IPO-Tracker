@@ -7,7 +7,7 @@ import {expectedPublic} from './verify-bse-2023-rvpe.mjs';
 import {sha256} from './verify-bse-listing-candidates.mjs';
 const moduleUrl=new URL('./apply-reviewed-bse-2023-ssek.mjs',import.meta.url);
 const {context,validate,expected,apply,loadRecovery}=await import(moduleUrl.href);
-const ctx=context(),now='2026-09-30T02:00:00.000Z',raw=()=>expected(ctx),clone=()=>structuredClone(ctx);
+const ctx=context(),now='2026-09-30T03:00:00.000Z',raw=()=>expected(ctx),clone=()=>structuredClone(ctx);
 const fixture=()=>Object.fromEntries([2020,2021,2022,2023,2024,2025,2026].map(y=>[y,{schema_version:'1.0.0',generated_at:'2026-09-29T01:00:00.000Z',records:[{id:'unrelated-'+y,issuer_name:'Other '+y+' Limited'}]}]));
 test('validates separately reviewed listing approval and immutable source bindings',()=>{
  assert.deepEqual(validate(ctx),{ok:true,records:4,listing_verified:4,board_promoted:0,isin_promoted:0,nse_promoted:0});
@@ -24,8 +24,12 @@ test('constructs exact listing dates and BSE identities while leaving unsupporte
  assert.deepEqual(r.map(x=>x.minimum_bid_quantity.value),[2000,3000,2000,1000]);
  assert.deepEqual(r.map(x=>x.issue_price.value),[70,48,64,140]);
  assert.deepEqual(r.map(x=>x.issue_size_inr.status),['provisional','verified','provisional','verified']);
- for(const x of r){assert.equal(x.board,null);assert.equal(x.nse_symbol,null);assert.equal(x.isin,null);assert.equal(x.status,'listed');assert.equal(x.status_evidence.length,1);assert.match(x.status_evidence[0].document_type,/Annual Report PDF$/);}
+ for(const x of r){
+  assert.equal(x.board,null);assert.equal(x.nse_symbol,null);assert.equal(x.isin,null);assert.equal(x.status,'listed');assert.equal(x.status_evidence.length,1);assert.match(x.status_evidence[0].document_type,/BSE-hosted Annual Report PDF$/);
+  assert.equal(new URL(x.status_evidence[0].url).hostname,'www.bseindia.com');
+ }
  assert.equal(r[1].price_band.status,'missing');assert.equal(r[3].price_band.status,'missing');
+ assert.equal(r[3].listing_date.page,26);assert.equal(r[3].identity_evidence.bse_scrip_code.page,1);
 });
 test('adds exactly four, preserves unrelated records, and reruns idempotently',()=>{
  const before=fixture(),copy=structuredClone(before),first=apply(before,ctx,now);assert.deepEqual(before,copy);assert.deepEqual(first.stats,{records:4,added:4,skipped:0,changed:true});
@@ -81,4 +85,4 @@ test('bounded publisher and live verifier exist only while release is pending',(
   assert.doesNotMatch(workflow,/reviewed_ssek:|apply-reviewed-bse-2023-ssek\.mjs --apply/);assert.equal(fs.existsSync(live),false);
  }
 });
-test('temporary listing collector workflow is not retained in final tree',()=>{assert.equal(fs.existsSync(new URL('../.github/workflows/collect-bse-2023-ssek-listing-evidence.yml',import.meta.url)),false);});
+test('temporary listing collector workflows are not retained in final tree',()=>{assert.equal(fs.existsSync(new URL('../.github/workflows/collect-bse-2023-ssek-listing-evidence.yml',import.meta.url)),false);assert.equal(fs.existsSync(new URL('../.github/workflows/collect-bse-2023-ssek-listing-evidence-repair.yml',import.meta.url)),false);});
