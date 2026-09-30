@@ -39,13 +39,13 @@ Collection time, source observation, dataset generation and Pages publication ar
 
 ## Handoff for the next prompt
 
-The next four 2023 BSE candidates now have reviewed Prospectus terms **and** retained authoritative actual-listing evidence. The prepared SSEK release is still **not published**: the 2023 ledger remains **12 reviewed/published + 18 awaiting review** until the served Pages dataset is verified.
+The next four 2023 BSE candidates now have reviewed Prospectus terms **and** retained authoritative actual-listing evidence. PR #349's first guarded publication failed safely before push because the builder rejected an issuer-hosted listing source; the repaired release now uses BSE-hosted listing reports for all four. The SSEK batch is still **not published**: the 2023 ledger remains **12 reviewed/published + 18 awaiting review** until the served Pages dataset is verified.
 
 The original 2022 queue remains **14 reviewed/published + 2 existing-recovery alias + 0 awaiting review**.
 
 The bounded scope is **SHANTI SPINTEX LIMITED (544059)**, **Shoora Designs Limited (543970)**, **Exhicon Events Media Solutions Limited (543895)** and **Khazanchi Jewellers Limited (543953)**. Reviewed actual listing dates are **27-Dec-2023**, **29-Aug-2023**, **17-Apr-2023** and **07-Aug-2023** respectively.
 
-The guarded import is pinned by [data/verified-bse-listings/2026-09-29-ssek-2023.json](data/verified-bse-listings/2026-09-29-ssek-2023.json). The source receipt is [data/evidence/bse-2023-ssek-listing-source-receipt-2026-09-29.json](data/evidence/bse-2023-ssek-listing-source-receipt-2026-09-29.json). Artifact **11062426975** contains the four retained original annual reports and expires **13-Oct-2026**.
+The guarded import is pinned by [data/verified-bse-listings/2026-09-29-ssek-2023.json](data/verified-bse-listings/2026-09-29-ssek-2023.json). The source receipt is [data/evidence/bse-2023-ssek-listing-source-receipt-2026-09-29.json](data/evidence/bse-2023-ssek-listing-source-receipt-2026-09-29.json). Artifact **11075040486** contains the final four BSE-hosted listing reports and expires **14-Oct-2026**. Exhicon's BSE copy is byte-identical to the reviewed issuer copy; Khazanchi's BSE filing adds a cover page and its physical locators were re-reviewed.
 
 Board, NSE identity, ISIN and monetary minimum application amount remain null. Preserve Shanti's ₹80 Cut Off Price typo, Exhicon's Prospectus date-definition conflict, both provisional issue amounts, and the fixed-price semantics for Shoora and Khazanchi.
 
@@ -55,7 +55,7 @@ Complete the pending release for **SHANTI SPINTEX LIMITED (544059)**, **Shoora D
 
 The original BSE 2022 queue has remaining **0** unmatched rows requiring import.
 
-Finish the release lifecycle recorded in [docs/verification/bse-2023-ssek-release-2026-09-29.json](docs/verification/bse-2023-ssek-release-2026-09-29.json): merge only with a `release(ssek):` commit after final CI is green, let the temporary `reviewed_ssek` job publish against latest `main`, verify the actual served `data/ipos.json` with `scripts/verify-bse-2023-ssek.mjs`, then close the four queue rows and retire both temporary release surfaces.
+Finish the repaired release lifecycle recorded in [docs/verification/bse-2023-ssek-release-2026-09-29.json](docs/verification/bse-2023-ssek-release-2026-09-29.json): merge only with a `release(ssek):` commit after final CI is green, let the temporary `reviewed_ssek` job retry against latest `main`, verify the actual served `data/ipos.json` with `scripts/verify-bse-2023-ssek.mjs`, then close the four queue rows and retire both temporary release surfaces.
 
 Do not replay the completed IRMS, 2020–2022 or NSE releases. Continue to use `node scripts/check-bse-2023-progress.mjs`, `node scripts/build-published-data.mjs --check` and `node scripts/validate-data.mjs` as baseline guards.
 
