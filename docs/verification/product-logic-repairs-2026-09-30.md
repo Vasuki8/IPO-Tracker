@@ -46,3 +46,7 @@ Product browser checks cover real dataset examples, future opening dates, closin
 The UI workflow now runs all three browser entry points and is triggered by relevant source/data/health changes. Two historical non-browser workflow loops explicitly exclude the browser suites, which require the separate Playwright installation.
 
 Final results and screenshots are retained under `/workspace/ipo-tools/product-review/` in this cloud workspace. Production behavior and fresh exchange data were not verified or changed by this batch.
+
+## Integration preparation
+
+The repair branch subsequently incorporated main through `6a14056704b0993052630303718e0a0c21604159`, including its latest automated source collection. The recovery generation timestamp uses that newer source update, and the public array was regenerated with the shared builder to resolve its ordering conflict. Comparison against that main snapshot confirms all 1,387 stable IDs, every term/source value and its generation timestamp are preserved. Only the five intended status/evidence repairs from the earlier code-review batch differ; prior status sources remain retained. These incoming source changes are distinct from the original offline repair and website review.
