@@ -4789,6 +4789,64 @@
         "publication_date": "2022-01-12"
       },
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2022/1671796154034.pdf"
+    },
+    "2024|sanstar-limited": {
+      "issuer_name": "Sanstar Limited",
+      "listing_date": "2024-07-26",
+      "last_attempted_at": "2026-10-01T00:53:44.477Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "issue_size_inr",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Sanstar Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2024/1721020818790.PDF",
+        "publication_date": "2024-07-15"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2024/1721020818790.PDF"
+    },
+    "2023|aatmaj-healthcare-limited": {
+      "issuer_name": "Aatmaj Healthcare Limited",
+      "listing_date": "2023-06-30",
+      "last_attempted_at": "2026-10-01T00:53:44.477Z",
+      "parser_version": "1.2.0",
+      "status": "extracted",
+      "extracted_fields": [
+        "issue_size_inr"
+      ],
+      "remaining_fields": [
+        "price_band",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": {
+          "value": 384000000,
+          "source_value": "₹3,840.00 LAKHS",
+          "page": 2
+        },
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Aatmaj Healthcare Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2023/1687516313501.pdf",
+        "publication_date": "2023-06-19"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2023/1687516313501.pdf"
     }
   }
 }
