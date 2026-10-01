@@ -4982,6 +4982,90 @@
         "publication_date": "2023-05-31"
       },
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2023/1686140656021.pdf"
+    },
+    "2025|anthem-biosciences-limited": {
+      "issuer_name": "Anthem Biosciences Limited",
+      "listing_date": "2025-07-21",
+      "last_attempted_at": "2026-10-01T23:43:12.068Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Anthem Biosciences Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2025/1752053961291.pdf",
+        "publication_date": "2025-07-09"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2025/1752053961291.pdf"
+    },
+    "2023|ikio-lighting-limited": {
+      "issuer_name": "IKIO Lighting Limited",
+      "listing_date": "2023-06-16",
+      "last_attempted_at": "2026-10-01T23:43:12.068Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "price_band",
+        "issue_size_inr",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "IKIO Lighting Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/may-2023/1685448884386.pdf",
+        "publication_date": "2023-05-30"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/may-2023/1685448884386.pdf"
+    },
+    "2023|kore-digital-limited": {
+      "issuer_name": "Kore Digital Limited",
+      "listing_date": "2023-06-14",
+      "last_attempted_at": "2026-10-01T23:43:12.068Z",
+      "parser_version": "1.2.0",
+      "status": "extracted",
+      "extracted_fields": [
+        "issue_size_inr"
+      ],
+      "remaining_fields": [
+        "price_band",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": {
+          "value": 180000000,
+          "source_value": "₹1800.00 LAKHS",
+          "page": 2
+        },
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Kore Digital Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/may-2023/1685505161104.PDF",
+        "publication_date": "2023-05-30"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/may-2023/1685505161104.PDF"
     }
   }
 }
