@@ -4924,6 +4924,64 @@
         "publication_date": "2025-07-18"
       },
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2025/1752841753123.pdf"
+    },
+    "2025|indiqube-spaces-limited": {
+      "issuer_name": "Indiqube Spaces Limited",
+      "listing_date": "2025-07-30",
+      "last_attempted_at": "2026-10-01T13:59:38.463Z",
+      "parser_version": "1.2.0",
+      "status": "extracted",
+      "extracted_fields": [
+        "issue_size_inr"
+      ],
+      "remaining_fields": [
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": {
+          "value": 7000000000,
+          "source_value": "₹7,000.00 MILLION",
+          "page": 3
+        },
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Indiqube Spaces Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2025/1754306929221.pdf",
+        "publication_date": "2025-08-04"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2025/1754306929221.pdf"
+    },
+    "2023|bizotic-commercial-limited": {
+      "issuer_name": "Bizotic Commercial Limited",
+      "listing_date": "2023-06-23",
+      "last_attempted_at": "2026-10-01T13:59:38.463Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "price_band",
+        "issue_size_inr",
+        "minimum_bid_quantity"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Bizotic Commercial Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2023/1686140656021.pdf",
+        "publication_date": "2023-05-31"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2023/1686140656021.pdf"
     }
   }
 }
