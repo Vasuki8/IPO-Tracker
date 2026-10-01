@@ -2506,7 +2506,7 @@
         }
       ],
       "sector": null,
-      "status": "closed",
+      "status": "listed",
       "status_evidence": [
         {
           "url": "https://www.nseindia.com/api/all-upcoming-issues?category=ipo",
@@ -2531,6 +2531,14 @@
           "publication_date": null,
           "page": null,
           "collected_at": "2026-09-28T23:21:11.825Z"
+        },
+        {
+          "url": "https://www.nseindia.com/api/public-past-issues",
+          "document_type": "NSE Public Past Issues",
+          "document_identity": "NSE Public Past Issues — AONESTEELS",
+          "publication_date": null,
+          "page": null,
+          "collected_at": "2026-10-01T00:37:10.500Z"
         }
       ],
       "price_band": {
@@ -2552,9 +2560,18 @@
         "corrections": []
       },
       "issue_price": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": 405,
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/public-past-issues",
+            "document_type": "NSE Public Past Issues",
+            "document_identity": "NSE Public Past Issues — AONESTEELS",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-10-01T00:37:10.500Z"
+          }
+        ],
         "corrections": []
       },
       "issue_size_inr": {
@@ -2665,9 +2682,18 @@
         "corrections": []
       },
       "listing_date": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": "2026-10-01",
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/public-past-issues",
+            "document_type": "NSE Public Past Issues",
+            "document_identity": "NSE Public Past Issues — AONESTEELS",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-10-01T00:37:10.500Z"
+          }
+        ],
         "corrections": []
       },
       "documents": [
@@ -2684,10 +2710,292 @@
           "url": "https://www.nseindia.com/api/ipo-detail?symbol=AONESTEELS&series=EQ",
           "publication_date": null,
           "collected_at": "2026-09-23T11:49:30.062Z"
+        },
+        {
+          "type": "NSE Public Past Issues",
+          "identity": "NSE Public Past Issues — AONESTEELS",
+          "url": "https://www.nseindia.com/api/public-past-issues",
+          "publication_date": null,
+          "collected_at": "2026-10-01T00:37:10.500Z"
         }
       ],
       "first_observed_at": "2026-09-23T11:47:20.236Z",
-      "last_collected_at": "2026-09-28T23:21:11.825Z"
+      "last_collected_at": "2026-10-01T00:37:10.500Z"
+    },
+    {
+      "id": "moneyview-limited",
+      "issuer_name": "Moneyview Limited",
+      "board": "Mainboard",
+      "board_evidence": [
+        {
+          "url": "https://www.nseindia.com/api/all-upcoming-issues?category=ipo",
+          "document_type": "NSE IPO Live Feed",
+          "document_identity": "NSE IPO Live Feed — MONEYVIEW",
+          "publication_date": null,
+          "page": null,
+          "collected_at": "2026-09-22T13:09:40.974Z"
+        }
+      ],
+      "sector": null,
+      "status": "listed",
+      "status_evidence": [
+        {
+          "url": "https://www.nseindia.com/api/all-upcoming-issues?category=ipo",
+          "document_type": "NSE IPO Live Feed",
+          "document_identity": "NSE IPO Live Feed — MONEYVIEW",
+          "publication_date": null,
+          "page": null,
+          "collected_at": "2026-09-22T13:09:40.974Z"
+        },
+        {
+          "url": "https://www.nseindia.com/api/all-upcoming-issues?category=ipo",
+          "document_type": "NSE IPO Live Feed",
+          "document_identity": "NSE IPO Live Feed — MONEYVIEW",
+          "publication_date": null,
+          "page": null,
+          "collected_at": "2026-09-23T19:29:27.142Z"
+        },
+        {
+          "url": "https://www.nseindia.com/api/all-upcoming-issues?category=ipo",
+          "document_type": "NSE IPO Live Feed",
+          "document_identity": "NSE IPO Live Feed — MONEYVIEW",
+          "publication_date": null,
+          "page": null,
+          "collected_at": "2026-09-28T23:21:11.825Z"
+        },
+        {
+          "url": "https://www.nseindia.com/api/public-past-issues",
+          "document_type": "NSE Public Past Issues",
+          "document_identity": "NSE Public Past Issues — MONEYVIEW",
+          "publication_date": null,
+          "page": null,
+          "collected_at": "2026-10-01T00:37:10.500Z"
+        }
+      ],
+      "price_band": {
+        "value": {
+          "min": 32,
+          "max": 34
+        },
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/all-upcoming-issues?category=ipo",
+            "document_type": "NSE IPO Live Feed",
+            "document_identity": "NSE IPO Live Feed — MONEYVIEW",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-22T13:09:40.974Z"
+          }
+        ],
+        "corrections": []
+      },
+      "issue_price": {
+        "value": 34,
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/public-past-issues",
+            "document_type": "NSE Public Past Issues",
+            "document_identity": "NSE Public Past Issues — MONEYVIEW",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-10-01T00:37:10.500Z"
+          }
+        ],
+        "corrections": []
+      },
+      "issue_size_inr": {
+        "value": 10916800000,
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2026/1790674448687.pdf",
+            "document_type": "SEBI Prospectus PDF",
+            "document_identity": "Moneyview Limited - Prospectus — PDF",
+            "publication_date": "2026-09-29",
+            "page": 3,
+            "collected_at": "2026-09-29T16:31:46.084Z"
+          }
+        ],
+        "corrections": []
+      },
+      "market_lot": {
+        "value": null,
+        "status": "missing",
+        "evidence": [],
+        "corrections": []
+      },
+      "minimum_bid_quantity": {
+        "value": 441,
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=MONEYVIEW&series=EQ",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — MONEYVIEW",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-22T13:12:58.584Z"
+          }
+        ],
+        "corrections": []
+      },
+      "minimum_application_amount_inr": {
+        "value": null,
+        "status": "missing",
+        "evidence": [],
+        "corrections": []
+      },
+      "application_requirements": {
+        "retail": {
+          "minimum_application_amount_inr": {
+            "value": null,
+            "status": "missing",
+            "evidence": [],
+            "corrections": []
+          },
+          "minimum_bid_quantity": {
+            "value": null,
+            "status": "missing",
+            "evidence": [],
+            "corrections": []
+          }
+        },
+        "non_institutional": {
+          "minimum_application_amount_inr": {
+            "value": null,
+            "status": "missing",
+            "evidence": [],
+            "corrections": []
+          },
+          "minimum_bid_quantity": {
+            "value": null,
+            "status": "missing",
+            "evidence": [],
+            "corrections": []
+          }
+        },
+        "anchor_investor": {
+          "minimum_application_amount_inr": {
+            "value": null,
+            "status": "missing",
+            "evidence": [],
+            "corrections": []
+          },
+          "minimum_bid_quantity": {
+            "value": null,
+            "status": "missing",
+            "evidence": [],
+            "corrections": []
+          }
+        }
+      },
+      "open_date": {
+        "value": "2026-09-24",
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/all-upcoming-issues?category=ipo",
+            "document_type": "NSE IPO Live Feed",
+            "document_identity": "NSE IPO Live Feed — MONEYVIEW",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-22T13:09:40.974Z"
+          }
+        ],
+        "corrections": []
+      },
+      "close_date": {
+        "value": "2026-09-28",
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/all-upcoming-issues?category=ipo",
+            "document_type": "NSE IPO Live Feed",
+            "document_identity": "NSE IPO Live Feed — MONEYVIEW",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-22T13:09:40.974Z"
+          }
+        ],
+        "corrections": []
+      },
+      "listing_date": {
+        "value": "2026-10-01",
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/public-past-issues",
+            "document_type": "NSE Public Past Issues",
+            "document_identity": "NSE Public Past Issues — MONEYVIEW",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-10-01T00:37:10.500Z"
+          }
+        ],
+        "corrections": []
+      },
+      "documents": [
+        {
+          "type": "NSE IPO Live Feed",
+          "identity": "NSE IPO Live Feed — MONEYVIEW",
+          "url": "https://www.nseindia.com/api/all-upcoming-issues?category=ipo",
+          "publication_date": null,
+          "collected_at": "2026-09-22T13:09:40.974Z"
+        },
+        {
+          "type": "SEBI RHP filing",
+          "identity": "SEBI RHP filing — moneyview limited",
+          "url": "https://www.sebi.gov.in/filings/public-issues/sep-2026/moneyview-limited-rhp_104597.html",
+          "publication_date": "2026-09-21",
+          "collected_at": "2026-09-22T13:09:41.961Z"
+        },
+        {
+          "type": "SEBI Abridged Prospectus",
+          "identity": "Moneyview Limited - Abridged Prospectus",
+          "url": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/Moneyview%20Limited%20-%20Abridged%20Prospectus_p.pdf",
+          "publication_date": "2026-09-21",
+          "collected_at": "2026-09-22T13:09:41.961Z"
+        },
+        {
+          "type": "SEBI RHP PDF",
+          "identity": "SEBI RHP filing — moneyview limited — PDF",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2026/1789975400167.pdf",
+          "publication_date": "2026-09-21",
+          "collected_at": "2026-09-22T13:09:41.961Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — MONEYVIEW",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=MONEYVIEW&series=EQ",
+          "publication_date": null,
+          "collected_at": "2026-09-22T13:12:58.584Z"
+        },
+        {
+          "type": "SEBI Prospectus filing",
+          "identity": "Moneyview Limited - Prospectus",
+          "url": "https://www.sebi.gov.in/filings/public-issues/sep-2026/moneyview-limited-prospectus_104787.html",
+          "publication_date": "2026-09-29",
+          "collected_at": "2026-09-29T16:20:57.301Z"
+        },
+        {
+          "type": "SEBI Prospectus PDF",
+          "identity": "Moneyview Limited - Prospectus — PDF",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2026/1790674448687.pdf",
+          "publication_date": "2026-09-29",
+          "collected_at": "2026-09-29T16:20:57.301Z"
+        },
+        {
+          "type": "NSE Public Past Issues",
+          "identity": "NSE Public Past Issues — MONEYVIEW",
+          "url": "https://www.nseindia.com/api/public-past-issues",
+          "publication_date": null,
+          "collected_at": "2026-10-01T00:37:10.500Z"
+        }
+      ],
+      "first_observed_at": "2026-09-22T13:09:40.974Z",
+      "last_collected_at": "2026-10-01T00:37:10.500Z"
     },
     {
       "id": "green-asia-impex-limited",
@@ -2878,248 +3186,6 @@
       ],
       "first_observed_at": "2026-09-23T11:47:20.236Z",
       "last_collected_at": "2026-09-23T19:29:27.142Z"
-    },
-    {
-      "id": "moneyview-limited",
-      "issuer_name": "Moneyview Limited",
-      "board": "Mainboard",
-      "board_evidence": [
-        {
-          "url": "https://www.nseindia.com/api/all-upcoming-issues?category=ipo",
-          "document_type": "NSE IPO Live Feed",
-          "document_identity": "NSE IPO Live Feed — MONEYVIEW",
-          "publication_date": null,
-          "page": null,
-          "collected_at": "2026-09-22T13:09:40.974Z"
-        }
-      ],
-      "sector": null,
-      "status": "closed",
-      "status_evidence": [
-        {
-          "url": "https://www.nseindia.com/api/all-upcoming-issues?category=ipo",
-          "document_type": "NSE IPO Live Feed",
-          "document_identity": "NSE IPO Live Feed — MONEYVIEW",
-          "publication_date": null,
-          "page": null,
-          "collected_at": "2026-09-22T13:09:40.974Z"
-        },
-        {
-          "url": "https://www.nseindia.com/api/all-upcoming-issues?category=ipo",
-          "document_type": "NSE IPO Live Feed",
-          "document_identity": "NSE IPO Live Feed — MONEYVIEW",
-          "publication_date": null,
-          "page": null,
-          "collected_at": "2026-09-23T19:29:27.142Z"
-        },
-        {
-          "url": "https://www.nseindia.com/api/all-upcoming-issues?category=ipo",
-          "document_type": "NSE IPO Live Feed",
-          "document_identity": "NSE IPO Live Feed — MONEYVIEW",
-          "publication_date": null,
-          "page": null,
-          "collected_at": "2026-09-28T23:21:11.825Z"
-        }
-      ],
-      "price_band": {
-        "value": {
-          "min": 32,
-          "max": 34
-        },
-        "status": "verified",
-        "evidence": [
-          {
-            "url": "https://www.nseindia.com/api/all-upcoming-issues?category=ipo",
-            "document_type": "NSE IPO Live Feed",
-            "document_identity": "NSE IPO Live Feed — MONEYVIEW",
-            "publication_date": null,
-            "page": null,
-            "collected_at": "2026-09-22T13:09:40.974Z"
-          }
-        ],
-        "corrections": []
-      },
-      "issue_price": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
-        "corrections": []
-      },
-      "issue_size_inr": {
-        "value": 10916800000,
-        "status": "verified",
-        "evidence": [
-          {
-            "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2026/1790674448687.pdf",
-            "document_type": "SEBI Prospectus PDF",
-            "document_identity": "Moneyview Limited - Prospectus — PDF",
-            "publication_date": "2026-09-29",
-            "page": 3,
-            "collected_at": "2026-09-29T16:31:46.084Z"
-          }
-        ],
-        "corrections": []
-      },
-      "market_lot": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
-        "corrections": []
-      },
-      "minimum_bid_quantity": {
-        "value": 441,
-        "status": "verified",
-        "evidence": [
-          {
-            "url": "https://www.nseindia.com/api/ipo-detail?symbol=MONEYVIEW&series=EQ",
-            "document_type": "NSE Issue Information API",
-            "document_identity": "NSE Issue Information — MONEYVIEW",
-            "publication_date": null,
-            "page": null,
-            "collected_at": "2026-09-22T13:12:58.584Z"
-          }
-        ],
-        "corrections": []
-      },
-      "minimum_application_amount_inr": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
-        "corrections": []
-      },
-      "application_requirements": {
-        "retail": {
-          "minimum_application_amount_inr": {
-            "value": null,
-            "status": "missing",
-            "evidence": [],
-            "corrections": []
-          },
-          "minimum_bid_quantity": {
-            "value": null,
-            "status": "missing",
-            "evidence": [],
-            "corrections": []
-          }
-        },
-        "non_institutional": {
-          "minimum_application_amount_inr": {
-            "value": null,
-            "status": "missing",
-            "evidence": [],
-            "corrections": []
-          },
-          "minimum_bid_quantity": {
-            "value": null,
-            "status": "missing",
-            "evidence": [],
-            "corrections": []
-          }
-        },
-        "anchor_investor": {
-          "minimum_application_amount_inr": {
-            "value": null,
-            "status": "missing",
-            "evidence": [],
-            "corrections": []
-          },
-          "minimum_bid_quantity": {
-            "value": null,
-            "status": "missing",
-            "evidence": [],
-            "corrections": []
-          }
-        }
-      },
-      "open_date": {
-        "value": "2026-09-24",
-        "status": "verified",
-        "evidence": [
-          {
-            "url": "https://www.nseindia.com/api/all-upcoming-issues?category=ipo",
-            "document_type": "NSE IPO Live Feed",
-            "document_identity": "NSE IPO Live Feed — MONEYVIEW",
-            "publication_date": null,
-            "page": null,
-            "collected_at": "2026-09-22T13:09:40.974Z"
-          }
-        ],
-        "corrections": []
-      },
-      "close_date": {
-        "value": "2026-09-28",
-        "status": "verified",
-        "evidence": [
-          {
-            "url": "https://www.nseindia.com/api/all-upcoming-issues?category=ipo",
-            "document_type": "NSE IPO Live Feed",
-            "document_identity": "NSE IPO Live Feed — MONEYVIEW",
-            "publication_date": null,
-            "page": null,
-            "collected_at": "2026-09-22T13:09:40.974Z"
-          }
-        ],
-        "corrections": []
-      },
-      "listing_date": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
-        "corrections": []
-      },
-      "documents": [
-        {
-          "type": "NSE IPO Live Feed",
-          "identity": "NSE IPO Live Feed — MONEYVIEW",
-          "url": "https://www.nseindia.com/api/all-upcoming-issues?category=ipo",
-          "publication_date": null,
-          "collected_at": "2026-09-22T13:09:40.974Z"
-        },
-        {
-          "type": "SEBI RHP filing",
-          "identity": "SEBI RHP filing — moneyview limited",
-          "url": "https://www.sebi.gov.in/filings/public-issues/sep-2026/moneyview-limited-rhp_104597.html",
-          "publication_date": "2026-09-21",
-          "collected_at": "2026-09-22T13:09:41.961Z"
-        },
-        {
-          "type": "SEBI Abridged Prospectus",
-          "identity": "Moneyview Limited - Abridged Prospectus",
-          "url": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/Moneyview%20Limited%20-%20Abridged%20Prospectus_p.pdf",
-          "publication_date": "2026-09-21",
-          "collected_at": "2026-09-22T13:09:41.961Z"
-        },
-        {
-          "type": "SEBI RHP PDF",
-          "identity": "SEBI RHP filing — moneyview limited — PDF",
-          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2026/1789975400167.pdf",
-          "publication_date": "2026-09-21",
-          "collected_at": "2026-09-22T13:09:41.961Z"
-        },
-        {
-          "type": "NSE Issue Information API",
-          "identity": "NSE Issue Information — MONEYVIEW",
-          "url": "https://www.nseindia.com/api/ipo-detail?symbol=MONEYVIEW&series=EQ",
-          "publication_date": null,
-          "collected_at": "2026-09-22T13:12:58.584Z"
-        },
-        {
-          "type": "SEBI Prospectus filing",
-          "identity": "Moneyview Limited - Prospectus",
-          "url": "https://www.sebi.gov.in/filings/public-issues/sep-2026/moneyview-limited-prospectus_104787.html",
-          "publication_date": "2026-09-29",
-          "collected_at": "2026-09-29T16:20:57.301Z"
-        },
-        {
-          "type": "SEBI Prospectus PDF",
-          "identity": "Moneyview Limited - Prospectus — PDF",
-          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2026/1790674448687.pdf",
-          "publication_date": "2026-09-29",
-          "collected_at": "2026-09-29T16:20:57.301Z"
-        }
-      ],
-      "first_observed_at": "2026-09-22T13:09:40.974Z",
-      "last_collected_at": "2026-09-29T16:31:46.084Z"
     },
     {
       "id": "adroit-industries-india-limited",
@@ -32305,9 +32371,18 @@
         "corrections": []
       },
       "issue_size_inr": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": 2549800000,
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.sebi.gov.in/sebi_data/attachdocs/apr-2026/1775629467259.pdf",
+            "document_type": "SEBI Prospectus PDF",
+            "document_identity": "Rajputana Stainless Limited - Prospectus — PDF",
+            "publication_date": "2026-04-08",
+            "page": 2,
+            "collected_at": "2026-10-01T00:45:50.689Z"
+          }
+        ],
         "corrections": []
       },
       "market_lot": {
@@ -32440,10 +32515,38 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-25T16:07:20.322Z"
+        },
+        {
+          "type": "SEBI Prospectus filing",
+          "identity": "Rajputana Stainless Limited - Prospectus",
+          "url": "https://www.sebi.gov.in/filings/public-issues/apr-2026/rajputana-stainless-limited-prospectus_100791.html",
+          "publication_date": "2026-04-08",
+          "collected_at": "2026-10-01T00:36:11.614Z"
+        },
+        {
+          "type": "SEBI Prospectus PDF",
+          "identity": "Rajputana Stainless Limited - Prospectus — PDF",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/apr-2026/1775629467259.pdf",
+          "publication_date": "2026-04-08",
+          "collected_at": "2026-10-01T00:36:11.614Z"
+        },
+        {
+          "type": "SEBI RHP filing",
+          "identity": "Rajputana Stainless Limited - RHP",
+          "url": "https://www.sebi.gov.in/filings/public-issues/mar-2026/rajputana-stainless-limited-rhp_100081.html",
+          "publication_date": "2026-03-02",
+          "collected_at": "2026-10-01T00:36:11.614Z"
+        },
+        {
+          "type": "SEBI RHP PDF",
+          "identity": "Rajputana Stainless Limited - RHP — PDF",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/mar-2026/1772451212571.pdf",
+          "publication_date": "2026-03-02",
+          "collected_at": "2026-10-01T00:36:11.614Z"
         }
       ],
       "first_observed_at": "2026-09-25T16:07:30.178Z",
-      "last_collected_at": "2026-09-25T16:07:30.178Z"
+      "last_collected_at": "2026-10-01T00:45:50.689Z"
     },
     {
       "id": "srinibas-pradhan-constructions-limited",
@@ -70731,10 +70834,38 @@
           "url": "https://www.nseindia.com/api/ipo-detail?symbol=SHANTIGOLD&series=EQ",
           "publication_date": null,
           "collected_at": "2026-09-24T06:36:23.026Z"
+        },
+        {
+          "type": "SEBI Prospectus filing",
+          "identity": "Shanti Gold International Limited - Prospectus",
+          "url": "https://www.sebi.gov.in/filings/public-issues/jul-2025/shanti-gold-international-limited-prospectus_98142.html",
+          "publication_date": "2025-07-29",
+          "collected_at": "2026-10-01T00:36:11.614Z"
+        },
+        {
+          "type": "SEBI Prospectus PDF",
+          "identity": "Shanti Gold International Limited - Prospectus — PDF",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2025/1764762734098.pdf",
+          "publication_date": "2025-07-29",
+          "collected_at": "2026-10-01T00:36:11.614Z"
+        },
+        {
+          "type": "SEBI RHP filing",
+          "identity": "Shanti Gold International Limited - RHP",
+          "url": "https://www.sebi.gov.in/filings/public-issues/jul-2025/shanti-gold-international-limited-rhp_95565.html",
+          "publication_date": "2025-07-17",
+          "collected_at": "2026-10-01T00:36:11.614Z"
+        },
+        {
+          "type": "SEBI RHP PDF",
+          "identity": "Shanti Gold International Limited - RHP — PDF",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2025/1753333964063.pdf",
+          "publication_date": "2025-07-17",
+          "collected_at": "2026-10-01T00:36:11.614Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-24T06:36:23.026Z"
+      "last_collected_at": "2026-10-01T00:36:11.614Z"
     },
     {
       "id": "brigade-hotel-ventures-limited",
@@ -70922,10 +71053,38 @@
           "url": "https://www.nseindia.com/api/ipo-detail?symbol=BRIGHOTEL&series=EQ",
           "publication_date": null,
           "collected_at": "2026-09-24T06:36:23.026Z"
+        },
+        {
+          "type": "SEBI Prospectus filing",
+          "identity": "Brigade Hotel Ventures Limited - Prospectus",
+          "url": "https://www.sebi.gov.in/filings/public-issues/sep-2025/brigade-hotel-ventures-limited-prospectus_96631.html",
+          "publication_date": "2025-09-16",
+          "collected_at": "2026-10-01T00:36:11.614Z"
+        },
+        {
+          "type": "SEBI Prospectus PDF",
+          "identity": "Brigade Hotel Ventures Limited - Prospectus — PDF",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2025/1758016860570.pdf",
+          "publication_date": "2025-09-16",
+          "collected_at": "2026-10-01T00:36:11.614Z"
+        },
+        {
+          "type": "SEBI RHP filing",
+          "identity": "Brigade Hotel Ventures Limited- RHP",
+          "url": "https://www.sebi.gov.in/filings/public-issues/jul-2025/brigade-hotel-ventures-limited-rhp_95620.html",
+          "publication_date": "2025-07-25",
+          "collected_at": "2026-10-01T00:36:11.614Z"
+        },
+        {
+          "type": "SEBI RHP PDF",
+          "identity": "Brigade Hotel Ventures Limited- RHP — PDF",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2025/1753444798777.pdf",
+          "publication_date": "2025-07-25",
+          "collected_at": "2026-10-01T00:36:11.614Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-24T06:36:23.026Z"
+      "last_collected_at": "2026-10-01T00:36:11.614Z"
     },
     {
       "id": "gng-electronics-limited",
@@ -71104,10 +71263,24 @@
           "url": "https://www.nseindia.com/api/ipo-detail?symbol=EBGNG&series=EQ",
           "publication_date": null,
           "collected_at": "2026-09-24T06:36:23.026Z"
+        },
+        {
+          "type": "SEBI RHP filing",
+          "identity": "GNG Electronics Limited - RHP",
+          "url": "https://www.sebi.gov.in/filings/public-issues/jul-2025/gng-electronics-limited-rhp_95435.html",
+          "publication_date": "2025-07-18",
+          "collected_at": "2026-10-01T00:36:11.614Z"
+        },
+        {
+          "type": "SEBI RHP PDF",
+          "identity": "GNG Electronics Limited - RHP — PDF",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2025/1752841753123.pdf",
+          "publication_date": "2025-07-18",
+          "collected_at": "2026-10-01T00:36:11.614Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-24T06:36:23.026Z"
+      "last_collected_at": "2026-10-01T00:36:11.614Z"
     },
     {
       "id": "indiqube-spaces-limited",
