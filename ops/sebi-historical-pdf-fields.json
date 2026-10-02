@@ -5233,6 +5233,66 @@
         "publication_date": "2021-04-01"
       },
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/apr-2021/1617274019158.pdf"
+    },
+    "2021|siddhika-coatings-limited": {
+      "issuer_name": "Siddhika Coatings Limited",
+      "listing_date": "2021-04-07",
+      "last_attempted_at": "2026-10-02T16:00:16.296Z",
+      "parser_version": "1.2.0",
+      "status": "extracted",
+      "extracted_fields": [
+        "issue_size_inr"
+      ],
+      "remaining_fields": [
+        "price_band",
+        "market_lot",
+        "minimum_bid_quantity"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": {
+          "value": 46968000,
+          "source_value": "₹469.68 LAKHS",
+          "page": 1
+        },
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Siddhika Coatings Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/mar-2021/1616578609076.pdf",
+        "publication_date": "2021-03-24"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/mar-2021/1616578609076.pdf"
+    },
+    "2021|nazara-technologies-limited": {
+      "issuer_name": "Nazara Technologies Limited",
+      "listing_date": "2021-03-30",
+      "last_attempted_at": "2026-10-02T16:00:16.296Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "price_band",
+        "issue_size_inr",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Nazara Technologies Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/may-2023/1684484433171.pdf",
+        "publication_date": "2021-03-12"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/may-2023/1684484433171.pdf"
     }
   }
 }
