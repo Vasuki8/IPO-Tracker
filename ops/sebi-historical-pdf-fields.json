@@ -5293,6 +5293,122 @@
         "publication_date": "2021-03-12"
       },
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/may-2023/1684484433171.pdf"
+    },
+    "2025|crizac-limited": {
+      "issuer_name": "CRIZAC LIMITED",
+      "listing_date": "2025-07-09",
+      "last_attempted_at": "2026-10-02T21:04:59.302Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Crizac Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2025/1752043851362.pdf",
+        "publication_date": "2025-07-09"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2025/1752043851362.pdf"
+    },
+    "2023|proventus-agrocom-limited": {
+      "issuer_name": "Proventus Agrocom Limited",
+      "listing_date": "2023-06-05",
+      "last_attempted_at": "2026-10-02T21:04:59.302Z",
+      "parser_version": "1.2.0",
+      "status": "extracted",
+      "extracted_fields": [
+        "issue_size_inr"
+      ],
+      "remaining_fields": [
+        "price_band",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": {
+          "value": 695442000,
+          "source_value": "₹6,954.42 LAKHS",
+          "page": 2
+        },
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Proventus Agrocom Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/may-2023/1685448728297.pdf",
+        "publication_date": "2023-05-30"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/may-2023/1685448728297.pdf"
+    },
+    "2021|kalyan-jewellers-india-limited": {
+      "issuer_name": "Kalyan Jewellers India Limited",
+      "listing_date": "2021-03-26",
+      "last_attempted_at": "2026-10-02T21:04:59.302Z",
+      "parser_version": "1.2.0",
+      "status": "extracted",
+      "extracted_fields": [
+        "issue_size_inr"
+      ],
+      "remaining_fields": [
+        "price_band",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": {
+          "value": 11750000000,
+          "source_value": "₹11,750 MILLION",
+          "page": 1
+        },
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Kalyan Jewellers India Limited - Red Herring Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/apr-2023/1681362757510.pdf",
+        "publication_date": "2021-03-12"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/apr-2023/1681362757510.pdf"
+    },
+    "2021|suryoday-small-finance-bank-limited": {
+      "issuer_name": "Suryoday Small Finance Bank Limited",
+      "listing_date": "2021-03-26",
+      "last_attempted_at": "2026-10-02T21:04:59.302Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "price_band",
+        "issue_size_inr",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Suryoday Small Finance Bank Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/apr-2023/1681362005460.pdf",
+        "publication_date": "2021-03-12"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/apr-2023/1681362005460.pdf"
     }
   }
 }
