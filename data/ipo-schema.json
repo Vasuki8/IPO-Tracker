@@ -203,32 +203,32 @@
           }
         },
         "price_band": {
-          "$ref": "#/$defs/field"
+          "$ref": "#/$defs/priceBandField"
         },
         "issue_price": {
-          "$ref": "#/$defs/field"
+          "$ref": "#/$defs/positiveNumberField"
         },
         "issue_size_inr": {
-          "$ref": "#/$defs/field"
+          "$ref": "#/$defs/positiveNumberField"
         },
         "market_lot": {
-          "$ref": "#/$defs/field"
+          "$ref": "#/$defs/shareQuantityField"
         },
         "minimum_bid_quantity": {
-          "$ref": "#/$defs/field"
+          "$ref": "#/$defs/shareQuantityField"
         },
         "minimum_application_amount_inr": {
-          "$ref": "#/$defs/field",
+          "$ref": "#/$defs/positiveNumberField",
           "description": "Legacy generic minimum application amount. Do not populate this field from investor-category-specific evidence."
         },
         "open_date": {
-          "$ref": "#/$defs/field"
+          "$ref": "#/$defs/dateField"
         },
         "close_date": {
-          "$ref": "#/$defs/field"
+          "$ref": "#/$defs/dateField"
         },
         "listing_date": {
-          "$ref": "#/$defs/field"
+          "$ref": "#/$defs/dateField"
         },
         "documents": {
           "type": "array",
@@ -304,10 +304,10 @@
       ],
       "properties": {
         "minimum_application_amount_inr": {
-          "$ref": "#/$defs/field"
+          "$ref": "#/$defs/positiveNumberField"
         },
         "minimum_bid_quantity": {
-          "$ref": "#/$defs/field"
+          "$ref": "#/$defs/shareQuantityField"
         }
       },
       "additionalProperties": false
@@ -507,6 +507,73 @@
           "$ref": "#/$defs/sourceConflict"
         }
       ]
+    },
+    "positiveNumberField": {
+      "$ref": "#/$defs/field",
+      "properties": {
+        "value": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "exclusiveMinimum": 0
+        }
+      }
+    },
+    "shareQuantityField": {
+      "$ref": "#/$defs/field",
+      "properties": {
+        "value": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "exclusiveMinimum": 0,
+          "maximum": 9007199254740991
+        }
+      }
+    },
+    "dateField": {
+      "$ref": "#/$defs/field",
+      "properties": {
+        "value": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date"
+        }
+      }
+    },
+    "priceBandField": {
+      "$ref": "#/$defs/field",
+      "properties": {
+        "value": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "object",
+              "required": [
+                "min",
+                "max"
+              ],
+              "properties": {
+                "min": {
+                  "type": "number",
+                  "exclusiveMinimum": 0
+                },
+                "max": {
+                  "type": "number",
+                  "exclusiveMinimum": 0
+                }
+              },
+              "additionalProperties": false
+            }
+          ]
+        }
+      }
     }
   }
 }

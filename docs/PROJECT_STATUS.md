@@ -1,5 +1,33 @@
 # Project status and handoff
 
+## Data-integrity safeguards — 2026-10-04
+
+**READY_FOR_REVIEW — not merged or live-verified.** This user-approved batch
+addresses audit BUG-003 (atomic value/evidence merging), BUG-004 (explicit
+null/conflict preservation) and BUG-002 (field-specific validation). See
+[implementation and verification](verification/ipo-integrity-safeguards-2026-10-04.md).
+
+All seven recovery files and the 1,389-record public dataset remain byte-for-byte
+unchanged. The three targeted regressions failed on the original implementations
+and passed after repair. All 66 invalid-domain cases are now rejected. All 100
+non-browser regression entrypoints passed locally; three browser entrypoints
+require unavailable Playwright. Workflow files omitted from the Pages archive
+were restored from retained evidence and their entire Git tree matched main.
+GitHub PR checks, merge, operational deployment and live verification remain pending.
+
+**Next task:** review and validate this safeguard batch, then repair instrument
+eligibility and issuer identity (BUG-001 / BUG-005). Do not replay historical
+imports or expand P5/performance while data correctness remains blocked.
+SSEK closeout PR #352 and the source/schedule-health workstreams remain separate.
+
+**Historical clarification:** PR #353 merged on 2026-09-30 at 16:35 UTC.
+The September 30 repair-batch paragraphs below describe their pre-merge state,
+not the present merge status. All original source/release qualifications remain.
+
+---
+
+## Retained preceding handoff
+
 ## Website logic repair batch prepared for review — 2026-09-30
 
 All seven subsequent website-review findings have local repairs: date-aware

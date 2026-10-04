@@ -78,22 +78,32 @@ function verifiedField(value, source, page = null) {
 }
 
 function retainedField(field, collectedAt) {
-  if (!field || field.value === null || field.value === undefined) return emptyField();
-  // Additional retained sources preserve competing official disclosures. Do not
-  // change a field's conflict/provisional state merely because it has evidence.
+  if (field === null || field === undefined) return emptyField();
+  if (typeof field !== "object" || Array.isArray(field) || !Object.hasOwn(field, "value")) {
+    fail("retained field must be an object with an explicit value");
+  }
+  // A null may be an intentional withdrawal of a formerly verified value.
+  // Keep its status, sources and corrections instead of reviving legacy terms.
   if (field.additional_sources !== undefined && !Array.isArray(field.additional_sources)) {
     fail("additional_sources must be an array");
   }
-  const sources = [evidence(
-    { ...field.source, collected_at: field.source.collected_at ?? collectedAt },
-    field.page ?? null
-  ), ...retainedEvidence(field.additional_sources, collectedAt)];
+  if (field.corrections !== undefined && !Array.isArray(field.corrections)) {
+    fail("corrections must be an array");
+  }
+  if (field.value !== null && !field.source) fail("non-null retained value requires a source");
+  const sources = [
+    ...(field.source ? [evidence(
+      { ...field.source, collected_at: field.source.collected_at ?? collectedAt },
+      field.page ?? null
+    )] : []),
+    ...retainedEvidence(field.additional_sources, collectedAt)
+  ];
   return {
     value: field.value,
-    status: retainedFieldStatus(field),
+    status: field.value === null ? (field.status ?? "missing") : retainedFieldStatus(field),
     evidence: sources.filter((item, i) => sources.findIndex(other =>
       JSON.stringify(other) === JSON.stringify(item)) === i),
-    corrections: Array.isArray(field.corrections) ? field.corrections : []
+    corrections: field.corrections ?? []
   };
 }
 
@@ -145,23 +155,23 @@ function normalizeRecord(record, collectedAt) {
     sector: record.sector ?? null,
     status: record.status ?? null,
     status_evidence: retainedEvidence(record.status_evidence, collectedAt),
-    price_band: record.price_band?.value !== null && record.price_band?.value !== undefined
+    price_band: Object.hasOwn(record, "price_band")
       ? retainedField(record.price_band, collectedAt)
       : verifiedField(record.terms?.price_band ?? null, nse),
     issue_price: retainedField(record.issue_price, collectedAt),
     issue_size_inr: retainedField(record.issue_size_inr, collectedAt),
-    market_lot: record.market_lot?.value !== null && record.market_lot?.value !== undefined
+    market_lot: Object.hasOwn(record, "market_lot")
       ? retainedField(record.market_lot, collectedAt)
       : verifiedField(record.terms?.market_lot ?? null, nse),
-    minimum_bid_quantity: record.minimum_bid_quantity?.value !== null && record.minimum_bid_quantity?.value !== undefined
+    minimum_bid_quantity: Object.hasOwn(record, "minimum_bid_quantity")
       ? retainedField(record.minimum_bid_quantity, collectedAt)
       : verifiedField(record.terms?.minimum_bid_quantity ?? null, nse),
     minimum_application_amount_inr: emptyField(),
     application_requirements: applicationRequirements(record, collectedAt),
-    open_date: record.open_date?.value !== null && record.open_date?.value !== undefined
+    open_date: Object.hasOwn(record, "open_date")
       ? retainedField(record.open_date, collectedAt)
       : verifiedField(record.terms?.open_date ?? null, nse),
-    close_date: record.close_date?.value !== null && record.close_date?.value !== undefined
+    close_date: Object.hasOwn(record, "close_date")
       ? retainedField(record.close_date, collectedAt)
       : verifiedField(record.terms?.close_date ?? null, nse),
     listing_date: retainedField(record.listing_date, collectedAt),
