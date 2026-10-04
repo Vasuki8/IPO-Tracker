@@ -1,28 +1,46 @@
 # Project status and handoff
 
-## Data-integrity safeguards — 2026-10-04
+## Data-integrity safeguard release — 2026-10-04
 
-**READY_FOR_REVIEW — not merged or live-verified.** This user-approved batch
-addresses audit BUG-003 (atomic value/evidence merging), BUG-004 (explicit
-null/conflict preservation) and BUG-002 (field-specific validation). See
-[implementation and verification](verification/ipo-integrity-safeguards-2026-10-04.md).
+**MERGED AND DEPLOYED; served snapshot verified. First post-merge live-sync
+completion remains unverified.** PR #354 merged at **2026-10-04 22:44:42 UTC**
+as `be8ec1e0c1683a6e9fa41ddd78fd34e4aa1dd804`. This closes the code review/merge
+step for BUG-003 (atomic observations), BUG-004 (retained null/history) and
+BUG-002 (typed domain validation); it does not close the other twelve audit bugs.
+See [release receipt](verification/ipo-integrity-release-2026-10-04.md) and the
+[original implementation record](verification/ipo-integrity-safeguards-2026-10-04.md).
 
-All seven recovery files and the 1,389-record public dataset remain byte-for-byte
-unchanged. The three targeted regressions failed on the original implementations
-and passed after repair. All 66 invalid-domain cases are now rejected. All 100
-non-browser regression entrypoints passed locally; three browser entrypoints
-require unavailable Playwright. Workflow files omitted from the Pages archive
-were restored from retained evidence and their entire Git tree matched main.
-GitHub PR checks, merge, operational deployment and live verification remain pending.
+Review reran all 103 local script entrypoints: **100 non-browser passes; three
+browser entrypoints blocked by missing Playwright**, not counted as passing.
+Additional 48 atomic-observation combinations, builder consistency, full corpus
+validation and independent Python schema validation passed. All seven PR checks
+passed. Post-merge Node 20 data-contract run **37241175018** also passed.
 
-**Next task:** review and validate this safeguard batch, then repair instrument
-eligibility and issuer identity (BUG-001 / BUG-005). Do not replay historical
-imports or expand P5/performance while data correctness remains blocked.
-SSEK closeout PR #352 and the source/schedule-health workstreams remain separate.
+Pages deployment **37241175061** succeeded. Its retained served response at
+**22:45:08 UTC** returned HTTP 200 and matched the public JSON on attempt 1:
+**1,389 records**, SHA-256
+`2343c0ae10a83fb56453f34afefcbe7d5568a1f295c62467fd532b1c1f60c53b`.
+The six DRHP/page-asset responses also matched. Patched production files and all
+seven unchanged recovery manifests matched the uploaded deployment archive.
+No IPO facts or timestamps were changed by this release or this handoff update.
 
-**Historical clarification:** PR #353 merged on 2026-09-30 at 16:35 UTC.
-The September 30 repair-batch paragraphs below describe their pre-merge state,
-not the present merge status. All original source/release qualifications remain.
+**Exact next task:** inspect live-sync run **37241174980** and its downstream
+publication before claiming a fully verified production collection cycle. At the
+last check NSE collection and SEBI document attachment had succeeded and it was
+extracting issue fields; rebuild, semantic apply and repository publication were not yet
+verified. If successful, proceed to BUG-001 / BUG-005 (instrument eligibility and
+contradictory issuer identity). Do not rerun the historical one-shot imports.
+
+SSEK closeout PR #352 is separate and is not closed by the Pages byte check.
+DRHP had independently recovered at **2026-10-04 21:21:28 UTC** (102 companies,
+104 filings, consistent pagination); this preceded PR #354 and is not credited
+to this batch. Recheck current source health rather than repeat the old failure
+status. Schedule gaps, licensing and main protection remain separate workstreams.
+Do not expand P5/performance or introduce new spending, access changes or monetization.
+
+**Historical clarification:** PR #353 merged on 2026-09-30 at 16:35 UTC. The
+September 30 paragraphs below retain their original pre-merge context, not the
+current state. All source qualifications, evidence and release history remain.
 
 ---
 
@@ -82,7 +100,7 @@ Board mapping, NSE identity, ISIN and monetary minimum application amount remain
 
 Final read-only repair workflow run **36661649197**, attempt **1**, retained all **4/4** selected annual-report PDFs from **BSE-hosted filing URLs**. Artifact **11075040486** is **53,439,026 bytes**, ZIP SHA-256 **4d15ea1dcc130e3be3e816dff55a99b8b2df6943aca35660b8221268ba01f81e**, expiring **14-Oct-2026 02:50:36 UTC**. Original PDFs total **54,941,101 bytes**.
 
-The durable [listing-source receipt](../data/evidence/bse-2023-ssek-listing-source-receipt-2026-09-29.json) binds exact source URLs, response hashes/lengths, page counts, collection clocks and artifact. Exhicon's BSE-hosted revised annual report is byte-for-byte identical to the previously reviewed issuer copy. Khazanchi's BSE Regulation 34 filing adds one cover page, so its physical listing locator is re-reviewed at PDF page **26** and its BSE code is bound on PDF page **1**.
+The durable [listing-source receipt](../data/evidence/bse-2023-ssek-listing-source-receipt-2026-09-29.json) binds exact source URLs, response hashes/lengths, page counts, collection clocks and artifact. Exhicon's BSE-hosted revised annual report is byte-for-byte identical to the reviewed issuer copy. Khazanchi's BSE Regulation 34 filing adds one cover page, so its physical listing locator is re-reviewed at PDF page **26** and its BSE code is bound on PDF page **1**.
 
 The first guarded publication run **36658314491** stopped before push because the public-data builder correctly rejected Exhicon's issuer-hosted source. Artifact **11073505374** retains that failed publication attempt. No SSEK record reached recovery or public data, and the normal sync job remained skipped.
 

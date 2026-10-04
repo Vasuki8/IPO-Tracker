@@ -48,12 +48,21 @@ Collection time, source observation, dataset generation and Pages publication ar
 ## Handoff for the next prompt
 
 The [2026-10-04 integrity safeguard batch](docs/verification/ipo-integrity-safeguards-2026-10-04.md)
-is prepared for review. It addresses atomic retained-field merging (BUG-003),
-explicit null/conflict preservation (BUG-004) and typed value validation (BUG-002),
-without changing the 1,389-record public dataset or any recovery evidence.
-All 100 non-browser regression entrypoints passed locally, including tests of
-hash-verified workflow files. Three browser entrypoints require unavailable tooling.
-Repository PR checks, merge, deployment and live verification remain pending.
+merged in **PR #354** as `be8ec1e0` on **2026-10-04 at 22:44:42 UTC**.
+It addresses BUG-003, BUG-004 and BUG-002 without changing IPO facts.
+Post-merge data-contract run **37241175018** passed. Pages run **37241175061**
+deployed successfully and verified the actual served 1,389-record dataset and
+six DRHP/page assets. The public file and all seven recovery manifests remain
+byte-identical to the tested release snapshot. See the
+[release receipt](docs/verification/ipo-integrity-release-2026-10-04.md).
+
+All 100 non-browser regression entrypoints passed again locally; three browser
+entrypoints remain blocked by missing Playwright and are not claimed passing.
+**Next:** finish verification of live-sync run **37241174980**, then address
+instrument eligibility and issuer matching (BUG-001 / BUG-005). The sync was still
+processing source documents at the last check; its complete publication cycle is
+not yet verified. The separate historical SSEK handoff below does not authorize
+replaying imports or take precedence over this audit-repair sequence.
 
 The September 30 [code review](docs/verification/code-review-repairs-2026-09-30.md)
 and [website logic](docs/verification/product-logic-repairs-2026-09-30.md)
