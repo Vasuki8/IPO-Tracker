@@ -7,7 +7,8 @@ permissions:
   contents: write
 jobs:
   prepare:
-    if: github.repository == 'Vasuki8/IPO-Tracker' && github.event.head_commit.message == 'chore: prepare browser gate stabilization'
+    if: >-
+      github.repository == 'Vasuki8/IPO-Tracker' && github.event.head_commit.message == 'chore: prepare browser gate stabilization'
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -22,7 +23,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          test "$(git rev-parse HEAD^)" = '419256b30fd1ab93512a53d6fe934b332176a15b'
+          test "$(git rev-parse HEAD^)" = '28b8e2e6ea99edab7fb9e3bbd1204a9acd4441ce'
           mkdir -p "$RUNNER_TEMP/browser-gate"
           cat .browser-gate-payload/{0..8} | base64 -d | gzip -d > "$RUNNER_TEMP/browser-gate/patch.diff"
           echo "5521ebcead07bd3af6dece4a262691d3b718d3a232a65d36c03cfa67d20a8201  $RUNNER_TEMP/browser-gate/patch.diff" | sha256sum -c -
