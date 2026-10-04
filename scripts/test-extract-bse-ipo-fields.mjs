@@ -92,7 +92,7 @@ assert.equal(previouslyMissing.market_lot.corrections[0].kind,"retained_prior_re
 const projectionRoot=fs.mkdtempSync(path.join(os.tmpdir(),"bse-competing-projection-"));
 try {
  fs.mkdirSync(path.join(projectionRoot,"scripts"));
- for(const script of ["build-published-data.mjs","publish-field-status.mjs","validate-data.mjs"])fs.copyFileSync(new URL(script,import.meta.url),path.join(projectionRoot,"scripts",script));
+ for(const script of ["build-published-data.mjs","publish-field-status.mjs","ipo-instrument-policy.mjs","validate-data.mjs"])fs.copyFileSync(new URL(script,import.meta.url),path.join(projectionRoot,"scripts",script));
  fs.mkdirSync(path.join(projectionRoot,"assets"));
  fs.copyFileSync(new URL("../assets/ipo-order.js",import.meta.url),path.join(projectionRoot,"assets/ipo-order.js"));
  fs.mkdirSync(path.join(projectionRoot,"data/recovery/2026"),{recursive:true});

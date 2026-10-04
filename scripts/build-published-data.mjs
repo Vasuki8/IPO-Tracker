@@ -1,3 +1,4 @@
+import { retainedRecordIneligibility } from "./ipo-instrument-policy.mjs";
 import { retainedFieldStatus } from "./publish-field-status.mjs";
 import fs from "node:fs";
 import path from "node:path";
@@ -198,6 +199,11 @@ for (const { file, data } of recoveries) {
     if (!record.id || !record.issuer_name) fail(`${file}: every recovery record needs id and issuer_name`);
     if (ids.has(record.id)) fail(`duplicate recovery id across manifests: ${record.id}`);
     ids.add(record.id);
+    const exclusion = retainedRecordIneligibility(record);
+    if (exclusion) {
+      console.warn(JSON.stringify({publication_exclusion:{id:record.id,issuer_name:record.issuer_name,reason:exclusion,nse_series:record.nse_series ?? null,source:record.nse_source ?? null}}));
+      continue; // Recovery evidence is retained unchanged, not deleted or redated.
+    }
     normalizedRecords.push(normalizeRecord(record, data.generated_at));
   }
 }

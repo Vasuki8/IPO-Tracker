@@ -1,3 +1,4 @@
+import { liveIssueIneligibility, normalizeSeries } from "./ipo-instrument-policy.mjs";
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
@@ -149,12 +150,16 @@ export function mergeFeeds(upcoming, current) {
   const merged = new Map();
 
   function absorb(item, sourceUrl) {
+    if (liveIssueIneligibility(item)) return;
     const symbol = normalizeText(item.symbol).toUpperCase();
     const series = normalizeText(item.series).toUpperCase();
     const companyName = normalizeText(item.companyName);
     if (!symbol || !series || !companyName) return;
     const key = `${series}:${symbol}`;
     const previous = merged.get(key) || {};
+    if (previous.companyName && canonicalName(previous.companyName) !== canonicalName(companyName)) {
+      fail("issuer_identity_conflict_between_feeds: " + JSON.stringify({previous, incoming:{...item,__source_url:sourceUrl}}));
+    }
     const combined = { ...previous };
     for (const [name, value] of Object.entries(item)) {
       if (value !== null && value !== undefined && value !== "") combined[name] = value;
@@ -210,6 +215,8 @@ function retainedField(value, sourceValue, issue, now) {
 }
 
 export function buildNewRecoveryRecord(issue, now) {
+  const reason = liveIssueIneligibility(issue);
+  if (reason) fail("ineligible IPO instrument: " + reason);
   const issuerName = normalizeText(issue.companyName);
   const symbol = normalizeText(issue.symbol).toUpperCase();
   const series = normalizeText(issue.series).toUpperCase();
@@ -257,18 +264,35 @@ export function buildNewRecoveryRecord(issue, now) {
   return record;
 }
 
-function extractExistingSymbol(record) {
-  if (record.nse_symbol) return normalizeText(record.nse_symbol).toUpperCase();
+function retainedIdentity(record) {
+  const symbols = new Set([normalizeText(record.nse_symbol).toUpperCase()].filter(Boolean));
+  const series = new Set([normalizeSeries(record.nse_series)].filter(Boolean));
   try {
     const url = new URL(record.nse_source?.url);
-    const symbol = url.searchParams.get("symbol");
-    if (symbol) return symbol.toUpperCase();
-  } catch {
-    // Keep fallback matching below.
-  }
+    if (["www.nseindia.com", "nseindia.com"].includes(url.hostname)) {
+      const symbol = normalizeText(url.searchParams.get("symbol")).toUpperCase();
+      const sourceSeries = normalizeSeries(url.searchParams.get("series"));
+      if (symbol) symbols.add(symbol);
+      if (sourceSeries) series.add(sourceSeries);
+    }
+  } catch { /* Missing source identifiers are not invented. */ }
   const identity = normalizeText(record.nse_source?.document_identity);
-  const match = identity.match(/[—-]\s*([A-Z0-9&]+)$/);
-  return match ? match[1].toUpperCase() : null;
+  const match = identity.match(/^NSE (?:IPO Live Feed|Issue Information(?: API)?|Public Past Issues) [—-] ([A-Z0-9&-]+)$/);
+  if (match) symbols.add(match[1]);
+  return {symbols:[...symbols],series:[...series]};
+}
+
+function assertCompatibleIdentity(record, issue) {
+  const retained = retainedIdentity(record);
+  const symbol = normalizeText(issue.symbol).toUpperCase();
+  const series = normalizeSeries(issue.series);
+  if (!canonicalName(record.issuer_name) || canonicalName(record.issuer_name) !== canonicalName(issue.companyName) ||
+      retained.symbols.some(value => value !== symbol) || retained.series.some(value => value !== series) ||
+      (record.board && record.board !== mapBoard(series))) {
+    fail("issuer_identity_conflict: " + JSON.stringify({
+      existing:{id:record.id,issuer_name:record.issuer_name,board:record.board,...retained,source:record.nse_source}, incoming:issue
+    }));
+  }
 }
 
 function samePriceBand(a, b) {
@@ -297,6 +321,9 @@ function addDocumentOnce(array, document) {
 }
 
 export function enrichExistingRecord(record, issue, now) {
+  const reason = liveIssueIneligibility(issue);
+  if (reason) fail("ineligible IPO instrument: " + reason);
+  assertCompatibleIdentity(record, issue);
   let changed = false;
   const evidence = sourceEvidence(issue, now);
   const document = sourceDocument(issue, now);
@@ -408,62 +435,69 @@ function readFixture(fixturePath) {
 
 export async function runSync({ fixturePath = null, dryRun = false, now = new Date().toISOString() } = {}) {
   const feeds = fixturePath ? readFixture(fixturePath) : await fetchLiveFeeds();
+  const excluded = [
+    ...feeds.upcoming.map(issue => ({issue,url:UPCOMING_URL})),
+    ...feeds.current.map(issue => ({issue,url:CURRENT_URL}))
+  ].filter(item => liveIssueIneligibility(item.issue)).map(item => ({
+    ...item, reason:liveIssueIneligibility(item.issue), collected_at:now
+  }));
   const issues = mergeFeeds(feeds.upcoming, feeds.current);
-  if (issues.length === 0) fail("official NSE feeds returned zero IPO issues");
+  if (issues.length === 0 && excluded.length === 0) fail("official NSE feeds returned zero IPO issues");
 
-  const grouped = new Map();
+  // Preflight every identity before changing any manifest. Both name and symbol
+  // must agree; lookup precedence or Map overwrites may not resolve a conflict.
+  const manifests = new Map();
+  const registry = [];
+  const register = (year, record) => registry.push({year,record});
+  if (fs.existsSync(RECOVERY_ROOT)) {
+    for (const dir of fs.readdirSync(RECOVERY_ROOT,{withFileTypes:true})) {
+      if (!dir.isDirectory() || !/^20\d{2}$/.test(dir.name)) continue;
+      const year = Number(dir.name), entry = readOrCreateManifest(year,now);
+      if (!entry.existed) continue;
+      if (!Array.isArray(entry.manifest.records)) fail(`${entry.file}: records must be an array`);
+      manifests.set(year,entry);
+      for (const record of entry.manifest.records) register(year,record);
+    }
+  }
+  const plans = [];
   for (const issue of issues) {
-    const year = issueYear(issue);
-    if (!grouped.has(year)) grouped.set(year, []);
-    grouped.get(year).push(issue);
+    const year = issueYear(issue), symbol = normalizeText(issue.symbol).toUpperCase(), name = canonicalName(issue.companyName);
+    const hits = registry.filter(({record}) => retainedIdentity(record).symbols.includes(symbol) || canonicalName(record.issuer_name) === name);
+    if (hits.length > 1) fail("ambiguous_issuer_identity: " + JSON.stringify({incoming:issue, candidates:hits.map(({year,record})=>({year,id:record.id,issuer_name:record.issuer_name}))}));
+    if (hits.length === 1) {
+      assertCompatibleIdentity(hits[0].record,issue);
+      if (hits[0].year !== year) fail("cross_year_identity_requires_review: " + JSON.stringify({incoming:issue,existing_year:hits[0].year,id:hits[0].record.id}));
+      plans.push({year,issue,existing:hits[0].record});
+    } else {
+      const created = buildNewRecoveryRecord(issue,now);
+      plans.push({year,issue,created});
+      register(year,created);
+    }
   }
 
-  const summary = { discovered: issues.length, added: 0, enriched: 0, years: [] };
-
-  for (const [year, yearIssues] of [...grouped.entries()].sort(([a], [b]) => a - b)) {
-    const { file, manifest, existed } = readOrCreateManifest(year, now);
-    if (!Array.isArray(manifest.records)) fail(`${file}: records must be an array`);
-
-    const bySymbol = new Map();
-    const byName = new Map();
-    for (const record of manifest.records) {
-      const symbol = extractExistingSymbol(record);
-      if (symbol) bySymbol.set(symbol, record);
-      byName.set(canonicalName(record.issuer_name), record);
+  const summary = {discovered:issues.length,added:0,enriched:0,excluded,years:[]};
+  const changedYears = new Set();
+  for (const {year,issue,existing,created} of plans) {
+    if (!manifests.has(year)) manifests.set(year,readOrCreateManifest(year,now));
+    const {manifest} = manifests.get(year);
+    if (existing) {
+      if (enrichExistingRecord(existing,issue,now)) {changedYears.add(year);summary.enriched += 1;}
+    } else {
+      manifest.records.push(created);
+      changedYears.add(year);summary.added += 1;
     }
-
-    let manifestChanged = false;
-    for (const issue of yearIssues) {
-      const symbol = normalizeText(issue.symbol).toUpperCase();
-      const nameKey = canonicalName(issue.companyName);
-      const existing = bySymbol.get(symbol) || byName.get(nameKey);
-
-      if (existing) {
-        if (enrichExistingRecord(existing, issue, now)) {
-          manifestChanged = true;
-          summary.enriched += 1;
-        }
-        continue;
-      }
-
-      const record = buildNewRecoveryRecord(issue, now);
-      manifest.records.push(record);
-      bySymbol.set(symbol, record);
-      byName.set(nameKey, record);
-      manifestChanged = true;
-      summary.added += 1;
-    }
-
-    if (manifestChanged || !existed) {
+  }
+  for (const year of [...new Set(plans.map(plan=>plan.year))].sort((a,b)=>a-b)) {
+    const {file,manifest} = manifests.get(year), changed = changedYears.has(year);
+    if (changed) {
       manifest.generated_at = now;
-      manifest.records.sort((a, b) => a.issuer_name.localeCompare(b.issuer_name));
+      manifest.records.sort((a,b)=>a.issuer_name.localeCompare(b.issuer_name));
       if (!dryRun) {
-        fs.mkdirSync(path.dirname(file), { recursive: true });
-        fs.writeFileSync(file, `${JSON.stringify(manifest, null, 2)}\n`);
+        fs.mkdirSync(path.dirname(file),{recursive:true});
+        fs.writeFileSync(file,`${JSON.stringify(manifest,null,2)}\n`);
       }
     }
-
-    summary.years.push({ year, issues: yearIssues.length, changed: manifestChanged || !existed });
+    summary.years.push({year,issues:plans.filter(plan=>plan.year===year).length,changed});
   }
 
   return summary;

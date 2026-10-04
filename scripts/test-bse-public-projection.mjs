@@ -58,7 +58,7 @@ try {
 // Reinstating value-based fallback or emptyField() for retained nulls must fail.
 const nullTemp = fs.mkdtempSync(path.join(os.tmpdir(), 'retained-null-projection-'));
 try {
-  for (const name of ['scripts/build-published-data.mjs', 'scripts/publish-field-status.mjs', 'assets/ipo-order.js']) {
+  for (const name of ['scripts/build-published-data.mjs', 'scripts/publish-field-status.mjs', 'scripts/ipo-instrument-policy.mjs', 'assets/ipo-order.js']) {
     fs.mkdirSync(path.dirname(path.join(nullTemp, name)), {recursive:true});
     fs.copyFileSync(path.join(root, name), path.join(nullTemp, name));
   }

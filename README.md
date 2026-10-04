@@ -47,22 +47,19 @@ Collection time, source observation, dataset generation and Pages publication ar
 
 ## Handoff for the next prompt
 
-The [2026-10-04 integrity safeguard batch](docs/verification/ipo-integrity-safeguards-2026-10-04.md)
-merged in **PR #354** as `be8ec1e0` on **2026-10-04 at 22:44:42 UTC**.
-It addresses BUG-003, BUG-004 and BUG-002 without changing IPO facts.
-Post-merge data-contract run **37241175018** passed. Pages run **37241175061**
-deployed successfully and verified the actual served 1,389-record dataset and
-six DRHP/page assets. The public file and all seven recovery manifests remain
-byte-identical to the tested release snapshot. See the
-[release receipt](docs/verification/ipo-integrity-release-2026-10-04.md).
+The previously pending PR354 live-sync **37241174980** completed successfully;
+downstream Pages **37242214201** served its exact 1,389-record output on the first
+check at **2026-10-04 23:01:50 UTC**.
 
-All 100 non-browser regression entrypoints passed again locally; three browser
-entrypoints remain blocked by missing Playwright and are not claimed passing.
-**Next:** finish verification of live-sync run **37241174980**, then address
-instrument eligibility and issuer matching (BUG-001 / BUG-005). The sync was still
-processing source documents at the last check; its complete publication cycle is
-not yet verified. The separate historical SSEK handoff below does not authorize
-replaying imports or take precedence over this audit-repair sequence.
+The [instrument/identity repair](docs/verification/ipo-instrument-identity-repair-2026-10-04.md)
+addresses BUG-001 and BUG-005. It rejects unsupported live instruments and
+contradictory/ambiguous issuer matches before writing. The public projection
+excludes SMCG04's explicit DEBT record while retaining its full recovery evidence.
+All other 1,388 public records and all seven recovery manifests are unchanged.
+Nineteen regression cases cover admission, matching, batch preflight, replay,
+source-URL series and unknown-board preservation. Other audit findings are not
+claimed fixed. Verify the PR's CI/merge/served receipt for this 1,388-record patch
+before advancing to amended-term retention and per-field provenance.
 
 The September 30 [code review](docs/verification/code-review-repairs-2026-09-30.md)
 and [website logic](docs/verification/product-logic-repairs-2026-09-30.md)

@@ -1,5 +1,34 @@
 # Project status and handoff
 
+## Instrument admission and issuer identity — 2026-10-04
+
+The previously pending live-sync **37241174980** and downstream Pages
+**37242214201** both succeeded. The actual 1,389-record served response matched
+on the first attempt at **23:01:50 UTC**. The earlier “unverified” paragraphs
+below are retained historical checkpoints, not the latest result.
+
+This batch repairs **BUG-001 and BUG-005**: reject unsupported/non-equity live
+instruments; exclude explicitly retained debt from the public projection without
+deleting source evidence; require a single consistent name/symbol/series match
+before any manifest mutation. All-year identity preflight holds contradictions
+and ambiguous matches for review rather than guessing an issuer.
+
+The only public removal is SMC Global Securities / SMCG04 (`DEBT`). All seven
+recovery files and all other 1,388 public objects remain unchanged, including
+source clocks and dataset metadata. Nineteen admission/identity regression cases
+pass; the non-browser suite passed. Three browser scripts are not certified.
+See [implementation, tests and source receipt](verification/ipo-instrument-identity-repair-2026-10-04.md).
+
+**Release gate:** inspect this batch's PR checks, merge and actual served-data
+receipt before marking its production rollout verified. Do not confuse the prior
+successful 1,389-record cycle with this patch's 1,388-record public projection.
+After rollout, continue amendment retention and per-field endpoint provenance
+(BUG-006/BUG-008). Cross-year migration (BUG-007) is still a review hold, not an
+automatic correction. Other audited defects and SSEK #352 stay separate. Do not
+expand P5/performance, replay historical imports, or change access/monetization.
+
+---
+
 ## Data-integrity safeguard release — 2026-10-04
 
 **MERGED AND DEPLOYED; served snapshot verified. First post-merge live-sync
