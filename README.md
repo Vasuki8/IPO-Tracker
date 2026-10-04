@@ -47,15 +47,19 @@ Collection time, source observation, dataset generation and Pages publication ar
 
 ## Handoff for the next prompt
 
-The [2026-09-30 code review repair batch](docs/verification/code-review-repairs-2026-09-30.md)
-is prepared for review with regression coverage for nine findings. It also advances
-five 2026 lifecycle statuses using retained verified NSE listing dates. Merge and
-deployment remain pending; it does not close the historical release below.
+The [2026-10-04 integrity safeguard batch](docs/verification/ipo-integrity-safeguards-2026-10-04.md)
+is prepared for review. It addresses atomic retained-field merging (BUG-003),
+explicit null/conflict preservation (BUG-004) and typed value validation (BUG-002),
+without changing the 1,389-record public dataset or any recovery evidence.
+All 100 non-browser regression entrypoints passed locally, including tests of
+hash-verified workflow files. Three browser entrypoints require unavailable tooling.
+Repository PR checks, merge, deployment and live verification remain pending.
 
-The [website logic repair batch](docs/verification/product-logic-repairs-2026-09-30.md)
-addresses all seven subsequent product-review findings. It preserves retained
-source values and reorders the public dataset through its shared builder.
-These changes are prepared on a repair branch; merge and deployment remain pending.
+The September 30 [code review](docs/verification/code-review-repairs-2026-09-30.md)
+and [website logic](docs/verification/product-logic-repairs-2026-09-30.md)
+repair batches merged in PR #353 on September 30, 2026. Their historical notes
+should not be interpreted as a request to repeat those repairs. The separate
+SSEK historical release closeout below remains open in PR #352.
 
 Browser regressions run with an isolated Playwright installation:
 

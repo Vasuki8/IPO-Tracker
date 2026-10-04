@@ -36,7 +36,7 @@ function validTimestamp(value) {
 // The repository has no runtime package dependencies. Enforce the assertions
 // used by its local schema, including retained correction representations.
 // Reject unsupported assertions so future schema changes cannot silently pass.
-const schemaKeywords = new Set(["$schema", "$id", "title", "description", "$defs", "$ref", "type", "required", "properties", "additionalProperties", "items", "format", "minLength", "minItems", "const", "enum", "anyOf"]);
+const schemaKeywords = new Set(["$schema", "$id", "title", "description", "$defs", "$ref", "type", "required", "properties", "additionalProperties", "items", "format", "minLength", "minItems", "const", "enum", "anyOf", "exclusiveMinimum", "maximum"]);
 function checkSchema(definition) {
   for (const key of Object.keys(definition)) {
     if (!schemaKeywords.has(key)) throw new Error(`unsupported schema assertion: ${key}`);
@@ -48,12 +48,13 @@ function checkSchema(definition) {
 }
 
 function schemaErrors(value, definition, prefix = "dataset") {
+  const errors = [];
   if (definition.$ref) {
     const match = definition.$ref.match(/^#\/\$defs\/([^/]+)$/);
     if (!match || !schema.$defs[match[1]]) throw new Error(`unsupported schema reference: ${definition.$ref}`);
-    return schemaErrors(value, schema.$defs[match[1]], prefix);
+    // Draft 2020-12 applies sibling assertions as well as the referenced schema.
+    errors.push(...schemaErrors(value, schema.$defs[match[1]], prefix));
   }
-  const errors = [];
   const object = value !== null && typeof value === "object" && !Array.isArray(value);
   const types = Array.isArray(definition.type) ? definition.type : [definition.type];
   const matchesType = type => type === "null" ? value === null
@@ -61,10 +62,14 @@ function schemaErrors(value, definition, prefix = "dataset") {
     : type === "integer" ? Number.isInteger(value)
     : type === "number" ? typeof value === "number" && Number.isFinite(value)
     : typeof value === type;
-  if (definition.type && !types.some(matchesType)) return [`${prefix} must have type ${types.join(" or ")}`];
+  if (definition.type && !types.some(matchesType)) return [...errors, `${prefix} must have type ${types.join(" or ")}`];
   if (Object.hasOwn(definition, "const") && value !== definition.const) errors.push(`${prefix} must equal ${JSON.stringify(definition.const)}`);
   if (definition.enum && !definition.enum.includes(value)) errors.push(`${prefix} must be one of ${JSON.stringify(definition.enum)}`);
   if (definition.anyOf && !definition.anyOf.some(option => schemaErrors(value, option, prefix).length === 0)) errors.push(`${prefix} does not match an allowed representation`);
+  if (typeof value === "number") {
+    if (definition.exclusiveMinimum !== undefined && !(value > definition.exclusiveMinimum)) errors.push(`${prefix} must be greater than ${definition.exclusiveMinimum}`);
+    if (definition.maximum !== undefined && value > definition.maximum) errors.push(`${prefix} must not exceed ${definition.maximum}`);
+  }
   if (typeof value === "string") {
     if (definition.minLength !== undefined && [...value].length < definition.minLength) errors.push(`${prefix} must not be empty`);
     if (definition.format === "date" && !validDate(value)) errors.push(`${prefix} must be a valid calendar date`);
@@ -133,6 +138,17 @@ for (const [index, record] of (data.records || []).entries()) {
 
   for (const fieldName of fieldNames) {
     validateField(record[fieldName], `${prefix}.${fieldName}`);
+  }
+
+  const band = record.price_band.value;
+  if (band !== null && band.min > band.max) fail(`${prefix}.price_band minimum must not exceed maximum`);
+  for (const [earlier, later] of [["open_date", "close_date"], ["open_date", "listing_date"], ["close_date", "listing_date"]]) {
+    const a = record[earlier], b = record[later];
+    // Retain qualified source contradictions. Do not publish an unlabelled
+    // reversal as verified/provisional, or repair dates by inference.
+    if (a.value !== null && b.value !== null && a.value > b.value && a.status !== "conflict" && b.status !== "conflict") {
+      fail(`${prefix}.${earlier} must not follow ${later} unless the date relationship is explicitly marked conflict`);
+    }
   }
 
   const requirements = record.application_requirements;

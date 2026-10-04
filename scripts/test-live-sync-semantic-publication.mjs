@@ -107,3 +107,44 @@ assert.equal(newYearMerged.manifest.collection_started_at,concurrentNewYear.coll
 assert.equal(applyRecoveryProposal(newYearMerged.manifest,newYearProposal).changed,false);
 assert.equal(applyRecoveryProposal(undefined,newYearProposal).manifest.records.length,2);
 console.log("Concurrent new-year manifest merge tests passed.");
+
+// BUG-003: a publication collision must never splice a field's value and source.
+// Removing the atomic-field guard must make these real merge tests fail.
+const observedField = (value, source, status = "verified") => ({
+  value, status, source: { url: `https://www.nseindia.com/${source}`, document_identity: source },
+  corrections: [{ reason: source }]
+});
+const collisions = [
+  ["competing values", observedField(100, "a"), observedField(120, "a"), observedField(110, "b")],
+  ["source-only concurrent edit", observedField(100, "a"), observedField(100, "c"), observedField(110, "a")],
+  ["band endpoints", observedField({min:100,max:200}, "a"), observedField({min:150,max:200}, "a"), observedField({min:100,max:125}, "b")],
+  ["cleared conflict", observedField(100, "a"), observedField(null, "c", "conflict"), observedField(110, "b")],
+];
+for (const [label, original, current, incoming] of collisions) {
+  const originals = structuredClone([original, current, incoming]);
+  const result = mergeThreeWay(current, original, incoming);
+  assert.deepEqual(result.value, current, `${label}: hold the complete current field, including source and history`);
+  assert.equal(result.changed, false, label);
+  assert.equal(result.stats.conflicts, 1, `${label}: report one atomic collision`);
+  assert.deepEqual([original, current, incoming], originals, `${label}: do not mutate inputs`);
+  const accepted = mergeThreeWay(original, original, incoming);
+  assert.deepEqual(accepted.value, incoming, `${label}: accept a non-concurrent update as a complete field`);
+  assert.equal(accepted.stats.conflicts, 0);
+  assert.equal(mergeThreeWay(accepted.value, original, incoming).changed, false, `${label}: replay is idempotent`);
+}
+const nestedBefore = {id:"atomic",issuer_name:"Atomic Limited",issue_price:observedField(100,"a"),application_requirements:{retail:{minimum_bid_quantity:observedField(10,"a")}}};
+const nestedCurrent = structuredClone(nestedBefore);
+nestedCurrent.issue_price = observedField(120,"a");
+nestedCurrent.application_requirements.retail.minimum_bid_quantity = observedField(20,"a");
+const nestedAfter = structuredClone(nestedBefore);
+nestedAfter.issue_price = observedField(110,"b");
+nestedAfter.application_requirements.retail.minimum_bid_quantity = observedField(15,"b");
+nestedAfter.sector = "independent update";
+const nestedProposal = buildRecoveryProposal({records:[nestedBefore]}, {records:[nestedAfter]});
+const nestedResult = applyRecoveryProposal({records:[nestedCurrent]}, nestedProposal);
+assert.deepEqual(nestedResult.manifest.records[0].issue_price, nestedCurrent.issue_price);
+assert.deepEqual(nestedResult.manifest.records[0].application_requirements, nestedCurrent.application_requirements);
+assert.equal(nestedResult.manifest.records[0].sector, "independent update");
+assert.equal(nestedResult.stats.conflicts, 2);
+assert.equal(applyRecoveryProposal(nestedResult.manifest,nestedProposal).changed, false);
+console.log("Atomic evidence merge regressions passed: values, bands, sources, cleared fields, nested application requirements and idempotent replay.");

@@ -45,6 +45,21 @@ export function mergeThreeWay(current, before, after, stats = { applied: 0, conf
     return { value: clone(current), changed: false, stats };
   }
 
+  // A retained field is an indivisible observation: never merge its value,
+  // status, source or correction history independently. On concurrent edits,
+  // hold the complete current field and report a collision for review. This
+  // applies to nested application requirements and to null/cleared fields too.
+  const atomicField = [current, before, after].some((value) =>
+    isObject(value) && Object.hasOwn(value, "value"));
+  if (atomicField) {
+    if (equal(current, before)) {
+      stats.applied += 1;
+      return { value: clone(after), changed: true, stats };
+    }
+    stats.conflicts += 1;
+    return { value: clone(current), changed: false, stats };
+  }
+
   if (Array.isArray(before) && Array.isArray(after) && Array.isArray(current)) {
     if (!hasArrayRemovals(before, after)) {
       const additions = arrayDifference(after, before);
