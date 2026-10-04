@@ -1,0 +1,58 @@
+name: Diagnose PR356 browser baseline without changing tests
+on:
+  push:
+    branches: [diagnostic/ipo-pr356-browser-baseline-20261004]
+permissions:
+  contents: read
+jobs:
+  compare:
+    if: github.repository == 'Vasuki8/IPO-Tracker' && github.ref == 'refs/heads/diagnostic/ipo-pr356-browser-baseline-20261004'
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: da69483f869d07c406b2e9b7244ccf731fc3b721
+          path: baseline
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          ref: 1a21c35d97456e02a2d2324b738016434cc7eedb
+          path: candidate
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install the same pinned tools as the existing interface workflow
+        run: |
+          npm install --prefix "$RUNNER_TEMP/ipo-ui" --no-package-lock --no-save playwright@1.56.1
+          node "$RUNNER_TEMP/ipo-ui/node_modules/playwright/cli.js" install --with-deps chromium
+      - name: Capture all six original browser test outcomes without weakening assertions
+        shell: bash
+        env:
+          PLAYWRIGHT_MODULE: ${{ runner.temp }}/ipo-ui/node_modules/playwright
+        run: |
+          set -uo pipefail
+          set +e
+          out="$RUNNER_TEMP/browser-comparison"
+          mkdir -p "$out"
+          printf 'tree\tscript\texit\n' > "$out/results.tsv"
+          for tree in baseline candidate; do
+            git -C "$tree" rev-parse HEAD > "$out/$tree-commit.txt"
+            for script in test-ui.mjs test-product-logic-ui.mjs test-drhp-freshness.mjs; do
+              (cd "$tree" && timeout 90s node "scripts/$script") > "$out/$tree-$script.log" 2>&1
+              code=$?
+              printf '%s\t%s\t%s\n' "$tree" "$script" "$code" >> "$out/results.tsv"
+            done
+            git -C "$tree" diff --exit-code > "$out/$tree-worktree.txt"
+          done
+          cat "$out/results.tsv"
+          echo 'Diagnostic collection completed; inspect individual exit codes, not this job conclusion.' >> "$GITHUB_STEP_SUMMARY"
+          cat "$out/results.tsv" >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr356-browser-baseline-${{ github.run_id }}
+          path: ${{ runner.temp }}/browser-comparison
+          retention-days: 14
+          if-no-files-found: error
