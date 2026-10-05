@@ -1,6 +1,7 @@
 // Browser regression checks. Requires Playwright + Chromium in the test environment.
 // Run: node scripts/test-ui.mjs (UI_SCREENSHOT_DIR optionally retains previews).
 import assert from "node:assert/strict";
+import { directoryDataset } from "./fixtures/browser-data.mjs";
 import { createRequire } from "node:module";
 import { createServer } from "node:http";
 import { readFile, mkdir } from "node:fs/promises";
@@ -9,9 +10,8 @@ import { fileURLToPath } from "node:url";
 const require = createRequire(import.meta.url);
 const { chromium } = require(process.env.PLAYWRIGHT_MODULE || "playwright");
 const root = fileURLToPath(new URL("../", import.meta.url));
-const data = JSON.parse(
-  await readFile(path.join(root, "data/ipos.json"), "utf8"),
-);
+const data = directoryDataset();
+const published = JSON.parse(await readFile(path.join(root, "data/ipos.json"), "utf8"));
 const sourceRecord = data.records.find(
   (row) => row.price_band?.evidence?.length && row.documents?.length,
 );
@@ -28,6 +28,7 @@ assert.ok(
 const server = createServer(async (req, res) => {
   try {
     const pathname = new URL(req.url, "http://localhost").pathname;
+    if (pathname === "/data/ipos.json") { res.writeHead(200, {"Content-Type":"application/json"}).end(JSON.stringify(data)); return; }
     const file = path.resolve(
       root,
       "." + (pathname === "/" ? "/index.html" : pathname),
@@ -58,6 +59,7 @@ await new Promise((resolve) => server.listen(0, "127.0.0.1", resolve));
 const base = `http://127.0.0.1:${server.address().port}`;
 const browser = await chromium.launch({ headless: true });
 const page = await browser.newPage({ viewport: { width: 1440, height: 1100 } });
+await page.clock.install({time:new Date("2026-09-30T12:00:00Z")});
 const errors = [];
 page.on("pageerror", (error) => errors.push(error.message));
 const screenshotDir = process.env.UI_SCREENSHOT_DIR;
@@ -437,6 +439,12 @@ try {
   );
   await page.goto(base);
   await page.waitForSelector("#errorState:not([hidden])");
+  // Separate current-corpus smoke test: no fixed count, price, issuer or lifecycle assumptions.
+  await page.unroute("**/data/ipos.json");
+  await page.route("**/data/ipos.json", route => route.fulfill({json:published}));
+  await page.goto(base); await loaded();
+  assert.equal(await page.locator("#metricTotal").textContent(), published.records.length.toLocaleString("en-IN"));
+  assert.equal(await page.locator("#ipoRows tr").count(), Math.min(25,published.records.length));
   assert.deepEqual(errors, []);
   console.log(
     "UI browser checks passed: real data, filters, 25/50/100 pagination, direct links/back, source evidence, mobile 320–1440px, fractional prices, missing/provisional/conflict, escaping, invalid URLs, loading/error/retry/empty.",

@@ -1,5 +1,6 @@
-// User-facing logic regressions, using actual data and controlled date boundaries.
+// User-facing regressions use synthetic fixed fixtures and controlled date boundaries.
 import assert from "node:assert/strict";
+import { productDataset } from "./fixtures/browser-data.mjs";
 import { createRequire } from "node:module";
 import { createServer } from "node:http";
 import { readFile, mkdir } from "node:fs/promises";
@@ -8,10 +9,11 @@ import { fileURLToPath } from "node:url";
 const require = createRequire(import.meta.url);
 const { chromium } = require(process.env.PLAYWRIGHT_MODULE || "playwright");
 const root = fileURLToPath(new URL("../", import.meta.url));
-const data = JSON.parse(await readFile(path.join(root, "data/ipos.json"), "utf8"));
+const data = productDataset();
 const server = createServer(async (req, res) => {
   try {
     const pathname = new URL(req.url, "http://localhost").pathname;
+    if (pathname === "/data/ipos.json") { res.writeHead(200, {"Content-Type":"application/json"}).end(JSON.stringify(data)); return; }
     const file = path.resolve(root, "." + (pathname === "/" ? "/index.html" : pathname));
     if (!file.startsWith(root)) { res.writeHead(403).end(); return; }
     const types = { ".js": "text/javascript", ".css": "text/css", ".html": "text/html", ".json": "application/json", ".svg": "image/svg+xml" };
@@ -47,9 +49,9 @@ try {
     assert.equal(await page.locator("#metricOpen").textContent(), "6");
     await page.locator('[data-metric="open"]').click();
     assert.equal(await page.locator("#ipoRows tr").count(), 6);
-    assert.doesNotMatch(await page.locator("#ipoRows").textContent(), /Axiom Gas|Coreintegra|Pooja Logistics/);
+    assert.doesNotMatch(await page.locator("#ipoRows").textContent(), /Fixture Expired/);
     await screenshot("open-now-fixed.png");
-    await detail("axiom-gas-engineering-limited");
+    await detail("fixture-expired");
     assert.match(await page.locator("#detailStatus").textContent(), /Bidding closed/);
     assert.match(await page.locator("#detailStatusNote").textContent(), /22 Sept 2026/);
     assert.match(await page.locator("#detailStatusNote").textContent(), /reported Open/i);
@@ -58,7 +60,7 @@ try {
     await screenshot("axiom-fixed.png");
   });
   await check("Status uses verified dates and Indian market day without inferring listing", async ({page, home}) => {
-    const original = data.records.find(r => r.id === "axiom-gas-engineering-limited");
+    const original = data.records.find(r => r.id === "fixture-expired");
     const fixture = (id, status, opening, closing, closeStatus = "verified") => ({...structuredClone(original), id, issuer_name:id, status,
       open_date:verified(opening), close_date:{...verified(closing),status:closeStatus}});
     const records = [
@@ -81,9 +83,9 @@ try {
     assert.match(await page.locator("#ipoRows").textContent(), /future-opening/);
   });
   await check("Pricing disagreement is visible in list, detail and evidence coverage", async ({page, home, detail, screenshot}) => {
-    await home(); await page.locator("#searchInput").fill("Energy-Mission");
+    await home(); await page.locator("#searchInput").fill("Fixture Price Conflict");
     assert.match(await page.locator("#ipoRows tr").textContent(), /Price conflict/);
-    await detail("energy-mission-machineries-india-limited");
+    await detail("fixture-price-conflict");
     assert.match(await page.locator("#detailPrice").textContent(), /Price conflict/);
     assert.equal(await page.locator("#detailCoverage").textContent(), "Conflict");
     assert.match(await page.locator("#detailPriceNote").textContent(), /₹60/);
@@ -101,7 +103,7 @@ try {
     await page.clock.runFor(120000);
     assert.equal(await page.locator("#metricOpen").textContent(), "4");
     assert.equal(await page.locator("#ipoRows tr").count(), 4);
-    assert.doesNotMatch(await page.locator("#ipoRows").textContent(), /Shah Investor|Srit India/);
+    assert.doesNotMatch(await page.locator("#ipoRows").textContent(), /Fixture Closes Today/);
     await page.clock.setSystemTime(new Date("2026-09-30T18:29:00Z"));
     const closing = data.records.find(r=>r.status==="open" && r.close_date?.value==="2026-09-30");
     assert.ok(closing);
@@ -122,22 +124,22 @@ try {
     }
   });
   await check("Compatible prices and missing final prices do not acquire a false conflict", async ({page, home}) => {
-    const original = data.records.find(r=>r.id === "energy-mission-machineries-india-limited");
+    const original = data.records.find(r=>r.id === "fixture-price-conflict");
     const records = [131,138,null].map((value,i)=>({...structuredClone(original),id:`price-${i}`,issuer_name:`price-${i}`,issue_price: value==null ? {value:null,status:"missing"} : verified(value)}));
     await page.route("**/data/ipos.json",route=>route.fulfill({json:{...data,records}}));
     await home();
     assert.doesNotMatch(await page.locator("#ipoRows").textContent(), /Price conflict/);
   });
   await check("Trading lot and minimum IPO bid are labelled and both accessible", async ({page, home, detail, screenshot}) => {
-    await detail("rbz-jewellers-limited");
+    await detail("fixture-trading-lot");
     assert.equal(await page.locator("#detailLotLabel").textContent(), "Trading lot");
     assert.equal(await page.locator("#detailLot").textContent(), "1 share");
     const minimum = page.locator("#evidenceList details").filter({has:page.locator("summary",{hasText:"Minimum IPO bid"})});
     assert.match(await minimum.locator("summary").textContent(), /150 shares.*Verified/);
     await screenshot("lot-quantities-fixed.png");
-    await detail("energy-mission-machineries-india-limited");
+    await detail("fixture-price-conflict");
     assert.equal(await page.locator("#detailLotLabel").textContent(), "Minimum IPO bid");
-    await home(); await page.locator("#searchInput").fill("RBZ Jewellers");
+    await home(); await page.locator("#searchInput").fill("Fixture Trading Lot");
     assert.match(await page.locator("#ipoRows").textContent(), /Trading lot/);
     await page.setViewportSize({width:390,height:844});
     assert.match(await page.locator("#mobileCards").textContent(), /Trading lot/);
@@ -146,8 +148,8 @@ try {
     await home();
     assert.equal(await page.locator("#searchInput").getAttribute("placeholder"), "Search a company…");
     assert.doesNotMatch(await page.locator("label.search").textContent(), /sector/i);
-    await page.locator("#searchInput").fill("Tamilnad");
-    assert.match(await page.locator("#ipoRows").textContent(), /Tamilnad Mercantile Bank/);
+    await page.locator("#searchInput").fill("Fixture Bank");
+    assert.match(await page.locator("#ipoRows").textContent(), /Fixture Bank/);
   });
   await check("Unclassified boards remain discoverable and filter survives reload", async ({page, home, screenshot}) => {
     await home();
