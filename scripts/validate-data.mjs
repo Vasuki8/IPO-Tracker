@@ -167,7 +167,7 @@ for (const [index, record] of (data.records || []).entries()) {
   const latestEvidence = latestAttachedEvidence(record, prefix);
   const lastCollectedTime = Date.parse(record.last_collected_at || "");
   if (latestEvidence && (!Number.isFinite(lastCollectedTime) || lastCollectedTime < latestEvidence.time)) {
-    fail(`${prefix}.last_collected_at must not predate attached evidence at ${latestEvidence.path} (${latestEvidence.value})`);
+    fail(`${prefix} (${record.id}).last_collected_at must not predate attached evidence at ${latestEvidence.path} (${latestEvidence.value})`);
   }
 
   const band = record.price_band.value;
