@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0.0",
+  "status": "source_collection_only",
+  "batch_id": "bse-2023-mish",
+  "source_queue": "data/discovery/bse-2023-review-queue-2026-09-28.json",
+  "source_queue_sha256": "975d244fc1a6166aebbb9a4c4da64b60fe3a85e1b3c1d84b9eca3ab4b2812cb4",
+  "discovery_source_collected_at": "2026-09-26T16:40:34.440Z",
+  "publication_import_allowed": false,
+  "semantic_review_complete": false,
+  "complete_indian_ipo_universe": false,
+  "issuer": {
+    "discovery_bse_scrip_code": "544015",
+    "source_row_index": 27,
+    "issuer_name": "Mish Designs Limited",
+    "sources": [
+      {
+        "key": "issuer_investor_relations",
+        "authority": "Mish Designs Limited",
+        "role": "official_issuer_investor_relations",
+        "kind": "html",
+        "url": "https://mishindia.com/investor-relations/"
+      },
+      {
+        "key": "final_prospectus",
+        "authority": "Mish Designs Limited",
+        "role": "final_prospectus",
+        "kind": "pdf",
+        "url": "https://mishindia.com/Investor_Assets/Initial%20Public%20Offer/Prospectus_of_Mish_Designs_Limited.pdf"
+      },
+      {
+        "key": "bse_annual_report_2023_24",
+        "authority": "BSE Limited",
+        "role": "actual_listing_and_identity",
+        "kind": "pdf",
+        "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/3d4860b3-2d30-4edc-8430-f6181ad45bfd.pdf"
+      }
+    ]
+  },
+  "notes": [
+    "This plan collects original issuer/BSE responses only. It does not approve any field for publication.",
+    "The issuer-hosted Final Prospectus is authoritative for semantic review, but its host is not currently in the public builder allowlist. Do not expand that allowlist or publish from this source in this batch.",
+    "The BSE-hosted annual report is intended to independently establish actual BSE SME listing identity/date and may corroborate historical IPO facts after page-level review.",
+    "Discovery date and issue price remain non-authoritative hints until the retained documents are reviewed.",
+    "Reconcile exact identity across every recovery year before any later import. Preserve nulls, conflicts and separate market-lot/minimum-bid semantics."
+  ]
+}
