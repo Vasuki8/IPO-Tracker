@@ -18,6 +18,9 @@ assert.doesNotMatch(html,/DRHP filing companies/);
 assert.match(html,/id="drhpSearch"/);
 assert.match(html,/Primary SEBI source/);
 assert.match(html,/official lead-manager/i);
+assert.match(html,/dates inferred from lead-manager document timestamps are labelled as proxies/i);
+assert.match(html,/id="drhpLatestDateBasis"/);
+assert.match(html,/Latest retained date/);
 assert.match(app,/fetch\("data\/drhp-filings\.json"/);
 assert.match(app,/fetch\("data\/ipos\.json"/);
 assert.match(app,/PreIpoFilter\.activeCompanies/);
@@ -26,6 +29,9 @@ assert.match(app,/status status--upcoming">DRHP filed/);
 assert.match(app,/No fuzzy issuer matching is used/);
 assert.match(app,/stop_reason !== "first_page_strictly_older_than_year"/);
 assert.match(app,/drhpIntegrityNote/);
+assert.match(app,/Date proxy · earliest lead-manager document-URL timestamp/);
+assert.match(app,/Date proxy · lead-manager document upload timestamp/);
+assert.match(app,/Lead-manager fallback dates are labelled as timestamp proxies/);
 
 const sandbox={};
 vm.runInNewContext(filterCode,sandbox,{filename:"assets/pre-ipo-filter.js"});
@@ -106,6 +112,11 @@ assert.equal(data.coverage.stop_reason,"first_page_strictly_older_than_year");
 assert.ok(data.coverage.pages_fetched>=2);
 assert.equal(data.coverage.companies,data.companies.length);
 assert.ok(data.companies.length>0);
+const leadManagerFilings=data.companies.flatMap(company=>company.filings)
+  .filter(filing=>filing.source_kind==="official_lead_manager");
+const proxyFilings=leadManagerFilings.filter(filing=>
+  filing.date_basis==="lead_manager_document_earliest_url_timestamp");
+assert.ok(proxyFilings.length>0,"current retained dataset must exercise the lead-manager URL-timestamp proxy basis");
 assert.equal(new Set(data.companies.map(c=>c.issuer_name.toLowerCase())).size,data.companies.length);
 for(const company of data.companies){
   assert.ok(company.issuer_name);
@@ -128,5 +139,7 @@ console.log(JSON.stringify({pre_ipo_company_ui_tests:{
   no_fuzzy_matching:true,
   source_backed:true,
   lead_manager_fallback_supported:true,
+  visible_proxy_date_basis:true,
+  proxy_rows_checked:proxyFilings.length,
   abakkus_fixture_lifecycle_covered:true,
 }}));
