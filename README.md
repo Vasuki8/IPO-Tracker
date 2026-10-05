@@ -49,20 +49,23 @@ Collection time, source observation, dataset generation and Pages publication ar
 
 The **October 4 correctness/accessibility audit remains closed**; see
 [the complete audit receipt](docs/verification/october-audit-closeout-2026-10-05.md).
+The bounded SSEK release also remains closed and retired.
 
-The bounded **SSEK 2023 release is now fully published, live-verified and closed**.
-The retained first-attempt served receipt is
-[docs/verification/bse-2023-ssek-live-2026-09-30.json](docs/verification/bse-2023-ssek-live-2026-09-30.json).
-It binds run **36662939353**, artifact **11075047555**, the exact served SHA-256
-`77373449dcf00d800a82452072e92f45676d6611f2724e76a900d9f63adc7c6c`,
-and all four reviewed public projections. The temporary SSEK publisher and
-temporary live-verifier workflow are retired; do not replay them.
+**Mish Designs Limited is now published and served-verified.** PR #372 merged as
+`58df8b08`. Pages run **37384618726** served **1,389 records** on verification
+attempt **1**, with SHA-256
+`333e7a7570965e47661386fada8ca20efed40523669d1be9d5167ad4ead13e4f`.
+The retained Pages verification artifact is **11376300416**. Its served Mish
+record exactly matched the approved projection: BSE-hosted evidence only, with
+board, price band, market lot, minimum bid quantity and minimum application amount
+left null as reviewed. The live receipt is
+[docs/verification/bse-2023-mish-live-2026-10-05.json](docs/verification/bse-2023-mish-live-2026-10-05.json).
 
-The immutable 2023 ledger is now **16 reviewed/published + 14 awaiting review**.
-Continue with exactly **Mish Designs Limited (544015)**,
-**AHASOLAR TECHNOLOGIES LIMITED (543941)**,
-**ORGANIC RECYCLING SYSTEMS LIMITED (543997)** and
-**Meson Valves India Limited (543982)**. The original 2022 queue remains
+The immutable 2023 ledger is now **17 reviewed/published + 13 awaiting review**.
+Continue with exactly **AHASOLAR TECHNOLOGIES LIMITED (543941)**,
+**ORGANIC RECYCLING SYSTEMS LIMITED (543997)**,
+**Meson Valves India Limited (543982)** and
+**TECHKNOWGREEN SOLUTIONS LIMITED (543991)**. The original 2022 queue remains
 **14 reviewed/published + 2 existing-recovery alias + 0 awaiting review**.
 
 Current source-health qualification is unchanged: the SEBI DRHP pagination surface
@@ -71,13 +74,15 @@ dataset and the independent Axis fallback attempt.
 
 ### Exact next backend task
 
-Review **Mish Designs Limited (544015)**, **AHASOLAR TECHNOLOGIES LIMITED (543941)**,
-**ORGANIC RECYCLING SYSTEMS LIMITED (543997)** and **Meson Valves India Limited (543982)**
-from the pinned immutable 2023 queue. The original BSE 2022 queue has remaining **0** unmatched rows requiring import. Start with retained issuer-specific
-authoritative evidence and exact all-year identity reconciliation. Do not treat
-discovery dates or prices as publication authority; preserve nulls and conflicts.
-Publish only through a separate reviewed manifest followed by exact served-data
-verification.
+Review **AHASOLAR TECHNOLOGIES LIMITED (543941)**,
+**ORGANIC RECYCLING SYSTEMS LIMITED (543997)**,
+**Meson Valves India Limited (543982)** and
+**TECHKNOWGREEN SOLUTIONS LIMITED (543991)** from the pinned immutable 2023 queue.
+The original BSE 2022 queue has remaining **0** unmatched rows requiring import.
+Start with retained issuer-specific authoritative evidence and exact all-year
+identity reconciliation. Do not treat discovery dates or prices as publication
+authority; preserve nulls and conflicts. Publish only through a separate reviewed
+manifest followed by exact served-data verification.
 
 Continue P1 correctness. Do not expand P5/performance while unresolved source or
 release-governance work remains. No new spending, contracts, accounts, analytics,
