@@ -4,7 +4,6 @@ import {createHash} from 'node:crypto';
 import {fileURLToPath,pathToFileURL} from 'node:url';
 import {isDeepStrictEqual as same} from 'node:util';
 import {canonicalIssuer} from './sync-sebi-documents.mjs';
-import {checkRepository as checkFieldReview} from './check-bse-2023-mish-field-review.mjs';
 
 export const ROOT=fileURLToPath(new URL('../',import.meta.url));
 export const PUBLICATION_REVIEW='data/discovery/bse-2023-mish-publication-review-2026-10-05.json';
@@ -32,8 +31,7 @@ export function context(root=ROOT){
  const manifestBytes=read(MANIFEST),publicationReviewBytes=read(PUBLICATION_REVIEW),fieldReviewBytes=read(FIELD_REVIEW),receiptBytes=read(RECEIPT);
  return{
    manifestBytes,publicationReviewBytes,fieldReviewBytes,receiptBytes,
-   manifest:parse(manifestBytes),publicationReview:parse(publicationReviewBytes),fieldReview:parse(fieldReviewBytes),receipt:parse(receiptBytes),
-   fieldReviewCheck:checkFieldReview(root)
+   manifest:parse(manifestBytes),publicationReview:parse(publicationReviewBytes),fieldReview:parse(fieldReviewBytes),receipt:parse(receiptBytes)
  };
 }
 export function validate(ctx){
@@ -47,7 +45,9 @@ export function validate(ctx){
  req(stamp(m.reviewed_at)&&m.reviewed_at===r.reviewed_at,'review_clock_mismatch');
  req(same(m.actions,[{stable_id:'mish-designs-limited',discovery_bse_scrip_code:'544015'}]),'manifest_action_scope');
 
- req(ctx.fieldReviewCheck?.ok===true&&ctx.fieldReviewCheck.issuer==='mish-designs-limited'&&ctx.fieldReviewCheck.publication_import_allowed===false&&ctx.fieldReviewCheck.recovery_identity_hits===0,'field_review_not_clean');
+ req(f?.schema_version==='1.0.0'&&f.status==='reviewed_bse_2023_mish_semantic'&&f.source_year===2023&&f.publication_import_allowed===false&&f.complete_indian_ipo_universe===false,'field_review_not_clean');
+ req(f.issuer?.stable_id==='mish-designs-limited'&&f.issuer.issuer_name==='Mish Designs Limited'&&f.issuer.discovery_bse_scrip_code==='544015'&&f.issuer.source_row_index===27&&f.issuer.decision==='semantic_review_complete_publication_not_approved','field_review_identity');
+ req(f.identity_reconciliation?.all_recovery_years_checked===true&&Array.isArray(f.identity_reconciliation.exact_id_name_or_bse_code_matches)&&f.identity_reconciliation.exact_id_name_or_bse_code_matches.length===0,'field_review_identity_baseline');
  req(r?.schema_version==='1.0.0'&&r.status==='reviewed_bse_2023_mish_publication_approved'&&r.batch_id==='bse-2023-mish'&&r.source_year===2023,'invalid_publication_review');
  req(r.publication_import_allowed===true&&r.auto_import_allowed===false&&r.complete_indian_ipo_universe===false,'unsafe_publication_review');
  req(r.candidate?.stable_id==='mish-designs-limited'&&r.candidate.issuer_name==='Mish Designs Limited'&&r.candidate.discovery_bse_scrip_code==='544015'&&r.candidate.source_row_index===27&&r.candidate.decision==='approved_missing_ipo','publication_candidate_identity');
@@ -57,7 +57,6 @@ export function validate(ctx){
  req(same(r.publication_source_policy?.allowed_source_keys,['bse_annual_report_2023_24'])&&same(r.publication_source_policy?.disallowed_for_public_evidence,['issuer_final_prospectus'])&&r.publication_source_policy.source_allowlist_expansion===false,'unsafe_source_policy');
  req(r.rules?.fixed_price_semantics===true&&r.rules.market_lot_distinct_from_minimum_bid===true&&r.rules.no_application_amount_inference===true&&r.rules.preserve_date_conflict_history===true&&r.rules.exact_served_verification_required_after_publication===true,'missing_publication_rules');
 
- req(f?.status==='reviewed_bse_2023_mish_semantic'&&f.publication_import_allowed===false&&f.issuer?.stable_id==='mish-designs-limited','unexpected_field_review');
  const annual=f.sources?.bse_annual_report_2023_24,issuer=f.sources?.issuer_final_prospectus;
  req(annual?.authority==='BSE Limited'&&new URL(annual.url).hostname==='www.bseindia.com'&&annual.publication_role==='approved_publication_source','annual_not_publishable');
  req(issuer?.authority==='Mish Designs Limited'&&new URL(issuer.url).hostname==='mishindia.com'&&issuer.publication_role==='semantic_review_only_host_outside_current_builder_allowlist','issuer_source_policy_changed');
