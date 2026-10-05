@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0.0",
+  "status": "supplemental_source_collection_only",
+  "batch_id": "bse-2023-mish-bse-prospectus",
+  "issuer_name": "Mish Designs Limited",
+  "discovery_bse_scrip_code": "544015",
+  "prior_source_receipt": "data/evidence/bse-2023-mish-source-receipt-2026-10-05.json",
+  "source": {
+    "key": "bse_final_prospectus",
+    "authority": "BSE Limited",
+    "role": "final_prospectus_publication_candidate",
+    "kind": "pdf",
+    "url": "https://www.bseindia.com/corporates/download/394119/SME_IPO%20Open/Prospectus_Final_20231109201146.pdf"
+  },
+  "publication_import_allowed": false,
+  "semantic_review_complete": false,
+  "notes": [
+    "Collect only the exact BSE-hosted Final Prospectus candidate for Mish Designs Limited.",
+    "This supplemental collection does not authorize publication or modify the prior source receipt.",
+    "After collection, compare the retained BSE PDF with the previously retained issuer Prospectus at both text and key-page level before semantic approval.",
+    "Do not use BSE search snippets or discovery values as field authority in place of retained document review."
+  ]
+}
