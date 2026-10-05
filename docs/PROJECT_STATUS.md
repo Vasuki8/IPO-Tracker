@@ -42,39 +42,60 @@ Important qualifications:
 
 ## SSEK closeout — verified and retired — 2026-10-05 UTC
 
-The four-record SSEK release is closed without any replay. Historical Pages
+The four-record SSEK release remains closed without replay. Historical Pages
 verification run **36662939353** / artifact **11075047555** was independently
-rechecked during this refresh: the artifact is unexpired, its ZIP SHA-256 is
-`3475799c28d017897cd25f502bcdcf8d3ad840328057dc01f134a5d2d991070d`,
-and its retained served JSON is **7,798,075 bytes**, SHA-256
-`77373449dcf00d800a82452072e92f45676d6611f2724e76a900d9f63adc7c6c`,
-with successful fetch attempt **1** and all four exact reviewed stable IDs.
+rechecked during the closeout refresh. The temporary SSEK publisher and
+temporary SSEK live-verifier workflow remain retired.
 
-The immutable 2023 ledger is now **16 reviewed/published + 14 awaiting review**.
-The temporary `reviewed_ssek` publisher and temporary SSEK live-verifier workflow
-are retired. No IPO data, recovery facts or source documents are changed by this
-closeout.
+At SSEK closeout the immutable 2023 ledger was **16 reviewed/published + 14
+awaiting review**.
+
+## Mish Designs release — published and served-verified — 2026-10-05 UTC
+
+Mish Designs Limited moved through separate bounded stages:
+- PR #368 retained issuer/BSE source evidence without publication;
+- PR #369 rejected a false BSE Prospectus candidate that was actually Arrowhead
+  Seperation Engineering Limited;
+- PR #370 retained the semantic field review without publication;
+- PR #371 approved a BSE-only public projection without mutating production data;
+- PR #372 merged the exact two-file publication as
+  `58df8b081a0ff8b515e4ce650de32be452492642`.
+
+Publication preparation run **37369397820**, attempt **2**, proved **1,388
+existing public records unchanged** and exactly one added stable ID. Pages run
+**37384618726** served the resulting **1,389-record** dataset on verification
+attempt **1**, SHA-256
+`333e7a7570965e47661386fada8ca20efed40523669d1be9d5167ad4ead13e4f`.
+Verification artifact **11376300416** retains the served bytes/report. The served
+Mish record exactly matches the approved projection and exposes only
+`www.bseindia.com` evidence.
+
+Published Mish facts are fixed issue price INR 122/share, total issue size
+INR 97,600,000, offer dates 31-Oct-2023 through 02-Nov-2023, and actual listing
+07-Nov-2023. Board, price band, market lot, minimum bid quantity and minimum
+application amount remain null as reviewed. The issuer Prospectus's reversed
+date-label observations remain preserved in correction history. See
+[the live receipt](verification/bse-2023-mish-live-2026-10-05.json).
+
+The immutable 2023 ledger is now **17 reviewed/published + 13 awaiting review**.
 
 ## Exact next bounded task
 
-Review **Mish Designs Limited (544015)**, **AHASOLAR TECHNOLOGIES LIMITED (543941)**,
-**ORGANIC RECYCLING SYSTEMS LIMITED (543997)** and **Meson Valves India Limited (543982)**
-from the pinned 2023 queue. Start with retained authoritative issuer-specific
-evidence and exact all-year identity reconciliation. Treat discovery values as
-non-authoritative until reviewed, preserve nulls/conflicts, and publish only via a
-separate reviewed manifest plus exact served-data verification.
+Review **AHASOLAR TECHNOLOGIES LIMITED (543941)**,
+**ORGANIC RECYCLING SYSTEMS LIMITED (543997)**,
+**Meson Valves India Limited (543982)** and
+**TECHKNOWGREEN SOLUTIONS LIMITED (543991)** from the pinned 2023 queue. Start
+with retained authoritative issuer-specific evidence and exact all-year identity
+reconciliation. Treat discovery values as non-authoritative until reviewed,
+preserve nulls/conflicts, and publish only via a separate reviewed manifest plus
+exact served-data verification.
 
 The original 2022 queue remains **14 reviewed/published + 2 existing-recovery alias + 0 awaiting review**; its next bounded queue is empty.
 
-Continue P1 correctness.
+Continue P1 correctness. P5/performance remains out of scope while source/release
 governance work is unresolved. No new spending, contracts, accounts, analytics,
 ads, billing, infrastructure migration or material access changes without
 approval.
-
-The historical checkpoints below are superseded as active instructions but remain
-retained evidence.
-
----
 
 ## Browser gate and admission release — 2026-10-05 UTC
 
