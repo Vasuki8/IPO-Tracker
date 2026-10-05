@@ -92,6 +92,18 @@ function annualSource(ctx,page=null,locator=null){
    evidence_locator:locator
  };
 }
+function publicationCorrections(ctx,name){
+ const f=ctx.fieldReview.fields[name];
+ if(!['open_date','close_date'].includes(name))return [];
+ const correction=f.corrections?.[0];
+ req(correction?.kind==='intradocument_date_label_conflict'&&correction.status==='resolved_by_bse_post_ipo_source','missing_date_conflict:'+name);
+ return [{
+   recorded_at:ctx.manifest.reviewed_at,
+   previous_value:correction.competing_observation.value,
+   new_value:f.value,
+   reason:correction.note
+ }];
+}
 function retainedFieldFromReview(ctx,name){
  const f=ctx.fieldReview.fields[name],s=annualSource(ctx,f.page??null,f.evidence_locator??null);
  const out={
@@ -102,7 +114,7 @@ function retainedFieldFromReview(ctx,name){
    reporting_period:f.reporting_period,
    page:s.page,
    source:s,
-   corrections:structuredClone(f.corrections??[])
+   corrections:publicationCorrections(ctx,name)
  };
  if(f.qualification)out.qualification=f.qualification;
  return out;
