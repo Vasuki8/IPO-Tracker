@@ -40,13 +40,19 @@ Important qualifications:
   fallback attempt and records per-source health. Source availability itself is
   not claimed fixed.
 
-**Exact next bounded work:** review and refresh the separate SSEK closeout
-PR #352 onto current `main`. Its head predates the audit releases. Do not merge
-that stale branch directly, do not replay the already completed SSEK publication
-or source collection, and do not re-authorize historical facts. Preserve the
-existing served-verification receipt, refresh only the bounded queue closeout and
-temporary-workflow retirement, rerun current contracts, then merge only if the
-four reviewed 2023 identities remain the sole affected release scope.
+## Exact next bounded task
+
+Review and refresh the separate SSEK closeout PR #352 onto current `main`.
+The bounded scope is exactly **SHANTI SPINTEX LIMITED (544059)**,
+**Shoora Designs Limited (543970)**, **Exhicon Events Media Solutions Limited (543895)**
+and **Khazanchi Jewellers Limited (543953)**. Its head predates the audit releases.
+Do not merge that stale branch directly, do not replay the already completed SSEK
+publication or source collection, and do not re-authorize historical facts. Preserve
+the existing served-verification receipt, refresh only the bounded queue closeout
+and temporary-workflow retirement, rerun current contracts, then merge only if
+those four reviewed 2023 identities remain the sole affected release scope.
+
+The original 2022 queue remains **14 reviewed/published + 2 existing-recovery alias + 0 awaiting review**; its next bounded queue is empty.
 
 Continue P1 correctness. P5/performance remains out of scope while source/release
 governance work is unresolved. No new spending, contracts, accounts, analytics,
@@ -175,7 +181,7 @@ Updated **2026-09-30 (UTC)** after PR #350 repaired the listing-source provenanc
 
 The SSEK release lifecycle is now **`published_verification_pending`**. Repository data commit **d4b196f6e9f37884d11cd48a3ef46cd930dcd47f** added exactly four reviewed records while preserving **1,383** existing public objects unchanged, producing **1,387** public records. The immutable 2023 review ledger intentionally remains **12 reviewed/published + 18 awaiting review** until the actual served Pages dataset is verified.
 
-## Exact next bounded task
+## Historical SSEK next-task checkpoint — superseded
 
 Complete the pending release for **SHANTI SPINTEX LIMITED (544059)**, **Shoora Designs Limited (543970)**, **Exhicon Events Media Solutions Limited (543895)** and **Khazanchi Jewellers Limited (543953)**.
 
