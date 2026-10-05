@@ -20,6 +20,21 @@ const fixture=()=>{
 const base=fixture();
 assert.deepEqual(validateProgress(base),{ok:true,original_candidates:2,published:1,awaiting:1,next:['543998'],source_refetched:false,warnings:[]});
 const gitPinned=fixture();const gitManifest=Object.values(gitPinned.manifests)[0],gitReview=Object.values(gitPinned.reviewBytes)[0];delete gitManifest.review_sha256;gitManifest.review_git_blob_sha=gitBlob(gitReview);assert.equal(validateProgress(gitPinned).ok,true,'git-blob-pinned reviewed releases must remain valid');
+const publicationStyle=fixture();
+{
+ const manifest=Object.values(publicationStyle.manifests)[0];
+ const oldPath=manifest.review_path;
+ const modernPath='data/discovery/fixture-publication-review.json';
+ const modernReview={candidate:{stable_id:'first-limited',discovery_bse_scrip_code:'543743',issuer_name:'First Limited'}};
+ const modernBytes=Buffer.from(JSON.stringify(modernReview));
+ delete publicationStyle.reviewBytes[oldPath];
+ delete manifest.review_path;
+ delete manifest.review_sha256;
+ manifest.publication_review_path=modernPath;
+ manifest.publication_review_git_blob_sha=gitBlob(modernBytes);
+ publicationStyle.reviewBytes[modernPath]=modernBytes;
+ assert.equal(validateProgress(publicationStyle).ok,true,'single-candidate publication reviews must close progress when Git-blob pinned');
+}
 let rejected=0;
 for(const mutate of [
  x=>x.progress.auto_import_allowed=true,x=>x.progress.source_refetched=true,x=>x.progress.complete_indian_ipo_universe=true,
@@ -30,6 +45,7 @@ for(const mutate of [
  x=>x.progress.next_bounded_review_codes=['543743'],x=>x.progress.next_bounded_review_codes=['543998','543998'],x=>x.progress.next_bounded_review_codes=[],x=>x.progress.next_bounded_review_codes=['999999'],
  x=>x.recoveryByYear[2022]=x.recoveryByYear[2023],x=>{x.recoveryByYear[2022]=x.recoveryByYear[2023];delete x.recoveryByYear[2023];},x=>x.recoveryByYear[2023].records=[],x=>x.published.records=[],x=>x.published.records.push(x.published.records[0]),x=>x.published.records[0]={...x.published.records[0],issuer_name:'Other'},
  x=>Object.values(x.manifests)[0].actions=[],x=>Object.values(x.manifests)[0].target_year=2024,x=>Object.values(x.manifests)[0].status='discovery',x=>Object.values(x.manifests)[0].review_path='../escape.json',x=>Object.values(x.manifests)[0].review_sha256='0'.repeat(64),
+ x=>{const m=Object.values(x.manifests)[0];m.publication_review_path='data/discovery/other-review.json';},
  x=>x.progress.rows[0].release_pr=330,x=>Object.values(x.liveReceipts)[0].release_pr=330,
  x=>Object.values(x.liveReceipts)[0].ok=false,x=>Object.values(x.liveReceipts)[0].records=[],x=>Object.values(x.liveReceipts)[0].response_sha256='bad',x=>Object.values(x.liveReceipts)[0].checked_at='2099-01-01T00:00:00Z',x=>Object.values(x.liveReceipts)[0].url='https://evil.example',x=>Object.values(x.liveReceipts)[0].generated_at='2099-01-01T00:00:00Z',
  x=>x.projectStatus=x.projectStatus.replace('Next Limited','Wrong Issuer'),x=>x.projectStatus=x.projectStatus.replace('543998','543743'),x=>x.readme=x.readme.replace('Next Limited','First Limited'),x=>x.readme=x.readme.replaceAll('543998','543743'),x=>x.readme='missing sections'
