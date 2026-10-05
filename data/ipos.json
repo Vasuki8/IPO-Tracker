@@ -1,6 +1,6 @@
 {
   "schema_version": "1.2.0",
-  "generated_at": "2026-10-05T09:24:14.525Z",
+  "generated_at": "2026-10-05T09:44:47.845Z",
   "collection_started_at": "2026-09-22T02:14:14Z",
   "records": [
     {
@@ -189761,9 +189761,21 @@
         }
       ],
       "price_band": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": {
+          "min": 95,
+          "max": 100
+        },
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.sebi.gov.in/sebi_data/attachdocs/jan-2023/1673264301345.pdf",
+            "document_type": "SEBI Prospectus PDF",
+            "document_identity": "Anlon Technology Solutions Limited - Prospectus — PDF",
+            "publication_date": "2023-01-09",
+            "page": 2,
+            "collected_at": "2026-10-05T09:42:55.359Z"
+          }
+        ],
         "corrections": []
       },
       "issue_price": {
@@ -189782,9 +189794,18 @@
         "corrections": []
       },
       "issue_size_inr": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": 150000000,
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.sebi.gov.in/sebi_data/attachdocs/jan-2023/1673264301345.pdf",
+            "document_type": "SEBI Prospectus PDF",
+            "document_identity": "Anlon Technology Solutions Limited - Prospectus — PDF",
+            "publication_date": "2023-01-09",
+            "page": 20,
+            "collected_at": "2026-10-05T09:42:55.359Z"
+          }
+        ],
         "corrections": []
       },
       "market_lot": {
@@ -189916,7 +189937,7 @@
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-10-05T09:12:38.369Z"
+      "last_collected_at": "2026-10-05T09:42:55.359Z"
     },
     {
       "id": "radiant-cash-management-services-limited",
@@ -190164,9 +190185,18 @@
         "corrections": []
       },
       "issue_size_inr": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": 83700000,
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2022/1671426478316.pdf",
+            "document_type": "SEBI Prospectus PDF",
+            "document_identity": "RBM Infracon Limited - Prospectus - SME IPO — PDF",
+            "publication_date": "2022-12-19",
+            "page": 2,
+            "collected_at": "2026-10-05T09:42:55.359Z"
+          }
+        ],
         "corrections": []
       },
       "market_lot": {
@@ -190282,7 +190312,7 @@
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-10-05T09:12:38.369Z"
+      "last_collected_at": "2026-10-05T09:42:55.359Z"
     },
     {
       "id": "homesfy-realty-limited",

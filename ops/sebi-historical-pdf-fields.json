@@ -6225,6 +6225,105 @@
         "publication_date": "2024-04-15"
       },
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/may-2024/1714978298669.pdf"
+    },
+    "2023|anlon-technology-solutions-limited": {
+      "issuer_name": "Anlon Technology Solutions Limited",
+      "listing_date": "2023-01-10",
+      "last_attempted_at": "2026-10-05T09:42:55.359Z",
+      "parser_version": "1.2.0",
+      "status": "extracted",
+      "extracted_fields": [
+        "price_band",
+        "issue_size_inr"
+      ],
+      "remaining_fields": [
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": {
+          "value": {
+            "min": 95,
+            "max": 100
+          },
+          "source_value": "PRICE BAND: ₹ 95.00 TO ₹ 100.00 ",
+          "page": 2
+        },
+        "issue_size_inr": {
+          "value": 150000000,
+          "source_value": "₹1500.00 lakhs",
+          "page": 20
+        },
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Anlon Technology Solutions Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/jan-2023/1673264301345.pdf",
+        "publication_date": "2023-01-09"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/jan-2023/1673264301345.pdf"
+    },
+    "2023|radiant-cash-management-services-limited": {
+      "issuer_name": "Radiant Cash Management Services Limited",
+      "listing_date": "2023-01-04",
+      "last_attempted_at": "2026-10-05T09:42:55.359Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "price_band",
+        "issue_size_inr",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Radiant Cash Management Services Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/apr-2023/1681729265572.PDF",
+        "publication_date": "2022-12-17"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/apr-2023/1681729265572.PDF"
+    },
+    "2023|rbm-infracon-limited": {
+      "issuer_name": "RBM Infracon Limited",
+      "listing_date": "2023-01-04",
+      "last_attempted_at": "2026-10-05T09:42:55.359Z",
+      "parser_version": "1.2.0",
+      "status": "extracted",
+      "extracted_fields": [
+        "issue_size_inr"
+      ],
+      "remaining_fields": [
+        "price_band",
+        "market_lot",
+        "minimum_bid_quantity"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": {
+          "value": 83700000,
+          "source_value": "₹837.00 LAKHS",
+          "page": 2
+        },
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "RBM Infracon Limited - Prospectus - SME IPO — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2022/1671426478316.pdf",
+        "publication_date": "2022-12-19"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2022/1671426478316.pdf"
     }
   }
 }
