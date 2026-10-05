@@ -1,5 +1,34 @@
 # Project status and handoff
 
+## Browser gate and admission release — 2026-10-05 UTC
+
+**MERGED, DEPLOYED AND SERVED-VERIFIED.** Separate browser PR #357 merged as
+`ea0301aa`; refreshed admission/identity PR #356 merged as `0e0da6ce` on
+2026-10-05 at 00:35 UTC (October 4, 20:35 EDT). All seven refreshed PR checks
+passed. Four browser scripts passed all three repetitions before and after merge;
+102 non-browser entrypoints passed locally. Post-merge browser 37248108152,
+data contract 37248108188 and Pages 37248108151 succeeded.
+
+Served IPO JSON: HTTP 200, first attempt, 1,388 records, SHA-256
+`941e85283cf468a67ec4ad556755ed930afdd1dcef5c30fe0cf8ff86eba8307b`.
+Only the explicitly DEBT SMCG04 public record was excluded; its full recovery
+evidence, all seven recovery files and all other public objects were preserved.
+See [release evidence and exact scope](verification/browser-gate-and-admission-release-2026-10-05.md).
+
+BUG-014 fixture brittleness and the separate duplicate-route skip-link race are
+fixed; BUG-015 document-filter focus is not. Together with PR #354, six original
+audit fixes are deployed. BUG-006/007/008/009/010/011/012/013/015 remain open.
+**Next bounded work:** amended-term/conflict retention (BUG-006) and endpoint
+provenance (BUG-008), after checking current source health. SSEK #352 remains
+separate. No historical replay, P5 expansion, spending or access changes.
+
+The prior 37241174980/37242214201 cycle is verified complete. The receipt above
+supersedes pending-release wording below, which is retained as historical evidence.
+
+---
+
+## Historical checkpoints — superseded by the release above
+
 ## Browser-gate stabilization — 2026-10-04
 
 Separate test/focus batch unblocks PR #356; no public or recovery data is changed.
