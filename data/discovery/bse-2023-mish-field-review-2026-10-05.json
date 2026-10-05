@@ -1,0 +1,241 @@
+{
+  "schema_version": "1.0.0",
+  "status": "reviewed_bse_2023_mish_semantic",
+  "source_year": 2023,
+  "publication_import_allowed": false,
+  "complete_indian_ipo_universe": false,
+  "issuer": {
+    "stable_id": "mish-designs-limited",
+    "issuer_name": "Mish Designs Limited",
+    "discovery_bse_scrip_code": "544015",
+    "source_row_index": 27,
+    "decision": "semantic_review_complete_publication_not_approved"
+  },
+  "source_bindings": {
+    "source_plan": "data/discovery/bse-2023-mish-source-plan-2026-10-05.json",
+    "source_plan_git_blob_sha": "f1f68f4fc557a49b781672ffc0fe850d47ef3089",
+    "source_receipt": "data/evidence/bse-2023-mish-source-receipt-2026-10-05.json",
+    "source_receipt_git_blob_sha": "0c18a8f88427f55ab4ba184c529a0a35048863de",
+    "rejected_bse_candidate": "data/evidence/bse-2023-mish-bse-prospectus-rejection-2026-10-05.json",
+    "rejected_bse_candidate_git_blob_sha": "8e1313e8c807c07114fabd9394668cc7a50eb5e6"
+  },
+  "identity_reconciliation": {
+    "checked_at": "2026-10-05T18:57:30.490Z",
+    "repository_ref": "97e47182ef80099669a2924c67928377c07d2e12",
+    "all_recovery_years_checked": true,
+    "exact_id_name_or_bse_code_matches": [],
+    "warnings": []
+  },
+  "sources": {
+    "bse_annual_report_2023_24": {
+      "authority": "BSE Limited",
+      "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/3d4860b3-2d30-4edc-8430-f6181ad45bfd.pdf",
+      "document_type": "BSE-hosted Annual Report PDF",
+      "document_identity": "Mish Designs Limited — Annual Report FY 2023-24 filed with BSE on 2024-08-27",
+      "document_date": "2024-08-27",
+      "reporting_period": "FY 2023-24; historical 2023 IPO",
+      "collected_at": "2026-10-05T18:57:30.476Z",
+      "document_sha256": "89ab1af681fdfab94c1faba2532b97766d55709792f3309bb592ba884057fc0b",
+      "pdf_pages": 69,
+      "publication_role": "approved_publication_source"
+    },
+    "issuer_final_prospectus": {
+      "authority": "Mish Designs Limited",
+      "url": "https://mishindia.com/Investor_Assets/Initial%20Public%20Offer/Prospectus_of_Mish_Designs_Limited.pdf",
+      "document_type": "Final Prospectus",
+      "document_identity": "Mish Designs Limited — Final Prospectus dated 2023-10-25",
+      "document_date": "2023-10-25",
+      "reporting_period": "2023 IPO",
+      "collected_at": "2026-10-05T18:57:29.782Z",
+      "document_sha256": "1779a684e9f5dac3441fa13dfd129a7d5ba6bb89670695ea8d04f01d3de9a804",
+      "pdf_pages": 237,
+      "publication_role": "semantic_review_only_host_outside_current_builder_allowlist"
+    }
+  },
+  "fields": {
+    "status": {
+      "value": "listed",
+      "status": "verified",
+      "source_key": "bse_annual_report_2023_24",
+      "page": 20,
+      "source_value": "listed on BSE SME Platform with effect from November 07, 2023",
+      "evidence_locator": "Material Changes / Listing on Stock Exchanges paragraph."
+    },
+    "bse_scrip_code": {
+      "value": "544015",
+      "status": "verified",
+      "source_key": "bse_annual_report_2023_24",
+      "page": 1,
+      "source_value": "Scrip code: 544015",
+      "evidence_locator": "BSE filing cover letter."
+    },
+    "board": {
+      "value": null,
+      "status": "unapproved",
+      "reason": "The BSE annual report explicitly says BSE SME Platform, but this review does not silently map platform wording into the tracker's board field.",
+      "platform_observation": {
+        "value": "BSE SME Platform",
+        "status": "verified",
+        "source_key": "bse_annual_report_2023_24",
+        "page": 20
+      }
+    },
+    "price_band": {
+      "value": null,
+      "status": "missing_fixed_price",
+      "reason": "The reviewed offer is a fixed-price issue at INR 122 per share; no price band is created."
+    },
+    "issue_price": {
+      "value": 122,
+      "status": "verified",
+      "source_key": "bse_annual_report_2023_24",
+      "page": 20,
+      "source_value": "122",
+      "source_unit": "INR/share",
+      "reporting_period": "2023 IPO",
+      "evidence_locator": "Annual report states 800,000 equity shares were offered at Issue Price Rs. 122."
+    },
+    "issue_size_inr": {
+      "value": 97600000,
+      "status": "verified",
+      "source_key": "bse_annual_report_2023_24",
+      "page": 20,
+      "source_value": "976.00",
+      "source_unit": "INR lakh",
+      "normalization_multiplier": 100000,
+      "scope": "total_issue",
+      "reporting_period": "2023 IPO",
+      "evidence_locator": "Annual report states the Company raised INR 976.00 lakh by IPO of 800,000 equity shares.",
+      "qualification": "Treat as total/gross issue size. Do not substitute later net-proceeds or use-of-funds figures."
+    },
+    "market_lot": {
+      "value": null,
+      "status": "held_research_only",
+      "reason": "The issuer-hosted Final Prospectus states 1,000 shares, but that host remains outside the current public-builder allowlist.",
+      "held_observation": {
+        "value": 1000,
+        "source_key": "issuer_final_prospectus",
+        "page": 191,
+        "source_value": "Trading Lot 1000 Equity Shares",
+        "source_unit": "shares"
+      }
+    },
+    "minimum_bid_quantity": {
+      "value": null,
+      "status": "held_research_only",
+      "reason": "The issuer-hosted Final Prospectus explicitly states retail minimum application size/application lot of 1,000 shares; publication is held under current source policy.",
+      "held_observations": [
+        {
+          "value": 1000,
+          "source_key": "issuer_final_prospectus",
+          "page": 191,
+          "source_value": "Minimum Application Size — For Retail Individual Investors: 1000 Equity Shares",
+          "source_unit": "shares",
+          "investor_category": "retail individual"
+        },
+        {
+          "value": 1000,
+          "source_key": "issuer_final_prospectus",
+          "page": 192,
+          "source_value": "Application Lot Size 1000 Equity Share and in multiples of 1000",
+          "source_unit": "shares",
+          "investor_category": "all applicants"
+        }
+      ]
+    },
+    "minimum_application_amount_inr": {
+      "value": null,
+      "status": "missing",
+      "reason": "No explicit reviewed source amount was identified. Do not infer price × quantity."
+    },
+    "open_date": {
+      "value": "2023-10-31",
+      "status": "verified",
+      "source_key": "bse_annual_report_2023_24",
+      "page": 20,
+      "source_value": "October 31, 2023",
+      "source_unit": "ISO date",
+      "reporting_period": "2023 IPO",
+      "evidence_locator": "Annual report states the Offer opened for subscription on October 31, 2023.",
+      "corrections": [
+        {
+          "kind": "intradocument_date_label_conflict",
+          "status": "resolved_by_bse_post_ipo_source",
+          "note": "Issuer Prospectus glossary page 8 reverses opening and closing labels, but Prospectus cover/page 46/issue programme page 192 and the BSE-filed annual report all show October 31 as opening and November 02 as closing.",
+          "competing_observation": {
+            "value": "2023-11-02",
+            "source_key": "issuer_final_prospectus",
+            "page": 8,
+            "source_value": "Issue Opening date ... November 02, 2023"
+          }
+        }
+      ]
+    },
+    "close_date": {
+      "value": "2023-11-02",
+      "status": "verified",
+      "source_key": "bse_annual_report_2023_24",
+      "page": 20,
+      "source_value": "November 02, 2023",
+      "source_unit": "ISO date",
+      "reporting_period": "2023 IPO",
+      "evidence_locator": "Annual report states the Offer closed on November 02, 2023.",
+      "corrections": [
+        {
+          "kind": "intradocument_date_label_conflict",
+          "status": "resolved_by_bse_post_ipo_source",
+          "note": "Issuer Prospectus glossary page 8 reverses opening and closing labels, but Prospectus cover/page 46/issue programme page 192 and the BSE-filed annual report all show October 31 as opening and November 02 as closing.",
+          "competing_observation": {
+            "value": "2023-10-31",
+            "source_key": "issuer_final_prospectus",
+            "page": 8,
+            "source_value": "Issue Closing date ... October 31, 2023"
+          }
+        }
+      ]
+    },
+    "listing_date": {
+      "value": "2023-11-07",
+      "status": "verified",
+      "source_key": "bse_annual_report_2023_24",
+      "page": 20,
+      "source_value": "November 07, 2023",
+      "source_unit": "ISO date",
+      "reporting_period": "2023 IPO",
+      "evidence_locator": "Annual report states Mish equity shares were listed on BSE SME Platform on November 07, 2023.",
+      "corroboration": [
+        {
+          "source_key": "bse_annual_report_2023_24",
+          "page": 56,
+          "source_value": "listed on Bombay Stock Exchange (BSE) SME on November 07, 2023"
+        }
+      ]
+    },
+    "nse_symbol": {
+      "value": null,
+      "status": "missing",
+      "reason": "No reviewed NSE identity evidence."
+    },
+    "isin": {
+      "value": null,
+      "status": "missing",
+      "reason": "No reviewed ISIN evidence."
+    },
+    "sector": {
+      "value": null,
+      "status": "missing",
+      "reason": "Sector is outside this bounded source review."
+    }
+  },
+  "fixed_price_semantics": true,
+  "publication_blockers": [
+    "market_lot and minimum_bid_quantity are reviewed only from an issuer-hosted Prospectus outside the current public-builder allowlist.",
+    "No publication/import manifest has been reviewed or approved in this semantic-review batch."
+  ],
+  "notes": [
+    "The rejected BSE search result is Arrowhead Seperation Engineering Limited's Prospectus and may not support any Mish field.",
+    "The BSE-hosted annual report independently verifies the core historical IPO terms used above.",
+    "No minimum application amount is inferred from INR 122 × 1,000 shares.",
+    "Publication is a separate future decision after current source-policy and import-preservation checks."
+  ]
+}
