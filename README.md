@@ -73,8 +73,7 @@ dataset and the independent Axis fallback attempt.
 
 Review **Mish Designs Limited (544015)**, **AHASOLAR TECHNOLOGIES LIMITED (543941)**,
 **ORGANIC RECYCLING SYSTEMS LIMITED (543997)** and **Meson Valves India Limited (543982)**
-from the pinned immutable 2023 queue. The original BSE 2022 queue has remaining
-**0** unmatched rows requiring import. Start with retained issuer-specific
+from the pinned immutable 2023 queue. The original BSE 2022 queue has remaining **0** unmatched rows requiring import. Start with retained issuer-specific
 authoritative evidence and exact all-year identity reconciliation. Do not treat
 discovery dates or prices as publication authority; preserve nulls and conflicts.
 Publish only through a separate reviewed manifest followed by exact served-data
