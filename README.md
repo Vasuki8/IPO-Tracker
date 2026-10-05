@@ -47,50 +47,49 @@ Collection time, source observation, dataset generation and Pages publication ar
 
 ## Handoff for the next prompt
 
-The browser gate and admission repairs are **merged, deployed and served-verified**:
-separate PR #357 (`ea0301aa`) and refreshed PR #356 (`0e0da6ce`). All seven PR checks,
-12 repeated browser runs before merge and 12 after merge passed. Fresh local
-non-browser verification passed 102 entrypoints. Pages 37248108151 served the
-expected 1,388-record JSON; only SMCG04 (DEBT) was excluded, with recovery evidence
-and all other records preserved. See the [release receipt](docs/verification/browser-gate-and-admission-release-2026-10-05.md).
+The **October 4 correctness/accessibility audit is closed**. All fifteen original
+BUG-001 through BUG-015 findings are repaired, merged, and released. See the
+[complete defect-to-release receipt](docs/verification/october-audit-closeout-2026-10-05.md).
 
-**Next:** amended-term/conflict retention (BUG-006) and endpoint provenance
-(BUG-008). Nine original audit findings remain open, including document-filter
-focus (BUG-015); the skip-link route fix is separate. SSEK #352 is untouched.
-The prior 37241174980/37242214201 cycle is complete. Pending language below records
-older checkpoints and is superseded by this receipt; do not replay those releases.
+The final repair was BUG-015 document-filter keyboard focus in PR #366
+(`d3e44eb7`). The exact PR head passed data-contract, historical, reviewed-BSE
+and browser/interface checks. Post-merge Pages run **37352664322** served the
+expected **1,388-record** IPO JSON on the first attempt, SHA-256
+`1741ef733cb06bc6e8d2d466ebd861ab8336996a6e7a69a0751e58dfbe1d3360`.
+Post-merge data-contract run **37352664476** and browser/interface run
+**37352664386** also passed. Pages health was recorded as `f2da5f4e`.
 
-**Historical handoff checkpoints (superseded):**
+The final repair sequence after the earlier BUG-001–005 safeguards was:
+PR #359 BUG-006/008, PR #360 BUG-007, PR #362 BUG-012, PR #361 BUG-009,
+PR #363 BUG-010, PR #364 BUG-011, PR #365 BUG-013, and PR #366 BUG-015.
+BUG-014 was closed by the separate browser stabilization PR #357. Do not repeat
+any of these repairs or replay their historical one-shot imports.
 
-The [browser-gate stabilization batch](docs/verification/browser-gate-stabilization-2026-10-04.md)
-uses deterministic fixtures and prevents duplicate navigation notifications from
-stealing focus. It changes no IPO data. Merge after repeated browser checks, then
-refresh PR #356, rerun its checks and verify the served admission/identity repair.
-The prior 37241174980 source cycle and downstream 37242214201 are verified complete;
-the older pending checkpoints below are historical. SSEK #352 remains separate.
+Current source-health qualification: the SEBI DRHP pagination surface can still
+fail upstream. PR #362 makes SEBI and Axis fallback collection independent,
+preserves the last good published draft dataset, and records per-source health.
+An upstream collection failure is not evidence that the audit repair regressed.
 
-The [2026-10-04 integrity safeguard batch](docs/verification/ipo-integrity-safeguards-2026-10-04.md)
-merged in **PR #354** as `be8ec1e0` on **2026-10-04 at 22:44:42 UTC**.
-It addresses BUG-003, BUG-004 and BUG-002 without changing IPO facts.
-Post-merge data-contract run **37241175018** passed. Pages run **37241175061**
-deployed successfully and verified the actual served 1,389-record dataset and
-six DRHP/page assets. The public file and all seven recovery manifests remain
-byte-identical to the tested release snapshot. See the
-[release receipt](docs/verification/ipo-integrity-release-2026-10-04.md).
+The original 2022 queue remains **14 reviewed/published + 2 existing-recovery alias + 0 awaiting review**.
+The next bounded 2023 closeout scope is exactly **SHANTI SPINTEX LIMITED (544059)**,
+**Shoora Designs Limited (543970)**, **Exhicon Events Media Solutions Limited (543895)**
+and **Khazanchi Jewellers Limited (543953)**.
 
-All 100 non-browser regression entrypoints passed again locally; three browser
-entrypoints remain blocked by missing Playwright and are not claimed passing.
-**Next:** finish verification of live-sync run **37241174980**, then address
-instrument eligibility and issuer matching (BUG-001 / BUG-005). The sync was still
-processing source documents at the last check; its complete publication cycle is
-not yet verified. The separate historical SSEK handoff below does not authorize
-replaying imports or take precedence over this audit-repair sequence.
+### Exact next backend task
 
-The September 30 [code review](docs/verification/code-review-repairs-2026-09-30.md)
-and [website logic](docs/verification/product-logic-repairs-2026-09-30.md)
-repair batches merged in PR #353 on September 30, 2026. Their historical notes
-should not be interpreted as a request to repeat those repairs. The separate
-SSEK historical release closeout below remains open in PR #352.
+**Review and refresh SSEK closeout PR #352 against current `main`.** The bounded
+scope is exactly **SHANTI SPINTEX LIMITED (544059)**, **Shoora Designs Limited (543970)**,
+**Exhicon Events Media Solutions Limited (543895)** and **Khazanchi Jewellers Limited (543953)**.
+The branch predates the October audit releases. Do not merge the stale head directly
+and do not replay the already completed SSEK publication/source collection. Preserve
+its existing served-verification evidence, refresh only the closeout/queue/workflow-
+retirement changes, rerun current contracts, and merge only if those four reviewed
+2023 identities remain the sole affected release scope. The original BSE 2022 queue
+has remaining **0** unmatched rows requiring import.
+
+Continue P1 correctness. Do not expand P5/performance while unresolved source or
+release-governance work remains. No new spending, contracts, accounts, analytics,
+ads, billing, infrastructure migration or material access changes without approval.
 
 Browser regressions run with an isolated Playwright installation:
 
@@ -100,25 +99,8 @@ PLAYWRIGHT_MODULE=/path/to/node_modules/playwright node scripts/test-product-log
 PLAYWRIGHT_MODULE=/path/to/node_modules/playwright node scripts/test-drhp-freshness.mjs
 ```
 
-The next four 2023 BSE candidates now have reviewed Prospectus terms, retained authoritative actual-listing evidence, and a successful bounded repository publication. PR #350 published exactly four reviewed records while preserving 1,383 existing public objects unchanged. The 2023 ledger remains **12 reviewed/published + 18 awaiting review** until the actual served Pages dataset is verified.
-
-The original 2022 queue remains **14 reviewed/published + 2 existing-recovery alias + 0 awaiting review**.
-
-The bounded scope is **SHANTI SPINTEX LIMITED (544059)**, **Shoora Designs Limited (543970)**, **Exhicon Events Media Solutions Limited (543895)** and **Khazanchi Jewellers Limited (543953)**. Reviewed actual listing dates are **27-Dec-2023**, **29-Aug-2023**, **17-Apr-2023** and **07-Aug-2023** respectively.
-
-The guarded import is pinned by [data/verified-bse-listings/2026-09-29-ssek-2023.json](data/verified-bse-listings/2026-09-29-ssek-2023.json). The source receipt is [data/evidence/bse-2023-ssek-listing-source-receipt-2026-09-29.json](data/evidence/bse-2023-ssek-listing-source-receipt-2026-09-29.json). Artifact **11075040486** contains the final four BSE-hosted listing reports and expires **14-Oct-2026**. Exhicon's BSE copy is byte-identical to the reviewed issuer copy; Khazanchi's BSE filing adds a cover page and its physical locators were re-reviewed.
-
-Board, NSE identity, ISIN and monetary minimum application amount remain null. Preserve Shanti's ₹80 Cut Off Price typo, Exhicon's Prospectus date-definition conflict, both provisional issue amounts, and the fixed-price semantics for Shoora and Khazanchi.
-
-### Exact next backend task
-
-Complete the pending release for **SHANTI SPINTEX LIMITED (544059)**, **Shoora Designs Limited (543970)**, **Exhicon Events Media Solutions Limited (543895)** and **Khazanchi Jewellers Limited (543953)**.
-
-The original BSE 2022 queue has remaining **0** unmatched rows requiring import.
-
-Finish the release lifecycle recorded in [docs/verification/bse-2023-ssek-release-2026-09-29.json](docs/verification/bse-2023-ssek-release-2026-09-29.json): run the temporary read-only served-data verifier against the deployed `data/ipos.json`, retain the actual response and exact projection match, then close the four queue rows and retire both temporary release surfaces.
-
-Do not replay the completed IRMS, 2020–2022 or NSE releases. Continue to use `node scripts/check-bse-2023-progress.mjs`, `node scripts/build-published-data.mjs --check` and `node scripts/validate-data.mjs` as baseline guards.
+Historical notes below are retained as evidence and are superseded by the active
+handoff above.
 
 ## Historical release notes
 
