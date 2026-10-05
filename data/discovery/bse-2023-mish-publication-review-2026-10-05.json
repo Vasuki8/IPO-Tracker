@@ -1,0 +1,70 @@
+{
+  "schema_version": "1.0.0",
+  "status": "reviewed_bse_2023_mish_publication_approved",
+  "batch_id": "bse-2023-mish",
+  "source_year": 2023,
+  "publication_import_allowed": true,
+  "auto_import_allowed": false,
+  "complete_indian_ipo_universe": false,
+  "reviewed_at": "2026-10-05T20:11:50.000Z",
+  "candidate": {
+    "stable_id": "mish-designs-limited",
+    "issuer_name": "Mish Designs Limited",
+    "discovery_bse_scrip_code": "544015",
+    "source_row_index": 27,
+    "decision": "approved_missing_ipo"
+  },
+  "field_review": {
+    "path": "data/discovery/bse-2023-mish-field-review-2026-10-05.json",
+    "git_blob_sha": "2ba6d540d985a3414df23b778121ba116cc33e4d"
+  },
+  "source_receipt": {
+    "path": "data/evidence/bse-2023-mish-source-receipt-2026-10-05.json",
+    "git_blob_sha": "0c18a8f88427f55ab4ba184c529a0a35048863de"
+  },
+  "approved_public_fields": [
+    "status",
+    "issue_price",
+    "issue_size_inr",
+    "open_date",
+    "close_date",
+    "listing_date"
+  ],
+  "approved_identity_fields": [
+    "bse_scrip_code"
+  ],
+  "intentionally_unpublished": {
+    "board": "BSE SME platform wording remains a retained observation and is not mapped to the tracker board field.",
+    "price_band": "Fixed-price issue; no price band is created.",
+    "market_lot": "Issuer Prospectus observation of 1,000 shares remains research-only under current source-host policy.",
+    "minimum_bid_quantity": "Issuer Prospectus observation of 1,000 shares remains research-only under current source-host policy.",
+    "minimum_application_amount_inr": "No explicit reviewed amount; do not infer price multiplied by quantity.",
+    "nse_symbol": "No reviewed NSE identity evidence.",
+    "isin": "No reviewed ISIN evidence.",
+    "sector": "Outside this bounded review."
+  },
+  "publication_source_policy": {
+    "allowed_source_keys": [
+      "bse_annual_report_2023_24"
+    ],
+    "disallowed_for_public_evidence": [
+      "issuer_final_prospectus"
+    ],
+    "source_allowlist_expansion": false
+  },
+  "rules": {
+    "fixed_price_semantics": true,
+    "bse_code_retained_for_identity": true,
+    "market_lot_distinct_from_minimum_bid": true,
+    "no_application_amount_inference": true,
+    "preserve_date_conflict_history": true,
+    "all_year_identity_reconciliation_required": true,
+    "exact_served_verification_required_after_publication": true
+  },
+  "notes": [
+    "This approval authorizes a future one-record Mish import only; it does not itself mutate recovery or public data.",
+    "Every public field source must resolve to the retained BSE-hosted FY2023-24 annual report.",
+    "The rejected Arrowhead BSE Prospectus candidate cannot support any Mish field.",
+    "The issuer Prospectus date-label conflict remains retained in correction history without making that issuer URL public evidence."
+  ]
+}
