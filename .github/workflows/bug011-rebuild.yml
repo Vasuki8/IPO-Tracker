@@ -1,0 +1,46 @@
+name: Prepare BUG-011 published projection
+
+on:
+  push:
+    branches:
+      - fix/record-evidence-clock-invariant-20261005
+    paths:
+      - scripts/build-published-data.mjs
+      - scripts/test-bse-public-projection.mjs
+      - .github/workflows/bug011-rebuild.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: bug011-projection-prep
+  cancel-in-progress: true
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/record-evidence-clock-invariant-20261005
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Rebuild and validate projection
+        run: |
+          node scripts/build-published-data.mjs
+          node scripts/validate-data.mjs
+          node scripts/test-bse-public-projection.mjs
+      - name: Commit derived data if changed
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/ipos.json
+          if git diff --cached --quiet; then
+            echo "No derived data change."
+            exit 0
+          fi
+          git commit -m "chore(data): align record clocks with attached evidence"
+          git push origin HEAD:fix/record-evidence-clock-invariant-20261005
