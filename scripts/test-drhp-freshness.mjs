@@ -49,6 +49,8 @@ try {
         lifecycle: document.querySelector("#drhpLifecycleGenerated")?.textContent,
         attempt: document.querySelector("#drhpRefreshAttempt")?.textContent,
         note: document.querySelector("#drhpIntegrityNote").textContent,
+        latestDateBasis: document.querySelector("#drhpLatestDateBasis")?.textContent,
+        cardsText: document.querySelector("#drhpCards")?.textContent,
         visibleCompanies: document.querySelectorAll("#drhpCards .drhp-card").length,
       }));
       assert.ok(state.visibleCompanies > 0, "Refresh health must not hide loaded companies");
@@ -133,6 +135,32 @@ try {
     assert.equal(state.lifecycle, `IPO lifecycle dataset generated: ${timestamp(ipoData.generated_at)}`);
     assert.equal(state.attempt, `Latest reported draft-source refresh: Unavailable · ${timestamp(healthData.attempted_at)}`);
     assert.match(state.note, /Latest draft-source refresh status is unavailable/);
+  });
+
+  const proxyFiling = {
+    filing_type: "DRHP",
+    filing_date: "2026-09-22",
+    filing_url: "https://www.axiscapital.co.in/contents/Proxy%20Basis%20Limited%20-%20Draft%20Red%20Herring%20Prospectus-1790067639.pdf",
+    draft_abridged_url: null,
+    source_kind: "official_lead_manager",
+    source_authority: "Axis Capital Limited",
+    date_basis: "lead_manager_document_earliest_url_timestamp",
+  };
+  const proxySource = structuredClone(sourceData);
+  proxySource.companies[0] = {
+    issuer_name: "Proxy Basis Limited",
+    filing_count: 1,
+    filings: [proxyFiling],
+    latest_filing_type: proxyFiling.filing_type,
+    latest_filing_date: proxyFiling.filing_date,
+    latest_filing_url: proxyFiling.filing_url,
+  };
+  await scenario("lead-manager timestamp proxy is visible wherever its date is shown", {
+    source: proxySource,
+  }, async state => {
+    assert.equal(state.latestDateBasis, "Date proxy · earliest lead-manager document-URL timestamp");
+    assert.match(state.cardsText, /Date proxy · earliest lead-manager document-URL timestamp/);
+    assert.match(state.note, /Lead-manager fallback dates are labelled as timestamp proxies/);
   });
 
   await rejectedLifecycleScenario("missing lifecycle generation clock fails closed", {
