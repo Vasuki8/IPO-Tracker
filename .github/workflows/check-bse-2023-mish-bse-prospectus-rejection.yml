@@ -1,0 +1,40 @@
+name: Validate rejected Mish BSE prospectus candidate
+
+on:
+  push:
+    branches:
+      - work/bse-2023-mish-bse-prospectus-20261005
+    paths:
+      - 'data/discovery/bse-2023-mish-bse-prospectus-plan-2026-10-05.json'
+      - 'data/evidence/bse-2023-mish-bse-prospectus-rejection-2026-10-05.json'
+      - 'scripts/test-bse-2023-mish-bse-prospectus-rejection.mjs'
+      - '.github/workflows/check-bse-2023-mish-bse-prospectus-rejection.yml'
+  pull_request:
+    paths:
+      - 'data/discovery/bse-2023-mish-bse-prospectus-plan-2026-10-05.json'
+      - 'data/evidence/bse-2023-mish-bse-prospectus-rejection-2026-10-05.json'
+      - 'scripts/test-bse-2023-mish-bse-prospectus-rejection.mjs'
+      - '.github/workflows/check-bse-2023-mish-bse-prospectus-rejection.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Verify false-positive source rejection
+        run: node scripts/test-bse-2023-mish-bse-prospectus-rejection.mjs
+      - name: Prove queue and public projection remain unchanged
+        run: |
+          node scripts/check-bse-2023-progress.mjs
+          node scripts/build-published-data.mjs --check
+          node scripts/validate-data.mjs
+          git diff --exit-code
