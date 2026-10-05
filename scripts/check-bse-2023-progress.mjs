@@ -12,7 +12,7 @@ const PUBLISHED='published_reviewed_ipo',AWAITING='awaiting_review';
 const req=(ok,message)=>{if(!ok)throw new Error(message);};
 const hash=v=>typeof v==='string'&&/^[a-f0-9]{64}$/.test(v);
 const gitHash=v=>typeof v==='string'&&/^[a-f0-9]{40}$/.test(v);
-const gitBlob=bytes=>{const b=Buffer.from(bytes);return createHash('sha1').update(Buffer.from('blob '+b.length+'\\0')).update(b).digest('hex');};
+const gitBlob=bytes=>{const b=Buffer.from(bytes);return createHash('sha1').update(Buffer.from('blob '+b.length+'\0')).update(b).digest('hex');};
 const clock=v=>typeof v==='string'&&/^\d{4}-\d{2}-\d{2}T.*Z$/.test(v)&&Number.isFinite(Date.parse(v));
 const nonnegative=v=>Number.isSafeInteger(v)&&v>=0;
 const safeManifest=p=>typeof p==='string'&&/^data\/verified-bse-listings\/[a-z0-9-]+\.json$/.test(p);
