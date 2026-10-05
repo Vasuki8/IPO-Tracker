@@ -38,6 +38,7 @@ export function context(root=ROOT){
 }
 export function validate(ctx){
  const {manifest:m,publicationReview:r,fieldReview:f,receipt:c}=ctx;
+ req(same(parse(ctx.manifestBytes),m)&&same(parse(ctx.publicationReviewBytes),r)&&same(parse(ctx.fieldReviewBytes),f)&&same(parse(ctx.receiptBytes),c),'parsed_bytes_mismatch');
  req(gitBlob(ctx.manifestBytes)===APPROVED_MANIFEST_GIT_BLOB,'unapproved_manifest_blob');
  req(m?.schema_version==='1.0.0'&&m.status==='approved_bse_2023_mish_import'&&m.target_year===2023&&m.publication_import_allowed===true&&m.auto_import_allowed===false,'invalid_manifest_scope');
  req(m.publication_review_path===PUBLICATION_REVIEW&&m.publication_review_git_blob_sha===gitBlob(ctx.publicationReviewBytes)&&m.publication_review_git_blob_sha==='cd2eb5475b398356ff962bbffb42f3de3f41639f','publication_review_binding');
