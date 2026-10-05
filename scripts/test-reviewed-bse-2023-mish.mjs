@@ -1,5 +1,7 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
 import {spawnSync} from 'node:child_process';
 import {
   apply,context,expected,loadRecovery,validate,
@@ -128,6 +130,35 @@ assert.equal(publicTarget.application_requirements.retail.minimum_application_am
 assert.equal(JSON.stringify(publicTarget).includes('mishindia.com'),false);
 assert.equal(publicTarget.documents.length,1);
 assert.equal(new URL(publicTarget.documents[0].url).hostname,'www.bseindia.com');
+
+const projectionRoot=fs.mkdtempSync(path.join(os.tmpdir(),'mish-public-projection-'));
+try{
+  for(const name of [
+    'scripts/build-published-data.mjs',
+    'scripts/ipo-instrument-policy.mjs',
+    'scripts/publish-field-status.mjs',
+    'assets/ipo-order.js'
+  ]){
+    const destination=path.join(projectionRoot,name);
+    fs.mkdirSync(path.dirname(destination),{recursive:true});
+    fs.copyFileSync(name,destination);
+  }
+  const recoveryPath=path.join(projectionRoot,'data/recovery/2023/nse-issue-information.json');
+  fs.mkdirSync(path.dirname(recoveryPath),{recursive:true});
+  fs.writeFileSync(recoveryPath,JSON.stringify({
+    schema_version:'1.0.0',
+    collection_started_at:target.first_observed_at,
+    generated_at:now,
+    records:[target]
+  },null,2)+'\n');
+  const built=spawnSync(process.execPath,['scripts/build-published-data.mjs'],{cwd:projectionRoot,encoding:'utf8'});
+  assert.equal(built.status,0,built.stderr);
+  const generated=JSON.parse(fs.readFileSync(path.join(projectionRoot,'data/ipos.json'),'utf8'));
+  assert.equal(generated.records.length,1);
+  assert.deepEqual(generated.records[0],publicTarget,'real builder Mish projection must match verifier contract');
+}finally{
+  fs.rmSync(projectionRoot,{recursive:true,force:true});
+}
 
 const fixturePublic={schema_version:'1.2.0',generated_at:now,records:[publicTarget]};
 let calls=0;
