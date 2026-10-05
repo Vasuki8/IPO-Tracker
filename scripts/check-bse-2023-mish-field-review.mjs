@@ -80,7 +80,7 @@ export function validateReview({review:r,queue,progress,sourcePlanBytes,sourceRe
  req(r.fixed_price_semantics===true&&Array.isArray(r.publication_blockers)&&r.publication_blockers.length>=2,'review_boundaries');
  req(r.publication_blockers.some(x=>/market_lot and minimum_bid_quantity/i.test(x)),'missing_lot_blocker');
  req(r.publication_blockers.some(x=>/No publication\/import manifest/i.test(x)),'missing_manifest_blocker');
- return {ok:true,issuer:r.issuer.stable_id,verified_core_fields:6,held_research_fields:2,publication_import_allowed:false,recovery_identity_hits:0};
+ return {ok:true,issuer:r.issuer.stable_id,verified_core_fields:7,held_research_fields:2,publication_import_allowed:false,recovery_identity_hits:0};
 }
 
 export function checkRepository(root=ROOT){
