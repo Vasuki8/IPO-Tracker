@@ -1,0 +1,81 @@
+{
+  "schema_version": "1.0.0",
+  "status": "complete_source_collection_only",
+  "batch_id": "bse-2023-mish",
+  "plan_path": "data/discovery/bse-2023-mish-source-plan-2026-10-05.json",
+  "plan_sha256": "72012cf16bcd1706cb02f889d2aba37c67d7502a7d7f96cacbe905ad62bcec82",
+  "source_queue": "data/discovery/bse-2023-review-queue-2026-09-28.json",
+  "source_queue_sha256": "975d244fc1a6166aebbb9a4c4da64b60fe3a85e1b3c1d84b9eca3ab4b2812cb4",
+  "discovery_source_collected_at": "2026-09-26T16:40:34.440Z",
+  "collection_started_at": "2026-10-05T18:57:26.046Z",
+  "collection_completed_at": "2026-10-05T18:57:30.478Z",
+  "repository_ref": "97e47182ef80099669a2924c67928377c07d2e12",
+  "workflow": {
+    "run_id": 37359797876,
+    "job_id": 111931370148,
+    "artifact_id": 11365369743,
+    "artifact_name": "bse-2023-mish-evidence-37359797876-1",
+    "artifact_bytes": 8791689,
+    "artifact_sha256": "d0d7440b561cd340080df7b12915fa7f9af706c5fe4843d5b973142429ec7779",
+    "artifact_expires_at": "2026-10-19T18:57:30Z"
+  },
+  "source_documents_expected": 3,
+  "source_documents_accepted": 3,
+  "total_response_bytes": 8761576,
+  "issuer_landing_links_prospectus": true,
+  "publication_import_allowed": false,
+  "semantic_review_complete": false,
+  "complete_indian_ipo_universe": false,
+  "candidate": {
+    "issuer_name": "Mish Designs Limited",
+    "discovery_bse_scrip_code": "544015",
+    "source_row_index": 27,
+    "disposition_at_collection": "awaiting_review",
+    "first_in_next_bounded_batch": true
+  },
+  "documents": [
+    {
+      "key": "issuer_investor_relations",
+      "authority": "Mish Designs Limited",
+      "role": "official_issuer_investor_relations",
+      "url": "https://mishindia.com/investor-relations/",
+      "collected_at": "2026-10-05T18:57:27.250Z",
+      "http_status": 200,
+      "content_type": "text/html; charset=UTF-8",
+      "response_bytes": 207361,
+      "response_sha256": "6a6a780d13f8d28d30607bebd29aa0b04fdbe7cbb330166e6878543b75cb8261"
+    },
+    {
+      "key": "final_prospectus",
+      "authority": "Mish Designs Limited",
+      "role": "final_prospectus",
+      "url": "https://mishindia.com/Investor_Assets/Initial%20Public%20Offer/Prospectus_of_Mish_Designs_Limited.pdf",
+      "collected_at": "2026-10-05T18:57:29.782Z",
+      "http_status": 200,
+      "content_type": "application/pdf",
+      "response_bytes": 4554961,
+      "response_sha256": "1779a684e9f5dac3441fa13dfd129a7d5ba6bb89670695ea8d04f01d3de9a804",
+      "pdf_pages": 237,
+      "publication_use": "review_only_pending_publication_source_policy"
+    },
+    {
+      "key": "bse_annual_report_2023_24",
+      "authority": "BSE Limited",
+      "role": "actual_listing_and_identity",
+      "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/3d4860b3-2d30-4edc-8430-f6181ad45bfd.pdf",
+      "collected_at": "2026-10-05T18:57:30.476Z",
+      "http_status": 200,
+      "content_type": "application/pdf",
+      "response_bytes": 3999254,
+      "response_sha256": "89ab1af681fdfab94c1faba2532b97766d55709792f3309bb592ba884057fc0b",
+      "pdf_pages": 69,
+      "publication_use": "eligible_for_semantic_review"
+    }
+  ],
+  "notes": [
+    "The artifact ZIP and all three retained response hashes were independently rechecked after download.",
+    "No IPO or recovery record was imported, changed or redated by this collection.",
+    "The issuer-hosted Final Prospectus may support semantic review, but its host is outside the current public builder allowlist; do not expand the allowlist in this batch.",
+    "Discovery values remain non-authoritative until page-level semantic review."
+  ]
+}
