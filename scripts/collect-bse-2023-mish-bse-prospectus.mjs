@@ -6,7 +6,7 @@ import {fileURLToPath,pathToFileURL} from 'node:url';
 const ROOT=fileURLToPath(new URL('../',import.meta.url));
 export const PLAN='data/discovery/bse-2023-mish-bse-prospectus-plan-2026-10-05.json';
 const PRIOR='data/evidence/bse-2023-mish-source-receipt-2026-10-05.json';
-const URL='https://www.bseindia.com/corporates/download/394119/SME_IPO%20Open/Prospectus_Final_20231109201146.pdf';
+const BSE_URL='https://www.bseindia.com/corporates/download/394119/SME_IPO%20Open/Prospectus_Final_20231109201146.pdf';
 const MAX_BYTES=80*1024*1024;
 const sha=b=>createHash('sha256').update(b).digest('hex');
 const req=(ok,message)=>{if(!ok)throw new Error(message);};
@@ -18,8 +18,8 @@ export function validatePlan(planBytes,{priorReceiptBytes}={}){
  req(p.issuer_name==='Mish Designs Limited'&&p.discovery_bse_scrip_code==='544015','unexpected_identity');
  req(p.prior_source_receipt===PRIOR,'prior_receipt_mismatch');
  req(p.publication_import_allowed===false&&p.semantic_review_complete===false,'unsafe_plan_scope');
- req(p.source?.key==='bse_final_prospectus'&&p.source.authority==='BSE Limited'&&p.source.role==='final_prospectus_publication_candidate'&&p.source.kind==='pdf'&&p.source.url===URL,'source_mismatch');
- const u=new URL(p.source.url);req(u.protocol==='https:'&&u.hostname==='www.bseindia.com'&&!u.username&&!u.password&&!u.hash,'unsafe_source_url');
+ req(p.source?.key==='bse_final_prospectus'&&p.source.authority==='BSE Limited'&&p.source.role==='final_prospectus_publication_candidate'&&p.source.kind==='pdf'&&p.source.url===BSE_URL,'source_mismatch');
+ const u=new globalThis.URL(p.source.url);req(u.protocol==='https:'&&u.hostname==='www.bseindia.com'&&!u.username&&!u.password&&!u.hash,'unsafe_source_url');
  req(/^\/corporates\/download\/394119\/SME_IPO%20Open\/Prospectus_Final_20231109201146\.pdf$/.test(u.pathname),'unexpected_source_path');
  req(Array.isArray(p.notes)&&p.notes.length>=3,'missing_notes');
  if(priorReceiptBytes){
@@ -45,14 +45,14 @@ export async function collectEvidence({planBytes,priorReceiptBytes,evidenceDir,f
  const d={key:p.source.key,authority:p.source.authority,role:p.source.role,url:p.source.url,requested_at,collected_at:null,http_status:null,content_type:null,accepted:false,error:null,evidence_file:null,response_sha256:null,response_bytes:0};
  let body=null;
  try{
-   const response=await fetchImpl(URL,{redirect:'error',signal:AbortSignal.timeout(60000),headers:{
+   const response=await fetchImpl(BSE_URL,{redirect:'error',signal:AbortSignal.timeout(60000),headers:{
      'user-agent':'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36',
      'accept':'application/pdf,application/octet-stream;q=0.9,*/*;q=0.1',
      'referer':'https://www.bseindia.com/',
      'cache-control':'no-cache'
    }});
    d.http_status=response.status;d.content_type=response.headers?.get?.('content-type')??null;
-   req(!response.url||response.url===URL,'unexpected_final_url');
+   req(!response.url||response.url===BSE_URL,'unexpected_final_url');
    body=await limitedBody(response,MAX_BYTES);
    req(response.status===200,'http_status');
    req(body.length>0&&body.subarray(0,5).toString('ascii')==='%PDF-','unexpected_body_type');
@@ -79,7 +79,7 @@ export function validateReceipt(r,planBytes,priorReceiptBytes,evidenceDir){
  req(stamp(r.collection_started_at)&&stamp(r.collection_completed_at)&&r.collection_started_at<=r.collection_completed_at,'invalid_clock');
  const prior=JSON.parse(Buffer.from(priorReceiptBytes).toString('utf8')).documents.find(x=>x.key==='final_prospectus');
  req(r.issuer_prospectus_reference.response_sha256===prior.response_sha256&&r.issuer_prospectus_reference.response_bytes===prior.response_bytes&&r.issuer_prospectus_reference.pdf_pages===prior.pdf_pages,'issuer_reference_mismatch');
- const d=r.document;req(d.key==='bse_final_prospectus'&&d.authority==='BSE Limited'&&d.role==='final_prospectus_publication_candidate'&&d.url===URL,'document_identity');
+ const d=r.document;req(d.key==='bse_final_prospectus'&&d.authority==='BSE Limited'&&d.role==='final_prospectus_publication_candidate'&&d.url===BSE_URL,'document_identity');
  req(stamp(d.requested_at)&&stamp(d.collected_at)&&r.collection_started_at===d.requested_at&&d.collected_at===r.collection_completed_at,'document_clock');
  req(typeof d.accepted==='boolean'&&Number.isSafeInteger(d.response_bytes)&&d.response_bytes>=0&&d.response_bytes<=MAX_BYTES,'document_metadata');
  req(d.accepted?(d.http_status===200&&d.error===null):['network_error','source_size_limit','unexpected_final_url','http_status','unexpected_body_type'].includes(d.error),'document_result');
