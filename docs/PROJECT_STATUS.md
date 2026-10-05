@@ -1,5 +1,20 @@
 # Project status and handoff
 
+## Browser-gate stabilization — 2026-10-04
+
+Separate test/focus batch unblocks PR #356; no public or recovery data is changed.
+Fixed synthetic fixtures replace production-dependent count/status assumptions.
+Duplicate same-URL route notifications no longer reset keyboard focus or research
+state; genuine navigation and data reload still render. Local non-browser checks
+passed; merge only after repeated pinned-runner browser checks are green.
+See [scope and regression design](verification/browser-gate-stabilization-2026-10-04.md).
+
+Next: validate/merge this separate batch, refresh and rerun PR #356, then verify
+its served output. The prior sync 37241174980/downstream 37242214201 succeeded;
+older pending paragraphs below are historical checkpoints. SSEK #352 stays open.
+
+---
+
 ## Data-integrity safeguard release — 2026-10-04
 
 **MERGED AND DEPLOYED; served snapshot verified. First post-merge live-sync

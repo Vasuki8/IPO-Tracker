@@ -47,6 +47,13 @@ Collection time, source observation, dataset generation and Pages publication ar
 
 ## Handoff for the next prompt
 
+The [browser-gate stabilization batch](docs/verification/browser-gate-stabilization-2026-10-04.md)
+uses deterministic fixtures and prevents duplicate navigation notifications from
+stealing focus. It changes no IPO data. Merge after repeated browser checks, then
+refresh PR #356, rerun its checks and verify the served admission/identity repair.
+The prior 37241174980 source cycle and downstream 37242214201 are verified complete;
+the older pending checkpoints below are historical. SSEK #352 remains separate.
+
 The [2026-10-04 integrity safeguard batch](docs/verification/ipo-integrity-safeguards-2026-10-04.md)
 merged in **PR #354** as `be8ec1e0` on **2026-10-04 at 22:44:42 UTC**.
 It addresses BUG-003, BUG-004 and BUG-002 without changing IPO facts.
