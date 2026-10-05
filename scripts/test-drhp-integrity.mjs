@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-import {buildCompanies,collectDrhpYear,officialSebiUrl,officialDrhpDocumentUrl,parseDrhpRows,parseSebiDate,DRHP_LIST_URL,DRHP_AJAX_URL} from './sync-sebi-drhp.mjs';
+import {buildCompanies,collectDrhpYear,officialSebiUrl,officialDrhpDocumentUrl,parseDrhpRows,parseSebiDate,DRHP_LIST_URL,DRHP_AJAX_URL,AXIS_OFFER_DOCS_URL} from './sync-sebi-drhp.mjs';
 import {validateDrhpData,mergeDrhpSnapshots} from './drhp-integrity.mjs';
 const base='https://www.sebi.gov.in/filings/public-issues/';
 const filing=(name='Example Limited',id=100)=>({issuer_name:name,filing_type:'DRHP',filing_date:'2026-06-18',filing_url:base+'jun-2026/example-drhp_'+id+'.html',draft_abridged_url:null});
@@ -97,8 +97,38 @@ await assert.rejects(()=>collectDrhpYear({fetchImpl:async url=>{
   return response(url,page(localPage,localPage===1?2026:2025,localPage===1?60:61));
 },clock:()=>fresh.generated_at,supplementalSources:false,scanAttempts:2}),/drhp_pagination_unstable_after_2_attempts/);
 assert.equal(unstableCalls,4);
+
+const isolatedOut=fs.mkdtempSync(path.join(os.tmpdir(),'drhp-source-isolation-'));
+let isolatedSebiCalls=0, isolatedAxisCalls=0;
+const axisFallbackHtml='<a href="/contents/Fallback%20Limited%20-%20DRHP-1790067639.pdf">Fallback Limited - DRHP</a>';
+await assert.rejects(()=>collectDrhpYear({
+  fetchImpl:async url=>{
+    if(url===AXIS_OFFER_DOCS_URL){
+      isolatedAxisCalls++;
+      return response(AXIS_OFFER_DOCS_URL,axisFallbackHtml);
+    }
+    isolatedSebiCalls++;
+    const localPage=((isolatedSebiCalls-1)%2)+1;
+    return response(url,page(localPage,localPage===1?2026:2025,localPage===1?60:61));
+  },
+  clock:()=>fresh.generated_at,
+  retainSources:isolatedOut,
+  supplementalSources:true,
+  scanAttempts:2
+}),/drhp_pagination_unstable_after_2_attempts/);
+assert.equal(isolatedSebiCalls,4,'two guarded SEBI attempts still run');
+assert.equal(isolatedAxisCalls,1,'Axis fallback must be checked even when SEBI pagination is unstable');
+assert.ok(fs.existsSync(path.join(isolatedOut,'axis-offer-documents.html')),'fallback source bytes are retained');
+const isolatedHealth=JSON.parse(fs.readFileSync(path.join(isolatedOut,'source-health.json'),'utf8'));
+assert.equal(isolatedHealth.sources.sebi_draft_index.status,'failed');
+assert.equal(isolatedHealth.sources.sebi_draft_index.pagination_consistent,false);
+assert.equal(isolatedHealth.sources.axis_capital_offer_documents.status,'success');
+assert.equal(isolatedHealth.sources.axis_capital_offer_documents.parsed_current_year_drhps,1);
+assert.equal(isolatedHealth.sources.axis_capital_offer_documents.companies_added_as_fallback,1);
+fs.rmSync(isolatedOut,{recursive:true});
+
 let repeat=0;await assert.rejects(()=>collectDrhpYear({fetchImpl:async url=>response(url,page(++repeat===1?1:1)),clock:()=>fresh.generated_at,supplementalSources:false}),/did_not_advance/);
 let malformed=0;await assert.rejects(()=>collectDrhpYear({fetchImpl:async url=>response(url,++malformed===1?page(1):'<h1>Access denied</h1>'),clock:()=>fresh.generated_at,supplementalSources:false}),/pagination/);
 await assert.rejects(()=>collectDrhpYear({fetchImpl:async()=>response('https://evil.test',page(1)),clock:()=>fresh.generated_at,supplementalSources:false}),/response/);
 fs.rmSync(out,{recursive:true});
-console.log(JSON.stringify({drhp_integrity_tests:{non_destructive_merge:true,unique_counts:true,source_drift_label:true,pagination_retry_recovery:true,unstable_pagination_rejected:true,stale_and_conflicting_data_rejected:true,pagination_and_raw_retention:true,official_host_guards:true,lead_manager_url_guards:true,legacy_axis_mirror_corrections:true,superseded_axis_identity_removed:true}}));
+console.log(JSON.stringify({drhp_integrity_tests:{non_destructive_merge:true,unique_counts:true,source_drift_label:true,pagination_retry_recovery:true,unstable_pagination_rejected:true,stale_and_conflicting_data_rejected:true,pagination_and_raw_retention:true,primary_fallback_source_isolation:true,official_host_guards:true,lead_manager_url_guards:true,legacy_axis_mirror_corrections:true,superseded_axis_identity_removed:true}}));
