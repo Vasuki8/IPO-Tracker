@@ -1,5 +1,63 @@
 # Project status and handoff
 
+## Current handoff — October audit closed — 2026-10-05 UTC
+
+**ALL FIFTEEN ORIGINAL OCTOBER 4 AUDIT FINDINGS ARE REPAIRED, MERGED AND
+RELEASED.** The durable defect-to-release map is
+[verification/october-audit-closeout-2026-10-05.md](verification/october-audit-closeout-2026-10-05.md).
+
+The final defect, BUG-015 document-filter keyboard focus, merged in PR #366 as
+`d3e44eb78a8b9f749ef3d21dde9b50daea308def`. Exact-head browser, data-contract,
+reviewed-BSE and historical gates passed. Post-merge Pages **37352664322** verified
+the served 1,388-record `data/ipos.json` on attempt 1, SHA-256
+`1741ef733cb06bc6e8d2d466ebd861ab8336996a6e7a69a0751e58dfbe1d3360`.
+Post-merge data contract **37352664476** and browser/interface **37352664386**
+also passed. Pages health commit: `f2da5f4efc06f3114a6dcf351b6674985e7e3a69`.
+
+Release sequence:
+- PR #354: BUG-002/003/004.
+- PR #356: BUG-001/005.
+- PR #357: BUG-014 browser-fixture stabilization plus the separate duplicate-route
+  skip-link focus race.
+- PR #359: BUG-006/008.
+- PR #360: BUG-007.
+- PR #362: BUG-012.
+- PR #361: BUG-009.
+- PR #363: BUG-010.
+- PR #364: BUG-011.
+- PR #365: BUG-013.
+- PR #366: BUG-015.
+
+Important qualifications:
+- SMCG04 remains excluded from the equity-IPO public directory on retained DEBT
+  series evidence; recovery evidence is preserved.
+- BUG-011 corrected six derived public `last_collected_at` values only. Raw
+  recovery evidence was not redated.
+- BUG-013 exposes lead-manager timestamp dates as proxies; it does not rewrite
+  retained filing dates.
+- The SEBI DRHP pagination surface can still fail upstream. BUG-012 keeps that
+  failure isolated, retains the last good dataset, permits the independent Axis
+  fallback attempt and records per-source health. Source availability itself is
+  not claimed fixed.
+
+**Exact next bounded work:** review and refresh the separate SSEK closeout
+PR #352 onto current `main`. Its head predates the audit releases. Do not merge
+that stale branch directly, do not replay the already completed SSEK publication
+or source collection, and do not re-authorize historical facts. Preserve the
+existing served-verification receipt, refresh only the bounded queue closeout and
+temporary-workflow retirement, rerun current contracts, then merge only if the
+four reviewed 2023 identities remain the sole affected release scope.
+
+Continue P1 correctness. P5/performance remains out of scope while source/release
+governance work is unresolved. No new spending, contracts, accounts, analytics,
+ads, billing, infrastructure migration or material access changes without
+approval.
+
+The historical checkpoints below are superseded as active instructions but remain
+retained evidence.
+
+---
+
 ## Browser gate and admission release — 2026-10-05 UTC
 
 **MERGED, DEPLOYED AND SERVED-VERIFIED.** Separate browser PR #357 merged as
