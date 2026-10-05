@@ -1,0 +1,60 @@
+name: Verify prepared Mish Designs publication
+
+on:
+  push:
+    branches:
+      - release/bse-2023-mish-20261005
+    paths:
+      - '.github/workflows/verify-bse-2023-mish-prepared.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Verify exact approved recovery/public projection
+        run: |
+          node scripts/test-reviewed-bse-2023-mish.mjs
+          node scripts/apply-reviewed-bse-2023-mish.mjs --review
+          node scripts/apply-reviewed-bse-2023-mish.mjs --check
+      - name: Verify current branch publication is synchronized and valid
+        run: |
+          node scripts/build-published-data.mjs --check
+          node scripts/validate-data.mjs
+      - name: Verify Mish record exists exactly once and source host is BSE
+        shell: bash
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import assert from 'node:assert/strict';
+          import {context,expected} from './scripts/apply-reviewed-bse-2023-mish.mjs';
+          import {expectedPublic} from './scripts/verify-bse-2023-mish.mjs';
+          const target=expectedPublic(expected(context())[0]);
+          const data=JSON.parse(fs.readFileSync('data/ipos.json','utf8'));
+          const hits=data.records.filter(r=>r.id==='mish-designs-limited');
+          assert.deepEqual(hits,[target],'prepared Mish public record must exactly match approved projection');
+          assert.equal(JSON.stringify(hits[0]).includes('mishindia.com'),false);
+          assert.equal(hits[0].market_lot.value,null);
+          assert.equal(hits[0].minimum_bid_quantity.value,null);
+          assert.equal(hits[0].minimum_application_amount_inr.value,null);
+          assert.deepEqual([...new Set([
+            ...hits[0].issue_price.evidence,
+            ...hits[0].issue_size_inr.evidence,
+            ...hits[0].open_date.evidence,
+            ...hits[0].close_date.evidence,
+            ...hits[0].listing_date.evidence,
+            ...hits[0].status_evidence
+          ].map(e=>new URL(e.url).hostname))],['www.bseindia.com']);
+          console.log(JSON.stringify({mish_prepared_publication_verified:true,published_records:data.records.length,generated_at:data.generated_at}));
+          NODE
+      - name: Prove verification is read-only
+        run: git diff --exit-code
