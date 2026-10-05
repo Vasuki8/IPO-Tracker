@@ -42,10 +42,18 @@ for(const name of ['issue_price','issue_size_inr','open_date','close_date','list
   assert.equal(new URL(target[name].source.url).hostname,'www.bseindia.com');
 }
 assert.equal(JSON.stringify(target).includes('mishindia.com'),false);
-assert.equal(target.open_date.corrections.length,1);
-assert.equal(target.open_date.corrections[0].competing_observation.value,'2023-11-02');
-assert.equal(target.close_date.corrections.length,1);
-assert.equal(target.close_date.corrections[0].competing_observation.value,'2023-10-31');
+assert.deepEqual(target.open_date.corrections,[{
+  recorded_at:'2026-10-05T20:11:50.000Z',
+  previous_value:'2023-11-02',
+  new_value:'2023-10-31',
+  reason:ctx.fieldReview.fields.open_date.corrections[0].note
+}]);
+assert.deepEqual(target.close_date.corrections,[{
+  recorded_at:'2026-10-05T20:11:50.000Z',
+  previous_value:'2023-10-31',
+  new_value:'2023-11-02',
+  reason:ctx.fieldReview.fields.close_date.corrections[0].note
+}]);
 assert.deepEqual(target.bse_2023_mish_import.held_research_fields,['market_lot','minimum_bid_quantity']);
 
 const fixture=()=>Object.fromEntries([2020,2021,2022,2023,2024,2025,2026].map(year=>[
