@@ -288,8 +288,9 @@ function retainedFieldEvidence(field, fallbackSource = null) {
 }
 
 function addAdditionalSourceOnce(field, evidence) {
+  const primary = retainedFieldEvidence(field);
   const existing = Array.isArray(field.additional_sources) ? field.additional_sources : [];
-  if (existing.some((item) => item.url === evidence.url &&
+  if ([...primary, ...existing].some((item) => item.url === evidence.url &&
       item.document_identity === evidence.document_identity &&
       item.document_type === evidence.document_type)) return false;
   field.additional_sources = [...existing, evidence];
