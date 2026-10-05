@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0.0",
+  "status": "rejected_wrong_issuer_document",
+  "issuer_name": "Mish Designs Limited",
+  "discovery_bse_scrip_code": "544015",
+  "candidate_url": "https://www.bseindia.com/corporates/download/394119/SME_IPO%20Open/Prospectus_Final_20231109201146.pdf",
+  "source_authority": "BSE Limited",
+  "collection": {
+    "run_id": 37363801195,
+    "job_id": 111944415994,
+    "artifact_id": 11368075318,
+    "artifact_name": "bse-2023-mish-bse-prospectus-37363801195-1",
+    "artifact_bytes": 2578896,
+    "artifact_sha256": "6b1718c6931c0dfcaabbbcd864561dca74c40a7cf7f8770f27bb670660262695",
+    "artifact_expires_at": "2026-10-19T19:31:37Z",
+    "response_bytes": 2572076,
+    "response_sha256": "663aeffedb6d21f2eb71a48fcb634dcdfd3e35807fa0dde113047e813d39cd1d",
+    "pdf_pages": 234,
+    "extracted_text_sha256": "38298cc5c3bc8a03a894e89a6f2072633957f4112b3fd9ba5a0b9513e8e1aa29"
+  },
+  "semantic_review": {
+    "cover_page": 1,
+    "cover_issuer": "ARROWHEAD SEPERATION ENGINEERING LIMITED",
+    "cover_cin": "U74210MH1991PLC062643",
+    "cover_issue_price_inr": 233,
+    "cover_issue_open_date": "2023-11-16",
+    "cover_issue_close_date": "2023-11-20",
+    "mish_mentions_pages": [
+      179
+    ],
+    "mish_context": "Mish Designs Limited appears only in the lead-manager past-issues disclosure, including a note that its listing date was November 07, 2023.",
+    "mish_scrip_code_present": false,
+    "decision": "reject_as_mish_source",
+    "reason": "The BSE-hosted PDF is Arrowhead Seperation Engineering Limited's Prospectus, not Mish Designs Limited's Prospectus. Search indexing surfaced Mish only because the document contains lead-manager track-record disclosures."
+  },
+  "prior_mish_source_receipt": "data/evidence/bse-2023-mish-source-receipt-2026-10-05.json",
+  "prior_issuer_prospectus": {
+    "response_sha256": "1779a684e9f5dac3441fa13dfd129a7d5ba6bb89670695ea8d04f01d3de9a804",
+    "response_bytes": 4554961,
+    "pdf_pages": 237,
+    "publication_use": "review_only_pending_publication_source_policy"
+  },
+  "publication_import_allowed": false,
+  "semantic_field_approval_allowed": false,
+  "notes": [
+    "The BSE candidate is retained as rejected research evidence only.",
+    "No Mish field may cite this PDF.",
+    "The current issuer-hosted Mish Final Prospectus and BSE-hosted Mish annual report remain the valid retained source set for semantic review.",
+    "The false-positive BSE search path is closed; do not retry this exact URL for Mish."
+  ]
+}
