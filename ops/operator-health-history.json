@@ -303,6 +303,120 @@
       "last_observed_at": "2026-09-30T02:30:25.233Z",
       "last_run_id": "36658574282",
       "observations": 1
+    },
+    {
+      "observed_at": "2026-09-30T08:56:17.067Z",
+      "run_id": "36691132495",
+      "commit_sha": "d415a4269ce2f5eba6841743a358a5682aed783c",
+      "overall": "stale",
+      "reasons": [
+        "stale_pages_publication"
+      ],
+      "last_observed_at": "2026-09-30T16:21:20.967Z",
+      "last_run_id": "36740682892",
+      "observations": 2
+    },
+    {
+      "observed_at": "2026-09-30T16:58:43.191Z",
+      "run_id": "36745344811",
+      "commit_sha": "dff5dd8de79b0d2b7d97b119ae75bcecb4410d3c",
+      "overall": "healthy",
+      "reasons": [],
+      "last_observed_at": "2026-10-01T07:33:52.614Z",
+      "last_run_id": "36829081729",
+      "observations": 4
+    },
+    {
+      "observed_at": "2026-10-01T14:55:17.410Z",
+      "run_id": "36877338261",
+      "commit_sha": "61ccfa66945f5ae8a35f0bf672e728471ed7be1d",
+      "overall": "failure",
+      "reasons": [
+        "pages_deployment_failure",
+        "stale_pages_publication"
+      ],
+      "last_observed_at": "2026-10-01T14:55:17.410Z",
+      "last_run_id": "36877338261",
+      "observations": 1
+    },
+    {
+      "observed_at": "2026-10-01T20:42:13.157Z",
+      "run_id": "36921123543",
+      "commit_sha": "56a8eff2a10697263fab3d71279f535860786ea2",
+      "overall": "healthy",
+      "reasons": [],
+      "last_observed_at": "2026-10-03T00:11:33.550Z",
+      "last_run_id": "37079423669",
+      "observations": 6
+    },
+    {
+      "observed_at": "2026-10-03T05:44:26.033Z",
+      "run_id": "37099763591",
+      "commit_sha": "28c6b00eedf48702dd0c6fb209c4d14349ffc2d5",
+      "overall": "stale",
+      "reasons": [
+        "stale_pages_publication"
+      ],
+      "last_observed_at": "2026-10-03T05:44:26.033Z",
+      "last_run_id": "37099763591",
+      "observations": 1
+    },
+    {
+      "observed_at": "2026-10-03T12:08:41.482Z",
+      "run_id": "37120766713",
+      "commit_sha": "54a46593bc0f33cbe9effe2e7176a41a7ea0d0a2",
+      "overall": "healthy",
+      "reasons": [],
+      "last_observed_at": "2026-10-03T23:26:48.543Z",
+      "last_run_id": "37160761836",
+      "observations": 4
+    },
+    {
+      "observed_at": "2026-10-04T03:01:50.613Z",
+      "run_id": "37171918270",
+      "commit_sha": "5427a0ede5cacf2e5c5740ec3975b7dbd246d3f9",
+      "overall": "stale",
+      "reasons": [
+        "stale_dataset",
+        "stale_record_collection"
+      ],
+      "last_observed_at": "2026-10-04T03:01:50.613Z",
+      "last_run_id": "37171918270",
+      "observations": 1
+    },
+    {
+      "observed_at": "2026-10-04T10:11:11.814Z",
+      "run_id": "37193631177",
+      "commit_sha": "49fd070094c9f078b6982876b056f7b73aa82a6e",
+      "overall": "healthy",
+      "reasons": [],
+      "last_observed_at": "2026-10-05T00:54:19.705Z",
+      "last_run_id": "37248108138",
+      "observations": 6
+    },
+    {
+      "observed_at": "2026-10-05T02:07:27.813Z",
+      "run_id": "37252791040",
+      "commit_sha": "18d9b4894daead0898a248b3934c845fb9a58491",
+      "overall": "unknown",
+      "reasons": [
+        "rebuild_unmeasured",
+        "validation_unmeasured",
+        "repository_publish_unmeasured"
+      ],
+      "last_observed_at": "2026-10-05T02:07:27.813Z",
+      "last_run_id": "37252791040",
+      "observations": 1
+    },
+    {
+      "observed_at": "2026-10-05T02:27:48.008Z",
+      "run_id": "37254108673",
+      "commit_sha": "76b6ebcb55944eebd43be99b7b302845238cccc7",
+      "overall": "healthy",
+      "reasons": [],
+      "last_observed_at": "2026-10-05T18:14:40.867Z",
+      "last_run_id": "37351587258",
+      "observations": 4
     }
   ]
 }

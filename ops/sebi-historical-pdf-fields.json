@@ -1921,10 +1921,28 @@
     "2021|pb-fintech-limited": {
       "issuer_name": "PB Fintech Limited",
       "listing_date": "2021-11-15",
-      "last_attempted_at": "2026-09-29T06:21:03.481Z",
+      "last_attempted_at": "2026-09-30T09:05:14.448Z",
       "parser_version": "1.2.0",
-      "status": "error",
-      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 75 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-historical-pdf-dI9QgK/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/oct-2021/1635395300515.pdf\ncurl: (28) Operation timed out after 75000 milliseconds with 21205839 out of 27205538 bytes received\ncurl: (18) transfer closed with 25039091 bytes remaining to read\n",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "price_band",
+        "issue_size_inr",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "PB Fintech Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2021/1635395300515.pdf",
+        "publication_date": "2021-10-28"
+      },
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2021/1635395300515.pdf"
     },
     "2025|jain-resource-recycling-limited": {
@@ -4605,6 +4623,1707 @@
         "publication_date": "2023-06-19"
       },
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2023/1687324951765.pdf"
+    },
+    "2025|aditya-infotech-limited": {
+      "issuer_name": "Aditya Infotech Limited",
+      "listing_date": "2025-08-05",
+      "last_attempted_at": "2026-09-30T09:05:14.448Z",
+      "parser_version": "1.2.0",
+      "status": "extracted",
+      "extracted_fields": [
+        "issue_size_inr"
+      ],
+      "remaining_fields": [
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": {
+          "value": 13000000000,
+          "source_value": "₹13,000.00 MILLION",
+          "page": 3
+        },
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Aditya Infotech Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2025/1753782855015.pdf",
+        "publication_date": "2025-07-23"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2025/1753782855015.pdf"
+    },
+    "2023|shoora-designs-limited": {
+      "issuer_name": "Shoora Designs Limited",
+      "listing_date": "2023-08-29",
+      "last_attempted_at": "2026-09-30T09:05:14.448Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "price_band"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Shoora Designs Limited — Prospectus 2023-08-09",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/apr-2024/1712280675615_212.pdf",
+        "publication_date": null
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/apr-2024/1712280675615_212.pdf"
+    },
+    "2023|khazanchi-jewellers-limited": {
+      "issuer_name": "Khazanchi Jewellers Limited",
+      "listing_date": "2023-08-07",
+      "last_attempted_at": "2026-09-30T09:05:14.448Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "price_band"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Khazanchi Jewellers Limited — Prospectus 2023-07-15",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2023/1689936568009.pdf",
+        "publication_date": null
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2023/1689936568009.pdf"
+    },
+    "2023|greenchef-appliances-limited": {
+      "issuer_name": "Greenchef Appliances Limited",
+      "listing_date": "2023-07-06",
+      "last_attempted_at": "2026-09-30T09:05:14.448Z",
+      "parser_version": "1.2.0",
+      "status": "extracted",
+      "extracted_fields": [
+        "market_lot"
+      ],
+      "remaining_fields": [
+        "price_band",
+        "issue_size_inr"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": {
+          "value": 1600,
+          "source_value": "Lot Size 1600 Equity Shares",
+          "page": 9
+        },
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Greenchef Appliances Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2023/1688554585338.pdf",
+        "publication_date": "2023-07-03"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2023/1688554585338.pdf"
+    },
+    "2025|laxmi-india-finance-limited": {
+      "issuer_name": "Laxmi India Finance Limited",
+      "listing_date": "2025-08-05",
+      "last_attempted_at": "2026-09-30T21:04:59.685Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "issue_size_inr",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Laxmi India Finance Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2025/1753185412594.pdf",
+        "publication_date": "2025-07-22"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2025/1753185412594.pdf"
+    },
+    "2022|alkosign-limited": {
+      "issuer_name": "Alkosign Limited",
+      "listing_date": "2022-02-01",
+      "last_attempted_at": "2026-09-30T21:04:59.685Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "price_band",
+        "issue_size_inr",
+        "minimum_bid_quantity"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Alkosign Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2022/1671796154034.pdf",
+        "publication_date": "2022-01-12"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2022/1671796154034.pdf"
+    },
+    "2024|sanstar-limited": {
+      "issuer_name": "Sanstar Limited",
+      "listing_date": "2024-07-26",
+      "last_attempted_at": "2026-10-01T00:53:44.477Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "issue_size_inr",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Sanstar Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2024/1721020818790.PDF",
+        "publication_date": "2024-07-15"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2024/1721020818790.PDF"
+    },
+    "2023|aatmaj-healthcare-limited": {
+      "issuer_name": "Aatmaj Healthcare Limited",
+      "listing_date": "2023-06-30",
+      "last_attempted_at": "2026-10-01T00:53:44.477Z",
+      "parser_version": "1.2.0",
+      "status": "extracted",
+      "extracted_fields": [
+        "issue_size_inr"
+      ],
+      "remaining_fields": [
+        "price_band",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": {
+          "value": 384000000,
+          "source_value": "₹3,840.00 LAKHS",
+          "page": 2
+        },
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Aatmaj Healthcare Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2023/1687516313501.pdf",
+        "publication_date": "2023-06-19"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2023/1687516313501.pdf"
+    },
+    "2025|shanti-gold-international-limited": {
+      "issuer_name": "Shanti Gold International Limited",
+      "listing_date": "2025-08-01",
+      "last_attempted_at": "2026-10-01T06:42:41.172Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "issue_size_inr",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Shanti Gold International Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2025/1753333964063.pdf",
+        "publication_date": "2025-07-17"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2025/1753333964063.pdf"
+    },
+    "2025|brigade-hotel-ventures-limited": {
+      "issuer_name": "Brigade Hotel Ventures Limited",
+      "listing_date": "2025-07-31",
+      "last_attempted_at": "2026-10-01T06:42:41.172Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Brigade Hotel Ventures Limited- RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2025/1753444798777.pdf",
+        "publication_date": "2025-07-25"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2025/1753444798777.pdf"
+    },
+    "2025|gng-electronics-limited": {
+      "issuer_name": "GNG Electronics Limited",
+      "listing_date": "2025-07-30",
+      "last_attempted_at": "2026-10-01T06:42:41.172Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "issue_size_inr",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "GNG Electronics Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2025/1752841753123.pdf",
+        "publication_date": "2025-07-18"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2025/1752841753123.pdf"
+    },
+    "2025|indiqube-spaces-limited": {
+      "issuer_name": "Indiqube Spaces Limited",
+      "listing_date": "2025-07-30",
+      "last_attempted_at": "2026-10-01T13:59:38.463Z",
+      "parser_version": "1.2.0",
+      "status": "extracted",
+      "extracted_fields": [
+        "issue_size_inr"
+      ],
+      "remaining_fields": [
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": {
+          "value": 7000000000,
+          "source_value": "₹7,000.00 MILLION",
+          "page": 3
+        },
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Indiqube Spaces Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2025/1754306929221.pdf",
+        "publication_date": "2025-08-04"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2025/1754306929221.pdf"
+    },
+    "2023|bizotic-commercial-limited": {
+      "issuer_name": "Bizotic Commercial Limited",
+      "listing_date": "2023-06-23",
+      "last_attempted_at": "2026-10-01T13:59:38.463Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "price_band",
+        "issue_size_inr",
+        "minimum_bid_quantity"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Bizotic Commercial Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2023/1686140656021.pdf",
+        "publication_date": "2023-05-31"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2023/1686140656021.pdf"
+    },
+    "2025|anthem-biosciences-limited": {
+      "issuer_name": "Anthem Biosciences Limited",
+      "listing_date": "2025-07-21",
+      "last_attempted_at": "2026-10-01T23:43:12.068Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Anthem Biosciences Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2025/1752053961291.pdf",
+        "publication_date": "2025-07-09"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2025/1752053961291.pdf"
+    },
+    "2023|ikio-lighting-limited": {
+      "issuer_name": "IKIO Lighting Limited",
+      "listing_date": "2023-06-16",
+      "last_attempted_at": "2026-10-01T23:43:12.068Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "price_band",
+        "issue_size_inr",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "IKIO Lighting Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/may-2023/1685448884386.pdf",
+        "publication_date": "2023-05-30"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/may-2023/1685448884386.pdf"
+    },
+    "2023|kore-digital-limited": {
+      "issuer_name": "Kore Digital Limited",
+      "listing_date": "2023-06-14",
+      "last_attempted_at": "2026-10-01T23:43:12.068Z",
+      "parser_version": "1.2.0",
+      "status": "extracted",
+      "extracted_fields": [
+        "issue_size_inr"
+      ],
+      "remaining_fields": [
+        "price_band",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": {
+          "value": 180000000,
+          "source_value": "₹1800.00 LAKHS",
+          "page": 2
+        },
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Kore Digital Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/may-2023/1685505161104.PDF",
+        "publication_date": "2023-05-30"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/may-2023/1685505161104.PDF"
+    },
+    "2025|smartworks-coworking-spaces-limited": {
+      "issuer_name": "Smartworks Coworking Spaces Limited",
+      "listing_date": "2025-07-17",
+      "last_attempted_at": "2026-10-02T02:50:17.403Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "issue_size_inr",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Smartworks Coworking Spaces Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2025/1751870279793.pdf",
+        "publication_date": "2025-07-07"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2025/1751870279793.pdf"
+    },
+    "2021|macrotech-developers-limited": {
+      "issuer_name": "Macrotech Developers Limited",
+      "listing_date": "2021-04-19",
+      "last_attempted_at": "2026-10-02T02:50:17.403Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "price_band",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Macrotech Developers Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/apr-2023/1681818089619.pdf",
+        "publication_date": "2021-04-12"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/apr-2023/1681818089619.pdf"
+    },
+    "2025|travel-food-services-limited": {
+      "issuer_name": "Travel Food Services Limited",
+      "listing_date": "2025-07-14",
+      "last_attempted_at": "2026-10-02T09:06:18.214Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Travel Food Services Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2025/1752041120177.pdf",
+        "publication_date": "2025-07-02"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2025/1752041120177.pdf"
+    },
+    "2024|emcure-pharmaceuticals-limited": {
+      "issuer_name": "Emcure Pharmaceuticals Limited",
+      "listing_date": "2024-07-10",
+      "last_attempted_at": "2026-10-02T09:06:18.214Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "issue_size_inr",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Emcure Pharmaceuticals Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2024/1719893549592.pdf",
+        "publication_date": "2024-06-27"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2024/1719893549592.pdf"
+    },
+    "2023|sahana-system-limited": {
+      "issuer_name": "Sahana System Limited",
+      "listing_date": "2023-06-12",
+      "last_attempted_at": "2026-10-02T09:06:18.214Z",
+      "parser_version": "1.2.0",
+      "status": "extracted",
+      "extracted_fields": [
+        "issue_size_inr"
+      ],
+      "remaining_fields": [
+        "price_band",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": {
+          "value": 327375000,
+          "source_value": "₹3,273.75 LAKHS",
+          "page": 3
+        },
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Sahana System Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2023/1686912387439.pdf",
+        "publication_date": "2023-06-05"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2023/1686912387439.pdf"
+    },
+    "2021|barbeque-nation-hospitality-limited": {
+      "issuer_name": "Barbeque-Nation Hospitality Limited",
+      "listing_date": "2021-04-07",
+      "last_attempted_at": "2026-10-02T09:06:18.214Z",
+      "parser_version": "1.2.0",
+      "status": "extracted",
+      "extracted_fields": [
+        "issue_size_inr"
+      ],
+      "remaining_fields": [
+        "price_band",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": {
+          "value": 4528740000,
+          "source_value": "₹4,528.74 MILLION",
+          "page": 1
+        },
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Barbeque Nation Hospitality Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/apr-2021/1617274019158.pdf",
+        "publication_date": "2021-04-01"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/apr-2021/1617274019158.pdf"
+    },
+    "2021|siddhika-coatings-limited": {
+      "issuer_name": "Siddhika Coatings Limited",
+      "listing_date": "2021-04-07",
+      "last_attempted_at": "2026-10-02T16:00:16.296Z",
+      "parser_version": "1.2.0",
+      "status": "extracted",
+      "extracted_fields": [
+        "issue_size_inr"
+      ],
+      "remaining_fields": [
+        "price_band",
+        "market_lot",
+        "minimum_bid_quantity"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": {
+          "value": 46968000,
+          "source_value": "₹469.68 LAKHS",
+          "page": 1
+        },
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Siddhika Coatings Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/mar-2021/1616578609076.pdf",
+        "publication_date": "2021-03-24"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/mar-2021/1616578609076.pdf"
+    },
+    "2021|nazara-technologies-limited": {
+      "issuer_name": "Nazara Technologies Limited",
+      "listing_date": "2021-03-30",
+      "last_attempted_at": "2026-10-02T16:00:16.296Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "price_band",
+        "issue_size_inr",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Nazara Technologies Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/may-2023/1684484433171.pdf",
+        "publication_date": "2021-03-12"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/may-2023/1684484433171.pdf"
+    },
+    "2025|crizac-limited": {
+      "issuer_name": "CRIZAC LIMITED",
+      "listing_date": "2025-07-09",
+      "last_attempted_at": "2026-10-02T21:04:59.302Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Crizac Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2025/1752043851362.pdf",
+        "publication_date": "2025-07-09"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2025/1752043851362.pdf"
+    },
+    "2023|proventus-agrocom-limited": {
+      "issuer_name": "Proventus Agrocom Limited",
+      "listing_date": "2023-06-05",
+      "last_attempted_at": "2026-10-02T21:04:59.302Z",
+      "parser_version": "1.2.0",
+      "status": "extracted",
+      "extracted_fields": [
+        "issue_size_inr"
+      ],
+      "remaining_fields": [
+        "price_band",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": {
+          "value": 695442000,
+          "source_value": "₹6,954.42 LAKHS",
+          "page": 2
+        },
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Proventus Agrocom Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/may-2023/1685448728297.pdf",
+        "publication_date": "2023-05-30"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/may-2023/1685448728297.pdf"
+    },
+    "2021|kalyan-jewellers-india-limited": {
+      "issuer_name": "Kalyan Jewellers India Limited",
+      "listing_date": "2021-03-26",
+      "last_attempted_at": "2026-10-02T21:04:59.302Z",
+      "parser_version": "1.2.0",
+      "status": "extracted",
+      "extracted_fields": [
+        "issue_size_inr"
+      ],
+      "remaining_fields": [
+        "price_band",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": {
+          "value": 11750000000,
+          "source_value": "₹11,750 MILLION",
+          "page": 1
+        },
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Kalyan Jewellers India Limited - Red Herring Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/apr-2023/1681362757510.pdf",
+        "publication_date": "2021-03-12"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/apr-2023/1681362757510.pdf"
+    },
+    "2021|suryoday-small-finance-bank-limited": {
+      "issuer_name": "Suryoday Small Finance Bank Limited",
+      "listing_date": "2021-03-26",
+      "last_attempted_at": "2026-10-02T21:04:59.302Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "price_band",
+        "issue_size_inr",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Suryoday Small Finance Bank Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/apr-2023/1681362005460.pdf",
+        "publication_date": "2021-03-12"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/apr-2023/1681362005460.pdf"
+    },
+    "2025|hdb-financial-services-limited": {
+      "issuer_name": "HDB Financial Services Limited",
+      "listing_date": "2025-07-02",
+      "last_attempted_at": "2026-10-03T05:52:16.658Z",
+      "parser_version": "1.2.0",
+      "status": "extracted",
+      "extracted_fields": [
+        "issue_size_inr"
+      ],
+      "remaining_fields": [
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": {
+          "value": 125000000000,
+          "source_value": "₹125,000.0 MILLION",
+          "page": 3
+        },
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "HDB Financial Services Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2025/1750416234954.PDF",
+        "publication_date": "2025-06-20"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2025/1750416234954.PDF"
+    },
+    "2024|stanley-lifestyles-limited": {
+      "issuer_name": "Stanley Lifestyles Limited",
+      "listing_date": "2024-06-28",
+      "last_attempted_at": "2026-10-03T05:52:16.658Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "issue_size_inr",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Stanley Lifestyles Limited- RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2024/1718346721264.pdf",
+        "publication_date": "2024-06-13"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2024/1718346721264.pdf"
+    },
+    "2021|easy-trip-planners-limited": {
+      "issuer_name": "Easy Trip Planners Limited",
+      "listing_date": "2021-03-19",
+      "last_attempted_at": "2026-10-03T05:52:16.658Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "price_band",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Easy Trip Planners Limited- Red Herring Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/apr-2023/1681211978007.pdf",
+        "publication_date": "2021-03-03"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/apr-2023/1681211978007.pdf"
+    },
+    "2025|sambhv-steel-tubes-limited": {
+      "issuer_name": "Sambhv Steel Tubes Limited",
+      "listing_date": "2025-07-02",
+      "last_attempted_at": "2026-10-03T05:52:16.658Z",
+      "parser_version": "1.2.0",
+      "status": "extracted",
+      "extracted_fields": [
+        "issue_size_inr"
+      ],
+      "remaining_fields": [
+        "price_band",
+        "market_lot",
+        "minimum_bid_quantity"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": {
+          "value": 5400000000,
+          "source_value": "₹5,400.00 MILLION",
+          "page": 3
+        },
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Sambhv Steel Tubes Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2025/1750410261709.PDF",
+        "publication_date": "2025-06-20"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2025/1750410261709.PDF"
+    },
+    "2021|mtar-technologies-limited": {
+      "issuer_name": "MTAR Technologies Limited",
+      "listing_date": "2021-03-15",
+      "last_attempted_at": "2026-10-03T05:52:16.658Z",
+      "parser_version": "1.2.0",
+      "status": "extracted",
+      "extracted_fields": [
+        "issue_size_inr"
+      ],
+      "remaining_fields": [
+        "price_band",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": {
+          "value": 5964140000,
+          "source_value": "₹5,964.14 MILLION",
+          "page": 1
+        },
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "MTAR Technologies Ltd. - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/may-2023/1684480159819.pdf",
+        "publication_date": "2021-03-09"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/may-2023/1684480159819.pdf"
+    },
+    "2025|ellenbarrie-industrial-gases-limited": {
+      "issuer_name": "Ellenbarrie Industrial Gases Limited",
+      "listing_date": "2025-07-01",
+      "last_attempted_at": "2026-10-03T14:58:34.420Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "price_band",
+        "issue_size_inr",
+        "market_lot",
+        "minimum_bid_quantity"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Ellenbarrie Industrial Gases Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2025/1753782793882.pdf",
+        "publication_date": "2025-06-18"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2025/1753782793882.pdf"
+    },
+    "2023|mankind-pharma-limited": {
+      "issuer_name": "Mankind Pharma Limited",
+      "listing_date": "2023-05-09",
+      "last_attempted_at": "2026-10-03T14:58:34.420Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "price_band",
+        "issue_size_inr",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Mankind Pharma Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/apr-2023/1682325516195.pdf",
+        "publication_date": "2023-04-24"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/apr-2023/1682325516195.pdf"
+    },
+    "2021|railtel-corporation-of-india-limited": {
+      "issuer_name": "RailTel Corporation of India Limited",
+      "listing_date": "2021-02-26",
+      "last_attempted_at": "2026-10-03T14:58:34.420Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "price_band",
+        "issue_size_inr",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Railtel Corporation of India Limited - Red Herring Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/feb-2021/1613387690368.pdf",
+        "publication_date": "2021-02-15"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/feb-2021/1613387690368.pdf"
+    },
+    "2025|kalpataru-limited": {
+      "issuer_name": "Kalpataru Limited",
+      "listing_date": "2025-07-01",
+      "last_attempted_at": "2026-10-03T14:58:34.420Z",
+      "parser_version": "1.2.0",
+      "status": "extracted",
+      "extracted_fields": [
+        "issue_size_inr"
+      ],
+      "remaining_fields": [
+        "price_band",
+        "market_lot",
+        "minimum_bid_quantity"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": {
+          "value": 15900000000,
+          "source_value": "₹15,900 MILLION",
+          "page": 3
+        },
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Kalpataru Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2025/1750397109250.pdf",
+        "publication_date": "2025-06-19"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2025/1750397109250.pdf"
+    },
+    "2023|quicktouch-technologies-limited": {
+      "issuer_name": "Quicktouch Technologies Limited",
+      "listing_date": "2023-05-02",
+      "last_attempted_at": "2026-10-03T18:52:04.631Z",
+      "parser_version": "1.2.0",
+      "status": "extracted",
+      "extracted_fields": [
+        "issue_size_inr"
+      ],
+      "remaining_fields": [
+        "price_band",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": {
+          "value": 93330000,
+          "source_value": "₹933.30 LAKH",
+          "page": 2
+        },
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Quicktouch Technologies Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/apr-2023/1681882462953.PDF",
+        "publication_date": "2023-04-10"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/apr-2023/1681882462953.PDF"
+    },
+    "2023|pattech-fitwell-tube-components-limited": {
+      "issuer_name": "Pattech Fitwell Tube Components Limited",
+      "listing_date": "2023-04-21",
+      "last_attempted_at": "2026-10-03T18:52:04.631Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "price_band",
+        "issue_size_inr",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Pattech Fitwell Tube Components Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/apr-2023/1681875160196.pdf",
+        "publication_date": "2023-03-31"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/apr-2023/1681875160196.pdf"
+    },
+    "2025|arisinfra-solutions-limited": {
+      "issuer_name": "Arisinfra Solutions Limited",
+      "listing_date": "2025-06-25",
+      "last_attempted_at": "2026-10-03T21:52:58.056Z",
+      "parser_version": "1.2.0",
+      "status": "extracted",
+      "extracted_fields": [
+        "issue_size_inr"
+      ],
+      "remaining_fields": [
+        "price_band",
+        "market_lot",
+        "minimum_bid_quantity"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": {
+          "value": 4995960000,
+          "source_value": "₹4,995.96 MILLION",
+          "page": 3
+        },
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Arisinfra Solutions Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2025/1749721951198.pdf",
+        "publication_date": "2025-06-12"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2025/1749721951198.pdf"
+    },
+    "2024|le-travenues-technology-limited": {
+      "issuer_name": "Le Travenues Technology Limited",
+      "listing_date": "2024-06-18",
+      "last_attempted_at": "2026-10-03T21:52:58.056Z",
+      "parser_version": "1.2.0",
+      "status": "extracted",
+      "extracted_fields": [
+        "issue_size_inr"
+      ],
+      "remaining_fields": [
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": {
+          "value": 7401020000,
+          "source_value": "₹7,401.02 MILLION",
+          "page": 3
+        },
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Le Travenues Technology Limited- prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2024/1718873426631.pdf",
+        "publication_date": "2024-06-19"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2024/1718873426631.pdf"
+    },
+    "2023|avalon-technologies-limited": {
+      "issuer_name": "Avalon Technologies Limited",
+      "listing_date": "2023-04-18",
+      "last_attempted_at": "2026-10-03T21:52:58.056Z",
+      "parser_version": "1.2.0",
+      "status": "extracted",
+      "extracted_fields": [
+        "issue_size_inr"
+      ],
+      "remaining_fields": [
+        "price_band",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": {
+          "value": 8650000000,
+          "source_value": "₹8,650.00 MILLION",
+          "page": 3
+        },
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Avalon Technologies Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/mar-2023/1680235672451.pdf",
+        "publication_date": "2023-03-29"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/mar-2023/1680235672451.pdf"
+    },
+    "2021|stove-kraft-limited": {
+      "issuer_name": "Stove Kraft Limited",
+      "listing_date": "2021-02-05",
+      "last_attempted_at": "2026-10-03T21:52:58.056Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "price_band",
+        "issue_size_inr",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Stove Kraft Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2023/1687844278597.pdf",
+        "publication_date": "2021-01-20"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2023/1687844278597.pdf"
+    },
+    "2024|awfis-space-solutions-limited": {
+      "issuer_name": "Awfis Space Solutions Limited",
+      "listing_date": "2024-05-30",
+      "last_attempted_at": "2026-10-04T12:55:13.402Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "issue_size_inr",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Awfis Space Solutions Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/may-2024/1715832874672.pdf",
+        "publication_date": "2024-05-14"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/may-2024/1715832874672.pdf"
+    },
+    "2023|vels-film-international-limited": {
+      "issuer_name": "Vels Film International Limited",
+      "listing_date": "2023-03-22",
+      "last_attempted_at": "2026-10-04T12:55:13.402Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "price_band",
+        "issue_size_inr",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Vels Film International Ltd - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/mar-2023/1678685202421.pdf",
+        "publication_date": "2023-02-27"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/mar-2023/1678685202421.pdf"
+    },
+    "2025|schloss-bangalore-limited": {
+      "issuer_name": "Schloss Bangalore Limited",
+      "listing_date": "2025-06-02",
+      "last_attempted_at": "2026-10-04T17:15:15.062Z",
+      "parser_version": "1.2.0",
+      "status": "extracted",
+      "extracted_fields": [
+        "issue_size_inr"
+      ],
+      "remaining_fields": [
+        "price_band",
+        "market_lot",
+        "minimum_bid_quantity"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": {
+          "value": 35000000000,
+          "source_value": "₹35,000.00 MILLION",
+          "page": 3
+        },
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Schloss Bangalore Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/may-2025/1747801237108.PDF",
+        "publication_date": "2025-05-20"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/may-2025/1747801237108.PDF"
+    },
+    "2024|rulka-electricals-limited": {
+      "issuer_name": "Rulka Electricals Limited",
+      "listing_date": "2024-05-24",
+      "last_attempted_at": "2026-10-04T17:15:15.062Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "issue_size_inr",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "RULKA ELECTRICALS LIMITED - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/may-2024/1716354323272.pdf",
+        "publication_date": "2024-05-09"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/may-2024/1716354323272.pdf"
+    },
+    "2023|divgi-torqtransfer-systems-limited": {
+      "issuer_name": "Divgi TorqTransfer Systems Limited",
+      "listing_date": "2023-03-14",
+      "last_attempted_at": "2026-10-04T17:15:15.062Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "price_band",
+        "issue_size_inr",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Divgi Torqtransfer Systems Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/feb-2023/1677490260199.pdf",
+        "publication_date": "2023-02-27"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/feb-2023/1677490260199.pdf"
+    },
+    "2025|belrise-industries-limited": {
+      "issuer_name": "Belrise Industries Limited",
+      "listing_date": "2025-05-28",
+      "last_attempted_at": "2026-10-04T20:34:13.027Z",
+      "parser_version": "1.2.0",
+      "status": "extracted",
+      "extracted_fields": [
+        "issue_size_inr"
+      ],
+      "remaining_fields": [
+        "price_band",
+        "market_lot",
+        "minimum_bid_quantity"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": {
+          "value": 21500000000,
+          "source_value": "₹21,500.00 MILLION",
+          "page": 3
+        },
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Belrise Industries Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/may-2025/1747993709745.pdf",
+        "publication_date": "2025-05-15"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/may-2025/1747993709745.pdf"
+    },
+    "2025|ather-energy-limited": {
+      "issuer_name": "Ather Energy Limited",
+      "listing_date": "2025-05-06",
+      "last_attempted_at": "2026-10-04T23:40:14.697Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "price_band",
+        "issue_size_inr",
+        "market_lot",
+        "minimum_bid_quantity"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Ather Energy Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/apr-2025/1745402636567.pdf",
+        "publication_date": "2025-04-23"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/apr-2025/1745402636567.pdf"
+    },
+    "2024|piotex-industries-limited": {
+      "issuer_name": "PIOTEX INDUSTRIES LIMITED",
+      "listing_date": "2024-05-17",
+      "last_attempted_at": "2026-10-04T23:40:14.697Z",
+      "parser_version": "1.2.0",
+      "status": "extracted",
+      "extracted_fields": [
+        "issue_size_inr"
+      ],
+      "remaining_fields": [
+        "price_band",
+        "minimum_bid_quantity"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": {
+          "value": 144722000,
+          "source_value": "₹1447.22 LAKHS",
+          "page": 2
+        },
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "PIOTEX INDUSTRIES LIMITED- Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/may-2024/1716354591676.pdf",
+        "publication_date": "2024-05-06"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/may-2024/1716354591676.pdf"
+    },
+    "2023|srivasavi-adhesive-tapes-limited": {
+      "issuer_name": "Srivasavi Adhesive Tapes Limited",
+      "listing_date": "2023-03-09",
+      "last_attempted_at": "2026-10-04T23:40:14.697Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "price_band",
+        "issue_size_inr",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Srivasavi Adhesive Tapes Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/apr-2023/1682074934178.pdf",
+        "publication_date": "2023-02-22"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/apr-2023/1682074934178.pdf"
+    },
+    "2024|aadhar-housing-finance-limited": {
+      "issuer_name": "Aadhar Housing Finance Limited",
+      "listing_date": "2024-05-15",
+      "last_attempted_at": "2026-10-04T23:40:14.697Z",
+      "parser_version": "1.2.0",
+      "status": "extracted",
+      "extracted_fields": [
+        "issue_size_inr"
+      ],
+      "remaining_fields": [
+        "price_band",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": {
+          "value": 30000000000,
+          "source_value": "₹30,000 MILLION",
+          "page": 3
+        },
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Aadhar Housing Finance Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/may-2024/1714644459754.pdf",
+        "publication_date": "2024-04-30"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/may-2024/1714644459754.pdf"
+    },
+    "2024|tbo-tek-limited": {
+      "issuer_name": "TBO Tek Limited",
+      "listing_date": "2024-05-15",
+      "last_attempted_at": "2026-10-04T23:40:14.697Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "issue_size_inr",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "TBO Tek Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/may-2024/1714644931824.PDF",
+        "publication_date": "2024-05-02"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/may-2024/1714644931824.PDF"
+    },
+    "2024|indegene-limited": {
+      "issuer_name": "Indegene Limited",
+      "listing_date": "2024-05-13",
+      "last_attempted_at": "2026-10-05T02:42:00.348Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "price_band",
+        "issue_size_inr",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Indegene Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/may-2024/1714645058946.PDF",
+        "publication_date": "2024-05-02"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/may-2024/1714645058946.PDF"
+    },
+    "2024|jnk-india-limited": {
+      "issuer_name": "JNK India Limited",
+      "listing_date": "2024-04-30",
+      "last_attempted_at": "2026-10-05T02:42:00.348Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "price_band",
+        "issue_size_inr",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "JNK India Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/may-2024/1714978298669.pdf",
+        "publication_date": "2024-04-15"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/may-2024/1714978298669.pdf"
+    },
+    "2023|anlon-technology-solutions-limited": {
+      "issuer_name": "Anlon Technology Solutions Limited",
+      "listing_date": "2023-01-10",
+      "last_attempted_at": "2026-10-05T09:42:55.359Z",
+      "parser_version": "1.2.0",
+      "status": "extracted",
+      "extracted_fields": [
+        "price_band",
+        "issue_size_inr"
+      ],
+      "remaining_fields": [
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": {
+          "value": {
+            "min": 95,
+            "max": 100
+          },
+          "source_value": "PRICE BAND: ₹ 95.00 TO ₹ 100.00 ",
+          "page": 2
+        },
+        "issue_size_inr": {
+          "value": 150000000,
+          "source_value": "₹1500.00 lakhs",
+          "page": 20
+        },
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Anlon Technology Solutions Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/jan-2023/1673264301345.pdf",
+        "publication_date": "2023-01-09"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/jan-2023/1673264301345.pdf"
+    },
+    "2023|radiant-cash-management-services-limited": {
+      "issuer_name": "Radiant Cash Management Services Limited",
+      "listing_date": "2023-01-04",
+      "last_attempted_at": "2026-10-05T09:42:55.359Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "price_band",
+        "issue_size_inr",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Radiant Cash Management Services Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/apr-2023/1681729265572.PDF",
+        "publication_date": "2022-12-17"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/apr-2023/1681729265572.PDF"
+    },
+    "2023|rbm-infracon-limited": {
+      "issuer_name": "RBM Infracon Limited",
+      "listing_date": "2023-01-04",
+      "last_attempted_at": "2026-10-05T09:42:55.359Z",
+      "parser_version": "1.2.0",
+      "status": "extracted",
+      "extracted_fields": [
+        "issue_size_inr"
+      ],
+      "remaining_fields": [
+        "price_band",
+        "market_lot",
+        "minimum_bid_quantity"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": {
+          "value": 83700000,
+          "source_value": "₹837.00 LAKHS",
+          "page": 2
+        },
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "RBM Infracon Limited - Prospectus - SME IPO — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2022/1671426478316.pdf",
+        "publication_date": "2022-12-19"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2022/1671426478316.pdf"
     }
   }
 }

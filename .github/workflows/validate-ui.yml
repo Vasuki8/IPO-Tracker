@@ -5,15 +5,33 @@ on:
     branches: [main]
     paths:
       - "index.html"
+      - "drhp.html"
       - "assets/**"
       - "scripts/test-ui.mjs"
+      - "scripts/test-product-logic-ui.mjs"
+      - "scripts/test-drhp-freshness.mjs"
+      - "scripts/browser-route-focus.mjs"
+      - "scripts/run-browser-tests.mjs"
+      - "scripts/fixtures/browser-data.mjs"
+      - "data/ipos.json"
+      - "data/drhp-filings.json"
+      - "ops/drhp-collection.json"
       - ".github/workflows/validate-ui.yml"
   push:
     branches: [main]
     paths:
       - "index.html"
+      - "drhp.html"
       - "assets/**"
       - "scripts/test-ui.mjs"
+      - "scripts/test-product-logic-ui.mjs"
+      - "scripts/test-drhp-freshness.mjs"
+      - "scripts/browser-route-focus.mjs"
+      - "scripts/run-browser-tests.mjs"
+      - "scripts/fixtures/browser-data.mjs"
+      - "data/ipos.json"
+      - "data/drhp-filings.json"
+      - "ops/drhp-collection.json"
       - ".github/workflows/validate-ui.yml"
 
 permissions:
@@ -33,10 +51,11 @@ jobs:
           npm install --prefix "$RUNNER_TEMP/ipo-ui" --no-package-lock --no-save playwright@1.56.1
           node "$RUNNER_TEMP/ipo-ui/node_modules/playwright/cli.js" install --with-deps chromium
       - name: Check interface on desktop and mobile
-        run: |
-          PLAYWRIGHT_MODULE="$RUNNER_TEMP/ipo-ui/node_modules/playwright" \
-          UI_SCREENSHOT_DIR="$RUNNER_TEMP/ipo-ui-previews" \
-          node scripts/test-ui.mjs
+        env:
+          BROWSER_TEST_REPEAT: "3"
+          PLAYWRIGHT_MODULE: ${{ runner.temp }}/ipo-ui/node_modules/playwright
+          UI_SCREENSHOT_DIR: ${{ runner.temp }}/ipo-ui-previews
+        run: node scripts/run-browser-tests.mjs
       - name: Retain visual previews
         if: always()
         uses: actions/upload-artifact@v4

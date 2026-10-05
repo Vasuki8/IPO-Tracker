@@ -35,12 +35,18 @@ export function readPagesPublicationStatus(statusPath = PAGES_STATUS_PATH) {
 }
 
 export function buildPagesPublicationStatus(previous = emptyPagesPublicationStatus(), env = process.env) {
+  const deployment = normalizeOutcome(env.PAGES_DEPLOY_OUTCOME);
+  const verification = normalizeOutcome(env.PAGES_VERIFY_OUTCOME);
+  const commitSha = optionalString(env.PAGES_DEPLOY_COMMIT_SHA);
+  const status = deployment !== "success" ? deployment
+    : verification !== "success" ? verification
+      : commitSha ? "success" : "unknown";
   const attempt = {
-    status: normalizeOutcome(env.PAGES_DEPLOY_OUTCOME),
+    status,
     workflow_run_id: optionalString(env.GITHUB_RUN_ID),
     workflow_run_attempt: optionalString(env.GITHUB_RUN_ATTEMPT),
     workflow: optionalString(env.GITHUB_WORKFLOW),
-    commit_sha: optionalString(env.GITHUB_SHA),
+    commit_sha: commitSha,
     completed_at: optionalString(env.PAGES_DEPLOY_COMPLETED_AT) ?? new Date().toISOString(),
     page_url: optionalString(env.PAGES_URL)
   };

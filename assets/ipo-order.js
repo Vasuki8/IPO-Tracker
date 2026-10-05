@@ -7,18 +7,24 @@
     const value = fieldValue(field);
     if (!value) return Number.NEGATIVE_INFINITY;
     const parsed = Date.parse(String(value) + "T00:00:00Z");
-    return Number.isNaN(parsed) ? Number.NEGATIVE_INFINITY : parsed;
+    return Number.isNaN(parsed) || new Date(parsed).toISOString().slice(0, 10) !== String(value)
+      ? Number.NEGATIVE_INFINITY
+      : parsed;
   }
 
   function compareNewestFirst(a, b) {
-    const openDifference = dateKey(b?.open_date) - dateKey(a?.open_date);
-    if (openDifference !== 0) return openDifference;
+    const fields = ["open_date", "close_date", "listing_date"];
+    const aDates = fields.map((field) => dateKey(a?.[field]));
+    const bDates = fields.map((field) => dateKey(b?.[field]));
+    const aPrimary = aDates.find((date) => Number.isFinite(date)) ?? Number.NEGATIVE_INFINITY;
+    const bPrimary = bDates.find((date) => Number.isFinite(date)) ?? Number.NEGATIVE_INFINITY;
+    if (aPrimary !== bPrimary) return aPrimary > bPrimary ? -1 : 1;
 
-    const closeDifference = dateKey(b?.close_date) - dateKey(a?.close_date);
-    if (closeDifference !== 0) return closeDifference;
-
-    const listingDifference = dateKey(b?.listing_date) - dateKey(a?.listing_date);
-    if (listingDifference !== 0) return listingDifference;
+    for (let index = 0; index < fields.length; index += 1) {
+      const aDate = aDates[index];
+      const bDate = bDates[index];
+      if (aDate !== bDate) return aDate > bDate ? -1 : 1;
+    }
 
     return String(a?.issuer_name || "").localeCompare(
       String(b?.issuer_name || ""),

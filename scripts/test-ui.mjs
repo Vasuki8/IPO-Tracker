@@ -1,6 +1,7 @@
 // Browser regression checks. Requires Playwright + Chromium in the test environment.
 // Run: node scripts/test-ui.mjs (UI_SCREENSHOT_DIR optionally retains previews).
 import assert from "node:assert/strict";
+import { directoryDataset } from "./fixtures/browser-data.mjs";
 import { createRequire } from "node:module";
 import { createServer } from "node:http";
 import { readFile, mkdir } from "node:fs/promises";
@@ -9,9 +10,8 @@ import { fileURLToPath } from "node:url";
 const require = createRequire(import.meta.url);
 const { chromium } = require(process.env.PLAYWRIGHT_MODULE || "playwright");
 const root = fileURLToPath(new URL("../", import.meta.url));
-const data = JSON.parse(
-  await readFile(path.join(root, "data/ipos.json"), "utf8"),
-);
+const data = directoryDataset();
+const published = JSON.parse(await readFile(path.join(root, "data/ipos.json"), "utf8"));
 const sourceRecord = data.records.find(
   (row) => row.price_band?.evidence?.length && row.documents?.length,
 );
@@ -28,6 +28,7 @@ assert.ok(
 const server = createServer(async (req, res) => {
   try {
     const pathname = new URL(req.url, "http://localhost").pathname;
+    if (pathname === "/data/ipos.json") { res.writeHead(200, {"Content-Type":"application/json"}).end(JSON.stringify(data)); return; }
     const file = path.resolve(
       root,
       "." + (pathname === "/" ? "/index.html" : pathname),
@@ -58,6 +59,7 @@ await new Promise((resolve) => server.listen(0, "127.0.0.1", resolve));
 const base = `http://127.0.0.1:${server.address().port}`;
 const browser = await chromium.launch({ headless: true });
 const page = await browser.newPage({ viewport: { width: 1440, height: 1100 } });
+await page.clock.install({time:new Date("2026-09-30T12:00:00Z")});
 const errors = [];
 page.on("pageerror", (error) => errors.push(error.message));
 const screenshotDir = process.env.UI_SCREENSHOT_DIR;
@@ -69,6 +71,23 @@ async function screenshot(name, fullPage = false) {
 }
 async function loaded() {
   await page.waitForSelector("#results:not([hidden])");
+}
+async function keyboardSkipToContent() {
+  const url = page.url();
+  await page.locator(".skip-link").focus();
+  await page.keyboard.press("Enter");
+  assert.equal(page.url(), url, "Skip to content must preserve the current IPO route and filters");
+  assert.equal(
+    await page.locator("#main").evaluate((el) => el === document.activeElement),
+    true,
+    "Skip to content must move keyboard focus to main",
+  );
+  await page.keyboard.press("Tab");
+  assert.equal(
+    await page.evaluate(() => document.querySelector("#main").contains(document.activeElement)),
+    true,
+    "Tab after skipping must continue within the current main content",
+  );
 }
 try {
   await page.goto(base);
@@ -123,6 +142,8 @@ try {
     await page.locator("#detailName").textContent(),
     sourceRecord.issuer_name,
   );
+  await keyboardSkipToContent();
+  assert.equal(await page.locator("#detailView").isVisible(), true);
   assert.equal(
     await page.locator("#documentList .document").count(),
     sourceRecord.documents.length,
@@ -146,6 +167,8 @@ try {
     await page.locator("#searchInput").inputValue(),
     sourceRecord.issuer_name,
   );
+  await keyboardSkipToContent();
+  assert.equal(await page.locator("#homeView").isVisible(), true);
   await page.locator("#resetFilters").click();
   assert.ok(
     groupedRecord,
@@ -161,7 +184,9 @@ try {
   const filingCount = groupedRecord.documents.filter((doc) =>
     /sebi|prospectus|issuer/i.test(doc.type || ""),
   ).length;
-  await page.locator('[data-document-category="filings"]').click();
+  const filingsFilter = page.locator('[data-document-category="filings"]');
+  await filingsFilter.focus();
+  await page.keyboard.press("Enter");
   assert.equal(
     await page.locator("#documentList .document").count(),
     filingCount,
@@ -173,13 +198,25 @@ try {
     "true",
   );
   assert.equal(
+    await page.evaluate(() => document.activeElement?.dataset?.documentCategory),
+    "filings",
+    "Keyboard-activating Offer filings must restore focus to the rerendered filter button",
+  );
+  assert.equal(
     new URL(page.url()).hash,
     `#ipo/${encodeURIComponent(groupedRecord.id)}`,
   );
-  await page.locator('[data-document-category="all"]').click();
+  const allDocumentsFilter = page.locator('[data-document-category="all"]');
+  await allDocumentsFilter.focus();
+  await page.keyboard.press("Enter");
   assert.equal(
     await page.locator("#documentList .document").count(),
     groupedRecord.documents.length,
+  );
+  assert.equal(
+    await page.evaluate(() => document.activeElement?.dataset?.documentCategory),
+    "all",
+    "Keyboard-activating All must keep focus inside document filters after rerender",
   );
   await page.locator('[data-detail-section="documents"]').click();
   assert.equal(
@@ -249,6 +286,8 @@ try {
   assert.equal(await page.locator("#mobileCards").isVisible(), true);
   await page.locator("#mobileCards .company-name").first().click();
   await page.waitForSelector("#detailView:not([hidden])");
+  await keyboardSkipToContent();
+  assert.equal(await page.locator("#detailView").isVisible(), true);
   assert.equal(
     await page.evaluate(
       () => document.documentElement.scrollWidth > innerWidth,
@@ -414,6 +453,12 @@ try {
   );
   await page.goto(base);
   await page.waitForSelector("#errorState:not([hidden])");
+  // Separate current-corpus smoke test: no fixed count, price, issuer or lifecycle assumptions.
+  await page.unroute("**/data/ipos.json");
+  await page.route("**/data/ipos.json", route => route.fulfill({json:published}));
+  await page.goto(base); await loaded();
+  assert.equal(await page.locator("#metricTotal").textContent(), published.records.length.toLocaleString("en-IN"));
+  assert.equal(await page.locator("#ipoRows tr").count(), Math.min(25,published.records.length));
   assert.deepEqual(errors, []);
   console.log(
     "UI browser checks passed: real data, filters, 25/50/100 pagination, direct links/back, source evidence, mobile 320–1440px, fractional prices, missing/provisional/conflict, escaping, invalid URLs, loading/error/retry/empty.",

@@ -1,7 +1,9 @@
+import { retainedRecordIneligibility } from "./ipo-instrument-policy.mjs";
 import { retainedFieldStatus } from "./publish-field-status.mjs";
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import "../assets/ipo-order.js";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const recoveryRoot = path.join(ROOT, "data", "recovery");
@@ -26,6 +28,36 @@ function fail(message) {
 
 function readJson(file) {
   return JSON.parse(fs.readFileSync(file, "utf8"));
+}
+
+function latestAttachedCollectedAt(value) {
+  let latest = null;
+  function visit(node) {
+    if (Array.isArray(node)) {
+      node.forEach(visit);
+      return;
+    }
+    if (!node || typeof node !== "object") return;
+    for (const [key, child] of Object.entries(node)) {
+      if (key === "collected_at" && typeof child === "string") {
+        const time = Date.parse(child);
+        if (Number.isFinite(time) && (!latest || time > latest.time)) latest = { time, value: child };
+      } else {
+        visit(child);
+      }
+    }
+  }
+  visit(value);
+  return latest?.value ?? null;
+}
+
+function maxTimestamp(...values) {
+  let latest = null;
+  for (const value of values) {
+    const time = Date.parse(value || "");
+    if (Number.isFinite(time) && (!latest || time > latest.time)) latest = { time, value };
+  }
+  return latest?.value ?? values.find(Boolean) ?? null;
 }
 
 function recoveryFiles() {
@@ -77,22 +109,32 @@ function verifiedField(value, source, page = null) {
 }
 
 function retainedField(field, collectedAt) {
-  if (!field || field.value === null || field.value === undefined) return emptyField();
-  // Additional retained sources preserve competing official disclosures. Do not
-  // change a field's conflict/provisional state merely because it has evidence.
+  if (field === null || field === undefined) return emptyField();
+  if (typeof field !== "object" || Array.isArray(field) || !Object.hasOwn(field, "value")) {
+    fail("retained field must be an object with an explicit value");
+  }
+  // A null may be an intentional withdrawal of a formerly verified value.
+  // Keep its status, sources and corrections instead of reviving legacy terms.
   if (field.additional_sources !== undefined && !Array.isArray(field.additional_sources)) {
     fail("additional_sources must be an array");
   }
-  const sources = [evidence(
-    { ...field.source, collected_at: field.source.collected_at ?? collectedAt },
-    field.page ?? null
-  ), ...retainedEvidence(field.additional_sources, collectedAt)];
+  if (field.corrections !== undefined && !Array.isArray(field.corrections)) {
+    fail("corrections must be an array");
+  }
+  if (field.value !== null && !field.source) fail("non-null retained value requires a source");
+  const sources = [
+    ...(field.source ? [evidence(
+      { ...field.source, collected_at: field.source.collected_at ?? collectedAt },
+      field.page ?? null
+    )] : []),
+    ...retainedEvidence(field.additional_sources, collectedAt)
+  ];
   return {
     value: field.value,
-    status: retainedFieldStatus(field),
+    status: field.value === null ? (field.status ?? "missing") : retainedFieldStatus(field),
     evidence: sources.filter((item, i) => sources.findIndex(other =>
       JSON.stringify(other) === JSON.stringify(item)) === i),
-    corrections: Array.isArray(field.corrections) ? field.corrections : []
+    corrections: field.corrections ?? []
   };
 }
 
@@ -136,7 +178,7 @@ function normalizeRecord(record, collectedAt) {
     collected_at: record.nse_source?.collected_at ?? collectedAt
   };
 
-  return {
+  const normalized = {
     id: record.id,
     issuer_name: record.issuer_name,
     board: record.board ?? null,
@@ -144,23 +186,23 @@ function normalizeRecord(record, collectedAt) {
     sector: record.sector ?? null,
     status: record.status ?? null,
     status_evidence: retainedEvidence(record.status_evidence, collectedAt),
-    price_band: record.price_band?.value !== null && record.price_band?.value !== undefined
+    price_band: Object.hasOwn(record, "price_band")
       ? retainedField(record.price_band, collectedAt)
       : verifiedField(record.terms?.price_band ?? null, nse),
     issue_price: retainedField(record.issue_price, collectedAt),
     issue_size_inr: retainedField(record.issue_size_inr, collectedAt),
-    market_lot: record.market_lot?.value !== null && record.market_lot?.value !== undefined
+    market_lot: Object.hasOwn(record, "market_lot")
       ? retainedField(record.market_lot, collectedAt)
       : verifiedField(record.terms?.market_lot ?? null, nse),
-    minimum_bid_quantity: record.minimum_bid_quantity?.value !== null && record.minimum_bid_quantity?.value !== undefined
+    minimum_bid_quantity: Object.hasOwn(record, "minimum_bid_quantity")
       ? retainedField(record.minimum_bid_quantity, collectedAt)
       : verifiedField(record.terms?.minimum_bid_quantity ?? null, nse),
     minimum_application_amount_inr: emptyField(),
     application_requirements: applicationRequirements(record, collectedAt),
-    open_date: record.open_date?.value !== null && record.open_date?.value !== undefined
+    open_date: Object.hasOwn(record, "open_date")
       ? retainedField(record.open_date, collectedAt)
       : verifiedField(record.terms?.open_date ?? null, nse),
-    close_date: record.close_date?.value !== null && record.close_date?.value !== undefined
+    close_date: Object.hasOwn(record, "close_date")
       ? retainedField(record.close_date, collectedAt)
       : verifiedField(record.terms?.close_date ?? null, nse),
     listing_date: retainedField(record.listing_date, collectedAt),
@@ -168,6 +210,11 @@ function normalizeRecord(record, collectedAt) {
     first_observed_at: record.first_observed_at ?? collectedAt,
     last_collected_at: record.last_collected_at ?? collectedAt
   };
+  normalized.last_collected_at = maxTimestamp(
+    normalized.last_collected_at,
+    latestAttachedCollectedAt(normalized)
+  );
+  return normalized;
 }
 
 const files = recoveryFiles();
@@ -187,6 +234,11 @@ for (const { file, data } of recoveries) {
     if (!record.id || !record.issuer_name) fail(`${file}: every recovery record needs id and issuer_name`);
     if (ids.has(record.id)) fail(`duplicate recovery id across manifests: ${record.id}`);
     ids.add(record.id);
+    const exclusion = retainedRecordIneligibility(record);
+    if (exclusion) {
+      console.warn(JSON.stringify({publication_exclusion:{id:record.id,issuer_name:record.issuer_name,reason:exclusion,nse_series:record.nse_series ?? null,source:record.nse_source ?? null}}));
+      continue; // Recovery evidence is retained unchanged, not deleted or redated.
+    }
     normalizedRecords.push(normalizeRecord(record, data.generated_at));
   }
 }
@@ -195,21 +247,7 @@ const published = {
   schema_version: "1.2.0",
   generated_at: recoveries.map(({ data }) => data.generated_at).sort().at(-1),
   collection_started_at: recoveries.map(({ data }) => data.collection_started_at).sort().at(0),
-  records: normalizedRecords.sort((a, b) => {
-    const openA = a.open_date?.value ?? "";
-    const openB = b.open_date?.value ?? "";
-    if (openA !== openB) return openB.localeCompare(openA);
-
-    const closeA = a.close_date?.value ?? "";
-    const closeB = b.close_date?.value ?? "";
-    if (closeA !== closeB) return closeB.localeCompare(closeA);
-
-    const listingA = a.listing_date?.value ?? "";
-    const listingB = b.listing_date?.value ?? "";
-    if (listingA !== listingB) return listingB.localeCompare(listingA);
-
-    return a.issuer_name.localeCompare(b.issuer_name);
-  })
+  records: normalizedRecords.sort(globalThis.IPOOrder.compareNewestFirst)
 };
 
 const serialized = `${JSON.stringify(published, null, 2)}\n`;

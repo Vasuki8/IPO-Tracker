@@ -57,8 +57,26 @@ jobs:
             fi
             node --input-type=module <<'JS'
           import fs from 'node:fs';
+          import path from 'node:path';
           const d=JSON.parse(fs.readFileSync('data/drhp-filings.json'));
-          fs.writeFileSync('ops/drhp-collection.json',JSON.stringify({schema_version:'1.0.0',status:process.env.COLLECTION_OUTCOME==='success'?'success':'failed',attempted_at:new Date().toISOString(),run_id:process.env.GITHUB_RUN_ID,last_successful_collection_at:d.collection_completed_at||d.source_pages.at(-1).collected_at,companies:d.companies.length,filings:d.coverage.filing_records,source_pagination_consistent:d.coverage.pagination_consistent??null,supplemental_source_surfaces_checked:d.coverage.supplemental_source_surfaces_checked??0,supplemental_companies_added:d.coverage.supplemental_companies_added??0},null,2)+'\n');
+          const healthPath=path.join(process.env.RUNNER_TEMP,'drhp-evidence','pages','source-health.json');
+          const attemptedHealth=fs.existsSync(healthPath)?JSON.parse(fs.readFileSync(healthPath,'utf8')):null;
+          const currentHealth=process.env.COLLECTION_OUTCOME==='success'?(d.source_health??attemptedHealth):attemptedHealth;
+          const sebi=currentHealth?.sources?.sebi_draft_index??null;
+          const axis=currentHealth?.sources?.axis_capital_offer_documents??null;
+          fs.writeFileSync('ops/drhp-collection.json',JSON.stringify({
+            schema_version:'1.0.0',
+            status:process.env.COLLECTION_OUTCOME==='success'?'success':'failed',
+            attempted_at:new Date().toISOString(),
+            run_id:process.env.GITHUB_RUN_ID,
+            last_successful_collection_at:d.collection_completed_at||d.source_pages.at(-1).collected_at,
+            companies:d.companies.length,
+            filings:d.coverage.filing_records,
+            source_pagination_consistent:sebi?sebi.pagination_consistent:(d.coverage.pagination_consistent??null),
+            supplemental_source_surfaces_checked:axis&&axis.status!=='disabled'?1:(d.coverage.supplemental_source_surfaces_checked??0),
+            supplemental_companies_added:axis?.companies_added_as_fallback??(d.coverage.supplemental_companies_added??0),
+            source_health:currentHealth
+          },null,2)+'\n');
           JS
             git add data/drhp-filings.json ops/drhp-collection.json
             if git diff --cached --quiet; then break; fi
@@ -69,14 +87,8 @@ jobs:
           cp data/drhp-filings.json "$RUNNER_TEMP/drhp-evidence/published-data.json"
           cp ops/drhp-collection.json "$RUNNER_TEMP/drhp-evidence/collection-status.json"
           git rev-parse HEAD > "$RUNNER_TEMP/drhp-evidence/published-commit.txt"
-      - name: Verify actual Pages data and directory assets
-        if: steps.collect.outcome == 'success'
-        run: |
-          for attempt in $(seq 1 24); do
-            if node scripts/verify-drhp-publication.mjs --output-dir="$RUNNER_TEMP/drhp-evidence/live"; then exit 0; fi
-            sleep 15
-          done
-          exit 1
+      # Live verification runs after Pages deployment. Waiting here would
+      # prevent the successful workflow_run event that starts that deployment.
       - uses: actions/upload-artifact@v4
         if: always()
         with:

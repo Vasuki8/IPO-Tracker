@@ -857,24 +857,27 @@ export function applyPriceBand(record, extraction, sourceUrl, collectedAt) {
 }
 
 export function applyListedStatusFromVerifiedListingDate(record, asOf = new Date().toISOString()) {
-  if (record?.status !== null && record?.status !== undefined && record.status !== "") return false;
-  if (Array.isArray(record?.status_evidence) && record.status_evidence.length > 0) return false;
+  if (record?.status !== null && record?.status !== undefined && record.status !== "" && record.status !== "closed") return false;
+  if (record?.status !== "closed" && Array.isArray(record?.status_evidence) && record.status_evidence.length > 0) return false;
   const listing = record?.listing_date;
   if (!listing || listing.status !== "verified" || typeof listing.value !== "string" ||
       !/^\d{4}-\d{2}-\d{2}$/.test(listing.value) || !listing.source?.url ||
       !Number.isFinite(Date.parse(listing.value + "T00:00:00Z")) ||
       new Date(listing.value + "T00:00:00Z").toISOString().slice(0, 10) !== listing.value ||
       !Number.isFinite(Date.parse(asOf)) || listing.value > asOf.slice(0, 10)) return false;
-  let host;
-  try { host = new URL(listing.source.url).hostname; } catch { return false; }
-  if (!["nseindia.com", "www.nseindia.com"].includes(host)) return false;
+  let sourceUrl;
+  try { sourceUrl = new URL(listing.source.url); } catch { return false; }
+  if (sourceUrl.protocol !== "https:" || sourceUrl.username || sourceUrl.password ||
+      !["nseindia.com", "www.nseindia.com"].includes(sourceUrl.hostname)) return false;
   if (!resolveNseIdentity(record)) return false;
 
+  const locator = listing.source.evidence_locator ??
+    (sourceUrl.pathname === "/api/ipo-detail" ? "/metaInfo/listingDate" : null);
   record.status = "listed";
-  record.status_evidence = [{
+  record.status_evidence = [...(record.status_evidence || []), {
     ...structuredClone(listing.source),
     page: listing.page ?? null,
-    evidence_locator: listing.source.evidence_locator ?? "/metaInfo/listingDate"
+    ...(locator ? { evidence_locator: locator } : {})
   }];
   return true;
 }
@@ -1803,7 +1806,7 @@ async function runAllFields() {
   let statusRepaired = 0;
   for (const group of groups) for (const record of group.recovery.records || []) {
     if (!resolveNseIdentity(record)) continue;
-    if (record.status == null && record.listing_date?.value != null) {
+    if ((record.status == null || record.status === "closed") && record.listing_date?.value != null) {
       statusCandidates += 1;
       if (applyListedStatusFromVerifiedListingDate(record, now)) {
         statusRepaired += 1;
@@ -1850,6 +1853,10 @@ async function runAllFields() {
         if (!needed) continue;
         const extraction=parse(payload);
         if (extraction?.value != null && apply(record,extraction,url,now)) { stats.extracted[name]+=1; group.changed=true; }
+      }
+      if (applyListedStatusFromVerifiedListingDate(record, now)) {
+        stats.extracted.status += 1;
+        group.changed = true;
       }
     } catch (error) { stats.fetch_errors+=1; console.warn("NSE ipo-detail unavailable for "+record.issuer_name+": "+error.message); }
     await new Promise((resolve)=>setTimeout(resolve,300));

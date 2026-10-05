@@ -11,7 +11,7 @@ const temp = fs.mkdtempSync(path.join(os.tmpdir(), 'bse-public-projection-'));
 const output = fs.mkdtempSync(path.join(os.tmpdir(), 'bse-projection-receipt-'));
 try {
   // Build actual public output. Recovery-only hashes must not be injected into fixtures.
-  for (const name of ['scripts', 'data', 'ops']) fs.cpSync(path.join(root, name), path.join(temp, name), { recursive: true });
+  for (const name of ['scripts', 'data', 'ops', 'assets']) fs.cpSync(path.join(root, name), path.join(temp, name), { recursive: true });
   const run = (script) => execFileSync(process.execPath, [script], { cwd: temp, encoding: 'utf8' });
   run('scripts/apply-verified-bse-listings.mjs'); run('scripts/build-published-data.mjs');
   const dataPath = path.join(temp, 'data/ipos.json');
@@ -53,3 +53,99 @@ try {
   assert.equal(auditPublishedRelease(explicit).document_hash_scope.serialized_live_fields, 1);
   console.log('Real publisher projection passed: 23 issuers / 69 fields; eight hash, type, history and null mutations rejected; files unchanged.');
 } finally { fs.rmSync(temp, { recursive: true, force: true }); fs.rmSync(output, { recursive: true, force: true }); }
+
+// BUG-004: an explicit retained null is a decision, not an absent legacy field.
+// Reinstating value-based fallback or emptyField() for retained nulls must fail.
+const nullTemp = fs.mkdtempSync(path.join(os.tmpdir(), 'retained-null-projection-'));
+try {
+  for (const name of ['scripts/build-published-data.mjs', 'scripts/publish-field-status.mjs', 'scripts/ipo-instrument-policy.mjs', 'assets/ipo-order.js']) {
+    fs.mkdirSync(path.dirname(path.join(nullTemp, name)), {recursive:true});
+    fs.copyFileSync(path.join(root, name), path.join(nullTemp, name));
+  }
+  const clock = '2026-10-04T12:00:00Z';
+  const source = {url:'https://www.nseindia.com/retained-null-fixture',document_type:'NSE Issue Information',document_identity:'Retained null fixture',collected_at:clock};
+  const correction = {recorded_at:clock,previous_value:'old observation',new_value:null,reason:'Unresolved official-source discrepancy'};
+  const cleared = status => ({value:null,status,source,additional_sources:[{...source,url:'https://www.sebi.gov.in/retained-null-fixture'}],corrections:[correction]});
+  const fallback = {price_band:{min:100,max:110},market_lot:100,minimum_bid_quantity:200,open_date:'2026-09-01',close_date:'2026-09-03'};
+  const records = [];
+  for (const [field, value] of Object.entries(fallback)) {
+    for (const status of ['conflict','provisional','missing']) records.push({
+      id:`${field}-${status}`,issuer_name:`${field} ${status}`,nse_source:source,
+      terms:{[field]:value},[field]:cleared(status)
+    });
+    records.push({id:`${field}-absent`,issuer_name:`${field} absent`,nse_source:source,terms:{[field]:value}});
+    records.push({id:`${field}-null`,issuer_name:`${field} null`,nse_source:source,terms:{[field]:value},[field]:null});
+    records.push({id:`${field}-placeholder`,issuer_name:`${field} placeholder`,nse_source:source,terms:{[field]:value},[field]:{value:null}});
+  }
+  for (const field of ['issue_price','issue_size_inr','listing_date']) records.push({
+    id:field,issuer_name:field,[field]:cleared('conflict')
+  });
+  records.push({id:'applications',issuer_name:'Applications',application_requirements:{
+    retail:{minimum_bid_quantity:cleared('conflict'),minimum_application_amount_inr:cleared('conflict')}
+  }});
+  const manifestPath = path.join(nullTemp,'data/recovery/2026/nse-issue-information.json');
+  fs.mkdirSync(path.dirname(manifestPath),{recursive:true});
+  fs.writeFileSync(manifestPath,JSON.stringify({collection_started_at:clock,generated_at:clock,records}));
+  execFileSync(process.execPath,['scripts/build-published-data.mjs'],{cwd:nullTemp});
+  const outputPath = path.join(nullTemp,'data/ipos.json');
+  const projected = JSON.parse(fs.readFileSync(outputPath)).records;
+  const byId = new Map(projected.map(record=>[record.id,record]));
+  function assertCleared(field,status) {
+    assert.equal(field.value,null);
+    assert.equal(field.status,status);
+    assert.deepEqual(field.corrections,[correction]);
+    assert.deepEqual(field.evidence.map(item=>item.url),[source.url,'https://www.sebi.gov.in/retained-null-fixture']);
+  }
+  for (const [field, value] of Object.entries(fallback)) {
+    for (const status of ['conflict','provisional','missing']) assertCleared(byId.get(`${field}-${status}`)[field],status);
+    assert.equal(byId.get(`${field}-absent`)[field].status,'verified');
+    assert.deepEqual(byId.get(`${field}-absent`)[field].value,value);
+    for (const suffix of ['null','placeholder']) assert.deepEqual(byId.get(`${field}-${suffix}`)[field],{value:null,status:'missing',evidence:[],corrections:[]});
+  }
+  for (const field of ['issue_price','issue_size_inr','listing_date']) assertCleared(byId.get(field)[field],'conflict');
+  for (const field of Object.values(byId.get('applications').application_requirements.retail)) assertCleared(field,'conflict');
+  const firstBytes = fs.readFileSync(outputPath);
+  execFileSync(process.execPath,['scripts/build-published-data.mjs'],{cwd:nullTemp});
+  assert.deepEqual(fs.readFileSync(outputPath),firstBytes,'null projection must be deterministic');
+  console.log('Retained-null projection regressions passed: explicit decisions and source/correction histories survive all legacy fallbacks and nested requirements.');
+} finally { fs.rmSync(nullTemp,{recursive:true,force:true}); }
+
+
+// BUG-011: the public record clock cannot predate evidence already attached to
+// that record. Recovery keeps its retained raw clock; projection derives the
+// public clock from the latest attached evidence without redating that evidence.
+const clockTemp = fs.mkdtempSync(path.join(os.tmpdir(), 'record-evidence-clock-projection-'));
+try {
+  for (const name of ['scripts/build-published-data.mjs', 'scripts/publish-field-status.mjs', 'scripts/ipo-instrument-policy.mjs', 'assets/ipo-order.js']) {
+    fs.mkdirSync(path.dirname(path.join(clockTemp, name)), {recursive:true});
+    fs.copyFileSync(path.join(root, name), path.join(clockTemp, name));
+  }
+  const oldClock='2026-09-20T00:00:00Z';
+  const newClock='2026-09-26T01:11:28.439Z';
+  const source={url:'https://www.nseindia.com/clock-fixture',document_type:'NSE Issue Information',document_identity:'Clock fixture',publication_date:null,collected_at:oldClock};
+  const record={
+    id:'clock-fixture',
+    issuer_name:'Clock Fixture Limited',
+    board:null,
+    sector:null,
+    status:'listed',
+    nse_source:source,
+    terms:{price_band:null,market_lot:null,minimum_bid_quantity:null,open_date:null,close_date:null},
+    documents:[{type:'NSE Issue Information',identity:'Clock fixture',url:source.url,publication_date:null,collected_at:newClock}],
+    first_observed_at:oldClock,
+    last_collected_at:oldClock,
+    board_evidence:[],
+    status_evidence:[{...source,page:null}]
+  };
+  const manifestPath=path.join(clockTemp,'data/recovery/2026/nse-issue-information.json');
+  fs.mkdirSync(path.dirname(manifestPath),{recursive:true});
+  fs.writeFileSync(manifestPath,JSON.stringify({collection_started_at:oldClock,generated_at:newClock,records:[record]},null,2)+'\n');
+  const before=fs.readFileSync(manifestPath);
+  execFileSync(process.execPath,['scripts/build-published-data.mjs'],{cwd:clockTemp});
+  const projected=JSON.parse(fs.readFileSync(path.join(clockTemp,'data/ipos.json'))).records[0];
+  assert.equal(projected.last_collected_at,newClock);
+  assert.equal(projected.documents[0].collected_at,newClock);
+  assert.equal(projected.status_evidence[0].collected_at,oldClock);
+  assert.deepEqual(fs.readFileSync(manifestPath),before,'publication must not rewrite raw recovery clocks');
+  console.log('Record/evidence clock projection regression passed.');
+} finally { fs.rmSync(clockTemp,{recursive:true,force:true}); }

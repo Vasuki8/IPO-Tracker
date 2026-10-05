@@ -18,13 +18,20 @@ assert.doesNotMatch(html,/DRHP filing companies/);
 assert.match(html,/id="drhpSearch"/);
 assert.match(html,/Primary SEBI source/);
 assert.match(html,/official lead-manager/i);
+assert.match(html,/dates inferred from lead-manager document timestamps are labelled as proxies/i);
+assert.match(html,/id="drhpLatestDateBasis"/);
+assert.match(html,/Latest retained date/);
 assert.match(app,/fetch\("data\/drhp-filings\.json"/);
 assert.match(app,/fetch\("data\/ipos\.json"/);
 assert.match(app,/PreIpoFilter\.activeCompanies/);
+assert.match(app,/PreIpoFilter\?\.validateLifecycleDataset/);
 assert.match(app,/status status--upcoming">DRHP filed/);
 assert.match(app,/No fuzzy issuer matching is used/);
 assert.match(app,/stop_reason !== "first_page_strictly_older_than_year"/);
 assert.match(app,/drhpIntegrityNote/);
+assert.match(app,/Date proxy · earliest lead-manager document-URL timestamp/);
+assert.match(app,/Date proxy · lead-manager document upload timestamp/);
+assert.match(app,/Lead-manager fallback dates are labelled as timestamp proxies/);
 
 const sandbox={};
 vm.runInNewContext(filterCode,sandbox,{filename:"assets/pre-ipo-filter.js"});
@@ -32,6 +39,28 @@ const filter=sandbox.PreIpoFilter;
 assert.ok(filter);
 assert.equal(filter.canonicalIssuer("Example & Sons Ltd."),"example and sons");
 assert.equal(filter.canonicalIssuer("EXAMPLE AND SONS LIMITED"),"example and sons");
+
+const validLifecycle = {
+  schema_version:"1.2.0",
+  generated_at:"2026-10-05T00:00:00Z",
+  records:[{id:"progressed",issuer_name:"Progressed Limited",status:"listed"}],
+};
+assert.equal(filter.validateLifecycleDataset(validLifecycle),true);
+assert.equal(filter.validateLifecycleDataset({...validLifecycle,records:[]}),false,
+  "empty lifecycle data must fail closed instead of making every draft issuer reappear");
+assert.equal(filter.validateLifecycleDataset({...validLifecycle,schema_version:"1.1.0"}),false,
+  "unexpected lifecycle schema must fail closed");
+assert.equal(filter.validateLifecycleDataset({...validLifecycle,generated_at:null}),false,
+  "lifecycle data without a valid generation clock must fail closed");
+assert.equal(filter.validateLifecycleDataset({
+  ...validLifecycle,
+  records:[
+    {id:"duplicate",issuer_name:"First Limited",status:"listed"},
+    {id:"duplicate",issuer_name:"Second Limited",status:"closed"},
+  ],
+}),false,"duplicate lifecycle stable IDs must fail closed");
+assert.equal(filter.validateLifecycleDataset(ipoData),true,
+  "current published IPO lifecycle dataset must satisfy the browser fail-closed contract");
 
 const companies=[
   {issuer_name:"Pure Draft Limited"},
@@ -60,11 +89,15 @@ assert.equal(filter.hasProgressed({issuer_name:"X",status:"draft",open_date:{val
 assert.equal(filter.hasProgressed({issuer_name:"X",status:"draft"}),false);
 
 const currentActive=Array.from(filter.activeCompanies(data.companies,ipoData.records));
-const abakkus=data.companies.find(company=>filter.canonicalIssuer(company.issuer_name)==="abakkus asset manager");
-assert.ok(abakkus,"Abakkus Asset Manager must remain in the retained draft dataset");
-assert.equal(abakkus.latest_filing_date,"2026-09-22");
-assert.match(abakkus.latest_filing_url,/^https:\/\/www\.axiscapital\.co\.in\/contents\/.*Draft%20Red%20Herring%20Prospectus/);
-assert.ok(currentActive.some(company=>filter.canonicalIssuer(company.issuer_name)==="abakkus asset manager"),"Abakkus must be visible while it has not progressed into the published IPO lifecycle");
+// The named discovery regression is a fixed example, not a promise about today's lifecycle.
+const abakkusFixture = {issuer_name:"Abakkus Asset Manager Limited",latest_filing_date:"2026-09-22",
+  latest_filing_url:"https://www.axiscapital.co.in/contents/Abakkus%20Asset%20Manager%20Limited%20-%20Draft%20Red%20Herring%20Prospectus-1790067639.pdf"};
+assert.equal(filter.activeCompanies([abakkusFixture], []).length, 1, "a draft-only issuer is visible");
+for (const status of ["upcoming","open","closed","listed"]) {
+  assert.equal(filter.activeCompanies([abakkusFixture], [{issuer_name:"Abakkus Asset Manager Ltd.",status}]).length, 0,
+    "progressed issuer leaves pre-IPO without deleting retained draft evidence");
+}
+assert.equal(abakkusFixture.latest_filing_date,"2026-09-22");
 const currentProgressed=data.companies.length-currentActive.length;
 assert.ok(currentActive.length<=data.companies.length);
 for(const company of currentActive){
@@ -79,6 +112,11 @@ assert.equal(data.coverage.stop_reason,"first_page_strictly_older_than_year");
 assert.ok(data.coverage.pages_fetched>=2);
 assert.equal(data.coverage.companies,data.companies.length);
 assert.ok(data.companies.length>0);
+const leadManagerFilings=data.companies.flatMap(company=>company.filings)
+  .filter(filing=>filing.source_kind==="official_lead_manager");
+const proxyFilings=leadManagerFilings.filter(filing=>
+  filing.date_basis==="lead_manager_document_earliest_url_timestamp");
+assert.ok(proxyFilings.length>0,"current retained dataset must exercise the lead-manager URL-timestamp proxy basis");
 assert.equal(new Set(data.companies.map(c=>c.issuer_name.toLowerCase())).size,data.companies.length);
 for(const company of data.companies){
   assert.ok(company.issuer_name);
@@ -101,5 +139,7 @@ console.log(JSON.stringify({pre_ipo_company_ui_tests:{
   no_fuzzy_matching:true,
   source_backed:true,
   lead_manager_fallback_supported:true,
-  abakkus_visible_pre_ipo:true,
+  visible_proxy_date_basis:true,
+  proxy_rows_checked:proxyFilings.length,
+  abakkus_fixture_lifecycle_covered:true,
 }}));

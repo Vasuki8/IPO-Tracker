@@ -5,7 +5,7 @@ import os from 'node:os';
 import {createHash} from 'node:crypto';
 import {validateProgress,checkProgress,PROGRESS,QUEUE} from './check-bse-2023-progress.mjs';
 const digest=b=>createHash('sha256').update(b).digest('hex');
-const gitBlob=b=>{const bytes=Buffer.from(b);return createHash('sha1').update(Buffer.from('blob '+bytes.length+'\0')).update(bytes).digest('hex');};
+const gitBlob=b=>{const bytes=Buffer.from(b);return createHash('sha1').update(Buffer.from('blob '+bytes.length+'\\0')).update(bytes).digest('hex');};
 const fixture=()=>{
  const rows=[{issuer_name:'First Limited',bse_scrip_code:'543743',source_year:2023,source_row_index:1},{issuer_name:'Next Limited',bse_scrip_code:'543998',source_year:2023,source_row_index:2}];
  const queue={schema_version:'1.0.0',status:'discovery_only_review_queue',source_year:2023,auto_import_allowed:false,complete_indian_ipo_universe:false,source_refetched:false,source_collected_at:'2026-09-26T16:40:34.440Z',rows};

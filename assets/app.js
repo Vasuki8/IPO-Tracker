@@ -1,6 +1,9 @@
 /* Static directory UI. Published data and its source fields remain read-only. */
 let IPO_DATA = [];
 let loadState = "loading";
+let renderedRoute = null;
+let displayedMarketDay = null;
+let marketDayTimer = null;
 const PAGE_SIZES = [25, 50, 100];
 const state = {
   board: "all",
@@ -14,6 +17,9 @@ const state = {
 const $ = (selector) => document.querySelector(selector);
 const $$ = (selector) => [...document.querySelectorAll(selector)];
 const number = new Intl.NumberFormat("en-IN", { maximumFractionDigits: 2 });
+const marketDay = new Intl.DateTimeFormat("en-CA", {
+  timeZone: "Asia/Kolkata", year: "numeric", month: "2-digit", day: "2-digit",
+});
 const statuses = {
   open: "Open",
   upcoming: "Upcoming",
@@ -63,6 +69,17 @@ function formatCrores(value) {
 function formatShares(value) {
   return value == null ? "—" : number.format(value);
 }
+function shareQuantity(value) {
+  return value == null ? "—" : `${formatShares(value)} ${value === 1 ? "share" : "shares"}`;
+}
+function lotLabel(ipo) {
+  const field = IPOLotSize.lotSizeField(ipo);
+  return !field ? "Lot / bid" : field === ipo.market_lot ? "Trading lot" : "Minimum IPO bid";
+}
+function boardKey(ipo) {
+  const key = String(ipo.board || "").toLowerCase();
+  return ["mainboard", "sme"].includes(key) ? key : "unknown";
+}
 function hasBand(field) {
   const value = fieldValue(field);
   return (
@@ -71,6 +88,84 @@ function hasBand(field) {
 }
 function priceField(ipo) {
   return hasBand(ipo.price_band) ? ipo.price_band : ipo.issue_price;
+}
+function priceConflict(ipo) {
+  const band = fieldValue(ipo.price_band), final = fieldValue(ipo.issue_price);
+  return hasBand(ipo.price_band) &&
+    [band.min, band.max, final].every(value => typeof value === "number" && Number.isFinite(value)) &&
+    (final < band.min || final > band.max);
+}
+function priceFlag(ipo) {
+  return priceConflict(ipo)
+    ? '<span class="field-flag field-flag--conflict">Price conflict</span>'
+    : fieldFlag(priceField(ipo));
+}
+function priceConflictNote(ipo) {
+  return priceConflict(ipo)
+    ? `The retained final issue price (${formatMoney(fieldValue(ipo.issue_price))}) is outside the retained price band (${formatPriceBand(ipo.price_band)}). The price basis is unresolved; inspect both sources before relying on these terms.`
+    : "";
+}
+function verifiedDate(field) {
+  const value = fieldValue(field);
+  if (sourceStatus(field) !== "verified" || typeof value !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(value)) return null;
+  const date = new Date(`${value}T00:00:00Z`);
+  return !Number.isNaN(date.getTime()) && date.toISOString().slice(0, 10) === value ? value : null;
+}
+function biddingState(ipo, now = new Date()) {
+  const reported = ipo.status, today = marketDay.format(now);
+  const close = verifiedDate(ipo.close_date), open = verifiedDate(ipo.open_date);
+  if (["open", "upcoming"].includes(reported) && close && close < today) {
+    return { status: "closed", label: "Bidding closed", note: `The verified closing date (${formatDate(close)}) has passed. The retained source reported ${statuses[reported]}; this date-based display does not confirm listing or trading.` };
+  }
+  if (reported === "open" && open && open > today) {
+    return { status: "upcoming", label: "Scheduled", note: `The verified opening date (${formatDate(open)}) is still ahead. The retained source reported Open; bidding is not yet scheduled to begin.` };
+  }
+  return { status: reported, label: statuses[reported], note: "" };
+}
+function ipoStatusBadge(ipo) {
+  const display = biddingState(ipo);
+  return statusBadge(display.status, display.label) +
+    (display.note ? '<span class="secondary">Date-based status</span>' : "");
+}
+function reportedStatusMarkup(ipo, bidding) {
+  if (!bidding.note) return "";
+  const evidence = Array.isArray(ipo.status_evidence) ? ipo.status_evidence : [];
+  return `<details class="evidence-row"><summary><span>Reported lifecycle status</span><span class="evidence-value">${escapeHtml(statuses[ipo.status] || "Unavailable")}</span></summary><div class="evidence-body"><p>${escapeHtml(bidding.note)}</p>${evidence.length ? evidence.map(evidenceMarkup).join("") : "<p>No retained status-source evidence is available.</p>"}</div></details>`;
+}
+function renderDetailBidding(ipo) {
+  const bidding = biddingState(ipo);
+  $("#detailStatus").innerHTML = statusBadge(bidding.status, bidding.label);
+  $("#detailStatusNote").textContent = bidding.note;
+  $("#detailStatusNote").hidden = !bidding.note;
+  const evidence = $("#reportedStatusEvidence");
+  if (evidence) {
+    evidence.innerHTML = reportedStatusMarkup(ipo, bidding);
+    evidence.hidden = !bidding.note;
+  }
+  return bidding;
+}
+function refreshMarketDay() {
+  const today = marketDay.format(new Date());
+  if (loadState !== "ready" || displayedMarketDay === today) return;
+  displayedMarketDay = today;
+  render();
+  updateUrl();
+  if (!$("#detailView").hidden && location.hash.startsWith("#ipo/")) {
+    try {
+      const ipo = IPO_DATA.find(row => row.id === decodeURIComponent(location.hash.slice(5)));
+      if (ipo) renderDetailBidding(ipo);
+    } catch { /* Malformed routes are handled by route(). */ }
+  }
+}
+function scheduleMarketDayRefresh() {
+  clearTimeout(marketDayTimer);
+  const now = new Date();
+  const [year, month, day] = marketDay.format(now).split("-").map(Number);
+  const nextMidnight = Date.UTC(year, month - 1, day + 1) - 5.5 * 60 * 60 * 1000;
+  marketDayTimer = setTimeout(() => {
+    refreshMarketDay();
+    scheduleMarketDayRefresh();
+  }, Math.max(1000, nextMidnight - now.getTime() + 50));
 }
 function formatPriceBand(field, issuePriceField) {
   return hasBand(field)
@@ -96,9 +191,9 @@ function formatTimestamp(value) {
     ? "Unavailable"
     : `${date.toLocaleString("en-GB", { day: "2-digit", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit", timeZone: "UTC" })} UTC`;
 }
-function statusBadge(status) {
+function statusBadge(status, label) {
   const key = Object.hasOwn(statuses, status) ? status : "unknown";
-  return `<span class="status status--${key}">${statuses[key] || "Status unavailable"}</span>`;
+  return `<span class="status status--${key}">${escapeHtml(label || statuses[key] || "Status unavailable")}</span>`;
 }
 function sourceBadge(status, label) {
   const key = Object.hasOwn(sourceLabels, status) ? status : "missing";
@@ -111,6 +206,7 @@ function fieldFlag(field) {
     : "";
 }
 function recordSourceStatus(ipo) {
+  if (priceConflict(ipo)) return "conflict";
   const raw = [
     ipo.price_band,
     ipo.issue_price,
@@ -188,14 +284,11 @@ function filteredRows(ignoreStatus = false) {
   const rows = IPO_DATA.filter(
     (ipo) =>
       (state.board === "all" ||
-        String(ipo.board || "").toLowerCase() === state.board) &&
-      (ignoreStatus || state.status === "all" || ipo.status === state.status) &&
+        boardKey(ipo) === state.board) &&
+      (ignoreStatus || state.status === "all" || biddingState(ipo).status === state.status) &&
       (state.year === "all" || recordYear(ipo) === state.year) &&
       (!state.query ||
-        [ipo.issuer_name, ipo.sector, ipo.board]
-          .filter(Boolean)
-          .join(" ")
-          .toLowerCase()
+        ipo.issuer_name.toLowerCase()
           .includes(state.query.toLowerCase())),
   );
   return rows.sort(
@@ -227,7 +320,7 @@ function updateUrl() {
 }
 function readUrl() {
   const params = new URLSearchParams(location.search);
-  state.board = ["all", "mainboard", "sme"].includes(params.get("board"))
+  state.board = ["all", "mainboard", "sme", "unknown"].includes(params.get("board"))
     ? params.get("board")
     : "all";
   state.status = ["all", ...Object.keys(statuses)].includes(
@@ -261,9 +354,9 @@ function render() {
   $("#ipoRows").innerHTML = pageRows
     .map(
       (ipo) => `<tr>
-    <td>${companyMarkup(ipo)}</td><td>${statusBadge(ipo.status)}</td>
-    <td class="align-right"><span class="number">${escapeHtml(formatPriceBand(ipo.price_band, ipo.issue_price))}</span>${fieldFlag(priceField(ipo))}</td>
-    <td class="align-right"><span class="number">${escapeHtml(formatShares(IPOLotSize.lotSizeValue(ipo)))}</span><span class="secondary">${IPOLotSize.lotSizeValue(ipo) == null ? "Unavailable" : "shares"}</span></td>
+    <td>${companyMarkup(ipo)}</td><td>${ipoStatusBadge(ipo)}</td>
+    <td class="align-right"><span class="number">${escapeHtml(formatPriceBand(ipo.price_band, ipo.issue_price))}</span>${priceFlag(ipo)}</td>
+    <td class="align-right"><span class="number">${escapeHtml(shareQuantity(IPOLotSize.lotSizeValue(ipo)))}</span><span class="secondary">${IPOLotSize.lotSizeValue(ipo) == null ? "Unavailable" : lotLabel(ipo)}</span></td>
     <td>${offerDates(ipo)}</td><td class="align-right"><span class="number">${escapeHtml(formatCrores(fieldValue(ipo.issue_size_inr)))}</span>${fieldFlag(ipo.issue_size_inr)}</td>
     <td>${coverageBadge(ipo)}</td><td><a class="view-link" href="#ipo/${encodeURIComponent(ipo.id)}" aria-label="View ${escapeHtml(ipo.issuer_name)}">↗</a></td></tr>`,
     )
@@ -272,8 +365,8 @@ function render() {
     .map(
       (
         ipo,
-      ) => `<article class="mobile-card"><div class="mobile-card__head">${companyMarkup(ipo)}${statusBadge(ipo.status)}</div>
-    <dl class="mobile-values"><div><dt>Price / band</dt><dd>${escapeHtml(formatPriceBand(ipo.price_band, ipo.issue_price))}${fieldFlag(priceField(ipo))}</dd></div><div><dt>Lot size · shares</dt><dd>${escapeHtml(formatShares(IPOLotSize.lotSizeValue(ipo)))}</dd></div><div><dt>Issue size</dt><dd>${escapeHtml(formatCrores(fieldValue(ipo.issue_size_inr)))}${fieldFlag(ipo.issue_size_inr)}</dd></div></dl>
+      ) => `<article class="mobile-card"><div class="mobile-card__head">${companyMarkup(ipo)}<div>${ipoStatusBadge(ipo)}</div></div>
+    <dl class="mobile-values"><div><dt>Price / band</dt><dd>${escapeHtml(formatPriceBand(ipo.price_band, ipo.issue_price))}${priceFlag(ipo)}</dd></div><div><dt>${lotLabel(ipo)}</dt><dd>${escapeHtml(shareQuantity(IPOLotSize.lotSizeValue(ipo)))}</dd></div><div><dt>Issue size</dt><dd>${escapeHtml(formatCrores(fieldValue(ipo.issue_size_inr)))}${fieldFlag(ipo.issue_size_inr)}</dd></div></dl>
     <div class="mobile-card__dates"><span>Offer dates</span><div>${offerDates(ipo)}</div></div><div class="mobile-card__foot">${coverageBadge(ipo)}<a href="#ipo/${encodeURIComponent(ipo.id)}">View IPO <span aria-hidden="true">↗</span></a></div></article>`,
     )
     .join("");
@@ -298,7 +391,7 @@ function render() {
     "#metricListed": "listed",
   }))
     $(selector).textContent = number.format(
-      IPO_DATA.filter((ipo) => status === "all" || ipo.status === status)
+      IPO_DATA.filter((ipo) => status === "all" || biddingState(ipo).status === status)
         .length,
     );
   $("#datasetCount").textContent = number.format(IPO_DATA.length);
@@ -308,7 +401,7 @@ function render() {
       (node.textContent = number.format(
         baseRows.filter(
           (ipo) =>
-            node.dataset.count === "all" || ipo.status === node.dataset.count,
+            node.dataset.count === "all" || biddingState(ipo).status === node.dataset.count,
         ).length,
       )),
   );
@@ -320,7 +413,7 @@ function render() {
     });
   const filters = [
     state.query && `“${state.query}”`,
-    state.board !== "all" && (state.board === "sme" ? "SME" : "Mainboard"),
+    state.board !== "all" && ({sme:"SME",mainboard:"Mainboard",unknown:"Board unavailable"}[state.board]),
     state.year !== "all" &&
       (state.year === "undated" ? "Year unavailable" : state.year),
     state.status !== "all" && statuses[state.status],
@@ -354,10 +447,10 @@ function evidenceMarkup(evidence) {
   const label = evidence.document_type || "Official source";
   return `<div class="evidence-source">${url ? `<a href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(label)} ↗</a>` : `<strong>${escapeHtml(label)}</strong>`}${evidence.document_identity ? `<p class="source-identity">${escapeHtml(evidence.document_identity)}</p>` : ""}<p>Published: ${escapeHtml(evidence.publication_date ? formatDate(evidence.publication_date) : "Date unavailable")}${evidence.page != null ? ` · Page ${escapeHtml(evidence.page)}` : ""}</p><p>Collected: ${escapeHtml(formatTimestamp(evidence.collected_at))}</p>${evidence.observed_at ? `<p>Observed: ${escapeHtml(formatTimestamp(evidence.observed_at))}</p>` : ""}${evidence.evidence_text ? `<p>${escapeHtml(evidence.evidence_text)}</p>` : ""}</div>`;
 }
-function fieldEvidence(label, field, value, note = "") {
+function fieldEvidence(label, field, value, note = "", displayStatus = sourceStatus(field)) {
   const evidence = Array.isArray(field?.evidence) ? field.evidence : [];
   const corrections = field?.corrections || [];
-  return `<details class="evidence-row"><summary><span>${escapeHtml(label)}</span><span class="evidence-value">${escapeHtml(value)}${sourceBadge(sourceStatus(field))}</span></summary><div class="evidence-body">${note ? `<p>${escapeHtml(note)}</p>` : ""}${evidence.length ? evidence.map(evidenceMarkup).join("") : "<p>No retained source evidence is available for this field.</p>"}${corrections.length ? `<p>Retained correction history</p><pre class="correction-history">${escapeHtml(JSON.stringify(corrections, null, 2))}</pre>` : ""}</div></details>`;
+  return `<details class="evidence-row"><summary><span>${escapeHtml(label)}</span><span class="evidence-value">${escapeHtml(value)}${sourceBadge(displayStatus)}</span></summary><div class="evidence-body">${note ? `<p>${escapeHtml(note)}</p>` : ""}${evidence.length ? evidence.map(evidenceMarkup).join("") : "<p>No retained source evidence is available for this field.</p>"}${corrections.length ? `<p>Retained correction history</p><pre class="correction-history">${escapeHtml(JSON.stringify(corrections, null, 2))}</pre>` : ""}</div></details>`;
 }
 function documentCategory(doc) {
   const type = (doc.type || "").toLowerCase();
@@ -414,17 +507,17 @@ function showDetail(id) {
   $("#detailLogo").className =
     `company-logo company-logo--large tone-${tone(ipo)}`;
   $("#detailName").textContent = ipo.issuer_name;
-  $("#detailStatus").innerHTML = statusBadge(ipo.status);
+  const bidding = renderDetailBidding(ipo);
   $("#detailBoard").textContent = ipo.board || "Board unavailable";
   $("#detailSector").hidden = !ipo.sector;
   $("#detailSector").textContent = ipo.sector || "";
   $("#detailPrice").innerHTML =
     escapeHtml(formatPriceBand(ipo.price_band, ipo.issue_price)) +
-    fieldFlag(priceField(ipo));
-  $("#detailLot").textContent =
-    IPOLotSize.lotSizeValue(ipo) == null
-      ? "—"
-      : `${formatShares(IPOLotSize.lotSizeValue(ipo))} shares`;
+    priceFlag(ipo);
+  $("#detailPriceNote").textContent = priceConflictNote(ipo);
+  $("#detailPriceNote").hidden = !priceConflict(ipo);
+  $("#detailLotLabel").textContent = lotLabel(ipo);
+  $("#detailLot").textContent = shareQuantity(IPOLotSize.lotSizeValue(ipo));
   $("#detailIssue").innerHTML =
     escapeHtml(formatCrores(fieldValue(ipo.issue_size_inr))) +
     fieldFlag(ipo.issue_size_inr);
@@ -441,41 +534,31 @@ function showDetail(id) {
         `<div class="timeline-event ${fieldValue(field) ? "has-date" : ""}"><span>${label}</span><strong>${fieldValue(field) ? escapeHtml(formatDate(fieldValue(field))) : "Unavailable"}</strong>${sourceBadge(sourceStatus(field))}</div>`,
     )
     .join("");
-  const lot = IPOLotSize.lotSizeField(ipo);
   $("#evidenceList").innerHTML =
     fieldEvidence(
       "Price band",
       ipo.price_band,
       formatPriceBand(ipo.price_band),
+      priceConflictNote(ipo),
+      priceConflict(ipo) ? "conflict" : sourceStatus(ipo.price_band),
     ) +
     fieldEvidence(
       "Final issue price",
       ipo.issue_price,
       formatMoney(fieldValue(ipo.issue_price)),
-    ) +
-    fieldEvidence(
-      "Lot size",
-      lot,
-      lot ? `${formatShares(fieldValue(lot))} shares` : "—",
-      lot
-        ? `Displayed from verified ${lot === ipo.market_lot ? "market lot" : "minimum bid quantity"}.`
-        : "No verified market lot or minimum bid quantity is available.",
+      priceConflictNote(ipo),
+      priceConflict(ipo) ? "conflict" : sourceStatus(ipo.issue_price),
     ) +
     [
-      ["Market lot evidence", ipo.market_lot],
-      ["Minimum bid quantity evidence", ipo.minimum_bid_quantity],
+      ["Trading lot", "Market lot evidence", ipo.market_lot, "Quantity for exchange trading; this is distinct from an IPO application bid."],
+      ["Minimum IPO bid", "Minimum bid quantity evidence", ipo.minimum_bid_quantity, "Minimum quantity for an IPO bid in the retained source; this is distinct from the trading lot."],
     ]
-      .filter(([, field]) =>
-        ["conflict", "provisional"].includes(sourceStatus(field)),
-      )
-      .map(([label, field]) =>
+      .map(([label, unresolvedLabel, field, note]) =>
         fieldEvidence(
-          label,
+          ["conflict", "provisional"].includes(sourceStatus(field)) ? unresolvedLabel : label,
           field,
-          fieldValue(field) == null
-            ? "—"
-            : `${formatShares(fieldValue(field))} shares`,
-          "This unresolved quantity is not used for the displayed lot size.",
+          shareQuantity(fieldValue(field)),
+          note + (["conflict", "provisional"].includes(sourceStatus(field)) ? " This unresolved quantity is not used for the displayed lot size." : ""),
         ),
       )
       .join("") +
@@ -493,6 +576,7 @@ function showDetail(id) {
         fieldEvidence(label, field, formatDate(fieldValue(field))),
       )
       .join("");
+  $("#evidenceList").innerHTML += `<div id="reportedStatusEvidence" ${bidding.note ? "" : "hidden"}>${reportedStatusMarkup(ipo, bidding)}</div>`;
   const docs = Array.isArray(ipo.documents) ? ipo.documents : [];
   $("#documentCount").textContent = docs.length;
   renderDocuments(docs);
@@ -511,6 +595,11 @@ function showHome() {
 }
 function route() {
   if (loadState !== "ready") return;
+  // Same-document navigation can notify both popstate and hashchange. Once a
+  // URL is rendered, a late duplicate must not steal keyboard focus or reset
+  // expanded evidence. A new data load explicitly invalidates this key.
+  if (renderedRoute === location.href) return;
+  renderedRoute = location.href;
   if (location.hash.startsWith("#ipo/")) {
     try {
       showDetail(decodeURIComponent(location.hash.slice(5)));
@@ -524,6 +613,7 @@ function route() {
   }
 }
 async function loadData() {
+  renderedRoute = null;
   loadState = "loading";
   $("#loadingState").hidden = false;
   $("#errorState").hidden = true;
@@ -563,6 +653,8 @@ async function loadData() {
     loadState = "ready";
     readUrl();
     render();
+    displayedMarketDay = marketDay.format(new Date());
+    scheduleMarketDayRefresh();
     $("#results").hidden = false;
     route();
   } catch (error) {
@@ -633,14 +725,24 @@ $("#documentFilters").addEventListener("click", (event) => {
     ? decodeURIComponent(location.hash.slice(5))
     : "";
   const ipo = IPO_DATA.find((row) => row.id === id);
-  if (ipo)
-    renderDocuments(ipo.documents || [], button.dataset.documentCategory);
+  if (ipo) {
+    const category = button.dataset.documentCategory;
+    renderDocuments(ipo.documents || [], category);
+    $("#documentFilters")
+      .querySelector(`[data-document-category="${category}"]`)
+      ?.focus();
+  }
 });
 $$("[data-methodology]").forEach((button) =>
   button.addEventListener("click", () => $("#sourcesDialog").showModal()),
 );
 $("#closeSources").addEventListener("click", () => $("#sourcesDialog").close());
 $("#sourcesDone").addEventListener("click", () => $("#sourcesDialog").close());
+$(".skip-link").addEventListener("click", (event) => {
+  event.preventDefault();
+  $("#main").focus({ preventScroll: true });
+  $("#main").scrollIntoView({ block: "start" });
+});
 document.addEventListener("keydown", (event) => {
   if (
     event.key === "/" &&
@@ -657,4 +759,13 @@ document.addEventListener("keydown", (event) => {
 });
 window.addEventListener("hashchange", route);
 window.addEventListener("popstate", route);
+window.addEventListener("focus", () => {
+  refreshMarketDay();
+  scheduleMarketDayRefresh();
+});
+document.addEventListener("visibilitychange", () => {
+  if (document.hidden) return;
+  refreshMarketDay();
+  scheduleMarketDayRefresh();
+});
 loadData();

@@ -1,0 +1,43 @@
+{
+  "schema_version": "1.0.0",
+  "scope": "BUG-001 / BUG-005 only; a snapshot receipt, not an auto-import authority",
+  "baseline_commit": "da9a583409983a0d9aba073b74f25de382a63d23",
+  "source_path": "data/recovery/2026/nse-issue-information.json",
+  "excluded_id": "smc-global-securities-limited",
+  "issuer_name": "SMC Global Securities Limited",
+  "nse_symbol": "SMCG04",
+  "retained_nse_series": "DEBT",
+  "source": {
+    "url": "https://www.nseindia.com/api/all-upcoming-issues?category=ipo",
+    "document_type": "NSE IPO Live Feed",
+    "document_identity": "NSE IPO Live Feed \u2014 SMCG04",
+    "publication_date": null,
+    "collected_at": "2026-10-01T14:34:14.477Z"
+  },
+  "decision": "Exclude this explicitly retained DEBT issue from the equity IPO public projection; retain the entire recovery record unchanged.",
+  "preservation": {
+    "source_commit": "da9a583409983a0d9aba073b74f25de382a63d23",
+    "old_count": 1389,
+    "new_count": 1388,
+    "unchanged_records": 1388,
+    "removed_ids": [
+      "smc-global-securities-limited"
+    ],
+    "before_sha256": "4bf3e7b30cf9c80ac31356c872ebadc94852890151432e416775dfd51c9b9806",
+    "after_sha256": "7d0fb465758c477e52a8b27ae3c2c896cb1c85af6db228519a9432cdbc0119fa",
+    "generated_at": "2026-10-04T22:46:20.063Z",
+    "all_recovery_manifests_unchanged": true
+  },
+  "prior_sync": {
+    "run_id": 37241174980,
+    "result": "success",
+    "downstream_pages_run_id": 37242214201,
+    "downstream_result": "success",
+    "served_checked_at": "2026-10-04T23:01:50.193Z",
+    "served_status": 200,
+    "served_sha256": "4bf3e7b30cf9c80ac31356c872ebadc94852890151432e416775dfd51c9b9806",
+    "served_attempt": 1,
+    "verification_artifact_id": 11317907814,
+    "verification_zip_sha256": "9d67ecfbe14b61e6335f17b0c7cbf2ae9650ff1d07813ec7f0886c3c406ef6b4"
+  }
+}

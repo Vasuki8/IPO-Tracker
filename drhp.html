@@ -30,7 +30,7 @@
         <div>
           <p class="eyebrow">PRE-IPO PIPELINE</p>
           <h1 id="pageTitle">Follow the filing pipeline before an IPO opens.</h1>
-          <p class="page-description">Track companies that still appear to be in the draft stage. Discovery combines SEBI’s draft-offer index with configured official lead-manager DRHP sources; issuers leave this view automatically once they progress into the published IPO pipeline, while retained draft history remains preserved.</p>
+          <p class="page-description">Track companies that still appear to be in the draft stage. Discovery combines SEBI’s draft-offer index with configured official lead-manager DRHP sources; issuers leave this view automatically once they progress into the published IPO pipeline, while retained draft history remains preserved. Dates inferred from lead-manager document timestamps are labelled as proxies rather than direct filing dates.</p>
         </div>
         <a class="source-note drhp-source-note" id="sebiSourceLink" href="https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=10&ssid=15" target="_blank" rel="noopener noreferrer">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10" /><path d="m9 12 2 2 4-4" /></svg>
@@ -40,7 +40,7 @@
 
       <section class="market-overview drhp-overview" aria-label="Pre-IPO company overview">
         <div class="metric"><span class="metric-label">Active pre-IPO</span><strong id="drhpCompanyCount">—</strong><small>Still in the draft stage</small></div>
-        <div class="metric"><span class="metric-label">Latest addition</span><strong id="drhpLatestDate">—</strong><small>Latest retained draft date</small></div>
+        <div class="metric"><span class="metric-label">Latest addition</span><strong id="drhpLatestDate">—</strong><small id="drhpLatestDateBasis">Date basis loading…</small></div>
         <div class="metric"><span class="metric-label">Coverage year</span><strong id="drhpYear">—</strong><small>SEBI draft filing date</small></div>
         <div class="metric"><span class="metric-label">SEBI pages checked</span><strong id="drhpPages">—</strong><small>Until the prior-year boundary</small></div>
       </section>
@@ -61,7 +61,11 @@
             <span class="sr-only">Search pre-IPO companies</span>
             <input id="drhpSearch" type="search" placeholder="Search a company…" autocomplete="off" />
           </label>
-          <span id="drhpGenerated" class="drhp-generated">Dataset generation time unavailable</span>
+          <div id="drhpGenerated" class="drhp-generated" aria-label="Dataset freshness">
+            <div id="drhpSourceCollected">Draft source collection time unavailable</div>
+            <div id="drhpLifecycleGenerated">IPO lifecycle dataset time unavailable</div>
+            <div id="drhpRefreshAttempt">Latest reported draft-source refresh: Checking…</div>
+          </div>
         </div>
 
         <div id="drhpLoading" class="empty-state" role="status">
@@ -79,7 +83,7 @@
           <div class="desktop-table" tabindex="0" role="region" aria-label="Pre-IPO companies with retained DRHP evidence">
             <table class="drhp-table">
               <caption class="sr-only">Companies with retained DRHP or updated draft-offer evidence from SEBI’s 2026 draft-offer section.</caption>
-              <thead><tr><th scope="col">Company</th><th scope="col">IPO stage</th><th scope="col">Latest draft</th><th scope="col">Official document</th></tr></thead>
+              <thead><tr><th scope="col">Company</th><th scope="col">IPO stage</th><th scope="col">Latest retained date</th><th scope="col">Official document</th></tr></thead>
               <tbody id="drhpRows"></tbody>
             </table>
           </div>
@@ -102,6 +106,6 @@
       </footer>
     </main>
     <script src="assets/pre-ipo-filter.js?v=20260926-preipo2"></script>
-    <script src="assets/drhp.js?v=20260926-preipo2"></script>
+    <script src="assets/drhp.js?v=20261005-date-basis"></script>
   </body>
 </html>

@@ -15,11 +15,19 @@ A source-first Indian IPO research website with automated official-source collec
 
 Coverage spans 2020–2026 but is incomplete. Stored record counts are not proof of official IPO-universe completeness.
 
-The active application-term requirement is **Lot Size only**. Display verified market lot first, then verified minimum bid quantity when market lot is missing. Keep the raw fields distinct. Minimum investment/application amount remains out of scope.
+Display verified market lot first, labelled **Trading lot**, then verified minimum bid quantity, labelled **Minimum IPO bid**, when market lot is missing. Show both quantities separately in detail evidence. Keep the raw fields distinct. Minimum investment/application amount remains out of scope.
+
+The directory compares the first valid opening, closing, or listing date across all records for **Newest first**. Search currently covers company names; sector classification is unavailable. Board filters include **Board unavailable** without inferring a classification.
+
+Actionable bidding status considers verified opening and closing dates using the Indian market day. Expired reported Open/Upcoming offers display **Bidding closed**, while a reported Open offer with a future opening date displays **Scheduled**. Retained reported status and evidence remain available; date-based display never confirms listing or trading. A final issue price outside its retained price band displays a **Price conflict** until the basis is reconciled, without overwriting source values.
+
+Bidding displays refresh at Indian midnight and when a tab resumes, while preserving detail-page research state.
 
 Never invent missing values or use price-times-quantity arithmetic to fill them. Preserve official sources, document identity, dates, hashes when retained, nulls, conflicts and correction history. A final Prospectus is not required for inclusion. Repair retained recovery evidence rather than hand-editing `data/ipos.json`.
 
 The **Pre-IPO companies** view is a company-level IPO pipeline backed by retained DRHP/UDRHP evidence from the SEBI draft-offer index, configured official lead-manager offer-document sources, **and the current published IPO lifecycle dataset**. It shows one company per row and dynamically removes an exact canonical issuer match as soon as that issuer is `upcoming`, `open`, `closed`, or `listed`, or has a published IPO open/close/listing date. Draft-document versions remain retained evidence rather than the product itself. Matching uses the same conservative canonical legal-name normalization as the universe audit; no fuzzy matching is allowed. If lifecycle data cannot be validated, the page fails closed instead of showing a potentially stale pre-IPO list. Source coverage is intentionally labelled partial until all relevant official draft-document surfaces are configured.
+
+Pre-IPO freshness separately shows the loaded draft-source collection time, IPO lifecycle dataset generation time, and latest reported refresh attempt/status. Refresh failure retains the loaded evidence; a newer health report cannot redate older displayed source data.
 
 ## Automation
 
@@ -39,21 +47,53 @@ Collection time, source observation, dataset generation and Pages publication ar
 
 ## Handoff for the next prompt
 
-The SSEK 2023 release is fully published and live-verified. The immutable 2023 review ledger is now **16 reviewed/published + 14 awaiting review**. The bounded SSEK publisher and temporary served-data verifier are retired; do not replay them.
+The **October 4 correctness/accessibility audit remains closed**; see
+[the complete audit receipt](docs/verification/october-audit-closeout-2026-10-05.md).
 
-Continue with **Mish Designs Limited (544015)**, **AHASOLAR TECHNOLOGIES LIMITED (543941)**, **ORGANIC RECYCLING SYSTEMS LIMITED (543997)** and **Meson Valves India Limited (543982)**. Retain issuer-specific authoritative evidence, reconcile exact identity across every recovery year, preserve nulls/conflicts, and only publish through a separately reviewed manifest followed by exact served-data verification.
+The bounded **SSEK 2023 release is now fully published, live-verified and closed**.
+The retained first-attempt served receipt is
+[docs/verification/bse-2023-ssek-live-2026-09-30.json](docs/verification/bse-2023-ssek-live-2026-09-30.json).
+It binds run **36662939353**, artifact **11075047555**, the exact served SHA-256
+`77373449dcf00d800a82452072e92f45676d6611f2724e76a900d9f63adc7c6c`,
+and all four reviewed public projections. The temporary SSEK publisher and
+temporary live-verifier workflow are retired; do not replay them.
 
-The completed SSEK live receipt is [docs/verification/bse-2023-ssek-live-2026-09-30.json](docs/verification/bse-2023-ssek-live-2026-09-30.json). The source/provenance repair deliberately kept the public builder trust policy unchanged and moved all four listing reports to BSE-hosted filings.
+The immutable 2023 ledger is now **16 reviewed/published + 14 awaiting review**.
+Continue with exactly **Mish Designs Limited (544015)**,
+**AHASOLAR TECHNOLOGIES LIMITED (543941)**,
+**ORGANIC RECYCLING SYSTEMS LIMITED (543997)** and
+**Meson Valves India Limited (543982)**. The original 2022 queue remains
+**14 reviewed/published + 2 existing-recovery alias + 0 awaiting review**.
 
-The original 2022 queue remains **14 reviewed/published + 2 existing-recovery alias + 0 awaiting review**.
+Current source-health qualification is unchanged: the SEBI DRHP pagination surface
+can still fail upstream. The isolated source-health logic preserves the last good
+dataset and the independent Axis fallback attempt.
 
 ### Exact next backend task
 
-The original BSE 2022 queue has remaining **0** unmatched rows requiring import.
+Review **Mish Designs Limited (544015)**, **AHASOLAR TECHNOLOGIES LIMITED (543941)**,
+**ORGANIC RECYCLING SYSTEMS LIMITED (543997)** and **Meson Valves India Limited (543982)**
+from the pinned immutable 2023 queue. The original BSE 2022 queue has remaining
+**0** unmatched rows requiring import. Start with retained issuer-specific
+authoritative evidence and exact all-year identity reconciliation. Do not treat
+discovery dates or prices as publication authority; preserve nulls and conflicts.
+Publish only through a separate reviewed manifest followed by exact served-data
+verification.
 
-Review **Mish Designs Limited (544015)**, **AHASOLAR TECHNOLOGIES LIMITED (543941)**, **ORGANIC RECYCLING SYSTEMS LIMITED (543997)** and **Meson Valves India Limited (543982)** from the pinned 2023 queue. Do not treat discovery values as publication authority. Retain original official evidence, reconcile identity across every recovery year, preserve conflicts/nulls, and only publish after a separate reviewed manifest and exact served verification.
+Continue P1 correctness. Do not expand P5/performance while unresolved source or
+release-governance work remains. No new spending, contracts, accounts, analytics,
+ads, billing, infrastructure migration or material access changes without approval.
 
-Use `node scripts/check-bse-2023-progress.mjs`, `node scripts/check-bse-2022-disposition.mjs`, `node scripts/check-retained-bse-snapshot.mjs`, `node scripts/build-published-data.mjs --check` and `node scripts/validate-data.mjs` as baseline guards.
+Browser regressions run with an isolated Playwright installation:
+
+```sh
+PLAYWRIGHT_MODULE=/path/to/node_modules/playwright node scripts/test-ui.mjs
+PLAYWRIGHT_MODULE=/path/to/node_modules/playwright node scripts/test-product-logic-ui.mjs
+PLAYWRIGHT_MODULE=/path/to/node_modules/playwright node scripts/test-drhp-freshness.mjs
+```
+
+Historical notes below are retained as evidence and are superseded by the active
+handoff above.
 
 ## Historical release notes
 
