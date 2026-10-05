@@ -39,6 +39,14 @@ try {
     ["null record", data => { data.records = [null]; }],
     ["null dataset", () => null],
     ["missing verified value", data => { data.records[0].issue_price = { status: "verified", evidence: [data.records[0].status_evidence[0]], corrections: [] }; }],
+    ["record clock predates status evidence", data => {
+      data.records[0].last_collected_at = "2026-10-04T00:00:00Z";
+      data.records[0].status_evidence[0].collected_at = "2026-10-05T00:00:00Z";
+    }],
+    ["record clock predates document evidence", data => {
+      data.records[0].last_collected_at = "2026-10-04T00:00:00Z";
+      data.records[0].documents[0].collected_at = "2026-10-05T00:00:00Z";
+    }],
   ];
   for (const [label, mutate] of invalidCases) {
     const data = structuredClone(fixture);
@@ -48,6 +56,12 @@ try {
     assert.match(result.stderr, /DATA CONTRACT ERROR:/, label + " must give a useful contract error");
     assert.doesNotMatch(result.stderr, /TypeError|ReferenceError/, label + " must not crash the validator");
   }
+  const equalEvidenceClock = structuredClone(fixture);
+  equalEvidenceClock.records[0].last_collected_at = "2099-01-01T00:00:00Z";
+  equalEvidenceClock.records[0].status_evidence[0].collected_at = "2099-01-01T00:00:00Z";
+  const equalClock = run(equalEvidenceClock);
+  assert.equal(equalClock.status, 0, "record clock equal to latest attached evidence is valid: " + equalClock.stderr);
+
   const standardCorrection = structuredClone(fixture);
   standardCorrection.records[0].open_date.corrections = [{ recorded_at: "2026-09-30T00:00:00Z", previous_value: null, new_value: "2026-09-01", reason: "Official-source correction" }];
   const standard = run(standardCorrection);

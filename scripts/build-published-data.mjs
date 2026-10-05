@@ -30,6 +30,36 @@ function readJson(file) {
   return JSON.parse(fs.readFileSync(file, "utf8"));
 }
 
+function latestAttachedCollectedAt(value) {
+  let latest = null;
+  function visit(node) {
+    if (Array.isArray(node)) {
+      node.forEach(visit);
+      return;
+    }
+    if (!node || typeof node !== "object") return;
+    for (const [key, child] of Object.entries(node)) {
+      if (key === "collected_at" && typeof child === "string") {
+        const time = Date.parse(child);
+        if (Number.isFinite(time) && (!latest || time > latest.time)) latest = { time, value: child };
+      } else {
+        visit(child);
+      }
+    }
+  }
+  visit(value);
+  return latest?.value ?? null;
+}
+
+function maxTimestamp(...values) {
+  let latest = null;
+  for (const value of values) {
+    const time = Date.parse(value || "");
+    if (Number.isFinite(time) && (!latest || time > latest.time)) latest = { time, value };
+  }
+  return latest?.value ?? values.find(Boolean) ?? null;
+}
+
 function recoveryFiles() {
   if (!fs.existsSync(recoveryRoot)) return [];
   return fs.readdirSync(recoveryRoot, { withFileTypes: true })
@@ -148,7 +178,7 @@ function normalizeRecord(record, collectedAt) {
     collected_at: record.nse_source?.collected_at ?? collectedAt
   };
 
-  return {
+  const normalized = {
     id: record.id,
     issuer_name: record.issuer_name,
     board: record.board ?? null,
@@ -180,6 +210,11 @@ function normalizeRecord(record, collectedAt) {
     first_observed_at: record.first_observed_at ?? collectedAt,
     last_collected_at: record.last_collected_at ?? collectedAt
   };
+  normalized.last_collected_at = maxTimestamp(
+    normalized.last_collected_at,
+    latestAttachedCollectedAt(normalized)
+  );
+  return normalized;
 }
 
 const files = recoveryFiles();

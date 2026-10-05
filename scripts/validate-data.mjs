@@ -97,6 +97,30 @@ for (const error of structuralErrors) fail(error);
 // Structural failures are already actionable; do not crash in semantic checks.
 if (structuralErrors.length) process.exit(1);
 
+function latestAttachedEvidence(value, prefix = "record") {
+  let latest = null;
+  function visit(node, path) {
+    if (Array.isArray(node)) {
+      node.forEach((item, index) => visit(item, `${path}[${index}]`));
+      return;
+    }
+    if (!node || typeof node !== "object") return;
+    for (const [key, child] of Object.entries(node)) {
+      const childPath = `${path}.${key}`;
+      if (key === "collected_at" && child !== null) {
+        const time = Date.parse(child);
+        if (Number.isFinite(time) && (!latest || time > latest.time)) {
+          latest = { time, value: child, path: childPath };
+        }
+      } else {
+        visit(child, childPath);
+      }
+    }
+  }
+  visit(value, prefix);
+  return latest;
+}
+
 function validateField(field, prefix) {
   if (!field || typeof field !== "object" || Array.isArray(field)) {
     fail(`${prefix} must be an evidence-bearing field object`);
@@ -138,6 +162,12 @@ for (const [index, record] of (data.records || []).entries()) {
 
   for (const fieldName of fieldNames) {
     validateField(record[fieldName], `${prefix}.${fieldName}`);
+  }
+
+  const latestEvidence = latestAttachedEvidence(record, prefix);
+  const lastCollectedTime = Date.parse(record.last_collected_at || "");
+  if (latestEvidence && (!Number.isFinite(lastCollectedTime) || lastCollectedTime < latestEvidence.time)) {
+    fail(`${prefix} (${record.id}).last_collected_at must not predate attached evidence at ${latestEvidence.path} (${latestEvidence.value})`);
   }
 
   const band = record.price_band.value;

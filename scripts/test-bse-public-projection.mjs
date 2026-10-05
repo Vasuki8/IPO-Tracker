@@ -109,3 +109,43 @@ try {
   assert.deepEqual(fs.readFileSync(outputPath),firstBytes,'null projection must be deterministic');
   console.log('Retained-null projection regressions passed: explicit decisions and source/correction histories survive all legacy fallbacks and nested requirements.');
 } finally { fs.rmSync(nullTemp,{recursive:true,force:true}); }
+
+
+// BUG-011: the public record clock cannot predate evidence already attached to
+// that record. Recovery keeps its retained raw clock; projection derives the
+// public clock from the latest attached evidence without redating that evidence.
+const clockTemp = fs.mkdtempSync(path.join(os.tmpdir(), 'record-evidence-clock-projection-'));
+try {
+  for (const name of ['scripts/build-published-data.mjs', 'scripts/publish-field-status.mjs', 'scripts/ipo-instrument-policy.mjs', 'assets/ipo-order.js']) {
+    fs.mkdirSync(path.dirname(path.join(clockTemp, name)), {recursive:true});
+    fs.copyFileSync(path.join(root, name), path.join(clockTemp, name));
+  }
+  const oldClock='2026-09-20T00:00:00Z';
+  const newClock='2026-09-26T01:11:28.439Z';
+  const source={url:'https://www.nseindia.com/clock-fixture',document_type:'NSE Issue Information',document_identity:'Clock fixture',publication_date:null,collected_at:oldClock};
+  const record={
+    id:'clock-fixture',
+    issuer_name:'Clock Fixture Limited',
+    board:null,
+    sector:null,
+    status:'listed',
+    nse_source:source,
+    terms:{price_band:null,market_lot:null,minimum_bid_quantity:null,open_date:null,close_date:null},
+    documents:[{type:'NSE Issue Information',identity:'Clock fixture',url:source.url,publication_date:null,collected_at:newClock}],
+    first_observed_at:oldClock,
+    last_collected_at:oldClock,
+    board_evidence:[],
+    status_evidence:[{...source,page:null}]
+  };
+  const manifestPath=path.join(clockTemp,'data/recovery/2026/nse-issue-information.json');
+  fs.mkdirSync(path.dirname(manifestPath),{recursive:true});
+  fs.writeFileSync(manifestPath,JSON.stringify({collection_started_at:oldClock,generated_at:newClock,records:[record]},null,2)+'\n');
+  const before=fs.readFileSync(manifestPath);
+  execFileSync(process.execPath,['scripts/build-published-data.mjs'],{cwd:clockTemp});
+  const projected=JSON.parse(fs.readFileSync(path.join(clockTemp,'data/ipos.json'))).records[0];
+  assert.equal(projected.last_collected_at,newClock);
+  assert.equal(projected.documents[0].collected_at,newClock);
+  assert.equal(projected.status_evidence[0].collected_at,oldClock);
+  assert.deepEqual(fs.readFileSync(manifestPath),before,'publication must not rewrite raw recovery clocks');
+  console.log('Record/evidence clock projection regression passed.');
+} finally { fs.rmSync(clockTemp,{recursive:true,force:true}); }
