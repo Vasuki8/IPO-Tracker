@@ -31,6 +31,39 @@ test('accepts the single-candidate read-only Mish source plan',()=>{
  assert.equal(p.issuer.sources.length,3);
  assert.equal(p.publication_import_allowed,false);
 });
+
+test('committed Mish source receipt is bounded to the retained artifact and remains non-authorizing',()=>{
+ const receipt=JSON.parse(fs.readFileSync(new URL('../data/evidence/bse-2023-mish-source-receipt-2026-10-05.json',import.meta.url)));
+ assert.equal(receipt.status,'complete_source_collection_only');
+ assert.equal(receipt.plan_sha256,hash(planBytes));
+ assert.equal(receipt.source_queue_sha256,plan.source_queue_sha256);
+ assert.equal(receipt.publication_import_allowed,false);
+ assert.equal(receipt.semantic_review_complete,false);
+ assert.equal(receipt.complete_indian_ipo_universe,false);
+ assert.deepEqual(receipt.candidate,{
+  issuer_name:'Mish Designs Limited',
+  discovery_bse_scrip_code:'544015',
+  source_row_index:27,
+  disposition_at_collection:'awaiting_review',
+  first_in_next_bounded_batch:true,
+ });
+ assert.equal(receipt.workflow.run_id,37359797876);
+ assert.equal(receipt.workflow.artifact_id,11365369743);
+ assert.equal(receipt.workflow.artifact_bytes,8791689);
+ assert.equal(receipt.workflow.artifact_sha256,'d0d7440b561cd340080df7b12915fa7f9af706c5fe4843d5b973142429ec7779');
+ assert.equal(receipt.source_documents_expected,3);
+ assert.equal(receipt.source_documents_accepted,3);
+ assert.equal(receipt.total_response_bytes,8761576);
+ assert.equal(receipt.issuer_landing_links_prospectus,true);
+ assert.deepEqual(receipt.documents.map(d=>[d.key,d.url,d.response_sha256,d.response_bytes]),[
+  ['issuer_investor_relations','https://mishindia.com/investor-relations/','6a6a780d13f8d28d30607bebd29aa0b04fdbe7cbb330166e6878543b75cb8261',207361],
+  ['final_prospectus','https://mishindia.com/Investor_Assets/Initial%20Public%20Offer/Prospectus_of_Mish_Designs_Limited.pdf','1779a684e9f5dac3441fa13dfd129a7d5ba6bb89670695ea8d04f01d3de9a804',4554961],
+  ['bse_annual_report_2023_24','https://www.bseindia.com/xml-data/corpfiling/AttachHis/3d4860b3-2d30-4edc-8430-f6181ad45bfd.pdf','89ab1af681fdfab94c1faba2532b97766d55709792f3309bb592ba884057fc0b',3999254],
+ ]);
+ assert.equal(receipt.documents.find(d=>d.key==='final_prospectus').publication_use,'review_only_pending_publication_source_policy');
+ assert.equal(receipt.documents.find(d=>d.key==='final_prospectus').pdf_pages,237);
+ assert.equal(receipt.documents.find(d=>d.key==='bse_annual_report_2023_24').pdf_pages,69);
+});
 for(const [name,mutate] of [
  ['publication flag',p=>p.publication_import_allowed=true],
  ['semantic review flag',p=>p.semantic_review_complete=true],
