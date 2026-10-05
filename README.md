@@ -47,6 +47,21 @@ Collection time, source observation, dataset generation and Pages publication ar
 
 ## Handoff for the next prompt
 
+The browser gate and admission repairs are **merged, deployed and served-verified**:
+separate PR #357 (`ea0301aa`) and refreshed PR #356 (`0e0da6ce`). All seven PR checks,
+12 repeated browser runs before merge and 12 after merge passed. Fresh local
+non-browser verification passed 102 entrypoints. Pages 37248108151 served the
+expected 1,388-record JSON; only SMCG04 (DEBT) was excluded, with recovery evidence
+and all other records preserved. See the [release receipt](docs/verification/browser-gate-and-admission-release-2026-10-05.md).
+
+**Next:** amended-term/conflict retention (BUG-006) and endpoint provenance
+(BUG-008). Nine original audit findings remain open, including document-filter
+focus (BUG-015); the skip-link route fix is separate. SSEK #352 is untouched.
+The prior 37241174980/37242214201 cycle is complete. Pending language below records
+older checkpoints and is superseded by this receipt; do not replay those releases.
+
+**Historical handoff checkpoints (superseded):**
+
 The [browser-gate stabilization batch](docs/verification/browser-gate-stabilization-2026-10-04.md)
 uses deterministic fixtures and prevents duplicate navigation notifications from
 stealing focus. It changes no IPO data. Merge after repeated browser checks, then
