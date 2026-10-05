@@ -1,0 +1,35 @@
+{
+  "schema_version": "1.0.0",
+  "status": "approved_bse_2023_mish_import",
+  "target_year": 2023,
+  "publication_import_allowed": true,
+  "auto_import_allowed": false,
+  "publication_review_path": "data/discovery/bse-2023-mish-publication-review-2026-10-05.json",
+  "publication_review_git_blob_sha": "cd2eb5475b398356ff962bbffb42f3de3f41639f",
+  "field_review_path": "data/discovery/bse-2023-mish-field-review-2026-10-05.json",
+  "field_review_git_blob_sha": "2ba6d540d985a3414df23b778121ba116cc33e4d",
+  "source_receipt_path": "data/evidence/bse-2023-mish-source-receipt-2026-10-05.json",
+  "source_receipt_git_blob_sha": "0c18a8f88427f55ab4ba184c529a0a35048863de",
+  "reviewed_at": "2026-10-05T20:11:50.000Z",
+  "actions": [
+    {
+      "stable_id": "mish-designs-limited",
+      "discovery_bse_scrip_code": "544015"
+    }
+  ],
+  "rules": {
+    "one_record_only": true,
+    "target_year_only": true,
+    "preserve_existing_records": true,
+    "public_sources_bse_only": true,
+    "source_allowlist_expansion": false,
+    "held_research_fields_not_published": [
+      "market_lot",
+      "minimum_bid_quantity"
+    ],
+    "minimum_application_amount_inr": "missing_not_inferred",
+    "board": "null_platform_observation_retained",
+    "price_band": "missing_fixed_price",
+    "served_verification_required": true
+  }
+}
