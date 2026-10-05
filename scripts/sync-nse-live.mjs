@@ -524,6 +524,8 @@ export function enrichExistingRecord(record, issue, now) {
   assertCompatibleIdentity(record, issue);
   let changed = false;
   const evidence = sourceEvidence(issue, now);
+  const boardEvidence = sourceEvidence(issue, now, "series");
+  const statusEvidence = sourceEvidence(issue, now, "status");
   const liveBoard = mapBoard(issue.series);
   const liveStatus = mapNseStatus(issue.status);
   const parsedPrice = parseIssuePrice(issue.priceBand || issue.issuePrice);
@@ -542,7 +544,7 @@ export function enrichExistingRecord(record, issue, now) {
 
   if (!record.board && liveBoard) {
     record.board = liveBoard;
-    record.board_evidence = addEvidenceOnce(record.board_evidence, evidence);
+    record.board_evidence = addEvidenceOnce(record.board_evidence, boardEvidence);
     changed = true;
   }
 
@@ -551,7 +553,7 @@ export function enrichExistingRecord(record, issue, now) {
       record.status = liveStatus;
       changed = true;
     }
-    const nextStatusEvidence = addEvidenceOnce(record.status_evidence, evidence);
+    const nextStatusEvidence = addEvidenceOnce(record.status_evidence, statusEvidence);
     if (nextStatusEvidence !== record.status_evidence) {
       record.status_evidence = nextStatusEvidence;
       changed = true;
