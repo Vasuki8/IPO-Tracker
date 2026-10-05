@@ -90,10 +90,7 @@ function validateDrhpDataset(data) {
   return data.coverage.filing_records === filings;
 }
 function validateIpoDataset(data) {
-  const statuses = new Set(["upcoming", "open", "closed", "listed"]);
-  return Array.isArray(data?.records) && data.records.every(record =>
-    record && typeof record.issuer_name === "string" && record.issuer_name.trim() &&
-    statuses.has(String(record.status || "").toLowerCase()));
+  return Boolean(globalThis.PreIpoFilter?.validateLifecycleDataset(data));
 }
 async function load() {
   $("#drhpLoading").hidden = false;

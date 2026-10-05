@@ -2,6 +2,7 @@
   "use strict";
 
   const PROGRESSED_STATUSES = new Set(["upcoming", "open", "closed", "listed"]);
+  const LIFECYCLE_SCHEMA_VERSION = "1.2.0";
 
   function canonicalIssuer(value) {
     return String(value ?? "")
@@ -48,10 +49,34 @@
     });
   }
 
+  function validTimestamp(value) {
+    return typeof value === "string" && value.trim() &&
+      Number.isFinite(Date.parse(value));
+  }
+
+  function validateLifecycleDataset(data) {
+    if (!data || data.schema_version !== LIFECYCLE_SCHEMA_VERSION ||
+        !validTimestamp(data.generated_at) ||
+        !Array.isArray(data.records) || data.records.length === 0) return false;
+
+    const ids = new Set();
+    for (const record of data.records) {
+      if (!record || typeof record.id !== "string" || !record.id.trim() ||
+          ids.has(record.id) ||
+          typeof record.issuer_name !== "string" || !record.issuer_name.trim() ||
+          !PROGRESSED_STATUSES.has(String(record.status ?? "").trim().toLowerCase())) {
+        return false;
+      }
+      ids.add(record.id);
+    }
+    return true;
+  }
+
   root.PreIpoFilter = Object.freeze({
     canonicalIssuer,
     hasProgressed,
     progressedIssuerKeys,
     activeCompanies,
+    validateLifecycleDataset,
   });
 })(globalThis);

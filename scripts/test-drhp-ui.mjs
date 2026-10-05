@@ -21,6 +21,7 @@ assert.match(html,/official lead-manager/i);
 assert.match(app,/fetch\("data\/drhp-filings\.json"/);
 assert.match(app,/fetch\("data\/ipos\.json"/);
 assert.match(app,/PreIpoFilter\.activeCompanies/);
+assert.match(app,/PreIpoFilter\?\.validateLifecycleDataset/);
 assert.match(app,/status status--upcoming">DRHP filed/);
 assert.match(app,/No fuzzy issuer matching is used/);
 assert.match(app,/stop_reason !== "first_page_strictly_older_than_year"/);
@@ -32,6 +33,28 @@ const filter=sandbox.PreIpoFilter;
 assert.ok(filter);
 assert.equal(filter.canonicalIssuer("Example & Sons Ltd."),"example and sons");
 assert.equal(filter.canonicalIssuer("EXAMPLE AND SONS LIMITED"),"example and sons");
+
+const validLifecycle = {
+  schema_version:"1.2.0",
+  generated_at:"2026-10-05T00:00:00Z",
+  records:[{id:"progressed",issuer_name:"Progressed Limited",status:"listed"}],
+};
+assert.equal(filter.validateLifecycleDataset(validLifecycle),true);
+assert.equal(filter.validateLifecycleDataset({...validLifecycle,records:[]}),false,
+  "empty lifecycle data must fail closed instead of making every draft issuer reappear");
+assert.equal(filter.validateLifecycleDataset({...validLifecycle,schema_version:"1.1.0"}),false,
+  "unexpected lifecycle schema must fail closed");
+assert.equal(filter.validateLifecycleDataset({...validLifecycle,generated_at:null}),false,
+  "lifecycle data without a valid generation clock must fail closed");
+assert.equal(filter.validateLifecycleDataset({
+  ...validLifecycle,
+  records:[
+    {id:"duplicate",issuer_name:"First Limited",status:"listed"},
+    {id:"duplicate",issuer_name:"Second Limited",status:"closed"},
+  ],
+}),false,"duplicate lifecycle stable IDs must fail closed");
+assert.equal(filter.validateLifecycleDataset(ipoData),true,
+  "current published IPO lifecycle dataset must satisfy the browser fail-closed contract");
 
 const companies=[
   {issuer_name:"Pure Draft Limited"},

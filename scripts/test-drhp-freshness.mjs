@@ -61,6 +61,24 @@ try {
     } finally { await page.close(); }
   }
 
+  async function rejectedLifecycleScenario(name, ipo) {
+    const page = await browser.newPage({ viewport: { width: 390, height: 844 } });
+    const errors = [];
+    page.on("pageerror", error => errors.push(error.message));
+    await page.route("**/data/drhp-filings.json", route => route.fulfill({ json: sourceData }));
+    await page.route("**/data/ipos.json", route => route.fulfill({ json: ipo }));
+    await page.route("**/ops/drhp-collection.json", route => route.fulfill({ json: healthData }));
+    try {
+      await page.goto(`http://127.0.0.1:${server.address().port}/drhp.html`);
+      await page.waitForSelector("#drhpError:not([hidden])");
+      assert.equal(await page.locator("#drhpResults").isVisible(), false,
+        "Invalid lifecycle data must never expose the pre-IPO result set");
+      assert.equal(await page.locator("#drhpError").isVisible(), true);
+      assert.deepEqual(errors, [], "Fail-closed lifecycle handling must not raise browser errors");
+      passed.push(name);
+    } finally { await page.close(); }
+  }
+
   await scenario("failed refresh keeps source and lifecycle timestamps distinct", {}, async state => {
     assert.equal(state.source, `Draft sources last successfully collected: ${timestamp(sourceData.collection_completed_at)}`,
       "The retained draft-source collection timestamp must remain visible separately from newer lifecycle state");
@@ -107,15 +125,24 @@ try {
     assert.equal(state.source, `Draft sources last successfully collected: ${timestamp(sourceData.collection_completed_at)}`);
     assert.equal(state.lifecycle, `IPO lifecycle dataset generated: ${timestamp(ipoData.generated_at)}`);
   });
-  await scenario("invalid collection time and unknown health status remain honest", {
+  await scenario("invalid draft collection time and unknown health status remain honest", {
     source: { ...sourceData, collection_completed_at: "invalid" },
-    ipo: { ...ipoData, generated_at: null },
     health: { status: "unknown", attempted_at: healthData.attempted_at },
   }, async state => {
     assert.equal(state.source, `Draft dataset generated: ${timestamp(sourceData.generated_at)} · source collection time unavailable`);
-    assert.equal(state.lifecycle, "IPO lifecycle dataset generated: Unavailable");
+    assert.equal(state.lifecycle, `IPO lifecycle dataset generated: ${timestamp(ipoData.generated_at)}`);
     assert.equal(state.attempt, `Latest reported draft-source refresh: Unavailable · ${timestamp(healthData.attempted_at)}`);
     assert.match(state.note, /Latest draft-source refresh status is unavailable/);
+  });
+
+  await rejectedLifecycleScenario("missing lifecycle generation clock fails closed", {
+    ...ipoData, generated_at: null,
+  });
+  await rejectedLifecycleScenario("empty lifecycle record set fails closed", {
+    ...ipoData, records: [],
+  });
+  await rejectedLifecycleScenario("unexpected lifecycle schema fails closed", {
+    ...ipoData, schema_version: "1.1.0",
   });
   console.log(JSON.stringify({ drhp_freshness_browser_tests: { passed: passed.length, scenarios: passed } }));
 } finally {
