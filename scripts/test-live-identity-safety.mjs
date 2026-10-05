@@ -153,6 +153,46 @@ test('mixed legitimate equities and debt: dry-run preservation, import and repla
   });
 });
 
+test('new live terms keep their own collection clock through publication', async () => {
+  const oldClock='2026-10-01T08:00:00Z';
+  const newClock='2026-10-05T08:00:00Z';
+  const legacy=buildNewRecoveryRecord(issue({
+    issueStartDate:'',issueEndDate:'',issuePrice:'',lotSize:''
+  }),oldClock);
+  const oldSourceClock=legacy.nse_source.collected_at;
+  await isolated({'2026':{collection_started_at:oldClock,generated_at:oldClock,records:[legacy]}},async(dir,{runSync})=>{
+    const fixture=path.join(dir,'feed.json');
+    write(fixture,{upcoming:[issue({
+      issueStartDate:'05-Oct-2026',
+      issueEndDate:'07-Oct-2026',
+      issuePrice:'Rs.100 to Rs.110',
+      lotSize:'50',
+      status:'Active'
+    })],current:[]});
+    const result=await runSync({fixturePath:fixture,now:newClock});
+    assert.equal(result.enriched,1);
+    const recoveryPath=path.join(dir,'data/recovery/2026/nse-issue-information.json');
+    const updated=JSON.parse(fs.readFileSync(recoveryPath,'utf8')).records[0];
+    assert.equal(updated.nse_source.collected_at,oldSourceClock,
+      'record-level source identity may remain historical');
+    for(const field of ['price_band','market_lot','open_date','close_date']){
+      assert.equal(updated[field].source.collected_at,newClock,
+        field+' must use the observation clock that supplied the new value');
+    }
+    assert.equal(updated.last_collected_at,newClock);
+
+    execFileSync(process.execPath,['scripts/build-published-data.mjs'],{cwd:dir,encoding:'utf8'});
+    const published=JSON.parse(fs.readFileSync(path.join(dir,'data/ipos.json'),'utf8')).records[0];
+    for(const field of ['price_band','market_lot','open_date','close_date']){
+      assert.equal(published[field].evidence[0].collected_at,newClock,
+        field+' published evidence must retain the fresh field clock');
+      assert.notEqual(published[field].evidence[0].collected_at,oldSourceClock,
+        field+' must not inherit the older record-level source clock');
+    }
+    assert.equal(published.last_collected_at,newClock);
+  });
+});
+
 test('public projection excludes debt while preserving all retained evidence and unknown-board equities', async () => {
   const debt={...record(),id:'debt',issuer_name:'Debt Limited',nse_series:'DEBT',board:null};
   const unknown={...record(),id:'unknown',issuer_name:'Unknown Board Limited',board:null};delete unknown.nse_series;unknown.nse_source.document_type='Reviewed official IPO source';
