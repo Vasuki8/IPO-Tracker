@@ -70,7 +70,7 @@ fail upstream. PR #362 makes SEBI and Axis fallback collection independent,
 preserves the last good published draft dataset, and records per-source health.
 An upstream collection failure is not evidence that the audit repair regressed.
 
-### Exact next bounded task
+### Exact next backend task
 
 **Review and refresh SSEK closeout PR #352 against current `main`.** It is
 separate from the October audit and its branch predates these releases. Do not
