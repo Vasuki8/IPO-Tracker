@@ -10,6 +10,9 @@ on:
       - "scripts/test-ui.mjs"
       - "scripts/test-product-logic-ui.mjs"
       - "scripts/test-drhp-freshness.mjs"
+      - "scripts/browser-route-focus.mjs"
+      - "scripts/run-browser-tests.mjs"
+      - "scripts/fixtures/browser-data.mjs"
       - "data/ipos.json"
       - "data/drhp-filings.json"
       - "ops/drhp-collection.json"
@@ -23,6 +26,9 @@ on:
       - "scripts/test-ui.mjs"
       - "scripts/test-product-logic-ui.mjs"
       - "scripts/test-drhp-freshness.mjs"
+      - "scripts/browser-route-focus.mjs"
+      - "scripts/run-browser-tests.mjs"
+      - "scripts/fixtures/browser-data.mjs"
       - "data/ipos.json"
       - "data/drhp-filings.json"
       - "ops/drhp-collection.json"
@@ -46,12 +52,10 @@ jobs:
           node "$RUNNER_TEMP/ipo-ui/node_modules/playwright/cli.js" install --with-deps chromium
       - name: Check interface on desktop and mobile
         env:
+          BROWSER_TEST_REPEAT: "3"
           PLAYWRIGHT_MODULE: ${{ runner.temp }}/ipo-ui/node_modules/playwright
           UI_SCREENSHOT_DIR: ${{ runner.temp }}/ipo-ui-previews
-        run: |
-          node scripts/test-ui.mjs
-          node scripts/test-product-logic-ui.mjs
-          node scripts/test-drhp-freshness.mjs
+        run: node scripts/run-browser-tests.mjs
       - name: Retain visual previews
         if: always()
         uses: actions/upload-artifact@v4

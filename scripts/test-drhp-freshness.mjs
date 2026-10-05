@@ -1,6 +1,7 @@
 // Browser regressions for distinct source, lifecycle, and refresh-report freshness.
 // Run with PLAYWRIGHT_MODULE pointing at a configured Playwright installation if needed.
 import assert from "node:assert/strict";
+import { draftDataset, productDataset, failedDraftHealth } from "./fixtures/browser-data.mjs";
 import { createRequire } from "node:module";
 import { createServer } from "node:http";
 import { readFile } from "node:fs/promises";
@@ -10,9 +11,9 @@ import { fileURLToPath } from "node:url";
 const require = createRequire(import.meta.url);
 const { chromium } = require(process.env.PLAYWRIGHT_MODULE || "playwright");
 const root = path.resolve(fileURLToPath(new URL("../", import.meta.url)));
-const sourceData = JSON.parse(await readFile(path.join(root, "data/drhp-filings.json"), "utf8"));
-const ipoData = JSON.parse(await readFile(path.join(root, "data/ipos.json"), "utf8"));
-const healthData = JSON.parse(await readFile(path.join(root, "ops/drhp-collection.json"), "utf8"));
+const sourceData = draftDataset();
+const ipoData = productDataset();
+const healthData = failedDraftHealth();
 const timestamp = value => new Date(value).toLocaleString("en-GB", {
   day: "2-digit", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit", timeZone: "UTC",
 }) + " UTC";
@@ -88,7 +89,7 @@ try {
     assert.match(state.note, /Refresh report describes a different collection/);
   });
   await scenario("matching success report has no false mismatch warning", {
-    health: { ...healthData, status: "success", attempted_at: sourceData.collection_completed_at },
+    health: { ...healthData, status: "success", attempted_at: sourceData.collection_completed_at, last_successful_collection_at: sourceData.collection_completed_at },
   }, async state => {
     assert.equal(state.source, `Draft sources last successfully collected: ${timestamp(sourceData.collection_completed_at)}`);
     assert.equal(state.attempt, `Latest reported draft-source refresh: Success · ${timestamp(sourceData.collection_completed_at)}`);

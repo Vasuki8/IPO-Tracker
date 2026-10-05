@@ -1,0 +1,91 @@
+name: Prepare isolated PR356 browser-gate refresh
+on:
+  push:
+    branches: [maintenance/pr356-browser-refresh-20261004]
+    paths: [.github/workflows/refresh-pr356-browser.yml]
+permissions:
+  contents: write
+jobs:
+  prepare:
+    if: >-
+      github.repository == 'Vasuki8/IPO-Tracker' && github.event.head_commit.message == 'chore: prepare PR356 browser-gate refresh'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Rebuild against current retained recovery and verify exact preservation
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/pr356-refresh"
+          cp data/ipos.json "$RUNNER_TEMP/pr356-refresh/before.json"
+          rm .github/workflows/refresh-pr356-browser.yml
+          node scripts/build-published-data.mjs
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import assert from 'node:assert/strict';
+          import {createHash} from 'node:crypto';
+          const out=process.env.RUNNER_TEMP+'/pr356-refresh/';
+          const a=JSON.parse(fs.readFileSync(out+'before.json'));
+          const bytes=fs.readFileSync('data/ipos.json');
+          const b=JSON.parse(bytes), id='smc-global-securities-limited';
+          assert.equal(a.records.filter(r=>r.id===id).length,1);
+          assert.deepEqual(b.records,a.records.filter(r=>r.id!==id));
+          const {records:ar,...am}=a,{records:br,...bm}=b;
+          assert.deepEqual(bm,am);
+          fs.writeFileSync(out+'preservation.json',JSON.stringify({base:'ea0301aa5f4a02c2f5beaa3fa846a21d92fe6e4c',before:a.records.length,after:b.records.length,removed:[id],other_objects_unchanged:true,metadata_unchanged:true,sha256:createHash('sha256').update(bytes).digest('hex')},null,2));
+          NODE
+          git diff --exit-code -- data/recovery ops
+          node scripts/build-published-data.mjs --check
+          node scripts/validate-data.mjs
+      - name: Run every non-browser regression without skipping failures
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import glob,os,pathlib,subprocess,json
+          out=pathlib.Path(os.environ['RUNNER_TEMP'])/'pr356-refresh'; results=[]
+          for file in sorted(glob.glob('scripts/test-*.mjs')):
+            if pathlib.Path(file).name in {'test-ui.mjs','test-product-logic-ui.mjs','test-drhp-freshness.mjs'}: continue
+            result=subprocess.run(['node',file],stdout=subprocess.PIPE,stderr=subprocess.STDOUT,text=True,timeout=120)
+            (out/(pathlib.Path(file).name+'.log')).write_text(result.stdout)
+            results.append({'test':file,'exit_code':result.returncode})
+          (out/'nonbrowser.json').write_text(json.dumps(results,indent=2))
+          assert all(r['exit_code']==0 for r in results),[r for r in results if r['exit_code']]
+          print(len(results),'non-browser entrypoints passed')
+          PY
+      - name: Install pinned browser tools
+        run: |
+          npm install --prefix "$RUNNER_TEMP/tools" --no-package-lock --no-save playwright@1.56.1
+          node "$RUNNER_TEMP/tools/node_modules/playwright/cli.js" install --with-deps chromium
+      - name: Run repeated browser gate on the combined candidate
+        env:
+          PLAYWRIGHT_MODULE: ${{ runner.temp }}/tools/node_modules/playwright
+          UI_SCREENSHOT_DIR: ${{ runner.temp }}/pr356-refresh/browser
+          BROWSER_TEST_REPEAT: '3'
+        run: node scripts/run-browser-tests.mjs
+      - name: Retain and publish the tested refresh branch only
+        shell: bash
+        run: |
+          set -euo pipefail
+          git diff --check
+          git add -A
+          git diff --cached --exit-code -- data/recovery ops
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'fix: refresh PR356 onto stabilized browser gate and latest recovery'
+          git rev-parse HEAD > "$RUNNER_TEMP/pr356-refresh/final-commit.txt"
+          git rev-parse HEAD^{tree} > "$RUNNER_TEMP/pr356-refresh/final-tree.txt"
+          git archive --format=zip HEAD > "$RUNNER_TEMP/pr356-refresh/source-snapshot.zip"
+          test "$(git ls-remote origin refs/heads/maintenance/pr356-browser-refresh-20261004 | cut -f1)" = "$GITHUB_SHA"
+          git push origin HEAD:refs/heads/maintenance/pr356-browser-refresh-20261004
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr356-browser-refresh-${{ github.run_id }}
+          path: ${{ runner.temp }}/pr356-refresh
+          retention-days: 14

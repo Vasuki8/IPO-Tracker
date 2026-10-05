@@ -1,6 +1,7 @@
 /* Static directory UI. Published data and its source fields remain read-only. */
 let IPO_DATA = [];
 let loadState = "loading";
+let renderedRoute = null;
 let displayedMarketDay = null;
 let marketDayTimer = null;
 const PAGE_SIZES = [25, 50, 100];
@@ -594,6 +595,11 @@ function showHome() {
 }
 function route() {
   if (loadState !== "ready") return;
+  // Same-document navigation can notify both popstate and hashchange. Once a
+  // URL is rendered, a late duplicate must not steal keyboard focus or reset
+  // expanded evidence. A new data load explicitly invalidates this key.
+  if (renderedRoute === location.href) return;
+  renderedRoute = location.href;
   if (location.hash.startsWith("#ipo/")) {
     try {
       showDetail(decodeURIComponent(location.hash.slice(5)));
@@ -607,6 +613,7 @@ function route() {
   }
 }
 async function loadData() {
+  renderedRoute = null;
   loadState = "loading";
   $("#loadingState").hidden = false;
   $("#errorState").hidden = true;

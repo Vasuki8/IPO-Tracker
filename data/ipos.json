@@ -1,8 +1,170 @@
 {
   "schema_version": "1.2.0",
-  "generated_at": "2026-10-04T22:46:20.063Z",
+  "generated_at": "2026-10-04T23:42:42.380Z",
   "collection_started_at": "2026-09-22T02:14:14Z",
   "records": [
+    {
+      "id": "smc-global-securities-limited",
+      "issuer_name": "SMC Global Securities Limited",
+      "board": null,
+      "board_evidence": [],
+      "sector": null,
+      "status": "open",
+      "status_evidence": [
+        {
+          "url": "https://www.nseindia.com/api/all-upcoming-issues?category=ipo",
+          "document_type": "NSE IPO Live Feed",
+          "document_identity": "NSE IPO Live Feed — SMCG04",
+          "publication_date": null,
+          "page": null,
+          "collected_at": "2026-10-01T14:34:14.477Z"
+        },
+        {
+          "url": "https://www.nseindia.com/api/all-upcoming-issues?category=ipo",
+          "document_type": "NSE IPO Live Feed",
+          "document_identity": "NSE IPO Live Feed — SMCG04",
+          "publication_date": null,
+          "page": null,
+          "collected_at": "2026-10-04T19:41:31.365Z"
+        }
+      ],
+      "price_band": {
+        "value": null,
+        "status": "missing",
+        "evidence": [],
+        "corrections": []
+      },
+      "issue_price": {
+        "value": 1000,
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/all-upcoming-issues?category=ipo",
+            "document_type": "NSE IPO Live Feed",
+            "document_identity": "NSE IPO Live Feed — SMCG04",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-10-01T14:34:14.477Z"
+          }
+        ],
+        "corrections": []
+      },
+      "issue_size_inr": {
+        "value": null,
+        "status": "missing",
+        "evidence": [],
+        "corrections": []
+      },
+      "market_lot": {
+        "value": null,
+        "status": "missing",
+        "evidence": [],
+        "corrections": []
+      },
+      "minimum_bid_quantity": {
+        "value": null,
+        "status": "missing",
+        "evidence": [],
+        "corrections": []
+      },
+      "minimum_application_amount_inr": {
+        "value": null,
+        "status": "missing",
+        "evidence": [],
+        "corrections": []
+      },
+      "application_requirements": {
+        "retail": {
+          "minimum_application_amount_inr": {
+            "value": null,
+            "status": "missing",
+            "evidence": [],
+            "corrections": []
+          },
+          "minimum_bid_quantity": {
+            "value": null,
+            "status": "missing",
+            "evidence": [],
+            "corrections": []
+          }
+        },
+        "non_institutional": {
+          "minimum_application_amount_inr": {
+            "value": null,
+            "status": "missing",
+            "evidence": [],
+            "corrections": []
+          },
+          "minimum_bid_quantity": {
+            "value": null,
+            "status": "missing",
+            "evidence": [],
+            "corrections": []
+          }
+        },
+        "anchor_investor": {
+          "minimum_application_amount_inr": {
+            "value": null,
+            "status": "missing",
+            "evidence": [],
+            "corrections": []
+          },
+          "minimum_bid_quantity": {
+            "value": null,
+            "status": "missing",
+            "evidence": [],
+            "corrections": []
+          }
+        }
+      },
+      "open_date": {
+        "value": "2026-10-05",
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/all-upcoming-issues?category=ipo",
+            "document_type": "NSE IPO Live Feed",
+            "document_identity": "NSE IPO Live Feed — SMCG04",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-10-01T14:34:14.477Z"
+          }
+        ],
+        "corrections": []
+      },
+      "close_date": {
+        "value": "2026-10-16",
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/all-upcoming-issues?category=ipo",
+            "document_type": "NSE IPO Live Feed",
+            "document_identity": "NSE IPO Live Feed — SMCG04",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-10-01T14:34:14.477Z"
+          }
+        ],
+        "corrections": []
+      },
+      "listing_date": {
+        "value": null,
+        "status": "missing",
+        "evidence": [],
+        "corrections": []
+      },
+      "documents": [
+        {
+          "type": "NSE IPO Live Feed",
+          "identity": "NSE IPO Live Feed — SMCG04",
+          "url": "https://www.nseindia.com/api/all-upcoming-issues?category=ipo",
+          "publication_date": null,
+          "collected_at": "2026-10-01T14:34:14.477Z"
+        }
+      ],
+      "first_observed_at": "2026-10-01T14:34:14.477Z",
+      "last_collected_at": "2026-10-04T19:41:31.365Z"
+    },
     {
       "id": "r-k-fashion-accessories-limited",
       "issuer_name": "R.K. Fashion Accessories Limited",
@@ -82617,10 +82779,38 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "SEBI Prospectus filing",
+          "identity": "Ather Energy Limited - Prospectus",
+          "url": "https://www.sebi.gov.in/filings/public-issues/apr-2025/ather-energy-limited-prospectus_93840.html",
+          "publication_date": "2025-04-30",
+          "collected_at": "2026-10-04T23:16:53.439Z"
+        },
+        {
+          "type": "SEBI Prospectus PDF",
+          "identity": "Ather Energy Limited - Prospectus — PDF",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/may-2025/1746680794038.pdf",
+          "publication_date": "2025-04-30",
+          "collected_at": "2026-10-04T23:16:53.439Z"
+        },
+        {
+          "type": "SEBI RHP filing",
+          "identity": "Ather Energy Limited - RHP",
+          "url": "https://www.sebi.gov.in/filings/public-issues/apr-2025/ather-energy-limited-rhp_93554.html",
+          "publication_date": "2025-04-23",
+          "collected_at": "2026-10-04T23:16:53.439Z"
+        },
+        {
+          "type": "SEBI RHP PDF",
+          "identity": "Ather Energy Limited - RHP — PDF",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/apr-2025/1745402636567.pdf",
+          "publication_date": "2025-04-23",
+          "collected_at": "2026-10-04T23:16:53.439Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z"
+      "last_collected_at": "2026-10-04T23:16:53.439Z"
     },
     {
       "id": "iware-supplychain-services-limited",
@@ -130189,9 +130379,18 @@
         "corrections": []
       },
       "issue_size_inr": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": 144722000,
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.sebi.gov.in/sebi_data/attachdocs/may-2024/1716354591676.pdf",
+            "document_type": "SEBI Prospectus PDF",
+            "document_identity": "PIOTEX INDUSTRIES LIMITED- Prospectus — PDF",
+            "publication_date": "2024-05-06",
+            "page": 2,
+            "collected_at": "2026-10-04T23:40:14.697Z"
+          }
+        ],
         "corrections": []
       },
       "market_lot": {
@@ -130316,7 +130515,7 @@
         }
       ],
       "first_observed_at": "2026-09-24T18:32:14.986Z",
-      "last_collected_at": "2026-10-04T22:45:15.437Z"
+      "last_collected_at": "2026-10-04T23:40:14.697Z"
     },
     {
       "id": "premier-roadlines-limited",
@@ -130944,9 +131143,18 @@
         "corrections": []
       },
       "issue_size_inr": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": 30000000000,
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.sebi.gov.in/sebi_data/attachdocs/may-2024/1714644459754.pdf",
+            "document_type": "SEBI RHP PDF",
+            "document_identity": "Aadhar Housing Finance Limited - RHP — PDF",
+            "publication_date": "2024-04-30",
+            "page": 3,
+            "collected_at": "2026-10-04T23:40:14.697Z"
+          }
+        ],
         "corrections": []
       },
       "market_lot": {
@@ -131061,10 +131269,24 @@
           "url": "https://www.nseindia.com/api/ipo-detail?symbol=AADHARHFC&series=EQ",
           "publication_date": null,
           "collected_at": "2026-09-24T10:08:16.730Z"
+        },
+        {
+          "type": "SEBI RHP filing",
+          "identity": "Aadhar Housing Finance Limited - RHP",
+          "url": "https://www.sebi.gov.in/filings/public-issues/apr-2024/aadhar-housing-finance-limited-rhp_83134.html",
+          "publication_date": "2024-04-30",
+          "collected_at": "2026-10-04T23:16:53.439Z"
+        },
+        {
+          "type": "SEBI RHP PDF",
+          "identity": "Aadhar Housing Finance Limited - RHP — PDF",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/may-2024/1714644459754.pdf",
+          "publication_date": "2024-04-30",
+          "collected_at": "2026-10-04T23:16:53.439Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-24T10:08:16.730Z"
+      "last_collected_at": "2026-10-04T23:40:14.697Z"
     },
     {
       "id": "silkflex-polymers-india-limited",
@@ -131413,10 +131635,24 @@
           "url": "https://www.nseindia.com/api/ipo-detail?symbol=TBOTEK&series=EQ",
           "publication_date": null,
           "collected_at": "2026-09-24T14:18:57.346Z"
+        },
+        {
+          "type": "SEBI RHP filing",
+          "identity": "TBO Tek Limited - RHP",
+          "url": "https://www.sebi.gov.in/filings/public-issues/may-2024/tbo-tek-limited-rhp_83137.html",
+          "publication_date": "2024-05-02",
+          "collected_at": "2026-10-04T23:16:53.439Z"
+        },
+        {
+          "type": "SEBI RHP PDF",
+          "identity": "TBO Tek Limited - RHP — PDF",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/may-2024/1714644931824.PDF",
+          "publication_date": "2024-05-02",
+          "collected_at": "2026-10-04T23:16:53.439Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-24T14:18:57.346Z"
+      "last_collected_at": "2026-10-04T23:16:53.439Z"
     },
     {
       "id": "finelistings-technologies-limited",
