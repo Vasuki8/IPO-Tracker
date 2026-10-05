@@ -158,3 +158,6 @@ for(const liveStatus of ["Closed","Forthcoming","Active"]){
  assert.equal(enrichExistingRecord(listedRecord,{companyName:"Live Recovery Limited",symbol:"LIVE",series:"EQ",status:liveStatus},"2026-09-30T00:00:00Z"),false);
 }
 console.log("Live IPO feed preserves listed lifecycle status and retains observations.");
+
+// Run admission/identity regressions in the existing collector CI entrypoint.
+await import('./test-live-identity-safety.mjs');
