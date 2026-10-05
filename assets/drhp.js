@@ -39,6 +39,19 @@ function formatTimestamp(value) {
     day:"2-digit", month:"short", year:"numeric", hour:"2-digit", minute:"2-digit", timeZone:"UTC"
   }) + " UTC";
 }
+const LEAD_MANAGER_DATE_BASIS_LABELS = Object.freeze({
+  lead_manager_document_upload_timestamp: "Date proxy · lead-manager document upload timestamp",
+  lead_manager_document_earliest_url_timestamp: "Date proxy · earliest lead-manager document-URL timestamp",
+});
+function filingDateBasisLabel(company) {
+  const filing = company?.filings?.[0];
+  if (filing?.source_kind !== "official_lead_manager") return "SEBI filing date";
+  return LEAD_MANAGER_DATE_BASIS_LABELS[filing.date_basis] || "Date proxy · lead-manager timestamp basis unavailable";
+}
+function latestCompanyByRetainedDate(companies) {
+  return (companies || []).reduce((latest, company) =>
+    !latest || company.latest_filing_date > latest.latest_filing_date ? company : latest, null);
+}
 function visibleCompanies() {
   const query = ($("#drhpSearch")?.value || "").trim().toLowerCase();
   const companies = DRHP_DATA?.companies || [];
@@ -65,11 +78,11 @@ function render() {
   $("#drhpRows").innerHTML = companies.map(company => `<tr>
     <td><strong class="drhp-company-name">${escapeHtml(company.issuer_name)}</strong>${company.filings?.some(f => f.not_seen_in_latest_scan) ? '<span class="secondary">Includes earlier retained source evidence</span>' : ""}</td>
     <td><span class="status status--upcoming">DRHP filed</span></td>
-    <td><span class="number">${escapeHtml(formatDate(company.latest_filing_date))}</span><span class="secondary">${escapeHtml(company.latest_filing_type)} · ${escapeHtml(filingSourceLabel(company))}</span></td>
+    <td><span class="number">${escapeHtml(formatDate(company.latest_filing_date))}</span><span class="secondary">${escapeHtml(company.latest_filing_type)} · ${escapeHtml(filingSourceLabel(company))} · ${escapeHtml(filingDateBasisLabel(company))}</span></td>
     <td>${filingLink(company)}</td>
   </tr>`).join("");
   $("#drhpCards").innerHTML = companies.map(company => `<article class="mobile-card drhp-card">
-    <div class="mobile-card__head"><div><strong class="drhp-company-name">${escapeHtml(company.issuer_name)}</strong><div class="company-meta">DRHP filed · latest draft ${escapeHtml(formatDate(company.latest_filing_date))}</div></div><span class="status status--upcoming">DRHP filed</span></div>
+    <div class="mobile-card__head"><div><strong class="drhp-company-name">${escapeHtml(company.issuer_name)}</strong><div class="company-meta">DRHP filed · ${escapeHtml(formatDate(company.latest_filing_date))} · ${escapeHtml(filingDateBasisLabel(company))}</div></div><span class="status status--upcoming">DRHP filed</span></div>
     <div class="mobile-card__foot"><span>Proposed IPO · ${escapeHtml(filingSourceLabel(company))}</span>${filingLink(company)}</div>
   </article>`).join("");
   $("#drhpEmpty").hidden = companies.length !== 0;
@@ -84,6 +97,7 @@ function validateDrhpDataset(data) {
     if(c.latest_filing_url !== c.filings[0].filing_url || c.latest_filing_date !== c.filings[0].filing_date || c.latest_filing_type !== c.filings[0].filing_type) return false;
     for(const f of c.filings) {
       if(!/^(?:DRHP|UDRHP(?:-?(?:I{1,4}|V|\d+))?)$/.test(f.filing_type || "") || !safeDocumentUrl(f.filing_url) || urls.has(f.filing_url) || !/^2026-\d\d-\d\d$/.test(f.filing_date)) return false;
+      if(f.source_kind === "official_lead_manager" && !Object.hasOwn(LEAD_MANAGER_DATE_BASIS_LABELS, f.date_basis)) return false;
       urls.add(f.filing_url); filings++;
     }
   }
@@ -112,8 +126,9 @@ async function load() {
     DRHP_DATA = {...sourceData, companies: activeCompanies};
 
     $("#drhpCompanyCount").textContent = activeCompanies.length;
-    $("#drhpLatestDate").textContent = formatDate(activeCompanies.reduce((latest, company) =>
-      !latest || company.latest_filing_date > latest ? company.latest_filing_date : latest, null));
+    const latestCompany = latestCompanyByRetainedDate(activeCompanies);
+    $("#drhpLatestDate").textContent = formatDate(latestCompany?.latest_filing_date);
+    $("#drhpLatestDateBasis").textContent = latestCompany ? filingDateBasisLabel(latestCompany) : "No active retained date";
     $("#drhpYear").textContent = sourceData.coverage.year;
     $("#drhpPages").textContent = sourceData.coverage.pages_fetched;
     const sourceCollected = formatTimestamp(sourceData.collection_completed_at);
@@ -129,7 +144,7 @@ async function load() {
     const retained = sourceData.companies.flatMap(c => c.filings).filter(f => f.not_seen_in_latest_scan).length;
     $("#drhpIntegrityNote").textContent =
       (totals.size > 1 ? "SEBI page totals differed during collection. " : "") +
-      "The visible list combines the SEBI draft-offer index with configured official lead-manager fallback sources, then intersects that evidence with the current IPO lifecycle. Exact canonical legal-name matches are removed once they are Upcoming, Open, Closed, Listed, or have an IPO open/close/listing date. " +
+      "The visible list combines the SEBI draft-offer index with configured official lead-manager fallback sources, then intersects that evidence with the current IPO lifecycle. Lead-manager fallback dates are labelled as timestamp proxies when they are not direct SEBI filing dates. Exact canonical legal-name matches are removed once they are Upcoming, Open, Closed, Listed, or have an IPO open/close/listing date. " +
       (retained ? `${retained} earlier draft observation(s) not seen in the latest scan remain retained as source history. ` : "") +
       "No fuzzy issuer matching is used.";
 
