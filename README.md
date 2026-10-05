@@ -47,45 +47,37 @@ Collection time, source observation, dataset generation and Pages publication ar
 
 ## Handoff for the next prompt
 
-The **October 4 correctness/accessibility audit is closed**. All fifteen original
-BUG-001 through BUG-015 findings are repaired, merged, and released. See the
-[complete defect-to-release receipt](docs/verification/october-audit-closeout-2026-10-05.md).
+The **October 4 correctness/accessibility audit remains closed**; see
+[the complete audit receipt](docs/verification/october-audit-closeout-2026-10-05.md).
 
-The final repair was BUG-015 document-filter keyboard focus in PR #366
-(`d3e44eb7`). The exact PR head passed data-contract, historical, reviewed-BSE
-and browser/interface checks. Post-merge Pages run **37352664322** served the
-expected **1,388-record** IPO JSON on the first attempt, SHA-256
-`1741ef733cb06bc6e8d2d466ebd861ab8336996a6e7a69a0751e58dfbe1d3360`.
-Post-merge data-contract run **37352664476** and browser/interface run
-**37352664386** also passed. Pages health was recorded as `f2da5f4e`.
+The bounded **SSEK 2023 release is now fully published, live-verified and closed**.
+The retained first-attempt served receipt is
+[docs/verification/bse-2023-ssek-live-2026-09-30.json](docs/verification/bse-2023-ssek-live-2026-09-30.json).
+It binds run **36662939353**, artifact **11075047555**, the exact served SHA-256
+`77373449dcf00d800a82452072e92f45676d6611f2724e76a900d9f63adc7c6c`,
+and all four reviewed public projections. The temporary SSEK publisher and
+temporary live-verifier workflow are retired; do not replay them.
 
-The final repair sequence after the earlier BUG-001–005 safeguards was:
-PR #359 BUG-006/008, PR #360 BUG-007, PR #362 BUG-012, PR #361 BUG-009,
-PR #363 BUG-010, PR #364 BUG-011, PR #365 BUG-013, and PR #366 BUG-015.
-BUG-014 was closed by the separate browser stabilization PR #357. Do not repeat
-any of these repairs or replay their historical one-shot imports.
+The immutable 2023 ledger is now **16 reviewed/published + 14 awaiting review**.
+Continue with exactly **Mish Designs Limited (544015)**,
+**AHASOLAR TECHNOLOGIES LIMITED (543941)**,
+**ORGANIC RECYCLING SYSTEMS LIMITED (543997)** and
+**Meson Valves India Limited (543982)**. The original 2022 queue remains
+**14 reviewed/published + 2 existing-recovery alias + 0 awaiting review**.
 
-Current source-health qualification: the SEBI DRHP pagination surface can still
-fail upstream. PR #362 makes SEBI and Axis fallback collection independent,
-preserves the last good published draft dataset, and records per-source health.
-An upstream collection failure is not evidence that the audit repair regressed.
-
-The original 2022 queue remains **14 reviewed/published + 2 existing-recovery alias + 0 awaiting review**.
-The next bounded 2023 closeout scope is exactly **SHANTI SPINTEX LIMITED (544059)**,
-**Shoora Designs Limited (543970)**, **Exhicon Events Media Solutions Limited (543895)**
-and **Khazanchi Jewellers Limited (543953)**.
+Current source-health qualification is unchanged: the SEBI DRHP pagination surface
+can still fail upstream. The isolated source-health logic preserves the last good
+dataset and the independent Axis fallback attempt.
 
 ### Exact next backend task
 
-**Review and refresh SSEK closeout PR #352 against current `main`.** The bounded
-scope is exactly **SHANTI SPINTEX LIMITED (544059)**, **Shoora Designs Limited (543970)**,
-**Exhicon Events Media Solutions Limited (543895)** and **Khazanchi Jewellers Limited (543953)**.
-The branch predates the October audit releases. Do not merge the stale head directly
-and do not replay the already completed SSEK publication/source collection. Preserve
-its existing served-verification evidence, refresh only the closeout/queue/workflow-
-retirement changes, rerun current contracts, and merge only if those four reviewed
-2023 identities remain the sole affected release scope. The original BSE 2022 queue
-has remaining **0** unmatched rows requiring import.
+Review **Mish Designs Limited (544015)**, **AHASOLAR TECHNOLOGIES LIMITED (543941)**,
+**ORGANIC RECYCLING SYSTEMS LIMITED (543997)** and **Meson Valves India Limited (543982)**
+from the pinned immutable 2023 queue. The original BSE 2022 queue has remaining **0** unmatched rows requiring import. Start with retained issuer-specific
+authoritative evidence and exact all-year identity reconciliation. Do not treat
+discovery dates or prices as publication authority; preserve nulls and conflicts.
+Publish only through a separate reviewed manifest followed by exact served-data
+verification.
 
 Continue P1 correctness. Do not expand P5/performance while unresolved source or
 release-governance work remains. No new spending, contracts, accounts, analytics,

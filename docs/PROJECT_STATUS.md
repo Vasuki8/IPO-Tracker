@@ -40,21 +40,33 @@ Important qualifications:
   fallback attempt and records per-source health. Source availability itself is
   not claimed fixed.
 
+## SSEK closeout — verified and retired — 2026-10-05 UTC
+
+The four-record SSEK release is closed without any replay. Historical Pages
+verification run **36662939353** / artifact **11075047555** was independently
+rechecked during this refresh: the artifact is unexpired, its ZIP SHA-256 is
+`3475799c28d017897cd25f502bcdcf8d3ad840328057dc01f134a5d2d991070d`,
+and its retained served JSON is **7,798,075 bytes**, SHA-256
+`77373449dcf00d800a82452072e92f45676d6611f2724e76a900d9f63adc7c6c`,
+with successful fetch attempt **1** and all four exact reviewed stable IDs.
+
+The immutable 2023 ledger is now **16 reviewed/published + 14 awaiting review**.
+The temporary `reviewed_ssek` publisher and temporary SSEK live-verifier workflow
+are retired. No IPO data, recovery facts or source documents are changed by this
+closeout.
+
 ## Exact next bounded task
 
-Review and refresh the separate SSEK closeout PR #352 onto current `main`.
-The bounded scope is exactly **SHANTI SPINTEX LIMITED (544059)**,
-**Shoora Designs Limited (543970)**, **Exhicon Events Media Solutions Limited (543895)**
-and **Khazanchi Jewellers Limited (543953)**. Its head predates the audit releases.
-Do not merge that stale branch directly, do not replay the already completed SSEK
-publication or source collection, and do not re-authorize historical facts. Preserve
-the existing served-verification receipt, refresh only the bounded queue closeout
-and temporary-workflow retirement, rerun current contracts, then merge only if
-those four reviewed 2023 identities remain the sole affected release scope.
+Review **Mish Designs Limited (544015)**, **AHASOLAR TECHNOLOGIES LIMITED (543941)**,
+**ORGANIC RECYCLING SYSTEMS LIMITED (543997)** and **Meson Valves India Limited (543982)**
+from the pinned 2023 queue. Start with retained authoritative issuer-specific
+evidence and exact all-year identity reconciliation. Treat discovery values as
+non-authoritative until reviewed, preserve nulls/conflicts, and publish only via a
+separate reviewed manifest plus exact served-data verification.
 
 The original 2022 queue remains **14 reviewed/published + 2 existing-recovery alias + 0 awaiting review**; its next bounded queue is empty.
 
-Continue P1 correctness. P5/performance remains out of scope while source/release
+Continue P1 correctness.
 governance work is unresolved. No new spending, contracts, accounts, analytics,
 ads, billing, infrastructure migration or material access changes without
 approval.

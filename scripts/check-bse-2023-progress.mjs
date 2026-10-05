@@ -1,4 +1,5 @@
 import fs from 'node:fs';
+import {createHash} from 'node:crypto';
 import path from 'node:path';
 import {fileURLToPath,pathToFileURL} from 'node:url';
 import {sha256} from './verify-bse-listing-candidates.mjs';
@@ -10,6 +11,8 @@ const LIVE='https://vasuki8.github.io/IPO-Tracker/data/ipos.json';
 const PUBLISHED='published_reviewed_ipo',AWAITING='awaiting_review';
 const req=(ok,message)=>{if(!ok)throw new Error(message);};
 const hash=v=>typeof v==='string'&&/^[a-f0-9]{64}$/.test(v);
+const gitHash=v=>typeof v==='string'&&/^[a-f0-9]{40}$/.test(v);
+const gitBlob=bytes=>{const b=Buffer.from(bytes);return createHash('sha1').update(Buffer.from('blob '+b.length+'\0')).update(b).digest('hex');};
 const clock=v=>typeof v==='string'&&/^\d{4}-\d{2}-\d{2}T.*Z$/.test(v)&&Number.isFinite(Date.parse(v));
 const nonnegative=v=>Number.isSafeInteger(v)&&v>=0;
 const safeManifest=p=>typeof p==='string'&&/^data\/verified-bse-listings\/[a-z0-9-]+\.json$/.test(p);
@@ -52,7 +55,7 @@ export function validateProgress({queueBytes,progress:p,recoveryByYear,published
   completed++;req(typeof row.stable_id==='string'&&/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(row.stable_id)&&Number.isSafeInteger(row.release_pr)&&row.release_pr>0,'invalid_release_identity');
   req(safeManifest(row.manifest),'unsafe_manifest_path');req(safeReceipt(row.live_receipt),'unsafe_live_receipt_path');
   const m=manifests[row.manifest];req(m&&/^approved_bse_2023_[a-z0-9_]+_import$/.test(m.status)&&m.target_year===2023&&Array.isArray(m.actions)&&m.actions.filter(a=>a.stable_id===row.stable_id).length===1,'unapproved_release_manifest');
-  req(safeReview(m.review_path),'unsafe_review_path');const rb=reviewBytes[m.review_path];req(rb&&hash(m.review_sha256)&&sha256(rb)===m.review_sha256,'release_review_binding_mismatch');
+  req(safeReview(m.review_path),'unsafe_review_path');const rb=reviewBytes[m.review_path];const sha256Bound=rb&&hash(m.review_sha256)&&sha256(rb)===m.review_sha256,gitBound=rb&&gitHash(m.review_git_blob_sha)&&gitBlob(rb)===m.review_git_blob_sha;req(sha256Bound||gitBound,'release_review_binding_mismatch');
   const review=parse(rb);const action=review.actions?.filter(a=>a.stable_id===row.stable_id&&a.discovery_bse_scrip_code===row.bse_scrip_code);req(action?.length===1&&canonicalIssuer(action[0].issuer_name)===canonicalIssuer(original.issuer_name),'release_discovery_identity_mismatch');
   const r=recovery.get(row.stable_id),pub=publicIndex.get(row.stable_id);
   req(r&&pub&&r.recovery_year===2023&&canonicalIssuer(r.issuer_name)===canonicalIssuer(original.issuer_name)&&canonicalIssuer(pub.issuer_name)===canonicalIssuer(original.issuer_name),'released_identity_not_present');
