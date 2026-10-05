@@ -1,14 +1,7 @@
 name: Collect Mish Designs 2023 evidence
 
 on:
-  push:
-    branches:
-      - work/bse-2023-mish-source-collection-20261005
-    paths:
-      - 'data/discovery/bse-2023-mish-source-plan-2026-10-05.json'
-      - 'scripts/collect-bse-2023-mish-evidence.mjs'
-      - 'scripts/test-bse-2023-mish-evidence.mjs'
-      - '.github/workflows/collect-bse-2023-mish-evidence.yml'
+  workflow_dispatch:
   pull_request:
     paths:
       - 'data/discovery/bse-2023-mish-source-plan-2026-10-05.json'
@@ -47,7 +40,7 @@ jobs:
           git diff --exit-code
 
   sources:
-    if: github.event_name == 'push'
+    if: github.event_name == 'workflow_dispatch'
     needs: checks
     runs-on: ubuntu-latest
     timeout-minutes: 8
