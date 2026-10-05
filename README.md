@@ -70,15 +70,22 @@ fail upstream. PR #362 makes SEBI and Axis fallback collection independent,
 preserves the last good published draft dataset, and records per-source health.
 An upstream collection failure is not evidence that the audit repair regressed.
 
+The original 2022 queue remains **14 reviewed/published + 2 existing-recovery alias + 0 awaiting review**.
+The next bounded 2023 closeout scope is exactly **SHANTI SPINTEX LIMITED (544059)**,
+**Shoora Designs Limited (543970)**, **Exhicon Events Media Solutions Limited (543895)**
+and **Khazanchi Jewellers Limited (543953)**.
+
 ### Exact next backend task
 
-**Review and refresh SSEK closeout PR #352 against current `main`.** It is
-separate from the October audit and its branch predates these releases. Do not
-merge the stale head directly and do not replay the already completed SSEK
-publication/source collection. Preserve its existing served-verification evidence,
-refresh only the closeout/queue/workflow-retirement changes, rerun current
-contracts, and merge only if the change remains bounded to the four reviewed 2023
-issuers.
+**Review and refresh SSEK closeout PR #352 against current `main`.** The bounded
+scope is exactly **SHANTI SPINTEX LIMITED (544059)**, **Shoora Designs Limited (543970)**,
+**Exhicon Events Media Solutions Limited (543895)** and **Khazanchi Jewellers Limited (543953)**.
+The branch predates the October audit releases. Do not merge the stale head directly
+and do not replay the already completed SSEK publication/source collection. Preserve
+its existing served-verification evidence, refresh only the closeout/queue/workflow-
+retirement changes, rerun current contracts, and merge only if those four reviewed
+2023 identities remain the sole affected release scope. The original BSE 2022 queue
+has remaining **0** unmatched rows requiring import.
 
 Continue P1 correctness. Do not expand P5/performance while unresolved source or
 release-governance work remains. No new spending, contracts, accounts, analytics,
