@@ -351,19 +351,19 @@ function updateLiveTerm(record, {
   if (value === null || value === undefined || !fieldUsesLiveSource(record, fieldName)) return false;
   record.terms ||= {};
   const existingField = Object.hasOwn(record, fieldName) ? record[fieldName] : null;
-  const currentValue = existingField?.value ?? record.terms?.[termName] ?? null;
+  const currentValue = existingField?.value ?? (termName ? record.terms?.[termName] : null) ?? null;
   const nextField = liveRetainedField(value, sourceValue, issue, now, sourceFieldName, parser);
 
   if (currentValue === null || currentValue === undefined) {
     record[fieldName] = nextField;
-    record.terms[termName] = value;
+    if (termName) record.terms[termName] = value;
     return true;
   }
 
   if (JSON.stringify(currentValue) === JSON.stringify(value)) {
     if (!existingField) {
       record[fieldName] = nextField;
-      record.terms[termName] = value;
+      if (termName) record.terms[termName] = value;
       return true;
     }
     const incomingEvidence = sourceEvidence(issue, now, sourceFieldName);
@@ -387,7 +387,7 @@ function updateLiveTerm(record, {
   ];
   for (const evidence of previousEvidence) addAdditionalSourceOnce(nextField, evidence);
   record[fieldName] = nextField;
-  record.terms[termName] = value;
+  if (termName) record.terms[termName] = value;
   return true;
 }
 
@@ -608,16 +608,19 @@ export function enrichExistingRecord(record, issue, now) {
     parser: parseNseDate
   })) changed = true;
 
-  if (!record.issue_price && parsedPrice.kind === "fixed") {
-    record.issue_price = liveRetainedField(
-      parsedPrice.value, parsedPrice.raw, issue, now, priceFieldName,
-      (raw) => {
-        const parsed = parseIssuePrice(raw);
-        return parsed.kind === "fixed" ? parsed.value : null;
-      }
-    );
-    changed = true;
-  }
+  if (parsedPrice.kind === "fixed" && updateLiveTerm(record, {
+    fieldName: "issue_price",
+    termName: null,
+    value: parsedPrice.value,
+    sourceValue: parsedPrice.raw,
+    issue,
+    now,
+    sourceFieldName: priceFieldName,
+    parser: (raw) => {
+      const parsed = parseIssuePrice(raw);
+      return parsed.kind === "fixed" ? parsed.value : null;
+    }
+  })) changed = true;
 
   for (const nextDocument of sourceDocuments(issue, now)) {
     const nextDocuments = addDocumentOnce(record.documents, nextDocument);
