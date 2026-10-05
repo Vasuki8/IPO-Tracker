@@ -222,6 +222,148 @@ export function applyRecoveryProposal(currentManifest, proposal) {
   return { manifest, changed, stats };
 }
 
+function recordLocations(manifests) {
+  const locations = new Map();
+  for (const [relative, manifest] of Object.entries(manifests || {})) {
+    for (const record of manifest?.records || []) {
+      if (!record?.id) continue;
+      const list = locations.get(record.id) || [];
+      list.push({ relative, record });
+      locations.set(record.id, list);
+    }
+  }
+  return locations;
+}
+
+function comparableWithoutGeneratedAt(manifest) {
+  if (!manifest) return manifest;
+  const copy = clone(manifest);
+  delete copy.generated_at;
+  return copy;
+}
+
+function restoreIdentityFromCurrent(staged, current, id) {
+  const paths = new Set([...Object.keys(staged), ...Object.keys(current)]);
+  for (const relative of paths) {
+    const stagedManifest = staged[relative];
+    const currentManifest = current[relative];
+    if (!stagedManifest && !currentManifest) continue;
+
+    const currentRecords = currentManifest?.records || [];
+    const currentRecord = currentRecords.find((record) => record.id === id);
+
+    if (!stagedManifest) {
+      if (currentRecord) staged[relative] = clone(currentManifest);
+      continue;
+    }
+
+    const next = clone(stagedManifest);
+    next.records = (next.records || []).filter((record) => record.id !== id);
+    if (currentRecord) next.records.push(clone(currentRecord));
+    next.records.sort((a, b) => String(a.issuer_name || "").localeCompare(String(b.issuer_name || "")));
+
+    if (!currentManifest && next.records.length === 0) {
+      delete staged[relative];
+      continue;
+    }
+
+    if (currentManifest && equal(comparableWithoutGeneratedAt(next), comparableWithoutGeneratedAt(currentManifest))) {
+      staged[relative] = clone(currentManifest);
+    } else {
+      staged[relative] = next;
+    }
+  }
+}
+
+function recoveryDelta(currentManifest, stagedManifest) {
+  const before = new Map((currentManifest?.records || []).map((record) => [record.id, record]));
+  const after = new Map((stagedManifest?.records || []).map((record) => [record.id, record]));
+  let added = 0, removed = 0, changed = 0;
+  for (const [id, record] of after) {
+    if (!before.has(id)) added += 1;
+    else if (!equal(before.get(id), record)) changed += 1;
+  }
+  for (const id of before.keys()) if (!after.has(id)) removed += 1;
+  return { added, removed, changed };
+}
+
+export function applyRecoveryProposals(currentManifests, recoveryProposals) {
+  const current = Object.fromEntries(
+    Object.entries(currentManifests || {}).map(([relative, manifest]) => [relative, clone(manifest)])
+  );
+  const baselineLocations = recordLocations(current);
+  for (const [id, locations] of baselineLocations) {
+    if (locations.length > 1) {
+      throw new Error("preexisting_recovery_identity_collision:" + id + ":" +
+        locations.map((item) => item.relative).join(","));
+    }
+  }
+
+  const staged = { ...current };
+  const perManifest = {};
+  let mergeConflicts = 0;
+  let alreadyPresent = 0;
+  let appliedOperations = 0;
+
+  for (const [relative, proposal] of Object.entries(recoveryProposals || {})) {
+    const result = applyRecoveryProposal(current[relative], proposal);
+    perManifest[relative] = result;
+    if (result.manifest) staged[relative] = result.manifest;
+    else delete staged[relative];
+    mergeConflicts += result.stats.conflicts;
+    alreadyPresent += result.stats.already_present;
+    appliedOperations += result.stats.applied_operations;
+  }
+
+  const stagedLocations = recordLocations(staged);
+  const rolledBackIdentities = [];
+  for (const [id, locations] of stagedLocations) {
+    if (locations.length <= 1) continue;
+    // A cross-year move is one logical identity transition. If a concurrent
+    // edit prevents the source removal, roll the whole identity back rather
+    // than accepting the target addition and creating duplicate stable IDs.
+    restoreIdentityFromCurrent(staged, current, id);
+    rolledBackIdentities.push(id);
+  }
+
+  const finalLocations = recordLocations(staged);
+  for (const [id, locations] of finalLocations) {
+    if (locations.length > 1) {
+      throw new Error("unresolved_recovery_identity_collision:" + id + ":" +
+        locations.map((item) => item.relative).join(","));
+    }
+  }
+
+  const changedPaths = [];
+  let addedRecords = 0, removedRecords = 0, changedRecords = 0;
+  for (const relative of new Set([...Object.keys(current), ...Object.keys(staged), ...Object.keys(recoveryProposals || {})])) {
+    const before = current[relative];
+    const after = staged[relative];
+    const delta = recoveryDelta(before, after);
+    addedRecords += delta.added;
+    removedRecords += delta.removed;
+    changedRecords += delta.changed;
+    if (!equal(before, after)) changedPaths.push(relative);
+  }
+
+  return {
+    manifests: staged,
+    changed_paths: changedPaths.sort(),
+    stats: {
+      manifests: Object.keys(recoveryProposals || {}).length,
+      changed_manifests: changedPaths.length,
+      added_records: addedRecords,
+      changed_records: changedRecords,
+      removed_records: removedRecords,
+      applied_operations: appliedOperations,
+      conflicts: mergeConflicts + rolledBackIdentities.length,
+      already_present: alreadyPresent,
+      cross_year_identity_rollbacks: rolledBackIdentities.length
+    },
+    rolled_back_identities: rolledBackIdentities.sort()
+  };
+}
+
 function readJson(file) {
   return fs.existsSync(file) ? JSON.parse(fs.readFileSync(file, "utf8")) : undefined;
 }
@@ -229,6 +371,16 @@ function readJson(file) {
 function writeJson(file, value) {
   fs.mkdirSync(path.dirname(file), { recursive: true });
   fs.writeFileSync(file, JSON.stringify(value, null, 2) + "\n");
+}
+
+function recoveryManifestPaths(root = ROOT) {
+  const recoveryRoot = path.join(root, "data", "recovery");
+  if (!fs.existsSync(recoveryRoot)) return [];
+  return fs.readdirSync(recoveryRoot, { withFileTypes: true })
+    .filter((entry) => entry.isDirectory() && /^20\d{2}$/.test(entry.name))
+    .map((entry) => `data/recovery/${entry.name}/nse-issue-information.json`)
+    .filter((relative) => fs.existsSync(path.join(root, relative)))
+    .sort();
 }
 
 function applyCursorProposal(current, proposal) {
@@ -258,23 +410,32 @@ async function run() {
     changed_cursor_files: 0
   };
 
-  for (const [relative, recoveryProposal] of Object.entries(proposal.recovery || {})) {
-    totals.manifests += 1;
+  const currentRecovery = {};
+  const recoveryPaths = [...new Set([
+    ...recoveryManifestPaths(),
+    ...Object.keys(proposal.recovery || {})
+  ])].sort();
+  for (const relative of recoveryPaths) {
+    currentRecovery[relative] = readJson(path.join(ROOT, relative));
+  }
+  const recoveryResult = applyRecoveryProposals(currentRecovery, proposal.recovery || {});
+  Object.assign(totals, {
+    manifests: recoveryResult.stats.manifests,
+    changed_manifests: recoveryResult.stats.changed_manifests,
+    added_records: recoveryResult.stats.added_records,
+    changed_records: recoveryResult.stats.changed_records,
+    removed_records: recoveryResult.stats.removed_records,
+    applied_operations: recoveryResult.stats.applied_operations,
+    conflicts: recoveryResult.stats.conflicts,
+    already_present: recoveryResult.stats.already_present
+  });
+  totals.cross_year_identity_rollbacks = recoveryResult.stats.cross_year_identity_rollbacks;
+
+  for (const relative of recoveryResult.changed_paths) {
     const file = path.join(ROOT, relative);
-    const current = readJson(file);
-    const result = applyRecoveryProposal(current, recoveryProposal);
-    if (!result.manifest) continue;
-    const s = result.stats;
-    totals.added_records += s.added_records;
-    totals.changed_records += s.changed_records;
-    totals.removed_records += s.removed_records;
-    totals.applied_operations += s.applied_operations;
-    totals.conflicts += s.conflicts;
-    totals.already_present += s.already_present;
-    if (result.changed) {
-      writeJson(file, result.manifest);
-      totals.changed_manifests += 1;
-    }
+    const manifest = recoveryResult.manifests[relative];
+    if (manifest) writeJson(file, manifest);
+    else if (fs.existsSync(file)) fs.unlinkSync(file);
   }
 
   for (const [relative, cursorProposal] of Object.entries(proposal.cursors || {})) {

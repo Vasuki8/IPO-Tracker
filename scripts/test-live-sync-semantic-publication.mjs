@@ -4,7 +4,7 @@ import os from "node:os";
 import path from "node:path";
 import { execFileSync } from "node:child_process";
 import { buildRecoveryProposal, buildJsonProposal, gitJson } from "./prepare-live-sync-proposal.mjs";
-import { applyRecoveryProposal, mergeThreeWay } from "./apply-live-sync-proposal.mjs";
+import { applyRecoveryProposal, applyRecoveryProposals, mergeThreeWay } from "./apply-live-sync-proposal.mjs";
 
 const baseRecord = {
   id: "alpha",
@@ -107,6 +107,147 @@ assert.equal(newYearMerged.manifest.collection_started_at,concurrentNewYear.coll
 assert.equal(applyRecoveryProposal(newYearMerged.manifest,newYearProposal).changed,false);
 assert.equal(applyRecoveryProposal(undefined,newYearProposal).manifest.records.length,2);
 console.log("Concurrent new-year manifest merge tests passed.");
+
+// BUG-007: cross-year moves must be identity-atomic across recovery manifests.
+// A concurrent source edit may block the removal; in that case the target
+// addition must also be held so one stable ID never exists in two years.
+const sourcePath = "data/recovery/2026/nse-issue-information.json";
+const targetPath = "data/recovery/2027/nse-issue-information.json";
+const movingBefore = {
+  id: "moving-limited",
+  issuer_name: "Moving Limited",
+  status: "upcoming",
+  terms: { open_date: "2026-12-31" },
+  documents: [{ type: "NSE", url: "https://nse/moving" }],
+  last_collected_at: "2026-12-20T00:00:00Z"
+};
+const movingAfter = {
+  ...movingBefore,
+  status: "open",
+  terms: { open_date: "2027-01-02" },
+  last_collected_at: "2027-01-02T01:00:00Z"
+};
+const sourceBefore = {
+  generated_at: "2026-12-20T00:00:00Z",
+  records: [movingBefore, { id: "source-safe", issuer_name: "Source Safe Limited" }]
+};
+const sourceAfter = {
+  generated_at: "2027-01-02T01:00:00Z",
+  records: [{ id: "source-safe", issuer_name: "Source Safe Limited" }]
+};
+const targetBefore = {
+  generated_at: "2026-12-20T00:00:00Z",
+  records: [{ id: "target-existing", issuer_name: "Target Existing Limited" }]
+};
+const targetAfter = {
+  generated_at: "2027-01-02T01:00:00Z",
+  records: [
+    { id: "target-existing", issuer_name: "Target Existing Limited" },
+    movingAfter,
+    { id: "target-safe", issuer_name: "Target Safe Limited" }
+  ]
+};
+const migrationProposals = {
+  [sourcePath]: buildRecoveryProposal(sourceBefore, sourceAfter),
+  [targetPath]: buildRecoveryProposal(targetBefore, targetAfter)
+};
+
+const cleanMigration = applyRecoveryProposals(
+  { [sourcePath]: sourceBefore, [targetPath]: targetBefore },
+  migrationProposals
+);
+assert.equal(cleanMigration.rolled_back_identities.length, 0);
+assert.equal(cleanMigration.manifests[sourcePath].records.some((record) => record.id === movingBefore.id), false);
+assert.deepEqual(
+  cleanMigration.manifests[targetPath].records.filter((record) => record.id === movingBefore.id),
+  [movingAfter],
+  "clean migration must move the stable identity exactly once"
+);
+assert.ok(cleanMigration.manifests[targetPath].records.some((record) => record.id === "target-safe"));
+
+const replayMigration = applyRecoveryProposals(cleanMigration.manifests, migrationProposals);
+assert.deepEqual(replayMigration.changed_paths, [], "cross-year migration replay must be idempotent");
+assert.equal(
+  Object.values(replayMigration.manifests).flatMap((manifest) => manifest.records)
+    .filter((record) => record.id === movingBefore.id).length,
+  1
+);
+
+const concurrentSource = structuredClone(sourceBefore);
+concurrentSource.records[0] = {
+  ...movingBefore,
+  sector: "concurrent review",
+  last_collected_at: "2026-12-21T00:00:00Z"
+};
+const heldMigration = applyRecoveryProposals(
+  { [sourcePath]: concurrentSource, [targetPath]: targetBefore },
+  migrationProposals
+);
+assert.deepEqual(heldMigration.rolled_back_identities, [movingBefore.id]);
+assert.deepEqual(
+  heldMigration.manifests[sourcePath].records.find((record) => record.id === movingBefore.id),
+  concurrentSource.records[0],
+  "concurrently edited source identity must be preserved"
+);
+assert.equal(
+  heldMigration.manifests[targetPath].records.some((record) => record.id === movingBefore.id),
+  false,
+  "blocked source removal must also block the target-year duplicate"
+);
+assert.ok(
+  heldMigration.manifests[targetPath].records.some((record) => record.id === "target-safe"),
+  "unrelated safe additions in the same manifest must still apply"
+);
+assert.equal(
+  Object.values(heldMigration.manifests).flatMap((manifest) => manifest.records)
+    .filter((record) => record.id === movingBefore.id).length,
+  1
+);
+assert.equal(heldMigration.stats.cross_year_identity_rollbacks, 1);
+
+const untouchedPath = "data/recovery/2025/nse-issue-information.json";
+const retainedElsewhere = { id: "retained-elsewhere", issuer_name: "Retained Elsewhere Limited" };
+const additionOnlyProposal = {
+  [targetPath]: buildRecoveryProposal(
+    targetBefore,
+    {
+      ...targetBefore,
+      generated_at: "2027-01-02T01:00:00Z",
+      records: [...targetBefore.records, structuredClone(retainedElsewhere)]
+    }
+  )
+};
+const untouchedCollision = applyRecoveryProposals(
+  {
+    [sourcePath]: sourceBefore,
+    [targetPath]: targetBefore,
+    [untouchedPath]: { generated_at: "2026-12-20T00:00:00Z", records: [retainedElsewhere] }
+  },
+  additionOnlyProposal
+);
+assert.deepEqual(untouchedCollision.rolled_back_identities, [retainedElsewhere.id]);
+assert.equal(
+  untouchedCollision.manifests[targetPath].records.some((record) => record.id === retainedElsewhere.id),
+  false,
+  "a proposal must not duplicate an identity retained in an untouched recovery year"
+);
+assert.equal(
+  untouchedCollision.manifests[untouchedPath].records.filter((record) => record.id === retainedElsewhere.id).length,
+  1
+);
+
+const preexistingDuplicate = {
+  [sourcePath]: sourceBefore,
+  [targetPath]: {
+    ...targetBefore,
+    records: [...targetBefore.records, structuredClone(movingBefore)]
+  }
+};
+assert.throws(
+  () => applyRecoveryProposals(preexistingDuplicate, migrationProposals),
+  /preexisting_recovery_identity_collision:moving-limited/
+);
+console.log("Cross-year identity-atomic recovery merge tests passed.");
 
 // BUG-003: a publication collision must never splice a field's value and source.
 // Removing the atomic-field guard must make these real merge tests fail.
