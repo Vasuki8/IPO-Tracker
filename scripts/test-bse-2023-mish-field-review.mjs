@@ -29,7 +29,7 @@ const fixture=()=>({
 assert.deepEqual(checkRepository(),{
   ok:true,
   issuer:'mish-designs-limited',
-  verified_core_fields:6,
+  verified_core_fields:7,
   held_research_fields:2,
   publication_import_allowed:false,
   recovery_identity_hits:0,
