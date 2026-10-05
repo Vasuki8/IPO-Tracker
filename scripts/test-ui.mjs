@@ -184,7 +184,9 @@ try {
   const filingCount = groupedRecord.documents.filter((doc) =>
     /sebi|prospectus|issuer/i.test(doc.type || ""),
   ).length;
-  await page.locator('[data-document-category="filings"]').click();
+  const filingsFilter = page.locator('[data-document-category="filings"]');
+  await filingsFilter.focus();
+  await page.keyboard.press("Enter");
   assert.equal(
     await page.locator("#documentList .document").count(),
     filingCount,
@@ -196,13 +198,25 @@ try {
     "true",
   );
   assert.equal(
+    await page.evaluate(() => document.activeElement?.dataset?.documentCategory),
+    "filings",
+    "Keyboard-activating Offer filings must restore focus to the rerendered filter button",
+  );
+  assert.equal(
     new URL(page.url()).hash,
     `#ipo/${encodeURIComponent(groupedRecord.id)}`,
   );
-  await page.locator('[data-document-category="all"]').click();
+  const allDocumentsFilter = page.locator('[data-document-category="all"]');
+  await allDocumentsFilter.focus();
+  await page.keyboard.press("Enter");
   assert.equal(
     await page.locator("#documentList .document").count(),
     groupedRecord.documents.length,
+  );
+  assert.equal(
+    await page.evaluate(() => document.activeElement?.dataset?.documentCategory),
+    "all",
+    "Keyboard-activating All must keep focus inside document filters after rerender",
   );
   await page.locator('[data-detail-section="documents"]').click();
   assert.equal(

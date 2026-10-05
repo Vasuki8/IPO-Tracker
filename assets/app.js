@@ -725,8 +725,13 @@ $("#documentFilters").addEventListener("click", (event) => {
     ? decodeURIComponent(location.hash.slice(5))
     : "";
   const ipo = IPO_DATA.find((row) => row.id === id);
-  if (ipo)
-    renderDocuments(ipo.documents || [], button.dataset.documentCategory);
+  if (ipo) {
+    const category = button.dataset.documentCategory;
+    renderDocuments(ipo.documents || [], category);
+    $("#documentFilters")
+      .querySelector(`[data-document-category="${category}"]`)
+      ?.focus();
+  }
 });
 $$("[data-methodology]").forEach((button) =>
   button.addEventListener("click", () => $("#sourcesDialog").showModal()),
