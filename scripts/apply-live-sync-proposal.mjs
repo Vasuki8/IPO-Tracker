@@ -373,6 +373,16 @@ function writeJson(file, value) {
   fs.writeFileSync(file, JSON.stringify(value, null, 2) + "\n");
 }
 
+function recoveryManifestPaths(root = ROOT) {
+  const recoveryRoot = path.join(root, "data", "recovery");
+  if (!fs.existsSync(recoveryRoot)) return [];
+  return fs.readdirSync(recoveryRoot, { withFileTypes: true })
+    .filter((entry) => entry.isDirectory() && /^20\d{2}$/.test(entry.name))
+    .map((entry) => `data/recovery/${entry.name}/nse-issue-information.json`)
+    .filter((relative) => fs.existsSync(path.join(root, relative)))
+    .sort();
+}
+
 function applyCursorProposal(current, proposal) {
   const stats = { applied: 0, conflicts: 0, already: 0 };
   const before = proposal?.before_exists ? proposal.before : undefined;
@@ -401,7 +411,11 @@ async function run() {
   };
 
   const currentRecovery = {};
-  for (const relative of Object.keys(proposal.recovery || {})) {
+  const recoveryPaths = [...new Set([
+    ...recoveryManifestPaths(),
+    ...Object.keys(proposal.recovery || {})
+  ])].sort();
+  for (const relative of recoveryPaths) {
     currentRecovery[relative] = readJson(path.join(ROOT, relative));
   }
   const recoveryResult = applyRecoveryProposals(currentRecovery, proposal.recovery || {});
