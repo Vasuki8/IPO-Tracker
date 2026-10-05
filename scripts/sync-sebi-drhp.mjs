@@ -241,6 +241,58 @@ export async function collectSebiDrhpAttempt({ year, maxPages, fetchImpl=fetch, 
     observed_source_totals,pagination_consistent:observed_source_totals.length===1};
 }
 
+export async function collectAxisDrhpYear({
+  year=DEFAULT_YEAR,
+  fetchImpl=fetch,
+  clock=()=>new Date().toISOString(),
+  retainSources=null,
+  existingIssuerKeys=new Set()
+} = {}) {
+  const requested_at=clock();
+  try {
+    const response=await fetchImpl(AXIS_OFFER_DOCS_URL,{method:"GET",redirect:"follow",signal:AbortSignal.timeout(35000),
+      headers:{"user-agent":USER_AGENT,"accept":"text/html,*/*","cache-control":"no-cache"}});
+    const bytes=Buffer.from(await response.arrayBuffer()), collected_at=clock();
+    const file="axis-offer-documents.html";
+    if(retainSources) {
+      fs.mkdirSync(retainSources,{recursive:true});
+      fs.writeFileSync(path.join(retainSources,file),bytes);
+    }
+    if(!response.ok||!officialAxisUrl(response.url,"/offer-documents")||!response.headers.get("content-type")?.includes("text/html")) {
+      throw new Error("invalid_axis_offer_documents_response");
+    }
+    const rows=parseAxisDrhpRows(bytes.toString("utf8")).filter(r=>
+      r.filing_date.startsWith(year+"-")&&r.filing_date<=collected_at.slice(0,10)&&
+      (r.explicit_label_year==null||r.explicit_label_year===year));
+    const seenIssuers=new Set(existingIssuerKeys);
+    const selected=[];
+    for(const row of rows) {
+      const key=canonicalIssuer(row.issuer_name);
+      if(!key||seenIssuers.has(key))continue;
+      selected.push({...row,source_evidence:{url:AXIS_OFFER_DOCS_URL,final_url:response.url,response_sha256:hash(bytes),collected_at,
+        source_authority:"Axis Capital Limited",source_role:"Book Running Lead Manager",filing_url:row.filing_url,date_basis:row.date_basis,
+        ...(row.explicit_label_year?{explicit_label_year:row.explicit_label_year}:{})}});
+      seenIssuers.add(key);
+    }
+    return {
+      status:"success",
+      selected,
+      source_page:{source:"axis_capital_offer_documents",authority:"Axis Capital Limited",role:"Book Running Lead Manager",
+        url:AXIS_OFFER_DOCS_URL,final_url:response.url,http_status:response.status,requested_at,collected_at,bytes:bytes.length,sha256:hash(bytes),
+        artifact_file:file,parsed_current_year_drhps:rows.length,companies_added_as_fallback:selected.length},
+      error:null
+    };
+  } catch (error) {
+    return {status:"failed",selected:[],source_page:null,error:String(error?.message||error).slice(0,180)};
+  }
+}
+
+function writeSourceHealth(retainSources, report) {
+  if(!retainSources)return;
+  fs.mkdirSync(retainSources,{recursive:true});
+  fs.writeFileSync(path.join(retainSources,"source-health.json"),JSON.stringify(report,null,2)+"\n");
+}
+
 export async function collectDrhpYear({ year=DEFAULT_YEAR, maxPages=DEFAULT_MAX_PAGES,
   fetchImpl=fetch, clock=()=>new Date().toISOString(), retainSources=null, supplementalSources=true,
   scanAttempts=DRHP_SEBI_SCAN_ATTEMPTS } = {}) {
@@ -251,34 +303,78 @@ export async function collectDrhpYear({ year=DEFAULT_YEAR, maxPages=DEFAULT_MAX_
 
   const pagination_attempts=[];
   let scan=null;
+  let primaryError=null;
   for(let attempt=1;attempt<=scanAttempts;attempt++) {
-    const current=await collectSebiDrhpAttempt({year,maxPages,fetchImpl,clock,retainSources,attempt});
-    pagination_attempts.push({
-      attempt,
-      started_at:current.attempt_started_at,
-      completed_at:current.attempt_completed_at,
-      pages_fetched:current.source_pages.length,
-      stopped_after_page:current.source_pages.length,
-      stop_reason:current.stop_reason,
-      observed_source_totals:current.observed_source_totals,
-      pagination_consistent:current.pagination_consistent,
-      artifact_dir:retainSources?current.artifact_dir:null,
-      warnings:current.warnings
-    });
-    if(current.pagination_consistent){scan=current;break;}
+    try {
+      const current=await collectSebiDrhpAttempt({year,maxPages,fetchImpl,clock,retainSources,attempt});
+      pagination_attempts.push({
+        attempt,
+        started_at:current.attempt_started_at,
+        completed_at:current.attempt_completed_at,
+        pages_fetched:current.source_pages.length,
+        stopped_after_page:current.source_pages.length,
+        stop_reason:current.stop_reason,
+        observed_source_totals:current.observed_source_totals,
+        pagination_consistent:current.pagination_consistent,
+        artifact_dir:retainSources?current.artifact_dir:null,
+        warnings:current.warnings
+      });
+      if(current.pagination_consistent){scan=current;break;}
+    } catch (error) {
+      primaryError=String(error?.message||error).slice(0,180);
+      pagination_attempts.push({
+        attempt,
+        started_at:null,
+        completed_at:clock(),
+        pages_fetched:0,
+        stopped_after_page:0,
+        stop_reason:null,
+        observed_source_totals:[],
+        pagination_consistent:false,
+        artifact_dir:retainSources?"sebi-attempt-"+String(attempt).padStart(2,"0"):null,
+        warnings:[],
+        error:primaryError
+      });
+    }
   }
+
+  const selected=scan?[...scan.selected]:[];
+  const axis= supplementalSources
+    ? await collectAxisDrhpYear({year,fetchImpl,clock,retainSources,existingIssuerKeys:new Set(selected.map(r=>canonicalIssuer(r.issuer_name)))})
+    : {status:"disabled",selected:[],source_page:null,error:null};
+  if(axis.source_page)supplemental_source_pages.push(axis.source_page);
+  selected.push(...axis.selected);
+
+  const source_health={
+    checked_at:clock(),
+    sources:{
+      sebi_draft_index:scan
+        ? {status:"success",pagination_consistent:true,selected_attempt:scan.attempt,pages_fetched:scan.source_pages.length,error:null}
+        : {status:"failed",pagination_consistent:false,selected_attempt:null,pages_fetched:0,error:primaryError || "pagination_unstable"},
+      axis_capital_offer_documents:{
+        status:axis.status,
+        parsed_current_year_drhps:axis.source_page?.parsed_current_year_drhps ?? 0,
+        companies_added_as_fallback:axis.source_page?.companies_added_as_fallback ?? 0,
+        error:axis.error
+      }
+    }
+  };
+  writeSourceHealth(retainSources,source_health);
+
   if(!scan) {
     const detail=pagination_attempts.map(item=>item.observed_source_totals.join(",")).join("|");
+    if(primaryError)throw new Error("drhp_primary_source_unavailable_after_"+scanAttempts+"_attempts:"+primaryError);
     throw new Error("drhp_pagination_unstable_after_"+scanAttempts+"_attempts:"+detail);
   }
 
-  const source_pages=scan.source_pages, selected=scan.selected, stop_reason=scan.stop_reason, firstTotal=scan.firstTotal;
+  const source_pages=scan.source_pages, stop_reason=scan.stop_reason, firstTotal=scan.firstTotal;
   const warnings=[...scan.warnings];
   if(pagination_attempts.some(item=>!item.pagination_consistent))warnings.push({
     code:"source_total_changed_retry_recovered",
     selected_attempt:scan.attempt,
     attempts:pagination_attempts.map(item=>({attempt:item.attempt,observed_source_totals:item.observed_source_totals,pagination_consistent:item.pagination_consistent}))
   });
+  if(axis.status==="failed")warnings.push({code:"supplemental_source_unavailable",source:"axis_capital_offer_documents",detail:axis.error});
   if(retainSources) {
     for(const meta of source_pages) {
       const file=path.basename(meta.artifact_file);
@@ -287,35 +383,6 @@ export async function collectDrhpYear({ year=DEFAULT_YEAR, maxPages=DEFAULT_MAX_
     }
   }
 
-  if (supplementalSources) {
-    const requested_at=clock();
-    try {
-      const response=await fetchImpl(AXIS_OFFER_DOCS_URL,{method:"GET",redirect:"follow",signal:AbortSignal.timeout(35000),
-        headers:{"user-agent":USER_AGENT,"accept":"text/html,*/*","cache-control":"no-cache"}});
-      const bytes=Buffer.from(await response.arrayBuffer()), collected_at=clock();
-      const file="axis-offer-documents.html";
-      if(retainSources)fs.writeFileSync(path.join(retainSources,file),bytes);
-      if(!response.ok||!officialAxisUrl(response.url,"/offer-documents")||!response.headers.get("content-type")?.includes("text/html"))throw new Error("invalid_axis_offer_documents_response");
-      const rows=parseAxisDrhpRows(bytes.toString("utf8")).filter(r=>
-        r.filing_date.startsWith(year+"-")&&r.filing_date<=collected_at.slice(0,10)&&
-        (r.explicit_label_year==null||r.explicit_label_year===year));
-      const seenIssuers=new Set(selected.map(r=>canonicalIssuer(r.issuer_name)));
-      let added=0;
-      for(const row of rows) {
-        const key=canonicalIssuer(row.issuer_name);
-        if(!key||seenIssuers.has(key))continue;
-        selected.push({...row,source_evidence:{url:AXIS_OFFER_DOCS_URL,final_url:response.url,response_sha256:hash(bytes),collected_at,
-          source_authority:"Axis Capital Limited",source_role:"Book Running Lead Manager",filing_url:row.filing_url,date_basis:row.date_basis,
-          ...(row.explicit_label_year?{explicit_label_year:row.explicit_label_year}:{})}});
-        seenIssuers.add(key);added++;
-      }
-      supplemental_source_pages.push({source:"axis_capital_offer_documents",authority:"Axis Capital Limited",role:"Book Running Lead Manager",
-        url:AXIS_OFFER_DOCS_URL,final_url:response.url,http_status:response.status,requested_at,collected_at,bytes:bytes.length,sha256:hash(bytes),
-        artifact_file:file,parsed_current_year_drhps:rows.length,companies_added_as_fallback:added});
-    } catch (error) {
-      warnings.push({code:"supplemental_source_unavailable",source:"axis_capital_offer_documents",detail:String(error?.message||error).slice(0,180)});
-    }
-  }
   const unique=new Map();
   for(const row of selected){
     const old=unique.get(row.filing_url);
@@ -325,10 +392,11 @@ export async function collectDrhpYear({ year=DEFAULT_YEAR, maxPages=DEFAULT_MAX_
   const companies=buildCompanies([...unique.values()]);
   if(!companies.length)throw new Error("no_drhp_companies_for_year");
   const supplementalAdded=supplemental_source_pages.reduce((n,p)=>n+(p.companies_added_as_fallback||0),0);
-  return {schema_version:"1.0.0",collector_version:"2.3.0",collection_started_at,generated_at:clock(),
+  return {schema_version:"1.0.0",collector_version:"2.4.0",collection_started_at,generated_at:clock(),
     source:{authority:"Securities and Exchange Board of India",section:"Draft Offer Documents filed with SEBI",listing_url:DRHP_LIST_URL,ajax_url:DRHP_AJAX_URL},
     supplemental_sources:[{authority:"Axis Capital Limited",role:"Book Running Lead Manager",listing_url:AXIS_OFFER_DOCS_URL,
       purpose:"Official lead-manager fallback for DRHPs not yet visible in the SEBI draft-offer index."}],
+    source_health,
     coverage:{year,scope:"2026 explicit SEBI DRHP/UDRHP observations plus official lead-manager fallback discoveries; addenda, corrigenda, unlabelled SEBI rows, other years and unconfigured lead-manager sources are not covered.",
       pages_fetched:source_pages.length,stopped_after_page:source_pages.length,stop_reason,official_listing_records_observed:firstTotal,
       raw_filing_observations:selected.length,duplicate_observations:selected.length-unique.size,filing_records:unique.size,companies:companies.length,
