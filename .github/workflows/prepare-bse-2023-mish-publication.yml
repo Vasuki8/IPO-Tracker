@@ -1,0 +1,119 @@
+name: Prepare Mish Designs publication branch
+
+on:
+  push:
+    branches:
+      - release/bse-2023-mish-20261005
+    paths:
+      - '.github/workflows/prepare-bse-2023-mish-publication.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: prepare-bse-2023-mish-publication
+  cancel-in-progress: false
+
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: release/bse-2023-mish-20261005
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Refresh release branch onto latest main
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          git merge --no-edit origin/main
+      - name: Recheck approved Mish contract
+        run: |
+          node scripts/test-bse-2023-mish-field-review.mjs
+          node scripts/check-bse-2023-mish-field-review.mjs
+          node scripts/test-reviewed-bse-2023-mish.mjs
+          node scripts/apply-reviewed-bse-2023-mish.mjs --review
+          node scripts/apply-reviewed-bse-2023-mish.mjs --check
+      - name: Capture pre-publication state
+        shell: bash
+        run: |
+          mkdir -p "$RUNNER_TEMP/mish-publication"
+          cp data/ipos.json "$RUNNER_TEMP/mish-publication/before-ipos.json"
+          cp data/recovery/2023/nse-issue-information.json "$RUNNER_TEMP/mish-publication/before-recovery-2023.json"
+      - name: Apply exactly the approved Mish record
+        run: |
+          node scripts/apply-reviewed-bse-2023-mish.mjs --apply
+          node scripts/build-published-data.mjs
+          node scripts/build-published-data.mjs --check
+          node scripts/validate-data.mjs
+      - name: Prove one-record preservation boundary
+        shell: bash
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import assert from 'node:assert/strict';
+          import {context,expected} from './scripts/apply-reviewed-bse-2023-mish.mjs';
+          import {expectedPublic} from './scripts/verify-bse-2023-mish.mjs';
+          const dir=process.env.RUNNER_TEMP+'/mish-publication';
+          const before=JSON.parse(fs.readFileSync(dir+'/before-ipos.json','utf8'));
+          const after=JSON.parse(fs.readFileSync('data/ipos.json','utf8'));
+          const beforeIds=new Set(before.records.map(r=>r.id));
+          const byId=new Map(after.records.map(r=>[r.id,r]));
+          assert.equal(byId.size,after.records.length,'duplicate public id');
+          assert.equal(beforeIds.has('mish-designs-limited'),false,'Mish already public before release');
+          assert.equal(after.records.length,before.records.length+1,'publication must add exactly one public record');
+          for(const record of before.records)assert.deepEqual(byId.get(record.id),record,'unrelated public record changed:'+record.id);
+          const target=expected(context())[0],publicTarget=expectedPublic(target);
+          assert.deepEqual(byId.get(target.id),publicTarget,'Mish public projection mismatch');
+          assert.equal(JSON.stringify(publicTarget).includes('mishindia.com'),false,'issuer-host source leaked into public projection');
+          assert.equal(publicTarget.market_lot.value,null);
+          assert.equal(publicTarget.minimum_bid_quantity.value,null);
+          assert.equal(publicTarget.minimum_application_amount_inr.value,null);
+          const recovery=JSON.parse(fs.readFileSync('data/recovery/2023/nse-issue-information.json','utf8'));
+          assert.deepEqual(recovery.records.filter(r=>r.id===target.id),[target],'recovery target mismatch');
+          const added=after.records.filter(r=>!beforeIds.has(r.id));
+          fs.writeFileSync(dir+'/after-ipos.json',JSON.stringify(after,null,2)+'\n');
+          fs.writeFileSync(dir+'/mish-record.json',JSON.stringify(publicTarget,null,2)+'\n');
+          fs.writeFileSync(dir+'/preservation.json',JSON.stringify({
+            existing_public_records_unchanged:before.records.length,
+            added_records:added.map(r=>r.id),
+            published_records:after.records.length,
+            generated_at:after.generated_at,
+            public_source_hosts:[...new Set(publicTarget.issue_price.evidence.map(e=>new URL(e.url).hostname))],
+            held_market_lot:null,
+            held_minimum_bid_quantity:null,
+            minimum_application_amount_inr:null
+          },null,2)+'\n');
+          NODE
+          changed="$(git diff --name-only)"
+          printf '%s\n' "$changed" > "$RUNNER_TEMP/mish-publication/changed-files.txt"
+          while IFS= read -r file; do
+            case "$file" in
+              ''|data/recovery/2023/nse-issue-information.json|data/ipos.json) ;;
+              *) echo "Unexpected mutation: $file"; exit 1 ;;
+            esac
+          done <<< "$changed"
+          test -n "$changed"
+      - name: Commit generated publication to release branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add data/recovery/2023/nse-issue-information.json data/ipos.json
+          git commit -m "data(mish): publish reviewed 2023 IPO"
+          git rev-parse HEAD > "$RUNNER_TEMP/mish-publication/data-commit.txt"
+          git push origin HEAD:release/bse-2023-mish-20261005
+      - name: Retain publication preparation evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bse-2023-mish-publication-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/mish-publication
+          retention-days: 14
+          if-no-files-found: error
