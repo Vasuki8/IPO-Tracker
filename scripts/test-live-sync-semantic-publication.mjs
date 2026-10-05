@@ -205,6 +205,37 @@ assert.equal(
 );
 assert.equal(heldMigration.stats.cross_year_identity_rollbacks, 1);
 
+const untouchedPath = "data/recovery/2025/nse-issue-information.json";
+const retainedElsewhere = { id: "retained-elsewhere", issuer_name: "Retained Elsewhere Limited" };
+const additionOnlyProposal = {
+  [targetPath]: buildRecoveryProposal(
+    targetBefore,
+    {
+      ...targetBefore,
+      generated_at: "2027-01-02T01:00:00Z",
+      records: [...targetBefore.records, structuredClone(retainedElsewhere)]
+    }
+  )
+};
+const untouchedCollision = applyRecoveryProposals(
+  {
+    [sourcePath]: sourceBefore,
+    [targetPath]: targetBefore,
+    [untouchedPath]: { generated_at: "2026-12-20T00:00:00Z", records: [retainedElsewhere] }
+  },
+  additionOnlyProposal
+);
+assert.deepEqual(untouchedCollision.rolled_back_identities, [retainedElsewhere.id]);
+assert.equal(
+  untouchedCollision.manifests[targetPath].records.some((record) => record.id === retainedElsewhere.id),
+  false,
+  "a proposal must not duplicate an identity retained in an untouched recovery year"
+);
+assert.equal(
+  untouchedCollision.manifests[untouchedPath].records.filter((record) => record.id === retainedElsewhere.id).length,
+  1
+);
+
 const preexistingDuplicate = {
   [sourcePath]: sourceBefore,
   [targetPath]: {
