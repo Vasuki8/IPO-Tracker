@@ -1,0 +1,52 @@
+name: Validate Mish Designs publication approval
+
+on:
+  push:
+    branches:
+      - work/bse-2023-mish-publication-approval-20261005
+    paths:
+      - 'data/discovery/bse-2023-mish-publication-review-2026-10-05.json'
+      - 'data/verified-bse-listings/2026-10-05-mish-2023.json'
+      - 'scripts/apply-reviewed-bse-2023-mish.mjs'
+      - 'scripts/verify-bse-2023-mish.mjs'
+      - 'scripts/test-reviewed-bse-2023-mish.mjs'
+      - '.github/workflows/check-bse-2023-mish-publication-approval.yml'
+  pull_request:
+    paths:
+      - 'data/discovery/bse-2023-mish-publication-review-2026-10-05.json'
+      - 'data/verified-bse-listings/2026-10-05-mish-2023.json'
+      - 'scripts/apply-reviewed-bse-2023-mish.mjs'
+      - 'scripts/verify-bse-2023-mish.mjs'
+      - 'scripts/test-reviewed-bse-2023-mish.mjs'
+      - '.github/workflows/check-bse-2023-mish-publication-approval.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Recheck semantic review
+        run: |
+          node scripts/test-bse-2023-mish-field-review.mjs
+          node scripts/check-bse-2023-mish-field-review.mjs
+      - name: Test publication approval and importer
+        run: |
+          node scripts/test-reviewed-bse-2023-mish.mjs
+          node scripts/apply-reviewed-bse-2023-mish.mjs --review
+          node scripts/apply-reviewed-bse-2023-mish.mjs --check
+      - name: Prove current production remains untouched
+        run: |
+          node scripts/check-bse-2023-progress.mjs
+          node scripts/check-bse-2022-disposition.mjs
+          node scripts/build-published-data.mjs --check
+          node scripts/validate-data.mjs
+          git diff --exit-code
