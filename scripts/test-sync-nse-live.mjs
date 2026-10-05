@@ -221,7 +221,12 @@ assert.equal(amendedBand.close_date.value, "2026-09-29");
 assert.equal(amendedBand.terms.close_date, "2026-09-29");
 assert.deepEqual(amendedBand.price_band.corrections.at(-1).previous_value, { min: 300, max: 320 });
 assert.equal(amendedBand.price_band.corrections.at(-1).reason.includes("Later official NSE live-feed observation"), true);
-assert.ok(amendedBand.price_band.additional_sources.some((item) => item.url === originalBandEvidence.url));
+assert.ok(
+  amendedBand.price_band.corrections.at(-1).previous_evidence.some(
+    (item) => item.url === originalBandEvidence.url
+  ),
+  "same-endpoint amendments retain prior evidence in correction history without duplicating it as additional evidence"
+);
 assert.equal(
   enrichExistingRecord(amendedBand, {
     companyName: "Live Recovery Limited",
