@@ -455,6 +455,24 @@
       "last_observed_at": "2026-10-06T07:38:22.707Z",
       "last_run_id": "37430835893",
       "observations": 1
+    },
+    {
+      "observed_at": "2026-10-06T15:16:50.754Z",
+      "run_id": "37486045435",
+      "commit_sha": "74f5964613afd905d99d7748bb3cc4c25a7ff3ac",
+      "overall": "failure",
+      "reasons": [
+        "pages_deployment_failure",
+        "rebuild_unmeasured",
+        "validation_unmeasured",
+        "repository_publish_unmeasured",
+        "stale_dataset",
+        "stale_record_collection",
+        "stale_pages_publication"
+      ],
+      "last_observed_at": "2026-10-06T15:16:50.754Z",
+      "last_run_id": "37486045435",
+      "observations": 1
     }
   ]
 }
