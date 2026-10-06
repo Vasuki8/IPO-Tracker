@@ -1,15 +1,19 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-10-06T01:13:57.174Z",
+  "generated_at": "2026-10-06T07:38:22.707Z",
   "run": {
-    "id": "37396161513",
+    "id": "37430835893",
     "attempt": "1",
     "workflow": "Sync live IPO data",
-    "commit_sha": "972561e0dd169073497e3cff92c3bad79d17efcb"
+    "commit_sha": "17b47476e34931f9c18af1e4725ecea7648f9f22"
   },
   "health": {
-    "overall": "healthy",
-    "reasons": [],
+    "overall": "failure",
+    "reasons": [
+      "collection_failure",
+      "stale_dataset",
+      "stale_record_collection"
+    ],
     "thresholds_hours": {
       "dataset_generated": 3,
       "record_collection": 3,
@@ -17,37 +21,56 @@
       "pages_publication": 3
     },
     "ages_hours": {
-      "dataset_generated": 0.37,
-      "record_collection": 0.37,
-      "evidence_collection": 0.37,
-      "pages_publication": 0.67
+      "dataset_generated": 4.28,
+      "record_collection": 4.3,
+      "evidence_collection": 4.3,
+      "pages_publication": 0.65
     }
   },
-  "recovery_guidance": [],
+  "recovery_guidance": [
+    {
+      "reason": "collection_failure",
+      "priority": "high",
+      "diagnostic": "Inspect the failed NSE/SEBI collection step and its workflow logs before changing source parsers.",
+      "recovery": "After identifying a transient source/network failure or a confirmed parser repair, rerun the live IPO sync and verify collection succeeds."
+    },
+    {
+      "reason": "stale_dataset",
+      "priority": "medium",
+      "diagnostic": "Check whether the hourly sync has completed since the dataset generated_at timestamp and whether rebuild/validation were successful.",
+      "recovery": "If collection is healthy but generation is stale, inspect rebuild/validation/publication before considering a sync rerun."
+    },
+    {
+      "reason": "stale_record_collection",
+      "priority": "medium",
+      "diagnostic": "Check the latest hourly sync and NSE/SEBI collection outcomes; confirm retained records are receiving current collection timestamps.",
+      "recovery": "Investigate collection or merge logic if successful runs are not advancing retained record collection time."
+    }
+  ],
   "pipeline": {
-    "collection_health": "collection_success",
+    "collection_health": "collection_failure",
     "stages": {
       "nse_collection": "success",
-      "sebi_collection": "success",
-      "rebuild": "success",
-      "validation": "success",
-      "repository_publish": "success"
+      "sebi_collection": "failure",
+      "rebuild": "skipped",
+      "validation": "skipped",
+      "repository_publish": "skipped"
     }
   },
   "freshness": {
-    "dataset_generated_at": "2026-10-06T00:52:00.683Z",
+    "dataset_generated_at": "2026-10-06T03:21:49.078Z",
     "collection_started_at": "2026-09-22T02:14:14Z",
-    "latest_record_collected_at": "2026-10-06T00:52:00.683Z",
-    "latest_evidence_collected_at": "2026-10-06T00:52:00.683Z"
+    "latest_record_collected_at": "2026-10-06T03:20:32.964Z",
+    "latest_evidence_collected_at": "2026-10-06T03:20:32.964Z"
   },
   "pages_publication": {
     "latest_attempt_status": "success",
-    "latest_attempt_at": "2026-10-06T00:33:43Z",
-    "latest_attempt_commit_sha": "a1de0e84a2d2d785d0893cc961b177cb020d58ed",
-    "latest_attempt_run_id": "37394616911",
-    "last_successful_at": "2026-10-06T00:33:43Z",
-    "last_successful_commit_sha": "a1de0e84a2d2d785d0893cc961b177cb020d58ed",
-    "last_successful_run_id": "37394616911",
+    "latest_attempt_at": "2026-10-06T06:59:36Z",
+    "latest_attempt_commit_sha": "f5f234b7ba6f618293b0628093d621002a08f069",
+    "latest_attempt_run_id": "37426885277",
+    "last_successful_at": "2026-10-06T06:59:36Z",
+    "last_successful_commit_sha": "f5f234b7ba6f618293b0628093d621002a08f069",
+    "last_successful_run_id": "37426885277",
     "page_url": "https://vasuki8.github.io/IPO-Tracker/"
   }
 }
