@@ -1,23 +1,15 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-10-06T15:16:50.754Z",
+  "generated_at": "2026-10-06T20:47:53.324Z",
   "run": {
-    "id": "37486045435",
+    "id": "37526156128",
     "attempt": "1",
     "workflow": "Sync live IPO data",
-    "commit_sha": "74f5964613afd905d99d7748bb3cc4c25a7ff3ac"
+    "commit_sha": "5aa8b4392166e3fe73789240539b283e88083200"
   },
   "health": {
-    "overall": "failure",
-    "reasons": [
-      "pages_deployment_failure",
-      "rebuild_unmeasured",
-      "validation_unmeasured",
-      "repository_publish_unmeasured",
-      "stale_dataset",
-      "stale_record_collection",
-      "stale_pages_publication"
-    ],
+    "overall": "healthy",
+    "reasons": [],
     "thresholds_hours": {
       "dataset_generated": 3,
       "record_collection": 3,
@@ -25,80 +17,37 @@
       "pages_publication": 3
     },
     "ages_hours": {
-      "dataset_generated": 11.92,
-      "record_collection": 11.94,
-      "evidence_collection": 11.94,
-      "pages_publication": 4.47
+      "dataset_generated": 0.2,
+      "record_collection": 0.2,
+      "evidence_collection": 0.2,
+      "pages_publication": 0.9
     }
   },
-  "recovery_guidance": [
-    {
-      "reason": "pages_deployment_failure",
-      "priority": "high",
-      "diagnostic": "Inspect the latest GitHub Pages deployment run and the Deploy to GitHub Pages / publication-health steps.",
-      "recovery": "Fix the deployment-specific failure, then rerun the Pages workflow and confirm a new successful publication is recorded."
-    },
-    {
-      "reason": "rebuild_unmeasured",
-      "priority": "medium",
-      "diagnostic": "Inspect workflow control flow: rebuild was skipped without a known upstream failure, or its outcome was not recorded.",
-      "recovery": "Restore explicit rebuild execution/outcome reporting before interpreting downstream freshness."
-    },
-    {
-      "reason": "validation_unmeasured",
-      "priority": "medium",
-      "diagnostic": "Inspect workflow control flow: validation was skipped without a rebuild/collection failure, or its outcome was not recorded.",
-      "recovery": "Restore explicit validation execution/outcome reporting; do not assume validation passed."
-    },
-    {
-      "reason": "repository_publish_unmeasured",
-      "priority": "medium",
-      "diagnostic": "Inspect workflow control flow: repository publication was skipped without a known upstream failure, or its outcome was not recorded.",
-      "recovery": "Restore explicit publication outcome reporting; do not infer that validated changes reached main."
-    },
-    {
-      "reason": "stale_dataset",
-      "priority": "medium",
-      "diagnostic": "Check whether the hourly sync has completed since the dataset generated_at timestamp and whether rebuild/validation were successful.",
-      "recovery": "If collection is healthy but generation is stale, inspect rebuild/validation/publication before considering a sync rerun."
-    },
-    {
-      "reason": "stale_record_collection",
-      "priority": "medium",
-      "diagnostic": "Check the latest hourly sync and NSE/SEBI collection outcomes; confirm retained records are receiving current collection timestamps.",
-      "recovery": "Investigate collection or merge logic if successful runs are not advancing retained record collection time."
-    },
-    {
-      "reason": "stale_pages_publication",
-      "priority": "medium",
-      "diagnostic": "Compare the latest main commit/dataset generation with the last successful Pages publication and inspect recent Pages runs.",
-      "recovery": "Rerun or repair Pages only when repository content is newer than the last successful publication or the deployment pipeline is unhealthy."
-    }
-  ],
+  "recovery_guidance": [],
   "pipeline": {
-    "collection_health": "not_measured",
+    "collection_health": "collection_success",
     "stages": {
-      "nse_collection": "skipped",
-      "sebi_collection": "skipped",
-      "rebuild": "skipped",
-      "validation": "skipped",
-      "repository_publish": "skipped"
+      "nse_collection": "success",
+      "sebi_collection": "success",
+      "rebuild": "success",
+      "validation": "success",
+      "repository_publish": "success"
     }
   },
   "freshness": {
-    "dataset_generated_at": "2026-10-06T03:21:49.078Z",
+    "dataset_generated_at": "2026-10-06T20:35:42.078Z",
     "collection_started_at": "2026-09-22T02:14:14Z",
-    "latest_record_collected_at": "2026-10-06T03:20:32.964Z",
-    "latest_evidence_collected_at": "2026-10-06T03:20:32.964Z"
+    "latest_record_collected_at": "2026-10-06T20:35:42.078Z",
+    "latest_evidence_collected_at": "2026-10-06T20:35:42.078Z"
   },
   "pages_publication": {
-    "latest_attempt_status": "failure",
-    "latest_attempt_at": "2026-10-06T14:33:52Z",
-    "latest_attempt_commit_sha": "7d1062702dd4b89d47c9006248752a3bacb77418",
-    "latest_attempt_run_id": "37479963328",
-    "last_successful_at": "2026-10-06T10:48:23Z",
-    "last_successful_commit_sha": "f66001fa4c62d86d10c8b5955d27d808d3a0b295",
-    "last_successful_run_id": "37452154382",
+    "latest_attempt_status": "success",
+    "latest_attempt_at": "2026-10-06T19:54:01Z",
+    "latest_attempt_commit_sha": "37c407562a73a17a94195671594297c52eed4270",
+    "latest_attempt_run_id": "37522289760",
+    "last_successful_at": "2026-10-06T19:54:01Z",
+    "last_successful_commit_sha": "37c407562a73a17a94195671594297c52eed4270",
+    "last_successful_run_id": "37522289760",
     "page_url": "https://vasuki8.github.io/IPO-Tracker/"
   }
 }
