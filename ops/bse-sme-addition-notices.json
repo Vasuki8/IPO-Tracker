@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
   "parser_version": "1.5.0",
-  "updated_at": "2026-09-25T03:53:14.049Z",
+  "updated_at": "2026-10-07T17:26:51.861Z",
   "bootstrap": {
     "source_run_id": "35939161246",
     "source_commit_sha": "7eedd8f9668cd7fce51d373427d7a2d7eafd7a8c",
@@ -13,11 +13,11 @@
     "note": "Retained successful latest-20 audit bootstrap. This operational state avoids rescanning those notices; issuer publication authority remains the separately reviewed listing evidence."
   },
   "catalog": {
-    "catalog_rows": 1652,
-    "eligible_count": 236,
-    "newest_notice_no": "20260821-22",
+    "catalog_rows": 1661,
+    "eligible_count": 237,
+    "newest_notice_no": "20261007-30",
     "oldest_notice_no": "20200113-10",
-    "observed_at": "2026-09-25T03:53:14.049Z"
+    "observed_at": "2026-10-07T17:26:51.861Z"
   },
   "notices": {
     "20260821-22": {
@@ -6428,6 +6428,40 @@
           "listing_date": "2020-01-13",
           "listing_date_raw": "January 13, 2020",
           "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20200110-16"
+        }
+      ],
+      "error": null
+    },
+    "20261007-30": {
+      "notice_no": "20261007-30",
+      "notice_date": "2026-10-07",
+      "subject": "Additions to the BSE SME IPO Index",
+      "parser_version": "1.5.0",
+      "status": "parsed",
+      "attempts": 1,
+      "first_attempted_at": "2026-10-07T17:26:51.861Z",
+      "last_attempted_at": "2026-10-07T17:26:51.861Z",
+      "source_kind": "bse_index_notice_pdf",
+      "source_url": "https://www.bseindia.com/downloads/UploadDocs/Notices/20261007-30/20261007-30.pdf",
+      "pdf_url": "https://www.bseindia.com/downloads/UploadDocs/Notices/20261007-30/20261007-30.pdf",
+      "extracted_text_sha256": "1d68eaaa3e99587cd3fec6ef43bca5e5f2589ac9a8d67e49a59d851a6f7725fe",
+      "parsed_entry_count": 2,
+      "parsed_entries": [
+        {
+          "listing_notice_no": "20261006-25",
+          "issuer_name": "VANS ELECTROENGINEERINGS LIMITED",
+          "bse_scrip_code": "544971",
+          "listing_date": "2026-10-07",
+          "listing_date_raw": "October 07, 2026",
+          "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20261006-25"
+        },
+        {
+          "listing_notice_no": "20261006-35",
+          "issuer_name": "BLACK OPAL CONSULTANTS LIMITED",
+          "bse_scrip_code": "544972",
+          "listing_date": "2026-10-07",
+          "listing_date_raw": "October 07, 2026",
+          "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20261006-35"
         }
       ],
       "error": null
