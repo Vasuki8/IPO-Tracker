@@ -1,15 +1,17 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-10-07T01:08:29.476Z",
+  "generated_at": "2026-10-07T07:42:43.759Z",
   "run": {
-    "id": "37553739729",
+    "id": "37586481792",
     "attempt": "1",
     "workflow": "Sync live IPO data",
-    "commit_sha": "9799d2941a70e6bc00095041019030948a22559e"
+    "commit_sha": "b94f4e83d81dad8a7aca2c2855d7d9782009a484"
   },
   "health": {
-    "overall": "healthy",
-    "reasons": [],
+    "overall": "stale",
+    "reasons": [
+      "stale_pages_publication"
+    ],
     "thresholds_hours": {
       "dataset_generated": 3,
       "record_collection": 3,
@@ -17,13 +19,20 @@
       "pages_publication": 3
     },
     "ages_hours": {
-      "dataset_generated": 0.34,
-      "record_collection": 0.34,
-      "evidence_collection": 0.34,
-      "pages_publication": 1.65
+      "dataset_generated": 0.19,
+      "record_collection": 0.19,
+      "evidence_collection": 0.19,
+      "pages_publication": 4.71
     }
   },
-  "recovery_guidance": [],
+  "recovery_guidance": [
+    {
+      "reason": "stale_pages_publication",
+      "priority": "medium",
+      "diagnostic": "Compare the latest main commit/dataset generation with the last successful Pages publication and inspect recent Pages runs.",
+      "recovery": "Rerun or repair Pages only when repository content is newer than the last successful publication or the deployment pipeline is unhealthy."
+    }
+  ],
   "pipeline": {
     "collection_health": "collection_success",
     "stages": {
@@ -35,19 +44,19 @@
     }
   },
   "freshness": {
-    "dataset_generated_at": "2026-10-07T00:48:21.090Z",
+    "dataset_generated_at": "2026-10-07T07:31:28.057Z",
     "collection_started_at": "2026-09-22T02:14:14Z",
-    "latest_record_collected_at": "2026-10-07T00:48:21.090Z",
-    "latest_evidence_collected_at": "2026-10-07T00:48:21.090Z"
+    "latest_record_collected_at": "2026-10-07T07:31:28.057Z",
+    "latest_evidence_collected_at": "2026-10-07T07:31:28.057Z"
   },
   "pages_publication": {
     "latest_attempt_status": "success",
-    "latest_attempt_at": "2026-10-06T23:29:37Z",
-    "latest_attempt_commit_sha": "982463842cbe83f6050d4ee1daccc59a0906dce5",
-    "latest_attempt_run_id": "37546819560",
-    "last_successful_at": "2026-10-06T23:29:37Z",
-    "last_successful_commit_sha": "982463842cbe83f6050d4ee1daccc59a0906dce5",
-    "last_successful_run_id": "37546819560",
+    "latest_attempt_at": "2026-10-07T02:59:59Z",
+    "latest_attempt_commit_sha": "10bdcd829c7cdaeaa85ba03b127ecee6bac7a982",
+    "latest_attempt_run_id": "37564624022",
+    "last_successful_at": "2026-10-07T02:59:59Z",
+    "last_successful_commit_sha": "10bdcd829c7cdaeaa85ba03b127ecee6bac7a982",
+    "last_successful_run_id": "37564624022",
     "page_url": "https://vasuki8.github.io/IPO-Tracker/"
   }
 }
