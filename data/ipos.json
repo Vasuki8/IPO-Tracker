@@ -1,6 +1,6 @@
 {
   "schema_version": "1.2.0",
-  "generated_at": "2026-10-06T21:55:20.459Z",
+  "generated_at": "2026-10-07T00:48:21.090Z",
   "collection_started_at": "2026-09-22T02:14:14Z",
   "records": [
     {
@@ -910,9 +910,18 @@
         "corrections": []
       },
       "issue_price": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": 72,
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/public-past-issues",
+            "document_type": "NSE Public Past Issues",
+            "document_identity": "NSE Public Past Issues — PAPADMALJI",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-10-07T00:48:21.090Z"
+          }
+        ],
         "corrections": []
       },
       "issue_size_inr": {
@@ -1023,9 +1032,18 @@
         "corrections": []
       },
       "listing_date": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": "2026-10-07",
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/public-past-issues",
+            "document_type": "NSE Public Past Issues",
+            "document_identity": "NSE Public Past Issues — PAPADMALJI",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-10-07T00:48:21.090Z"
+          }
+        ],
         "corrections": []
       },
       "documents": [
@@ -1042,10 +1060,17 @@
           "url": "https://www.nseindia.com/api/ipo-current-issue",
           "publication_date": null,
           "collected_at": "2026-09-28T23:21:11.825Z"
+        },
+        {
+          "type": "NSE Public Past Issues",
+          "identity": "NSE Public Past Issues — PAPADMALJI",
+          "url": "https://www.nseindia.com/api/public-past-issues",
+          "publication_date": null,
+          "collected_at": "2026-10-07T00:48:21.090Z"
         }
       ],
       "first_observed_at": "2026-09-28T17:42:25.454Z",
-      "last_collected_at": "2026-09-28T23:21:11.825Z"
+      "last_collected_at": "2026-10-07T00:48:21.090Z"
     },
     {
       "id": "shah-investor-s-home-limited",
@@ -3034,6 +3059,221 @@
       "last_collected_at": "2026-10-04T22:46:20.063Z"
     },
     {
+      "id": "green-asia-impex-limited",
+      "issuer_name": "Green Asia Impex Limited",
+      "board": "SME",
+      "board_evidence": [
+        {
+          "url": "https://www.nseindia.com/api/all-upcoming-issues?category=ipo",
+          "document_type": "NSE IPO Live Feed",
+          "document_identity": "NSE IPO Live Feed — GREENASIA",
+          "publication_date": null,
+          "page": null,
+          "collected_at": "2026-09-23T11:47:20.236Z"
+        }
+      ],
+      "sector": null,
+      "status": "open",
+      "status_evidence": [
+        {
+          "url": "https://www.nseindia.com/api/all-upcoming-issues?category=ipo",
+          "document_type": "NSE IPO Live Feed",
+          "document_identity": "NSE IPO Live Feed — GREENASIA",
+          "publication_date": null,
+          "page": null,
+          "collected_at": "2026-09-23T11:47:20.236Z"
+        },
+        {
+          "url": "https://www.nseindia.com/api/ipo-current-issue",
+          "document_type": "NSE IPO Live Feed",
+          "document_identity": "NSE IPO Live Feed — GREENASIA",
+          "publication_date": null,
+          "page": null,
+          "collected_at": "2026-09-23T19:29:27.142Z"
+        }
+      ],
+      "price_band": {
+        "value": {
+          "min": 85,
+          "max": 90
+        },
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/all-upcoming-issues?category=ipo",
+            "document_type": "NSE IPO Live Feed",
+            "document_identity": "NSE IPO Live Feed — GREENASIA",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T11:47:20.236Z"
+          }
+        ],
+        "corrections": []
+      },
+      "issue_price": {
+        "value": 89,
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/public-past-issues",
+            "document_type": "NSE Public Past Issues",
+            "document_identity": "NSE Public Past Issues — GREENASIA",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-10-07T00:48:21.090Z"
+          }
+        ],
+        "corrections": []
+      },
+      "issue_size_inr": {
+        "value": null,
+        "status": "missing",
+        "evidence": [],
+        "corrections": []
+      },
+      "market_lot": {
+        "value": 1600,
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/all-upcoming-issues?category=ipo",
+            "document_type": "NSE IPO Live Feed",
+            "document_identity": "NSE IPO Live Feed — GREENASIA",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T11:47:20.236Z"
+          }
+        ],
+        "corrections": []
+      },
+      "minimum_bid_quantity": {
+        "value": null,
+        "status": "missing",
+        "evidence": [],
+        "corrections": []
+      },
+      "minimum_application_amount_inr": {
+        "value": null,
+        "status": "missing",
+        "evidence": [],
+        "corrections": []
+      },
+      "application_requirements": {
+        "retail": {
+          "minimum_application_amount_inr": {
+            "value": null,
+            "status": "missing",
+            "evidence": [],
+            "corrections": []
+          },
+          "minimum_bid_quantity": {
+            "value": null,
+            "status": "missing",
+            "evidence": [],
+            "corrections": []
+          }
+        },
+        "non_institutional": {
+          "minimum_application_amount_inr": {
+            "value": null,
+            "status": "missing",
+            "evidence": [],
+            "corrections": []
+          },
+          "minimum_bid_quantity": {
+            "value": null,
+            "status": "missing",
+            "evidence": [],
+            "corrections": []
+          }
+        },
+        "anchor_investor": {
+          "minimum_application_amount_inr": {
+            "value": null,
+            "status": "missing",
+            "evidence": [],
+            "corrections": []
+          },
+          "minimum_bid_quantity": {
+            "value": null,
+            "status": "missing",
+            "evidence": [],
+            "corrections": []
+          }
+        }
+      },
+      "open_date": {
+        "value": "2026-09-24",
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/all-upcoming-issues?category=ipo",
+            "document_type": "NSE IPO Live Feed",
+            "document_identity": "NSE IPO Live Feed — GREENASIA",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T11:47:20.236Z"
+          }
+        ],
+        "corrections": []
+      },
+      "close_date": {
+        "value": "2026-09-28",
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/all-upcoming-issues?category=ipo",
+            "document_type": "NSE IPO Live Feed",
+            "document_identity": "NSE IPO Live Feed — GREENASIA",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T11:47:20.236Z"
+          }
+        ],
+        "corrections": []
+      },
+      "listing_date": {
+        "value": "2026-10-07",
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/public-past-issues",
+            "document_type": "NSE Public Past Issues",
+            "document_identity": "NSE Public Past Issues — GREENASIA",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-10-07T00:48:21.090Z"
+          }
+        ],
+        "corrections": []
+      },
+      "documents": [
+        {
+          "type": "NSE IPO Live Feed",
+          "identity": "NSE IPO Live Feed — GREENASIA",
+          "url": "https://www.nseindia.com/api/all-upcoming-issues?category=ipo",
+          "publication_date": null,
+          "collected_at": "2026-09-23T11:47:20.236Z"
+        },
+        {
+          "type": "NSE IPO Live Feed",
+          "identity": "NSE IPO Live Feed — GREENASIA",
+          "url": "https://www.nseindia.com/api/ipo-current-issue",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:29:27.142Z"
+        },
+        {
+          "type": "NSE Public Past Issues",
+          "identity": "NSE Public Past Issues — GREENASIA",
+          "url": "https://www.nseindia.com/api/public-past-issues",
+          "publication_date": null,
+          "collected_at": "2026-10-07T00:48:21.090Z"
+        }
+      ],
+      "first_observed_at": "2026-09-23T11:47:20.236Z",
+      "last_collected_at": "2026-10-07T00:48:21.090Z"
+    },
+    {
       "id": "a-one-steels-india-limited",
       "issuer_name": "A-One Steels India Limited",
       "board": "Mainboard",
@@ -3538,196 +3778,6 @@
       ],
       "first_observed_at": "2026-09-22T13:09:40.974Z",
       "last_collected_at": "2026-10-01T00:37:10.500Z"
-    },
-    {
-      "id": "green-asia-impex-limited",
-      "issuer_name": "Green Asia Impex Limited",
-      "board": "SME",
-      "board_evidence": [
-        {
-          "url": "https://www.nseindia.com/api/all-upcoming-issues?category=ipo",
-          "document_type": "NSE IPO Live Feed",
-          "document_identity": "NSE IPO Live Feed — GREENASIA",
-          "publication_date": null,
-          "page": null,
-          "collected_at": "2026-09-23T11:47:20.236Z"
-        }
-      ],
-      "sector": null,
-      "status": "open",
-      "status_evidence": [
-        {
-          "url": "https://www.nseindia.com/api/all-upcoming-issues?category=ipo",
-          "document_type": "NSE IPO Live Feed",
-          "document_identity": "NSE IPO Live Feed — GREENASIA",
-          "publication_date": null,
-          "page": null,
-          "collected_at": "2026-09-23T11:47:20.236Z"
-        },
-        {
-          "url": "https://www.nseindia.com/api/ipo-current-issue",
-          "document_type": "NSE IPO Live Feed",
-          "document_identity": "NSE IPO Live Feed — GREENASIA",
-          "publication_date": null,
-          "page": null,
-          "collected_at": "2026-09-23T19:29:27.142Z"
-        }
-      ],
-      "price_band": {
-        "value": {
-          "min": 85,
-          "max": 90
-        },
-        "status": "verified",
-        "evidence": [
-          {
-            "url": "https://www.nseindia.com/api/all-upcoming-issues?category=ipo",
-            "document_type": "NSE IPO Live Feed",
-            "document_identity": "NSE IPO Live Feed — GREENASIA",
-            "publication_date": null,
-            "page": null,
-            "collected_at": "2026-09-23T11:47:20.236Z"
-          }
-        ],
-        "corrections": []
-      },
-      "issue_price": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
-        "corrections": []
-      },
-      "issue_size_inr": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
-        "corrections": []
-      },
-      "market_lot": {
-        "value": 1600,
-        "status": "verified",
-        "evidence": [
-          {
-            "url": "https://www.nseindia.com/api/all-upcoming-issues?category=ipo",
-            "document_type": "NSE IPO Live Feed",
-            "document_identity": "NSE IPO Live Feed — GREENASIA",
-            "publication_date": null,
-            "page": null,
-            "collected_at": "2026-09-23T11:47:20.236Z"
-          }
-        ],
-        "corrections": []
-      },
-      "minimum_bid_quantity": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
-        "corrections": []
-      },
-      "minimum_application_amount_inr": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
-        "corrections": []
-      },
-      "application_requirements": {
-        "retail": {
-          "minimum_application_amount_inr": {
-            "value": null,
-            "status": "missing",
-            "evidence": [],
-            "corrections": []
-          },
-          "minimum_bid_quantity": {
-            "value": null,
-            "status": "missing",
-            "evidence": [],
-            "corrections": []
-          }
-        },
-        "non_institutional": {
-          "minimum_application_amount_inr": {
-            "value": null,
-            "status": "missing",
-            "evidence": [],
-            "corrections": []
-          },
-          "minimum_bid_quantity": {
-            "value": null,
-            "status": "missing",
-            "evidence": [],
-            "corrections": []
-          }
-        },
-        "anchor_investor": {
-          "minimum_application_amount_inr": {
-            "value": null,
-            "status": "missing",
-            "evidence": [],
-            "corrections": []
-          },
-          "minimum_bid_quantity": {
-            "value": null,
-            "status": "missing",
-            "evidence": [],
-            "corrections": []
-          }
-        }
-      },
-      "open_date": {
-        "value": "2026-09-24",
-        "status": "verified",
-        "evidence": [
-          {
-            "url": "https://www.nseindia.com/api/all-upcoming-issues?category=ipo",
-            "document_type": "NSE IPO Live Feed",
-            "document_identity": "NSE IPO Live Feed — GREENASIA",
-            "publication_date": null,
-            "page": null,
-            "collected_at": "2026-09-23T11:47:20.236Z"
-          }
-        ],
-        "corrections": []
-      },
-      "close_date": {
-        "value": "2026-09-28",
-        "status": "verified",
-        "evidence": [
-          {
-            "url": "https://www.nseindia.com/api/all-upcoming-issues?category=ipo",
-            "document_type": "NSE IPO Live Feed",
-            "document_identity": "NSE IPO Live Feed — GREENASIA",
-            "publication_date": null,
-            "page": null,
-            "collected_at": "2026-09-23T11:47:20.236Z"
-          }
-        ],
-        "corrections": []
-      },
-      "listing_date": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
-        "corrections": []
-      },
-      "documents": [
-        {
-          "type": "NSE IPO Live Feed",
-          "identity": "NSE IPO Live Feed — GREENASIA",
-          "url": "https://www.nseindia.com/api/all-upcoming-issues?category=ipo",
-          "publication_date": null,
-          "collected_at": "2026-09-23T11:47:20.236Z"
-        },
-        {
-          "type": "NSE IPO Live Feed",
-          "identity": "NSE IPO Live Feed — GREENASIA",
-          "url": "https://www.nseindia.com/api/ipo-current-issue",
-          "publication_date": null,
-          "collected_at": "2026-09-23T19:29:27.142Z"
-        }
-      ],
-      "first_observed_at": "2026-09-23T11:47:20.236Z",
-      "last_collected_at": "2026-09-23T19:29:27.142Z"
     },
     {
       "id": "adroit-industries-india-limited",
