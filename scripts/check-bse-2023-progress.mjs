@@ -28,6 +28,21 @@ function section(text,heading){
  req(typeof text==='string','missing_handoff');const parts=text.split(heading);req(parts.length===2,'missing_or_duplicate_section:'+heading);
  return parts[1].split(/\n#{1,6} /)[0];
 }
+function manifestReviewBinding(manifest){
+ const legacy=manifest.review_path,modern=manifest.publication_review_path;
+ req(!(legacy&&modern&&legacy!==modern),'ambiguous_review_path');
+ const reviewPath=legacy??modern;
+ req(safeReview(reviewPath),'unsafe_review_path');
+ const sha256Pin=manifest.review_sha256??manifest.publication_review_sha256??null;
+ const gitPin=manifest.review_git_blob_sha??manifest.publication_review_git_blob_sha??null;
+ return{reviewPath,sha256Pin,gitPin};
+}
+function releaseReviewActions(review){
+ const actions=Array.isArray(review?.actions)?review.actions:null;
+ const candidate=review?.candidate&&typeof review.candidate==='object'?[review.candidate]:null;
+ req(!(actions&&candidate),'ambiguous_review_actions');
+ return actions??candidate??[];
+}
 // The source queue is immutable discovery evidence. Only explicit reviewed
 // release references close candidates; name/code matches merely raise warnings.
 export function validateProgress({queueBytes,progress:p,recoveryByYear,published,manifests,reviewBytes,liveReceipts,projectStatus,readme}){
@@ -55,8 +70,8 @@ export function validateProgress({queueBytes,progress:p,recoveryByYear,published
   completed++;req(typeof row.stable_id==='string'&&/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(row.stable_id)&&Number.isSafeInteger(row.release_pr)&&row.release_pr>0,'invalid_release_identity');
   req(safeManifest(row.manifest),'unsafe_manifest_path');req(safeReceipt(row.live_receipt),'unsafe_live_receipt_path');
   const m=manifests[row.manifest];req(m&&/^approved_bse_2023_[a-z0-9_]+_import$/.test(m.status)&&m.target_year===2023&&Array.isArray(m.actions)&&m.actions.filter(a=>a.stable_id===row.stable_id).length===1,'unapproved_release_manifest');
-  req(safeReview(m.review_path),'unsafe_review_path');const rb=reviewBytes[m.review_path];const sha256Bound=rb&&hash(m.review_sha256)&&sha256(rb)===m.review_sha256,gitBound=rb&&gitHash(m.review_git_blob_sha)&&gitBlob(rb)===m.review_git_blob_sha;req(sha256Bound||gitBound,'release_review_binding_mismatch');
-  const review=parse(rb);const action=review.actions?.filter(a=>a.stable_id===row.stable_id&&a.discovery_bse_scrip_code===row.bse_scrip_code);req(action?.length===1&&canonicalIssuer(action[0].issuer_name)===canonicalIssuer(original.issuer_name),'release_discovery_identity_mismatch');
+  const binding=manifestReviewBinding(m),rb=reviewBytes[binding.reviewPath];const sha256Bound=rb&&hash(binding.sha256Pin)&&sha256(rb)===binding.sha256Pin,gitBound=rb&&gitHash(binding.gitPin)&&gitBlob(rb)===binding.gitPin;req(sha256Bound||gitBound,'release_review_binding_mismatch');
+  const review=parse(rb);const action=releaseReviewActions(review).filter(a=>a.stable_id===row.stable_id&&a.discovery_bse_scrip_code===row.bse_scrip_code);req(action.length===1&&canonicalIssuer(action[0].issuer_name)===canonicalIssuer(original.issuer_name),'release_discovery_identity_mismatch');
   const r=recovery.get(row.stable_id),pub=publicIndex.get(row.stable_id);
   req(r&&pub&&r.recovery_year===2023&&canonicalIssuer(r.issuer_name)===canonicalIssuer(original.issuer_name)&&canonicalIssuer(pub.issuer_name)===canonicalIssuer(original.issuer_name),'released_identity_not_present');
   const live=liveReceipts[row.live_receipt];
@@ -77,7 +92,7 @@ export function checkProgress(root=ROOT){
  req(Array.isArray(p.rows),'invalid_progress_rows');
  for(const row of p.rows.filter(r=>r.disposition===PUBLISHED)){
   req(safeManifest(row.manifest),'unsafe_manifest_path');req(safeReceipt(row.live_receipt),'unsafe_live_receipt_path');
-  const m=parse(read(row.manifest));req(safeReview(m.review_path),'unsafe_review_path');manifests[row.manifest]=m;reviewBytes[m.review_path]=read(m.review_path);liveReceipts[row.live_receipt]=parse(read(row.live_receipt));
+  const m=parse(read(row.manifest)),binding=manifestReviewBinding(m);manifests[row.manifest]=m;reviewBytes[binding.reviewPath]=read(binding.reviewPath);liveReceipts[row.live_receipt]=parse(read(row.live_receipt));
  }
  const dir=path.join(root,'data/recovery');const recoveryByYear=Object.fromEntries(fs.readdirSync(dir).filter(y=>/^20\d{2}$/.test(y)&&fs.existsSync(path.join(dir,y,'nse-issue-information.json'))).map(y=>[y,parse(read(`data/recovery/${y}/nse-issue-information.json`))]));
  return validateProgress({progress:p,queueBytes:read(QUEUE),recoveryByYear,published:parse(read('data/ipos.json')),manifests,reviewBytes,liveReceipts,projectStatus:read('docs/PROJECT_STATUS.md').toString('utf8'),readme:read('README.md').toString('utf8')});

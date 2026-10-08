@@ -31,15 +31,29 @@ export function validateReview({review:r,queue,progress,sourcePlanBytes,sourceRe
  req(queue?.source_year===2023&&Array.isArray(queue.rows),'invalid_queue');
  const q=queue.rows.filter(x=>x.bse_scrip_code==='544015');
  req(q.length===1&&q[0].source_row_index===27&&q[0].issuer_name==='Mish Designs Limited','queue_identity');
- req(progress?.source_year===2023&&Array.isArray(progress.rows)&&progress.next_bounded_review_codes?.[0]==='544015','progress_scope');
+ req(progress?.source_year===2023&&Array.isArray(progress.rows)&&Array.isArray(progress.next_bounded_review_codes),'progress_scope');
  const p=progress.rows.find(x=>x.bse_scrip_code==='544015');
- req(p?.disposition==='awaiting_review'&&['stable_id','manifest','release_pr','live_receipt'].every(k=>p[k]===null),'progress_not_awaiting');
+ req(p&&['awaiting_review','published_reviewed_ipo'].includes(p.disposition),'progress_state');
+ const awaiting=p.disposition==='awaiting_review';
+ if(awaiting){
+   req(progress.next_bounded_review_codes?.[0]==='544015','progress_scope');
+   req(['stable_id','manifest','release_pr','live_receipt'].every(k=>p[k]===null),'progress_not_awaiting');
+ }else{
+   req(p.stable_id==='mish-designs-limited'&&p.manifest==='data/verified-bse-listings/2026-10-05-mish-2023.json'&&p.release_pr===372&&p.live_receipt==='docs/verification/bse-2023-mish-live-2026-10-05.json','published_progress_mismatch');
+   req(!progress.next_bounded_review_codes.includes('544015'),'published_candidate_still_next');
+ }
 
  const recoveryRows=Object.entries(recoveryByYear).flatMap(([year,m])=>{req(/^20\d{2}$/.test(year)&&Array.isArray(m.records),'invalid_recovery');return m.records.map(x=>({year,x}));});
  const hits=recoveryRows.filter(({x})=>x.id==='mish-designs-limited'||canon(x.issuer_name)===canon('Mish Designs Limited')||String(x.bse_scrip_code??'')==='544015');
- req(hits.length===0,'existing_mish_recovery_identity');
  req(published?.schema_version==='1.2.0'&&Array.isArray(published.records),'invalid_public');
- req(!published.records.some(x=>x.id==='mish-designs-limited'||canon(x.issuer_name)===canon('Mish Designs Limited')||String(x.bse_scrip_code??'')==='544015'),'existing_mish_public_identity');
+ const publicHits=published.records.filter(x=>x.id==='mish-designs-limited'||canon(x.issuer_name)===canon('Mish Designs Limited')||String(x.bse_scrip_code??'')==='544015');
+ if(awaiting){
+   req(hits.length===0,'existing_mish_recovery_identity');
+   req(publicHits.length===0,'existing_mish_public_identity');
+ }else{
+   req(hits.length===1&&hits[0].year==='2023'&&hits[0].x.id==='mish-designs-limited'&&canon(hits[0].x.issuer_name)===canon('Mish Designs Limited')&&String(hits[0].x.bse_scrip_code??'')==='544015','published_mish_recovery_identity');
+   req(publicHits.length===1&&publicHits[0].id==='mish-designs-limited'&&canon(publicHits[0].issuer_name)===canon('Mish Designs Limited'),'published_mish_public_identity');
+ }
 
  const receipt=JSON.parse(sourceReceiptBytes),rejection=JSON.parse(rejectionBytes),plan=JSON.parse(sourcePlanBytes);
  req(receipt.status==='complete_source_collection_only'&&receipt.publication_import_allowed===false&&receipt.semantic_review_complete===false,'source_receipt_scope');
@@ -80,7 +94,7 @@ export function validateReview({review:r,queue,progress,sourcePlanBytes,sourceRe
  req(r.fixed_price_semantics===true&&Array.isArray(r.publication_blockers)&&r.publication_blockers.length>=2,'review_boundaries');
  req(r.publication_blockers.some(x=>/market_lot and minimum_bid_quantity/i.test(x)),'missing_lot_blocker');
  req(r.publication_blockers.some(x=>/No publication\/import manifest/i.test(x)),'missing_manifest_blocker');
- return {ok:true,issuer:r.issuer.stable_id,verified_core_fields:7,held_research_fields:2,publication_import_allowed:false,recovery_identity_hits:0};
+ return {ok:true,issuer:r.issuer.stable_id,verified_core_fields:7,held_research_fields:2,publication_import_allowed:false,recovery_identity_hits:hits.length};
 }
 
 export function checkRepository(root=ROOT){

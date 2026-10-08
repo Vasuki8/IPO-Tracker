@@ -40,15 +40,22 @@ assert.equal(rejection.prior_issuer_prospectus.pdf_pages,
   prior.documents.find(d=>d.key==='final_prospectus').pdf_pages);
 
 const mish=progress.rows.find(r=>r.bse_scrip_code==='544015');
-assert.equal(mish.disposition,'awaiting_review');
-assert.equal(mish.stable_id,null);
-assert.equal(mish.manifest,null);
-assert.equal(mish.release_pr,null);
-assert.equal(mish.live_receipt,null);
+assert.ok(['awaiting_review','published_reviewed_ipo'].includes(mish.disposition));
+if(mish.disposition==='awaiting_review'){
+  assert.equal(mish.stable_id,null);
+  assert.equal(mish.manifest,null);
+  assert.equal(mish.release_pr,null);
+  assert.equal(mish.live_receipt,null);
+}else{
+  assert.equal(mish.stable_id,'mish-designs-limited');
+  assert.equal(mish.manifest,'data/verified-bse-listings/2026-10-05-mish-2023.json');
+  assert.equal(mish.release_pr,372);
+  assert.equal(mish.live_receipt,'docs/verification/bse-2023-mish-live-2026-10-05.json');
+}
 
 console.log(JSON.stringify({mish_bse_prospectus_rejection_tests:{
   rejected_wrong_issuer:true,
   false_positive_search_context_retained:true,
   no_field_approval:true,
-  mish_queue_unchanged:true,
+  mish_queue_state:mish.disposition,
 }}));

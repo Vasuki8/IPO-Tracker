@@ -32,11 +32,23 @@ assert.deepEqual(checkRepository(),{
   verified_core_fields:7,
   held_research_fields:2,
   publication_import_allowed:false,
-  recovery_identity_hits:0,
+  recovery_identity_hits:1,
 });
 assert.equal(gitBlob(planBytes),review.source_bindings.source_plan_git_blob_sha);
 assert.equal(gitBlob(receiptBytes),review.source_bindings.source_receipt_git_blob_sha);
 assert.equal(gitBlob(rejectionBytes),review.source_bindings.rejected_bse_candidate_git_blob_sha);
+
+const prePublication=fixture();
+{
+ const row=prePublication.progress.rows.find(r=>r.bse_scrip_code==='544015');
+ Object.assign(row,{disposition:'awaiting_review',stable_id:null,manifest:null,release_pr:null,live_receipt:null});
+ prePublication.progress.next_bounded_review_codes=['544015',...prePublication.progress.next_bounded_review_codes.filter(code=>code!=='544015')];
+ for(const manifest of Object.values(prePublication.recoveryByYear)){
+   manifest.records=manifest.records.filter(r=>r.id!=='mish-designs-limited'&&String(r.bse_scrip_code??'')!=='544015'&&String(r.issuer_name??'').toLowerCase()!=='mish designs limited');
+ }
+ prePublication.published.records=prePublication.published.records.filter(r=>r.id!=='mish-designs-limited'&&String(r.bse_scrip_code??'')!=='544015'&&String(r.issuer_name??'').toLowerCase()!=='mish designs limited');
+ assert.equal(validateReview(prePublication).recovery_identity_hits,0,'retained semantic review must also remain valid in its original pre-publication lifecycle state');
+}
 
 let rejected=0;
 for(const [name,mutate] of [
@@ -44,7 +56,7 @@ for(const [name,mutate] of [
  ['stable id',x=>x.review.issuer.stable_id='other'],
  ['source plan pin',x=>x.review.source_bindings.source_plan_git_blob_sha='0'.repeat(40)],
  ['wrong-source acceptance',x=>x.rejectionBytes=Buffer.from(JSON.stringify({...JSON.parse(x.rejectionBytes),status:'accepted'}))],
- ['queue disposition',x=>x.progress.rows.find(r=>r.bse_scrip_code==='544015').disposition='published_reviewed_ipo'],
+ ['partial lifecycle rollback',x=>x.progress.rows.find(r=>r.bse_scrip_code==='544015').disposition='awaiting_review'],
  ['pre-existing public Mish',x=>x.published.records.push({id:'mish-designs-limited',issuer_name:'Mish Designs Limited'})],
  ['pre-existing recovery Mish',x=>x.recoveryByYear['2022'].records.push({id:'mish-designs-limited',issuer_name:'Mish Designs Limited'})],
  ['issue price',x=>x.review.fields.issue_price.value=123],
@@ -70,6 +82,6 @@ console.log(JSON.stringify({mish_semantic_review_tests:{
   prospectus_date_conflict_retained:true,
   lot_and_bid_held_research_only:true,
   minimum_application_amount_not_inferred:true,
-  all_year_identity_clear:true,
+  published_identity_exact:true,
   publication_import_allowed:false,
 }}));

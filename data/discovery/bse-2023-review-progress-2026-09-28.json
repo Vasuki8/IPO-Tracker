@@ -5,20 +5,20 @@
   "source_queue": "data/discovery/bse-2023-review-queue-2026-09-28.json",
   "source_queue_sha256": "975d244fc1a6166aebbb9a4c4da64b60fe3a85e1b3c1d84b9eca3ab4b2812cb4",
   "source_collected_at": "2026-09-26T16:40:34.440Z",
-  "reviewed_at": "2026-09-30T03:07:03.815Z",
+  "reviewed_at": "2026-10-05T22:47:20.000Z",
   "auto_import_allowed": false,
   "source_refetched": false,
   "complete_indian_ipo_universe": false,
   "original_candidates": 30,
-  "reviewed_and_published": 16,
-  "awaiting_review": 14,
+  "reviewed_and_published": 17,
+  "awaiting_review": 13,
   "next_bounded_review_codes": [
-    "544015",
     "543941",
     "543997",
-    "543982"
+    "543982",
+    "543991"
   ],
-  "scope_note": "Progress against the immutable 30-row 2023 candidate snapshot only. Sixteen reviewed releases are closed with original source row IDs and verified live receipts. This does not refresh the 2020-2026 audit or certify universe completeness. Awaiting rows require all-year identity reconciliation before import.",
+  "scope_note": "Progress against the immutable 30-row 2023 candidate snapshot only. Seventeen reviewed releases are closed with original source row IDs and verified live receipts. This does not refresh the 2020-2026 audit or certify universe completeness. Awaiting rows require all-year identity reconciliation before import.",
   "rows": [
     {
       "bse_scrip_code": "543963",
@@ -77,11 +77,11 @@
     {
       "bse_scrip_code": "544015",
       "source_row_index": 27,
-      "disposition": "awaiting_review",
-      "stable_id": null,
-      "manifest": null,
-      "release_pr": null,
-      "live_receipt": null
+      "disposition": "published_reviewed_ipo",
+      "stable_id": "mish-designs-limited",
+      "manifest": "data/verified-bse-listings/2026-10-05-mish-2023.json",
+      "release_pr": 372,
+      "live_receipt": "docs/verification/bse-2023-mish-live-2026-10-05.json"
     },
     {
       "bse_scrip_code": "543941",
